@@ -1,0 +1,16 @@
+#ifndef CTH_ENUMS_H
+#define CTH_ENUMS_H
+
+enum CTH_BACKEND {
+    CTH_BACKEND_MKL        = 100,
+    CTH_BACKEND_OPENBLAS   = 101,
+    CTH_BACKEND_ACCELERATE = 102,
+    CTH_BACKEND_AUTO       = 103,
+};
+
+enum CTH_NODE_TYPE {
+    CTH_NODE_TYPE_DATA     = 200,
+    CTH_NODE_TYPE_OPERATOR = 201,
+};
+
+#endif /* ENUMS_H */

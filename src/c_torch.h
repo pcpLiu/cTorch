@@ -10,8 +10,7 @@ extern "C" {
 #include "storage.h"
 #include "engine.h"
 #include "operator.h"
-
-void t();
+#include "enums.h"
 
 #ifdef __cplusplus
 }

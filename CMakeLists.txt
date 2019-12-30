@@ -44,6 +44,9 @@ if(USE_JEMALLOC)
 endif()
 
 ##############################################
+# Link backends
+
+##############################################
 # Build & Install cTorch
 
 set(CTORCH_ROOT ${PROJECT_SOURCE_DIR}/src)
