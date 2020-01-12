@@ -4,3 +4,6 @@
 [submodule "cTorch/lib/jemalloc"]
 	path = cTorch/lib/jemalloc
 	url = https://github.com/jemalloc/jemalloc
+[submodule "cTorch/lib/protobuf"]
+	path = cTorch/lib/protobuf
+	url = https://github.com/protocolbuffers/protobuf
