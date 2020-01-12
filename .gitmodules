@@ -1,0 +1,3 @@
+[submodule "cTorch/lib/protobuf-c"]
+	path = cTorch/lib/protobuf-c
+	url = https://github.com/protobuf-c/protobuf-c
