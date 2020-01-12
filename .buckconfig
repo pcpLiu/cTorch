@@ -1,0 +1,8 @@
+[repositories]
+    buck = .
+
+[parser]
+    default_build_file_syntax = SKYLARK
+
+[python]
+    interpreter = /usr/bin/python3
