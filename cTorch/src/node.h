@@ -18,10 +18,7 @@ typedef struct {
 
   /* Node list will be NULL if it's empty */
   struct ListCTorchNode *in_bound_nodes;
-  // uint16_t n_inbound_nodes;
-
   struct ListCTorchNode *out_bound_nodes;
-  // uint16_t n_outbound_nodes;
 
   CTorchNodeContent *conent;
 } CTorchNode;
