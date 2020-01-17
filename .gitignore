@@ -49,5 +49,3 @@ include/divisible/*
 .idea/*.xml
 .vscode
 build/**/*
-
-cTorch/include/*.h
