@@ -10,3 +10,6 @@
 [submodule "cTorch/lib/Cerberus"]
 	path = cTorch/lib/Cerberus
 	url = https://github.com/pcpLiu/Cerberus
+[submodule "cTorch/lib/googletest"]
+	path = cTorch/lib/googletest
+	url = https://github.com/google/googletest
