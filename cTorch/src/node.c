@@ -1,3 +1,3 @@
 #include "node.h"
 
-impl_insert_func(CTorchNodeList, CTorchNode)
+impl_insert_func(ListCTorchNode, CTorchNode)

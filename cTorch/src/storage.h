@@ -21,9 +21,9 @@ typedef struct {
 } CTorchTensorMeta;
 
 typedef union {
-  float *val;
-  double *val;
-  int8_t *val;
+  float *val_float;
+  double *val_double;
+  int8_t *val_int8;
 } CTorchTensorValues;
 
 typedef struct {

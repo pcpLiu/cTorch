@@ -10,9 +10,9 @@
 typedef struct {
   uuid_t uuid;
   CTorchName *graph_name;
-  CTorchNodeList *nodes;
+  ListCTorchNode *nodes;
 } CTorchGraph;
 
-CTorchNodeList *c_torch_graph_input_nodes(CTorchGraph *);
+ListCTorchNode *c_torch_graph_input_nodes(CTorchGraph *);
 
 #endif /* GRAPH_H */

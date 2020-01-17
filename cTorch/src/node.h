@@ -17,14 +17,17 @@ typedef struct {
   CTH_NODE_EXE_STATUS exe_status;
 
   /* Node list will be NULL if it's empty */
-  CTorchNodeList *in_bound_nodes;
-  CTorchNodeList *out_bound_nodes;
+  struct ListCTorchNode *in_bound_nodes;
+  // uint16_t n_inbound_nodes;
+
+  struct ListCTorchNode *out_bound_nodes;
+  // uint16_t n_outbound_nodes;
 
   CTorchNodeContent *conent;
 } CTorchNode;
 
-typedef ListStruct(CTorchNode) CTorchNodeList;
+typedef ListStruct(CTorchNode) ListCTorchNode;
 
-declare_insert_func(CTorchNodeList, CTorchNode)
+declare_insert_func(ListCTorchNode, CTorchNode);
 
 #endif /* NODE_H */
