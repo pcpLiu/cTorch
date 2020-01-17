@@ -1,15 +1,15 @@
 [submodule "cTorch/lib/jemalloc"]
-	path = cTorch/lib/jemalloc
+	path = lib/jemalloc
 	url = https://github.com/jemalloc/jemalloc
 [submodule "cTorch/lib/flatbuffers"]
-	path = cTorch/lib/flatbuffers
+	path = lib/flatbuffers
 	url = https://github.com/google/flatbuffers
 [submodule "cTorch/lib/flatcc"]
-	path = cTorch/lib/flatcc
+	path = lib/flatcc
 	url = https://github.com/dvidelabs/flatcc
 [submodule "cTorch/lib/Cerberus"]
-	path = cTorch/lib/Cerberus
+	path = lib/Cerberus
 	url = https://github.com/pcpLiu/Cerberus
 [submodule "cTorch/lib/googletest"]
-	path = cTorch/lib/googletest
+	path = lib/googletest
 	url = https://github.com/google/googletest
