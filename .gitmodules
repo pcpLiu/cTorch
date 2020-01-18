@@ -7,9 +7,6 @@
 [submodule "cTorch/lib/flatcc"]
 	path = lib/flatcc
 	url = https://github.com/dvidelabs/flatcc
-[submodule "cTorch/lib/Cerberus"]
-	path = lib/Cerberus
-	url = https://github.com/pcpLiu/Cerberus
 [submodule "cTorch/lib/googletest"]
 	path = lib/googletest
 	url = https://github.com/google/googletest
