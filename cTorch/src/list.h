@@ -11,6 +11,8 @@
 #define ListItemCreateFuncName(data_type) create_item_List##data_type
 #define ListSizeFuncName(data_type) size_of_List##data_type
 
+#define NewList(list_type) (list_type *)MALLOC(sizeof(list_type))
+
 #define ListStruct(data_type)                                                  \
   struct ListTypeName(data_type) {                                             \
     data_type *data;                                                           \

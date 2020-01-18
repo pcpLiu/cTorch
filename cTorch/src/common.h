@@ -8,4 +8,6 @@ typedef struct {
 
 } CTorchName;
 
+void FAIL_NULL_PTR(void *);
+
 #endif /* COMMON_H */

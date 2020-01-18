@@ -17,6 +17,8 @@ set(CMAKE_CXX_STANDARD 11)
 # set_target_properties(c_torch PROPERTIES VERSION ${PROJECT_VERSION})
 # set_target_properties(c_torch PROPERTIES PUBLIC_HEADER include/c_torch.h)
 
+include(GNUInstallDirs)
+
 add_subdirectory(cTorch)
 add_subdirectory(tests)
 add_subdirectory(lib/googletest)

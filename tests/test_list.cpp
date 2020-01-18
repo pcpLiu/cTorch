@@ -1,5 +1,4 @@
-#include "common.h"
-#include "list.h"
+#include "c_torch.h"
 #include "gtest/gtest.h"
 #include <stdlib.h>
 
