@@ -28,5 +28,7 @@ typedef ListStruct(CTorchNode) ListTypeName(CTorchNode);
 declare_insert_func(CTorchNode, ListTypeName(CTorchNode),
                     ListInsertFuncName(CTorchNode));
 
-// declare_insert_func(CTorchNode, ListTypeName(CTorchNode));
+declare_create_func(CTorchNode, ListTypeName(CTorchNode),
+                    ListItemCreateFuncName(CTorchNode));
+
 #endif /* NODE_H */
