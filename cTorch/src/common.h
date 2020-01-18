@@ -10,4 +10,6 @@ typedef struct {
 
 void FAIL_NULL_PTR(void *);
 
+void FAIL_EXIT(char *const);
+
 #endif /* COMMON_H */

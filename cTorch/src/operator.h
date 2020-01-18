@@ -8,9 +8,9 @@
 typedef struct {
   uuid_t uuid;
   CTH_OPERATOR_ID op_id;
-  CTorchTensor *param_tensors;
-  CTorchTensor *in_bound_tensors;
-  CTorchTensor *out_bound_tensors;
+  List(CTorchTensor) * param_tensors;
+  List(CTorchTensor) * in_bound_tensors;
+  List(CTorchTensor) * out_bound_tensors;
 } CTorchOperator;
 
 #endif /* OPERATOR_H */

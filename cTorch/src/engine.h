@@ -6,7 +6,7 @@
 #include <stdint.h>
 
 typedef struct {
-  CTorchNode *executable_nodes;
+  List(CTorchNode) * executable_nodes;
   uint16_t n_nodes;
   uint16_t step_index;
 } CTorchExecuteStep;

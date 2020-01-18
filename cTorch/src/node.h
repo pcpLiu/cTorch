@@ -2,7 +2,7 @@
 #define CTH_NODE_H
 
 #include "consts.h"
-#include "list.h"
+#include "list_d.h"
 #include "operator.h"
 #include "storage.h"
 #include <stdlib.h>
@@ -12,33 +12,41 @@ typedef union {
   CTorchOperator *op;
 } CTorchNodeContent;
 
+/*
+  CTorchNode.
+  This struct represents a computational node in a torch graph.
+  It could be either a operator or a tensor.
+*/
 typedef struct {
   CTH_NODE_TYPE node_type;
   CTH_NODE_EXE_STATUS exe_status;
 
   /* Node list will be NULL if it's empty */
-  struct ListTypeName(CTorchNode) * inbound_nodes;
-  struct ListTypeName(CTorchNode) * outbound_nodes;
+  struct List(CTorchNode) * inbound_nodes;
+  struct List(CTorchNode) * outbound_nodes;
 
   CTorchNodeContent *conent;
 } CTorchNode;
 
-typedef ListStruct(CTorchNode) ListTypeName(CTorchNode);
-
-declare_insert_func(CTorchNode, ListTypeName(CTorchNode),
-                    ListInsertFuncName(CTorchNode));
-
-declare_create_func(CTorchNode, ListTypeName(CTorchNode),
-                    ListItemCreateFuncName(CTorchNode));
+// List macros
+def_list_item(CTorchNode);
+def_list(CTorchNode);
+declare_new_list_item_func(CTorchNode);
+declare_new_list_func(CTorchNode);
+declare_insert_list_func(CTorchNode);
+declare_list_contains_data_func(CTorchNode);
+declare_list_contains_item_func(CTorchNode);
 
 /*
   Add a list of nodes into target node's in/out-bound list.
+  Function fails if this list is empty.
+  If some nodes already in the bound list, they will be ignored.
+
   Side effect:
     - These two functions will automatically update list nodes'
     in/out-bound infor.
 */
-CTorchNode *c_torch_node_add_inbound_nodes(CTorchNode *,
-                                           ListTypeName(CTorchNode) *);
-CTorchNode *c_torch_node_add_outbound_nodes(CTorchNode *,
-                                            ListTypeName(CTorchNode) *);
+CTorchNode *c_torch_node_add_inbound_nodes(CTorchNode *, List(CTorchNode) *);
+CTorchNode *c_torch_node_add_outbound_nodes(CTorchNode *, List(CTorchNode) *);
+
 #endif /* NODE_H */

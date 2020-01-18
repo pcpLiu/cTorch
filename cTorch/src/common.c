@@ -8,3 +8,8 @@ void FAIL_NULL_PTR(void *ptr) {
     exit(1);
   }
 }
+
+void FAIL_EXIT(char *const err_msg) {
+  fprintf(stderr, "[cTorch] %s", err_msg);
+  exit(1);
+}

@@ -6,11 +6,12 @@ extern "C" {
 #endif
 
 #include "../src/common.h"
-#include "../src/engine.h"
+#include "../src/consts.h"
 #include "../src/graph.h"
-#include "../src/list.h"
+#include "../src/list_d.h"
 #include "../src/node.h"
 #include "../src/operator.h"
+#include "../src/plan.h"
 #include "../src/storage.h"
 
 #ifdef __cplusplus
