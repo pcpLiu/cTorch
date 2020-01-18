@@ -2,11 +2,14 @@
 #define CTH_LIST_H
 
 #include "common.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 #define ListTypeName(data_type) List##data_type
 #define ListInsertFuncName(data_type) insert_into_list_List##data_type
 #define ListItemInitFuncName(data_type) init_item_List##data_type
 #define ListItemCreateFuncName(data_type) create_item_List##data_type
+#define ListSizeFuncName(data_type) size_of_List##data_type
 
 #define ListStruct(data_type)                                                  \
   struct ListTypeName(data_type) {                                             \
@@ -50,9 +53,9 @@
       head->next_item = NULL;                                                  \
       head->prev_item = NULL;                                                  \
     } else if (head->data == NULL) {                                           \
-      /* Head data is null */                                                  \
-      head->data = data;                                                       \
-      return head;                                                             \
+      /* Head data is null, error */                                           \
+      fprintf(stderr, "[cTorch] Item data is NULL.");                          \
+      exit(1);                                                                 \
     } else {                                                                   \
       list_type *curr = head;                                                  \
       while (curr->next_item != NULL) {                                        \
@@ -64,6 +67,26 @@
       curr->next_item->next_item = NULL;                                       \
     }                                                                          \
     return head;                                                               \
+  }
+
+#define declare_size_func(list_type, func_name) uint64_t func_name(list_type *)
+
+#define impl_size_func(list_type, func_name)                                   \
+  uint64_t func_name(list_type *head) {                                        \
+    uint64_t size = 0;                                                         \
+    if (head == NULL) {                                                        \
+      return size;                                                             \
+    } else if (head->data == NULL) {                                           \
+      /* TODO: stacktrace */                                                   \
+      fprintf(stderr, "[cTorch] Item data is NULL.");                          \
+      exit(1);                                                                 \
+    } else {                                                                   \
+      do {                                                                     \
+        size++;                                                                \
+        head = head->next_item;                                                \
+      } while (head != NULL);                                                  \
+    }                                                                          \
+    return size;                                                               \
   }
 
 #endif /* LIST_H */
