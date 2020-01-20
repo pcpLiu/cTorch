@@ -10,3 +10,6 @@
 [submodule "cTorch/lib/googletest"]
 	path = lib/googletest
 	url = https://github.com/google/googletest
+[submodule "lib/OpenBLAS"]
+	path = lib/OpenBLAS
+	url = https://github.com/xianyi/OpenBLAS
