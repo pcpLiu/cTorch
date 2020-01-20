@@ -1,0 +1,7 @@
+# Sources
+*.c     text diff=c
+*.h     text diff=c
+
+# ignore vendor & test for stats
+lib/* linguist-vendored
+tests/* linguist-vendored
