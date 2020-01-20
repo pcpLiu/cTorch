@@ -1,6 +1,5 @@
 #include "c_torch.h"
 #include "gtest/gtest.h"
-#include <stdlib.h>
 
 // typedef ListItemStruct(int) ListItem(int);
 def_list_item(int);
@@ -25,9 +24,9 @@ TEST(cTorchListTest, test_item_define) {
 
 TEST(cTorchListTest, test_list_define) {
   List(int) list = {
+      .size = 0,
       .head = NULL,
       .tail = NULL,
-      .size = 0,
   };
   EXPECT_EQ(list.size, 0);
   EXPECT_EQ(list.head, nullptr);
