@@ -6,7 +6,6 @@
 #include <uuid/uuid.h>
 
 typedef struct {
-  uuid_t uuid;
   CTH_OPERATOR_ID op_id;
   List(CTorchTensor) * param_tensors;
   List(CTorchTensor) * in_bound_tensors;

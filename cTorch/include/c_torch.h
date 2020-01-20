@@ -5,7 +5,6 @@
 extern "C" {
 #endif
 
-#include "../src/common.h"
 #include "../src/consts.h"
 #include "../src/graph.h"
 #include "../src/list_d.h"
@@ -13,6 +12,13 @@ extern "C" {
 #include "../src/operator.h"
 #include "../src/plan.h"
 #include "../src/storage.h"
+
+// Append name space before identifier
+#ifdef C_TORCH_NS
+#define NS(name) C_TORCH_NS_##name
+#else
+#define NS(name) name
+#endif
 
 #ifdef __cplusplus
 }

@@ -6,6 +6,7 @@
 #include "operator.h"
 #include "storage.h"
 #include <stdlib.h>
+#include <uuid/uuid.h>
 
 typedef union {
   CTorchTensor *tensor;
@@ -18,13 +19,20 @@ typedef union {
   It could be either a operator or a tensor.
 */
 typedef struct {
+  // UUID of this node
+  uuid_t uuid;
+
+  // node type
   CTH_NODE_TYPE node_type;
+
+  // execution status
   CTH_NODE_EXE_STATUS exe_status;
 
   /* Node list will be NULL if it's empty */
   struct List(CTorchNode) * inbound_nodes;
   struct List(CTorchNode) * outbound_nodes;
 
+  // A tensor or operator
   CTorchNodeContent *conent;
 } CTorchNode;
 

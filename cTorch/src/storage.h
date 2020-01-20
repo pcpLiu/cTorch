@@ -5,10 +5,8 @@
 #include "consts.h"
 #include "list_d.h"
 #include <stdint.h>
-#include <uuid/uuid.h>
 
 typedef struct {
-  uuid_t uuid;
   uint8_t value_size_of;
   CTH_TENSOR_DATA_TYPE data_type;
   uint16_t n_dim;

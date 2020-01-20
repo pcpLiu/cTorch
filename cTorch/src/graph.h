@@ -12,11 +12,14 @@
   This struct represents a computational graph.
 */
 typedef struct {
+  // UUID of this graph
   uuid_t uuid;
-  CTorchName *graph_name; /* Optional */
+
+  // Graph name. Optional
+  CTorchName *graph_name;
+
+  // Nodes containing in this graph
   List(CTorchNode) * node_list;
 } CTorchGraph;
-
-// ListCTorchNode *c_torch_graph_input_nodes(CTorchGraph *);
 
 #endif /* GRAPH_H */
