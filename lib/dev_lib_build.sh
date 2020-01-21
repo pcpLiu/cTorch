@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# jemalloc
-cd ./jemalloc
-./autogen.sh --with-jemalloc-prefix=je_  --disable-cxx
-make && make install
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+cd DIR
+mkdir installed
 
-# flatcc
-cd ../flatcc
-scripts/build.sh
+# Install OpenBLAS
+cd OpenBLAS
+make
+make PREFIX=../installed install
