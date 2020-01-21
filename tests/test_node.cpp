@@ -1,28 +1,32 @@
 #include "c_torch.h"
 #include "gtest/gtest.h"
 
+CTorchNode new_dum_node() {
+#ifdef __clang__
+  CTorchNode node = {
+      .node_type = CTH_NODE_TYPE_DATA,
+      .exe_status = CTH_NODE_EXE_STATUS_CLEAN,
+      .inbound_nodes = new_list(CTorchNode)(),
+      .outbound_nodes = new_list(CTorchNode)(),
+  };
+#else
+  CTorchNode node = {
+    node_type : CTH_NODE_TYPE_DATA,
+    exe_status : CTH_NODE_EXE_STATUS_CLEAN,
+    inbound_nodes : new_list(CTorchNode)(),
+    outbound_nodes : new_list(CTorchNode)(),
+  };
+#endif
+  return node;
+}
+
 TEST(cTorchNodeTest, test_add_bound_nodes) {
   // target
-  CTorchNode a = {
-      .node_type = CTH_NODE_TYPE_DATA,
-      .exe_status = CTH_NODE_EXE_STATUS_CLEAN,
-      .inbound_nodes = new_list(CTorchNode)(),
-      .outbound_nodes = new_list(CTorchNode)(),
-  };
+  CTorchNode a = new_dum_node();
 
   // Add to inbound
-  CTorchNode b = {
-      .node_type = CTH_NODE_TYPE_DATA,
-      .exe_status = CTH_NODE_EXE_STATUS_CLEAN,
-      .inbound_nodes = new_list(CTorchNode)(),
-      .outbound_nodes = new_list(CTorchNode)(),
-  };
-  CTorchNode c = {
-      .node_type = CTH_NODE_TYPE_DATA,
-      .exe_status = CTH_NODE_EXE_STATUS_CLEAN,
-      .inbound_nodes = new_list(CTorchNode)(),
-      .outbound_nodes = new_list(CTorchNode)(),
-  };
+  CTorchNode b = new_dum_node();
+  CTorchNode c = new_dum_node();
   List(CTorchNode) *inbound_list = new_list(CTorchNode)();
   insert_list(CTorchNode)(inbound_list, &b);
   insert_list(CTorchNode)(inbound_list, &c);
@@ -48,18 +52,8 @@ TEST(cTorchNodeTest, test_add_bound_nodes) {
   EXPECT_EQ(item_a->data, &a);
 
   // Add to outbound
-  CTorchNode d = {
-      .node_type = CTH_NODE_TYPE_DATA,
-      .exe_status = CTH_NODE_EXE_STATUS_CLEAN,
-      .inbound_nodes = new_list(CTorchNode)(),
-      .outbound_nodes = new_list(CTorchNode)(),
-  };
-  CTorchNode e = {
-      .node_type = CTH_NODE_TYPE_DATA,
-      .exe_status = CTH_NODE_EXE_STATUS_CLEAN,
-      .inbound_nodes = new_list(CTorchNode)(),
-      .outbound_nodes = new_list(CTorchNode)(),
-  };
+  CTorchNode d = new_dum_node();
+  CTorchNode e = new_dum_node();
   List(CTorchNode) *outbound_list = new_list(CTorchNode)();
   insert_list(CTorchNode)(outbound_list, &d);
   insert_list(CTorchNode)(outbound_list, &e);
