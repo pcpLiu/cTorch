@@ -16,6 +16,6 @@ void execute_step(CTorchExecuteStep *);
 /*
   Execute a node.
 */
-void execute_node(CTorchNode *);
+void execute_node(CTorchNode *, CTH_BACKEND);
 
 #endif /* ENGINE_H */
