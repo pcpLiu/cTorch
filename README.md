@@ -7,11 +7,11 @@
 cTorch is an inference engine for PyTorch models implemented with C.
 It was developed for project [cTorch.js]().
 
-# Depedencies
+# Dependencies
 
 cTorch could use one of the following backends:
 
-- OpenBLAS (default, coming with the lib)
+- OpenBLAS (default)
 - Intel MKL
-- Accelerate (Mac OS)
+- Accelerate (Mac OS only)
 - CUDA
