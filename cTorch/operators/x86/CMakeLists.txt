@@ -7,6 +7,7 @@ include(CheckSymbolExists)
 set(ops_x86_all
     operators/x86/op_list.c
     operators/x86/op_abs_x86.c
+    operators/x86/op_acos_x86.c
 )
 
 ################################################################################

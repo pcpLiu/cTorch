@@ -1,6 +1,8 @@
 #include "cTorch/common.h"
 #include <stdio.h>
 
+bool CTH_NAN_EXIT = false;
+
 void FAIL_NULL_PTR(void *ptr) {
   if (ptr == NULL) {
     fprintf(stderr, "[cTorch] NULL ptr error.");

@@ -1,4 +1,4 @@
 # Vendor libs
 
-- [jemalloc](https://github.com/jemalloc/jemalloc)
-- [flatbuffers](https://github.com/google/flatbuffers)
+- [googltests](https://github.com/google/googletest) (For test only)
+- [openBLAS](https://github.com/xianyi/OpenBLAS)
