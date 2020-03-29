@@ -3,10 +3,10 @@
 
 CTorchNode new_dum_node() {
   CTorchNode node = {
-      .node_type = CTH_NODE_TYPE_DATA,
-      .exe_status = CTH_NODE_EXE_STATUS_CLEAN,
-      .inbound_nodes = new_list(CTorchNode)(),
-      .outbound_nodes = new_list(CTorchNode)(),
+    node_type : CTH_NODE_TYPE_DATA,
+    exe_status : CTH_NODE_EXE_STATUS_CLEAN,
+    inbound_nodes : new_list(CTorchNode)(),
+    outbound_nodes : new_list(CTorchNode)(),
   };
   return node;
 }
