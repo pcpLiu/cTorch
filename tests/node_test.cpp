@@ -8,7 +8,10 @@ CTorchNode new_dum_node() {
     tensor :
         create_dummy_tensor(dims, CTH_TENSOR_DATA_TYPE_FLOAT_16, 10.0, 10.0),
   };
+  uuid_t uuid;
+  uuid_generate_time_safe(uuid);
   CTorchNode node = {
+    uuid_t : uuid,
     node_type : CTH_NODE_TYPE_DATA,
     exe_status : CTH_NODE_EXE_STATUS_CLEAN,
     inbound_nodes : new_list(CTorchNode)(),
