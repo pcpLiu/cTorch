@@ -12,9 +12,9 @@ before_script:
   - mkdir build
   - cd build
 
-script: bash travis/build.sh
-
 jobs:
   include:
-    - stage: test
-      script: bash travis/test.sh
+    - stage: Build
+      script: bash ../travis/build.sh
+    - stage: Test
+      script: bash ../travis/test.sh
