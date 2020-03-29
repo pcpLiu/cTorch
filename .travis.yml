@@ -8,10 +8,6 @@ ompiler:
   - gcc
   - clang
 
-addons:
-  apt:
-    packages: lcov
-
 before_script:
   - mkdir build
   - cd build
