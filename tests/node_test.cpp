@@ -1,12 +1,19 @@
 #include "cTorch/c_torch.h"
+#include "tests/test_util.h"
 #include "gtest/gtest.h"
 
 CTorchNode new_dum_node() {
+  uint32_t dims[] = {100, 100};
+  CTorchNodeContent content = {
+    tensor :
+        create_dummy_tensor(dims, CTH_TENSOR_DATA_TYPE_FLOAT_16, 10.0, 10.0),
+  };
   CTorchNode node = {
     node_type : CTH_NODE_TYPE_DATA,
     exe_status : CTH_NODE_EXE_STATUS_CLEAN,
     inbound_nodes : new_list(CTorchNode)(),
     outbound_nodes : new_list(CTorchNode)(),
+    conent : content,
   };
   return node;
 }
