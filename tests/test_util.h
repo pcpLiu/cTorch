@@ -15,6 +15,8 @@ CTorchTensor *create_dummy_tensor(uint32_t *, CTH_TENSOR_DATA_TYPE, float,
 CTorchNode *create_dummy_op_node(CTH_OP_ID, uint32_t *, CTH_TENSOR_DATA_TYPE,
                                  float, float);
 
+CTorchNode *create_dummy_node();
+
 /*
   If all values are NAN, return true.
 */

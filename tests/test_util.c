@@ -25,6 +25,15 @@ bool _rand_bool(void) {
     }                                                                          \
   }
 
+CTorchNode *create_dummy_node() {
+  CTorchNode *node = (CTorchNode *)MALLOC(sizeof(CTorchNode));
+  node->exe_status = CTH_NODE_EXE_STATUS_CLEAN;
+  node->node_type = CTH_NODE_TYPE_OPERATOR;
+  node->inbound_nodes = new_list(CTorchNode)();
+  node->outbound_nodes = new_list(CTorchNode)();
+  return node;
+};
+
 CTorchTensor *create_dummy_tensor(uint32_t *dims,
                                   CTH_TENSOR_DATA_TYPE data_type, float min,
                                   float max) {
