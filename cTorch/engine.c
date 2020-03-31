@@ -1,8 +1,17 @@
 #include "cTorch/engine.h"
 
-#define BACKEND_MISSING_ERR_MSG(backend)                                       \
+#define _BACKEND_MISSING_ERR_MSG(backend)                                      \
   "Try to execute operator on " #backend                                       \
   "backend. But cTorch was not built for this backend."
+
+#define _BACKEND_FALLBACK_EXE(op_fps)                                          \
+  {                                                                            \
+    if (op_fps[op_id] == NULL) {                                               \
+      fall_back = true;                                                        \
+    } else {                                                                   \
+      (*op_fps[op_id])(op);                                                    \
+    }                                                                          \
+  }
 
 /*
   Dispatch operator execution based on target backend.
@@ -12,48 +21,51 @@
 */
 void dispatch_op_execution(CTorchOperator *op, CTH_BACKEND backend) {
   CTH_OP_ID op_id = op->op_id;
+  bool fall_back = false;
   if (backend == CTH_BACKEND_CPU_X86) {
 #ifdef BACKEND_CPU_X86
-    FAIL_NULL_PTR(fps_op_x86[CTH_OP_ID_abs]);
-    (*fps_op_x86[op_id])(op);
+    _BACKEND_FALLBACK_EXE(fps_op_x86);
 #else
-    FAIL_EXIT(BACKEND_MISSING_ERR_MSG(x86));
+    FAIL_EXIT(CTH_LOG_STR, _BACKEND_MISSING_ERR_MSG(x86));
 #endif
   } else if (backend == CTH_BACKEND_CPU_ARM) {
 #ifdef BACKEND_CPU_ARM
-    FAIL_NULL_PTR(fps_op_x86[op_id]);
-    (*fps_op_arm[op_id])(op);
+    _BACKEND_FALLBACK_EXE(fps_op_arm);
 #else
-    FAIL_EXIT(BACKEND_MISSING_ERR_MSG(ARM));
+    FAIL_EXIT(CTH_LOG_STR, _BACKEND_MISSING_ERR_MSG(ARM));
 #endif
   } else if (backend == CTH_BACKEND_MKL) {
 #ifdef BACKEND_MKL
-    FAIL_NULL_PTR(fps_op_x86[op_id]);
-    (*fps_op_mkl[op_id])(op);
+    _BACKEND_FALLBACK_EXE(fps_op_mkl);
 #else
-    FAIL_EXIT(BACKEND_MISSING_ERR_MSG(MKL));
+    FAIL_EXIT(CTH_LOG_STR, _BACKEND_MISSING_ERR_MSG(MKL));
 #endif
   } else if (backend == CTH_BACKEND_CUDA) {
 #ifdef BACKEND_CUDA
-    FAIL_NULL_PTR(fps_op_x86[op_id]);
-    (*fps_op_cuda[op_id])(op);
+    _BACKEND_FALLBACK_EXE(fps_op_cuda);
 #else
-    FAIL_EXIT(BACKEND_MISSING_ERR_MSG(CUDA));
+    FAIL_EXIT(CTH_LOG_STR, _BACKEND_MISSING_ERR_MSG(CUDA));
 #endif
   } else if (backend == CTH_BACKEND_OPENBLAS) {
 #ifdef BACKEND_OPENBLAS
-    FAIL_NULL_PTR(fps_op_x86[op_id]);
-    (*fps_op_openblas[op_id])(op);
+    _BACKEND_FALLBACK_EXE(fps_op_openblas);
 #else
-    FAIL_EXIT(BACKEND_MISSING_ERR_MSG(openBLAS));
+    FAIL_EXIT(CTH_LOG_STR, _BACKEND_MISSING_ERR_MSG(openBLAS));
 #endif
   } else if (backend == CTH_BACKEND_ACCELERATE) {
 #ifdef BACKEND_ACCELERATE
-    FAIL_NULL_PTR(fps_op_x86[op_id]);
-    (*fps_op_accelerate[op_id])(op);
+    _BACKEND_FALLBACK_EXE(fps_op_openblas);
 #else
-    FAIL_EXIT(BACKEND_MISSING_ERR_MSG(Accelerate));
+    FAIL_EXIT(CTH_LOG_STR, _BACKEND_MISSING_ERR_MSG(Accelerate));
 #endif
+  }
+
+  if (fall_back || backend == CTH_BACKEND_DEFAULT) {
+    if (fps_op_default[op_id] == NULL) {
+      FAIL_EXIT(CTH_LOG_STR, "Unsupported Operator ID %d.", op_id);
+    } else {
+      (*fps_op_default[op_id])(op);
+    }
   }
 }
 

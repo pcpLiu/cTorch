@@ -1,7 +1,7 @@
 #include <tgmath.h>
 
-#include "cTorch/operators/x86/op_list.h"
-#include "cTorch/operators/x86/x86_common.h"
+#include "cTorch/operators/default/op_list.h"
+#include "cTorch/operators/default/util.h"
 
 // clang-format off
 #define _cth_abs(x)                                                           \
@@ -19,12 +19,12 @@
 /*
   Computes the element-wise absolute value of the given input tensor.
 */
-void op_abs_x86(CTorchOperator *op) {
+void op_abs_cpu(CTorchOperator *op) {
   FORCE_INPUT_OUTPUT_TSR_NUM_EQ(op);
 
   ListItem(CTorchTensor) *in = op->in_bound_tensors->head;
   ListItem(CTorchTensor) *out = op->out_bound_tensors->head;
   int64_t N = in->data->meta_info->n_elements;
-  _x86_1d_map(in->data->values, out->data->values,
+  _cpu_1d_map(in->data->values, out->data->values,
               in->data->meta_info->data_type, N, _cth_abs);
 }

@@ -3,43 +3,104 @@
 
 #include <math.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#ifndef C_TORCH_PUBLIC_ONLY /* Begin internal APIs */
+/*******************************************************************************
+ *
+ * Util macros & functions
+ */
 
 /*
-  Commonly used system function.
+  malloc with limited GC
 */
 #define MALLOC malloc_with_null_check
+
+/*
+  Free and set pointer to NULL
+*/
 #define FREE free_with_nullify
+
+/*
+  No idea why I need this, just feel I need it
+*/
 #define MEMCPY memcpy
+
+/*
+  Print error message and exit.
+*/
+#define FAIL_EXIT(write_to, ...)                                               \
+  {                                                                            \
+    printf("[cTorch]: ");                                                      \
+    char *str = (write_to);                                                    \
+    asprintf(&str, __VA_ARGS__);                                               \
+    free(str);                                                                 \
+    printf("\n");                                                              \
+    exit(1);                                                                   \
+  }
+
+/*
+  Log message. Auto break line at the end.
+
+  Will check global config
+*/
+#define LOG_F()
+
+/*
+  Exit if val is NAN.
+
+  If global config CTH_NAN_EXIT is false, it will not exit.
+*/
+#define NAN_EXIT(val)                                                          \
+  do {                                                                         \
+    if (val != val && CTH_NAN_EXIT == true) {                                  \
+      FAIL_EXIT(CTH_LOG_STR, "Value is NaN");                                  \
+    }                                                                          \
+  } while (0)
 
 typedef struct {
   char *name;
 
 } CTorchName;
 
+/*
+  Call FAIL_EXIT() if input pointer is NULL.
+*/
 void FAIL_NULL_PTR(void *);
 
-void FAIL_EXIT(char *const);
-
+/*
+  Call FAIL_EXIT() if input pointer is NULL.
+*/
 void *malloc_with_null_check(size_t);
 
+/*
+  Call FAIL_EXIT() if input pointer is NULL.
+*/
 void *free_with_nullify(void *);
 
+/*******************************************************************************
+ *
+ * Global config
+ */
+
+/*
+  Used by all log related functions.
+*/
+extern char *CTH_LOG_STR;
+
+/*
+  If true, execution will stop and exit if computation outputs NaN values.
+
+  Default: false
+*/
 extern bool CTH_NAN_EXIT;
 
 /*
-  Exit if val is NAN
-*/
-#define NAN_EXIT(val)                                                          \
-  do {                                                                         \
-    if (val != val && CTH_NAN_EXIT == true) {                                  \
-      FAIL_EXIT("Value is NaN");                                               \
-    }                                                                          \
-  } while (0)
+  If true, LOG_F() will print out. Otherwise, ommit message.
 
-#endif /* End internal APIs */
+  Default: true
+*/
+extern bool CTH_LOG_ENABLE;
 
 #endif /* COMMON_H */

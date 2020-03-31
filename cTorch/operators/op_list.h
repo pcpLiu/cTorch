@@ -1,6 +1,8 @@
 #ifndef CTH_OP_LIST_H
 #define CTH_OP_LIST_H
 
+#include "cTorch/operators/default/op_list.h"
+
 #ifdef BACKEND_CPU_X86
 #include "cTorch/operators/x86/op_list.h"
 #endif

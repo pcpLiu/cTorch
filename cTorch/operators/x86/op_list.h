@@ -1,5 +1,5 @@
-#ifndef CTH_OP_LIST_X86_H
-#define CTH_OP_LIST_X86_H
+#ifndef OP_LIST_X86_H
+#define OP_LIST_X86_H
 
 #include "cTorch/consts.h"
 #include "cTorch/operator.h"

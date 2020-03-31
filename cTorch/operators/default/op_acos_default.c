@@ -1,9 +1,7 @@
 #include <tgmath.h>
 
-#include "cTorch/operators/x86/op_list.h"
-#include "cTorch/operators/x86/x86_common.h"
-
-void _cth_acos();
+#include "cTorch/operators/default/op_list.h"
+#include "cTorch/operators/default/util.h"
 
 // clang-format off
 #define _cth_acos(x)                                                           \
@@ -25,13 +23,13 @@ void _cth_acos();
 
   Does not support `CTH_TENSOR_DATA_TYPE_BOOL`.
 */
-void op_acos_x86(CTorchOperator *op) {
+void op_acos_cpu(CTorchOperator *op) {
   FORCE_INPUT_OUTPUT_TSR_NUM_EQ(op);
   OP_FAIL_ON_DTYPE(op, CTH_TENSOR_DATA_TYPE_BOOL);
 
   ListItem(CTorchTensor) *in = op->in_bound_tensors->head;
   ListItem(CTorchTensor) *out = op->out_bound_tensors->head;
   int64_t N = in->data->meta_info->n_elements;
-  _x86_1d_map_no_bool(in->data->values, out->data->values,
-                      in->data->meta_info->data_type, N, _cth_acos);
+  _cpu_1d_map_no_bool(in->data->values, out->data->values,
+                      in->data->meta_info->data_type, N, acos);
 }

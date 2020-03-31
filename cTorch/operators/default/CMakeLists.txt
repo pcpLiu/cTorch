@@ -2,16 +2,20 @@
 #
 # All ops
 #
-set(ops_x86_all)
+set(ops_default_all
+    operators/default/op_list.c
+    operators/default/op_abs_default.c
+    operators/default/op_acos_default.c
+)
 
 ################################################################################
 #
 # Remove disabled operators
 #
 foreach(disabled_op ${ops_disabled})
-    list(FILTER ${ops_x86_all}
+    list(FILTER ${ops_default_all}
         EXCLUDE
-        REGEX ^operators/default/${disabled_op}_x86.c$
+        REGEX ^operators/default/${disabled_op}_default.c$
     )
 endforeach()
 
@@ -19,7 +23,7 @@ endforeach()
 #
 # Export
 #
-set(ops_x86
-    ${ops_x86_all}
+set(ops_default
+    ${ops_default_all}
     PARENT_SCOPE
 )

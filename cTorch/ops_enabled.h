@@ -10,6 +10,7 @@
  *
  * List of enabled operators
  */
+// clang-format off
 #define FOREACH_OP_ID(wrap) \
   wrap(abs) \
   wrap(acos) \

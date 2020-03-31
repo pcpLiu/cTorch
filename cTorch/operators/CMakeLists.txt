@@ -2,12 +2,14 @@
 #
 # List of disabled operators
 #
+#
 set(ops_disabled)
 
 ################################################################################
 #
 # Add sub directory
 #
+add_subdirectory(default)    # ${ops_default}
 add_subdirectory(x86)        # ${ops_x86}
 add_subdirectory(arm)        # ${ops_arm}
 add_subdirectory(cuda)       # ${ops_cuda}
@@ -20,6 +22,7 @@ add_subdirectory(accelerate) # ${ops_accelerate}
 # Export
 #
 set(operator_src
+    ${ops_default}
     ${ops_x86}
     ${ops_arm}
     ${ops_cuda}
