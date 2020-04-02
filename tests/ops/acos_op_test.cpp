@@ -26,40 +26,40 @@ void test_acos(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   }
 }
 
-TEST(acosOpTest, testFloat16X86) {
-  test_acos(CTH_BACKEND_CPU_X86, CTH_TENSOR_DATA_TYPE_FLOAT_16, -1.0, 1.0);
+TEST(acosOpTest, testFloat16Default) {
+  test_acos(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_16, -1.0, 1.0);
 }
 
-TEST(acosOpTest, testFloat32X86) {
-  test_acos(CTH_BACKEND_CPU_X86, CTH_TENSOR_DATA_TYPE_FLOAT_32, -1.0, 1.0);
+TEST(acosOpTest, testFloat32Default) {
+  test_acos(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_32, -1.0, 1.0);
 }
 
-TEST(acosOpTest, testFloat64X86) {
-  test_acos(CTH_BACKEND_CPU_X86, CTH_TENSOR_DATA_TYPE_FLOAT_64, -1.0, 1.0);
+TEST(acosOpTest, testFloat64Default) {
+  test_acos(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, -1.0, 1.0);
 }
 
-TEST(acosOpTest, testInt16X86) {
-  test_acos(CTH_BACKEND_CPU_X86, CTH_TENSOR_DATA_TYPE_INT_16, -1.0, 1.0);
+TEST(acosOpTest, testInt16Default) {
+  test_acos(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_16, -1.0, 1.0);
 }
 
-TEST(acosOpTest, testInt32X86) {
-  test_acos(CTH_BACKEND_CPU_X86, CTH_TENSOR_DATA_TYPE_INT_32, -1.0, 1.0);
+TEST(acosOpTest, testInt32Default) {
+  test_acos(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_32, -1.0, 1.0);
 }
 
-TEST(acosOpTest, testInt64X86) {
-  test_acos(CTH_BACKEND_CPU_X86, CTH_TENSOR_DATA_TYPE_INT_64, -1.0, 1.0);
+TEST(acosOpTest, testInt64Default) {
+  test_acos(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_64, -1.0, 1.0);
 }
 
-TEST(acosOpTest, testUInt8X86) {
-  test_acos(CTH_BACKEND_CPU_X86, CTH_TENSOR_DATA_TYPE_UINT_8, 0.0, 1.0);
+TEST(acosOpTest, testUInt8Default) {
+  test_acos(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_UINT_8, 0.0, 1.0);
 }
 
-TEST(acosOpTest, testBoolX86ExpectExit) {
+TEST(acosOpTest, testBoolDefaultExpectExit) {
   CTH_NAN_EXIT = true;
   uint32_t dims[] = {1, 1};
   CTorchNode *op_node = create_dummy_op_node(CTH_OP_ID_acos, dims,
                                              CTH_TENSOR_DATA_TYPE_BOOL, 0, 0);
-  EXPECT_EXIT(execute_node(op_node, CTH_BACKEND_CPU_X86),
+  EXPECT_EXIT(execute_node(op_node, CTH_BACKEND_DEFAULT),
               ::testing::ExitedWithCode(1),
               "Operator does not support data type");
 }
@@ -67,7 +67,7 @@ TEST(acosOpTest, testBoolX86ExpectExit) {
 TEST(acosOpTest, testInvalidInputExit) {
   CTH_NAN_EXIT = true;
   EXPECT_EXIT(
-      test_acos(CTH_BACKEND_CPU_X86, CTH_TENSOR_DATA_TYPE_FLOAT_16, 100, 200),
+      test_acos(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_16, 100, 200),
       ::testing::ExitedWithCode(1), "Value is NaN");
 }
 
@@ -76,7 +76,7 @@ TEST(acosOpTest, testInvalidInputKeep) {
   uint32_t dims[] = {1, 1};
   CTorchNode *op_node = create_dummy_op_node(
       CTH_OP_ID_acos, dims, CTH_TENSOR_DATA_TYPE_FLOAT_16, 100, 200);
-  execute_node(op_node, CTH_BACKEND_CPU_X86);
+  execute_node(op_node, CTH_BACKEND_DEFAULT);
   EXPECT_TRUE(
       tensor_all_nan(op_node->conent.op->out_bound_tensors->head->data));
 }

@@ -28,34 +28,34 @@ void test_abs(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   }
 }
 
-TEST(absOpTest, testFloat16X86) {
-  test_abs(CTH_BACKEND_CPU_X86, CTH_TENSOR_DATA_TYPE_FLOAT_16, -100.0, 100.0);
+TEST(absOpTest, testFloat16Default) {
+  test_abs(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_16, -100.0, 100.0);
 }
 
-TEST(absOpTest, testFloat32X86) {
-  test_abs(CTH_BACKEND_CPU_X86, CTH_TENSOR_DATA_TYPE_FLOAT_32, -100.0, 100.0);
+TEST(absOpTest, testFloat32Default) {
+  test_abs(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_32, -100.0, 100.0);
 }
 
-TEST(absOpTest, testFloat64X86) {
-  test_abs(CTH_BACKEND_CPU_X86, CTH_TENSOR_DATA_TYPE_FLOAT_64, -100.0, 100.0);
+TEST(absOpTest, testFloat64Default) {
+  test_abs(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, -100.0, 100.0);
 }
 
-TEST(absOpTest, testInt16X86) {
-  test_abs(CTH_BACKEND_CPU_X86, CTH_TENSOR_DATA_TYPE_INT_16, -100.0, 100.0);
+TEST(absOpTest, testInt16Default) {
+  test_abs(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_16, -100.0, 100.0);
 }
 
-TEST(absOpTest, testInt32X86) {
-  test_abs(CTH_BACKEND_CPU_X86, CTH_TENSOR_DATA_TYPE_INT_32, -100.0, 100.0);
+TEST(absOpTest, testInt32Default) {
+  test_abs(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_32, -100.0, 100.0);
 }
 
-TEST(absOpTest, testInt64X86) {
-  test_abs(CTH_BACKEND_CPU_X86, CTH_TENSOR_DATA_TYPE_INT_64, -100.0, 100.0);
+TEST(absOpTest, testInt64Default) {
+  test_abs(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_64, -100.0, 100.0);
 }
 
-TEST(absOpTest, testUInt8X86) {
-  test_abs(CTH_BACKEND_CPU_X86, CTH_TENSOR_DATA_TYPE_UINT_8, -100.0, 100.0);
+TEST(absOpTest, testUInt8Default) {
+  test_abs(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_UINT_8, -100.0, 100.0);
 }
 
-TEST(absOpTest, testBoolX86) {
-  test_abs(CTH_BACKEND_CPU_X86, CTH_TENSOR_DATA_TYPE_BOOL, -100.0, 100.0);
+TEST(absOpTest, testBoolDefault) {
+  test_abs(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_BOOL, -100.0, 100.0);
 }

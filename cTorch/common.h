@@ -13,6 +13,21 @@
  */
 
 /*
+  Call FAIL_EXIT() if input pointer is NULL.
+*/
+void FAIL_NULL_PTR(void *);
+
+/*
+  Call FAIL_EXIT() if input pointer is NULL.
+*/
+void *malloc_with_null_check(size_t);
+
+/*
+  Call FAIL_EXIT() if input pointer is NULL.
+*/
+void *free_with_nullify(void *);
+
+/*
   malloc with limited GC
 */
 #define MALLOC malloc_with_null_check
@@ -31,21 +46,21 @@
   Print error message and exit.
 */
 #define FAIL_EXIT(write_to, ...)                                               \
-  {                                                                            \
-    printf("[cTorch]: ");                                                      \
-    char *str = (write_to);                                                    \
-    asprintf(&str, __VA_ARGS__);                                               \
-    free(str);                                                                 \
-    printf("\n");                                                              \
+  do {                                                                         \
+    char *tmp = NULL;                                                          \
+    fprintf(stderr, "[cTorch]: ");                                             \
+    asprintf(&tmp, __VA_ARGS__);                                               \
+    fprintf(stderr, "%s\n", tmp);                                              \
+    FREE(tmp);                                                                 \
     exit(1);                                                                   \
-  }
+  } while (0)
 
 /*
   Log message. Auto break line at the end.
 
   Will check global config
 */
-#define LOG_F()
+#define LOG_F() F
 
 /*
   Exit if val is NAN.
@@ -63,21 +78,6 @@ typedef struct {
   char *name;
 
 } CTorchName;
-
-/*
-  Call FAIL_EXIT() if input pointer is NULL.
-*/
-void FAIL_NULL_PTR(void *);
-
-/*
-  Call FAIL_EXIT() if input pointer is NULL.
-*/
-void *malloc_with_null_check(size_t);
-
-/*
-  Call FAIL_EXIT() if input pointer is NULL.
-*/
-void *free_with_nullify(void *);
 
 /*******************************************************************************
  *
