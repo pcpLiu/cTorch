@@ -6,11 +6,12 @@
 */
 #define ENABLED_OP_NUM 293
 
+// clang-format off
+
 /*******************************************************************************
  *
  * List of enabled operators
  */
-// clang-format off
 #define FOREACH_OP_ID(wrap) \
   wrap(abs) \
   wrap(acos) \

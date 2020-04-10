@@ -10,11 +10,25 @@ extern "C" {
 
 #include "cTorch/c_torch.h"
 
-CTorchTensor *create_dummy_tensor(uint32_t *, CTH_TENSOR_DATA_TYPE, float,
-                                  float);
-CTorchNode *create_dummy_op_node(CTH_OP_ID, uint32_t *, CTH_TENSOR_DATA_TYPE,
-                                 float, float);
+CTorchTensor *create_dummy_tensor(uint32_t *dims,
+                                  CTH_TENSOR_DATA_TYPE data_type, float min,
+                                  float max);
 
+/*
+  Create a dummy op node with one input and one output.
+  Input & output has same dimensions.
+*/
+CTorchNode *create_dummy_op_node(CTH_OP_ID op_id, uint32_t *,
+                                 CTH_TENSOR_DATA_TYPE, float, float);
+
+/*
+  Create a dummy operator.
+*/
+CTorchOperator *create_dummy_op();
+
+/*
+  Create a dummy node without any information.
+*/
 CTorchNode *create_dummy_node();
 
 /*

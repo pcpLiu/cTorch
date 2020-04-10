@@ -35,3 +35,37 @@ size_t tensor_data_size(CTorchTensor *tensor) {
 
   return ele_size * tensor->meta_info->n_elements;
 }
+
+void FORCE_TENSOR_DIMENSION(CTorchTensor *tensor, tensor_dim *target_dims) {
+  // n_dim
+  tensor_dim target_n_dim = sizeof(target_dims) / sizeof(target_dims[0]);
+  bool match_n_dim = (tensor->meta_info->n_dim == target_n_dim);
+
+  // dims
+  bool match_dims = true;
+  if (match_n_dim) {
+    match_n_dim = true;
+    for (int i = 0; i < target_n_dim; i++) {
+      if (tensor->meta_info->dim_size_list[i] != target_dims[i]) {
+        match_dims = false;
+        break;
+      }
+    }
+  }
+
+  if (!match_dims || !match_n_dim) {
+    // TODO: better logging
+    FAIL_EXIT(CTH_LOG_STR, "FORCE_TENSOR_DIMENSION failes.");
+  }
+}
+
+bool tensor_name_match(CTorchTensor *tensor, const char *target_name) {
+  return strcmp(tensor->meta_info->tensor_name, target_name) == 0;
+}
+
+void FORCE_TENSOR_NAME(CTorchTensor *tensor, const char *target_name) {
+  if (!tensor_name_match(tensor, target_name)) {
+    // TODO: better logging
+    FAIL_EXIT(CTH_LOG_STR, "FORCE_TENSOR_NAME fails.");
+  }
+}

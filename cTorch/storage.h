@@ -7,6 +7,11 @@
 #include <stdint.h>
 
 /*
+  Tensor dimension size data type
+*/
+#define tensor_dim uint32_t
+
+/*
   CTorchTensorMeta
 
   This struct cotnains Meta information of a tensor.
@@ -19,10 +24,10 @@ typedef struct CTorchTensorMeta {
   CTH_TENSOR_DATA_TYPE data_type;
 
   // Number of dimensions
-  uint16_t n_dim;
+  tensor_dim n_dim;
 
   // Dimension list
-  uint32_t *dim_size_list;
+  tensor_dim *dim_size_list;
 
   // Number of elements
   uint64_t n_elements;
@@ -35,7 +40,7 @@ typedef struct CTorchTensorMeta {
 
   // For CTH_TENSOR_TYPE_PARAM type node, this is parameter name.
   // As for other types, this is a optiona field and could ne null.
-  CTorchName *tensor_name;
+  const char *tensor_name;
 } CTorchTensorMeta;
 
 /*
@@ -49,9 +54,28 @@ typedef struct CTorchTensor {
 } CTorchTensor;
 
 /*
-  Get tensor data size
+  Get tensor's data type size.
+
+  Note: alignment is NOT included.
 */
-size_t tensor_data_size(CTorchTensor *);
+size_t tensor_data_size(CTorchTensor *tensor);
+
+/*
+  Check if a tensor's name match target name.
+*/
+bool tensor_name_match(CTorchTensor *tensor, const char *target_name);
+
+/*
+  Check if given tensor has target dimension.
+  FAIL_EXIT if not match.
+*/
+void FORCE_TENSOR_DIMENSION(CTorchTensor *tensor, tensor_dim *target_dims);
+
+/*
+  Check if given tensor has target name.
+  FAIL_EXIT if not match.
+*/
+void FORCE_TENSOR_NAME(CTorchTensor *tensor, const char *target_name);
 
 // List utils
 def_list_item(CTorchTensor);
