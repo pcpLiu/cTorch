@@ -22,6 +22,7 @@ void OP_FAIL_ON_DTYPE(CTorchOperator *op, CTH_TENSOR_DATA_TYPE data_type) {
   for (uint32_t i = 0; i < op->out_bound_tensors->size; i++) {
     CTorchTensor *tensor = tensor_it->data;
     if (tensor->meta_info->data_type == data_type) {
+      // TODO: better logging
       FAIL_EXIT(CTH_LOG_STR, "Operator does not support data type.");
     }
     tensor_it = tensor_it->next_item;

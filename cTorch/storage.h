@@ -54,6 +54,14 @@ typedef struct CTorchTensor {
 } CTorchTensor;
 
 /*
+  Set tensor'S name. This function directly overrides the tensor's name.
+
+  Note: this function will copy `target_name`. It is safe to release
+  `target_name` after calling.
+*/
+void tensor_set_name(CTorchTensor *tensor, const char *target_name);
+
+/*
   Get tensor's data type size.
 
   Note: alignment is NOT included.

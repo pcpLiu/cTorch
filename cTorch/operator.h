@@ -32,18 +32,22 @@ void FORCE_OP_PARAM_EXIST(CTorchOperator *, const char *, CTH_TENSOR_DATA_TYPE);
   If any input & output tensor's datatypes is unsupported, fail this op's
   execution.
 */
-void OP_FAIL_ON_DTYPE(CTorchOperator *, CTH_TENSOR_DATA_TYPE);
+void OP_FAIL_ON_DTYPE(CTorchOperator *op, CTH_TENSOR_DATA_TYPE data_type);
 
 /*
   Get input tensor by name.
 
-  FAIL_EXIT if set fail_exit to true.
+  Call FAIL_EXIT if set fail_exit to true and not found.
 */
-CTorchTensor *get_input_by_name(CTorchOperator *, const char *, bool fail_exit);
+CTorchTensor *get_input_by_name(CTorchOperator *op, const char *name,
+                                bool fail_exit);
 
 /*
-  Get output tensor by name
+  Get output tensor by name.
+
+  Call FAIL_EXIT if set fail_exit to true and not found.
 */
-CTorchTensor *get_output_by_name(CTorchOperator *, const char *, bool);
+CTorchTensor *get_output_by_name(CTorchOperator *op, const char *name,
+                                 bool fail_exit);
 
 #endif /* OPERATOR_H */

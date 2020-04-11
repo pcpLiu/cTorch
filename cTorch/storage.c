@@ -69,3 +69,9 @@ void FORCE_TENSOR_NAME(CTorchTensor *tensor, const char *target_name) {
     FAIL_EXIT(CTH_LOG_STR, "FORCE_TENSOR_NAME fails.");
   }
 }
+
+void tensor_set_name(CTorchTensor *tensor, const char *target_name) {
+  char *name = NULL;
+  asprintf(&name, target_name);
+  tensor->meta_info->tensor_name = name;
+}
