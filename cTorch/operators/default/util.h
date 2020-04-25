@@ -7,7 +7,6 @@
     type_t *output_t = (type_t *)output_ptr;                                   \
     for (int i = 0; i < N; i++) {                                              \
       type_t val = kernel(input_t[i]);                                         \
-      NAN_EXIT(val);                                                           \
       output_t[i] = val;                                                       \
     }                                                                          \
   }

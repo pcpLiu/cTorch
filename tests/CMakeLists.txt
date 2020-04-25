@@ -1,5 +1,6 @@
+project(cTorch_test LANGUAGES C CXX)
+
 # Test files
-set(test_target cTorch_test)
 file(GLOB_RECURSE test_sources LIST_DIRECTORIES false *_test.cpp)
 
 # Utils
@@ -7,6 +8,7 @@ set(test_util_src
     test_util.c
 )
 
+set(test_target cTorch_test)
 add_executable(${test_target}
     ${test_sources}
     ${test_util_src}

@@ -1,33 +1,37 @@
-project(cTorch C)
+project(cTorch_lib VERSION 0.1.0 DESCRIPTION "cTorch lib" LANGUAGES C)
 
 ################################################################################
 #
 # Build options
-
+#
 set(TARGET_CPU_ARCH "x86" CACHE STRING
     "Target cpu architecture. \
      Supported architectures: x86 or arm "
 )
 
 set(BACKEND_OPENBLAS_ENABLE ON CACHE BOOL
-    "Buid backend with openBLAS"
+    "Build backend with openBLAS"
 )
 
 set(BACKEND_MKL_ENABLE OFF CACHE BOOL
-    "Buid backend with Intel MKL"
+    "Build backend with Intel MKL"
 )
 
 set(BACKEND_CUDA_ENABLE OFF CACHE BOOL
-    "Buid backend with CUDA"
+    "Build backend with CUDA"
 )
 
 set(BACKEND_ACCELERATE_ENABLE OFF CACHE BOOL
-    "Buid backend with Apple Accelerate"
+    "Build backend with Apple Accelerate"
+)
+
+set(PTHREAD_ENABLE ON CACHE BOOL
+    "Build with pthread support. Default ON."
 )
 
 ################################################################################
 #
-# Preprocessors
+# Backends preprocessors
 #
 if(${TARGET_CPU_ARCH} STREQUAL "x86")
     add_compile_definitions(BACKEND_CPU_X86)
@@ -70,6 +74,20 @@ set(core_src
 
 ################################################################################
 #
+# Import pthread
+#
+if(PTHREAD_ENABLE)
+    set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
+    find_package(Threads REQUIRED)
+
+    add_compile_definitions(USE_PTHREAD)
+    set(core_src
+        ${core_src}
+    )
+endif()
+
+################################################################################
+#
 # Sub folders
 #
 add_subdirectory(operators) # ${operator_src}
@@ -85,6 +103,11 @@ add_library(cTorch
 )
 target_include_directories(cTorch PUBLIC ${cTorch_project_SOURCE_DIR})
 set_target_properties(cTorch PROPERTIES C_STANDARD 11)
+
+# link pthread
+if(PTHREAD_ENABLE)
+    target_link_libraries(cTorch Threads::Threads)
+endif()
 
 ################################################################################
 #

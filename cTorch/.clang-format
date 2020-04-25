@@ -1,0 +1,5 @@
+AlignTrailingComments: false
+AllowAllParametersOfDeclarationOnNextLine: true
+BinPackParameters: false
+BinPackArguments: false
+ColumnLimit: 80

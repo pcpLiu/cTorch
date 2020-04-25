@@ -10,7 +10,7 @@
   Required a param tensor: `target_dims`.
 
   Broadcasting semantics:
-  https://pytorch.org/docs/stable/notes/broadcasting.html#broadcasting-semantics
+  https://pytorch.org/docs/stable/notes/broadcasting.html
 */
 void op_broadcast_cpu(CTorchOperator *op) {
   FORCE_OP_PARAM_EXIST(op, "target_dims", CTH_TENSOR_DATA_TYPE_UINT_32);
