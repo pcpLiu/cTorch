@@ -57,4 +57,5 @@
       _cpu_1d_map_forloop(input_ptr, output_ptr, N, kernel, double);           \
     }                                                                          \
   }
+
 #endif /* X86_COMMON_H */

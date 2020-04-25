@@ -47,13 +47,16 @@ automatically switch execution to default implementation.
 
 # Build instructions
 
-Building tools:
+Building dependencies:
 
 - cMake
-- A C compiler (GCC or Clang)
+- gcc or Clang (g++ for running testing)
+- POSIX Thread
 
 ### Build with selective operators
 
 In `src/operators/CMakeLists.txt`, list operators into variable `ops_disabled`.
 Those operators will be excluded from building.
 All available operators' names are defined in `src/operators/op_list.h`.
+
+# Contributors

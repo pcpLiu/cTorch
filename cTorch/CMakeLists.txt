@@ -62,29 +62,28 @@ endif()
 # Core sources
 #
 set(core_src
+    common.c
+    consts.c
     engine.c
     graph.c
     node.c
     operator.c
-    storage.c
-    common.c
     plan.c
-    consts.c
+    pool.c
+    storage.c
 )
 
 ################################################################################
 #
 # Import pthread
 #
-if(PTHREAD_ENABLE)
-    set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
-    find_package(Threads REQUIRED)
+set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
+find_package(Threads REQUIRED)
 
-    add_compile_definitions(USE_PTHREAD)
-    set(core_src
-        ${core_src}
-    )
-endif()
+add_compile_definitions(USE_PTHREAD)
+set(core_src
+    ${core_src}
+)
 
 ################################################################################
 #

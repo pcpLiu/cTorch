@@ -9,6 +9,7 @@ impl_new_list_func(int);
 impl_insert_list_func(int);
 impl_list_contains_data_func(int);
 impl_list_contains_item_func(int);
+impl_list_pop_func(int);
 
 TEST(cTorchListTest, testItemDefine) {
   int a = 3;
@@ -167,4 +168,18 @@ TEST(cTorchListTest, testListContainsItemFails) {
               "NULL ptr error");
   EXPECT_EXIT(list_contains_item(int)(NULL, NULL), ::testing::ExitedWithCode(1),
               "NULL ptr error");
+}
+
+TEST(cTorchListTest, testListPop) {
+  int x[] = {1, 2, 3, 4};
+  List(int) *list = new_list(int)();
+  ListItem(int) *item_1 = insert_list(int)(list, &x[0]);
+  ListItem(int) *item_2 = insert_list(int)(list, &x[1]);
+  ListItem(int) *item_3 = insert_list(int)(list, &x[2]);
+  ListItem(int) *item_4 = insert_list(int)(list, &x[3]);
+
+  int *pop = list_pop(int)(list);
+  EXPECT_EQ(*pop, x[0]);
+  EXPECT_EQ(list->head, item_2);
+  EXPECT_EQ(list->size, 3);
 }

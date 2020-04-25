@@ -35,9 +35,18 @@ typedef struct CTorchTensorMeta {
   This struct represents a tensor obj in a computation gprah.
 */
 typedef struct CTorchTensor {
-  CTorchTensorMeta *meta_info;
-  void *values;
+  CTorchTensorMeta *meta_info; /* Meta info */
+  void *values; /* Tensor values */
 } CTorchTensor;
+
+// List utils for CTorchTensor
+def_list_item(CTorchTensor);
+def_list(CTorchTensor);
+declare_new_list_item_func(CTorchTensor);
+declare_new_list_func(CTorchTensor);
+declare_insert_list_func(CTorchTensor);
+declare_list_contains_data_func(CTorchTensor);
+declare_list_contains_item_func(CTorchTensor);
 
 /*
   Set tensor'S name. This function directly overrides the tensor's name.
@@ -70,14 +79,5 @@ void FORCE_TENSOR_DIMENSION(CTorchTensor *tensor, tensor_dim *target_dims);
   FAIL_EXIT if not match.
 */
 void FORCE_TENSOR_NAME(CTorchTensor *tensor, const char *target_name);
-
-// List utils
-def_list_item(CTorchTensor);
-def_list(CTorchTensor);
-declare_new_list_item_func(CTorchTensor);
-declare_new_list_func(CTorchTensor);
-declare_insert_list_func(CTorchTensor);
-declare_list_contains_data_func(CTorchTensor);
-declare_list_contains_item_func(CTorchTensor);
 
 #endif /* STORAGE_H */

@@ -69,6 +69,18 @@ typedef enum CTH_NODE_EXE_STATUS {
 } CTH_NODE_EXE_STATUS;
 
 /*
+  Job execution status:
+    - CTH_JOB_STATUS_QUEUE: job is in queue
+    - CTH_JOB_STATUS_EXE: job is being executed
+    - CTH_JOB_STATUS_DONE: job is done
+*/
+typedef enum CTH_JOB_STATUS {
+  CTH_JOB_STATUS_QUEUE,
+  CTH_JOB_STATUS_EXE,
+  CTH_JOB_STATUS_DONE,
+} CTH_JOB_STATUS;
+
+/*
   To define operator enums
 */
 #define ENUMFY_OP(x) CTH_OP_ID_##x,

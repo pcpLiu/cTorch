@@ -3,6 +3,7 @@
 
 #include "cTorch/common.h"
 #include "cTorch/consts.h"
+#include "cTorch/pool.h"
 #include "cTorch/storage.h"
 #include <uuid/uuid.h>
 
@@ -16,6 +17,13 @@ typedef struct {
   // List of output tensors.
   List(CTorchTensor) * out_bound_tensors;
 } CTorchOperator;
+
+// List utils for CTorchOperator
+def_list_item(CTorchOperator);
+def_list(CTorchOperator);
+declare_new_list_item_func(CTorchOperator);
+declare_new_list_func(CTorchOperator);
+declare_insert_list_func(CTorchOperator);
 
 /*
   Check if # of in_bound_tensors == # of out_bound_tensors for given operator.
@@ -43,11 +51,26 @@ CTorchTensor *
 get_input_by_name(CTorchOperator *op, const char *name, bool fail_exit);
 
 /*
-  Get output tensor by name.
-
   Call FAIL_EXIT if set fail_exit to true and not found.
 */
 CTorchTensor *
 get_output_by_name(CTorchOperator *op, const char *name, bool fail_exit);
+
+/**
+ * Sharding an op's inputs & outputs for element-wise operation.
+ *
+ *  Params:
+ *    - op: the target operator
+ *    - n_shards: number of sharding pieces
+ *
+ *  Return:
+ *    List of sharded operator.
+ *
+ *  Warning:
+ *    The sharded operator needs to be taken care in terms of memory allocation.
+ *  It may cause memory leak.
+ */
+List(CTorchOperator) *
+    sharding_op_elewise(CTorchOperator *op, thread_n_t n_shards);
 
 #endif /* OPERATOR_H */

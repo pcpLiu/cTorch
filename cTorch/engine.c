@@ -4,14 +4,25 @@
   "Try to execute operator on " #backend                                       \
   "backend. But cTorch was not built for this backend."
 
+/*
+  Execute op on target backend with fallback support. If target backend does not
+  support this op, it will automatically use default backend to execute it.
+
+  Params:
+    - op_fps: operator functi on pointer list of target backend
+*/
 #define _BACKEND_FALLBACK_EXE(op_fps)                                          \
   {                                                                            \
     if (op_fps[op_id] == NULL) {                                               \
       fall_back = true;                                                        \
     } else {                                                                   \
-      (*op_fps[op_id])(op);                                                    \
+      (*fps_op_default[op_id])(op);                                            \
     }                                                                          \
   }
+
+/* Initialize global engine config */
+CTorchEngineConfig CTH_ENGINE_COFIG = {.enable_sharding = true,
+                                       .num_max_threads = 4};
 
 /*
   Dispatch operator execution based on target backend.
@@ -71,10 +82,17 @@ void dispatch_op_execution(CTorchOperator *op, CTH_BACKEND backend) {
 
 /*
   Execute a node.
-    - Operator node: execute the computation
-    - Data node: only mark its status and do nothing else
+
+  Params:
+    - node: executable node
+    - backend: execution backend
+    - engine: a configured CTorchEngine
+
+  Note:
+    - For operator node: execute the computation
+    - For data node: only mark its status and do nothing else
 */
-void execute_node(CTorchNode *node, CTH_BACKEND backend) {
+void cth_execute_node(CTorchNode *node, CTH_BACKEND backend) {
   if (node->node_type == CTH_NODE_TYPE_OPERATOR) {
     dispatch_op_execution(node->conent.op, backend);
   }

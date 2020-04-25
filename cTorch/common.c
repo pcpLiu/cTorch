@@ -19,9 +19,9 @@ void *malloc_with_null_check(size_t size) {
   return mem;
 }
 
-void *free_with_nullify(void *ptr) {
-  if (ptr != NULL) {
-    free(ptr);
-    ptr = NULL;
+void free_with_nullify(void **ptr) {
+  if (*ptr != NULL) {
+    free(*ptr);
+    *ptr = NULL;
   }
 }

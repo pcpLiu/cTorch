@@ -18,7 +18,7 @@
 
 /*
   Compute the element-wise absolute value of the given input tensor.
-*/
+ */
 void op_abs_cpu(CTorchOperator *op) {
   FORCE_INPUT_OUTPUT_TSR_NUM_EQ(op);
 

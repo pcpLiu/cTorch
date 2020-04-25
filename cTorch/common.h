@@ -25,7 +25,7 @@ void *malloc_with_null_check(size_t);
 /*
   Call FAIL_EXIT() if input pointer is NULL.
 */
-void *free_with_nullify(void *);
+void free_with_nullify(void **ptr);
 
 /*
   malloc with limited GC
@@ -51,7 +51,7 @@ void *free_with_nullify(void *);
     fprintf(stderr, "[cTorch]: ");                                             \
     asprintf(&tmp, __VA_ARGS__);                                               \
     fprintf(stderr, "%s\n", tmp);                                              \
-    FREE(tmp);                                                                 \
+    FREE((void **)&tmp);                                                       \
     exit(1);                                                                   \
   } while (0)
 
