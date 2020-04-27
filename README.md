@@ -4,11 +4,12 @@
 
 <p align="center">
   <a>
+    <img src="https://travis-ci.com/pcpLiu/cTorch.svg?token=pqXTPvpuvJE34KJBhbJP&branch=master">
+  </a>
+  <a>
     <img src="https://img.shields.io/badge/license-MIT-lightgrey">
   </a>
 </p>
-
-[![Build Status](https://travis-ci.com/pcpLiu/cTorch.svg?token=pqXTPvpuvJE34KJBhbJP&branch=master)](https://travis-ci.com/pcpLiu/cTorch)
 
 cTorch is an inference engine implemented with C.
 
