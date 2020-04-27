@@ -10,6 +10,7 @@ impl_insert_list_func(int);
 impl_list_contains_data_func(int);
 impl_list_contains_item_func(int);
 impl_list_pop_func(int);
+impl_list_at_func(int);
 
 TEST(cTorchListTest, testItemDefine) {
   int a = 3;
@@ -182,4 +183,21 @@ TEST(cTorchListTest, testListPop) {
   EXPECT_EQ(*pop, x[0]);
   EXPECT_EQ(list->head, item_2);
   EXPECT_EQ(list->size, 3);
+}
+
+TEST(cTorchListTest, testListAt) {
+  int x[] = {1, 2, 3, 4};
+  List(int) *list = new_list(int)();
+  ListItem(int) *item_1 = insert_list(int)(list, &x[0]);
+  ListItem(int) *item_2 = insert_list(int)(list, &x[1]);
+  ListItem(int) *item_3 = insert_list(int)(list, &x[2]);
+  ListItem(int) *item_4 = insert_list(int)(list, &x[3]);
+
+  EXPECT_EQ(*list_at(int)(list, 0), x[0]);
+  EXPECT_EQ(*list_at(int)(list, 1), x[1]);
+  EXPECT_EQ(*list_at(int)(list, 2), x[2]);
+  EXPECT_EQ(*list_at(int)(list, 3), x[3]);
+
+  EXPECT_EXIT(list_at(int)(list, 4), ::testing::ExitedWithCode(1),
+              "Error at func list_at:");
 }

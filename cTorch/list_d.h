@@ -9,7 +9,7 @@
 /*
   List index type
 */
-typedef int32_t list_index_t
+typedef int32_t list_index_t;
 
 // Generic list item struct
 //
@@ -233,7 +233,7 @@ typedef int32_t list_index_t
 #define _impl_list_at_func(data_type, list_type, func_name)                    \
   data_type *func_name(list_type *list, list_index_t index) {                  \
     FAIL_NULL_PTR(list);                                                       \
-    if (index >= indexlist->size) {                                            \
+    if (index >= list->size) {                                                 \
       FAIL_EXIT(CTH_LOG_STR,                                                   \
                 "Error at func list_at: Given index %d is larger than or "     \
                 "equal to list size %d.",                                      \
@@ -249,5 +249,7 @@ typedef int32_t list_index_t
     };                                                                         \
     return item->data;                                                         \
   }
+#define impl_list_at_func(data_type)                                           \
+  _impl_list_at_func(data_type, List(data_type), list_at(data_type))
 
 #endif /* LIST_D_H */

@@ -5,8 +5,7 @@
 
 [![Build Status](https://travis-ci.com/pcpLiu/cTorch.svg?token=pqXTPvpuvJE34KJBhbJP&branch=master)](https://travis-ci.com/pcpLiu/cTorch)
 
-cTorch is an inference engine for PyTorch models implemented with C.
-It was developed for project [cTorch.js]().
+cTorch is an inference engine implemented with C.
 
 # Backends
 
