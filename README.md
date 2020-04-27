@@ -1,6 +1,10 @@
-# cTorch
-
+<p align="center">
+    <img src="https://github.com/pcpLiu/cTorch/blob/master/logo.png
+        height="130">
+</p>
+<p>
 [![Build Status](https://travis-ci.com/pcpLiu/cTorch.svg?token=pqXTPvpuvJE34KJBhbJP&branch=master)](https://travis-ci.com/pcpLiu/cTorch)
+</p>
 
 # Introduction
 
@@ -62,4 +66,3 @@ All available operators' names are defined in `src/operators/op_list.h`.
 # Contributors
 
 This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
-<a href="https://github.com/pcpLiu/cTorch/graphs/contributors"><img src="https://opencollective.com/shields/contributors.svg?width=890" /></a>
