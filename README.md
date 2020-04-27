@@ -1,6 +1,11 @@
 <p align="center">
-    <img src="https://github.com/pcpLiu/cTorch/blob/master/logo.png"
-        height="90">
+  <img src="https://github.com/pcpLiu/cTorch/blob/master/logo.png" height="90">
+</p>
+
+<p align="center">
+  <a>
+    <img src="https://img.shields.io/badge/license-MIT-lightgrey">
+  </a>
 </p>
 
 [![Build Status](https://travis-ci.com/pcpLiu/cTorch.svg?token=pqXTPvpuvJE34KJBhbJP&branch=master)](https://travis-ci.com/pcpLiu/cTorch)
