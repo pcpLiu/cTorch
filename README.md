@@ -10,7 +10,7 @@
     <img src="https://img.shields.io/badge/license-MIT-lightgrey">
   </a>
   <a>
-    <img alt="GitHub All Releases" src="https://img.shields.io/github/downloads/pcpLiu/cTorch/total">
+    <img alt="GitHub All Releases" src="https://img.shields.io/github/downloads/pcpLiu/cTorch/total?color=informational">
   </a>
 </p>
 
