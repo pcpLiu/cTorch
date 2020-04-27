@@ -60,3 +60,6 @@ Those operators will be excluded from building.
 All available operators' names are defined in `src/operators/op_list.h`.
 
 # Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="https://github.com/pcpLiu/cTorch/graphs/contributors"><img src="https://opencollective.com/shields/contributors.svg?width=890" /></a>
