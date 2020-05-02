@@ -70,6 +70,7 @@ set(core_src
     operator.c
     plan.c
     pool.c
+    sharder.c
     storage.c
 )
 

@@ -6,6 +6,44 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/**
+ * This file supports a generic Double-linked list structure and supporting
+ * functions.
+ *
+ *
+ * ~~~Structures~~~
+ *
+ * ListItem(T)
+ *  - data: T*, contained data
+ *  - prev_item: ListItem(T)*, previous item
+ *  - next_item: ListItem(T)*, next item
+ *
+ * List(T)
+ *  - size: list_index_t, size of list
+ *  - head: ListItem(T)*, head item of list
+ *  - tail: ListItem(T)*, tail item of list
+ *
+ * ~~~Functions~~~
+ *
+ * ListItem(T)* new_list_item(T)(T* data)
+ *  - Create a new list item. Caller needs tacking care of its memory releasing
+ *
+ * List(T)* new_list(T)()
+ *  - Create a new list, caller needs taking care of its memory releasing
+ *
+ * void insert_list(T)(List(T)* list, T* data)
+ *  - Insert a data into a list
+ *
+ * bool list_contains_data(T)(List(T)* list, T* data)
+ *  - Check if list contains a item has same data value as given data
+ *
+ * T* list_pop(T)(List(T)* list)
+ *  - Pop the head item of the list
+ *
+ * T* list_at(T)(List(T)* list, list_index_t index)
+ *  - Get data at given index
+ */
+
 /*
   List index type
 */
@@ -48,7 +86,9 @@ typedef int32_t list_index_t;
   }
 #define impl_new_new_list_item_func(data_type)                                 \
   _impl_new_new_list_item_func(                                                \
-      data_type, ListItem(data_type), new_list_item(data_type))
+      data_type,                                                               \
+      ListItem(data_type),                                                     \
+      new_list_item(data_type))
 
 // Generic double-linked list struct
 //
@@ -95,7 +135,10 @@ typedef int32_t list_index_t;
   item_type *func_name(list_type *, data_type *)
 #define declare_insert_list_func(data_type)                                    \
   _declare_insert_list_func(                                                   \
-      data_type, ListItem(data_type), List(data_type), insert_list(data_type))
+      data_type,                                                               \
+      ListItem(data_type),                                                     \
+      List(data_type),                                                         \
+      insert_list(data_type))
 #define _impl_insert_list_func(data_type, item_type, list_type, func_name)     \
   item_type *func_name(list_type *list, data_type *data) {                     \
     FAIL_NULL_PTR(list);                                                       \
@@ -114,7 +157,10 @@ typedef int32_t list_index_t;
   }
 #define impl_insert_list_func(data_type)                                       \
   _impl_insert_list_func(                                                      \
-      data_type, ListItem(data_type), List(data_type), insert_list(data_type))
+      data_type,                                                               \
+      ListItem(data_type),                                                     \
+      List(data_type),                                                         \
+      insert_list(data_type))
 
 // Check if list contains a data (by address). Fails on empty inputs.
 // Function returns item if found. Else, returns NULL.
@@ -125,15 +171,22 @@ typedef int32_t list_index_t;
 // impl_list_contains_data_func(data_type) --- implementation
 #define list_contains_data(data_type) list_contains_data_##data_type
 #define _declare_list_contains_data_func(                                      \
-    data_type, item_type, list_type, func_name)                                \
+    data_type,                                                                 \
+    item_type,                                                                 \
+    list_type,                                                                 \
+    func_name)                                                                 \
   item_type *func_name(list_type *, data_type *)
 #define declare_list_contains_data_func(data_type)                             \
-  _declare_list_contains_data_func(data_type,                                  \
-                                   ListItem(data_type),                        \
-                                   List(data_type),                            \
-                                   list_contains_data(data_type))
+  _declare_list_contains_data_func(                                            \
+      data_type,                                                               \
+      ListItem(data_type),                                                     \
+      List(data_type),                                                         \
+      list_contains_data(data_type))
 #define _impl_list_contains_data_func(                                         \
-    data_type, item_type, list_type, func_name)                                \
+    data_type,                                                                 \
+    item_type,                                                                 \
+    list_type,                                                                 \
+    func_name)                                                                 \
   item_type *func_name(list_type *list, data_type *data) {                     \
     FAIL_NULL_PTR(list);                                                       \
     FAIL_NULL_PTR(data);                                                       \
@@ -151,10 +204,11 @@ typedef int32_t list_index_t;
     return found;                                                              \
   }
 #define impl_list_contains_data_func(data_type)                                \
-  _impl_list_contains_data_func(data_type,                                     \
-                                ListItem(data_type),                           \
-                                List(data_type),                               \
-                                list_contains_data(data_type))
+  _impl_list_contains_data_func(                                               \
+      data_type,                                                               \
+      ListItem(data_type),                                                     \
+      List(data_type),                                                         \
+      list_contains_data(data_type))
 
 // Check if list contains a item (by address). Fails on empty inputs.
 // Function returns false if list is empty.
@@ -167,7 +221,9 @@ typedef int32_t list_index_t;
   bool func_name(list_type *, item_type *)
 #define declare_list_contains_item_func(data_type)                             \
   _declare_list_contains_item_func(                                            \
-      ListItem(data_type), List(data_type), list_contains_item(data_type))
+      ListItem(data_type),                                                     \
+      List(data_type),                                                         \
+      list_contains_item(data_type))
 #define _impl_list_contains_item_func(item_type, list_type, func_name)         \
   bool func_name(list_type *list, item_type *target_item) {                    \
     FAIL_NULL_PTR(list);                                                       \
@@ -187,7 +243,9 @@ typedef int32_t list_index_t;
   }
 #define impl_list_contains_item_func(data_type)                                \
   _impl_list_contains_item_func(                                               \
-      ListItem(data_type), List(data_type), list_contains_item(data_type))
+      ListItem(data_type),                                                     \
+      List(data_type),                                                         \
+      list_contains_item(data_type))
 
 // Pop head item's data of a list. If list is empty, return NULL.
 //
@@ -234,11 +292,12 @@ typedef int32_t list_index_t;
   data_type *func_name(list_type *list, list_index_t index) {                  \
     FAIL_NULL_PTR(list);                                                       \
     if (index >= list->size) {                                                 \
-      FAIL_EXIT(CTH_LOG_STR,                                                   \
-                "Error at func list_at: Given index %d is larger than or "     \
-                "equal to list size %d.",                                      \
-                index,                                                         \
-                list->size);                                                   \
+      FAIL_EXIT(                                                               \
+          CTH_LOG_STR,                                                         \
+          "Error at func list_at: Given index %d is larger than or "           \
+          "equal to list size %d.",                                            \
+          index,                                                               \
+          list->size);                                                         \
     }                                                                          \
                                                                                \
     ListItem(data_type) *item = list->head;                                    \

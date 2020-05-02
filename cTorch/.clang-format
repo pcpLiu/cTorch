@@ -3,3 +3,5 @@ AllowAllParametersOfDeclarationOnNextLine: true
 BinPackParameters: false
 BinPackArguments: false
 ColumnLimit: 80
+AllowAllArgumentsOnNextLine: false
+AlignAfterOpenBracket: AlwaysBreak

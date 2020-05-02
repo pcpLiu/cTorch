@@ -24,10 +24,11 @@ def_list(CTorchOperator);
 declare_new_list_item_func(CTorchOperator);
 declare_new_list_func(CTorchOperator);
 declare_insert_list_func(CTorchOperator);
+declare_list_at_func(CTorchOperator);
 
 /*
-  Check if # of in_bound_tensors == # of out_bound_tensors for given operator.
-  If not, exit and give error info.
+  Check if # of in_bound_tensors == # of out_bound_tensors for given
+  operator. If not, exit and give error info.
 */
 void FORCE_INPUT_OUTPUT_TSR_NUM_EQ(CTorchOperator *);
 
@@ -55,22 +56,5 @@ get_input_by_name(CTorchOperator *op, const char *name, bool fail_exit);
 */
 CTorchTensor *
 get_output_by_name(CTorchOperator *op, const char *name, bool fail_exit);
-
-/**
- * Sharding an op's inputs & outputs for element-wise operation.
- *
- *  Params:
- *    - op: the target operator
- *    - n_shards: number of sharding pieces
- *
- *  Return:
- *    List of sharded operator.
- *
- *  Warning:
- *    The sharded operator needs to be taken care in terms of memory allocation.
- *  It may cause memory leak.
- */
-List(CTorchOperator) *
-    sharding_op_elewise(CTorchOperator *op, thread_n_t n_shards);
 
 #endif /* OPERATOR_H */

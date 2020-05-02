@@ -1,10 +1,12 @@
 #ifndef CTH_STORAGE_H
 #define CTH_STORAGE_H
 
+#include <stdint.h>
+
 #include "cTorch/common.h"
 #include "cTorch/consts.h"
 #include "cTorch/list_d.h"
-#include <stdint.h>
+#include "cTorch/pool.h"
 
 /*
   Tensor dimension size data type
@@ -47,6 +49,7 @@ declare_new_list_func(CTorchTensor);
 declare_insert_list_func(CTorchTensor);
 declare_list_contains_data_func(CTorchTensor);
 declare_list_contains_item_func(CTorchTensor);
+declare_list_at_func(CTorchTensor);
 
 /*
   Set tensor'S name. This function directly overrides the tensor's name.
