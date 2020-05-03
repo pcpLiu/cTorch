@@ -25,6 +25,8 @@ declare_new_list_item_func(CTorchOperator);
 declare_new_list_func(CTorchOperator);
 declare_insert_list_func(CTorchOperator);
 declare_list_at_func(CTorchOperator);
+declare_list_pop_func(CTorchOperator);
+declare_free_list_func(CTorchOperator);
 
 /*
   Check if # of in_bound_tensors == # of out_bound_tensors for given

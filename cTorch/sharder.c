@@ -1,55 +1,64 @@
 #include "cTorch/sharder.h"
 
-List(CTorchOperator) *
-    sharding_op_elewise(CTorchOperator *op, thread_n_t n_shards) {
-  // creating sharded ops
-  List(CTorchOperator) *shards = new_list(CTorchOperator)();
+void sharding_op_elewise(
+    CTorchOperator *op, thread_n_t n_shards, List(CTorchOperator) * ops) {
+
+  /**
+   * 1. Create sharded ops
+   * 2. Prepare inbound & outbound tensors for each sharded ops
+   *    2.1. Shard a tensor
+   *    2.2. Assign each sharded piece to corresponding sharded op
+   */
+
   for (thread_n_t shard_i = 0; shard_i < n_shards; shard_i++) {
     CTorchOperator *shard_op = MALLOC(sizeof(CTorchOperator));
     shard_op->op_id = op->op_id;
     shard_op->in_bound_tensors = new_list(CTorchTensor)();
     shard_op->out_bound_tensors = new_list(CTorchTensor)();
-    insert_list(CTorchOperator)(shards, shard_op);
+    insert_list(CTorchOperator)(ops, shard_op);
   }
 
+  // inboud
   for (list_index_t tesnro_index = 0; tesnro_index < op->in_bound_tensors->size;
        tesnro_index++) {
-    // sharding a input tensor, will get n_shards tensors
-    List(CTorchTensor) *shared_tensors = new_list(CTorchTensor)();
+    // shard tensor
+    List(CTorchTensor) *sharded_tensors = new_list(CTorchTensor)();
     sharding_tensor_elewise(
         list_at(CTorchTensor)(op->in_bound_tensors, tesnro_index),
         n_shards,
-        shared_tensors);
+        sharded_tensors);
 
-    // assign shared tensor to corresponding sharded op's tensor list
+    // assign to sharded ops
     for (thread_n_t shard_i = 0; shard_i < n_shards; shard_i++) {
-      CTorchOperator *shard_op = list_at(CTorchOperator)(shards, shard_i);
+      CTorchOperator *shard_op = list_at(CTorchOperator)(ops, shard_i);
       insert_list(CTorchTensor)(
           shard_op->in_bound_tensors,
-          list_at(CTorchTensor)(shared_tensors, shard_i));
+          list_at(CTorchTensor)(sharded_tensors, shard_i));
     }
+
+    free_list(CTorchTensor)(sharded_tensors);
   }
 
+  // outbound
   for (list_index_t tesnro_index = 0;
        tesnro_index < op->out_bound_tensors->size;
        tesnro_index++) {
-    List(CTorchTensor) *shared_tensors = new_list(CTorchTensor)();
+    List(CTorchTensor) *sharded_tensors = new_list(CTorchTensor)();
     sharding_tensor_elewise(
-        list_at(CTorchTensor)(op->in_bound_tensors, tesnro_index),
+        list_at(CTorchTensor)(op->out_bound_tensors, tesnro_index),
         n_shards,
-        shared_tensors);
+        sharded_tensors);
+
     for (thread_n_t shard_i = 0; shard_i < n_shards; shard_i++) {
-      CTorchOperator *shard_op = list_at(CTorchOperator)(shards, shard_i);
+      CTorchOperator *shard_op = list_at(CTorchOperator)(ops, shard_i);
       insert_list(CTorchTensor)(
           shard_op->out_bound_tensors,
-          list_at(CTorchTensor)(shared_tensors, shard_i));
+          list_at(CTorchTensor)(sharded_tensors, shard_i));
     }
-  }
 
-  return shards;
+    free_list(CTorchTensor)(sharded_tensors);
+  }
 }
 
 void sharding_tensor_elewise(
-    CTorchTensor *tensor,
-    thread_n_t n_shards,
-    List(CTorchTensor) * tensor_list) {}
+    CTorchTensor *tensor, thread_n_t n_shards, List(CTorchTensor) * tensors) {}

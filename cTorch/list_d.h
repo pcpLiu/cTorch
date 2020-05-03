@@ -256,7 +256,7 @@ typedef int32_t list_index_t;
 // list_pop(data_type) --- func name
 // declare_list_pop_func(data_type) --- declare func
 // impl_list_pop_func(data_type) --- impl func
-#define list_pop(data_type) list_opo_##data_type
+#define list_pop(data_type) list_pop_##data_type
 #define _declare_list_pop_func(data_type, list_type, func_name)                \
   data_type *func_name(list_type *)
 #define declare_list_pop_func(data_type)                                       \

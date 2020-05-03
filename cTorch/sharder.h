@@ -7,19 +7,17 @@
 /**
  * Sharding an op's inputs & outputs for element-wise operation.
  *
- *  Params:
- *    - op: the target operator
- *    - n_shards: number of sharding pieces
+ * Params:
+ *  - op: the target operator
+ *  - n_shards: number of sharding pieces
+ *  - ops: sharded operator list to be appended
  *
- *  Return:
- *    List of sharded operator.
- *
- *  Warning:
- *    The sharded operator needs to be taken care in terms of memory allocation.
- *  It may cause memory leak.
+ * Return:
+ *    List of sharded operator
  */
-List(CTorchOperator) *
-    sharding_op_elewise(CTorchOperator *op, thread_n_t n_shards);
+
+void sharding_op_elewise(
+    CTorchOperator *op, thread_n_t n_shards, List(CTorchOperator) * ops);
 
 /**
  * Sharding a tensor for element-wise operator.
@@ -27,11 +25,12 @@ List(CTorchOperator) *
  * Params:
  *  - tensor: target tensor
  *  - n_shards: total number of sharding pieces
- *  - tensor_list: sharded tensor will be inserted into this list
+ *  - tensors: sharded tensor list to be appended
+ *
+ * Return:
+ *  List of sharded tensors
  */
 void sharding_tensor_elewise(
-    CTorchTensor *tensor,
-    thread_n_t n_shards,
-    List(CTorchTensor) * tensor_list);
+    CTorchTensor *tensor, thread_n_t n_shards, List(CTorchTensor) * tensors);
 
 #endif /* SHARDER_H */

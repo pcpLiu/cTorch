@@ -4,6 +4,8 @@ impl_new_new_list_item_func(CTorchOperator);
 impl_new_list_func(CTorchOperator);
 impl_insert_list_func(CTorchOperator);
 impl_list_at_func(CTorchOperator);
+impl_list_pop_func(CTorchOperator);
+impl_free_list_func(CTorchOperator);
 
 void FORCE_INPUT_OUTPUT_TSR_NUM_EQ(CTorchOperator *op) {
   if (op->in_bound_tensors->size != op->out_bound_tensors->size) {

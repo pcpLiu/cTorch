@@ -6,6 +6,8 @@ impl_insert_list_func(CTorchTensor);
 impl_list_contains_data_func(CTorchTensor);
 impl_list_contains_item_func(CTorchTensor);
 impl_list_at_func(CTorchTensor);
+impl_list_pop_func(CTorchTensor);
+impl_free_list_func(CTorchTensor);
 
 size_t tensor_data_size(CTorchTensor *tensor) {
   size_t ele_size = 0;

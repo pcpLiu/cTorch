@@ -123,6 +123,8 @@ TEST(cTorchListTest, testListContains) {
   EXPECT_EQ(item_4, found_item);
   found_item = list_contains_data(int)(list, &x[4]);
   EXPECT_EQ(nullptr, found_item);
+
+  free_list(int)(list);
 }
 
 TEST(cTorchListTest, testListContainsFails) {

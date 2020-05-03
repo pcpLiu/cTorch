@@ -50,6 +50,8 @@ declare_insert_list_func(CTorchTensor);
 declare_list_contains_data_func(CTorchTensor);
 declare_list_contains_item_func(CTorchTensor);
 declare_list_at_func(CTorchTensor);
+declare_list_pop_func(CTorchTensor);
+declare_free_list_func(CTorchTensor);
 
 /*
   Set tensor'S name. This function directly overrides the tensor's name.
