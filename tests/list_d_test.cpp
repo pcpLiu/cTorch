@@ -11,6 +11,7 @@ impl_list_contains_data_func(int);
 impl_list_contains_item_func(int);
 impl_list_pop_func(int);
 impl_list_at_func(int);
+impl_free_list_func(int);
 
 TEST(cTorchListTest, testItemDefine) {
   int a = 3;
@@ -200,4 +201,15 @@ TEST(cTorchListTest, testListAt) {
 
   EXPECT_EXIT(list_at(int)(list, 4), ::testing::ExitedWithCode(1),
               "Error at func list_at:");
+}
+
+TEST(cTorchListTest, testFreeList) {
+  int x[] = {1, 2, 3, 4};
+  List(int) *list = new_list(int)();
+  ListItem(int) *item_1 = insert_list(int)(list, &x[0]);
+  ListItem(int) *item_2 = insert_list(int)(list, &x[1]);
+  ListItem(int) *item_3 = insert_list(int)(list, &x[2]);
+  ListItem(int) *item_4 = insert_list(int)(list, &x[3]);
+
+  free_list(int)(list);
 }

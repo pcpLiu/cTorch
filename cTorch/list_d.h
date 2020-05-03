@@ -39,9 +39,13 @@
  *
  * T* list_pop(T)(List(T)* list)
  *  - Pop the head item of the list
+ *  - Function will free popped data's item
  *
- * T* list_at(T)(List(T)* list, list_index_t index)
+ * T* list_at(T)(List(T) *list, list_index_t index)
  *  - Get data at given index
+ *
+ * void free_list(T)(List(T) *list)
+ *  - Free a list and all items it contains. This function does not free data.
  */
 
 /*
@@ -310,5 +314,26 @@ typedef int32_t list_index_t;
   }
 #define impl_list_at_func(data_type)                                           \
   _impl_list_at_func(data_type, List(data_type), list_at(data_type))
+
+// Free a list and all its items. It would not free data.
+//
+// free_list(data_type) --- func name
+// declare_free_list_func(data_type) --- declaration
+//
+#define free_list(data_type) free_list_##data_type
+#define _declare_free_list_func(data_type, list_type, func_name)               \
+  void func_name(list_type *list)
+#define declare_free_list_func(data_type)                                      \
+  _declare_free_list_func(data_type, List(data_type), free_list(data_type))
+#define _impl_free_list_func(data_type, list_type, func_name)                  \
+  void func_name(list_type *list) {                                            \
+    FAIL_NULL_PTR(list);                                                       \
+    while (list->size > 0) {                                                   \
+      list_pop(data_type)(list);                                               \
+    }                                                                          \
+    FREE((void **)&list);                                                      \
+  }
+#define impl_free_list_func(data_type)                                         \
+  _impl_free_list_func(data_type, List(data_type), free_list(data_type))
 
 #endif /* LIST_D_H */
