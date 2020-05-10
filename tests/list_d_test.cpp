@@ -4,7 +4,7 @@
 // typedef ListItemStruct(int) ListItem(int);
 def_list_item(int);
 def_list(int);
-impl_new_new_list_item_func(int);
+impl_new_list_item_func(int);
 impl_new_list_func(int);
 impl_insert_list_func(int);
 impl_list_contains_data_func(int);

@@ -16,7 +16,7 @@ typedef struct {
   uuid_t uuid;
 
   // Graph name. Optional
-  CTorchName *graph_name;
+  char *graph_name;
 
   // Nodes containing in this graph
   List(CTorchNode) * node_list;

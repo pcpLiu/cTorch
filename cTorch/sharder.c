@@ -1,5 +1,7 @@
 #include "cTorch/sharder.h"
 
+#include <tgmath.h>
+
 void sharding_op_elewise(
     CTorchOperator *op, thread_n_t n_shards, List(CTorchOperator) * ops) {
 
@@ -18,17 +20,14 @@ void sharding_op_elewise(
     insert_list(CTorchOperator)(ops, shard_op);
   }
 
-  // inboud
   for (list_index_t tesnro_index = 0; tesnro_index < op->in_bound_tensors->size;
        tesnro_index++) {
-    // shard tensor
     List(CTorchTensor) *sharded_tensors = new_list(CTorchTensor)();
     sharding_tensor_elewise(
         list_at(CTorchTensor)(op->in_bound_tensors, tesnro_index),
         n_shards,
         sharded_tensors);
 
-    // assign to sharded ops
     for (thread_n_t shard_i = 0; shard_i < n_shards; shard_i++) {
       CTorchOperator *shard_op = list_at(CTorchOperator)(ops, shard_i);
       insert_list(CTorchTensor)(
@@ -39,7 +38,6 @@ void sharding_op_elewise(
     free_list(CTorchTensor)(sharded_tensors);
   }
 
-  // outbound
   for (list_index_t tesnro_index = 0;
        tesnro_index < op->out_bound_tensors->size;
        tesnro_index++) {
@@ -61,4 +59,41 @@ void sharding_op_elewise(
 }
 
 void sharding_tensor_elewise(
-    CTorchTensor *tensor, thread_n_t n_shards, List(CTorchTensor) * tensors) {}
+    CTorchTensor *tensor, thread_n_t n_shards, List(CTorchTensor) * tensors) {
+
+  /**
+   * Shard a tensor into n_shards tensors evenly, except the last one which
+   * will have all the rest values.
+   *
+   * Note:
+   * When sharding a tensor, we will ignore it's dimension and view the
+   * tensor as a flattned 1D tensor.
+   */
+
+  CTorchTensorMeta *raw_meta = tensor->meta_info;
+
+  tensor_size_t n_elements =
+      (tensor_size_t)floor((double)raw_meta->n_elements / (double)n_shards);
+  tensor_size_t last_n_elements = n_elements + raw_meta->n_elements % n_shards;
+
+  for (thread_n_t i = 0; i < n_shards; i++) {
+    char *name = NULL;
+    asprintf(&name, "%s_shard_%d", raw_meta->tensor_name, n_shards);
+
+    CTorchTensorMeta *meta = malloc(sizeof(CTorchTensorMeta));
+    meta->value_size_of = raw_meta->value_size_of;
+    meta->data_type = raw_meta->data_type;
+    meta->n_dim = 1;
+    meta->dims = NULL; // elewise op does not use this field
+    meta->align_size = raw_meta->align_size;
+    meta->type = raw_meta->type;
+    meta->n_elements = (n_shards == 1 ? last_n_elements : n_elements);
+    meta->tensor_name = name;
+
+    CTorchTensor *tensor = malloc(sizeof(CTorchTensor));
+    tensor->meta_info = meta;
+    tensor->values = cth_tensor_ptr_offset(tensor, i * n_elements);
+
+    insert_list(CTorchTensor)(tensors, tensor);
+  }
+}

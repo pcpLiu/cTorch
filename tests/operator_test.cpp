@@ -4,7 +4,7 @@
 
 TEST(operatorTest, testForceInputOutputTsrNumEQ) {
   CTorchOperator *op = create_dummy_op();
-  tensor_dim dims[] = {20, 20};
+  tensor_dim_t dims[] = {20, 20};
   CTorchTensor *input =
       create_dummy_tensor(dims, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
   CTorchTensor *output =
@@ -22,7 +22,7 @@ TEST(operatorTest, testForceInputOutputTsrNumEQ) {
 
 TEST(operatorTest, testForceOpParamExist) {
   CTorchOperator *op = create_dummy_op();
-  tensor_dim dims[] = {20, 20};
+  tensor_dim_t dims[] = {20, 20};
   CTorchTensor *input =
       create_dummy_tensor(dims, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
   input->meta_info->tensor_name = "tensor_name";
@@ -39,7 +39,7 @@ TEST(operatorTest, testForceOpParamExist) {
 
 TEST(operatorTest, testOpFailOnDtype) {
   CTorchOperator *op = create_dummy_op();
-  tensor_dim dims[] = {20, 20};
+  tensor_dim_t dims[] = {20, 20};
   CTorchTensor *input =
       create_dummy_tensor(dims, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
   insert_list(CTorchTensor)(op->in_bound_tensors, input);
@@ -51,14 +51,14 @@ TEST(operatorTest, testOpFailOnDtype) {
 
 TEST(operatorTest, testGetInputOutputByName) {
   CTorchOperator *op = create_dummy_op();
-  tensor_dim dims[] = {20, 20};
+  tensor_dim_t dims[] = {20, 20};
   const char *name = "name";
   CTorchTensor *input =
       create_dummy_tensor(dims, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
-  tensor_set_name(input, name);
+  cth_tensor_set_name(input, name);
   CTorchTensor *output =
       create_dummy_tensor(dims, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
-  tensor_set_name(output, name);
+  cth_tensor_set_name(output, name);
   insert_list(CTorchTensor)(op->in_bound_tensors, input);
   insert_list(CTorchTensor)(op->out_bound_tensors, output);
 
@@ -68,7 +68,7 @@ TEST(operatorTest, testGetInputOutputByName) {
   EXPECT_EQ(result, output);
 
   const char *name_2 = "name_2";
-  tensor_set_name(input, name_2);
+  cth_tensor_set_name(input, name_2);
   EXPECT_EXIT(get_input_by_name(op, name, true), ::testing::ExitedWithCode(1),
               "Could not find tensor");
 }

@@ -73,13 +73,13 @@ typedef int32_t list_index_t;
 //
 // new_list_item(data_type) --- func name
 // declare_new_list_item_func(data_type) --- declaration
-// impl_new_new_list_item_func(data_type) --- implementation
+// impl_new_list_item_func(data_type) --- implementation
 #define new_list_item(data_type) new_list_item##data_type
 #define _declare_new_list_item_func(data_type, func_name)                      \
   ListItem(data_type) * func_name(data_type *)
 #define declare_new_list_item_func(data_type)                                  \
   _declare_new_list_item_func(data_type, new_list_item(data_type))
-#define _impl_new_new_list_item_func(data_type, list_type, func_name)          \
+#define _impl_new_list_item_func(data_type, list_type, func_name)              \
   list_type *func_name(data_type *data) {                                      \
     FAIL_NULL_PTR(data);                                                       \
     list_type *item = (list_type *)MALLOC(sizeof(list_type));                  \
@@ -88,8 +88,8 @@ typedef int32_t list_index_t;
     item->next_item = NULL;                                                    \
     return item;                                                               \
   }
-#define impl_new_new_list_item_func(data_type)                                 \
-  _impl_new_new_list_item_func(                                                \
+#define impl_new_list_item_func(data_type)                                     \
+  _impl_new_list_item_func(                                                    \
       data_type,                                                               \
       ListItem(data_type),                                                     \
       new_list_item(data_type))

@@ -39,11 +39,11 @@ CTorchTensor *create_dummy_tensor(uint32_t *dims,
                                   float max) {
   CTorchTensor *tensor = (CTorchTensor *)MALLOC(sizeof(CTorchTensor));
   tensor->meta_info = (CTorchTensorMeta *)MALLOC(sizeof(CTorchTensorMeta));
-  tensor->meta_info->dim_size_list = dims;
+  tensor->meta_info->dims = dims;
   tensor->meta_info->n_dim = sizeof(dims) / sizeof(dims[0]);
   uint64_t n_ele = 1;
   for (int i = 0; i < tensor->meta_info->n_dim; i++) {
-    n_ele *= tensor->meta_info->dim_size_list[i];
+    n_ele *= tensor->meta_info->dims[i];
   }
   tensor->meta_info->n_elements = n_ele;
   tensor->meta_info->data_type = data_type;

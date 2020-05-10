@@ -57,6 +57,9 @@ if(${BACKEND_ACCELERATE_ENABLE})
     add_compile_definitions(BACKEND_ACCELERATE)
 endif()
 
+# Enable test debug option
+add_compile_definitions(CTH_TEST_DEBUG)
+
 ################################################################################
 #
 # Core sources
@@ -66,12 +69,15 @@ set(core_src
     consts.c
     engine.c
     graph.c
+    logger_util.c
+    mem_util.c
     node.c
     operator.c
     plan.c
     pool.c
     sharder.c
     storage.c
+    debug_util.c
 )
 
 ################################################################################
