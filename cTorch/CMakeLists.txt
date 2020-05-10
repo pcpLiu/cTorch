@@ -67,6 +67,7 @@ add_compile_definitions(CTH_TEST_DEBUG)
 set(core_src
     common.c
     consts.c
+    debug_util.c
     engine.c
     graph.c
     logger_util.c
@@ -77,7 +78,6 @@ set(core_src
     pool.c
     sharder.c
     storage.c
-    debug_util.c
 )
 
 ################################################################################

@@ -6,25 +6,56 @@
 #include "cTorch/list_d.h"
 
 /**
+ * Memory status
+ *    - CTH_MEM_RECORD_STATUS_ALLOCATED: allocated
+ *    - CTH_MEM_RECORD_STATUS_FREED: freed
+ */
+typedef enum CTH_MEM_RECORD_STATUS {
+  CTH_MEM_RECORD_STATUS_ALLOCATED,
+  CTH_MEM_RECORD_STATUS_FREED,
+} CTH_MEM_RECORD_STATUS;
+
+/**
  * Use to track memory allocation & free. Only used in debug test
  */
 typedef struct MemoryRecord {
   void *addr; /* Address alocated */
-  uint8_t status; /* 0 - freed; 1 - allocated */
+  CTH_MEM_RECORD_STATUS status; /* status */
+  struct MemoryRecord *next; /* Next memory record */
 } MemoryRecord;
 
-def_list_item(MemoryRecord);
-def_list(MemoryRecord);
-declare_new_list_func(MemoryRecord);
-declare_insert_list_func(MemoryRecord);
-declare_list_at_func(MemoryRecord);
-
-extern List(MemoryRecord) CTH_MEM_RECORDS;
+/**
+ * Global variable. List of allocated memory records. It always points to the
+ * 1st dummy node.
+ */
+extern MemoryRecord *CTH_MEM_RECORDS;
 
 /**
- * Get memory record based on allocated mem addres. If not found, it returns
- * NULL.
+ * Add an allocated addr to track.
+ *
+ * Params:
+ *    - ptr: void*, allocated address
+ *
+ * Returns:
+ *    The newly added memory record
+ *
+ * Note:
+ *    If the address already in records, it will return existing memory record
  */
-MemoryRecord *get_mem_record(void *ptr);
+MemoryRecord *cth_add_mem_record(void *ptr);
+
+/**
+ * Fetch memory record with given mem address.
+ *
+ * Params:
+ *    - ptr: void*, allocated address. If ptr is NULL, function FAIL_NULL_PTR.
+ *
+ * Returns:
+ *    record: MemoryRecord*, memory record if found.
+ *
+ * Note:
+ *    NULL will be returned if memory record is not found
+ */
+MemoryRecord *cth_get_mem_record(void *ptr);
 
 #endif /* DEBUG_UTIL_H */

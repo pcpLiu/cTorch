@@ -6,22 +6,22 @@
 /*
   Call FAIL_EXIT() if input pointer is NULL.
 */
-void *malloc_with_null_check(size_t);
+void *cth_malloc(size_t);
 
 /*
   Call FAIL_EXIT() if input pointer is NULL.
 */
-void free_with_nullify(void **ptr);
+void cth_free(void **ptr);
 
 /*
   malloc with limited GC
 */
-#define MALLOC malloc_with_null_check
+#define MALLOC cth_malloc
 
 /*
   Free and set pointer to NULL
 */
-#define FREE free_with_nullify
+#define FREE cth_free
 
 /*
   No idea why I need this, just feel I need it

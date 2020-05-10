@@ -15,6 +15,10 @@ extern "C" {
 #include "cTorch/plan.h"
 #include "cTorch/storage.h"
 
+#ifdef CTH_TEST_DEBUG
+#include "cTorch/debug_util.h"
+#endif
+
 #ifdef __cplusplus
 }
 #endif

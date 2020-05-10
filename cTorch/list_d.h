@@ -297,7 +297,7 @@ typedef int32_t list_index_t;
     FAIL_NULL_PTR(list);                                                       \
     if (index >= list->size) {                                                 \
       FAIL_EXIT(                                                               \
-          CTH_LOG_STR,                                                         \
+          CTH_LOG_ERR,                                                         \
           "Error at func list_at: Given index %d is larger than or "           \
           "equal to list size %d.",                                            \
           index,                                                               \

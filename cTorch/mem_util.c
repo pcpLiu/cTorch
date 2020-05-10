@@ -7,59 +7,28 @@
 
 #include <stdlib.h>
 
-void *malloc_with_null_check(size_t size) {
+void *cth_malloc(size_t size) {
   void *mem = malloc(size);
   FAIL_NULL_PTR(mem);
 
 #ifdef CTH_TEST_DEBUG
-  /**
-   * In debug mode, record memory allocation
-   */
-
-  MemoryRecord *record = malloc(sizeof(MemoryRecord));
-  record->addr = mem;
-  record->status = 1;
-  insert_list(MemoryRecord)(&CTH_MEM_RECORDS, record);
-#endif /* CTH_TEST_DEBUG */
+  cth_add_mem_record(mem);
+#endif
 
   return mem;
 }
 
-void free_with_nullify(void **ptr) {
-  if (*ptr != NULL) {
+void cth_free(void **ptr) {
+  if (*ptr == NULL) {
+    FAIL_EXIT(CTH_LOG_ERR, "Trying to free a NULL pointer.");
+  }
 
 #ifdef CTH_TEST_DEBUG
-    /**
-     * In debug mode, record memory deallocation
-     */
+  MemoryRecord *record = cth_get_mem_record(*ptr);
+  FAIL_NULL_PTR(record);
+  record->status = CTH_MEM_RECORD_STATUS_FREED;
+#endif
 
-    ListItem(MemoryRecord) *item = CTH_MEM_RECORDS.head;
-    bool found = false;
-    for (list_index_t i = 0; i < CTH_MEM_RECORDS.size; i++) {
-      MemoryRecord *record = item->data;
-      if (record->addr == *ptr) {
-        if (record->status == 0) {
-          FAIL_EXIT(
-              CTH_LOG_STR,
-              "Trying to free address %p, but it's already been freed.",
-              *ptr);
-        }
-        found = true;
-        record->status = 0;
-        break;
-      }
-      item = item->next_item;
-    }
-
-    if (!found) {
-      FAIL_EXIT(
-          CTH_LOG_STR,
-          "Trying to free address %p, but cannot find it in mem_record.",
-          *ptr);
-    }
-#endif /* CTH_TEST_DEBUG */
-
-    free(*ptr);
-    *ptr = NULL;
-  }
+  free(*ptr);
+  *ptr = NULL;
 }

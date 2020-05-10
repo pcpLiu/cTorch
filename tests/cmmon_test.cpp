@@ -2,6 +2,6 @@
 #include "gtest/gtest.h"
 
 TEST(CommonUtilTest, testFailExit) {
-  EXPECT_EXIT(FAIL_EXIT(CTH_LOG_STR, "Test out"), ::testing::ExitedWithCode(1),
+  EXPECT_EXIT(FAIL_EXIT(CTH_LOG_ERR, "Test out"), ::testing::ExitedWithCode(1),
               "Test out");
 }

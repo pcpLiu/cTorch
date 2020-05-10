@@ -37,43 +37,43 @@ void dispatch_op_execution(CTorchOperator *op, CTH_BACKEND backend) {
 #ifdef BACKEND_CPU_X86
     _BACKEND_FALLBACK_EXE(fps_op_x86);
 #else
-    FAIL_EXIT(CTH_LOG_STR, _BACKEND_MISSING_ERR_MSG(x86));
+    FAIL_EXIT(CTH_LOG_ERR, _BACKEND_MISSING_ERR_MSG(x86));
 #endif
   } else if (backend == CTH_BACKEND_CPU_ARM) {
 #ifdef BACKEND_CPU_ARM
     _BACKEND_FALLBACK_EXE(fps_op_arm);
 #else
-    FAIL_EXIT(CTH_LOG_STR, _BACKEND_MISSING_ERR_MSG(ARM));
+    FAIL_EXIT(CTH_LOG_ERR, _BACKEND_MISSING_ERR_MSG(ARM));
 #endif
   } else if (backend == CTH_BACKEND_MKL) {
 #ifdef BACKEND_MKL
     _BACKEND_FALLBACK_EXE(fps_op_mkl);
 #else
-    FAIL_EXIT(CTH_LOG_STR, _BACKEND_MISSING_ERR_MSG(MKL));
+    FAIL_EXIT(CTH_LOG_ERR, _BACKEND_MISSING_ERR_MSG(MKL));
 #endif
   } else if (backend == CTH_BACKEND_CUDA) {
 #ifdef BACKEND_CUDA
     _BACKEND_FALLBACK_EXE(fps_op_cuda);
 #else
-    FAIL_EXIT(CTH_LOG_STR, _BACKEND_MISSING_ERR_MSG(CUDA));
+    FAIL_EXIT(CTH_LOG_ERR, _BACKEND_MISSING_ERR_MSG(CUDA));
 #endif
   } else if (backend == CTH_BACKEND_OPENBLAS) {
 #ifdef BACKEND_OPENBLAS
     _BACKEND_FALLBACK_EXE(fps_op_openblas);
 #else
-    FAIL_EXIT(CTH_LOG_STR, _BACKEND_MISSING_ERR_MSG(openBLAS));
+    FAIL_EXIT(CTH_LOG_ERR, _BACKEND_MISSING_ERR_MSG(openBLAS));
 #endif
   } else if (backend == CTH_BACKEND_ACCELERATE) {
 #ifdef BACKEND_ACCELERATE
     _BACKEND_FALLBACK_EXE(fps_op_openblas);
 #else
-    FAIL_EXIT(CTH_LOG_STR, _BACKEND_MISSING_ERR_MSG(Accelerate));
+    FAIL_EXIT(CTH_LOG_ERR, _BACKEND_MISSING_ERR_MSG(Accelerate));
 #endif
   }
 
   if (fall_back || backend == CTH_BACKEND_DEFAULT) {
     if (fps_op_default[op_id] == NULL) {
-      FAIL_EXIT(CTH_LOG_STR, "Unsupported Operator ID %d.", op_id);
+      FAIL_EXIT(CTH_LOG_ERR, "Unsupported Operator ID %d.", op_id);
     } else {
       (*fps_op_default[op_id])(op);
     }

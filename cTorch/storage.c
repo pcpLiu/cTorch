@@ -60,7 +60,7 @@ void FORCE_TENSOR_DIMENSION(CTorchTensor *tensor, tensor_dim_t *target_dims) {
 
   if (!match_dims || !match_n_dim) {
     // TODO: better logging
-    FAIL_EXIT(CTH_LOG_STR, "FORCE_TENSOR_DIMENSION failes.");
+    FAIL_EXIT(CTH_LOG_ERR, "FORCE_TENSOR_DIMENSION failes.");
   }
 }
 
@@ -71,7 +71,7 @@ bool cth_tensor_name_match(CTorchTensor *tensor, const char *target_name) {
 void FORCE_TENSOR_NAME(CTorchTensor *tensor, const char *target_name) {
   if (!cth_tensor_name_match(tensor, target_name)) {
     // TODO: better logging
-    FAIL_EXIT(CTH_LOG_STR, "FORCE_TENSOR_NAME fails.");
+    FAIL_EXIT(CTH_LOG_ERR, "FORCE_TENSOR_NAME fails.");
   }
 }
 

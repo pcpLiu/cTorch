@@ -12,7 +12,12 @@
 /*
   Call FAIL_EXIT() if input pointer is NULL.
 */
-void FAIL_NULL_PTR(void *);
+#define FAIL_NULL_PTR(ptr)                                                     \
+  do {                                                                         \
+    if (ptr == NULL) {                                                         \
+      FAIL_EXIT(CTH_LOG_ERR, "Pointer is NULL.");                              \
+    }                                                                          \
+  } while (0)
 
 /*
   Print error message and exit.
@@ -20,10 +25,10 @@ void FAIL_NULL_PTR(void *);
 #define FAIL_EXIT(write_to, ...)                                               \
   do {                                                                         \
     char *tmp = NULL;                                                          \
-    fprintf(stderr, "[cTorch]: ");                                             \
+    fprintf(stderr, "[cTorch][ERROR]: ");                                      \
     asprintf(&tmp, __VA_ARGS__);                                               \
     fprintf(stderr, "%s\n", tmp);                                              \
-    FREE((void **)&tmp);                                                       \
+    free(tmp);                                                                 \
     exit(1);                                                                   \
   } while (0)
 
@@ -32,7 +37,17 @@ void FAIL_NULL_PTR(void *);
 
   Will check global config
 */
-#define LOG_F() F
+#define CTH_LOG(write_to, ...)                                                 \
+  do {                                                                         \
+    if (!CTH_LOG_ENABLE)                                                       \
+      break;                                                                   \
+                                                                               \
+    char *tmp = NULL;                                                          \
+    fprintf(stderr, "[cTorch][INFO]: ");                                       \
+    asprintf(&tmp, __VA_ARGS__);                                               \
+    fprintf(stderr, "%s\n", tmp);                                              \
+    free(tmp);                                                                 \
+  } while (0)
 
 /*
   Exit if val is NAN.
@@ -42,7 +57,7 @@ void FAIL_NULL_PTR(void *);
 #define NAN_EXIT(val)                                                          \
   do {                                                                         \
     if (val != val && CTH_NAN_EXIT == true) {                                  \
-      FAIL_EXIT(CTH_LOG_STR, "Value is NaN");                                  \
+      FAIL_EXIT(CTH_LOG_ERR, "Value is NaN");                                  \
     }                                                                          \
   } while (0)
 
@@ -54,7 +69,8 @@ void FAIL_NULL_PTR(void *);
 /*
   Used by all log related functions.
 */
-extern char *CTH_LOG_STR;
+#define CTH_LOG_ERR 0;
+#define CTH_LOG_INFO 1;
 
 /*
   If true, execution will stop and exit if computation outputs NaN values.

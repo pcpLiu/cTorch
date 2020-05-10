@@ -12,7 +12,7 @@ static CTorchNode *update_node_list(
   FAIL_NULL_PTR(target);
   FAIL_NULL_PTR(node_list);
   if (node_list->size == 0) {
-    FAIL_EXIT(CTH_LOG_STR, "node_list is empty");
+    FAIL_EXIT(CTH_LOG_ERR, "node_list is empty");
   }
 
   List(CTorchNode) *target_list =
