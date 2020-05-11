@@ -147,7 +147,7 @@ bool tensor_all_nan(CTorchTensor *tensor) {
 }
 
 CTorchOperator *create_dummy_op() {
-  CTorchOperator *op = malloc(sizeof(CTorchOperator));
+  CTorchOperator *op = MALLOC(sizeof(CTorchOperator));
   op->op_id = CTH_OP_ID_abs;
   op->in_bound_tensors = new_list(CTorchTensor)();
   op->out_bound_tensors = new_list(CTorchTensor)();
