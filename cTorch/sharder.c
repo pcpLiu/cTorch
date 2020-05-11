@@ -80,7 +80,7 @@ void sharding_tensor_elewise(
     char *name = NULL;
     asprintf(&name, "%s_shard_%d", raw_meta->tensor_name, n_shards);
 
-    CTorchTensorMeta *meta = malloc(sizeof(CTorchTensorMeta));
+    CTorchTensorMeta *meta = MALLOC(sizeof(CTorchTensorMeta));
     meta->value_size_of = raw_meta->value_size_of;
     meta->data_type = raw_meta->data_type;
     meta->n_dim = 1;
@@ -90,7 +90,7 @@ void sharding_tensor_elewise(
     meta->n_elements = (n_shards == 1 ? last_n_elements : n_elements);
     meta->tensor_name = name;
 
-    CTorchTensor *tensor = malloc(sizeof(CTorchTensor));
+    CTorchTensor *tensor = MALLOC(sizeof(CTorchTensor));
     tensor->meta_info = meta;
     tensor->values = cth_tensor_ptr_offset(tensor, i * n_elements);
 
