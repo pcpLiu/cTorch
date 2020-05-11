@@ -30,9 +30,9 @@ typedef struct CTorchTensorMeta {
   tensor_size_t n_elements; /* Number of elements */
   uint16_t align_size; /* Alignment size of this storage */
   CTH_TENSOR_TYPE type; /* Tensor type: normal or params */
-  const char *tensor_name; /* For CTH_TENSOR_TYPE_PARAM type node, this is
-                              parameter name. As for other types, this is an
-                              optiona field and could be null. */
+  char *tensor_name; /* For CTH_TENSOR_TYPE_PARAM type node, this is
+                               parameter name. As for other types, this is an
+                               optiona field and could be null. */
 } CTorchTensorMeta;
 
 /**
