@@ -46,7 +46,7 @@ TEST(cTorchListTest, testNewListItemFunc) {
 
 TEST(cTorchListTest, testNewListItemFuncFail) {
   EXPECT_EXIT(new_list_item(int)(NULL), ::testing::ExitedWithCode(1),
-              "NULL ptr error");
+              "[.]*Pointer is NULL");
 }
 
 TEST(cTorchListTest, testNewListFunc) {
@@ -97,11 +97,11 @@ TEST(cTorchListTest, testListInsertFuncFail) {
   List(int) *list = new_list(int)();
 
   EXPECT_EXIT(insert_list(int)(NULL, &x[0]), ::testing::ExitedWithCode(1),
-              "NULL ptr error");
+              "[.]*Pointer is NULL");
   EXPECT_EXIT(insert_list(int)(list, NULL), ::testing::ExitedWithCode(1),
-              "NULL ptr error");
+              "[.]*Pointer is NULL");
   EXPECT_EXIT(insert_list(int)(NULL, NULL), ::testing::ExitedWithCode(1),
-              "NULL ptr error");
+              "[.]*Pointer is NULL");
 }
 
 TEST(cTorchListTest, testListContains) {
@@ -132,11 +132,11 @@ TEST(cTorchListTest, testListContainsFails) {
   List(int) *list = new_list(int)();
 
   EXPECT_EXIT(list_contains_data(int)(NULL, &x[0]),
-              ::testing::ExitedWithCode(1), "NULL ptr error");
+              ::testing::ExitedWithCode(1), "[.]*Pointer is NULL");
   EXPECT_EXIT(list_contains_data(int)(list, NULL), ::testing::ExitedWithCode(1),
-              "NULL ptr error");
+              "[.]*Pointer is NULL");
   EXPECT_EXIT(list_contains_data(int)(NULL, NULL), ::testing::ExitedWithCode(1),
-              "NULL ptr error");
+              "[.]*Pointer is NULL");
 }
 
 TEST(cTorchListTest, testListContainsItem) {
@@ -167,23 +167,25 @@ TEST(cTorchListTest, testListContainsItemFails) {
   List(int) *list = new_list(int)();
 
   EXPECT_EXIT(list_contains_item(int)(NULL, item), ::testing::ExitedWithCode(1),
-              "NULL ptr error");
+              "[.]*Pointer is NULL");
   EXPECT_EXIT(list_contains_item(int)(list, NULL), ::testing::ExitedWithCode(1),
-              "NULL ptr error");
+              "[.]*Pointer is NULL");
   EXPECT_EXIT(list_contains_item(int)(NULL, NULL), ::testing::ExitedWithCode(1),
-              "NULL ptr error");
+              "[.]*Pointer is NULL");
 }
 
 TEST(cTorchListTest, testListPop) {
   int x[] = {1, 2, 3, 4};
   List(int) *list = new_list(int)();
   ListItem(int) *item_1 = insert_list(int)(list, &x[0]);
+  MemoryRecord *record_item_1 = cth_get_mem_record(item_1);
   ListItem(int) *item_2 = insert_list(int)(list, &x[1]);
   ListItem(int) *item_3 = insert_list(int)(list, &x[2]);
   ListItem(int) *item_4 = insert_list(int)(list, &x[3]);
 
   int *pop = list_pop(int)(list);
   EXPECT_EQ(*pop, x[0]);
+  EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_item_1->status);
   EXPECT_EQ(list->head, item_2);
   EXPECT_EQ(list->size, 3);
 }
@@ -207,11 +209,24 @@ TEST(cTorchListTest, testListAt) {
 
 TEST(cTorchListTest, testFreeList) {
   int x[] = {1, 2, 3, 4};
+
   List(int) *list = new_list(int)();
+  MemoryRecord *record_list = cth_get_mem_record(list);
+
   ListItem(int) *item_1 = insert_list(int)(list, &x[0]);
+  MemoryRecord *record_item_1 = cth_get_mem_record(item_1);
   ListItem(int) *item_2 = insert_list(int)(list, &x[1]);
+  MemoryRecord *record_item_2 = cth_get_mem_record(item_2);
   ListItem(int) *item_3 = insert_list(int)(list, &x[2]);
+  MemoryRecord *record_item_3 = cth_get_mem_record(item_3);
   ListItem(int) *item_4 = insert_list(int)(list, &x[3]);
+  MemoryRecord *record_item_4 = cth_get_mem_record(item_4);
 
   free_list(int)(list);
+
+  EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_list->status);
+  EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_item_1->status);
+  EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_item_2->status);
+  EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_item_3->status);
+  EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_item_4->status);
 }

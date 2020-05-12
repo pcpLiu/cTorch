@@ -14,38 +14,42 @@
  * ~~~Structures~~~
  *
  * ListItem(T)
- *  - data: T*, contained data
- *  - prev_item: ListItem(T)*, previous item
- *  - next_item: ListItem(T)*, next item
+ *    - data: T*, contained data
+ *    - prev_item: ListItem(T)*, previous item
+ *    - next_item: ListItem(T)*, next item
  *
  * List(T)
- *  - size: list_index_t, size of list
- *  - head: ListItem(T)*, head item of list
- *  - tail: ListItem(T)*, tail item of list
+ *    - size: list_index_t, size of list
+ *    - head: ListItem(T)*, head item of list
+ *    - tail: ListItem(T)*, tail item of list
  *
  * ~~~Functions~~~
  *
  * ListItem(T)* new_list_item(T)(T* data)
- *  - Create a new list item. Caller needs tacking care of its memory releasing
+ *    - Create a new list item. Caller needs tacking care of its memory
+ * releasing
  *
  * List(T)* new_list(T)()
- *  - Create a new list, caller needs taking care of its memory releasing
+ *    - Create a new list, caller needs taking care of its memory releasing
  *
  * void insert_list(T)(List(T)* list, T* data)
- *  - Insert a data into a list
+ *    - Insert a data into a list
  *
  * bool list_contains_data(T)(List(T)* list, T* data)
- *  - Check if list contains a item has same data value as given data
+ *    - Check if list contains a item has same data value as given data
  *
  * T* list_pop(T)(List(T)* list)
- *  - Pop the head item of the list
- *  - Function will free popped data's item
+ *    - Pop the head item of the list
+ *    - Function will free popped data's item
  *
  * T* list_at(T)(List(T) *list, list_index_t index)
- *  - Get data at given index
+ *    - Get data at given index
  *
  * void free_list(T)(List(T) *list)
- *  - Free a list and all items it contains. This function does not free data.
+ *    - Free a list and all items it contains. This function does not free data
+ *
+ * void free_list_deep(T)(List(T) *list)
+ *    - Free a list and all items it contains. Also, it frees stored data
  */
 
 /*
