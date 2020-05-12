@@ -29,6 +29,10 @@ set(PTHREAD_ENABLE ON CACHE BOOL
     "Build with pthread support. Default ON."
 )
 
+set(DEBUG_TEST ON CACHE BOOL
+    "Enable debug test options. Default ON."
+)
+
 ################################################################################
 #
 # Backends preprocessors
@@ -57,8 +61,13 @@ if(${BACKEND_ACCELERATE_ENABLE})
     add_compile_definitions(BACKEND_ACCELERATE)
 endif()
 
-# Enable test debug option
-add_compile_definitions(CTH_TEST_DEBUG)
+if(${DEBUG_TEST})
+    add_compile_definitions(CTH_TEST_DEBUG)
+    message(
+        WARNING
+        "DEBUG_TEST is turned ON. Option should only be enabled for running tests."
+    )
+endif()
 
 ################################################################################
 #
