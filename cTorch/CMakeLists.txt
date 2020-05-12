@@ -31,6 +31,7 @@ set(PTHREAD_ENABLE ON CACHE BOOL
 
 set(DEBUG_TEST ON CACHE BOOL
     "Enable debug test options. Default ON."
+    "Option should only be enabled for running tests."
 )
 
 ################################################################################
