@@ -16,7 +16,7 @@
  *    List of sharded operator
  */
 
-void sharding_op_elewise(
+void cth_sharding_op_elewise(
     CTorchOperator *op, thread_n_t n_shards, List(CTorchOperator) * ops);
 
 /**
@@ -30,7 +30,7 @@ void sharding_op_elewise(
  * Return:
  *  List of sharded tensors
  */
-void sharding_tensor_elewise(
+void cth_sharding_tensor_elewise(
     CTorchTensor *tensor, thread_n_t n_shards, List(CTorchTensor) * tensors);
 
 #endif /* SHARDER_H */

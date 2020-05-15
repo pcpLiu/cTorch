@@ -6,9 +6,10 @@
 
 void test_abs(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
               float max) {
-  uint32_t dims[] = {100, 100};
+  tensor_dim_t dims[] = {100, 100};
+  tensor_dim_t n_dim = sizeof(dims) / sizeof(dims[0]);
   CTorchNode *op_node =
-      create_dummy_op_node(CTH_OP_ID_abs, dims, data_type, min, max);
+      create_dummy_op_node(CTH_OP_ID_abs, dims, n_dim, data_type, min, max);
   cth_execute_node(op_node, backend);
   if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||
       data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {

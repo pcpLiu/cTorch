@@ -2,7 +2,7 @@
 
 #include <tgmath.h>
 
-void sharding_op_elewise(
+void cth_sharding_op_elewise(
     CTorchOperator *op, thread_n_t n_shards, List(CTorchOperator) * ops) {
 
   /**
@@ -23,7 +23,7 @@ void sharding_op_elewise(
   for (list_index_t tesnro_index = 0; tesnro_index < op->in_bound_tensors->size;
        tesnro_index++) {
     List(CTorchTensor) *sharded_tensors = new_list(CTorchTensor)();
-    sharding_tensor_elewise(
+    cth_sharding_tensor_elewise(
         list_at(CTorchTensor)(op->in_bound_tensors, tesnro_index),
         n_shards,
         sharded_tensors);
@@ -42,7 +42,7 @@ void sharding_op_elewise(
        tesnro_index < op->out_bound_tensors->size;
        tesnro_index++) {
     List(CTorchTensor) *sharded_tensors = new_list(CTorchTensor)();
-    sharding_tensor_elewise(
+    cth_sharding_tensor_elewise(
         list_at(CTorchTensor)(op->out_bound_tensors, tesnro_index),
         n_shards,
         sharded_tensors);
@@ -58,7 +58,7 @@ void sharding_op_elewise(
   }
 }
 
-void sharding_tensor_elewise(
+void cth_sharding_tensor_elewise(
     CTorchTensor *tensor, thread_n_t n_shards, List(CTorchTensor) * tensors) {
 
   /**
@@ -90,10 +90,10 @@ void sharding_tensor_elewise(
     meta->n_elements = (n_shards == 1 ? last_n_elements : n_elements);
     meta->tensor_name = name;
 
-    CTorchTensor *tensor = MALLOC(sizeof(CTorchTensor));
-    tensor->meta_info = meta;
-    tensor->values = cth_tensor_ptr_offset(tensor, i * n_elements);
+    CTorchTensor *shard_tensor = MALLOC(sizeof(CTorchTensor));
+    shard_tensor->meta_info = meta;
+    shard_tensor->values = cth_tensor_ptr_offset(tensor, i * meta->n_elements);
 
-    insert_list(CTorchTensor)(tensors, tensor);
+    insert_list(CTorchTensor)(tensors, shard_tensor);
   }
 }

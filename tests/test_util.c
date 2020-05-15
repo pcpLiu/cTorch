@@ -34,13 +34,14 @@ CTorchNode *create_dummy_node() {
   return node;
 };
 
-CTorchTensor *create_dummy_tensor(uint32_t *dims,
+CTorchTensor *create_dummy_tensor(tensor_dim_t *dims, tensor_dim_t n_dim,
                                   CTH_TENSOR_DATA_TYPE data_type, float min,
                                   float max) {
   CTorchTensor *tensor = (CTorchTensor *)MALLOC(sizeof(CTorchTensor));
   tensor->meta_info = (CTorchTensorMeta *)MALLOC(sizeof(CTorchTensorMeta));
   tensor->meta_info->dims = dims;
-  tensor->meta_info->n_dim = sizeof(dims) / sizeof(dims[0]);
+  tensor->meta_info->n_dim = n_dim;
+
   uint64_t n_ele = 1;
   for (int i = 0; i < tensor->meta_info->n_dim; i++) {
     n_ele *= tensor->meta_info->dims[i];
@@ -68,17 +69,20 @@ CTorchTensor *create_dummy_tensor(uint32_t *dims,
   return tensor;
 }
 
-CTorchNode *create_dummy_op_node(CTH_OP_ID op_id, uint32_t *dims,
+CTorchNode *create_dummy_op_node(CTH_OP_ID op_id, tensor_dim_t *dims,
+                                 tensor_dim_t n_dim,
                                  CTH_TENSOR_DATA_TYPE data_type, float min,
                                  float max) {
   CTorchOperator *op = (CTorchOperator *)MALLOC(sizeof(CTorchOperator));
   op->op_id = op_id;
   op->in_bound_tensors = new_list(CTorchTensor)();
   op->out_bound_tensors = new_list(CTorchTensor)();
-  insert_list(CTorchTensor)(op->in_bound_tensors,
-                            create_dummy_tensor(dims, data_type, min, max));
-  insert_list(CTorchTensor)(op->out_bound_tensors,
-                            create_dummy_tensor(dims, data_type, min, max));
+  insert_list(CTorchTensor)(
+      op->in_bound_tensors,
+      create_dummy_tensor(dims, n_dim, data_type, min, max));
+  insert_list(CTorchTensor)(
+      op->out_bound_tensors,
+      create_dummy_tensor(dims, n_dim, data_type, min, max));
 
   CTorchNode *node = (CTorchNode *)MALLOC(sizeof(CTorchNode));
   node->conent.op = op;

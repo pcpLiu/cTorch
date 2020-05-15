@@ -5,16 +5,17 @@
 TEST(operatorTest, testForceInputOutputTsrNumEQ) {
   CTorchOperator *op = create_dummy_op();
   tensor_dim_t dims[] = {20, 20};
-  CTorchTensor *input =
-      create_dummy_tensor(dims, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
-  CTorchTensor *output =
-      create_dummy_tensor(dims, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
+  tensor_dim_t n_dim = sizeof(dims) / sizeof(dims[0]);
+  CTorchTensor *input = create_dummy_tensor(
+      dims, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
+  CTorchTensor *output = create_dummy_tensor(
+      dims, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
   insert_list(CTorchTensor)(op->in_bound_tensors, input);
   insert_list(CTorchTensor)(op->out_bound_tensors, output);
   EXPECT_NO_FATAL_FAILURE(FORCE_INPUT_OUTPUT_TSR_NUM_EQ(op));
 
-  CTorchTensor *input2 =
-      create_dummy_tensor(dims, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
+  CTorchTensor *input2 = create_dummy_tensor(
+      dims, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
   insert_list(CTorchTensor)(op->in_bound_tensors, input2);
   EXPECT_EXIT(FORCE_INPUT_OUTPUT_TSR_NUM_EQ(op), ::testing::ExitedWithCode(1),
               "Operator should have same numbers of input and output tensors.");
@@ -23,8 +24,9 @@ TEST(operatorTest, testForceInputOutputTsrNumEQ) {
 TEST(operatorTest, testForceOpParamExist) {
   CTorchOperator *op = create_dummy_op();
   tensor_dim_t dims[] = {20, 20};
-  CTorchTensor *input =
-      create_dummy_tensor(dims, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
+  tensor_dim_t n_dim = sizeof(dims) / sizeof(dims[0]);
+  CTorchTensor *input = create_dummy_tensor(
+      dims, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
   input->meta_info->tensor_name = "tensor_name";
   const char *target_name = "tensor_name";
   insert_list(CTorchTensor)(op->in_bound_tensors, input);
@@ -40,8 +42,10 @@ TEST(operatorTest, testForceOpParamExist) {
 TEST(operatorTest, testOpFailOnDtype) {
   CTorchOperator *op = create_dummy_op();
   tensor_dim_t dims[] = {20, 20};
-  CTorchTensor *input =
-      create_dummy_tensor(dims, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
+  tensor_dim_t n_dim = sizeof(dims) / sizeof(dims[0]);
+
+  CTorchTensor *input = create_dummy_tensor(
+      dims, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
   insert_list(CTorchTensor)(op->in_bound_tensors, input);
   EXPECT_NO_FATAL_FAILURE(OP_FAIL_ON_DTYPE(op, CTH_TENSOR_DATA_TYPE_BOOL));
   EXPECT_EXIT(OP_FAIL_ON_DTYPE(op, CTH_TENSOR_DATA_TYPE_FLOAT_32),
@@ -52,12 +56,14 @@ TEST(operatorTest, testOpFailOnDtype) {
 TEST(operatorTest, testGetInputOutputByName) {
   CTorchOperator *op = create_dummy_op();
   tensor_dim_t dims[] = {20, 20};
+  tensor_dim_t n_dim = sizeof(dims) / sizeof(dims[0]);
+
   const char *name = "name";
-  CTorchTensor *input =
-      create_dummy_tensor(dims, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
+  CTorchTensor *input = create_dummy_tensor(
+      dims, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
   cth_tensor_set_name(input, name);
-  CTorchTensor *output =
-      create_dummy_tensor(dims, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
+  CTorchTensor *output = create_dummy_tensor(
+      dims, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
   cth_tensor_set_name(output, name);
   insert_list(CTorchTensor)(op->in_bound_tensors, input);
   insert_list(CTorchTensor)(op->out_bound_tensors, output);

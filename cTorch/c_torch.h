@@ -13,6 +13,7 @@ extern "C" {
 #include "cTorch/operator.h"
 #include "cTorch/operators/op_list.h"
 #include "cTorch/plan.h"
+#include "cTorch/sharder.h"
 #include "cTorch/storage.h"
 
 #ifdef CTH_TEST_DEBUG

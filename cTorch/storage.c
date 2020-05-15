@@ -109,6 +109,8 @@ void *cth_tensor_ptr_offset(CTorchTensor *tensor, tensor_size_t n_elements) {
     return (void *)((float *)ptr + n_elements);
   } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_64) {
     return (void *)((double *)ptr + n_elements);
+  } else {
+    FAIL_EXIT(CTH_LOG_ERR, "Unsupported CTH_TENSOR_DATA_TYPE");
   }
 }
 

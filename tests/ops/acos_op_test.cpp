@@ -6,9 +6,10 @@
 
 void test_acos(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
                float max) {
-  uint32_t dims[] = {100, 100};
+  tensor_dim_t dims[] = {100, 100};
+  tensor_dim_t n_dim = sizeof(dims) / sizeof(dims[0]);
   CTorchNode *op_node =
-      create_dummy_op_node(CTH_OP_ID_acos, dims, data_type, min, max);
+      create_dummy_op_node(CTH_OP_ID_acos, dims, n_dim, data_type, min, max);
   cth_execute_node(op_node, backend);
   if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||
       data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {
@@ -56,8 +57,9 @@ TEST(acosOpTest, testUInt8Default) {
 
 TEST(acosOpTest, testBoolDefaultExpectExit) {
   CTH_NAN_EXIT = true;
-  uint32_t dims[] = {1, 1};
-  CTorchNode *op_node = create_dummy_op_node(CTH_OP_ID_acos, dims,
+  tensor_dim_t dims[] = {1, 1};
+  tensor_dim_t n_dim = sizeof(dims) / sizeof(dims[0]);
+  CTorchNode *op_node = create_dummy_op_node(CTH_OP_ID_acos, dims, n_dim,
                                              CTH_TENSOR_DATA_TYPE_BOOL, 0, 0);
   EXPECT_EXIT(cth_execute_node(op_node, CTH_BACKEND_DEFAULT),
               ::testing::ExitedWithCode(1),
@@ -73,9 +75,10 @@ TEST(acosOpTest, testInvalidInputExit) {
 
 TEST(acosOpTest, testInvalidInputKeep) {
   CTH_NAN_EXIT = false;
-  uint32_t dims[] = {1, 1};
+  tensor_dim_t dims[] = {1, 1};
+  tensor_dim_t n_dim = sizeof(dims) / sizeof(dims[0]);
   CTorchNode *op_node = create_dummy_op_node(
-      CTH_OP_ID_acos, dims, CTH_TENSOR_DATA_TYPE_FLOAT_16, 100, 200);
+      CTH_OP_ID_acos, dims, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_16, 100, 200);
   cth_execute_node(op_node, CTH_BACKEND_DEFAULT);
   EXPECT_TRUE(
       tensor_all_nan(op_node->conent.op->out_bound_tensors->head->data));
