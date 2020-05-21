@@ -10,6 +10,8 @@
  * This file supports a generic Double-linked list structure and supporting
  * functions.
  *
+ * This structure is supposed to be used inside library. Some implementatons are
+ * based on this assumption.
  *
  * ~~~Structures~~~
  *
@@ -49,7 +51,8 @@
  *    - Free a list and all items it contains. This function does not free data
  *
  * void free_list_deep(T)(List(T) *list)
- *    - Free a list and all items it contains. Also, it frees stored data
+ *    - Free a list and all items it contains. Also, it frees stored data.
+ *    - We assume contained data has a corresponding deep free function
  */
 
 /*
@@ -280,7 +283,7 @@ typedef int32_t list_index_t;
     }                                                                          \
                                                                                \
     data_type *ret = old_head->data;                                           \
-    FREE((void **)&old_head);                                                  \
+    FREE(old_head);                                                            \
     return ret;                                                                \
   }
 #define impl_list_pop_func(data_type)                                          \
@@ -335,9 +338,43 @@ typedef int32_t list_index_t;
     while (list->size > 0) {                                                   \
       list_pop(data_type)(list);                                               \
     }                                                                          \
-    FREE((void **)&list);                                                      \
+    FREE(list);                                                                \
   }
 #define impl_free_list_func(data_type)                                         \
   _impl_free_list_func(data_type, List(data_type), free_list(data_type))
+
+// Free a list and all its items. Also it frees all data.
+//
+// free_list(data_type) --- func name
+// declare_free_list_func(data_type) --- declaration
+//
+#define free_list_deep(data_type) free_list_deep_##data_type
+#define data_deep_free(data_type) free_deep_##data_type
+#define _declare_free_list_deep_func(data_type, list_type, func_name)          \
+  void func_name(list_type *list)
+#define declare_free_list_deep_func(data_type)                                 \
+  _declare_free_list_deep_func(                                                \
+      data_type,                                                               \
+      List(data_type),                                                         \
+      free_list_deep(data_type))
+#define _impl_free_list_deep_func(                                             \
+    data_type,                                                                 \
+    list_type,                                                                 \
+    data_free_func,                                                            \
+    func_name)                                                                 \
+  void func_name(list_type *list) {                                            \
+    FAIL_NULL_PTR(list);                                                       \
+    while (list->size > 0) {                                                   \
+      data_type *data = list_pop(data_type)(list);                             \
+      data_free_func(data);                                                    \
+    }                                                                          \
+    FREE(list);                                                                \
+  }
+#define impl_free_list_deep_func(data_type)                                    \
+  _impl_free_list_deep_func(                                                   \
+      data_type,                                                               \
+      List(data_type),                                                         \
+      data_deep_free(data_type),                                               \
+      free_list_deep(data_type))
 
 #endif /* LIST_D_H */

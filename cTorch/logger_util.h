@@ -9,15 +9,25 @@
  * Util macros & functions
  */
 
-/*
-  Call FAIL_EXIT() if input pointer is NULL.
-*/
-#define FAIL_NULL_PTR(ptr)                                                     \
+#define _FAIL_NULL_PTR(ptr, file_name, line_num, func_name, extra_msg)         \
   do {                                                                         \
     if (ptr == NULL) {                                                         \
-      FAIL_EXIT(CTH_LOG_ERR, "Pointer is NULL.");                              \
+      FAIL_EXIT(                                                               \
+          CTH_LOG_ERR,                                                         \
+          "Pointer is NULL. (file: %s, line: %d, function: %s, extra msg: "    \
+          "%s)",                                                               \
+          file_name,                                                           \
+          line_num,                                                            \
+          func_name,                                                           \
+          extra_msg);                                                          \
     }                                                                          \
   } while (0)
+
+#define FAIL_NULL_PTR(ptr)                                                     \
+  _FAIL_NULL_PTR(ptr, __FILE__, __LINE__, __func__, "N/A")
+
+#define FAIL_NULL_PTR_MSG(ptr, msg)                                            \
+  _FAIL_NULL_PTR(ptr, __FILE__, __LINE__, __func__, msg)
 
 /*
   Print error message and exit.
@@ -43,9 +53,9 @@
       break;                                                                   \
                                                                                \
     char *tmp = NULL;                                                          \
-    fprintf(stderr, "[cTorch][INFO]: ");                                       \
+    fprintf(stdout, "[cTorch][INFO]: ");                                       \
     asprintf(&tmp, __VA_ARGS__);                                               \
-    fprintf(stderr, "%s\n", tmp);                                              \
+    fprintf(stdout, "%s\n", tmp);                                              \
     free(tmp);                                                                 \
   } while (0)
 

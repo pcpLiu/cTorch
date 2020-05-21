@@ -1,7 +1,16 @@
 #include "cTorch/c_torch.h"
 #include "gtest/gtest.h"
 
-// typedef ListItemStruct(int) ListItem(int);
+// for testFreeListDeep
+int *heap_int(int x) {
+  int *ptr = (int *)MALLOC(sizeof(int));
+  *ptr = x;
+  return ptr;
+}
+
+// for testFreeListDeep
+void free_deep_int(int *x) { FREE(x); }
+
 def_list_item(int);
 def_list(int);
 impl_new_list_item_func(int);
@@ -12,6 +21,7 @@ impl_list_contains_item_func(int);
 impl_list_pop_func(int);
 impl_list_at_func(int);
 impl_free_list_func(int);
+impl_free_list_deep_func(int);
 
 TEST(cTorchListTest, testItemDefine) {
   int a = 3;
@@ -208,17 +218,20 @@ TEST(cTorchListTest, testListAt) {
 }
 
 TEST(cTorchListTest, testFreeList) {
-  int x[] = {1, 2, 3, 4};
 
+  int x[] = {1, 2, 3, 4};
   List(int) *list = new_list(int)();
   MemoryRecord *record_list = cth_get_mem_record(list);
 
   ListItem(int) *item_1 = insert_list(int)(list, &x[0]);
   MemoryRecord *record_item_1 = cth_get_mem_record(item_1);
+
   ListItem(int) *item_2 = insert_list(int)(list, &x[1]);
   MemoryRecord *record_item_2 = cth_get_mem_record(item_2);
+
   ListItem(int) *item_3 = insert_list(int)(list, &x[2]);
   MemoryRecord *record_item_3 = cth_get_mem_record(item_3);
+
   ListItem(int) *item_4 = insert_list(int)(list, &x[3]);
   MemoryRecord *record_item_4 = cth_get_mem_record(item_4);
 
@@ -229,4 +242,42 @@ TEST(cTorchListTest, testFreeList) {
   EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_item_2->status);
   EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_item_3->status);
   EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_item_4->status);
+}
+
+TEST(cTorchListTest, testFreeListDeep) {
+
+  List(int) *list = new_list(int)();
+  MemoryRecord *record_list = cth_get_mem_record(list);
+
+  int *data_1 = heap_int(1);
+  MemoryRecord *record_data_1 = cth_get_mem_record(data_1);
+  ListItem(int) *item_1 = insert_list(int)(list, data_1);
+  MemoryRecord *record_item_1 = cth_get_mem_record(item_1);
+
+  int *data_2 = heap_int(2);
+  MemoryRecord *record_data_2 = cth_get_mem_record(data_2);
+  ListItem(int) *item_2 = insert_list(int)(list, data_2);
+  MemoryRecord *record_item_2 = cth_get_mem_record(item_2);
+
+  int *data_3 = heap_int(3);
+  MemoryRecord *record_data_3 = cth_get_mem_record(data_3);
+  ListItem(int) *item_3 = insert_list(int)(list, data_3);
+  MemoryRecord *record_item_3 = cth_get_mem_record(item_3);
+
+  int *data_4 = heap_int(4);
+  MemoryRecord *record_data_4 = cth_get_mem_record(data_4);
+  ListItem(int) *item_4 = insert_list(int)(list, data_4);
+  MemoryRecord *record_item_4 = cth_get_mem_record(item_4);
+
+  free_list_deep(int)(list);
+
+  EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_list->status);
+  EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_item_1->status);
+  EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_item_2->status);
+  EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_item_3->status);
+  EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_item_4->status);
+  EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_data_1->status);
+  EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_data_2->status);
+  EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_data_3->status);
+  EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_data_4->status);
 }

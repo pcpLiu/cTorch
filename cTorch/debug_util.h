@@ -22,6 +22,7 @@ typedef struct MemoryRecord {
   void *addr; /* Address alocated */
   CTH_MEM_RECORD_STATUS status; /* status */
   struct MemoryRecord *next; /* Next memory record */
+  const char *name; /* A readable name. */
 } MemoryRecord;
 
 /**
@@ -57,5 +58,16 @@ MemoryRecord *cth_add_mem_record(void *ptr);
  *    NULL will be returned if memory record is not found
  */
 MemoryRecord *cth_get_mem_record(void *ptr);
+
+/**
+ * Get number of memory records that not freed
+ *
+ */
+int cth_get_num_unfree_records();
+
+/**
+ * Print unfreed records
+ */
+void cth_print_unfree_records();
 
 #endif /* DEBUG_UTIL_H */

@@ -25,8 +25,10 @@ TEST(cTorchStorageTest, testForceTensorDimension) {
 }
 
 TEST(cTorchStorageTest, testFreeTensor) {
-  tensor_dim_t dims[] = {10, 20};
-  tensor_dim_t n_dim = sizeof(dims) / sizeof(dims[0]);
+  tensor_dim_t n_dim = 2;
+  tensor_dim_t *dims = (tensor_dim_t *)MALLOC(n_dim * sizeof(tensor_dim_t));
+  dims[0] = 10;
+  dims[1] = 20;
   CTorchTensor *tensor =
       create_dummy_tensor(dims, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 2.0);
   MemoryRecord *record_tensor = cth_get_mem_record(tensor);
@@ -36,7 +38,7 @@ TEST(cTorchStorageTest, testFreeTensor) {
   MemoryRecord *record_dims = cth_get_mem_record(tensor->meta_info->dims);
   MemoryRecord *record_values = cth_get_mem_record(tensor->values);
 
-  cth_free_tensor(tensor);
+  data_deep_free(CTorchTensor)(tensor);
 
   EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_tensor->status);
   EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_meta->status);

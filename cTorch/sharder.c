@@ -78,11 +78,11 @@ void cth_sharding_tensor_elewise(
 
   for (thread_n_t i = 0; i < n_shards; i++) {
     char *name = NULL;
-    asprintf(&name, "%s_shard_%d", raw_meta->tensor_name, n_shards);
-
+    cth_asprintf(&name, "%s_shard_%u", tensor->meta_info->tensor_name, i);
     CTorchTensorMeta *meta = MALLOC(sizeof(CTorchTensorMeta));
     meta->value_size_of = raw_meta->value_size_of;
     meta->data_type = raw_meta->data_type;
+    meta->is_sharded = true;
     meta->n_dim = 1;
     meta->dims = NULL; // elewise op does not use this field
     meta->align_size = raw_meta->align_size;

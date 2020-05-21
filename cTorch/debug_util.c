@@ -16,6 +16,7 @@ MemoryRecord *cth_add_mem_record(void *ptr) {
     return exist;
   }
 
+  /* use raw malloc avoiding of infinite loop */
   MemoryRecord *record = malloc(sizeof(MemoryRecord));
   record->addr = ptr;
   record->status = CTH_MEM_RECORD_STATUS_ALLOCATED;
@@ -47,4 +48,30 @@ MemoryRecord *cth_get_mem_record(void *ptr) {
   }
 
   return found ? record : NULL;
+}
+
+int cth_get_num_unfree_records() {
+  int count = 0;
+  MemoryRecord *record = CTH_MEM_RECORDS->next; // 1st is dummy node
+  while (record != NULL) {
+    if (record->status == CTH_MEM_RECORD_STATUS_ALLOCATED) {
+      count++;
+    }
+    record = record->next;
+  }
+
+  return count;
+}
+
+void cth_print_unfree_records() {
+  MemoryRecord *record = CTH_MEM_RECORDS->next; // 1st is dummy node
+  while (record != NULL) {
+    if (record->status == CTH_MEM_RECORD_STATUS_ALLOCATED) {
+      printf(
+          "Unfreed record. Addr: %p, name: %s\n",
+          record->addr,
+          record->name);
+    }
+    record = record->next;
+  }
 }

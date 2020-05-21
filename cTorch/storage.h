@@ -30,10 +30,19 @@ typedef struct CTorchTensorMeta {
   tensor_size_t n_elements; /* Number of elements */
   uint16_t align_size; /* Alignment size of this storage */
   CTH_TENSOR_TYPE type; /* Tensor type: normal or params */
+  bool is_sharded; /* If this tensor is a sharding piece of another tensor */
   char *tensor_name; /* For CTH_TENSOR_TYPE_PARAM type node, this is
                                parameter name. As for other types, this is an
                                optiona field and could be null. */
 } CTorchTensorMeta;
+
+/**
+ * Deep free a meta info. Function name follows pattern defined in list_d.h
+ *
+ * Note:
+ *    If pointer is NULL, error raised and exit.
+ */
+void data_deep_free(CTorchTensorMeta)(CTorchTensorMeta *meta_info);
 
 /**
  * Tensor struct.
@@ -46,6 +55,15 @@ typedef struct CTorchTensor {
   void *values; /* Tensor values */
 } CTorchTensor;
 
+/**
+ * Deep free a tensor. Function name follows pattern defined in list_d.h
+ * If the tensor is a sharded one, function will not release value block.
+ *
+ * Note:
+ *    If pointer is NULL, error raised and exit.
+ */
+void data_deep_free(CTorchTensor)(CTorchTensor *tensor);
+
 // List utils for CTorchTensor
 def_list_item(CTorchTensor);
 def_list(CTorchTensor);
@@ -57,11 +75,7 @@ declare_list_contains_item_func(CTorchTensor);
 declare_list_at_func(CTorchTensor);
 declare_list_pop_func(CTorchTensor);
 declare_free_list_func(CTorchTensor);
-
-/**
- * Free a tensor deeply.
- */
-void cth_free_tensor(CTorchTensor *tensor);
+declare_free_list_deep_func(CTorchTensor);
 
 /**
  * Get the pointer address by offsetting gieven tensor's ptr with geiven number

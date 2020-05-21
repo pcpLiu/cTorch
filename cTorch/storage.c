@@ -10,6 +10,7 @@ impl_list_contains_item_func(CTorchTensor);
 impl_list_at_func(CTorchTensor);
 impl_list_pop_func(CTorchTensor);
 impl_free_list_func(CTorchTensor);
+impl_free_list_deep_func(CTorchTensor);
 
 size_t cth_tensor_data_size(CTorchTensor *tensor) {
   size_t ele_size = 0;
@@ -77,7 +78,8 @@ void FORCE_TENSOR_NAME(CTorchTensor *tensor, const char *target_name) {
 
 void cth_tensor_set_name(CTorchTensor *tensor, const char *target_name) {
   char *name = NULL;
-  asprintf(&name, target_name);
+  // asprintf(&name, target_name);
+  cth_asprintf(&name, target_name);
   tensor->meta_info->tensor_name = name;
 }
 
@@ -114,10 +116,24 @@ void *cth_tensor_ptr_offset(CTorchTensor *tensor, tensor_size_t n_elements) {
   }
 }
 
-void cth_free_tensor(CTorchTensor *tensor) {
-  FREE((void **)&tensor->meta_info->dims);
-  FREE((void **)&tensor->meta_info->tensor_name);
-  FREE((void **)&tensor->meta_info);
-  FREE((void **)&tensor->values);
-  FREE((void **)&tensor);
+void data_deep_free(CTorchTensorMeta)(CTorchTensorMeta *meta) {
+  FAIL_NULL_PTR(meta);
+
+  FREE_SOFT(meta->dims);
+  FREE_SOFT(meta->tensor_name);
+  FREE(meta);
+}
+
+void data_deep_free(CTorchTensor)(CTorchTensor *tensor) {
+  FAIL_NULL_PTR(tensor);
+
+  if (!tensor->meta_info->is_sharded) {
+    FREE_SOFT(tensor->values);
+  }
+
+  if (tensor->meta_info != NULL) {
+    data_deep_free(CTorchTensorMeta)(tensor->meta_info);
+  }
+
+  FREE(tensor);
 }
