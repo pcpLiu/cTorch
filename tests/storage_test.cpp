@@ -38,7 +38,7 @@ TEST(cTorchStorageTest, testFreeTensor) {
   MemoryRecord *record_dims = cth_get_mem_record(tensor->meta_info->dims);
   MemoryRecord *record_values = cth_get_mem_record(tensor->values);
 
-  data_deep_free(CTorchTensor)(tensor);
+  struct_deep_free(CTorchTensor)(tensor);
 
   EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_tensor->status);
   EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_meta->status);

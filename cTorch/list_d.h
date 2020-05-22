@@ -349,7 +349,7 @@ typedef int32_t list_index_t;
 // declare_free_list_func(data_type) --- declaration
 //
 #define free_list_deep(data_type) free_list_deep_##data_type
-#define data_deep_free(data_type) free_deep_##data_type
+#define struct_deep_free(data_type) free_deep_##data_type
 #define _declare_free_list_deep_func(data_type, list_type, func_name)          \
   void func_name(list_type *list)
 #define declare_free_list_deep_func(data_type)                                 \
@@ -374,7 +374,7 @@ typedef int32_t list_index_t;
   _impl_free_list_deep_func(                                                   \
       data_type,                                                               \
       List(data_type),                                                         \
-      data_deep_free(data_type),                                               \
+      struct_deep_free(data_type),                                             \
       free_list_deep(data_type))
 
 #endif /* LIST_D_H */

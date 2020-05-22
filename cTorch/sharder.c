@@ -54,6 +54,7 @@ void cth_sharding_op_elewise(
           list_at(CTorchTensor)(sharded_tensors, shard_i));
     }
 
+    // mem clean
     free_list(CTorchTensor)(sharded_tensors);
   }
 }
@@ -87,7 +88,7 @@ void cth_sharding_tensor_elewise(
     meta->dims = NULL; // elewise op does not use this field
     meta->align_size = raw_meta->align_size;
     meta->type = raw_meta->type;
-    meta->n_elements = (n_shards == 1 ? last_n_elements : n_elements);
+    meta->n_elements = (n_shards - 1 == i ? last_n_elements : n_elements);
     meta->tensor_name = name;
 
     CTorchTensor *shard_tensor = MALLOC(sizeof(CTorchTensor));

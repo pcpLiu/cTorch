@@ -2,6 +2,8 @@
 #include "tests/test_util.h"
 #include "gtest/gtest.h"
 
+#include <cmath>
+
 TEST(cTorchSharderTest, testTensorElewiseSharding) {
   tensor_dim_t n_dim = 3;
   tensor_dim_t *dims = (tensor_dim_t *)MALLOC(n_dim * sizeof(tensor_dim_t));
@@ -31,8 +33,52 @@ TEST(cTorchSharderTest, testTensorElewiseSharding) {
     }
   }
 
-  // Memory check
-  data_deep_free(CTorchTensor)(tensor);
+  // test in sing-thread mode
+  struct_deep_free(CTorchTensor)(tensor);
   free_list_deep(CTorchTensor)(shards);
+  EXPECT_EQ(0, cth_get_num_unfree_records());
+}
+
+TEST(cTorchSharderTest, testOperatorElewiseSharding) {
+  tensor_dim_t n_dim = 2;
+  tensor_dim_t *dims = (tensor_dim_t *)MALLOC(n_dim * sizeof(tensor_dim_t));
+  dims[0] = 10;
+  dims[1] = 20;
+  CTorchTensor *input = create_dummy_tensor(
+      dims, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
+
+  tensor_dim_t *dims_2 = (tensor_dim_t *)MALLOC(n_dim * sizeof(tensor_dim_t));
+  dims_2[0] = 8;
+  dims_2[1] = 33;
+  CTorchTensor *output = create_dummy_tensor(
+      dims_2, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
+
+  CTorchOperator *op = create_dummy_op();
+  insert_list(CTorchTensor)(op->in_bound_tensors, input);
+  insert_list(CTorchTensor)(op->out_bound_tensors, output);
+
+  List(CTorchOperator) *sharded_ops = new_list(CTorchOperator)();
+  cth_sharding_op_elewise(op, 10, sharded_ops);
+
+  EXPECT_EQ(10, sharded_ops->size);
+  tensor_size_t n_ele_sum = 0;
+  for (int i = 0; i < 10; i++) {
+    CTorchOperator *op = list_at(CTorchOperator)(sharded_ops, i);
+    EXPECT_EQ(20, op->in_bound_tensors->head->data->meta_info->n_elements);
+    if (i != 9) {
+      EXPECT_EQ((tensor_size_t)floor(output->meta_info->n_elements / 10),
+                op->out_bound_tensors->head->data->meta_info->n_elements);
+    } else {
+      EXPECT_EQ((tensor_size_t)floor(output->meta_info->n_elements / 10) +
+                    output->meta_info->n_elements % 10,
+                op->out_bound_tensors->head->data->meta_info->n_elements);
+    }
+    n_ele_sum += op->out_bound_tensors->head->data->meta_info->n_elements;
+  }
+  EXPECT_EQ(output->meta_info->n_elements, n_ele_sum);
+
+  // test in sing-thread mode
+  free_list_deep(CTorchOperator)(sharded_ops);
+  struct_deep_free(CTorchOperator)(op);
   EXPECT_EQ(0, cth_get_num_unfree_records());
 }

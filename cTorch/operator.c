@@ -8,6 +8,7 @@ impl_insert_list_func(CTorchOperator);
 impl_list_at_func(CTorchOperator);
 impl_list_pop_func(CTorchOperator);
 impl_free_list_func(CTorchOperator);
+impl_free_list_deep_func(CTorchOperator);
 
 void FORCE_INPUT_OUTPUT_TSR_NUM_EQ(CTorchOperator *op) {
   if (op->in_bound_tensors->size != op->out_bound_tensors->size) {
@@ -85,4 +86,10 @@ get_input_by_name(CTorchOperator *op, const char *name, bool fail_exit) {
 CTorchTensor *
 get_output_by_name(CTorchOperator *op, const char *name, bool fail_exit) {
   return _get_tensor_by_name(op->out_bound_tensors, name, true);
+}
+
+void struct_deep_free(CTorchOperator)(CTorchOperator *op) {
+  free_list_deep(CTorchTensor)(op->in_bound_tensors);
+  free_list_deep(CTorchTensor)(op->out_bound_tensors);
+  FREE(op);
 }

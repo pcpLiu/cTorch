@@ -5,7 +5,11 @@
 #include "cTorch/storage.h"
 
 /**
- * Sharding an op's inputs & outputs for element-wise operation.
+ * Sharding an op's inputs & outputs for element-wise operation
+ *
+ * New memory allocation:
+ *  - A list of sharded input & output tensors
+ *  - A list of sharded ops
  *
  * Params:
  *  - op: the target operator
@@ -20,7 +24,10 @@ void cth_sharding_op_elewise(
     CTorchOperator *op, thread_n_t n_shards, List(CTorchOperator) * ops);
 
 /**
- * Sharding a tensor for element-wise operator.
+ * Sharding a tensor for element-wise operator
+ *
+ * New memory allocation:
+ *  - A list of sharded tensors
  *
  * Params:
  *  - tensor: target tensor

@@ -42,7 +42,7 @@ typedef struct CTorchTensorMeta {
  * Note:
  *    If pointer is NULL, error raised and exit.
  */
-void data_deep_free(CTorchTensorMeta)(CTorchTensorMeta *meta_info);
+void struct_deep_free(CTorchTensorMeta)(CTorchTensorMeta *meta_info);
 
 /**
  * Tensor struct.
@@ -62,7 +62,7 @@ typedef struct CTorchTensor {
  * Note:
  *    If pointer is NULL, error raised and exit.
  */
-void data_deep_free(CTorchTensor)(CTorchTensor *tensor);
+void struct_deep_free(CTorchTensor)(CTorchTensor *tensor);
 
 // List utils for CTorchTensor
 def_list_item(CTorchTensor);

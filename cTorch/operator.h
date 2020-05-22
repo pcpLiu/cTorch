@@ -8,14 +8,11 @@
 #include <uuid/uuid.h>
 
 typedef struct {
-  // Operator ID
-  CTH_OP_ID op_id;
-
-  // List of input tensors. It includes inputs, weight and arguments.
-  List(CTorchTensor) * in_bound_tensors;
-
-  // List of output tensors.
-  List(CTorchTensor) * out_bound_tensors;
+  CTH_OP_ID op_id; /* Operator ID */
+  List(CTorchTensor) * in_bound_tensors; /* List of input tensors. It includes
+                                            inputs, weight and arguments. */
+  List(CTorchTensor) * out_bound_tensors; /* List of output tensors */
+  bool is_sharded; /* If op is a sharded one */
 } CTorchOperator;
 
 // List utils for CTorchOperator
@@ -27,6 +24,7 @@ declare_insert_list_func(CTorchOperator);
 declare_list_at_func(CTorchOperator);
 declare_list_pop_func(CTorchOperator);
 declare_free_list_func(CTorchOperator);
+declare_free_list_deep_func(CTorchOperator);
 
 /*
   Check if # of in_bound_tensors == # of out_bound_tensors for given
@@ -58,5 +56,11 @@ get_input_by_name(CTorchOperator *op, const char *name, bool fail_exit);
 */
 CTorchTensor *
 get_output_by_name(CTorchOperator *op, const char *name, bool fail_exit);
+
+/**
+ * Deep free an operator. For inbound and outbound list, it will call
+ * free_list_deep(T)()
+ */
+void struct_deep_free(CTorchOperator)(CTorchOperator *op);
 
 #endif /* OPERATOR_H */

@@ -116,7 +116,7 @@ void *cth_tensor_ptr_offset(CTorchTensor *tensor, tensor_size_t n_elements) {
   }
 }
 
-void data_deep_free(CTorchTensorMeta)(CTorchTensorMeta *meta) {
+void struct_deep_free(CTorchTensorMeta)(CTorchTensorMeta *meta) {
   FAIL_NULL_PTR(meta);
 
   FREE_SOFT(meta->dims);
@@ -124,7 +124,7 @@ void data_deep_free(CTorchTensorMeta)(CTorchTensorMeta *meta) {
   FREE(meta);
 }
 
-void data_deep_free(CTorchTensor)(CTorchTensor *tensor) {
+void struct_deep_free(CTorchTensor)(CTorchTensor *tensor) {
   FAIL_NULL_PTR(tensor);
 
   if (!tensor->meta_info->is_sharded) {
@@ -132,7 +132,7 @@ void data_deep_free(CTorchTensor)(CTorchTensor *tensor) {
   }
 
   if (tensor->meta_info != NULL) {
-    data_deep_free(CTorchTensorMeta)(tensor->meta_info);
+    struct_deep_free(CTorchTensorMeta)(tensor->meta_info);
   }
 
   FREE(tensor);
