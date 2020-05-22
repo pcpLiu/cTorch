@@ -11,7 +11,6 @@ set(ops_disabled)
 #
 add_subdirectory(default)    # ${ops_default}
 add_subdirectory(x86)        # ${ops_x86}
-add_subdirectory(arm)        # ${ops_arm}
 add_subdirectory(cuda)       # ${ops_cuda}
 add_subdirectory(mkl)        # ${ops_mkl}
 add_subdirectory(openblas)   # ${ops_openblas}

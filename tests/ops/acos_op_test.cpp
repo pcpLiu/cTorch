@@ -66,13 +66,6 @@ TEST(acosOpTest, testBoolDefaultExpectExit) {
               "Operator does not support data type");
 }
 
-TEST(acosOpTest, testInvalidInputExit) {
-  CTH_NAN_EXIT = true;
-  EXPECT_EXIT(
-      test_acos(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_16, 100, 200),
-      ::testing::ExitedWithCode(1), "Value is NaN");
-}
-
 TEST(acosOpTest, testInvalidInputKeep) {
   CTH_NAN_EXIT = false;
   tensor_dim_t dims[] = {1, 1};

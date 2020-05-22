@@ -30,8 +30,7 @@ When your machine supports one or more backends and you enable building against 
 cTorch supports 6 backends: [x86 Intrinsics](), [ARM Intrinsics](), [OpenBLAS](), [Intel MKL](), [Accelerate]() and [CUDA]().
 Based on your environment and needs, you should install one or all of them before heading to cTorch installation.
 
-- **x86 Intrinsics**: (No installation needed) Support from SSE to AVX512
-- **ARM Intrinsics**: (No installation needed)
+- **x86 Intrinsics**: support from SSE to AVX512
 - **OpenBLAS**: A high-performance BLAS implementation.
 - **Intel MKL**:
 - **Accelerate**: (No installation needed) Available on iOS && MacOS systems. It's a high-performance computational library offered by Apple.
@@ -42,9 +41,6 @@ Based on your environment and needs, you should install one or all of them befor
 - x86-64
   - Intel: Sandy Bridge & Later
   - AMD: Bulldozer & Zen
-- ARM
-  - 32 bits: v7-A/R, v8-A/R
-  - 64 bits: v8-A
 
 ### Runtime backends V.S. built backend
 

@@ -39,12 +39,6 @@ void dispatch_op_execution(CTorchOperator *op, CTH_BACKEND backend) {
 #else
     FAIL_EXIT(CTH_LOG_ERR, _BACKEND_MISSING_ERR_MSG(x86));
 #endif
-  } else if (backend == CTH_BACKEND_CPU_ARM) {
-#ifdef BACKEND_CPU_ARM
-    _BACKEND_FALLBACK_EXE(fps_op_arm);
-#else
-    FAIL_EXIT(CTH_LOG_ERR, _BACKEND_MISSING_ERR_MSG(ARM));
-#endif
   } else if (backend == CTH_BACKEND_MKL) {
 #ifdef BACKEND_MKL
     _BACKEND_FALLBACK_EXE(fps_op_mkl);
