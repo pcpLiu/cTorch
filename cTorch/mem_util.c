@@ -26,9 +26,9 @@ void cth_free(
     FAIL_EXIT(
         CTH_LOG_ERR,
         "Trying to free a NULL pointer. line: %d, function: %s, file: %s.",
-        file_name,
         line_num,
-        func_name);
+        func_name,
+        file_name);
   }
 
 #ifdef CTH_TEST_DEBUG
@@ -53,8 +53,8 @@ void cth_free_soft(
       &msg,
       "Calling from line: %d, function: %s, file: %s",
       line_num,
-      file_name,
-      func_name);
+      func_name,
+      file_name);
   FAIL_NULL_PTR_MSG(record, msg);
   record->status = CTH_MEM_RECORD_STATUS_FREED;
 #endif
