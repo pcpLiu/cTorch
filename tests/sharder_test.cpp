@@ -35,5 +35,4 @@ TEST(cTorchSharderTest, testTensorElewiseSharding) {
   data_deep_free(CTorchTensor)(tensor);
   free_list_deep(CTorchTensor)(shards);
   EXPECT_EQ(0, cth_get_num_unfree_records());
-  cth_print_unfree_records();
 }
