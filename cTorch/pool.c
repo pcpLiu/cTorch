@@ -6,6 +6,7 @@
 
 void cth_worker_consume(CTorchQueueMessage *msg) {
   // TODO: IMPL
+  msg->status = CTH_JOB_STATUS_DONE;
 }
 
 void *cth_worker(void *scheduler_v) {
@@ -21,10 +22,9 @@ void *cth_worker(void *scheduler_v) {
 
   CTorchQueueMessage *msg;
   while (true) {
-    // Lock due to multi-worker read
+    // TODO: do we need lock?
     pthread_mutex_lock(&ready_queue->read_mutex);
-    size_t n_bytes =
-        read(ready_queue->pipe_fd[0], &msg, sizeof(CTorchQueueMessage *));
+    read(ready_queue->pipe_fd[0], &msg, sizeof(CTorchQueueMessage *));
     pthread_mutex_unlock(&ready_queue->read_mutex);
 
     if (msg->worker_kill) {
@@ -32,14 +32,13 @@ void *cth_worker(void *scheduler_v) {
     }
 
     cth_worker_consume(msg);
-    msg->status = CTH_JOB_STATUS_DONE;
-    CTH_LOG(CTH_LOG_INFO, "consumed msg:%p, status: %d", msg, msg->status);
 
-    // Lock due to multi-worker write
+    // TODO: do we need lock?
     pthread_mutex_lock(&done_queue->write_mutex);
     write(done_queue->pipe_fd[1], &msg, sizeof(CTorchQueueMessage *));
     pthread_mutex_unlock(&done_queue->write_mutex);
   }
+
   pthread_exit(NULL);
 }
 
