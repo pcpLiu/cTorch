@@ -74,7 +74,7 @@ endif()
 # Core sources
 #
 set(core_src
-    common.c
+    config.c
     consts.c
     debug_util.c
     engine.c
@@ -83,8 +83,9 @@ set(core_src
     mem_util.c
     node.c
     operator.c
-    plan.c
     pool.c
+    queue.c
+    scheduler.c
     sharder.c
     storage.c
 )

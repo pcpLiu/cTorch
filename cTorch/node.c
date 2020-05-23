@@ -1,5 +1,5 @@
 #include "cTorch/node.h"
-#include "cTorch/common.h"
+#include "cTorch/logger_util.h"
 
 impl_new_list_item_func(CTorchNode);
 impl_new_list_func(CTorchNode);

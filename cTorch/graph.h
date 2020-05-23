@@ -1,7 +1,6 @@
 #ifndef CTH_GRAPH_H
 #define CTH_GRAPH_H
 
-#include "cTorch/common.h"
 #include "cTorch/consts.h"
 #include "cTorch/node.h"
 #include <stdint.h>

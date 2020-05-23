@@ -3,6 +3,8 @@
 
 #include "cTorch/ops_enabled.h"
 
+#include <stdlib.h>
+
 /*
   Backends
 */
@@ -75,10 +77,25 @@ typedef enum CTH_NODE_EXE_STATUS {
     - CTH_JOB_STATUS_DONE: job is done
 */
 typedef enum CTH_JOB_STATUS {
-  CTH_JOB_STATUS_QUEUE,
-  CTH_JOB_STATUS_EXE,
+  CTH_JOB_STATUS_READY,
   CTH_JOB_STATUS_DONE,
 } CTH_JOB_STATUS;
+
+/**
+ * Queue status:
+ *    - CTH_QUEUE_STATUS_ALIVE: queue is active
+ *    - CTH_QUEUE_STATUS_INACTIVE: queue is inactive. Should not been used in
+ *                                 this status
+ */
+typedef enum CTH_QUEUE_STATUS {
+  CTH_QUEUE_STATUS_ALIVE,
+  CTH_QUEUE_STATUS_INACTIVE,
+} CTH_QUEUE_STATUS;
+
+/**
+ * Type to denote thread num
+ */
+typedef uint16_t thread_n_t;
 
 /*
   To define operator enums
@@ -89,6 +106,16 @@ typedef enum CTH_JOB_STATUS {
   To declare array of op names
 */
 #define STRINGTIFY_OP(x) #x,
+
+/**
+ * Type to denote tensor dimension
+ */
+#define tensor_dim_t uint32_t
+
+/**
+ * Type to denote tensor size
+ */
+#define tensor_size_t uint32_t
 
 /*
   String array of operator names.

@@ -3,37 +3,25 @@
 
 #include <stdint.h>
 
-#include "cTorch/common.h"
 #include "cTorch/consts.h"
 #include "cTorch/list_d.h"
-#include "cTorch/pool.h"
-
-/**
- * Type to denote tensor dimension
- */
-#define tensor_dim_t uint32_t
-
-/**
- * Type to denote tensor size
- */
-#define tensor_size_t uint32_t
 
 /**
  * CTorchTensorMeta
  * This struct cotnains Meta information of a tensor.
  */
 typedef struct CTorchTensorMeta {
-  uint8_t value_size_of; /* Element size */
+  uint8_t value_size_of;          /* Element size */
   CTH_TENSOR_DATA_TYPE data_type; /* Value data type */
-  tensor_dim_t n_dim; /* Number of dimensions */
-  tensor_dim_t *dims; /* Dimension array */
-  tensor_size_t n_elements; /* Number of elements */
-  uint16_t align_size; /* Alignment size of this storage */
-  CTH_TENSOR_TYPE type; /* Tensor type: normal or params */
-  bool is_sharded; /* If this tensor is a sharding piece of another tensor */
-  char *tensor_name; /* For CTH_TENSOR_TYPE_PARAM type node, this is
-                               parameter name. As for other types, this is an
-                               optiona field and could be null. */
+  tensor_dim_t n_dim;             /* Number of dimensions */
+  tensor_dim_t *dims;             /* Dimension array */
+  tensor_size_t n_elements;       /* Number of elements */
+  uint16_t align_size;            /* Alignment size of this storage */
+  CTH_TENSOR_TYPE type;           /* Tensor type: normal or params */
+  bool is_sharded;   /* If this tensor is a sharding piece of another tensor */
+  char *tensor_name; /* For CTH_TENSOR_TYPE_PARAM type node, this is parameter
+                        name. As for other types, this is an optiona field and
+                        could be null */
 } CTorchTensorMeta;
 
 /**
@@ -52,7 +40,7 @@ void struct_deep_free(CTorchTensorMeta)(CTorchTensorMeta *meta_info);
  */
 typedef struct CTorchTensor {
   CTorchTensorMeta *meta_info; /* Meta info */
-  void *values; /* Tensor values */
+  void *values;                /* Tensor values */
 } CTorchTensor;
 
 /**

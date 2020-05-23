@@ -12,7 +12,9 @@ extern "C" {
 #include "cTorch/node.h"
 #include "cTorch/operator.h"
 #include "cTorch/operators/op_list.h"
-#include "cTorch/plan.h"
+#include "cTorch/pool.h"
+#include "cTorch/queue.h"
+#include "cTorch/scheduler.h"
 #include "cTorch/sharder.h"
 #include "cTorch/storage.h"
 

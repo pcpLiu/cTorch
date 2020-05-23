@@ -1,4 +1,6 @@
 #include "cTorch/operator.h"
+#include "cTorch/logger_util.h"
+#include "cTorch/mem_util.h"
 
 #include <string.h>
 

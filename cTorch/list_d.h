@@ -1,7 +1,9 @@
 #ifndef CTH_LIST_D_H
 #define CTH_LIST_D_H
 
-#include "cTorch/common.h"
+#include "cTorch/logger_util.h"
+#include "cTorch/mem_util.h"
+
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -97,9 +99,7 @@ typedef int32_t list_index_t;
   }
 #define impl_new_list_item_func(data_type)                                     \
   _impl_new_list_item_func(                                                    \
-      data_type,                                                               \
-      ListItem(data_type),                                                     \
-      new_list_item(data_type))
+      data_type, ListItem(data_type), new_list_item(data_type))
 
 // Generic double-linked list struct
 //
@@ -146,10 +146,7 @@ typedef int32_t list_index_t;
   item_type *func_name(list_type *, data_type *)
 #define declare_insert_list_func(data_type)                                    \
   _declare_insert_list_func(                                                   \
-      data_type,                                                               \
-      ListItem(data_type),                                                     \
-      List(data_type),                                                         \
-      insert_list(data_type))
+      data_type, ListItem(data_type), List(data_type), insert_list(data_type))
 #define _impl_insert_list_func(data_type, item_type, list_type, func_name)     \
   item_type *func_name(list_type *list, data_type *data) {                     \
     FAIL_NULL_PTR(list);                                                       \
@@ -168,10 +165,7 @@ typedef int32_t list_index_t;
   }
 #define impl_insert_list_func(data_type)                                       \
   _impl_insert_list_func(                                                      \
-      data_type,                                                               \
-      ListItem(data_type),                                                     \
-      List(data_type),                                                         \
-      insert_list(data_type))
+      data_type, ListItem(data_type), List(data_type), insert_list(data_type))
 
 // Check if list contains a data (by address). Fails on empty inputs.
 // Function returns item if found. Else, returns NULL.
@@ -182,10 +176,7 @@ typedef int32_t list_index_t;
 // impl_list_contains_data_func(data_type) --- implementation
 #define list_contains_data(data_type) list_contains_data_##data_type
 #define _declare_list_contains_data_func(                                      \
-    data_type,                                                                 \
-    item_type,                                                                 \
-    list_type,                                                                 \
-    func_name)                                                                 \
+    data_type, item_type, list_type, func_name)                                \
   item_type *func_name(list_type *, data_type *)
 #define declare_list_contains_data_func(data_type)                             \
   _declare_list_contains_data_func(                                            \
@@ -194,10 +185,7 @@ typedef int32_t list_index_t;
       List(data_type),                                                         \
       list_contains_data(data_type))
 #define _impl_list_contains_data_func(                                         \
-    data_type,                                                                 \
-    item_type,                                                                 \
-    list_type,                                                                 \
-    func_name)                                                                 \
+    data_type, item_type, list_type, func_name)                                \
   item_type *func_name(list_type *list, data_type *data) {                     \
     FAIL_NULL_PTR(list);                                                       \
     FAIL_NULL_PTR(data);                                                       \
@@ -232,9 +220,7 @@ typedef int32_t list_index_t;
   bool func_name(list_type *, item_type *)
 #define declare_list_contains_item_func(data_type)                             \
   _declare_list_contains_item_func(                                            \
-      ListItem(data_type),                                                     \
-      List(data_type),                                                         \
-      list_contains_item(data_type))
+      ListItem(data_type), List(data_type), list_contains_item(data_type))
 #define _impl_list_contains_item_func(item_type, list_type, func_name)         \
   bool func_name(list_type *list, item_type *target_item) {                    \
     FAIL_NULL_PTR(list);                                                       \
@@ -254,9 +240,7 @@ typedef int32_t list_index_t;
   }
 #define impl_list_contains_item_func(data_type)                                \
   _impl_list_contains_item_func(                                               \
-      ListItem(data_type),                                                     \
-      List(data_type),                                                         \
-      list_contains_item(data_type))
+      ListItem(data_type), List(data_type), list_contains_item(data_type))
 
 // Pop head item's data of a list. If list is empty, return NULL.
 //
@@ -354,14 +338,9 @@ typedef int32_t list_index_t;
   void func_name(list_type *list)
 #define declare_free_list_deep_func(data_type)                                 \
   _declare_free_list_deep_func(                                                \
-      data_type,                                                               \
-      List(data_type),                                                         \
-      free_list_deep(data_type))
+      data_type, List(data_type), free_list_deep(data_type))
 #define _impl_free_list_deep_func(                                             \
-    data_type,                                                                 \
-    list_type,                                                                 \
-    data_free_func,                                                            \
-    func_name)                                                                 \
+    data_type, list_type, data_free_func, func_name)                           \
   void func_name(list_type *list) {                                            \
     FAIL_NULL_PTR(list);                                                       \
     while (list->size > 0) {                                                   \

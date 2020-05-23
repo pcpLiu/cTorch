@@ -1,7 +1,7 @@
-AlignTrailingComments: false
+AlignTrailingComments: true
 AllowAllParametersOfDeclarationOnNextLine: true
 BinPackParameters: false
 BinPackArguments: false
 ColumnLimit: 80
-AllowAllArgumentsOnNextLine: false
+AllowAllArgumentsOnNextLine: true
 AlignAfterOpenBracket: AlwaysBreak

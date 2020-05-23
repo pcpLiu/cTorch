@@ -1,38 +1,32 @@
 #ifndef CTH_ENGINE_H
 #define CTH_ENGINE_H
 
-#include "cTorch/common.h"
+#include "cTorch/config.h"
 #include "cTorch/consts.h"
-#include "cTorch/operators/op_list.h"
-#include "cTorch/plan.h"
+#include "cTorch/node.h"
 #include "cTorch/pool.h"
+#include "cTorch/queue.h"
+#include "cTorch/scheduler.h"
 
-/*
-  Configs of execution engine.
-*/
-typedef struct CTorchEngineConfig {
-  bool enable_sharding; /* If true, cTorch will execute operator in parallel
-                           threads when possible. */
-  thread_n_t num_max_threads; /* num of maximum threads. Only works when
-                                 enable_sharding is True*/
-} CTorchEngineConfig;
+/**
+ * Execution engine
+ */
+typedef struct CTorchEngine {
+  CTorchScheduler *scheduler; /* Execution scheduler */
+  CTorchWorkerPool *pool;     /* Thread pool to execute operators */
+} CTorchEngine;
 
-/* The global engine config. */
-extern CTorchEngineConfig CTH_ENGINE_COFIG;
+/**
+ * Create an engine to execute graph. In this function, what cTorch will do:
+ *    - Initialize a thread pool to execute ops
+ *    - Initialzie a scheduler
+ *    - Create pipes used to communicate between pool and main process
+ *
+ * Arguments:
+ *    - config: execution config
+ */
+CTorchEngine *cth_new_engine(CTorchConfig *config);
 
-/*
-  Execute a plan.
-*/
-void cth_execute_plan(CTorchExecutePlan *plan);
-
-/*
-  Execute a step.
-*/
-void cth_execute_step(CTorchExecuteStep *step);
-
-/*
-  Execute a node.
-*/
-void cth_execute_node(CTorchNode *, CTH_BACKEND);
+void cth_execute_node(CTorchNode *node, CTH_BACKEND backend);
 
 #endif /* ENGINE_H */

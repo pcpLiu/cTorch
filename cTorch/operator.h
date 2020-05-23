@@ -1,18 +1,15 @@
 #ifndef CTH_OPERATOR_H
 #define CTH_OPERATOR_H
 
-#include "cTorch/common.h"
 #include "cTorch/consts.h"
-#include "cTorch/pool.h"
 #include "cTorch/storage.h"
-#include <uuid/uuid.h>
 
-typedef struct {
-  CTH_OP_ID op_id; /* Operator ID */
-  List(CTorchTensor) * in_bound_tensors; /* List of input tensors. It includes
-                                            inputs, weight and arguments. */
+typedef struct CTorchOperator {
+  CTH_OP_ID op_id;                        /* Operator ID */
+  List(CTorchTensor) * in_bound_tensors;  /* List of input tensors. It includes
+                                             inputs, weight and arguments. */
   List(CTorchTensor) * out_bound_tensors; /* List of output tensors */
-  bool is_sharded; /* If op is a sharded one */
+  bool is_sharded;                        /* If op is a sharded one */
 } CTorchOperator;
 
 // List utils for CTorchOperator

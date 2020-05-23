@@ -1,4 +1,6 @@
 #include "cTorch/engine.h"
+#include "cTorch/logger_util.h"
+#include "cTorch/operators/op_list.h"
 
 #define _BACKEND_MISSING_ERR_MSG(backend)                                      \
   "Try to execute operator on " #backend                                       \
@@ -19,10 +21,6 @@
       (*fps_op_default[op_id])(op);                                            \
     }                                                                          \
   }
-
-/* Initialize global engine config */
-CTorchEngineConfig CTH_ENGINE_COFIG = {.enable_sharding = true,
-                                       .num_max_threads = 4};
 
 /*
   Dispatch operator execution based on target backend.

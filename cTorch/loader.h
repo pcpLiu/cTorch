@@ -1,7 +1,6 @@
 #ifndef C_TORCH_LOADER_H
 #define C_TORCH_LOADER_H
 
-#include "cTorch/common.h"
 #include "cTorch/graph.h"
 
 /*
