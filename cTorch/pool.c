@@ -4,7 +4,7 @@
 
 #include <unistd.h>
 
-void cth_worker_consume(CTorchQueueMessage *msg) {
+void cth_worker_consume(CTorchQueueJob *msg) {
   // TODO: IMPL
   msg->status = CTH_JOB_STATUS_DONE;
 }
@@ -20,11 +20,11 @@ void *cth_worker(void *scheduler_v) {
   CTorchQueue *ready_queue = scheduler->ready_queue;
   CTorchQueue *done_queue = scheduler->done_queue;
 
-  CTorchQueueMessage *msg;
+  CTorchQueueJob *msg;
   while (true) {
     // TODO: do we need lock?
     pthread_mutex_lock(&ready_queue->read_mutex);
-    read(ready_queue->pipe_fd[0], &msg, sizeof(CTorchQueueMessage *));
+    read(ready_queue->pipe_fd[0], &msg, sizeof(CTorchQueueJob *));
     pthread_mutex_unlock(&ready_queue->read_mutex);
 
     if (msg->worker_kill) {
@@ -35,7 +35,7 @@ void *cth_worker(void *scheduler_v) {
 
     // TODO: do we need lock?
     pthread_mutex_lock(&done_queue->write_mutex);
-    write(done_queue->pipe_fd[1], &msg, sizeof(CTorchQueueMessage *));
+    write(done_queue->pipe_fd[1], &msg, sizeof(CTorchQueueJob *));
     pthread_mutex_unlock(&done_queue->write_mutex);
   }
 

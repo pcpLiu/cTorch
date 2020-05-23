@@ -5,14 +5,14 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-impl_new_list_item_func(CTorchQueueMessage);
-impl_new_list_func(CTorchQueueMessage);
-impl_insert_list_func(CTorchQueueMessage);
-impl_list_contains_data_func(CTorchQueueMessage);
-impl_list_contains_item_func(CTorchQueueMessage);
-impl_list_at_func(CTorchQueueMessage);
-impl_list_pop_func(CTorchQueueMessage);
-impl_free_list_func(CTorchQueueMessage);
+impl_new_list_item_func(CTorchQueueJob);
+impl_new_list_func(CTorchQueueJob);
+impl_insert_list_func(CTorchQueueJob);
+impl_list_contains_data_func(CTorchQueueJob);
+impl_list_contains_item_func(CTorchQueueJob);
+impl_list_at_func(CTorchQueueJob);
+impl_list_pop_func(CTorchQueueJob);
+impl_free_list_func(CTorchQueueJob);
 
 void set_non_block(int fd) {
   int flags = fcntl(fd, F_GETFL, 0);

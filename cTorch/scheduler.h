@@ -16,7 +16,6 @@ typedef struct CTorchScheduler {
   CTorchQueue
       *done_queue; /* Queue for executed ops. Workers will put op in this queue
                       and scheduelr will fetch op from this queue  */
-
 } CTorchScheduler;
 
 /**

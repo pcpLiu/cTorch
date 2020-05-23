@@ -12,19 +12,18 @@ TEST(cTorchPoolTest, testWorkerFunc) {
   // Add job
   int n_job = 1000;
   for (int i = 0; i < n_job; i++) {
-    CTorchQueueMessage *msg = (CTorchQueueMessage *)MALLOC(sizeof(msg));
+    CTorchQueueJob *msg = (CTorchQueueJob *)MALLOC(sizeof(msg));
     msg->status = CTH_JOB_STATUS_READY;
     msg->worker_kill = false;
     // std::cout << "[" << i << "]Create msg: " << msg
     //           << ", status: " << msg->status << std::endl;
-    write(scheduler->ready_queue->pipe_fd[1], &msg,
-          sizeof(CTorchQueueMessage *));
+    write(scheduler->ready_queue->pipe_fd[1], &msg, sizeof(CTorchQueueJob *));
   }
 
   // check finish
   for (int i = 0; i < n_job; i++) {
-    CTorchQueueMessage *msg;
-    read(scheduler->done_queue->pipe_fd[0], &msg, sizeof(CTorchQueueMessage *));
+    CTorchQueueJob *msg;
+    read(scheduler->done_queue->pipe_fd[0], &msg, sizeof(CTorchQueueJob *));
     // std::cout << "[" << i << "]Get don msg: " << msg
     //           << ", status: " << msg->status << std::endl;
     EXPECT_EQ(CTH_JOB_STATUS_DONE, msg->status);
@@ -32,9 +31,8 @@ TEST(cTorchPoolTest, testWorkerFunc) {
 
   // kill threads
   for (thread_n_t i = 0; i < config->num_workers; i++) {
-    CTorchQueueMessage *msg = (CTorchQueueMessage *)MALLOC(sizeof(msg));
+    CTorchQueueJob *msg = (CTorchQueueJob *)MALLOC(sizeof(msg));
     msg->worker_kill = true;
-    write(scheduler->ready_queue->pipe_fd[1], &msg,
-          sizeof(CTorchQueueMessage *));
+    write(scheduler->ready_queue->pipe_fd[1], &msg, sizeof(CTorchQueueJob *));
   }
 }

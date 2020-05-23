@@ -35,22 +35,22 @@ void cth_close_and_free_queue(CTorchQueue *queue);
 /**
  * Message to be passed through Queue
  */
-typedef struct CTorchQueueMessage {
+typedef struct CTorchQueueJob {
   CTorchOperator *op;    /* Operator */
   CTH_JOB_STATUS status; /* Status of this op execution */
   bool worker_kill; /* When this field is true, worker stop execution loop */
-} CTorchQueueMessage;
+} CTorchQueueJob;
 
 // List utils for CTorchTensor
-def_list_item(CTorchQueueMessage);
-def_list(CTorchQueueMessage);
-declare_new_list_item_func(CTorchQueueMessage);
-declare_new_list_func(CTorchQueueMessage);
-declare_insert_list_func(CTorchQueueMessage);
-declare_list_contains_data_func(CTorchQueueMessage);
-declare_list_contains_item_func(CTorchQueueMessage);
-declare_list_at_func(CTorchQueueMessage);
-declare_list_pop_func(CTorchQueueMessage);
-declare_free_list_func(CTorchQueueMessage);
+def_list_item(CTorchQueueJob);
+def_list(CTorchQueueJob);
+declare_new_list_item_func(CTorchQueueJob);
+declare_new_list_func(CTorchQueueJob);
+declare_insert_list_func(CTorchQueueJob);
+declare_list_contains_data_func(CTorchQueueJob);
+declare_list_contains_item_func(CTorchQueueJob);
+declare_list_at_func(CTorchQueueJob);
+declare_list_pop_func(CTorchQueueJob);
+declare_free_list_func(CTorchQueueJob);
 
 #endif /* QUEUE_H */
