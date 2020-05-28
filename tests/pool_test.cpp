@@ -6,7 +6,7 @@
 TEST(cTorchPoolTest, testWorkerFunc) {
   CTorchConfig *config = (CTorchConfig *)MALLOC(sizeof(CTorchConfig));
   config->num_workers = 4;
-  CTorchScheduler *scheduler = cth_new_scheduler(config);
+  CTorchScheduler *scheduler = cth_new_scheduler(config, NULL);
   CTorchWorkerPool *pool = cth_new_pool(scheduler, config);
 
   // Add job

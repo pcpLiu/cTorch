@@ -16,19 +16,17 @@ typedef struct CTorchScheduler {
   CTorchQueue
       *done_queue; /* Queue for executed ops. Workers will put op in this queue
                       and scheduelr will fetch op from this queue  */
+  List(CTorchQueueJob) * job_list; /* Full list of jobs (ops) to be executed */
 } CTorchScheduler;
 
 /**
- * Create a new scheduler
+ * Create a new scheduler based on cofig and graph. Function will parse graph's
+ * nodes and fill into job_list.
  *
  * Arguments
  *    - config: execution config
+ *    - graph: a computation graph
  */
-CTorchScheduler *cth_new_scheduler(CTorchConfig *config);
-
-/**
- * Start schedule the execution of a graph
- */
-void cth_scheduler_start(CTorchScheduler *scheduler, CTorchGraph *graph);
+CTorchScheduler *cth_new_scheduler(CTorchConfig *config, CTorchGraph *graph);
 
 #endif /* SCHEDULER_H */

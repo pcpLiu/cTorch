@@ -6,6 +6,7 @@ impl_new_list_func(CTorchNode);
 impl_insert_list_func(CTorchNode);
 impl_list_contains_data_func(CTorchNode);
 impl_list_contains_item_func(CTorchNode);
+impl_list_at_func(CTorchNode);
 
 static CTorchNode *update_node_list(
     CTorchNode *target, List(CTorchNode) * node_list, bool add_to_inbound) {

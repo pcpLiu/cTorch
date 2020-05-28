@@ -33,6 +33,11 @@ CTorchOperator *create_dummy_op();
 */
 CTorchNode *create_dummy_node();
 
+/**
+ * Create a dummy graph
+ */
+CTorchGraph *create_dummy_graph();
+
 /*
   If all values are NAN, return true.
 */

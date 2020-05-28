@@ -61,22 +61,13 @@ typedef enum CTH_TENSOR_TYPE {
 } CTH_TENSOR_TYPE;
 
 /*
-  Node execution status:
-    - CTH_NODE_EXE_STATUS_CLEAN: wait to be executed
-    - CTH_NODE_EXE_STATUS_DIRTY: executed
-*/
-typedef enum CTH_NODE_EXE_STATUS {
-  CTH_NODE_EXE_STATUS_CLEAN,
-  CTH_NODE_EXE_STATUS_DIRTY,
-} CTH_NODE_EXE_STATUS;
-
-/*
   Job execution status:
-    - CTH_JOB_STATUS_QUEUE: job is in queue
-    - CTH_JOB_STATUS_EXE: job is being executed
+    - CTH_JOB_STATUS_WAIT: job is waiting for depedency
+    - CTH_JOB_STATUS_READY: job is to be executed
     - CTH_JOB_STATUS_DONE: job is done
 */
 typedef enum CTH_JOB_STATUS {
+  CTH_JOB_STATUS_WAIT,
   CTH_JOB_STATUS_READY,
   CTH_JOB_STATUS_DONE,
 } CTH_JOB_STATUS;

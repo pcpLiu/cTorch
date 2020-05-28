@@ -25,9 +25,6 @@ typedef struct {
   // node type
   CTH_NODE_TYPE node_type;
 
-  // execution status
-  CTH_NODE_EXE_STATUS exe_status;
-
   /* Node list will be NULL if it's empty */
   struct List(CTorchNode) * inbound_nodes;
   struct List(CTorchNode) * outbound_nodes;
@@ -44,6 +41,7 @@ declare_new_list_func(CTorchNode);
 declare_insert_list_func(CTorchNode);
 declare_list_contains_data_func(CTorchNode);
 declare_list_contains_item_func(CTorchNode);
+declare_list_at_func(CTorchNode);
 
 /*
   Add a list of nodes into target node's in/out-bound list.

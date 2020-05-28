@@ -88,5 +88,4 @@ void cth_execute_node(CTorchNode *node, CTH_BACKEND backend) {
   if (node->node_type == CTH_NODE_TYPE_OPERATOR) {
     dispatch_op_execution(node->conent.op, backend);
   }
-  node->exe_status = CTH_NODE_EXE_STATUS_DIRTY;
 }

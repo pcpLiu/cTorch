@@ -1,7 +1,7 @@
 #ifndef CTH_QUEUE_H
 #define CTH_QUEUE_H
 
-#include "cTorch/operator.h"
+#include "cTorch/node.h"
 
 #include <pthread.h>
 
@@ -36,8 +36,8 @@ void cth_close_and_free_queue(CTorchQueue *queue);
  * Message to be passed through Queue
  */
 typedef struct CTorchQueueJob {
-  CTorchOperator *op;    /* Operator */
-  CTH_JOB_STATUS status; /* Status of this op execution */
+  CTorchNode *node;      /* Node to be executed */
+  CTH_JOB_STATUS status; /* Status of this node execution */
   bool worker_kill; /* When this field is true, worker stop execution loop */
 } CTorchQueueJob;
 
