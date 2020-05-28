@@ -26,6 +26,18 @@ CTorchWorkerPool *
 cth_new_pool(CTorchScheduler *scheduler, CTorchConfig *config);
 
 /**
+ * Close a work pool. Kill all working threads. This funcion use pthread_join,
+ * so it will block till all jobs finished.
+ *
+ * Note: this func does not do any memory cleanning stuff.
+ *
+ * Arguments:
+ *    - scheduler: attached scheduler
+ *    - pool: pool to be closed
+ */
+void cth_close_pool(CTorchScheduler *scheduler, CTorchWorkerPool *pool);
+
+/**
  * The worker function
  *
  * Arguments:

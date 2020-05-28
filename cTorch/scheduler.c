@@ -2,6 +2,9 @@
 #include "cTorch/mem_util.h"
 
 CTorchScheduler *cth_new_scheduler(CTorchConfig *config, CTorchGraph *graph) {
+  FAIL_NULL_PTR(config);
+  FAIL_NULL_PTR(graph);
+
   CTorchScheduler *scheduler = MALLOC(sizeof(CTorchScheduler));
   scheduler->done_queue = cth_new_queue();
   scheduler->ready_queue = cth_new_queue();
@@ -16,4 +19,8 @@ CTorchScheduler *cth_new_scheduler(CTorchConfig *config, CTorchGraph *graph) {
   }
 
   return scheduler;
+}
+
+void cth_start_scheduler(CTorchScheduler *scheduler) {
+  FAIL_NULL_PTR(scheduler);
 }

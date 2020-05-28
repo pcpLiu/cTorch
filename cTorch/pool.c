@@ -44,6 +44,9 @@ void *cth_worker(void *scheduler_v) {
 
 CTorchWorkerPool *
 cth_new_pool(CTorchScheduler *scheduler, CTorchConfig *config) {
+  FAIL_NULL_PTR(scheduler);
+  FAIL_NULL_PTR(config);
+
   CTorchWorkerPool *pool = MALLOC(sizeof(CTorchWorkerPool));
   pool->num_workers = config->num_workers;
   pool->workers = MALLOC(pool->num_workers * sizeof(pthread_t));
@@ -66,4 +69,28 @@ cth_new_pool(CTorchScheduler *scheduler, CTorchConfig *config) {
   }
 
   return pool;
+}
+
+void cth_close_pool(CTorchScheduler *scheduler, CTorchWorkerPool *pool) {
+  FAIL_NULL_PTR(scheduler);
+  FAIL_NULL_PTR(pool);
+
+  for (thread_n_t i = 0; i < pool->num_workers; i++) {
+    CTorchQueueJob *job = MALLOC(sizeof(CTorchQueueJob));
+    job->worker_kill = true;
+    write(scheduler->ready_queue->pipe_fd[1], &job, sizeof(CTorchQueueJob *));
+  }
+
+  // wait till all killed
+  int err;
+  void *status;
+  for (thread_n_t i = 0; i < pool->num_workers; i++) {
+    err = pthread_join(*(pool->workers + i), &status);
+    if (err) {
+      FAIL_EXIT(
+          CTH_LOG_ERR,
+          "pthread_join failed; return code from pthread_join() is %d\n",
+          err);
+    }
+  }
 }

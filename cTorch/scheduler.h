@@ -29,4 +29,9 @@ typedef struct CTorchScheduler {
  */
 CTorchScheduler *cth_new_scheduler(CTorchConfig *config, CTorchGraph *graph);
 
+/**
+ * Turn on scheduler to put job into pipe til all jobs are done
+ */
+void cth_start_scheduler(CTorchScheduler *scheduler);
+
 #endif /* SCHEDULER_H */
