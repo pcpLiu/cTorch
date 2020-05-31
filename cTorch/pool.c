@@ -15,6 +15,7 @@ void *cth_worker(void *scheduler_v) {
    *    - Fetch messsage from ready_queue and execute it
    *    - Update message's job status and put it to done_queue
    */
+  FAIL_NULL_PTR(scheduler_v);
 
   CTorchScheduler *scheduler = (CTorchScheduler *)scheduler_v;
   CTorchQueue *ready_queue = scheduler->ready_queue;

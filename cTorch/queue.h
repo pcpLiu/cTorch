@@ -52,5 +52,6 @@ declare_list_contains_item_func(CTorchQueueJob);
 declare_list_at_func(CTorchQueueJob);
 declare_list_pop_func(CTorchQueueJob);
 declare_free_list_func(CTorchQueueJob);
+declare_list_del_func(CTorchQueueJob);
 
 #endif /* QUEUE_H */

@@ -13,6 +13,7 @@ impl_list_contains_item_func(CTorchQueueJob);
 impl_list_at_func(CTorchQueueJob);
 impl_list_pop_func(CTorchQueueJob);
 impl_free_list_func(CTorchQueueJob);
+impl_list_del_func(CTorchQueueJob);
 
 void set_non_block(int fd) {
   int flags = fcntl(fd, F_GETFL, 0);

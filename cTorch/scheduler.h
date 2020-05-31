@@ -34,4 +34,34 @@ CTorchScheduler *cth_new_scheduler(CTorchConfig *config, CTorchGraph *graph);
  */
 void cth_start_scheduler(CTorchScheduler *scheduler);
 
+/**
+ * Find ready jobs. A job is ready:
+ *    - All inbounds node are done
+ *    - Or, no inbounds
+ *
+ * Note:
+ *    Ready jobs will be removed from queue_job_list
+ *
+ * Arguments:
+ *    - queue_job_list: jobs in queue
+ *    - done_job_list: done jobs list
+ *    - ready_job_list: results
+ */
+void cth_search_ready_jobs(
+    List(CTorchQueueJob) * queue_job_list,
+    List(CTorchQueueJob) * done_job_list,
+    List(CTorchQueueJob) * ready_job_list);
+
+/**
+ * Given a graph node, lookup it's job in the job list.
+ *
+ * Arguments:
+ *    - node: target node
+ *    - job_list: list to be searched
+ *    - fail_not_found: If true, function call FAIL_EXIT if not found. If false,
+ *                      function returns NULL if not found.
+ */
+CTorchQueueJob *cth_get_job_for_node(
+    CTorchNode *node, List(CTorchQueueJob) * job_list, bool fail_not_found);
+
 #endif /* SCHEDULER_H */
