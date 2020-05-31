@@ -55,6 +55,10 @@
  * void free_list_deep(T)(List(T) *list)
  *    - Free a list and all items it contains. Also, it frees stored data.
  *    - We assume contained data has a corresponding deep free function
+ *
+ * void list_del(T)(List(T) *list, T *data)
+ *    - Delete an item from list that contains given data
+ *    - The item itself will not be free
  */
 
 /*
@@ -355,5 +359,39 @@ typedef int32_t list_index_t;
       List(data_type),                                                         \
       struct_deep_free(data_type),                                             \
       free_list_deep(data_type))
+
+// Delete an item from a list
+//
+// list_del(data_type) --- func name
+// declare_list_del_func(data_type) --- declaration
+// impl_list_del_func(data_type) --- implementation
+//
+#define list_del(data_type) list_del_##data_type
+#define _declare_list_del_func(data_type, list_type, func_name)                \
+  void func_name(list_type *list, const data_type *data)
+#define declare_list_del_func(data_type)                                       \
+  _declare_list_del_func(data_type, List(data_type), list_del(data_type))
+#define _impl_list_del_func(data_type, list_type, func_name)                   \
+  void func_name(list_type *list, const data_type *target_data) {              \
+    FAIL_NULL_PTR(list);                                                       \
+    FAIL_NULL_PTR(target_data);                                                \
+    ListItem(data_type) *item = list->head;                                    \
+    while (item != NULL) {                                                     \
+      if (target_data == item->data) {                                         \
+        if (item->prev_item != NULL) {                                         \
+          item->prev_item->next_item = item->next_item;                        \
+        }                                                                      \
+        if (item->next_item != NULL) {                                         \
+          item->next_item->prev_item = item->prev_item;                        \
+        }                                                                      \
+        list->size--;                                                          \
+        FREE(item);                                                            \
+        break;                                                                 \
+      }                                                                        \
+      item = item->next_item;                                                  \
+    }                                                                          \
+  }
+#define impl_list_del_func(data_type)                                          \
+  _impl_list_del_func(data_type, List(data_type), list_del(data_type))
 
 #endif /* LIST_D_H */

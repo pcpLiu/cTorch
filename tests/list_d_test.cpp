@@ -22,6 +22,7 @@ impl_list_pop_func(int);
 impl_list_at_func(int);
 impl_free_list_func(int);
 impl_free_list_deep_func(int);
+impl_list_del_func(int);
 
 TEST(cTorchListTest, testItemDefine) {
   int a = 3;
@@ -280,4 +281,23 @@ TEST(cTorchListTest, testFreeListDeep) {
   EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_data_2->status);
   EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_data_3->status);
   EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_data_4->status);
+}
+
+TEST(cTorchListTest, testDeleteData) {
+  // single thread execution
+  List(int) *list = new_list(int)();
+  int *data_1 = heap_int(1);
+  ListItem(int) *item_1 = insert_list(int)(list, data_1);
+  MemoryRecord *record_item_1 = cth_get_mem_record(item_1);
+
+  int *data_2 = heap_int(2);
+  insert_list(int)(list, data_2);
+  int *data_3 = heap_int(3);
+  insert_list(int)(list, data_3);
+
+  int before_num = cth_get_num_unfree_records();
+  list_del(int)(list, data_1);
+  int after_num = cth_get_num_unfree_records();
+  EXPECT_EQ(after_num + 1, before_num);
+  EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_item_1->status);
 }
