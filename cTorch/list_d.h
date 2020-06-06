@@ -385,6 +385,14 @@ typedef int32_t list_index_t;
           item->next_item->prev_item = item->prev_item;                        \
         }                                                                      \
         list->size--;                                                          \
+                                                                               \
+        if (item == list->head) {                                              \
+          list->head = item->next_item;                                        \
+        }                                                                      \
+        if (item == list->tail) {                                              \
+          list->tail = item->prev_item;                                        \
+        }                                                                      \
+                                                                               \
         FREE(item);                                                            \
         break;                                                                 \
       }                                                                        \

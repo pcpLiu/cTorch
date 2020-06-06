@@ -80,7 +80,11 @@ TEST(cTorchSchedulerTest, testSearchReadyJob) {
 
   cth_search_ready_jobs(queue_job_list, done_job_list, ready_job_list);
 
+  EXPECT_EQ(queue_job_list->size, 1);
+  EXPECT_EQ(ready_job_list->size, 1);
   EXPECT_TRUE(list_contains_data(CTorchQueueJob)(ready_job_list, job_4) !=
+              nullptr);
+  EXPECT_TRUE(list_contains_data(CTorchQueueJob)(queue_job_list, job_4) ==
               nullptr);
   EXPECT_TRUE(list_contains_data(CTorchQueueJob)(ready_job_list, job_5) ==
               nullptr);
