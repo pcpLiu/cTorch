@@ -20,7 +20,7 @@ extern "C" {
 
 #ifdef CTH_TEST_DEBUG
 #include "cTorch/debug_util.h"
-#endif
+#endif // CTH_TEST_DEBUG
 
 #ifdef __cplusplus
 }
