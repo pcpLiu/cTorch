@@ -1,8 +1,6 @@
 #ifndef CTH_DEBUG_UTIL_H
 #define CTH_DEBUG_UTIL_H
 
-#include <stdlib.h>
-
 #include "cTorch/list_d.h"
 
 /**

@@ -1,4 +1,4 @@
-#include "ctorch/c_torch.h"
+#include "cTorch/c_torch.h"
 #include "gtest/gtest.h"
 
 TEST(CommonUtilTest, testFailExit) {

@@ -4,6 +4,7 @@
 #include "cTorch/ops_enabled.h"
 
 #include <stdlib.h>
+#include <stdint.h>
 
 /*
   Backends

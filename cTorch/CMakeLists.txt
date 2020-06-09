@@ -69,6 +69,9 @@ if(${DEBUG_TEST})
     )
 endif()
 
+# TODO: asprintf
+add_compile_definitions(_GNU_SOURCE)
+
 ################################################################################
 #
 # Core sources

@@ -1,6 +1,9 @@
 #include "cTorch/debug_util.h"
 #include "cTorch/list_d.h"
 
+#include <stdint.h>
+
+
 MemoryRecord *CTH_MEM_RECORDS = &(MemoryRecord){
     .addr = NULL, .status = CTH_MEM_RECORD_STATUS_ALLOCATED, .next = NULL};
 
