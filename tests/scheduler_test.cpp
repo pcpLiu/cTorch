@@ -89,3 +89,30 @@ TEST(cTorchSchedulerTest, testSearchReadyJob) {
   EXPECT_TRUE(list_contains_data(CTorchQueueJob)(ready_job_list, job_5) ==
               nullptr);
 }
+
+TEST(cTorchSchedulerTest, testStartScheduler) {
+  /**
+   *  node_1 --> node_2 --> node_4 --> node_5
+   *    |                      ^
+   *    |------> node_3 -------|
+   */
+
+  CTorchNode *node_1 = create_dummy_node();
+  CTorchNode *node_2 = create_dummy_node();
+  CTorchNode *node_3 = create_dummy_node();
+  CTorchNode *node_4 = create_dummy_node();
+  CTorchNode *node_5 = create_dummy_node();
+
+  insert_list(CTorchNode)(node_2->inbound_nodes, node_1);
+  insert_list(CTorchNode)(node_3->inbound_nodes, node_1);
+  insert_list(CTorchNode)(node_4->inbound_nodes, node_2);
+  insert_list(CTorchNode)(node_4->inbound_nodes, node_3);
+  insert_list(CTorchNode)(node_5->inbound_nodes, node_4);
+
+  CTorchGraph *graph = create_dummy_graph();
+  insert_list(CTorchNode)(graph->node_list, node_1);
+  insert_list(CTorchNode)(graph->node_list, node_2);
+  insert_list(CTorchNode)(graph->node_list, node_3);
+  insert_list(CTorchNode)(graph->node_list, node_4);
+  insert_list(CTorchNode)(graph->node_list, node_5);
+}
