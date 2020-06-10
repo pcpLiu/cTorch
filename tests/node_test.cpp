@@ -13,7 +13,7 @@ TEST(cTorchNodeTest, testAddBoundNodes) {
   insert_list(CTorchNode)(inbound_list, b);
   insert_list(CTorchNode)(inbound_list, c);
 
-  c_torch_node_add_inbound_nodes(a, inbound_list);
+  cth_add_inbound_nodes(a, inbound_list);
   ASSERT_EQ(a->inbound_nodes->size, 2);
 
   ListItem(CTorchNode) *item_b =
@@ -40,7 +40,7 @@ TEST(cTorchNodeTest, testAddBoundNodes) {
   insert_list(CTorchNode)(outbound_list, d);
   insert_list(CTorchNode)(outbound_list, e);
 
-  c_torch_node_add_outbound_nodes(a, outbound_list);
+  cth_add_outbound_nodes(a, outbound_list);
   ASSERT_EQ(a->outbound_nodes->size, 2);
 
   ListItem(CTorchNode) *item_d =

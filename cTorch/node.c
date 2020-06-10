@@ -8,7 +8,7 @@ impl_list_contains_data_func(CTorchNode);
 impl_list_contains_item_func(CTorchNode);
 impl_list_at_func(CTorchNode);
 
-static CTorchNode *update_node_list(
+CTorchNode *update_node_list(
     CTorchNode *target, List(CTorchNode) * node_list, bool add_to_inbound) {
   FAIL_NULL_PTR(target);
   FAIL_NULL_PTR(node_list);
@@ -41,12 +41,12 @@ static CTorchNode *update_node_list(
   return target;
 }
 
-CTorchNode *c_torch_node_add_inbound_nodes(
-    CTorchNode *target, List(CTorchNode) * node_list) {
+CTorchNode *
+cth_add_inbound_nodes(CTorchNode *target, List(CTorchNode) * node_list) {
   return update_node_list(target, node_list, true);
 }
 
-CTorchNode *c_torch_node_add_outbound_nodes(
-    CTorchNode *target, List(CTorchNode) * node_list) {
+CTorchNode *
+cth_add_outbound_nodes(CTorchNode *target, List(CTorchNode) * node_list) {
   return update_node_list(target, node_list, false);
 }

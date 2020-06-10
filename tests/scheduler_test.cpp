@@ -115,4 +115,27 @@ TEST(cTorchSchedulerTest, testStartScheduler) {
   insert_list(CTorchNode)(graph->node_list, node_3);
   insert_list(CTorchNode)(graph->node_list, node_4);
   insert_list(CTorchNode)(graph->node_list, node_5);
+
+  CTorchConfig *config = (CTorchConfig *)MALLOC(sizeof(CTorchConfig));
+  config->num_workers = 4;
+  CTorchScheduler *scheduler = cth_new_scheduler(config, graph);
+  CTorchWorkerPool *pool = cth_new_pool(scheduler, config);
+  cth_start_scheduler(scheduler);
+  cth_close_pool(scheduler, pool);
+
+  CTorchQueueJob *node_1_job =
+      cth_get_job_for_node(node_1, scheduler->job_list, false);
+  CTorchQueueJob *node_2_job =
+      cth_get_job_for_node(node_2, scheduler->job_list, false);
+  CTorchQueueJob *node_3_job =
+      cth_get_job_for_node(node_3, scheduler->job_list, false);
+  CTorchQueueJob *node_4_job =
+      cth_get_job_for_node(node_4, scheduler->job_list, false);
+  CTorchQueueJob *node_5_job =
+      cth_get_job_for_node(node_5, scheduler->job_list, false);
+  EXPECT_EQ(node_1_job->status, CTH_JOB_STATUS_DONE);
+  EXPECT_EQ(node_2_job->status, CTH_JOB_STATUS_DONE);
+  EXPECT_EQ(node_3_job->status, CTH_JOB_STATUS_DONE);
+  EXPECT_EQ(node_4_job->status, CTH_JOB_STATUS_DONE);
+  EXPECT_EQ(node_5_job->status, CTH_JOB_STATUS_DONE);
 }

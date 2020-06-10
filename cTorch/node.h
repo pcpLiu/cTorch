@@ -43,16 +43,16 @@ declare_list_contains_data_func(CTorchNode);
 declare_list_contains_item_func(CTorchNode);
 declare_list_at_func(CTorchNode);
 
-/*
-  Add a list of nodes into target node's in/out-bound list.
-  Function fails if this list is empty.
-  If some nodes already in the bound list, they will be ignored.
+/**
+ *
+ */
+CTorchNode *
+cth_add_inbound_nodes(CTorchNode *target_node, List(CTorchNode) * nodes);
 
-  Side effect:
-    - These two functions will automatically update list nodes'
-    in/out-bound infor.
-*/
-CTorchNode *c_torch_node_add_inbound_nodes(CTorchNode *, List(CTorchNode) *);
-CTorchNode *c_torch_node_add_outbound_nodes(CTorchNode *, List(CTorchNode) *);
+/**
+ *
+ */
+CTorchNode *
+cth_add_outbound_nodes(CTorchNode *target_node, List(CTorchNode) * nodes);
 
 #endif /* NODE_H */
