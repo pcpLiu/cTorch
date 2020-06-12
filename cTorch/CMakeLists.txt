@@ -61,12 +61,21 @@ if(${BACKEND_ACCELERATE_ENABLE})
     add_compile_definitions(BACKEND_ACCELERATE)
 endif()
 
+################################################################################
+#
+# Debug test setting
+#
+
 if(${DEBUG_TEST})
-    add_compile_definitions(CTH_TEST_DEBUG)
     message(
         WARNING
         "DEBUG_TEST is turned ON. Option should only be enabled for running tests."
     )
+    # Enable debug code compiling
+    add_compile_definitions(CTH_TEST_DEBUG)
+
+    # profiling enable
+    set(CMAKE_C_FLAGS ${CMAKE_C_FLAGS} -pg)
 endif()
 
 # TODO: asprintf
@@ -77,6 +86,7 @@ add_compile_definitions(_GNU_SOURCE)
 # Core sources
 #
 set(core_src
+    bit_array.c
     config.c
     consts.c
     debug_util.c

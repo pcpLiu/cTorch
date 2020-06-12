@@ -8,7 +8,6 @@ extern "C" {
 #include "cTorch/consts.h"
 #include "cTorch/engine.h"
 #include "cTorch/graph.h"
-#include "cTorch/list_d.h"
 #include "cTorch/node.h"
 #include "cTorch/operator.h"
 #include "cTorch/operators/op_list.h"
@@ -19,7 +18,9 @@ extern "C" {
 #include "cTorch/storage.h"
 
 #ifdef CTH_TEST_DEBUG
+#include "cTorch/bit_array.h"
 #include "cTorch/debug_util.h"
+#include "cTorch/list_d.h"
 #endif // CTH_TEST_DEBUG
 
 #ifdef __cplusplus
