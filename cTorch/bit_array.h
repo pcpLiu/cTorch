@@ -24,7 +24,7 @@ typedef struct bit_array_t {
 } bit_array_t;
 
 /**
- * Create a new bit array with targed size
+ * Create a new bit array with targed size. When created, all bits are cleared.
  */
 bit_array_t *cth_new_bit_array(bit_array_index_t size);
 
@@ -42,5 +42,15 @@ void cth_clear_bit(bit_array_t *array, bit_array_index_t i);
  * Check if bit at index i is 1
  */
 bool cth_is_bit_set(bit_array_t *array, bit_array_index_t i);
+
+/**
+ * Check if all logical bits in this array are set.
+ */
+bool cth_are_all_bits_set(bit_array_t *array);
+
+/**
+ * Check if all logical bits in this array are cleared.
+ */
+bool cth_are_all_bits_clear(bit_array_t *array);
 
 #endif /* BIT_ARRAY_H */

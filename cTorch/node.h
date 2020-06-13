@@ -2,16 +2,20 @@
 #define CTH_NODE_H
 
 #include "cTorch/consts.h"
-#include "cTorch/list_d.h"
+#include "cTorch/generic_array.h"
 #include "cTorch/operator.h"
 #include "cTorch/storage.h"
 #include <stdlib.h>
-#include <uuid/uuid.h>
 
 typedef union {
   CTorchTensor *tensor;
   CTorchOperator *op;
 } CTorchNodeContent;
+
+/**
+ * Node id type
+ */
+typedef uint32_t node_id_t;
 
 /*
   CTorchNode.
@@ -19,19 +23,20 @@ typedef union {
   It could be either a operator or a tensor.
 */
 typedef struct {
-  // UUID of this node
-  uuid_t uuid;
-
-  // node type
-  CTH_NODE_TYPE node_type;
-
-  /* Node list will be NULL if it's empty */
-  struct List(CTorchNode) * inbound_nodes;
-  struct List(CTorchNode) * outbound_nodes;
-
-  // A tensor or operator
-  CTorchNodeContent conent;
+  node_id_t node_id;       /* Node id. Starting from 0 and consecutive */
+  CTH_NODE_TYPE node_type; /* Node type: op or tensor */
+  // struct List(CTorchNode) * inbound_nodes;  /* Inbounds nodes */
+  // struct List(CTorchNode) * outbound_nodes; /* Outbounds nodes */
+  struct Array(CTorchNode) * inbound_nodes;  /* Inbounds nodes */
+  struct Array(CTorchNode) * outbound_nodes; /* Inbounds nodes */
+  CTorchNodeContent conent;                  /* Content */
 } CTorchNode;
+
+// Array macros
+def_array(CTorchNode);
+declare_new_array_func(CTorchNode);
+declare_array_at_func(CTorchNode);
+declare_array_set_func(CTorchNode);
 
 // List macros
 def_list_item(CTorchNode);
@@ -42,17 +47,18 @@ declare_insert_list_func(CTorchNode);
 declare_list_contains_data_func(CTorchNode);
 declare_list_contains_item_func(CTorchNode);
 declare_list_at_func(CTorchNode);
+declare_list_pop_func(CTorchNode);
 
-/**
- *
- */
-CTorchNode *
-cth_add_inbound_nodes(CTorchNode *target_node, List(CTorchNode) * nodes);
+// /**
+//  *
+//  */
+// CTorchNode *
+// cth_add_inbound_nodes(CTorchNode *target_node, List(CTorchNode) * nodes);
 
-/**
- *
- */
-CTorchNode *
-cth_add_outbound_nodes(CTorchNode *target_node, List(CTorchNode) * nodes);
+// /**
+//  *
+//  */
+// CTorchNode *
+// cth_add_outbound_nodes(CTorchNode *target_node, List(CTorchNode) * nodes);
 
 #endif /* NODE_H */

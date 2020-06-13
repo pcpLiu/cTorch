@@ -12,21 +12,21 @@ void cth_worker_consume(CTorchQueueJob *msg) {
 void *cth_worker(void *scheduler_v) {
   /**
    * Loop til a killer switch message fetched:
-   *    - Fetch messsage from ready_queue and execute it
-   *    - Update message's job status and put it to done_queue
+   *    - Fetch messsage from exe_queue and execute it
+   *    - Update message's job status and put it to ret_queue
    */
   FAIL_NULL_PTR(scheduler_v);
 
   CTorchScheduler *scheduler = (CTorchScheduler *)scheduler_v;
-  CTorchQueue *ready_queue = scheduler->ready_queue;
-  CTorchQueue *done_queue = scheduler->done_queue;
+  CTorchQueue *exe_queue = scheduler->exe_queue;
+  CTorchQueue *ret_queue = scheduler->ret_queue;
 
   CTorchQueueJob *msg;
   while (true) {
     // TODO: do we need lock?
-    pthread_mutex_lock(&ready_queue->read_mutex);
-    read(ready_queue->pipe_fd[0], &msg, sizeof(CTorchQueueJob *));
-    pthread_mutex_unlock(&ready_queue->read_mutex);
+    pthread_mutex_lock(&exe_queue->read_mutex);
+    read(exe_queue->pipe_fd[0], &msg, sizeof(CTorchQueueJob *));
+    pthread_mutex_unlock(&exe_queue->read_mutex);
 
     if (msg->worker_kill) {
       break;
@@ -35,9 +35,9 @@ void *cth_worker(void *scheduler_v) {
     cth_worker_consume(msg);
 
     // TODO: do we need lock?
-    pthread_mutex_lock(&done_queue->write_mutex);
-    write(done_queue->pipe_fd[1], &msg, sizeof(CTorchQueueJob *));
-    pthread_mutex_unlock(&done_queue->write_mutex);
+    pthread_mutex_lock(&ret_queue->write_mutex);
+    write(ret_queue->pipe_fd[1], &msg, sizeof(CTorchQueueJob *));
+    pthread_mutex_unlock(&ret_queue->write_mutex);
   }
 
   pthread_exit(NULL);
@@ -79,7 +79,7 @@ void cth_close_pool(CTorchScheduler *scheduler, CTorchWorkerPool *pool) {
   for (thread_n_t i = 0; i < pool->num_workers; i++) {
     CTorchQueueJob *job = MALLOC(sizeof(CTorchQueueJob));
     job->worker_kill = true;
-    write(scheduler->ready_queue->pipe_fd[1], &job, sizeof(CTorchQueueJob *));
+    write(scheduler->exe_queue->pipe_fd[1], &job, sizeof(CTorchQueueJob *));
   }
 
   // wait till all killed

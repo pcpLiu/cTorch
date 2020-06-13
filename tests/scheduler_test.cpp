@@ -6,7 +6,7 @@ TEST(cTorchSchedulerTest, testCreate) {
   CTorchGraph *graph = create_dummy_graph();
   int num_nodes = 10;
   for (int i = 0; i < num_nodes; i++) {
-    insert_list(CTorchNode)(graph->node_list, create_dummy_node());
+    insert_list(CTorchNode)(graph->node_list, create_dummy_node(i, 0, 0));
   }
 
   CTorchConfig *config = (CTorchConfig *)MALLOC(sizeof(CTorchConfig));
@@ -14,32 +14,9 @@ TEST(cTorchSchedulerTest, testCreate) {
 
   CTorchScheduler *scheduler = cth_new_scheduler(config, graph);
   EXPECT_EQ(scheduler->job_list->size, num_nodes);
-}
-
-TEST(cTorchSchedulerTest, testGetJobForNode) {
-  List(CTorchQueueJob) *job_list = new_list(CTorchQueueJob)();
-  CTorchNode *node_1 = (CTorchNode *)MALLOC(sizeof(CTorchNode));
-  CTorchQueueJob *job = (CTorchQueueJob *)MALLOC(sizeof(CTorchQueueJob));
-  job->node = node_1;
-  insert_list(CTorchQueueJob)(job_list, job);
-
-  CTorchQueueJob *ret_job = cth_get_job_for_node(node_1, job_list, false);
-  EXPECT_EQ(ret_job, job);
-
-  CTorchNode *node_2 = (CTorchNode *)MALLOC(sizeof(CTorchNode));
-  ret_job = cth_get_job_for_node(node_2, job_list, false);
-  EXPECT_EQ(ret_job, nullptr);
-
-  EXPECT_EXIT(cth_get_job_for_node(node_2, job_list, true),
-              ::testing::ExitedWithCode(1),
-              "Cannot find node in given job list");
-}
-
-CTorchQueueJob *dumm_job(CTorchNode *node, CTH_JOB_STATUS status) {
-  CTorchQueueJob *job = (CTorchQueueJob *)MALLOC(sizeof(CTorchQueueJob));
-  job->node = node;
-  job->status = status;
-  return job;
+  EXPECT_TRUE(cth_are_all_bits_clear(scheduler->done_status));
+  EXPECT_TRUE(cth_are_all_bits_clear(scheduler->ready_status));
+  EXPECT_TRUE(cth_are_all_bits_set(scheduler->queue_status));
 }
 
 TEST(cTorchSchedulerTest, testSearchReadyJob) {
@@ -49,65 +26,17 @@ TEST(cTorchSchedulerTest, testSearchReadyJob) {
    *    |------> node_3[x] ---------|
    */
 
-  CTorchNode *node_1 = create_dummy_node();
-  CTorchNode *node_2 = create_dummy_node();
-  CTorchNode *node_3 = create_dummy_node();
-  CTorchNode *node_4 = create_dummy_node();
-  CTorchNode *node_5 = create_dummy_node();
+  CTorchNode *node_1 = create_dummy_node(0, 0, 2);
+  CTorchNode *node_2 = create_dummy_node(1, 1, 1);
+  CTorchNode *node_3 = create_dummy_node(2, 1, 1);
+  CTorchNode *node_4 = create_dummy_node(3, 2, 1);
+  CTorchNode *node_5 = create_dummy_node(4, 1, 0);
 
-  insert_list(CTorchNode)(node_2->inbound_nodes, node_1);
-  insert_list(CTorchNode)(node_3->inbound_nodes, node_1);
-  insert_list(CTorchNode)(node_4->inbound_nodes, node_2);
-  insert_list(CTorchNode)(node_4->inbound_nodes, node_3);
-  insert_list(CTorchNode)(node_5->inbound_nodes, node_4);
-
-  CTorchQueueJob *job_1 = dumm_job(node_1, CTH_JOB_STATUS_DONE);
-  CTorchQueueJob *job_2 = dumm_job(node_2, CTH_JOB_STATUS_DONE);
-  CTorchQueueJob *job_3 = dumm_job(node_3, CTH_JOB_STATUS_DONE);
-  CTorchQueueJob *job_4 = dumm_job(node_4, CTH_JOB_STATUS_WAIT);
-  CTorchQueueJob *job_5 = dumm_job(node_5, CTH_JOB_STATUS_WAIT);
-
-  List(CTorchQueueJob) *queue_job_list = new_list(CTorchQueueJob)();
-  List(CTorchQueueJob) *done_job_list = new_list(CTorchQueueJob)();
-  List(CTorchQueueJob) *ready_job_list = new_list(CTorchQueueJob)();
-
-  insert_list(CTorchQueueJob)(done_job_list, job_1);
-  insert_list(CTorchQueueJob)(done_job_list, job_2);
-  insert_list(CTorchQueueJob)(done_job_list, job_3);
-
-  insert_list(CTorchQueueJob)(queue_job_list, job_4);
-  insert_list(CTorchQueueJob)(queue_job_list, job_5);
-
-  cth_search_ready_jobs(queue_job_list, done_job_list, ready_job_list);
-
-  EXPECT_EQ(queue_job_list->size, 1);
-  EXPECT_EQ(ready_job_list->size, 1);
-  EXPECT_TRUE(list_contains_data(CTorchQueueJob)(ready_job_list, job_4) !=
-              nullptr);
-  EXPECT_TRUE(list_contains_data(CTorchQueueJob)(queue_job_list, job_4) ==
-              nullptr);
-  EXPECT_TRUE(list_contains_data(CTorchQueueJob)(ready_job_list, job_5) ==
-              nullptr);
-}
-
-TEST(cTorchSchedulerTest, testStartScheduler) {
-  /**
-   *  node_1 --> node_2 --> node_4 --> node_5
-   *    |                      ^
-   *    |------> node_3 -------|
-   */
-
-  CTorchNode *node_1 = create_dummy_node();
-  CTorchNode *node_2 = create_dummy_node();
-  CTorchNode *node_3 = create_dummy_node();
-  CTorchNode *node_4 = create_dummy_node();
-  CTorchNode *node_5 = create_dummy_node();
-
-  insert_list(CTorchNode)(node_2->inbound_nodes, node_1);
-  insert_list(CTorchNode)(node_3->inbound_nodes, node_1);
-  insert_list(CTorchNode)(node_4->inbound_nodes, node_2);
-  insert_list(CTorchNode)(node_4->inbound_nodes, node_3);
-  insert_list(CTorchNode)(node_5->inbound_nodes, node_4);
+  array_set(CTorchNode)(node_2->inbound_nodes, 0, node_1);
+  array_set(CTorchNode)(node_3->inbound_nodes, 0, node_1);
+  array_set(CTorchNode)(node_4->inbound_nodes, 0, node_2);
+  array_set(CTorchNode)(node_4->inbound_nodes, 1, node_3);
+  array_set(CTorchNode)(node_5->inbound_nodes, 0, node_4);
 
   CTorchGraph *graph = create_dummy_graph();
   insert_list(CTorchNode)(graph->node_list, node_1);
@@ -119,23 +48,101 @@ TEST(cTorchSchedulerTest, testStartScheduler) {
   CTorchConfig *config = (CTorchConfig *)MALLOC(sizeof(CTorchConfig));
   config->num_workers = 4;
   CTorchScheduler *scheduler = cth_new_scheduler(config, graph);
+
+  // Manually update status
+  cth_set_bit(scheduler->done_status, 0);
+  cth_clear_bit(scheduler->ready_status, 0);
+  cth_clear_bit(scheduler->queue_status, 0);
+
+  cth_set_bit(scheduler->done_status, 1);
+  cth_clear_bit(scheduler->ready_status, 1);
+  cth_clear_bit(scheduler->queue_status, 1);
+
+  cth_set_bit(scheduler->done_status, 2);
+  cth_clear_bit(scheduler->ready_status, 2);
+  cth_clear_bit(scheduler->queue_status, 2);
+
+  List(CTorchQueueJob) *ready_jobs = new_list(CTorchQueueJob)();
+  cth_search_ready_jobs(scheduler, ready_jobs);
+
+  // NODE 4 ready
+  EXPECT_EQ(cth_is_bit_set(scheduler->ready_status, 3), true);
+  EXPECT_EQ(cth_is_bit_set(scheduler->queue_status, 3), false);
+  EXPECT_EQ(cth_is_bit_set(scheduler->done_status, 3), false);
+  EXPECT_EQ(ready_jobs->size, 1);
+  EXPECT_EQ(ready_jobs->head->data->node, node_4);
+
+  // node 5 queue
+  EXPECT_EQ(cth_is_bit_set(scheduler->ready_status, 4), false);
+  EXPECT_EQ(cth_is_bit_set(scheduler->queue_status, 4), true);
+  EXPECT_EQ(cth_is_bit_set(scheduler->done_status, 3), false);
+}
+
+TEST(cTorchSchedulerTest, testStartScheduler) {
+  /**
+   *  node_1 --> node_2 --> node_4 --> node_5
+   *    |                      ^
+   *    |------> node_3 -------|
+   */
+
+  CTorchNode *node_1 = create_dummy_node(0, 0, 2);
+  CTorchNode *node_2 = create_dummy_node(1, 1, 1);
+  CTorchNode *node_3 = create_dummy_node(2, 1, 1);
+  CTorchNode *node_4 = create_dummy_node(3, 2, 1);
+  CTorchNode *node_5 = create_dummy_node(4, 1, 0);
+
+  array_set(CTorchNode)(node_2->inbound_nodes, 0, node_1);
+  array_set(CTorchNode)(node_3->inbound_nodes, 0, node_1);
+  array_set(CTorchNode)(node_4->inbound_nodes, 0, node_2);
+  array_set(CTorchNode)(node_4->inbound_nodes, 1, node_3);
+  array_set(CTorchNode)(node_5->inbound_nodes, 0, node_4);
+
+  CTorchGraph *graph = create_dummy_graph();
+  insert_list(CTorchNode)(graph->node_list, node_1);
+  insert_list(CTorchNode)(graph->node_list, node_2);
+  insert_list(CTorchNode)(graph->node_list, node_3);
+  insert_list(CTorchNode)(graph->node_list, node_4);
+  insert_list(CTorchNode)(graph->node_list, node_5);
+
+  CTorchConfig *config = (CTorchConfig *)MALLOC(sizeof(CTorchConfig));
+  config->num_workers = CPU_CORES;
+  CTorchScheduler *scheduler = cth_new_scheduler(config, graph);
   CTorchWorkerPool *pool = cth_new_pool(scheduler, config);
   cth_start_scheduler(scheduler);
   cth_close_pool(scheduler, pool);
 
-  CTorchQueueJob *node_1_job =
-      cth_get_job_for_node(node_1, scheduler->job_list, false);
-  CTorchQueueJob *node_2_job =
-      cth_get_job_for_node(node_2, scheduler->job_list, false);
-  CTorchQueueJob *node_3_job =
-      cth_get_job_for_node(node_3, scheduler->job_list, false);
-  CTorchQueueJob *node_4_job =
-      cth_get_job_for_node(node_4, scheduler->job_list, false);
-  CTorchQueueJob *node_5_job =
-      cth_get_job_for_node(node_5, scheduler->job_list, false);
-  EXPECT_EQ(node_1_job->status, CTH_JOB_STATUS_DONE);
-  EXPECT_EQ(node_2_job->status, CTH_JOB_STATUS_DONE);
-  EXPECT_EQ(node_3_job->status, CTH_JOB_STATUS_DONE);
-  EXPECT_EQ(node_4_job->status, CTH_JOB_STATUS_DONE);
-  EXPECT_EQ(node_5_job->status, CTH_JOB_STATUS_DONE);
+  // all bits are good
+  EXPECT_EQ(cth_are_all_bits_clear(scheduler->queue_status), true);
+  EXPECT_EQ(cth_are_all_bits_clear(scheduler->ready_status), true);
+  EXPECT_EQ(cth_are_all_bits_set(scheduler->done_status), true);
+
+  for (list_index_t i = 0; i < scheduler->job_list->size; i++) {
+    CTorchQueueJob *job = list_at(CTorchQueueJob)(scheduler->job_list, i);
+    EXPECT_EQ(job->status, CTH_JOB_STATUS_DONE);
+  }
+}
+
+TEST(cTorchSchedulerTest, testManyTasks) {
+  /**
+   *  N nodes --> node_final
+   */
+  int N_DEPENDENTS = 10000;
+
+  CTorchGraph *graph = create_dummy_graph();
+
+  CTorchNode *node_final = create_dummy_node(N_DEPENDENTS, N_DEPENDENTS, 0);
+  insert_list(CTorchNode)(graph->node_list, node_final);
+
+  for (int i = 0; i < N_DEPENDENTS; i++) {
+    CTorchNode *node = create_dummy_node(i, 0, 1);
+    array_set(CTorchNode)(node_final->inbound_nodes, i, node);
+    insert_list(CTorchNode)(graph->node_list, node);
+  }
+
+  CTorchConfig *config = (CTorchConfig *)MALLOC(sizeof(CTorchConfig));
+  config->num_workers = CPU_CORES;
+  CTorchScheduler *scheduler = cth_new_scheduler(config, graph);
+  CTorchWorkerPool *pool = cth_new_pool(scheduler, config);
+  cth_start_scheduler(scheduler);
+  cth_close_pool(scheduler, pool);
 }

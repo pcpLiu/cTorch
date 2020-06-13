@@ -5,6 +5,7 @@
 #include "cTorch/mem_util.h"
 
 #include <stdbool.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -61,10 +62,10 @@
  *    - The item itself will not be free
  */
 
-/*
-  List index type
-*/
-typedef int32_t list_index_t;
+/**
+ * List index type
+ */
+typedef uint32_t list_index_t;
 
 // Generic list item struct
 //
@@ -265,6 +266,9 @@ typedef int32_t list_index_t;
                                                                                \
     ListItem(data_type) *old_head = list->head;                                \
     list->head = old_head->next_item;                                          \
+    if (list->head && list->head->prev_item != NULL) {                         \
+      list->head->prev_item = NULL;                                            \
+    }                                                                          \
     list->size--;                                                              \
     if (list->size == 0) {                                                     \
       list->tail = NULL;                                                       \
@@ -299,12 +303,22 @@ typedef int32_t list_index_t;
           list->size);                                                         \
     }                                                                          \
                                                                                \
-    ListItem(data_type) *item = list->head;                                    \
-    list_index_t i = 0;                                                        \
-    while (i != index) {                                                       \
-      item = item->next_item;                                                  \
-      i++;                                                                     \
-    };                                                                         \
+    ListItem(data_type) *item = NULL;                                          \
+    if (index < list->size / 2) {                                              \
+      item = list->head;                                                       \
+      list_index_t i = 0;                                                      \
+      while (i != index) {                                                     \
+        item = item->next_item;                                                \
+        i++;                                                                   \
+      };                                                                       \
+    } else {                                                                   \
+      item = list->tail;                                                       \
+      list_index_t i = list->size - 1;                                         \
+      while (i != index) {                                                     \
+        item = item->prev_item;                                                \
+        i--;                                                                   \
+      };                                                                       \
+    }                                                                          \
     return item->data;                                                         \
   }
 #define impl_list_at_func(data_type)                                           \

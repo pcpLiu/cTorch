@@ -71,6 +71,26 @@
     }                                                                          \
   } while (0)
 
+/**
+ * Force a == b. This assumes a, b are primiteve types.
+ */
+#define FORCE_EQ(a, b, ...)                                                    \
+  do {                                                                         \
+    if (a != b) {                                                              \
+      FAIL_EXIT(CTH_LOG_ERR, "FORCE_EQ failes. Info: %s", __VA_ARGS__);        \
+    }                                                                          \
+  } while (0)
+
+/**
+ * Force a != b. This assumes a, b are primiteve types.
+ */
+#define FORCE_NOT_EQ(a, b, ...)                                                \
+  do {                                                                         \
+    if (a == b) {                                                              \
+      FAIL_EXIT(CTH_LOG_ERR, "FORCE_NOT_EQ failes. Info: %s", __VA_ARGS__);    \
+    }                                                                          \
+  } while (0)
+
 /*******************************************************************************
  *
  * Global config

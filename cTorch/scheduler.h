@@ -1,6 +1,7 @@
 #ifndef CTH_SCHEDULER_H
 #define CTH_SCHEDULER_H
 
+#include "cTorch/bit_array.h"
 #include "cTorch/config.h"
 #include "cTorch/graph.h"
 #include "cTorch/node.h"
@@ -10,13 +11,16 @@
  * Scheduler is used to arrange a graph's execution order
  */
 typedef struct CTorchScheduler {
+  CTorchQueue *
+      exe_queue; /* Queue for nodes to be executed. Scheduler will put nodes in
+                      this queue and workers will fetch nodes from this queue */
   CTorchQueue
-      *ready_queue; /* Queue for ops to be executed. Scheduler will put op in
-                       this queue and workers will fetch op from this queue */
-  CTorchQueue
-      *done_queue; /* Queue for executed ops. Workers will put op in this queue
-                      and scheduelr will fetch op from this queue  */
-  List(CTorchQueueJob) * job_list; /* Full list of jobs (ops) to be executed */
+      *ret_queue; /* Queue for executed nodes. Workers will put nodes in this
+                      queue and scheduelr will fetch nodes from this queue  */
+  List(CTorchQueueJob) * job_list; /* List of jobs executed by this scheduler */
+  bit_array_t *queue_status;       /* Queue status of all jobs */
+  bit_array_t *done_status;        /* Done status of all jobs */
+  bit_array_t *ready_status;       /* Ready status of all jobs */
 } CTorchScheduler;
 
 /**
@@ -35,33 +39,13 @@ CTorchScheduler *cth_new_scheduler(CTorchConfig *config, CTorchGraph *graph);
 void cth_start_scheduler(CTorchScheduler *scheduler);
 
 /**
- * Find ready jobs. A job is ready:
- *    - All inbounds node are done
- *    - Or, no inbounds
- *
- * Note:
- *    Ready jobs will be removed from queue_job_list
+ * Search eady jobs and insert into ready_jobs
  *
  * Arguments:
- *    - queue_job_list: jobs in queue
- *    - done_job_list: done jobs list
- *    - ready_job_list: results
+ *    - scheduler: scheduler
+ *    - ready_jobs: list to insert results
  */
 void cth_search_ready_jobs(
-    List(CTorchQueueJob) * queue_job_list,
-    List(CTorchQueueJob) * done_job_list,
-    List(CTorchQueueJob) * ready_job_list);
-
-/**
- * Given a graph node, lookup it's job in the job list.
- *
- * Arguments:
- *    - node: target node
- *    - job_list: list to be searched
- *    - fail_not_found: If true, function call FAIL_EXIT if not found. If false,
- *                      function returns NULL if not found.
- */
-CTorchQueueJob *cth_get_job_for_node(
-    CTorchNode *node, List(CTorchQueueJob) * job_list, bool fail_not_found);
+    CTorchScheduler *scheduler, List(CTorchQueueJob) * ready_jobs);
 
 #endif /* SCHEDULER_H */

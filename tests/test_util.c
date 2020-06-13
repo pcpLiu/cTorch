@@ -25,14 +25,6 @@ bool _rand_bool(void) {
     }                                                                          \
   }
 
-CTorchNode *create_dummy_node() {
-  CTorchNode *node = (CTorchNode *)MALLOC(sizeof(CTorchNode));
-  node->node_type = CTH_NODE_TYPE_OPERATOR;
-  node->inbound_nodes = new_list(CTorchNode)();
-  node->outbound_nodes = new_list(CTorchNode)();
-  return node;
-};
-
 CTorchTensor *create_dummy_tensor(tensor_dim_t *dims, tensor_dim_t n_dim,
                                   CTH_TENSOR_DATA_TYPE data_type, float min,
                                   float max) {
@@ -161,4 +153,14 @@ CTorchGraph *create_dummy_graph() {
   CTorchGraph *graph = MALLOC(sizeof(CTorchGraph));
   graph->node_list = new_list(CTorchNode)();
   return graph;
+}
+
+CTorchNode *create_dummy_node(node_id_t id, array_index_t inbound_size,
+                              array_index_t outbound_size) {
+  CTorchNode *node = (CTorchNode *)MALLOC(sizeof(CTorchNode));
+  node->node_type = CTH_NODE_TYPE_OPERATOR;
+  node->node_id = id;
+  node->inbound_nodes = new_array(CTorchNode)(inbound_size);
+  node->outbound_nodes = new_array(CTorchNode)(outbound_size);
+  return node;
 }

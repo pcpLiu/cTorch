@@ -18,11 +18,16 @@
   while (0)
 
 bit_array_t *cth_new_bit_array(bit_array_index_t size) {
+  FORCE_NOT_EQ(0, size, "bit array size could not be 0");
+
   bit_array_t *array = MALLOC(sizeof(bit_array_t));
   array->size = size;
-  array->num_ints = ceil(size / BITS_INT_UNIT_SIZE);
+  array->num_ints = 1 + ((size - 1) / BITS_INT_UNIT_SIZE); // size != 0
   array->bits = MALLOC(sizeof(bit_array_int_t) * array->num_ints);
+
+  /* Clear all bits */
   memset(array->bits, 0, sizeof(bit_array_int_t) * array->num_ints);
+
   return array;
 }
 
@@ -55,4 +60,43 @@ bool cth_is_bit_set(bit_array_t *array, bit_array_index_t i) {
   } else {
     return false;
   }
+}
+
+bool cth_are_all_bits_clear(bit_array_t *array) {
+  FAIL_NULL_PTR(array);
+
+  /**
+   * All integers' values are 0
+   */
+  for (bit_array_index_t i = 0; i < array->num_ints; i++) {
+    if (*(array->bits + i) != 0) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+bool cth_are_all_bits_set(bit_array_t *array) {
+  FAIL_NULL_PTR(array);
+
+  /**
+   * First n-1 integers' values are 2^32.
+   */
+  if (array->num_ints > 1) {
+    for (bit_array_index_t i = 0; i < array->num_ints - 1; i++) {
+      if (*(array->bits + i) != (uint32_t)pow(2, 32)) {
+        return false;
+      }
+    }
+  }
+
+  /**
+   * Last integer, bits in range [size % 32: 0] should 1. Like:
+   *    0...000011111...11
+   */
+  bit_array_int_t mod_bits = array->size % BITS_INT_UNIT_SIZE;
+  bit_array_int_t mask = (1 << mod_bits) - 1; /* 0...000011111...11 */
+  bit_array_int_t last_int = *(array->bits + array->num_ints - 1);
+  return last_int == mask;
 }

@@ -11,7 +11,7 @@ TEST(cTorchPoolTest, testCreate) {
   CTorchGraph *graph = create_dummy_graph();
   int num_nodes = 1000;
   for (int i = 0; i < num_nodes; i++) {
-    insert_list(CTorchNode)(graph->node_list, create_dummy_node());
+    insert_list(CTorchNode)(graph->node_list, create_dummy_node(i, 0, 0));
   }
 
   CTorchScheduler *scheduler = cth_new_scheduler(config, graph);
@@ -20,13 +20,13 @@ TEST(cTorchPoolTest, testCreate) {
   // Add job manually
   for (int i = 0; i < num_nodes; i++) {
     CTorchQueueJob *job = list_at(CTorchQueueJob)(scheduler->job_list, i);
-    write(scheduler->ready_queue->pipe_fd[1], &job, sizeof(CTorchQueueJob *));
+    write(scheduler->exe_queue->pipe_fd[1], &job, sizeof(CTorchQueueJob *));
   }
 
   // check finish
   for (int i = 0; i < num_nodes; i++) {
     CTorchQueueJob *job = list_at(CTorchQueueJob)(scheduler->job_list, i);
-    read(scheduler->done_queue->pipe_fd[0], &job, sizeof(CTorchQueueJob *));
+    read(scheduler->ret_queue->pipe_fd[0], &job, sizeof(CTorchQueueJob *));
     EXPECT_EQ(CTH_JOB_STATUS_DONE, job->status);
   }
 
@@ -34,7 +34,7 @@ TEST(cTorchPoolTest, testCreate) {
   for (thread_n_t i = 0; i < config->num_workers; i++) {
     CTorchQueueJob *job = (CTorchQueueJob *)MALLOC(sizeof(job));
     job->worker_kill = true;
-    write(scheduler->ready_queue->pipe_fd[1], &job, sizeof(CTorchQueueJob *));
+    write(scheduler->exe_queue->pipe_fd[1], &job, sizeof(CTorchQueueJob *));
   }
 }
 
@@ -45,7 +45,7 @@ TEST(cTorchPoolTest, testKill) {
   CTorchGraph *graph = create_dummy_graph();
   int num_nodes = 1000;
   for (int i = 0; i < num_nodes; i++) {
-    insert_list(CTorchNode)(graph->node_list, create_dummy_node());
+    insert_list(CTorchNode)(graph->node_list, create_dummy_node(i, 0, 0));
   }
 
   CTorchScheduler *scheduler = cth_new_scheduler(config, graph);
@@ -54,13 +54,13 @@ TEST(cTorchPoolTest, testKill) {
   // Add job manually
   for (int i = 0; i < num_nodes; i++) {
     CTorchQueueJob *job = list_at(CTorchQueueJob)(scheduler->job_list, i);
-    write(scheduler->ready_queue->pipe_fd[1], &job, sizeof(CTorchQueueJob *));
+    write(scheduler->exe_queue->pipe_fd[1], &job, sizeof(CTorchQueueJob *));
   }
 
   // check finish
   for (int i = 0; i < num_nodes; i++) {
     CTorchQueueJob *job = list_at(CTorchQueueJob)(scheduler->job_list, i);
-    read(scheduler->done_queue->pipe_fd[0], &job, sizeof(CTorchQueueJob *));
+    read(scheduler->ret_queue->pipe_fd[0], &job, sizeof(CTorchQueueJob *));
     EXPECT_EQ(CTH_JOB_STATUS_DONE, job->status);
   }
 

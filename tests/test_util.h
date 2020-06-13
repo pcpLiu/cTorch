@@ -10,6 +10,8 @@ extern "C" {
 
 #include "cTorch/c_torch.h"
 
+#define CPU_CORES 4
+
 CTorchTensor *create_dummy_tensor(tensor_dim_t *dims, tensor_dim_t n_dim,
                                   CTH_TENSOR_DATA_TYPE data_type, float min,
                                   float max);
@@ -31,7 +33,8 @@ CTorchOperator *create_dummy_op();
 /*
   Create a dummy node without any information.
 */
-CTorchNode *create_dummy_node();
+CTorchNode *create_dummy_node(node_id_t id, array_index_t inbound_size,
+                              array_index_t outbound_size);
 
 /**
  * Create a dummy graph
