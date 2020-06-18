@@ -21,4 +21,4 @@ script:
   - bash ../travis/test.sh
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - bash ../travis/codcov.sh
