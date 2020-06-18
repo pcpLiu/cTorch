@@ -74,8 +74,10 @@ if(${DEBUG_TEST})
     # Enable debug code compiling
     add_compile_definitions(CTH_TEST_DEBUG)
 
-    # profiling enable
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pg --coverage")
+    # profiling enable on linux
+    if(LINUX)
+        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pg --coverage")
+    endif()
 endif()
 
 # TODO: asprintf
@@ -133,8 +135,8 @@ if(PTHREAD_ENABLE)
     target_link_libraries(cTorch Threads::Threads)
 endif()
 
-# link gcov for test
-if(${DEBUG_TEST})
+# link gcov for test on linux
+if(${DEBUG_TEST} AND LINUX)
     target_link_libraries(cTorch gcov)
 endif()
 
