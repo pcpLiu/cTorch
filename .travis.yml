@@ -4,6 +4,10 @@ os:
   - linux
   - osx
 
+env:
+  global:
+    - CODECOV_TOKEN="a304e6b7-f321-4bfc-b622-27bf15ed93b4"
+
 compiler:
   - gcc
   - clang
@@ -12,4 +16,9 @@ before_script:
   - mkdir build
   - cd build
 
-script: bash ../travis/build.sh
+script:
+  - bash ../travis/build.sh
+  - bash ../travis/test.sh
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

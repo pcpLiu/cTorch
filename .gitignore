@@ -43,6 +43,7 @@ _deps
 
 include/divisible/*
 
+.gcov
 
 ## Local
 

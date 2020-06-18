@@ -75,7 +75,7 @@ if(${DEBUG_TEST})
     add_compile_definitions(CTH_TEST_DEBUG)
 
     # profiling enable
-    set(CMAKE_C_FLAGS ${CMAKE_C_FLAGS} -pg)
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pg --coverage")
 endif()
 
 # TODO: asprintf
@@ -83,7 +83,18 @@ add_compile_definitions(_GNU_SOURCE)
 
 ################################################################################
 #
-# Core sources
+# Import pthread
+#
+set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
+find_package(Threads REQUIRED)
+
+add_compile_definitions(USE_PTHREAD)
+
+
+
+################################################################################
+#
+# Source files
 #
 set(core_src
     bit_array.c
@@ -103,22 +114,6 @@ set(core_src
     storage.c
 )
 
-################################################################################
-#
-# Import pthread
-#
-set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
-find_package(Threads REQUIRED)
-
-add_compile_definitions(USE_PTHREAD)
-set(core_src
-    ${core_src}
-)
-
-################################################################################
-#
-# Sub folders
-#
 add_subdirectory(operators) # ${operator_src}
 
 ################################################################################
@@ -126,7 +121,7 @@ add_subdirectory(operators) # ${operator_src}
 # Setup cTorch target
 #
 add_library(cTorch
-    STATIC
+    SHARED
     ${core_src}
     ${operator_src}
 )
@@ -136,6 +131,11 @@ set_target_properties(cTorch PROPERTIES C_STANDARD 11)
 # link pthread
 if(PTHREAD_ENABLE)
     target_link_libraries(cTorch Threads::Threads)
+endif()
+
+# link gcov for test
+if(${DEBUG_TEST})
+    target_link_libraries(cTorch gcov)
 endif()
 
 ################################################################################
@@ -148,7 +148,7 @@ install(TARGETS cTorch
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/cTorch
 )
 install(
-    DIRECTORY ${cTorch_SOURCE_DIR}
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/include
+    DIRECTORY ${cTorch_lib_SOURCE_DIR}
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
     FILES_MATCHING PATTERN "*.h"
 )
