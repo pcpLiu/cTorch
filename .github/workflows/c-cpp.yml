@@ -7,9 +7,16 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest,macos-latest
-
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: cmake init
+      run: cmake .
+    - name: make
+      run: make
+  build-mac:
+    runs-on: macos-latest 
     steps:
     - uses: actions/checkout@v2
     - name: cmake init
