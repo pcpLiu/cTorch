@@ -26,8 +26,9 @@ bit_array_t *cth_new_bit_array(bit_array_index_t size) {
   array->bits = MALLOC(sizeof(bit_array_int_t) * array->num_ints);
 
   /* Clear all bits */
-  memset(array->bits, 0, sizeof(bit_array_int_t) * array->num_ints);
-
+  for (bit_array_index_t i = 0; i < array->num_ints; i++) {
+    *(array->bits + i) = 0;
+  }
   return array;
 }
 
@@ -83,9 +84,10 @@ bool cth_are_all_bits_set(bit_array_t *array) {
   /**
    * First n-1 integers' values are 2^32.
    */
+  bit_array_int_t all_one = ~(0 & 0);
   if (array->num_ints > 1) {
     for (bit_array_index_t i = 0; i < array->num_ints - 1; i++) {
-      if (*(array->bits + i) != (uint32_t)pow(2, 32)) {
+      if (*(array->bits + i) != all_one) {
         return false;
       }
     }

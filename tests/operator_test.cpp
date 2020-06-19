@@ -79,7 +79,7 @@ TEST(cTorchOperatorTest, testGetInputOutputByName) {
               "Could not find tensor");
 }
 
-TEST(cTorchOperatorTest, testDeepFree) {
+TEST(cTorchOperatorTest, testDeepFreeMEMRECORD) {
   tensor_dim_t n_dim = 2;
   tensor_dim_t *dims = (tensor_dim_t *)MALLOC(n_dim * sizeof(tensor_dim_t));
   dims[0] = 10;

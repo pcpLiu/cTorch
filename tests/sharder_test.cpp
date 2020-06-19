@@ -4,7 +4,7 @@
 
 #include <cmath>
 
-TEST(cTorchSharderTest, testTensorElewiseSharding) {
+TEST(cTorchSharderTest, testTensorElewiseShardingMEMRECORD) {
   tensor_dim_t n_dim = 3;
   tensor_dim_t *dims = (tensor_dim_t *)MALLOC(n_dim * sizeof(tensor_dim_t));
   dims[0] = 7;
@@ -39,7 +39,7 @@ TEST(cTorchSharderTest, testTensorElewiseSharding) {
   EXPECT_EQ(0, cth_get_num_unfree_records());
 }
 
-TEST(cTorchSharderTest, testOperatorElewiseSharding) {
+TEST(cTorchSharderTest, testOperatorElewiseShardingMEMRECORD) {
   tensor_dim_t n_dim = 2;
   tensor_dim_t *dims = (tensor_dim_t *)MALLOC(n_dim * sizeof(tensor_dim_t));
   dims[0] = 10;

@@ -77,8 +77,10 @@ TEST(cTorchBitsArrayTest, testCheck) {
   EXPECT_EQ(cth_is_bit_set(bits_array, 33), false);
 }
 
-TEST(cTorchBitsArrayTest, testAllClearCheck) {
+TEST(cTorchBitsArrayTest, testAllClearSetCheck) {
   bit_array_t *bits_array = cth_new_bit_array(500);
+  EXPECT_EQ(cth_are_all_bits_clear(bits_array), true);
+
   cth_set_bit(bits_array, 0);
   cth_set_bit(bits_array, 17);
   cth_set_bit(bits_array, 100);
@@ -90,14 +92,13 @@ TEST(cTorchBitsArrayTest, testAllClearCheck) {
   for (bit_array_index_t i = 0; i < 500; i++) {
     cth_set_bit(bits_array, i);
   }
-  EXPECT_EQ(cth_are_all_bits_set(bits_array), true);
   EXPECT_EQ(cth_are_all_bits_clear(bits_array), false);
+  EXPECT_EQ(cth_are_all_bits_set(bits_array), true);
 
   bit_array_t *bits_array_2 = cth_new_bit_array(4);
-  cth_set_bit(bits_array_2, 0);
-  cth_set_bit(bits_array_2, 1);
-  cth_set_bit(bits_array_2, 2);
-  cth_set_bit(bits_array_2, 3);
+  for (bit_array_index_t i = 0; i < 4; i++) {
+    cth_set_bit(bits_array_2, i);
+  }
 
   EXPECT_EQ(cth_are_all_bits_set(bits_array_2), true);
   EXPECT_EQ(cth_are_all_bits_clear(bits_array_2), false);

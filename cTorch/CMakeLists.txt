@@ -75,7 +75,7 @@ if(${DEBUG_TEST})
     add_compile_definitions(CTH_TEST_DEBUG)
 
     # profiling enable on linux
-    if(LINUX)
+    if(LINUX AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
         set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pg --coverage")
     endif()
 endif()
@@ -136,7 +136,7 @@ if(PTHREAD_ENABLE)
 endif()
 
 # link gcov for test on linux
-if(${DEBUG_TEST} AND LINUX)
+if(${DEBUG_TEST} AND LINUX AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     target_link_libraries(cTorch gcov)
 endif()
 

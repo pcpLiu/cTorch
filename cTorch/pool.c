@@ -75,7 +75,6 @@ cth_new_pool(CTorchScheduler *scheduler, CTorchConfig *config) {
 void cth_close_pool(CTorchScheduler *scheduler, CTorchWorkerPool *pool) {
   FAIL_NULL_PTR(scheduler);
   FAIL_NULL_PTR(pool);
-
   for (thread_n_t i = 0; i < pool->num_workers; i++) {
     CTorchQueueJob *job = MALLOC(sizeof(CTorchQueueJob));
     job->worker_kill = true;
@@ -86,6 +85,7 @@ void cth_close_pool(CTorchScheduler *scheduler, CTorchWorkerPool *pool) {
   int err;
   void *status;
   for (thread_n_t i = 0; i < pool->num_workers; i++) {
+    CTH_LOG(CTH_LOG_INFO, "gonna join thread %u", i);
     err = pthread_join(*(pool->workers + i), &status);
     if (err) {
       FAIL_EXIT(

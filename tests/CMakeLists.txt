@@ -1,8 +1,9 @@
-project(cTorch_test LANGUAGES C CXX)
+project(cTorch_test LANGUAGES CXX)
 
-# Profiling
-set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -pg)
-
+# Profiling in linux
+if(${DEBUG_TEST} AND LINUX AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -pg)
+endif()
 
 # Test files
 file(GLOB_RECURSE test_sources LIST_DIRECTORIES false *_test.cpp)
