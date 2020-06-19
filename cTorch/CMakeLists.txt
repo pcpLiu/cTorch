@@ -79,7 +79,7 @@ if(${DEBUG_TEST})
         ${CMAKE_SYSTEM_NAME} STREQUAL "Linux"
         AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU"
     )
-        message("[cTorch] Will enable gcov")
+        message("[cTorch] Append flag: -pg --coverage")
         set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pg --coverage")
     endif()
 endif()
@@ -127,7 +127,7 @@ add_subdirectory(operators) # ${operator_src}
 # Setup cTorch target
 #
 add_library(cTorch
-    SHARED
+    STATIC
     ${core_src}
     ${operator_src}
 )
@@ -145,7 +145,7 @@ if(
     AND  ${CMAKE_SYSTEM_NAME} STREQUAL "Linux"
     AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU"
 )
-    message("[cTorch] Will link gcov")
+    message("[cTorch]: Will link gcov")
     target_link_libraries(cTorch gcov)
 endif()
 

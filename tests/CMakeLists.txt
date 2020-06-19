@@ -6,7 +6,7 @@ if(
     AND ${CMAKE_SYSTEM_NAME} STREQUAL "Linux"
     AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU"
 )
-    message("[cTorch] Will enable gprof")
+    message("[cTorch_test] Append flag: -pg")
     set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -pg)
 endif()
 
