@@ -126,15 +126,15 @@ TEST(cTorchSchedulerTest, testManyTasks) {
   /**
    *  N nodes --> node_final
    */
-  int N_DEPENDENTS = 1000;
+  int N_DEPENDENTS = 10000;
 
   CTorchGraph *graph = create_dummy_graph(N_DEPENDENTS + 1);
 
-  CTorchNode *node_final = create_dummy_node(N_DEPENDENTS, N_DEPENDENTS, 0);
+  CTorchNode *node_final = create_dummy_node(0, N_DEPENDENTS, 0);
   array_set(CTorchNode)(graph->node_list, N_DEPENDENTS, node_final);
 
   for (array_index_t i = 0; i < N_DEPENDENTS; i++) {
-    CTorchNode *node = create_dummy_node(i, 0, 1);
+    CTorchNode *node = create_dummy_node(0, 0, 1);
     array_set(CTorchNode)(node_final->inbound_nodes, i, node);
     array_set(CTorchNode)(graph->node_list, i, node);
   }

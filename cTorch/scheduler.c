@@ -3,53 +3,6 @@
 
 #include <unistd.h>
 
-/********************************************************************************
- * A simple quick sort impl
- */
-
-static void
-_swap_job(ListItem(CTorchQueueJob) * a, ListItem(CTorchQueueJob) * b) {
-  CTorchQueueJob *t = a->data;
-  a->data = b->data;
-  b->data = t;
-}
-
-static ListItem(CTorchQueueJob) *
-    _partition(ListItem(CTorchQueueJob) * l, ListItem(CTorchQueueJob) * h) {
-  node_id_t x = h->data->node->node_id;
-  ListItem(CTorchQueueJob) *i = l->prev_item;
-
-  for (ListItem(CTorchQueueJob) *j = l; j != h; j = j->next_item) {
-    if (j->data->node->node_id <= x) {
-      i = (i == NULL) ? l : i->next_item;
-      _swap_job(i, j);
-    }
-  }
-  i = (i == NULL) ? l : i->next_item;
-  _swap_job(i, h);
-  return i;
-}
-
-static void _quick_sort_job_lis(
-    ListItem(CTorchQueueJob) * l, ListItem(CTorchQueueJob) * h) {
-  if (h != NULL && l != h && l != h->next_item) {
-    ListItem(CTorchQueueJob) *p = _partition(l, h);
-    _quick_sort_job_lis(l, p->prev_item);
-    _quick_sort_job_lis(p->next_item, h);
-  }
-}
-
-/**
- * Sort jobs list by node_id
- */
-static void _sort_job_list(List(CTorchQueueJob) * jobs) {
-  _quick_sort_job_lis(jobs->head, jobs->tail);
-}
-
-/*
- * End impl of quick sort
- ******************************************************************************/
-
 CTorchScheduler *cth_new_scheduler(CTorchConfig *config, CTorchGraph *graph) {
   FAIL_NULL_PTR(config);
   FAIL_NULL_PTR(graph);
@@ -62,8 +15,11 @@ CTorchScheduler *cth_new_scheduler(CTorchConfig *config, CTorchGraph *graph) {
   scheduler->ready_status = cth_new_bit_array(graph->node_list->size);
 
   /**
-   * Fill job_list. Here we make sure the jobs in this list are sorted by
-   * node_id.
+   * Fill job_list.
+   *
+   * Note: for each node's node_id in this graph, scheduler will reassign them
+   * from 0 - N. The queue_status, done_status & ready_status have a assumption
+   * that all nodes' node_id are natural numbers starting from 0.
    */
   scheduler->job_list = new_array(CTorchQueueJob)(graph->node_list->size);
   for (list_index_t i = 0; i < graph->node_list->size; i++) {
@@ -71,10 +27,10 @@ CTorchScheduler *cth_new_scheduler(CTorchConfig *config, CTorchGraph *graph) {
     job->node = array_at(CTorchNode)(graph->node_list, i);
     job->status = CTH_JOB_STATUS_WAIT;
     job->worker_kill = false;
+    job->node->node_id = i;
     array_set(CTorchQueueJob)(scheduler->job_list, job->node->node_id, job);
     cth_set_bit(scheduler->queue_status, i);
   }
-  // _sort_job_list(scheduler->job_list);
 
   return scheduler;
 }
