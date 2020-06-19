@@ -40,7 +40,7 @@ CTorchNode *create_dummy_node(node_id_t id, array_index_t inbound_size,
 /**
  * Create a dummy graph
  */
-CTorchGraph *create_dummy_graph();
+CTorchGraph *create_dummy_graph(array_index_t num_nodes);
 
 /*
   If all values are NAN, return true.

@@ -25,8 +25,6 @@ typedef uint32_t node_id_t;
 typedef struct {
   node_id_t node_id;       /* Node id. Starting from 0 and consecutive */
   CTH_NODE_TYPE node_type; /* Node type: op or tensor */
-  // struct List(CTorchNode) * inbound_nodes;  /* Inbounds nodes */
-  // struct List(CTorchNode) * outbound_nodes; /* Outbounds nodes */
   struct Array(CTorchNode) * inbound_nodes;  /* Inbounds nodes */
   struct Array(CTorchNode) * outbound_nodes; /* Inbounds nodes */
   CTorchNodeContent conent;                  /* Content */
@@ -48,17 +46,5 @@ declare_list_contains_data_func(CTorchNode);
 declare_list_contains_item_func(CTorchNode);
 declare_list_at_func(CTorchNode);
 declare_list_pop_func(CTorchNode);
-
-// /**
-//  *
-//  */
-// CTorchNode *
-// cth_add_inbound_nodes(CTorchNode *target_node, List(CTorchNode) * nodes);
-
-// /**
-//  *
-//  */
-// CTorchNode *
-// cth_add_outbound_nodes(CTorchNode *target_node, List(CTorchNode) * nodes);
 
 #endif /* NODE_H */

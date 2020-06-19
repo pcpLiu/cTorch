@@ -3,10 +3,10 @@
 #include "gtest/gtest.h"
 
 TEST(cTorchSchedulerTest, testCreate) {
-  CTorchGraph *graph = create_dummy_graph();
   int num_nodes = 10;
-  for (int i = 0; i < num_nodes; i++) {
-    insert_list(CTorchNode)(graph->node_list, create_dummy_node(i, 0, 0));
+  CTorchGraph *graph = create_dummy_graph(num_nodes);
+  for (array_index_t i = 0; i < num_nodes; i++) {
+    array_set(CTorchNode)(graph->node_list, i, create_dummy_node(i, 0, 0));
   }
 
   CTorchConfig *config = (CTorchConfig *)MALLOC(sizeof(CTorchConfig));
@@ -38,12 +38,12 @@ TEST(cTorchSchedulerTest, testSearchReadyJob) {
   array_set(CTorchNode)(node_4->inbound_nodes, 1, node_3);
   array_set(CTorchNode)(node_5->inbound_nodes, 0, node_4);
 
-  CTorchGraph *graph = create_dummy_graph();
-  insert_list(CTorchNode)(graph->node_list, node_1);
-  insert_list(CTorchNode)(graph->node_list, node_2);
-  insert_list(CTorchNode)(graph->node_list, node_3);
-  insert_list(CTorchNode)(graph->node_list, node_4);
-  insert_list(CTorchNode)(graph->node_list, node_5);
+  CTorchGraph *graph = create_dummy_graph(5);
+  array_set(CTorchNode)(graph->node_list, 0, node_1);
+  array_set(CTorchNode)(graph->node_list, 1, node_2);
+  array_set(CTorchNode)(graph->node_list, 2, node_3);
+  array_set(CTorchNode)(graph->node_list, 3, node_4);
+  array_set(CTorchNode)(graph->node_list, 4, node_5);
 
   CTorchConfig *config = (CTorchConfig *)MALLOC(sizeof(CTorchConfig));
   config->num_workers = 4;
@@ -97,12 +97,12 @@ TEST(cTorchSchedulerTest, testStartScheduler) {
   array_set(CTorchNode)(node_4->inbound_nodes, 1, node_3);
   array_set(CTorchNode)(node_5->inbound_nodes, 0, node_4);
 
-  CTorchGraph *graph = create_dummy_graph();
-  insert_list(CTorchNode)(graph->node_list, node_1);
-  insert_list(CTorchNode)(graph->node_list, node_2);
-  insert_list(CTorchNode)(graph->node_list, node_3);
-  insert_list(CTorchNode)(graph->node_list, node_4);
-  insert_list(CTorchNode)(graph->node_list, node_5);
+  CTorchGraph *graph = create_dummy_graph(5);
+  array_set(CTorchNode)(graph->node_list, 0, node_1);
+  array_set(CTorchNode)(graph->node_list, 1, node_2);
+  array_set(CTorchNode)(graph->node_list, 2, node_3);
+  array_set(CTorchNode)(graph->node_list, 3, node_4);
+  array_set(CTorchNode)(graph->node_list, 4, node_5);
 
   CTorchConfig *config = (CTorchConfig *)MALLOC(sizeof(CTorchConfig));
   config->num_workers = CPU_CORES;
@@ -126,17 +126,17 @@ TEST(cTorchSchedulerTest, testManyTasks) {
   /**
    *  N nodes --> node_final
    */
-  int N_DEPENDENTS = 100;
+  int N_DEPENDENTS = 1000;
 
-  CTorchGraph *graph = create_dummy_graph();
+  CTorchGraph *graph = create_dummy_graph(N_DEPENDENTS + 1);
 
   CTorchNode *node_final = create_dummy_node(N_DEPENDENTS, N_DEPENDENTS, 0);
-  insert_list(CTorchNode)(graph->node_list, node_final);
+  array_set(CTorchNode)(graph->node_list, N_DEPENDENTS, node_final);
 
-  for (int i = 0; i < N_DEPENDENTS; i++) {
+  for (array_index_t i = 0; i < N_DEPENDENTS; i++) {
     CTorchNode *node = create_dummy_node(i, 0, 1);
     array_set(CTorchNode)(node_final->inbound_nodes, i, node);
-    insert_list(CTorchNode)(graph->node_list, node);
+    array_set(CTorchNode)(graph->node_list, i, node);
   }
 
   CTorchConfig *config = (CTorchConfig *)MALLOC(sizeof(CTorchConfig));

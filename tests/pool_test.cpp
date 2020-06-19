@@ -8,10 +8,10 @@ TEST(cTorchPoolTest, testCreate) {
   CTorchConfig *config = (CTorchConfig *)MALLOC(sizeof(CTorchConfig));
   config->num_workers = 4;
 
-  CTorchGraph *graph = create_dummy_graph();
   int num_nodes = 1000;
-  for (int i = 0; i < num_nodes; i++) {
-    insert_list(CTorchNode)(graph->node_list, create_dummy_node(i, 0, 0));
+  CTorchGraph *graph = create_dummy_graph(num_nodes);
+  for (array_index_t i = 0; i < num_nodes; i++) {
+    array_set(CTorchNode)(graph->node_list, i, create_dummy_node(i, 0, 0));
   }
 
   CTorchScheduler *scheduler = cth_new_scheduler(config, graph);
@@ -42,10 +42,10 @@ TEST(cTorchPoolTest, testKill) {
   CTorchConfig *config = (CTorchConfig *)MALLOC(sizeof(CTorchConfig));
   config->num_workers = 4;
 
-  CTorchGraph *graph = create_dummy_graph();
   int num_nodes = 1000;
-  for (int i = 0; i < num_nodes; i++) {
-    insert_list(CTorchNode)(graph->node_list, create_dummy_node(i, 0, 0));
+  CTorchGraph *graph = create_dummy_graph(num_nodes);
+  for (array_index_t i = 0; i < num_nodes; i++) {
+    array_set(CTorchNode)(graph->node_list, i, create_dummy_node(i, 0, 0));
   }
 
   CTorchScheduler *scheduler = cth_new_scheduler(config, graph);

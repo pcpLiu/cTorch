@@ -15,6 +15,10 @@ impl_list_pop_func(CTorchQueueJob);
 impl_free_list_func(CTorchQueueJob);
 impl_list_del_func(CTorchQueueJob);
 
+impl_new_array_func(CTorchQueueJob);
+impl_array_at_func(CTorchQueueJob);
+impl_array_set_func(CTorchQueueJob);
+
 void set_non_block(int fd) {
   int flags = fcntl(fd, F_GETFL, 0);
   fcntl(fd, F_SETFL, flags | O_NONBLOCK);

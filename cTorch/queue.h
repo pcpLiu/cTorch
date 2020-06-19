@@ -54,4 +54,9 @@ declare_list_pop_func(CTorchQueueJob);
 declare_free_list_func(CTorchQueueJob);
 declare_list_del_func(CTorchQueueJob);
 
+def_array(CTorchQueueJob);
+declare_new_array_func(CTorchQueueJob);
+declare_array_at_func(CTorchQueueJob);
+declare_array_set_func(CTorchQueueJob);
+
 #endif /* QUEUE_H */

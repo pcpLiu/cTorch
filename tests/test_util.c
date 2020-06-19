@@ -150,9 +150,9 @@ CTorchOperator *create_dummy_op(array_index_t num_inputs,
   return op;
 }
 
-CTorchGraph *create_dummy_graph() {
+CTorchGraph *create_dummy_graph(array_index_t num_nodes) {
   CTorchGraph *graph = MALLOC(sizeof(CTorchGraph));
-  graph->node_list = new_list(CTorchNode)();
+  graph->node_list = new_array(CTorchNode)(num_nodes);
   return graph;
 }
 
