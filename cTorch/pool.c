@@ -85,7 +85,6 @@ void cth_close_pool(CTorchScheduler *scheduler, CTorchWorkerPool *pool) {
   int err;
   void *status;
   for (thread_n_t i = 0; i < pool->num_workers; i++) {
-    CTH_LOG(CTH_LOG_INFO, "gonna join thread %u", i);
     err = pthread_join(*(pool->workers + i), &status);
     if (err) {
       FAIL_EXIT(
