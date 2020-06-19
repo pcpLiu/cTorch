@@ -140,7 +140,11 @@ if(PTHREAD_ENABLE)
 endif()
 
 # link gcov for test on linux
-if(${DEBUG_TEST} AND LINUX AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+if(
+    ${DEBUG_TEST}
+    AND  ${CMAKE_SYSTEM_NAME} STREQUAL "Linux"
+    AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU"
+)
     message("[cTorch] Will link gcov")
     target_link_libraries(cTorch gcov)
 endif()

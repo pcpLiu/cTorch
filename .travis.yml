@@ -18,7 +18,6 @@ before_script:
 
 script:
   - bash ../travis/build.sh
-  - bash ../travis/test.sh
 
 after_success:
   - bash ../travis/codcov.sh

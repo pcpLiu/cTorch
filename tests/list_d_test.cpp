@@ -283,7 +283,7 @@ TEST(cTorchListTest, testFreeListDeep) {
   EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_data_4->status);
 }
 
-TEST(cTorchListTest, testDeleteData) {
+TEST(cTorchListTest, testDeleteDataMEMRECORD) {
   // single thread execution
   List(int) *list = new_list(int)();
   int *data_1 = heap_int(1);
