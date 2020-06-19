@@ -117,7 +117,7 @@ TEST(cTorchSchedulerTest, testStartScheduler) {
   EXPECT_EQ(cth_are_all_bits_set(scheduler->done_status), true);
 
   for (list_index_t i = 0; i < scheduler->job_list->size; i++) {
-    CTorchQueueJob *job = list_at(CTorchQueueJob)(scheduler->job_list, i);
+    CTorchQueueJob *job = array_at(CTorchQueueJob)(scheduler->job_list, i);
     EXPECT_EQ(job->status, CTH_JOB_STATUS_DONE);
   }
 }

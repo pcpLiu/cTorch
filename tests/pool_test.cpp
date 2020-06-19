@@ -19,13 +19,13 @@ TEST(cTorchPoolTest, testCreate) {
 
   // Add job manually
   for (int i = 0; i < num_nodes; i++) {
-    CTorchQueueJob *job = list_at(CTorchQueueJob)(scheduler->job_list, i);
+    CTorchQueueJob *job = array_at(CTorchQueueJob)(scheduler->job_list, i);
     write(scheduler->exe_queue->pipe_fd[1], &job, sizeof(CTorchQueueJob *));
   }
 
   // check finish
   for (int i = 0; i < num_nodes; i++) {
-    CTorchQueueJob *job = list_at(CTorchQueueJob)(scheduler->job_list, i);
+    CTorchQueueJob *job = array_at(CTorchQueueJob)(scheduler->job_list, i);
     read(scheduler->ret_queue->pipe_fd[0], &job, sizeof(CTorchQueueJob *));
     EXPECT_EQ(CTH_JOB_STATUS_DONE, job->status);
   }
@@ -53,13 +53,13 @@ TEST(cTorchPoolTest, testKill) {
 
   // Add job manually
   for (int i = 0; i < num_nodes; i++) {
-    CTorchQueueJob *job = list_at(CTorchQueueJob)(scheduler->job_list, i);
+    CTorchQueueJob *job = array_at(CTorchQueueJob)(scheduler->job_list, i);
     write(scheduler->exe_queue->pipe_fd[1], &job, sizeof(CTorchQueueJob *));
   }
 
   // check finish
   for (int i = 0; i < num_nodes; i++) {
-    CTorchQueueJob *job = list_at(CTorchQueueJob)(scheduler->job_list, i);
+    CTorchQueueJob *job = array_at(CTorchQueueJob)(scheduler->job_list, i);
     read(scheduler->ret_queue->pipe_fd[0], &job, sizeof(CTorchQueueJob *));
     EXPECT_EQ(CTH_JOB_STATUS_DONE, job->status);
   }

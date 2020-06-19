@@ -65,16 +65,16 @@ CTorchScheduler *cth_new_scheduler(CTorchConfig *config, CTorchGraph *graph) {
    * Fill job_list. Here we make sure the jobs in this list are sorted by
    * node_id.
    */
-  scheduler->job_list = new_list(CTorchQueueJob)();
+  scheduler->job_list = new_array(CTorchQueueJob)(graph->node_list->size);
   for (list_index_t i = 0; i < graph->node_list->size; i++) {
     CTorchQueueJob *job = MALLOC(sizeof(CTorchQueueJob));
     job->node = array_at(CTorchNode)(graph->node_list, i);
     job->status = CTH_JOB_STATUS_WAIT;
     job->worker_kill = false;
-    insert_list(CTorchQueueJob)(scheduler->job_list, job);
+    array_set(CTorchQueueJob)(scheduler->job_list, job->node->node_id, job);
     cth_set_bit(scheduler->queue_status, i);
   }
-  _sort_job_list(scheduler->job_list);
+  // _sort_job_list(scheduler->job_list);
 
   return scheduler;
 }
@@ -101,7 +101,7 @@ void cth_search_ready_jobs(
      */
 
     /* This assumes job_list is sorted by node_id */
-    queue_job = list_at(CTorchQueueJob)(scheduler->job_list, queue_job_id);
+    queue_job = array_at(CTorchQueueJob)(scheduler->job_list, queue_job_id);
     queue_node = queue_job->node;
 
     bool job_ready = true;

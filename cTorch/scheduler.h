@@ -16,15 +16,16 @@ typedef struct CTorchScheduler {
                       this queue and workers will fetch nodes from this queue */
   CTorchQueue
       *ret_queue; /* Queue for executed nodes. Workers will put nodes in this
-                      queue and scheduelr will fetch nodes from this queue  */
-  List(CTorchQueueJob) * job_list; /* List of jobs executed by this scheduler */
-  bit_array_t *queue_status;       /* Queue status of all jobs */
-  bit_array_t *done_status;        /* Done status of all jobs */
-  bit_array_t *ready_status;       /* Ready status of all jobs */
+                      queue and scheduler will fetch nodes from this queue  */
+  Array(CTorchQueueJob) *
+      job_list;              /* List of jobs executed by this scheduler */
+  bit_array_t *queue_status; /* Queue status of all jobs */
+  bit_array_t *done_status;  /* Done status of all jobs */
+  bit_array_t *ready_status; /* Ready status of all jobs */
 } CTorchScheduler;
 
 /**
- * Create a new scheduler based on cofig and graph. Function will parse graph's
+ * Create a new scheduler based on config and graph. Function will parse graph's
  * nodes and fill into job_list.
  *
  * Arguments
@@ -39,7 +40,7 @@ CTorchScheduler *cth_new_scheduler(CTorchConfig *config, CTorchGraph *graph);
 void cth_start_scheduler(CTorchScheduler *scheduler);
 
 /**
- * Search eady jobs and insert into ready_jobs
+ * Search ready jobs and insert into ready_jobs
  *
  * Arguments:
  *    - scheduler: scheduler
