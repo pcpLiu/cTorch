@@ -1,7 +1,12 @@
 project(cTorch_test LANGUAGES CXX)
 
 # Profiling in linux
-if(${DEBUG_TEST} AND LINUX AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+if(
+    ${DEBUG_TEST}
+    AND ${CMAKE_SYSTEM_NAME} STREQUAL "Linux"
+    AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU"
+)
+    message("[cTorch] Will enable gprof")
     set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -pg)
 endif()
 

@@ -29,7 +29,7 @@ set(PTHREAD_ENABLE ON CACHE BOOL
     "Build with pthread support. Default ON."
 )
 
-set(DEBUG_TEST ON CACHE BOOL
+set(DEBUG_TEST OFF CACHE BOOL
     "Enable debug test options. Default ON. Option should only be enabled for running tests."
 )
 
@@ -69,13 +69,17 @@ endif()
 if(${DEBUG_TEST})
     message(
         WARNING
-        "DEBUG_TEST is turned ON. Option should only be enabled for running tests."
+        "[cTorch] DEBUG_TEST is turned ON. Option should only be enabled for running tests."
     )
     # Enable debug code compiling
     add_compile_definitions(CTH_TEST_DEBUG)
 
     # profiling enable on linux
-    if(LINUX AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    if(
+        ${CMAKE_SYSTEM_NAME} STREQUAL "Linux"
+        AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU"
+    )
+        message("[cTorch] Will enable gcov")
         set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pg --coverage")
     endif()
 endif()
@@ -137,6 +141,7 @@ endif()
 
 # link gcov for test on linux
 if(${DEBUG_TEST} AND LINUX AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    message("[cTorch] Will link gcov")
     target_link_libraries(cTorch gcov)
 endif()
 
