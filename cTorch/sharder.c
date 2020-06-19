@@ -15,42 +15,47 @@ void cth_sharding_op_elewise(
   for (thread_n_t shard_i = 0; shard_i < n_shards; shard_i++) {
     CTorchOperator *shard_op = MALLOC(sizeof(CTorchOperator));
     shard_op->op_id = op->op_id;
-    shard_op->in_bound_tensors = new_list(CTorchTensor)();
-    shard_op->out_bound_tensors = new_list(CTorchTensor)();
+    shard_op->in_bound_tensors =
+        new_array(CTorchTensor)(op->in_bound_tensors->size);
+    shard_op->out_bound_tensors =
+        new_array(CTorchTensor)(op->out_bound_tensors->size);
     insert_list(CTorchOperator)(ops, shard_op);
   }
 
-  for (list_index_t tesnro_index = 0; tesnro_index < op->in_bound_tensors->size;
-       tesnro_index++) {
+  for (array_index_t tensor_index = 0;
+       tensor_index < op->in_bound_tensors->size;
+       tensor_index++) {
     List(CTorchTensor) *sharded_tensors = new_list(CTorchTensor)();
     cth_sharding_tensor_elewise(
-        list_at(CTorchTensor)(op->in_bound_tensors, tesnro_index),
+        array_at(CTorchTensor)(op->in_bound_tensors, tensor_index),
         n_shards,
         sharded_tensors);
 
     for (thread_n_t shard_i = 0; shard_i < n_shards; shard_i++) {
       CTorchOperator *shard_op = list_at(CTorchOperator)(ops, shard_i);
-      insert_list(CTorchTensor)(
+      array_set(CTorchTensor)(
           shard_op->in_bound_tensors,
+          tensor_index,
           list_at(CTorchTensor)(sharded_tensors, shard_i));
     }
 
     free_list(CTorchTensor)(sharded_tensors);
   }
 
-  for (list_index_t tesnro_index = 0;
-       tesnro_index < op->out_bound_tensors->size;
-       tesnro_index++) {
+  for (array_index_t tensor_index = 0;
+       tensor_index < op->out_bound_tensors->size;
+       tensor_index++) {
     List(CTorchTensor) *sharded_tensors = new_list(CTorchTensor)();
     cth_sharding_tensor_elewise(
-        list_at(CTorchTensor)(op->out_bound_tensors, tesnro_index),
+        array_at(CTorchTensor)(op->out_bound_tensors, tensor_index),
         n_shards,
         sharded_tensors);
 
     for (thread_n_t shard_i = 0; shard_i < n_shards; shard_i++) {
       CTorchOperator *shard_op = list_at(CTorchOperator)(ops, shard_i);
-      insert_list(CTorchTensor)(
+      array_set(CTorchTensor)(
           shard_op->out_bound_tensors,
+          tensor_index,
           list_at(CTorchTensor)(sharded_tensors, shard_i));
     }
 

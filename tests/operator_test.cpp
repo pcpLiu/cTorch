@@ -3,50 +3,42 @@
 #include "gtest/gtest.h"
 
 TEST(cTorchOperatorTest, testForceInputOutputTsrNumEQ) {
-  CTorchOperator *op = create_dummy_op();
-  tensor_dim_t dims[] = {20, 20};
-  tensor_dim_t n_dim = sizeof(dims) / sizeof(dims[0]);
-  CTorchTensor *input = create_dummy_tensor(
-      dims, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
-  CTorchTensor *output = create_dummy_tensor(
-      dims, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
-  insert_list(CTorchTensor)(op->in_bound_tensors, input);
-  insert_list(CTorchTensor)(op->out_bound_tensors, output);
+  CTorchOperator *op = create_dummy_op(1, 1);
   EXPECT_NO_FATAL_FAILURE(FORCE_INPUT_OUTPUT_TSR_NUM_EQ(op));
 
-  CTorchTensor *input2 = create_dummy_tensor(
-      dims, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
-  insert_list(CTorchTensor)(op->in_bound_tensors, input2);
-  EXPECT_EXIT(FORCE_INPUT_OUTPUT_TSR_NUM_EQ(op), ::testing::ExitedWithCode(1),
+  CTorchOperator *op_2 = create_dummy_op(2, 1);
+  EXPECT_EXIT(FORCE_INPUT_OUTPUT_TSR_NUM_EQ(op_2), ::testing::ExitedWithCode(1),
               "Operator should have same numbers of input and output tensors.");
 }
 
 TEST(cTorchOperatorTest, testForceOpParamExist) {
-  CTorchOperator *op = create_dummy_op();
+  CTorchOperator *op = create_dummy_op(1, 1);
   tensor_dim_t dims[] = {20, 20};
   tensor_dim_t n_dim = sizeof(dims) / sizeof(dims[0]);
   CTorchTensor *input = create_dummy_tensor(
       dims, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
   input->meta_info->tensor_name = "tensor_name";
+  array_set(CTorchTensor)(op->in_bound_tensors, 0, input);
+
   const char *target_name = "tensor_name";
-  insert_list(CTorchTensor)(op->in_bound_tensors, input);
   EXPECT_NO_FATAL_FAILURE(
       FORCE_OP_PARAM_EXIST(op, target_name, CTH_TENSOR_DATA_TYPE_FLOAT_32));
 
   const char *target_name_2 = "tensor_name_2";
   EXPECT_EXIT(
       FORCE_OP_PARAM_EXIST(op, target_name_2, CTH_TENSOR_DATA_TYPE_FLOAT_32),
-      ::testing::ExitedWithCode(1), "FORCE_OP_PARAM_EXIST failes.");
+      ::testing::ExitedWithCode(1), "");
 }
 
 TEST(cTorchOperatorTest, testOpFailOnDtype) {
-  CTorchOperator *op = create_dummy_op();
+  CTorchOperator *op = create_dummy_op(1, 1);
   tensor_dim_t dims[] = {20, 20};
   tensor_dim_t n_dim = sizeof(dims) / sizeof(dims[0]);
 
   CTorchTensor *input = create_dummy_tensor(
       dims, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
-  insert_list(CTorchTensor)(op->in_bound_tensors, input);
+  array_set(CTorchTensor)(op->in_bound_tensors, 0, input);
+
   EXPECT_NO_FATAL_FAILURE(OP_FAIL_ON_DTYPE(op, CTH_TENSOR_DATA_TYPE_BOOL));
   EXPECT_EXIT(OP_FAIL_ON_DTYPE(op, CTH_TENSOR_DATA_TYPE_FLOAT_32),
               ::testing::ExitedWithCode(1),
@@ -54,7 +46,7 @@ TEST(cTorchOperatorTest, testOpFailOnDtype) {
 }
 
 TEST(cTorchOperatorTest, testGetInputOutputByName) {
-  CTorchOperator *op = create_dummy_op();
+  CTorchOperator *op = create_dummy_op(1, 1);
   tensor_dim_t dims[] = {20, 20};
   tensor_dim_t n_dim = sizeof(dims) / sizeof(dims[0]);
 
@@ -65,8 +57,8 @@ TEST(cTorchOperatorTest, testGetInputOutputByName) {
   CTorchTensor *output = create_dummy_tensor(
       dims, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
   cth_tensor_set_name(output, name);
-  insert_list(CTorchTensor)(op->in_bound_tensors, input);
-  insert_list(CTorchTensor)(op->out_bound_tensors, output);
+  array_set(CTorchTensor)(op->in_bound_tensors, 0, input);
+  array_set(CTorchTensor)(op->out_bound_tensors, 0, output);
 
   CTorchTensor *result = get_input_by_name(op, name, true);
   EXPECT_EQ(result, input);
@@ -95,9 +87,9 @@ TEST(cTorchOperatorTest, testDeepFreeMEMRECORD) {
   CTorchTensor *output = create_dummy_tensor(
       dims_2, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
 
-  CTorchOperator *op = create_dummy_op();
-  insert_list(CTorchTensor)(op->in_bound_tensors, input);
-  insert_list(CTorchTensor)(op->out_bound_tensors, output);
+  CTorchOperator *op = create_dummy_op(1, 1);
+  array_set(CTorchTensor)(op->in_bound_tensors, 0, input);
+  array_set(CTorchTensor)(op->out_bound_tensors, 0, output);
 
   // test in sing-thread mode
   struct_deep_free(CTorchOperator)(op);

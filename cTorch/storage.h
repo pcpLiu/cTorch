@@ -4,11 +4,12 @@
 #include <stdint.h>
 
 #include "cTorch/consts.h"
+#include "cTorch/generic_array.h"
 #include "cTorch/list_d.h"
 
 /**
  * CTorchTensorMeta
- * This struct cotnains Meta information of a tensor.
+ * This struct contains Meta information of a tensor.
  */
 typedef struct CTorchTensorMeta {
   uint8_t value_size_of;          /* Element size */
@@ -65,8 +66,14 @@ declare_list_pop_func(CTorchTensor);
 declare_free_list_func(CTorchTensor);
 declare_free_list_deep_func(CTorchTensor);
 
+// Array macros
+def_array(CTorchTensor);
+declare_new_array_func(CTorchTensor);
+declare_array_at_func(CTorchTensor);
+declare_array_set_func(CTorchTensor);
+
 /**
- * Get the pointer address by offsetting gieven tensor's ptr with geiven number
+ * Get the pointer address by offsetting gieven tensor's ptr with given number
  * of elements.
  *
  */

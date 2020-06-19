@@ -12,6 +12,10 @@ impl_list_pop_func(CTorchOperator);
 impl_free_list_func(CTorchOperator);
 impl_free_list_deep_func(CTorchOperator);
 
+impl_new_array_func(CTorchTensor);
+impl_array_at_func(CTorchTensor);
+impl_array_set_func(CTorchTensor);
+
 void FORCE_INPUT_OUTPUT_TSR_NUM_EQ(CTorchOperator *op) {
   if (op->in_bound_tensors->size != op->out_bound_tensors->size) {
     FAIL_EXIT(
@@ -21,77 +25,75 @@ void FORCE_INPUT_OUTPUT_TSR_NUM_EQ(CTorchOperator *op) {
 }
 
 void OP_FAIL_ON_DTYPE(CTorchOperator *op, CTH_TENSOR_DATA_TYPE data_type) {
-  ListItem(CTorchTensor) *tensor_it = op->in_bound_tensors->head;
-
-  for (uint32_t i = 0; i < op->in_bound_tensors->size; i++) {
-    CTorchTensor *tensor = tensor_it->data;
+  CTorchTensor *tensor = NULL;
+  for (array_index_t i = 0; i < op->in_bound_tensors->size; i++) {
+    tensor = array_at(CTorchTensor)(op->in_bound_tensors, i);
     if (tensor->meta_info->data_type == data_type) {
       FAIL_EXIT(CTH_LOG_ERR, "Operator does not support data type.");
     }
-    tensor_it = tensor_it->next_item;
   }
 
-  tensor_it = op->out_bound_tensors->head;
-  for (uint32_t i = 0; i < op->out_bound_tensors->size; i++) {
-    CTorchTensor *tensor = tensor_it->data;
+  for (array_index_t i = 0; i < op->out_bound_tensors->size; i++) {
+    tensor = array_at(CTorchTensor)(op->in_bound_tensors, i);
     if (tensor->meta_info->data_type == data_type) {
-      // TODO: better logging
       FAIL_EXIT(CTH_LOG_ERR, "Operator does not support data type.");
     }
-    tensor_it = tensor_it->next_item;
   }
 }
 
 void FORCE_OP_PARAM_EXIST(
     CTorchOperator *op, const char *name, CTH_TENSOR_DATA_TYPE data_type) {
-  ListItem(CTorchTensor) *item = op->in_bound_tensors->head;
+  CTorchTensor *tensor = NULL;
   bool found = false;
-  for (int i = 0; i < op->in_bound_tensors->size; i++) {
-    if (strcmp(name, item->data->meta_info->tensor_name) == 0 &&
-        item->data->meta_info->data_type == data_type) {
+  for (array_index_t i = 0; i < op->in_bound_tensors->size; i++) {
+    tensor = array_at(CTorchTensor)(op->in_bound_tensors, i);
+    if (strcmp(name, tensor->meta_info->tensor_name) == 0 &&
+        tensor->meta_info->data_type == data_type) {
       found = true;
       break;
     }
-    item = item->next_item;
   }
 
   if (!found) {
-    // TODO: better logging
-    FAIL_EXIT(CTH_LOG_ERR, "FORCE_OP_PARAM_EXIST failes.");
+    FAIL_EXIT(CTH_LOG_ERR, "FORCE_OP_PARAM_EXIST fails");
   }
 }
 
 CTorchTensor *_get_tensor_by_name(
-    List(CTorchTensor) * tensor_list, const char *name, bool fail_exit) {
-  CTorchTensor *tensor = NULL;
-  ListItem(CTorchTensor) *item = tensor_list->head;
-  for (int i = 0; i < tensor_list->size; i++) {
-    if (strcmp(item->data->meta_info->tensor_name, name) == 0) {
-      tensor = item->data;
+    Array(CTorchTensor) * tensor_array, const char *name, bool fail_exit) {
+  FAIL_NULL_PTR(tensor_array);
+  CTorchTensor *target_tensor = NULL;
+  for (array_index_t i = 0; i < tensor_array->size; i++) {
+    CTorchTensor *tensor = array_at(CTorchTensor)(tensor_array, i);
+    if (strcmp(tensor->meta_info->tensor_name, name) == 0) {
+      target_tensor = tensor;
       break;
     }
-    item = item->next_item;
   }
 
-  if (tensor == NULL && fail_exit) {
+  if (target_tensor == NULL && fail_exit) {
     FAIL_EXIT(CTH_LOG_ERR, "Could not find tensor %s", name);
   } else {
-    return tensor;
+    return target_tensor;
   }
 }
 
 CTorchTensor *
 get_input_by_name(CTorchOperator *op, const char *name, bool fail_exit) {
+  FAIL_NULL_PTR(op);
   return _get_tensor_by_name(op->in_bound_tensors, name, true);
 }
 
 CTorchTensor *
 get_output_by_name(CTorchOperator *op, const char *name, bool fail_exit) {
+  FAIL_NULL_PTR(op);
   return _get_tensor_by_name(op->out_bound_tensors, name, true);
 }
 
 void struct_deep_free(CTorchOperator)(CTorchOperator *op) {
-  free_list_deep(CTorchTensor)(op->in_bound_tensors);
-  free_list_deep(CTorchTensor)(op->out_bound_tensors);
-  FREE(op);
+  // TODO: implement with array
+
+  // free_list_deep(CTorchTensor)(op->in_bound_tensors);
+  // free_list_deep(CTorchTensor)(op->out_bound_tensors);
+  // FREE(op);
 }

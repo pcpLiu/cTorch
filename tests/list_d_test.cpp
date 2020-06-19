@@ -193,7 +193,6 @@ TEST(cTorchListTest, testListPop) {
   ListItem(int) *item_2 = insert_list(int)(list, &x[1]);
   ListItem(int) *item_3 = insert_list(int)(list, &x[2]);
   ListItem(int) *item_4 = insert_list(int)(list, &x[3]);
-
   int *pop = list_pop(int)(list);
   EXPECT_EQ(*pop, x[0]);
   EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_item_1->status);

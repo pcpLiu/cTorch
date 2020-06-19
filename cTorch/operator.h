@@ -2,14 +2,15 @@
 #define CTH_OPERATOR_H
 
 #include "cTorch/consts.h"
+#include "cTorch/generic_array.h"
 #include "cTorch/storage.h"
 
 typedef struct CTorchOperator {
-  CTH_OP_ID op_id;                        /* Operator ID */
-  List(CTorchTensor) * in_bound_tensors;  /* List of input tensors. It includes
+  CTH_OP_ID op_id;                         /* Operator ID */
+  Array(CTorchTensor) * in_bound_tensors;  /* List of input tensors. It includes
                                              inputs, weight and arguments. */
-  List(CTorchTensor) * out_bound_tensors; /* List of output tensors */
-  bool is_sharded;                        /* If op is a sharded one */
+  Array(CTorchTensor) * out_bound_tensors; /* List of output tensors */
+  bool is_sharded;                         /* If op is a sharded one */
 } CTorchOperator;
 
 // List utils for CTorchOperator

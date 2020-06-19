@@ -65,14 +65,3 @@ TEST(acosOpTest, testBoolDefaultExpectExit) {
               ::testing::ExitedWithCode(1),
               "Operator does not support data type");
 }
-
-TEST(acosOpTest, testInvalidInputKeep) {
-  CTH_NAN_EXIT = false;
-  tensor_dim_t dims[] = {1, 1};
-  tensor_dim_t n_dim = sizeof(dims) / sizeof(dims[0]);
-  CTorchNode *op_node = create_dummy_op_node(
-      CTH_OP_ID_acos, dims, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_16, 100, 200);
-  cth_execute_node(op_node, CTH_BACKEND_DEFAULT);
-  EXPECT_TRUE(
-      tensor_all_nan(op_node->conent.op->out_bound_tensors->head->data));
-}

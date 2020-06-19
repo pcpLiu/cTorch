@@ -6,6 +6,7 @@ set(ops_default_all
     operators/default/op_list.c
     operators/default/op_abs_default.c
     operators/default/op_acos_default.c
+    operators/default/op_add_default.c
 )
 
 ################################################################################

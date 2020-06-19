@@ -28,7 +28,8 @@ CTorchNode *create_dummy_op_node(CTH_OP_ID op_id, uint32_t *dims,
 /*
   Create a dummy operator.
 */
-CTorchOperator *create_dummy_op();
+CTorchOperator *create_dummy_op(array_index_t num_inputs,
+                                array_index_t num_outputs);
 
 /*
   Create a dummy node without any information.
@@ -51,12 +52,13 @@ bool tensor_all_nan(CTorchTensor *);
 */
 #define _ele_wise_equal(type, eq_func, verify_func)                            \
   {                                                                            \
-    type *input =                                                              \
-        (type *)op_node->conent.op->in_bound_tensors->head->data->values;      \
-    type *output =                                                             \
-        (type *)op_node->conent.op->out_bound_tensors->head->data->values;     \
-    uint64_t n_ele = op_node->conent.op->in_bound_tensors->head->data          \
-                         ->meta_info->n_elements;                              \
+    CTorchTensor *tensor_input =                                               \
+        array_at(CTorchTensor)(op_node->conent.op->in_bound_tensors, 0);       \
+    type *input = (type *)tensor_input->values;                                \
+    CTorchTensor *tensor_output =                                              \
+        array_at(CTorchTensor)(op_node->conent.op->out_bound_tensors, 0);      \
+    type *output = (type *)tensor_output->values;                              \
+    uint64_t n_ele = tensor_input->meta_info->n_elements;                      \
     for (int i = 0; i < n_ele; i++) {                                          \
       eq_func((type)verify_func(input[i]), output[i]);                         \
     }                                                                          \

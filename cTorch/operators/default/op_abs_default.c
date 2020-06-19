@@ -16,18 +16,17 @@
   )(x)
 // clang-format on
 
-/*
-  Compute the element-wise absolute value of the given input tensor.
+/**
+ * Compute the element-wise absolute value of the given input tensor.
+ *
+ * # of input: 1
+ * # of output: 1
  */
 void op_abs_cpu(CTorchOperator *op) {
   FORCE_INPUT_OUTPUT_TSR_NUM_EQ(op);
 
-  ListItem(CTorchTensor) *in = op->in_bound_tensors->head;
-  ListItem(CTorchTensor) *out = op->out_bound_tensors->head;
-  int64_t N = in->data->meta_info->n_elements;
-  _cpu_1d_map(in->data->values,
-              out->data->values,
-              in->data->meta_info->data_type,
-              N,
-              _cth_abs);
+  CTorchTensor *in = array_at(CTorchTensor)(op->in_bound_tensors, 0);
+  CTorchTensor *out = array_at(CTorchTensor)(op->out_bound_tensors, 0);
+  int64_t N = in->meta_info->n_elements;
+  _cpu_1d_map(in->values, out->values, in->meta_info->data_type, N, _cth_abs);
 }

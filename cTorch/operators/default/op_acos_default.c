@@ -27,9 +27,8 @@ void op_acos_cpu(CTorchOperator *op) {
   FORCE_INPUT_OUTPUT_TSR_NUM_EQ(op);
   OP_FAIL_ON_DTYPE(op, CTH_TENSOR_DATA_TYPE_BOOL);
 
-  ListItem(CTorchTensor) *in = op->in_bound_tensors->head;
-  ListItem(CTorchTensor) *out = op->out_bound_tensors->head;
-  int64_t N = in->data->meta_info->n_elements;
-  _cpu_1d_map_no_bool(in->data->values, out->data->values,
-                      in->data->meta_info->data_type, N, acos);
+  CTorchTensor *in = array_at(CTorchTensor)(op->in_bound_tensors, 0);
+  CTorchTensor *out = array_at(CTorchTensor)(op->out_bound_tensors, 0);
+  int64_t N = in->meta_info->n_elements;
+  _cpu_1d_map(in->values, out->values, in->meta_info->data_type, N, acos);
 }
