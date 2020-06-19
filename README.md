@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a>
+  <a href="https://travis-ci.com/github/pcpLiu/cTorch">
     <img src="https://travis-ci.com/pcpLiu/cTorch.svg?token=pqXTPvpuvJE34KJBhbJP&branch=master">
   </a>
   <a href="https://codecov.io/gh/pcpLiu/cTorch">
