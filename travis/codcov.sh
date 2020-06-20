@@ -8,5 +8,5 @@ fi
 
 
 # generate gcov
-cd ../cTorch/CMakeFiles/cTorch.dir
+cd cTorch/CMakeFiles/cTorch.dir
 gcov *.gcno  -o .
