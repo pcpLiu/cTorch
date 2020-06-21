@@ -47,10 +47,10 @@ CTorchGraph *create_dummy_graph(array_index_t num_nodes);
 */
 bool tensor_all_nan(CTorchTensor *);
 
-/*
-  Check element-wise equal between verify_func(input) and output
-*/
-#define _ele_wise_equal(type, eq_func, verify_func)                            \
+/**
+ * Check element-wise equal between verify_func(input) and output
+ */
+#define _ele_wise_equal_unary(type, eq_func, verify_func)                      \
   {                                                                            \
     CTorchTensor *tensor_input =                                               \
         array_at(CTorchTensor)(op_node->conent.op->in_bound_tensors, 0);       \
@@ -60,7 +60,26 @@ bool tensor_all_nan(CTorchTensor *);
     type *output = (type *)tensor_output->values;                              \
     uint64_t n_ele = tensor_input->meta_info->n_elements;                      \
     for (int i = 0; i < n_ele; i++) {                                          \
-      eq_func((type)verify_func(input[i]), output[i]);                         \
+      type expect_result = (type)verify_func(input[i]);                        \
+      eq_func(expect_result, output[i]);                                       \
+    }                                                                          \
+  }
+
+/**
+ * Check element-wise equal between verify_func(input) and output
+ */
+#define _ele_wise_equal_binary(type, eq_func, verify_func)                     \
+  {                                                                            \
+    CTorchTensor *tensor_input =                                               \
+        array_at(CTorchTensor)(op_node->conent.op->in_bound_tensors, 0);       \
+    type *input = (type *)tensor_input->values;                                \
+    CTorchTensor *tensor_output =                                              \
+        array_at(CTorchTensor)(op_node->conent.op->out_bound_tensors, 0);      \
+    type *output = (type *)tensor_output->values;                              \
+    uint64_t n_ele = tensor_input->meta_info->n_elements;                      \
+    for (int i = 0; i < n_ele; i++) {                                          \
+      type expect_result = verify_func(input[i], output[i]);                   \
+      eq_func(expect_result, output[i]);                                       \
     }                                                                          \
   }
 

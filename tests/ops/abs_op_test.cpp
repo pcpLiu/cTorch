@@ -13,19 +13,19 @@ void test_abs(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   cth_execute_node(op_node, backend);
   if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||
       data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {
-    _ele_wise_equal(float, EXPECT_FLOAT_EQ, fabs);
+    _ele_wise_equal_unary(float, EXPECT_FLOAT_EQ, fabs);
   } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_64) {
-    _ele_wise_equal(double, EXPECT_DOUBLE_EQ, fabs);
+    _ele_wise_equal_unary(double, EXPECT_DOUBLE_EQ, fabs);
   } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_16) {
-    _ele_wise_equal(int16_t, EXPECT_EQ, abs);
+    _ele_wise_equal_unary(int16_t, EXPECT_EQ, abs);
   } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_32) {
-    _ele_wise_equal(int32_t, EXPECT_EQ, abs);
+    _ele_wise_equal_unary(int32_t, EXPECT_EQ, abs);
   } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_64) {
-    _ele_wise_equal(int64_t, EXPECT_EQ, abs);
+    _ele_wise_equal_unary(int64_t, EXPECT_EQ, abs);
   } else if (data_type == CTH_TENSOR_DATA_TYPE_UINT_8) {
-    _ele_wise_equal(uint8_t, EXPECT_EQ, abs);
+    _ele_wise_equal_unary(uint8_t, EXPECT_EQ, abs);
   } else if (data_type == CTH_TENSOR_DATA_TYPE_BOOL) {
-    _ele_wise_equal(bool, EXPECT_EQ, abs);
+    _ele_wise_equal_unary(bool, EXPECT_EQ, abs);
   }
 }
 

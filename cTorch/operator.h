@@ -33,7 +33,21 @@ void FORCE_INPUT_OUTPUT_TSR_NUM_EQ(CTorchOperator *);
 /*
   Check if operator has param with given name and type
 */
-void FORCE_OP_PARAM_EXIST(CTorchOperator *, const char *, CTH_TENSOR_DATA_TYPE);
+void FORCE_OP_PARAM_EXIST(
+    CTorchOperator *op,
+    const char *target_name,
+    CTH_TENSOR_DATA_TYPE data_type);
+
+/**
+ * Check if operator has required number of inputs & outputs
+ *
+ * Arguments:
+ *    - op: operator
+ *    - num_input: required no. of imput tensors
+ *    - num_output: required no. of output tensors
+ */
+void FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(
+    CTorchOperator *op, array_index_t num_input, array_index_t num_output);
 
 /*
   If any input & output tensor's datatypes is unsupported, fail this op's

@@ -17,6 +17,8 @@ impl_array_at_func(CTorchTensor);
 impl_array_set_func(CTorchTensor);
 
 void FORCE_INPUT_OUTPUT_TSR_NUM_EQ(CTorchOperator *op) {
+  FAIL_NULL_PTR(op);
+
   if (op->in_bound_tensors->size != op->out_bound_tensors->size) {
     FAIL_EXIT(
         CTH_LOG_ERR,
@@ -25,6 +27,8 @@ void FORCE_INPUT_OUTPUT_TSR_NUM_EQ(CTorchOperator *op) {
 }
 
 void OP_FAIL_ON_DTYPE(CTorchOperator *op, CTH_TENSOR_DATA_TYPE data_type) {
+  FAIL_NULL_PTR(op);
+
   CTorchTensor *tensor = NULL;
   for (array_index_t i = 0; i < op->in_bound_tensors->size; i++) {
     tensor = array_at(CTorchTensor)(op->in_bound_tensors, i);
@@ -43,6 +47,8 @@ void OP_FAIL_ON_DTYPE(CTorchOperator *op, CTH_TENSOR_DATA_TYPE data_type) {
 
 void FORCE_OP_PARAM_EXIST(
     CTorchOperator *op, const char *name, CTH_TENSOR_DATA_TYPE data_type) {
+  FAIL_NULL_PTR(op);
+
   CTorchTensor *tensor = NULL;
   bool found = false;
   for (array_index_t i = 0; i < op->in_bound_tensors->size; i++) {
@@ -56,6 +62,30 @@ void FORCE_OP_PARAM_EXIST(
 
   if (!found) {
     FAIL_EXIT(CTH_LOG_ERR, "FORCE_OP_PARAM_EXIST fails");
+  }
+}
+
+void FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(
+    CTorchOperator *op, array_index_t num_input, array_index_t num_output) {
+  FAIL_NULL_PTR(op);
+
+  if (num_input != op->in_bound_tensors->size) {
+    FAIL_EXIT(
+        CTH_LOG_ERR,
+        "FORCE_OP_INPUT_OUTPUT_TENSOR_NUM failS. Required No. of input tensors "
+        "is %u, given %u",
+        num_input,
+        op->in_bound_tensors->size);
+  }
+
+  if (num_output != op->out_bound_tensors->size) {
+    FAIL_EXIT(
+        CTH_LOG_ERR,
+        "FORCE_OP_INPUT_OUTPUT_TENSOR_NUM failS. Required No. of output "
+        "tensors "
+        "is %u, given %u",
+        num_output,
+        op->out_bound_tensors->size);
   }
 }
 
