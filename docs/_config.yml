@@ -27,7 +27,7 @@ github_username: pcpLiu
 # github pages
 lsi: false
 safe: true
-source: ".."
+source: "cTorch"
 incremental: false
 highlighter: rouge
 gist:
