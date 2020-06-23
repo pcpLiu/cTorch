@@ -93,4 +93,28 @@
     }                                                                          \
   }
 
+/**
+ * Expand a computation to a generic type
+ */
+#define _cpu_generic_compute(op, compute_fn, data_type)                        \
+  {                                                                            \
+    if (data_type == CTH_TENSOR_DATA_TYPE_BOOL) {                              \
+      compute_fn(op, bool);                                                    \
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_16) {                     \
+      compute_fn(op, int16_t);                                                 \
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_32) {                     \
+      compute_fn(op, int32_t);                                                 \
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_64) {                     \
+      compute_fn(op, int64_t);                                                 \
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_UINT_8) {                     \
+      compute_fn(op, uint8_t);                                                 \
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16) {                   \
+      compute_fn(op, float);                                                   \
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {                   \
+      compute_fn(op, float);                                                   \
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_64) {                   \
+      compute_fn(op, double);                                                  \
+    }                                                                          \
+  }
+
 #endif /* X86_COMMON_H */
