@@ -16,19 +16,19 @@ CTorchTensor *create_dummy_tensor(tensor_dim_t *dims, tensor_dim_t n_dim,
                                   CTH_TENSOR_DATA_TYPE data_type, float min,
                                   float max);
 
-/*
-  Create a dummy op node with one input and one output.
-  Input & output has same dimensions.
-*/
-CTorchNode *create_dummy_op_node(CTH_OP_ID op_id, uint32_t *dims,
-                                 tensor_dim_t n_dim,
-                                 CTH_TENSOR_DATA_TYPE data_type, float min,
-                                 float max);
+/**
+ * Create a dummy op node with one input and one output.
+ * Input & output has same dimensions.
+ */
+CTorchNode *create_dummy_op_node_unary(CTH_OP_ID op_id, uint32_t *dims,
+                                       tensor_dim_t n_dim,
+                                       CTH_TENSOR_DATA_TYPE data_type,
+                                       float min, float max);
 
 /*
   Create a dummy operator.
 */
-CTorchOperator *create_dummy_op(array_index_t num_inputs,
+CTorchOperator *create_dummy_op(CTH_OP_ID op_id, array_index_t num_inputs,
                                 array_index_t num_outputs);
 
 /*
@@ -50,13 +50,13 @@ bool tensor_all_nan(CTorchTensor *);
 /**
  * Check element-wise equal between verify_func(input) and output
  */
-#define _ele_wise_equal_unary(type, eq_func, verify_func)                      \
+#define _ele_wise_equal_unary(op, type, eq_func, verify_func)                  \
   {                                                                            \
     CTorchTensor *tensor_input =                                               \
-        array_at(CTorchTensor)(op_node->conent.op->in_bound_tensors, 0);       \
+        array_at(CTorchTensor)(op->in_bound_tensors, 0);                       \
     type *input = (type *)tensor_input->values;                                \
     CTorchTensor *tensor_output =                                              \
-        array_at(CTorchTensor)(op_node->conent.op->out_bound_tensors, 0);      \
+        array_at(CTorchTensor)(op->out_bound_tensors, 0);                      \
     type *output = (type *)tensor_output->values;                              \
     uint64_t n_ele = tensor_input->meta_info->n_elements;                      \
     for (int i = 0; i < n_ele; i++) {                                          \
@@ -68,17 +68,20 @@ bool tensor_all_nan(CTorchTensor *);
 /**
  * Check element-wise equal between verify_func(input) and output
  */
-#define _ele_wise_equal_binary(type, eq_func, verify_func)                     \
+#define _ele_wise_equal_binary(op, type, eq_func, verify_func)                 \
   {                                                                            \
-    CTorchTensor *tensor_input =                                               \
-        array_at(CTorchTensor)(op_node->conent.op->in_bound_tensors, 0);       \
-    type *input = (type *)tensor_input->values;                                \
+    CTorchTensor *tensor_input_a =                                             \
+        array_at(CTorchTensor)(op->in_bound_tensors, 0);                       \
+    CTorchTensor *tensor_input_b =                                             \
+        array_at(CTorchTensor)(op->in_bound_tensors, 1);                       \
+    type *input_a = (type *)tensor_input_a->values;                            \
+    type *input_b = (type *)tensor_input_b->values;                            \
     CTorchTensor *tensor_output =                                              \
-        array_at(CTorchTensor)(op_node->conent.op->out_bound_tensors, 0);      \
+        array_at(CTorchTensor)(op->out_bound_tensors, 0);                      \
     type *output = (type *)tensor_output->values;                              \
-    uint64_t n_ele = tensor_input->meta_info->n_elements;                      \
+    uint64_t n_ele = tensor_input_a->meta_info->n_elements;                    \
     for (int i = 0; i < n_ele; i++) {                                          \
-      type expect_result = verify_func(input[i], output[i]);                   \
+      type expect_result = verify_func(input_a[i], input_b[i]);                \
       eq_func(expect_result, output[i]);                                       \
     }                                                                          \
   }

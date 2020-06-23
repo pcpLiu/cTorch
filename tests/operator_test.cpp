@@ -3,16 +3,16 @@
 #include "gtest/gtest.h"
 
 TEST(cTorchOperatorTest, testForceInputOutputTsrNumEQ) {
-  CTorchOperator *op = create_dummy_op(1, 1);
+  CTorchOperator *op = create_dummy_op(CTH_OP_ID_abs, 1, 1);
   EXPECT_NO_FATAL_FAILURE(FORCE_INPUT_OUTPUT_TSR_NUM_EQ(op));
 
-  CTorchOperator *op_2 = create_dummy_op(2, 1);
+  CTorchOperator *op_2 = create_dummy_op(CTH_OP_ID_abs, 2, 1);
   EXPECT_EXIT(FORCE_INPUT_OUTPUT_TSR_NUM_EQ(op_2), ::testing::ExitedWithCode(1),
               "Operator should have same numbers of input and output tensors.");
 }
 
 TEST(cTorchOperatorTest, testForceOpParamExist) {
-  CTorchOperator *op = create_dummy_op(1, 1);
+  CTorchOperator *op = create_dummy_op(CTH_OP_ID_abs, 1, 1);
   tensor_dim_t dims[] = {20, 20};
   tensor_dim_t n_dim = sizeof(dims) / sizeof(dims[0]);
   CTorchTensor *input = create_dummy_tensor(
@@ -31,7 +31,7 @@ TEST(cTorchOperatorTest, testForceOpParamExist) {
 }
 
 TEST(cTorchOperatorTest, testOpFailOnDtype) {
-  CTorchOperator *op = create_dummy_op(1, 1);
+  CTorchOperator *op = create_dummy_op(CTH_OP_ID_abs, 1, 1);
   tensor_dim_t dims[] = {20, 20};
   tensor_dim_t n_dim = sizeof(dims) / sizeof(dims[0]);
 
@@ -46,7 +46,7 @@ TEST(cTorchOperatorTest, testOpFailOnDtype) {
 }
 
 TEST(cTorchOperatorTest, testGetInputOutputByName) {
-  CTorchOperator *op = create_dummy_op(1, 1);
+  CTorchOperator *op = create_dummy_op(CTH_OP_ID_abs, 1, 1);
   tensor_dim_t dims[] = {20, 20};
   tensor_dim_t n_dim = sizeof(dims) / sizeof(dims[0]);
 
@@ -87,7 +87,7 @@ TEST(cTorchOperatorTest, testDeepFreeMEMRECORD) {
   CTorchTensor *output = create_dummy_tensor(
       dims_2, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
 
-  CTorchOperator *op = create_dummy_op(1, 1);
+  CTorchOperator *op = create_dummy_op(CTH_OP_ID_abs, 1, 1);
   array_set(CTorchTensor)(op->in_bound_tensors, 0, input);
   array_set(CTorchTensor)(op->out_bound_tensors, 0, output);
 

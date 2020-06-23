@@ -47,7 +47,9 @@ void FORCE_OP_PARAM_EXIST(
  *    - num_output: required no. of output tensors
  */
 void FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(
-    CTorchOperator *op, array_index_t num_input, array_index_t num_output);
+    CTorchOperator *op,
+    const array_index_t num_input,
+    const array_index_t num_output);
 
 /*
   If any input & output tensor's datatypes is unsupported, fail this op's

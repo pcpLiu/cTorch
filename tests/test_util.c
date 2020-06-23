@@ -61,10 +61,10 @@ CTorchTensor *create_dummy_tensor(tensor_dim_t *dims, tensor_dim_t n_dim,
   return tensor;
 }
 
-CTorchNode *create_dummy_op_node(CTH_OP_ID op_id, tensor_dim_t *dims,
-                                 tensor_dim_t n_dim,
-                                 CTH_TENSOR_DATA_TYPE data_type, float min,
-                                 float max) {
+CTorchNode *create_dummy_op_node_unary(CTH_OP_ID op_id, tensor_dim_t *dims,
+                                       tensor_dim_t n_dim,
+                                       CTH_TENSOR_DATA_TYPE data_type,
+                                       float min, float max) {
   CTorchOperator *op = (CTorchOperator *)MALLOC(sizeof(CTorchOperator));
   op->op_id = op_id;
   op->in_bound_tensors = new_array(CTorchTensor)(1);
@@ -141,10 +141,10 @@ bool tensor_all_nan(CTorchTensor *tensor) {
   return ret;
 }
 
-CTorchOperator *create_dummy_op(array_index_t num_inputs,
+CTorchOperator *create_dummy_op(CTH_OP_ID op_id, array_index_t num_inputs,
                                 array_index_t num_outputs) {
   CTorchOperator *op = MALLOC(sizeof(CTorchOperator));
-  op->op_id = CTH_OP_ID_abs;
+  op->op_id = op_id;
   op->in_bound_tensors = new_array(CTorchTensor)(num_inputs);
   op->out_bound_tensors = new_array(CTorchTensor)(num_outputs);
   return op;

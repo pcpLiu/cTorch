@@ -66,7 +66,9 @@ void FORCE_OP_PARAM_EXIST(
 }
 
 void FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(
-    CTorchOperator *op, array_index_t num_input, array_index_t num_output) {
+    CTorchOperator *op,
+    const array_index_t num_input,
+    const array_index_t num_output) {
   FAIL_NULL_PTR(op);
 
   if (num_input != op->in_bound_tensors->size) {
