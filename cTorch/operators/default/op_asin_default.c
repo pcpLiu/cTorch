@@ -1,0 +1,27 @@
+#include <tgmath.h>
+
+#include "cTorch/operators/default/op_list.h"
+#include "cTorch/operators/default/util.h"
+
+/**
+ * Computation: output = 1 / sin(input)
+ *
+ * Note:
+ * During computation, input values will be converted to float first and then
+ * final result will be stored into output tensor as its datatype.
+ *
+ * Inputs & outputs:
+ *    - # of input: 1
+ *    - # of output: 1
+ *    - Input and output should be same dimention and type.
+ */
+void op_asin_cpu(CTorchOperator *op) {
+  FORCE_INPUT_OUTPUT_TSR_NUM_EQ(op);
+  OP_FAIL_ON_DTYPE(op, CTH_TENSOR_DATA_TYPE_BOOL);
+
+  CTorchTensor *in = array_at(CTorchTensor)(op->in_bound_tensors, 0);
+  CTorchTensor *out = array_at(CTorchTensor)(op->out_bound_tensors, 0);
+  int64_t N = in->meta_info->n_elements;
+  _cpu_1d_map_elewise_unary(
+      in->values, out->values, in->meta_info->data_type, N, asin);
+}

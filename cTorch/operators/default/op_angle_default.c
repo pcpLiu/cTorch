@@ -23,7 +23,6 @@
  *    - # of input: 1
  *    - # of output: 1
  *    - Input and output should be same dimention and type.
-
  */
 void op_angle_cpu(CTorchOperator *op) {
   FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(op, 1, 1);
