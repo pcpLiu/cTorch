@@ -1,4 +1,3 @@
-#include "cTorch/operator.h"
 #include "cTorch/operators/default/op_list.h"
 #include "cTorch/operators/default/util.h"
 

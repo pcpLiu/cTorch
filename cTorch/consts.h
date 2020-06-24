@@ -3,8 +3,8 @@
 
 #include "cTorch/ops_enabled.h"
 
-#include <stdlib.h>
 #include <stdint.h>
+#include <stdlib.h>
 
 /*
   Backends
@@ -108,6 +108,11 @@ typedef uint16_t thread_n_t;
  * Type to denote tensor size
  */
 #define tensor_size_t uint32_t
+
+/**
+ * Pi value
+ */
+#define CTH_PI 3.1415926
 
 /*
   String array of operator names.

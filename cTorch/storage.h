@@ -105,6 +105,12 @@ bool cth_tensor_name_match(CTorchTensor *tensor, const char *target_name);
 */
 void FORCE_TENSOR_DIMENSION(CTorchTensor *tensor, tensor_dim_t *target_dims);
 
+/**
+ *  Check if given tensor has target no. of elements. FAIL_EXIT if not match.
+ */
+void FORCE_TENSOR_NUM_ELEMENTS(
+    CTorchTensor *tensor, const tensor_size_t target_n);
+
 /*
   Check if given tensor has target name.
   FAIL_EXIT if not match.

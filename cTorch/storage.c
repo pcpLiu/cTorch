@@ -139,3 +139,16 @@ void struct_deep_free(CTorchTensor)(CTorchTensor *tensor) {
 
   FREE(tensor);
 }
+
+void FORCE_TENSOR_NUM_ELEMENTS(
+    CTorchTensor *tensor, const tensor_size_t target_n) {
+  FAIL_NULL_PTR(tensor);
+
+  if (target_n != tensor->meta_info->n_elements) {
+    FAIL_EXIT(
+        CTH_LOG_ERR,
+        "Tensor required %u elements, but it contains %u",
+        target_n,
+        tensor->meta_info->n_elements);
+  }
+}

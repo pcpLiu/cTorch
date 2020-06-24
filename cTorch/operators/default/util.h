@@ -61,6 +61,31 @@
   }
 
 /**
+ * Generic compute elewise unary
+ */
+#define _cpu_1d_map_elewise_unary_generic(                                     \
+    input_ptr, output_ptr, data_type, N, kernel)                               \
+  {                                                                            \
+    if (data_type == CTH_TENSOR_DATA_TYPE_BOOL) {                              \
+      kernel(input_ptr, output_ptr, N, bool);                                  \
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_16) {                     \
+      kernel(input_ptr, output_ptr, N, int16_t);                               \
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_32) {                     \
+      kernel(input_ptr, output_ptr, N, int32_t);                               \
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_64) {                     \
+      kernel(input_ptr, output_ptr, N, int64_t);                               \
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_UINT_8) {                     \
+      kernel(input_ptr, output_ptr, N, uint8_t);                               \
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16) {                   \
+      kernel(input_ptr, output_ptr, N, float);                                 \
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {                   \
+      kernel(input_ptr, output_ptr, N, float);                                 \
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_64) {                   \
+      kernel(input_ptr, output_ptr, N, double);                                \
+    }                                                                          \
+  }
+
+/**
  * Apply 1d binary kernel on input and output pointers in element wise way
  */
 #define _cpu_1d_map_elewise_binary(                                            \

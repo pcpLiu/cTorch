@@ -24,15 +24,15 @@ declare_list_pop_func(CTorchOperator);
 declare_free_list_func(CTorchOperator);
 declare_free_list_deep_func(CTorchOperator);
 
-/*
-  Check if # of in_bound_tensors == # of out_bound_tensors for given
-  operator. If not, exit and give error info.
-*/
-void FORCE_INPUT_OUTPUT_TSR_NUM_EQ(CTorchOperator *);
+/**
+ * Check if # of in_bound_tensors == # of out_bound_tensors for given operator.
+ * If not, exit and give error info.
+ */
+void FORCE_INPUT_OUTPUT_TSR_NUM_EQ(CTorchOperator *op);
 
-/*
-  Check if operator has param with given name and type
-*/
+/**
+ * Check if operator has param with given name and type
+ */
 void FORCE_OP_PARAM_EXIST(
     CTorchOperator *op,
     const char *target_name,
@@ -51,10 +51,10 @@ void FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(
     const array_index_t num_input,
     const array_index_t num_output);
 
-/*
-  If any input & output tensor's datatypes is unsupported, fail this op's
-  execution.
-*/
+/**
+ * If any input & output tensor's datatypes is unsupported, fail this op's
+ * execution.
+ */
 void OP_FAIL_ON_DTYPE(CTorchOperator *op, CTH_TENSOR_DATA_TYPE data_type);
 
 /*
@@ -65,9 +65,9 @@ void OP_FAIL_ON_DTYPE(CTorchOperator *op, CTH_TENSOR_DATA_TYPE data_type);
 CTorchTensor *
 get_input_by_name(CTorchOperator *op, const char *name, bool fail_exit);
 
-/*
-  Call FAIL_EXIT if set fail_exit to true and not found.
-*/
+/**
+ * Call FAIL_EXIT if set fail_exit to true and not found.
+ */
 CTorchTensor *
 get_output_by_name(CTorchOperator *op, const char *name, bool fail_exit);
 

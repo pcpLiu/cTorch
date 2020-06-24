@@ -4,7 +4,7 @@
 /*
   Number of enabled operators
 */
-#define ENABLED_OP_NUM 293
+#define ENABLED_OP_NUM 294
 
 // clang-format off
 
@@ -29,6 +29,7 @@
   wrap(addmv) \
   wrap(addr) \
   wrap(allclose) \
+  wrap(angle) \
   wrap(argmax) \
   wrap(argmin) \
   wrap(argsort) \
