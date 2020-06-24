@@ -4,14 +4,14 @@
 #include "cTorch/operators/default/util.h"
 
 /**
- * Computation: output = 1 / sin(input)
+ * Computation: output = 1 / tan(input)
  *
  * Inputs & outputs:
  *    - # of input: 1
  *    - # of output: 1
  *    - Input and output should be same dimention and type.
  */
-void op_asin_cpu(CTorchOperator *op) {
+void op_atan_cpu(CTorchOperator *op) {
   FORCE_INPUT_OUTPUT_TSR_NUM_EQ(op);
   OP_FAIL_ON_DTYPE(op, CTH_TENSOR_DATA_TYPE_BOOL);
 
@@ -19,5 +19,5 @@ void op_asin_cpu(CTorchOperator *op) {
   CTorchTensor *out = array_at(CTorchTensor)(op->out_bound_tensors, 0);
   int64_t N = in->meta_info->n_elements;
   _cpu_1d_map_elewise_unary(
-      in->values, out->values, in->meta_info->data_type, N, asin);
+      in->values, out->values, in->meta_info->data_type, N, atan);
 }
