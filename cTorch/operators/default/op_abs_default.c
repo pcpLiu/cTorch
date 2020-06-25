@@ -23,7 +23,7 @@
  * # of output: 1
  */
 void op_abs_cpu(CTorchOperator *op) {
-  FORCE_INPUT_OUTPUT_TSR_NUM_EQ(op);
+  FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(op, 1, 1);
 
   CTorchTensor *in = array_at(CTorchTensor)(op->in_bound_tensors, 0);
   CTorchTensor *out = array_at(CTorchTensor)(op->out_bound_tensors, 0);
