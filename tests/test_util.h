@@ -32,6 +32,13 @@ CTorchOperator *create_dummy_op(CTH_OP_ID op_id, array_index_t num_inputs,
                                 array_index_t num_outputs);
 
 /*
+  Create a dummy operator.
+*/
+CTorchOperator *create_dummy_op_with_param(CTH_OP_ID op_id,
+                                           array_index_t num_inputs,
+                                           array_index_t num_outputs,
+                                           array_index_t num_param);
+/*
   Create a dummy node without any information.
 */
 CTorchNode *create_dummy_node(node_id_t id, array_index_t inbound_size,

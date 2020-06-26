@@ -147,6 +147,19 @@ CTorchOperator *create_dummy_op(CTH_OP_ID op_id, array_index_t num_inputs,
   op->op_id = op_id;
   op->in_bound_tensors = new_array(CTorchTensor)(num_inputs);
   op->out_bound_tensors = new_array(CTorchTensor)(num_outputs);
+  op->params = new_array(CTorchParam)(0);
+  return op;
+}
+
+CTorchOperator *create_dummy_op_with_param(CTH_OP_ID op_id,
+                                           array_index_t num_inputs,
+                                           array_index_t num_outputs,
+                                           array_index_t num_param) {
+  CTorchOperator *op = MALLOC(sizeof(CTorchOperator));
+  op->op_id = op_id;
+  op->in_bound_tensors = new_array(CTorchTensor)(num_inputs);
+  op->out_bound_tensors = new_array(CTorchTensor)(num_outputs);
+  op->params = new_array(CTorchParam)(num_param);
   return op;
 }
 

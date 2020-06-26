@@ -95,3 +95,24 @@ TEST(cTorchOperatorTest, testDeepFreeMEMRECORD) {
   struct_deep_free(CTorchOperator)(op);
   EXPECT_EQ(0, cth_get_num_unfree_records());
 }
+
+TEST(cTorchOperatorTest, testGetParam) {
+  CTorchOperator *op = create_dummy_op_with_param(CTH_OP_ID_abs, 1, 1, 2);
+
+  CTorchParam *param_1 = (CTorchParam *)MALLOC(sizeof(CTorchParam));
+  param_1->type = CTH_PARAM_TYPE_MULTIPLIER_FLOAT32;
+  param_1->data.multiplier = 1.0;
+  array_set(CTorchParam)(op->params, 0, param_1);
+
+  CTorchParam *param_2 = (CTorchParam *)MALLOC(sizeof(CTorchParam));
+  param_2->type = CTH_PARAM_TYPE_MIN_FLOAT32;
+  param_2->data.multiplier = -1.0;
+  array_set(CTorchParam)(op->params, 1, param_2);
+
+  CTorchParam *param =
+      cth_get_param_by_type(op, CTH_PARAM_TYPE_MIN_FLOAT32, true);
+  EXPECT_EQ(param, param_2);
+
+  param = cth_get_param_by_type(op, CTH_PARAM_TYPE_MULTIPLIER_FLOAT32, true);
+  EXPECT_EQ(param, param_1);
+}

@@ -3,13 +3,15 @@
 
 #include "cTorch/consts.h"
 #include "cTorch/generic_array.h"
+#include "cTorch/params.h"
 #include "cTorch/storage.h"
 
 typedef struct CTorchOperator {
   CTH_OP_ID op_id;                         /* Operator ID */
   Array(CTorchTensor) * in_bound_tensors;  /* List of input tensors. It includes
-                                             inputs, weight and arguments. */
+                                             inputs, weights */
   Array(CTorchTensor) * out_bound_tensors; /* List of output tensors */
+  Array(CTorchParam) * params;             /* Scalar parameters */
   bool is_sharded;                         /* If op is a sharded one */
 } CTorchOperator;
 
@@ -70,6 +72,12 @@ get_input_by_name(CTorchOperator *op, const char *name, bool fail_exit);
  */
 CTorchTensor *
 get_output_by_name(CTorchOperator *op, const char *name, bool fail_exit);
+
+/**
+ * Get param by type. Always return the first met one.
+ */
+CTorchParam *cth_get_param_by_type(
+    CTorchOperator *op, const CTH_PARAM_TYPE type, bool fail_exit);
 
 /**
  * Deep free an operator. For inbound and outbound list, it will call

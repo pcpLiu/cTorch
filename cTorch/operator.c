@@ -129,3 +129,19 @@ void struct_deep_free(CTorchOperator)(CTorchOperator *op) {
   // free_list_deep(CTorchTensor)(op->out_bound_tensors);
   // FREE(op);
 }
+
+CTorchParam *cth_get_param_by_type(
+    CTorchOperator *op, const CTH_PARAM_TYPE type, bool fail_exit) {
+  FAIL_NULL_PTR(op);
+
+  for (int i = 0; i < op->params->size; i++) {
+    CTorchParam *param = array_at(CTorchParam)(op->params, i);
+    if (type == param->type) {
+      return param;
+    }
+  }
+
+  if (fail_exit) {
+    FAIL_EXIT(CTH_LOG_ERR, "Cannot find param with type %u", type);
+  }
+}
