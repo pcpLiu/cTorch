@@ -12,6 +12,7 @@ set(ops_default_all
     operators/default/op_angle_default.c
     operators/default/op_asin_default.c
     operators/default/op_atan_default.c
+    operators/default/op_atan2_default.c
 )
 
 ################################################################################
