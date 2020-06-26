@@ -79,42 +79,48 @@ declare_array_set_func(CTorchTensor);
  */
 void *cth_tensor_ptr_offset(CTorchTensor *tensor, tensor_size_t n_elements);
 
-/*
-  Set tensor'S name. This function directly overrides the tensor's name.
-
-  Note: this function will copy `target_name`. It is safe to release
-  `target_name` after calling.
-*/
+/**
+ * Set tensor'S name. This function directly overrides the tensor's name.
+ *
+ * Note: this function will copy `target_name`. It is safe to release
+ * `target_name` after calling.
+ */
 void cth_tensor_set_name(CTorchTensor *tensor, const char *target_name);
 
-/*
-  Get tensor's data type size.
-
-  Note: alignment is NOT included.
-*/
+/**
+ * Get tensor's data type size.
+ *
+ * Note: alignment is NOT included.
+ */
 size_t cth_tensor_data_size(CTorchTensor *tensor);
 
-/*
-  Check if a tensor's name match target name.
-*/
+/**
+ * Check if a tensor's name match target name.
+ */
 bool cth_tensor_name_match(CTorchTensor *tensor, const char *target_name);
 
-/*
-  Check if given tensor has target dimension.
-  FAIL_EXIT if not match.
-*/
+/**
+ * Check if given tensor has target dimension.
+ * FAIL_EXIT if not match.
+ */
 void FORCE_TENSOR_DIMENSION(CTorchTensor *tensor, tensor_dim_t *target_dims);
 
 /**
- *  Check if given tensor has target no. of elements. FAIL_EXIT if not match.
+ * Check if given tensor has target no. of elements. FAIL_EXIT if not match.
  */
 void FORCE_TENSOR_NUM_ELEMENTS(
     CTorchTensor *tensor, const tensor_size_t target_n);
 
-/*
-  Check if given tensor has target name.
-  FAIL_EXIT if not match.
-*/
+/**
+ * Check if given tensor has target name.
+ * FAIL_EXIT if not match.
+ */
 void FORCE_TENSOR_NAME(CTorchTensor *tensor, const char *target_name);
+
+/**
+ * Check if tensor has one of given types.
+ */
+void FORCE_TENSOR_TYPES(
+    CTorchTensor *tensor, CTH_TENSOR_DATA_TYPE *types, int n_types);
 
 #endif /* STORAGE_H */
