@@ -51,6 +51,7 @@
   wrap(bincount) \
   wrap(bitwise_not) \
   wrap(bitwise_and) \
+  wrap(bitwise_or) \
   wrap(blackman_window) \
   wrap(bmm) \
   wrap(broadcast_tensors) \

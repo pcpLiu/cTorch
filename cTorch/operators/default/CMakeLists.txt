@@ -15,6 +15,7 @@ set(ops_default_all
     operators/default/op_atan2_default.c
     operators/default/op_bitwise_not_default.c
     operators/default/op_bitwise_and_default.c
+    operators/default/op_bitwise_or_default.c
 )
 
 ################################################################################
