@@ -24,6 +24,7 @@ set(ops_default_all
     operators/default/op_div_default.c
     operators/default/op_digamma_default.c
     operators/default/op_erf_default.c
+    operators/default/op_erfc_default.c
 )
 
 ################################################################################
