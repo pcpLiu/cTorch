@@ -21,6 +21,10 @@ set(test_util_src
     test_util.c
 )
 
+# PyTorh c++ for testing
+find_package(Torch REQUIRED)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}")
+
 set(test_target cTorch_test)
 add_executable(${test_target}
     ${test_sources}
