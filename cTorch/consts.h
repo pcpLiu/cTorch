@@ -19,11 +19,11 @@ typedef enum CTH_BACKEND {
   CTH_BACKEND_CUDA,
 } CTH_BACKEND;
 
-/*
-  Graph node type:
-    - CTH_NODE_TYPE_DATA: tensor
-    - CTH_NODE_TYPE_OPERATOR: operator
-*/
+/**
+ * Graph node type:
+ *    - CTH_NODE_TYPE_DATA: tensor
+ *    - CTH_NODE_TYPE_OPERATOR: operator
+ */
 typedef enum CTH_NODE_TYPE {
   CTH_NODE_TYPE_DATA,
   CTH_NODE_TYPE_OPERATOR,
@@ -104,9 +104,9 @@ typedef uint16_t thread_n_t;
 #define tensor_size_t uint32_t
 
 /**
- * Pi value
+ * Pi value. 10 digits
  */
-#define CTH_PI 3.1415926
+#define CTH_PI 3.1415926535
 
 /*
   String array of operator names.
