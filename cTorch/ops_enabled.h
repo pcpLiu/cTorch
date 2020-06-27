@@ -4,7 +4,7 @@
 /*
   Number of enabled operators
 */
-#define ENABLED_OP_NUM 294
+#define ENABLED_OP_NUM 295
 
 // clang-format off
 
@@ -50,6 +50,7 @@
   wrap(Bilinear) \
   wrap(bincount) \
   wrap(bitwise_not) \
+  wrap(bitwise_and) \
   wrap(blackman_window) \
   wrap(bmm) \
   wrap(broadcast_tensors) \
