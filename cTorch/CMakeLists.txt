@@ -113,6 +113,7 @@ set(core_src
     mem_util.c
     node.c
     operator.c
+    params.c
     pool.c
     queue.c
     scheduler.c

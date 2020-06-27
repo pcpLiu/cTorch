@@ -45,7 +45,7 @@ void OP_FAIL_ON_DTYPE(CTorchOperator *op, CTH_TENSOR_DATA_TYPE data_type) {
   }
 }
 
-void FORCE_OP_PARAM_EXIST(
+void FORCE_OP_INPUT_EXIST(
     CTorchOperator *op, const char *name, CTH_TENSOR_DATA_TYPE data_type) {
   FAIL_NULL_PTR(op);
 
@@ -61,7 +61,7 @@ void FORCE_OP_PARAM_EXIST(
   }
 
   if (!found) {
-    FAIL_EXIT(CTH_LOG_ERR, "FORCE_OP_PARAM_EXIST fails");
+    FAIL_EXIT(CTH_LOG_ERR, "FORCE_OP_INPUT_EXIST fails");
   }
 }
 
@@ -91,6 +91,18 @@ void FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(
   }
 }
 
+void FORCE_OP_PARAM_EXIST(CTorchOperator *op, const CTH_PARAM_TYPE type) {
+  FAIL_NULL_PTR(op);
+  for (array_index_t i = 0; i < op->params->size; i++) {
+    CTorchParam *param = array_at(CTorchParam)(op->params, i);
+    if (type == param->type) {
+      return;
+    }
+  }
+
+  FAIL_EXIT(CTH_LOG_ERR, "FORCE_OP_PARAM_EXIST failed.");
+}
+
 CTorchTensor *_get_tensor_by_name(
     Array(CTorchTensor) * tensor_array, const char *name, bool fail_exit) {
   FAIL_NULL_PTR(tensor_array);
@@ -111,7 +123,7 @@ CTorchTensor *_get_tensor_by_name(
 }
 
 CTorchTensor *
-get_input_by_name(CTorchOperator *op, const char *name, bool fail_exit) {
+cth_get_input_by_name(CTorchOperator *op, const char *name, bool fail_exit) {
   FAIL_NULL_PTR(op);
   return _get_tensor_by_name(op->in_bound_tensors, name, true);
 }

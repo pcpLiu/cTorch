@@ -22,11 +22,11 @@ TEST(cTorchOperatorTest, testForceOpParamExist) {
 
   const char *target_name = "tensor_name";
   EXPECT_NO_FATAL_FAILURE(
-      FORCE_OP_PARAM_EXIST(op, target_name, CTH_TENSOR_DATA_TYPE_FLOAT_32));
+      FORCE_OP_INPUT_EXIST(op, target_name, CTH_TENSOR_DATA_TYPE_FLOAT_32));
 
   const char *target_name_2 = "tensor_name_2";
   EXPECT_EXIT(
-      FORCE_OP_PARAM_EXIST(op, target_name_2, CTH_TENSOR_DATA_TYPE_FLOAT_32),
+      FORCE_OP_INPUT_EXIST(op, target_name_2, CTH_TENSOR_DATA_TYPE_FLOAT_32),
       ::testing::ExitedWithCode(1), "");
 }
 
@@ -60,15 +60,15 @@ TEST(cTorchOperatorTest, testGetInputOutputByName) {
   array_set(CTorchTensor)(op->in_bound_tensors, 0, input);
   array_set(CTorchTensor)(op->out_bound_tensors, 0, output);
 
-  CTorchTensor *result = get_input_by_name(op, name, true);
+  CTorchTensor *result = cth_get_input_by_name(op, name, true);
   EXPECT_EQ(result, input);
   result = get_output_by_name(op, name, true);
   EXPECT_EQ(result, output);
 
   const char *name_2 = "name_2";
   cth_tensor_set_name(input, name_2);
-  EXPECT_EXIT(get_input_by_name(op, name, true), ::testing::ExitedWithCode(1),
-              "Could not find tensor");
+  EXPECT_EXIT(cth_get_input_by_name(op, name, true),
+              ::testing::ExitedWithCode(1), "Could not find tensor");
 }
 
 TEST(cTorchOperatorTest, testDeepFreeMEMRECORD) {

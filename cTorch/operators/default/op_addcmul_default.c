@@ -4,9 +4,9 @@
 #define _cth_addcmul(op, data_type)                                            \
   do {                                                                         \
     CTorchTensor *input = array_at(CTorchTensor)(op->in_bound_tensors, 0);     \
-    CTorchTensor *tensor_1 = get_input_by_name(op, "tensor_1", true);          \
-    CTorchTensor *tensor_2 = get_input_by_name(op, "tensor_2", true);          \
-    CTorchTensor *tensor_value = get_input_by_name(op, "value", true);         \
+    CTorchTensor *tensor_1 = cth_get_input_by_name(op, "tensor_1", true);      \
+    CTorchTensor *tensor_2 = cth_get_input_by_name(op, "tensor_2", true);      \
+    CTorchTensor *tensor_value = cth_get_input_by_name(op, "value", true);     \
     float value = ((float *)tensor_value->values)[0];                          \
     CTorchTensor *output = array_at(CTorchTensor)(op->out_bound_tensors, 0);   \
     tensor_size_t N = tensor_1->meta_info->n_elements;                         \
