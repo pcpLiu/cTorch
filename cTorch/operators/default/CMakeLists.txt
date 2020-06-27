@@ -19,6 +19,7 @@ set(ops_default_all
     operators/default/op_bitwise_xor_default.c
     operators/default/op_ceil_default.c
     operators/default/op_clamp_default.c
+    operators/default/op_cos_default.c
 )
 
 ################################################################################
