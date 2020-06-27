@@ -35,4 +35,14 @@ declare_new_array_func(CTorchParam);
 declare_array_at_func(CTorchParam);
 declare_array_set_func(CTorchParam);
 
+/**
+ * Extract param value with given types
+ */
+#define EXTRACT_PARAM_VALUE(op, param_type, param_data_field, param_var)       \
+  do {                                                                         \
+    CTorchParam *param = cth_get_param_by_type(op, param_type, true);          \
+    param_var =                                                                \
+        cth_get_param_by_type(op, param_type, true)->data.param_data_field;    \
+  } while (0)
+
 #endif /* PARAMS_H */

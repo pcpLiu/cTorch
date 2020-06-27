@@ -38,6 +38,8 @@
  */
 void op_addcmul_cpu(CTorchOperator *op) {
   FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(op, 3, 1);
+  FORCE_OP_PARAM_NUM(op, 1);
+
   CTorchTensor *input = array_at(CTorchTensor)(op->in_bound_tensors, 0);
   _cpu_generic_compute(op, _cth_addcmul, input->meta_info->data_type);
 }

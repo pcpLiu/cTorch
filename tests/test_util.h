@@ -55,6 +55,11 @@ CTorchGraph *create_dummy_graph(array_index_t num_nodes);
 bool tensor_all_nan(CTorchTensor *);
 
 /**
+ * Rand flost in range
+ */
+float _rand_float(float min, float max);
+
+/**
  * Check element-wise equal between verify_func(input) and output
  */
 #define _ele_wise_equal_unary(op, type, eq_func, verify_func)                  \

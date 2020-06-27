@@ -66,7 +66,7 @@ void FORCE_OP_INPUT_EXIST(
 }
 
 void FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(
-    CTorchOperator *op,
+    const CTorchOperator *op,
     const array_index_t num_input,
     const array_index_t num_output) {
   FAIL_NULL_PTR(op);
@@ -83,10 +83,24 @@ void FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(
   if (num_output != op->out_bound_tensors->size) {
     FAIL_EXIT(
         CTH_LOG_ERR,
-        "FORCE_OP_INPUT_OUTPUT_TENSOR_NUM failS. Required No. of output "
+        "FORCE_OP_INPUT_OUTPUT_TENSOR_NUM fails. Required No. of output "
         "tensors "
         "is %u, given %u",
         num_output,
+        op->out_bound_tensors->size);
+  }
+}
+
+void FORCE_OP_PARAM_NUM(
+    const CTorchOperator *op, const array_index_t num_param) {
+  FAIL_NULL_PTR(op);
+
+  if (op->params->size != num_param) {
+    FAIL_EXIT(
+        CTH_LOG_ERR,
+        "FORCE_OP_PARAM_NUM fails. Required No. of output params is %d, op has "
+        "%d",
+        num_param,
         op->out_bound_tensors->size);
   }
 }

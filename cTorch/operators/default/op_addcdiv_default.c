@@ -38,6 +38,8 @@
  */
 void op_addcdiv_cpu(CTorchOperator *op) {
   FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(op, 3, 1);
+  FORCE_OP_PARAM_NUM(op, 1);
+
   CTorchTensor *input = array_at(CTorchTensor)(op->in_bound_tensors, 0);
   CTH_TENSOR_DATA_TYPE data_type = input->meta_info->data_type;
   FORCE_OP_INPUT_EXIST(op, "tensor_1", data_type);
