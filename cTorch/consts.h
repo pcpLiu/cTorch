@@ -29,13 +29,11 @@ typedef enum CTH_NODE_TYPE {
   CTH_NODE_TYPE_OPERATOR,
 } CTH_NODE_TYPE;
 
-/*
-  Tensor value types
-  ref: https://pytorch.org/docs/stable/tensors.html#torch-tensor
-*/
+/**
+ * Tensor value types
+ * ref: https://pytorch.org/docs/stable/tensors.html#torch-tensor
+ */
 typedef enum CTH_TENSOR_DATA_TYPE {
-  // These types are compatable with pyTorch data dtypes.
-  // Operators shouuld support these types.
   CTH_TENSOR_DATA_TYPE_FLOAT_16 = 0,
   CTH_TENSOR_DATA_TYPE_FLOAT_32,
   CTH_TENSOR_DATA_TYPE_FLOAT_64,
@@ -45,10 +43,6 @@ typedef enum CTH_TENSOR_DATA_TYPE {
   CTH_TENSOR_DATA_TYPE_INT_64,
   CTH_TENSOR_DATA_TYPE_UINT_8,
   CTH_TENSOR_DATA_TYPE_BOOL,
-
-  // These types are used by cTorch.
-  // Operators doesn't need to support these types.
-  CTH_TENSOR_DATA_TYPE_UINT_32,
 } CTH_TENSOR_DATA_TYPE;
 
 /*

@@ -57,6 +57,9 @@
     } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_64) {                   \
       _cpu_1d_map_elewise_unary_forloop(                                       \
           input_ptr, output_ptr, N, kernel, double);                           \
+    } else {                                                                   \
+      FAIL_EXIT(                                                               \
+          CTH_LOG_ERR, "Unsupported data type in _cpu_1d_map_elewise_unary");  \
     }                                                                          \
   }
 
@@ -82,6 +85,10 @@
       kernel(input_ptr, output_ptr, N, float);                                 \
     } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_64) {                   \
       kernel(input_ptr, output_ptr, N, double);                                \
+    } else {                                                                   \
+      FAIL_EXIT(                                                               \
+          CTH_LOG_ERR,                                                         \
+          "Unsupported data type in _cpu_1d_map_elewise_unary_generic");       \
     }                                                                          \
   }
 
@@ -115,6 +122,9 @@
     } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_64) {                   \
       _cpu_1d_map_elewise_binary_forloop(                                      \
           input_ptr_a, input_ptr_b, output_ptr, N, kernel, double);            \
+    } else {                                                                   \
+      FAIL_EXIT(                                                               \
+          CTH_LOG_ERR, "Unsupported data type in _cpu_1d_map_elewise_binary"); \
     }                                                                          \
   }
 
@@ -139,6 +149,28 @@
       compute_fn(op, float);                                                   \
     } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_64) {                   \
       compute_fn(op, double);                                                  \
+    } else {                                                                   \
+      FAIL_EXIT(CTH_LOG_ERR, "Unsupported data type in _cpu_generic_compute"); \
+    }                                                                          \
+  }
+
+/**
+ * Expand a computation to all bit computation supported types
+ */
+#define _cpu_bit_compute(op, compute_fn, data_type)                            \
+  {                                                                            \
+    if (data_type == CTH_TENSOR_DATA_TYPE_BOOL) {                              \
+      compute_fn(op, bool);                                                    \
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_16) {                     \
+      compute_fn(op, int16_t);                                                 \
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_32) {                     \
+      compute_fn(op, int32_t);                                                 \
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_64) {                     \
+      compute_fn(op, int64_t);                                                 \
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_UINT_8) {                     \
+      compute_fn(op, uint8_t);                                                 \
+    } else {                                                                   \
+      FAIL_EXIT(CTH_LOG_ERR, "Unsupported data type in _cpu_bit_compute");     \
     }                                                                          \
   }
 

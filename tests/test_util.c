@@ -32,6 +32,7 @@ CTorchTensor *create_dummy_tensor(tensor_dim_t *dims, tensor_dim_t n_dim,
   tensor->meta_info = (CTorchTensorMeta *)MALLOC(sizeof(CTorchTensorMeta));
   tensor->meta_info->dims = dims;
   tensor->meta_info->n_dim = n_dim;
+  tensor->meta_info->data_type = data_type;
   cth_tensor_set_name(tensor, "Dummy Tensor");
 
   uint64_t n_ele = 1;
