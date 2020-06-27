@@ -21,7 +21,7 @@
   } while (0);
 
 /**
- * out = input + value * (tensor_1 / tensor_2)
+ * out = input + multiplier * (tensor_1 / tensor_2)
  * ref: https://pytorch.org/docs/stable/torch.html#torch.addcdiv
  *
  * Op requirement:
@@ -42,7 +42,6 @@ void op_addcdiv_cpu(CTorchOperator *op) {
   CTH_TENSOR_DATA_TYPE data_type = input->meta_info->data_type;
   FORCE_OP_INPUT_EXIST(op, "tensor_1", data_type);
   FORCE_OP_INPUT_EXIST(op, "tensor_2", data_type);
-  // FORCE_OP_INPUT_EXIST(op, "value", CTH_TENSOR_DATA_TYPE_FLOAT_32);
   FORCE_OP_PARAM_EXIST(op, CTH_PARAM_TYPE_MULTIPLIER_FLOAT32);
 
   _cpu_generic_compute(op, _cth_addcdiv, data_type);
