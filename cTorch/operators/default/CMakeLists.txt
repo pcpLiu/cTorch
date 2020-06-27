@@ -20,6 +20,7 @@ set(ops_default_all
     operators/default/op_ceil_default.c
     operators/default/op_clamp_default.c
     operators/default/op_cos_default.c
+    operators/default/op_cosh_default.c
 )
 
 ################################################################################
