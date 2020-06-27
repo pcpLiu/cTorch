@@ -52,6 +52,7 @@
   wrap(bitwise_not) \
   wrap(bitwise_and) \
   wrap(bitwise_or) \
+  wrap(bitwise_xor) \
   wrap(blackman_window) \
   wrap(bmm) \
   wrap(broadcast_tensors) \
