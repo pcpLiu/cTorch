@@ -27,6 +27,7 @@ set(ops_default_all
     operators/default/op_erfc_default.c
     operators/default/op_exp_default.c
     operators/default/op_expm1_default.c
+    operators/default/op_floor_default.c
 )
 
 ################################################################################
