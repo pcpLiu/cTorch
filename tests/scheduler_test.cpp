@@ -126,7 +126,7 @@ TEST(cTorchSchedulerTest, testManyTasks) {
   /**
    *  N nodes --> node_final
    */
-  int N_DEPENDENTS = 10000;
+  int N_DEPENDENTS = 1000;
 
   CTorchGraph *graph = create_dummy_graph(N_DEPENDENTS + 1);
 

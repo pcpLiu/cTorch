@@ -26,7 +26,7 @@ typedef struct CTorchTensorMeta {
 } CTorchTensorMeta;
 
 /**
- * Deep free a meta info. Function name follows pattern defined in list_d.h
+ * Deep free a meta info.
  *
  * Note:
  *    If pointer is NULL, error raised and exit.
@@ -71,6 +71,7 @@ def_array(CTorchTensor);
 declare_new_array_func(CTorchTensor);
 declare_array_at_func(CTorchTensor);
 declare_array_set_func(CTorchTensor);
+declare_free_array_deep_func(CTorchTensor);
 
 /**
  * Get the pointer address by offsetting gieven tensor's ptr with given number

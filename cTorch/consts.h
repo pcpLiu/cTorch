@@ -94,6 +94,11 @@ typedef uint16_t thread_n_t;
 #define STRINGTIFY_OP(x) #x,
 
 /**
+ * Universal struct deep free function name in cToRCH
+ */
+#define struct_deep_free(data_type) free_deep_##data_type
+
+/**
  * Type to denote tensor dimension
  */
 #define tensor_dim_t uint32_t

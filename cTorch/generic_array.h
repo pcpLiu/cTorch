@@ -47,6 +47,7 @@ typedef uint32_t array_index_t;
   array_T *func_name(array_index_t size) {                                     \
     array_T *array = (array_T *)MALLOC(sizeof(array_T));                       \
     array->size = size;                                                        \
+    array->_data = NULL;                                                       \
     if (size > 0) {                                                            \
       array->_data = (T **)MALLOC(sizeof(T *) * size);                         \
       for (array_index_t i = 0; i < size; i++) {                               \
@@ -69,8 +70,8 @@ typedef uint32_t array_index_t;
     if (i >= array->size) {                                                    \
       FAIL_EXIT(                                                               \
           CTH_LOG_ERR,                                                         \
-          "Array index out of boundary. Given index %ud while array size is "  \
-          "%ud",                                                               \
+          "Array index out of boundary."                                       \
+          " Given index %d while array size is %d",                            \
           i,                                                                   \
           array->size);                                                        \
     }                                                                          \
@@ -106,5 +107,53 @@ typedef uint32_t array_index_t;
     return *(array->_data + i);                                                \
   }
 #define impl_array_at_func(T) _impl_array_at_func(T, array_at(T), Array(T))
+
+/**
+ * Free an array. Would NOT free contained data
+ *
+ *  free_array(T) --- func name
+ *  declare_free_array_func(T) --- declare
+ *  impl_free_array_func(T) --- implementation
+ */
+#define free_array(T) free_array_##T
+#define _declare_free_array_func(func_name, array_T)                           \
+  void func_name(array_T *array);
+#define declare_free_array_func(T)                                             \
+  _declare_free_array_func(free_array(T), Array(T))
+#define _impl_free_array_func(func_name, array_T)                              \
+  void func_name(array_T *array) {                                             \
+    FAIL_NULL_PTR(array);                                                      \
+                                                                               \
+    FREE(array->data);                                                         \
+    FREE(array);                                                               \
+  }
+#define impl_free_array_func(T) _impl_free_array_func(free_array(T), Array(T))
+
+/**
+ * Free an array in a deep wayy. Would also free contained data
+ *
+ *  free_array_deep(T) --- func name
+ *  declare_free_array_deep_func(T) --- declare
+ *  impl_free_array_deep_func(T) --- implementation
+ */
+#define free_array_deep(T) free_array_deep_##T
+#define _declare_free_array_deep_func(func_name, array_T)                      \
+  void func_name(array_T *array);
+#define declare_free_array_deep_func(T)                                        \
+  _declare_free_array_deep_func(free_array_deep(T), Array(T))
+#define _impl_free_array_deep_func(func_name, array_T, T)                      \
+  void func_name(array_T *array) {                                             \
+    FAIL_NULL_PTR(array);                                                      \
+                                                                               \
+    array_index_t i = 0;                                                       \
+    while (i < array->size) {                                                  \
+      struct_deep_free(T)(array_at(T)(array, i));                              \
+      i++;                                                                     \
+    }                                                                          \
+    FREE_SOFT(array->_data);                                                   \
+    FREE(array);                                                               \
+  }
+#define impl_free_array_deep_func(T)                                           \
+  _impl_free_array_deep_func(free_array_deep(T), Array(T), T)
 
 #endif /* GENERIC_ARRAY_H */

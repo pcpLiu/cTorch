@@ -19,6 +19,18 @@ void cth_sharding_op_elewise(
         new_array(CTorchTensor)(op->in_bound_tensors->size);
     shard_op->out_bound_tensors =
         new_array(CTorchTensor)(op->out_bound_tensors->size);
+    shard_op->params = new_array(CTorchParam)(op->params->size);
+
+    /* Copy params */
+    array_index_t i = 0;
+    while (i < op->params->size) {
+      array_set(CTorchParam)(shard_op->params, i, MALLOC(sizeof(CTorchParam)));
+      cth_copy_param(
+          array_at(CTorchParam)(op->params, i),
+          array_at(CTorchParam)(shard_op->params, i));
+      i++;
+    }
+
     insert_list(CTorchOperator)(ops, shard_op);
   }
 

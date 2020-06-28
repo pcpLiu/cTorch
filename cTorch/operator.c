@@ -1,4 +1,5 @@
 #include "cTorch/operator.h"
+#include "cTorch/consts.h"
 #include "cTorch/logger_util.h"
 #include "cTorch/mem_util.h"
 
@@ -11,10 +12,6 @@ impl_list_at_func(CTorchOperator);
 impl_list_pop_func(CTorchOperator);
 impl_free_list_func(CTorchOperator);
 impl_free_list_deep_func(CTorchOperator);
-
-impl_new_array_func(CTorchTensor);
-impl_array_at_func(CTorchTensor);
-impl_array_set_func(CTorchTensor);
 
 void FORCE_INPUT_OUTPUT_TSR_NUM_EQ(CTorchOperator *op) {
   FAIL_NULL_PTR(op);
@@ -149,11 +146,10 @@ get_output_by_name(CTorchOperator *op, const char *name, bool fail_exit) {
 }
 
 void struct_deep_free(CTorchOperator)(CTorchOperator *op) {
-  // TODO: implement with array
-
-  // free_list_deep(CTorchTensor)(op->in_bound_tensors);
-  // free_list_deep(CTorchTensor)(op->out_bound_tensors);
-  // FREE(op);
+  free_array_deep(CTorchTensor)(op->in_bound_tensors);
+  free_array_deep(CTorchTensor)(op->out_bound_tensors);
+  free_array_deep(CTorchParam)(op->params);
+  FREE(op);
 }
 
 CTorchParam *cth_get_param_by_type(

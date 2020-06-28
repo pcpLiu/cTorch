@@ -87,11 +87,16 @@ TEST(cTorchOperatorTest, testDeepFreeMEMRECORD) {
   CTorchTensor *output = create_dummy_tensor(
       dims_2, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
 
-  CTorchOperator *op = create_dummy_op(CTH_OP_ID_abs, 1, 1);
+  // param
+  CTorchParam *param = (CTorchParam *)MALLOC(sizeof(CTorchParam));
+  param->type = CTH_PARAM_TYPE_MULTIPLIER_FLOAT32;
+  param->data.multiplier = 0.5;
+
+  CTorchOperator *op = create_dummy_op_with_param(CTH_OP_ID_abs, 1, 1, 1);
   array_set(CTorchTensor)(op->in_bound_tensors, 0, input);
   array_set(CTorchTensor)(op->out_bound_tensors, 0, output);
+  array_set(CTorchParam)(op->params, 0, param);
 
-  // test in sing-thread mode
   struct_deep_free(CTorchOperator)(op);
   EXPECT_EQ(0, cth_get_num_unfree_records());
 }

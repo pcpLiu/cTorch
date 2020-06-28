@@ -4,7 +4,10 @@
 
 <p align="center">
   <a href="https://github.com/pcpLiu/cTorch/actions">
-    <img src="https://github.com/pcpLiu/cTorch/workflows/C/C++%20CI%20Build/badge.svg">
+    <img src="https://github.com/pcpLiu/cTorch/workflows/build/badge.svg">
+  </a>
+  <a href="https://github.com/pcpLiu/cTorch/actions">
+    <img src="https://github.com/pcpLiu/cTorch/workflows/tests/badge.svg">
   </a>
   <a href="https://codecov.io/gh/pcpLiu/cTorch">
     <img src="https://codecov.io/gh/pcpLiu/cTorch/branch/master/graph/badge.svg?token=G7rBTxAEAe" />

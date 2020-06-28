@@ -1,6 +1,7 @@
 #ifndef CTH_PARAMS_H
 #define CTH_PARAMS_H
 
+#include "cTorch/consts.h"
 #include "cTorch/generic_array.h"
 
 /**
@@ -34,6 +35,20 @@ def_array(CTorchParam);
 declare_new_array_func(CTorchParam);
 declare_array_at_func(CTorchParam);
 declare_array_set_func(CTorchParam);
+declare_free_array_deep_func(CTorchParam);
+
+/**
+ * Deep free a CTorchParam
+ *
+ * Note:
+ *    If pointer is NULL, error raised and exit.
+ */
+void struct_deep_free(CTorchParam)(CTorchParam *param);
+
+/**
+ * Copy fields from `from_param` to `to_param`
+ */
+void cth_copy_param(CTorchParam *from_param, CTorchParam *to_param);
 
 /**
  * Extract param value with given types

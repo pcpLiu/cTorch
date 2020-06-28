@@ -14,6 +14,11 @@ impl_list_pop_func(CTorchTensor);
 impl_free_list_func(CTorchTensor);
 impl_free_list_deep_func(CTorchTensor);
 
+impl_new_array_func(CTorchTensor);
+impl_array_at_func(CTorchTensor);
+impl_array_set_func(CTorchTensor);
+impl_free_array_deep_func(CTorchTensor);
+
 size_t cth_tensor_data_size(CTorchTensor *tensor) {
   size_t ele_size = 0;
   CTH_TENSOR_DATA_TYPE data_type = tensor->meta_info->data_type;

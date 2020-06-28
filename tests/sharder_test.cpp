@@ -53,7 +53,7 @@ TEST(cTorchSharderTest, testOperatorElewiseShardingMEMRECORD) {
   CTorchTensor *output = create_dummy_tensor(
       dims_2, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
 
-  CTorchOperator *op = create_dummy_op(CTH_OP_ID_abs, 1, 1);
+  CTorchOperator *op = create_dummy_op_with_param(CTH_OP_ID_abs, 1, 1, 0);
   array_set(CTorchTensor)(op->in_bound_tensors, 0, input);
   array_set(CTorchTensor)(op->out_bound_tensors, 0, output);
 
