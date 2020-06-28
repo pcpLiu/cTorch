@@ -4,7 +4,7 @@
 /*
   Number of enabled operators
 */
-#define ENABLED_OP_NUM 297
+#define ENABLED_OP_NUM 298
 
 // clang-format off
 
@@ -112,6 +112,7 @@
   wrap(flatten) \
   wrap(flip) \
   wrap(floor) \
+  wrap(floor_divide) \
   wrap(fmod) \
   wrap(Fold) \
   wrap(frac) \
