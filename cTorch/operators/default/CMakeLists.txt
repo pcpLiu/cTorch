@@ -35,6 +35,7 @@ set(ops_default_all
     operators/default/op_lgamma_default.c
     operators/default/op_log_default.c
     operators/default/op_log10_default.c
+    operators/default/op_log1p_default.c
 )
 
 ################################################################################
