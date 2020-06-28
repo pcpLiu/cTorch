@@ -30,6 +30,7 @@ set(ops_default_all
     operators/default/op_floor_default.c
     operators/default/op_floor_divide_default.c
     operators/default/op_fmod_default.c
+    operators/default/op_frac_default.c
 )
 
 ################################################################################
