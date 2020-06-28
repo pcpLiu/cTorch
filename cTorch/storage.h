@@ -119,8 +119,13 @@ void FORCE_TENSOR_NAME(CTorchTensor *tensor, const char *target_name);
 
 /**
  * Check if tensor has one of given types.
+ *
+ * Arguments:
+ *    - tensor: tensor
+ *    - types: array of types
+ *    - n_types: no. of types in array
  */
 void FORCE_TENSOR_TYPES(
-    CTorchTensor *tensor, CTH_TENSOR_DATA_TYPE *types, int n_types);
+    CTorchTensor *tensor, CTH_TENSOR_DATA_TYPE *types, array_index_t n_types);
 
 #endif /* STORAGE_H */

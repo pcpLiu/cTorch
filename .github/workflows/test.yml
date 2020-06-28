@@ -1,4 +1,4 @@
-name: C/C++ CI Build
+name: tests
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Build
+    name: Test
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
@@ -20,7 +20,10 @@ jobs:
         run: git submodule init && git submodule update
 
       - name: 2) CMake configure
-        run: mkdir build && cd build && cmake ..
+        run: mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Debug  -DDEBUG_TEST=ON ..
 
       - name: 3) Build all targets
         run: cd build && make
+
+      - name: 4) Run test scripts
+        run: bash ./github test.sh

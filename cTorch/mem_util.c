@@ -36,7 +36,6 @@ void cth_free(
   FAIL_NULL_PTR(record);
   record->status = CTH_MEM_RECORD_STATUS_FREED;
 #endif
-
   free(ptr);
 }
 

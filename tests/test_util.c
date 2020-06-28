@@ -9,21 +9,21 @@ float _rand_float(float min, float max) {
 int _rand_int(int min, int max) { return (rand() % (max - min + 1)) + min; }
 
 bool _rand_bool(void) {
-  if (_rand_int(0, 1) == 0) {
+  if (_rand_int(0, 1) > 0.5) {
     return false;
   } else {
     return true;
   }
 }
 
-#define _fill_tensor(type, rand_func, ...)                                     \
-  {                                                                            \
+#define _fill_tensor(type, n_ele, tensor, rand_func, ...)                      \
+  do {                                                                         \
     tensor->values = (type *)MALLOC(sizeof(type) * n_ele);                     \
     type *val = (type *)tensor->values;                                        \
     for (int i = 0; i < tensor->meta_info->n_elements; i++) {                  \
-      val[i] = rand_func(__VA_ARGS__);                                         \
+      val[i] = (type)rand_func(__VA_ARGS__);                                   \
     }                                                                          \
-  }
+  } while (0)
 
 CTorchTensor *create_dummy_tensor(tensor_dim_t *dims, tensor_dim_t n_dim,
                                   CTH_TENSOR_DATA_TYPE data_type, float min,
@@ -44,19 +44,19 @@ CTorchTensor *create_dummy_tensor(tensor_dim_t *dims, tensor_dim_t n_dim,
 
   if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||
       data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {
-    _fill_tensor(float, _rand_float, (float)min, (float)max);
+    _fill_tensor(float, n_ele, tensor, _rand_float, (float)min, (float)max);
   } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_64) {
-    _fill_tensor(double, _rand_float, (int)min, (int)max);
+    _fill_tensor(double, n_ele, tensor, _rand_float, (int)min, (int)max);
   } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_16) {
-    _fill_tensor(int16_t, _rand_int, (int)min, (int)max);
+    _fill_tensor(int16_t, n_ele, tensor, _rand_int, (int)min, (int)max);
   } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_32) {
-    _fill_tensor(int32_t, _rand_int, (int)min, (int)max);
+    _fill_tensor(int32_t, n_ele, tensor, _rand_int, (int)min, (int)max);
   } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_64) {
-    _fill_tensor(int64_t, _rand_int, (int)min, (int)max);
+    _fill_tensor(int64_t, n_ele, tensor, _rand_int, (int)min, (int)max);
   } else if (data_type == CTH_TENSOR_DATA_TYPE_UINT_8) {
-    _fill_tensor(uint8_t, _rand_int, (int)min, (int)max);
+    _fill_tensor(uint8_t, n_ele, tensor, _rand_int, (int)min, (int)max);
   } else if (data_type == CTH_TENSOR_DATA_TYPE_BOOL) {
-    _fill_tensor(char, _rand_bool);
+    _fill_tensor(bool, n_ele, tensor, _rand_bool);
   }
 
   return tensor;

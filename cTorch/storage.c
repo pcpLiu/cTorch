@@ -154,7 +154,7 @@ void FORCE_TENSOR_NUM_ELEMENTS(
 }
 
 void FORCE_TENSOR_TYPES(
-    CTorchTensor *tensor, CTH_TENSOR_DATA_TYPE *types, int n_types) {
+    CTorchTensor *tensor, CTH_TENSOR_DATA_TYPE *types, array_index_t n_types) {
   CTH_TENSOR_DATA_TYPE data_type = tensor->meta_info->data_type;
   bool match = false;
   for (int i = 0; i < n_types; i++) {

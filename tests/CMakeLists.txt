@@ -21,6 +21,9 @@ set(test_util_src
     test_util.c
 )
 
+# TODO: asprintf
+add_compile_definitions(_GNU_SOURCE)
+
 set(test_target cTorch_test)
 add_executable(${test_target}
     ${test_sources}

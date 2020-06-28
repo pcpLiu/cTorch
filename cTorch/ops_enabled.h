@@ -4,7 +4,7 @@
 /*
   Number of enabled operators
 */
-#define ENABLED_OP_NUM 298
+#define ENABLED_OP_NUM 299
 
 // clang-format off
 
@@ -159,6 +159,7 @@
   wrap(log1p) \
   wrap(log2) \
   wrap(logdet) \
+  wrap(logical_and) \
   wrap(logical_not) \
   wrap(logical_xor) \
   wrap(LogSigmoid) \

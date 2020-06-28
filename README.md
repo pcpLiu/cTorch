@@ -3,9 +3,6 @@
 </p>
 
 <p align="center">
-  <a href="https://travis-ci.com/github/pcpLiu/cTorch">
-    <img src="https://travis-ci.com/pcpLiu/cTorch.svg?token=pqXTPvpuvJE34KJBhbJP&branch=master">
-  </a>
   <a href="https://github.com/pcpLiu/cTorch/actions">
     <img src="https://github.com/pcpLiu/cTorch/workflows/C/C++%20CI%20Build/badge.svg">
   </a>

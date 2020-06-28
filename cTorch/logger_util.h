@@ -52,11 +52,16 @@
     if (!CTH_LOG_ENABLE)                                                       \
       break;                                                                   \
                                                                                \
+    const char *out_str = (write_to == stderr ? "ERROR" : "INFO");             \
+    fprintf(write_to, "[cTorch][%s]: ", out_str);                              \
+                                                                               \
     char *tmp = NULL;                                                          \
-    fprintf(stdout, "[cTorch][INFO]: ");                                       \
-    asprintf(&tmp, __VA_ARGS__);                                               \
-    fprintf(stdout, "%s\n", tmp);                                              \
-    free(tmp);                                                                 \
+    if (-1 == asprintf(&tmp, __VA_ARGS__)) {                                   \
+      fprintf(write_to, "asprintf() call failed!\n");                          \
+    } else {                                                                   \
+      fprintf(write_to, "%s\n", tmp);                                          \
+      free(tmp);                                                               \
+    }                                                                          \
   } while (0)
 
 /*
@@ -99,8 +104,8 @@
 /*
   Used by all log related functions.
 */
-#define CTH_LOG_ERR 0;
-#define CTH_LOG_INFO 1;
+#define CTH_LOG_ERR stderr
+#define CTH_LOG_INFO stdout
 
 /*
   If true, execution will stop and exit if computation outputs NaN values.
