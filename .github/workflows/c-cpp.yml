@@ -23,4 +23,4 @@ jobs:
         run: mkdir build && cd build && cmake ..
 
       - name: 3) Build all targets
-        run: make
+        run: cd build && make
