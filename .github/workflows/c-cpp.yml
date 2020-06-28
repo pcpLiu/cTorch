@@ -19,7 +19,7 @@ jobs:
       - name: 1) Pull submodules
         run: git submodule init && git submodule update
 
-      - name: 2) Cmake configure
+      - name: 2) CMake configure
         run: mkdir build && cd build && cmake ..
 
       - name: 3) Build all targets
