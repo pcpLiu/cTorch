@@ -26,4 +26,4 @@ jobs:
         run: cd build && make
 
       - name: 4) Run test scripts
-        run: bash ./github test.sh
+        run: bash travis/test.sh
