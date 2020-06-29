@@ -30,4 +30,5 @@ jobs:
 
       - name: 5) Upload coverage to Codecov (only on Ubuntu)
         if: startsWith(matrix.os,'ubuntu')
-        run: bash ci/codecov.sh
+        run: |
+          bash ci/codecov.sh
