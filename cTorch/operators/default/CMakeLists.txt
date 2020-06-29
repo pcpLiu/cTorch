@@ -42,6 +42,7 @@ set(ops_default_all
     operators/default/op_logical_or_default.c
     operators/default/op_logical_xor_default.c
     operators/default/op_mul_default.c
+    operators/default/op_mvlgamma_default.c
 )
 
 ################################################################################
