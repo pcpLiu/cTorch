@@ -1,0 +1,195 @@
+\hypertarget{operator_8h}{}\doxysection{c\+Torch/operator.h File Reference}
+\label{operator_8h}\index{cTorch/operator.h@{cTorch/operator.h}}
+{\ttfamily \#include \char`\"{}c\+Torch/consts.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/generic\+\_\+array.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/params.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/storage.\+h\char`\"{}}\newline
+Include dependency graph for operator.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} \mbox{\hyperlink{operator_8h_aa8d781516dad89cc56c6552365cef482}{C\+Torch\+Operator}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{operator_8h_a0ddf2495518bd7c7ddca0c07c3c03594}{def\+\_\+list\+\_\+item}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}})
+\item 
+\mbox{\hyperlink{operator_8h_abf5dc2471092826f441edd4791921c0d}{def\+\_\+list}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}})
+\item 
+\mbox{\hyperlink{operator_8h_a16fe4125b89a4ee8751d99c8ac0b0449}{declare\+\_\+new\+\_\+list\+\_\+item\+\_\+func}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}})
+\item 
+\mbox{\hyperlink{operator_8h_abe9831b14ef14baaa7c013cf17642cba}{declare\+\_\+new\+\_\+list\+\_\+func}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}})
+\item 
+\mbox{\hyperlink{operator_8h_afd50fae0097f15693f9b20fbcb82a022}{declare\+\_\+insert\+\_\+list\+\_\+func}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}})
+\item 
+\mbox{\hyperlink{operator_8h_ad297656c9c2da1f27522d03542928897}{declare\+\_\+list\+\_\+at\+\_\+func}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}})
+\item 
+\mbox{\hyperlink{operator_8h_ae647a75edb9cbfa625842aa3a9522212}{declare\+\_\+list\+\_\+pop\+\_\+func}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}})
+\item 
+\mbox{\hyperlink{operator_8h_a8a17f1b9281da5d41af12272b7e2c39b}{declare\+\_\+free\+\_\+list\+\_\+func}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}})
+\item 
+\mbox{\hyperlink{operator_8h_a20e1b674636a205f9508121af1486693}{declare\+\_\+free\+\_\+list\+\_\+deep\+\_\+func}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}})
+\item 
+void \mbox{\hyperlink{operator_8h_a7056a14913f74d8438d2a961081bb629}{F\+O\+R\+C\+E\+\_\+\+I\+N\+P\+U\+T\+\_\+\+O\+U\+T\+P\+U\+T\+\_\+\+T\+S\+R\+\_\+\+N\+U\+M\+\_\+\+EQ}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op)
+\item 
+void \mbox{\hyperlink{operator_8h_a897df6bf3c46fc85c50f90b52e56e310}{F\+O\+R\+C\+E\+\_\+\+O\+P\+\_\+\+I\+N\+P\+U\+T\+\_\+\+E\+X\+I\+ST}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op, const char $\ast$target\+\_\+name, \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355}{C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+T\+Y\+PE}} data\+\_\+type)
+\item 
+void \mbox{\hyperlink{operator_8h_a983d61cac21ced452eeb3cb21bce8636}{F\+O\+R\+C\+E\+\_\+\+O\+P\+\_\+\+P\+A\+R\+A\+M\+\_\+\+E\+X\+I\+ST}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op, const \mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954e}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+PE}} type)
+\item 
+void \mbox{\hyperlink{operator_8h_a4d2cd9a6722b264af95a7af4de8e3b13}{F\+O\+R\+C\+E\+\_\+\+O\+P\+\_\+\+I\+N\+P\+U\+T\+\_\+\+O\+U\+T\+P\+U\+T\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+N\+UM}} (const \mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op, const \mbox{\hyperlink{generic__array_8h_a5576d7cabba712c1f5704c9a30f5161e}{array\+\_\+index\+\_\+t}} num\+\_\+input, const \mbox{\hyperlink{generic__array_8h_a5576d7cabba712c1f5704c9a30f5161e}{array\+\_\+index\+\_\+t}} num\+\_\+output)
+\item 
+void \mbox{\hyperlink{operator_8h_acc9a1868f0ed2f66f3c0863ac011b494}{F\+O\+R\+C\+E\+\_\+\+O\+P\+\_\+\+P\+A\+R\+A\+M\+\_\+\+N\+UM}} (const \mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op, const \mbox{\hyperlink{generic__array_8h_a5576d7cabba712c1f5704c9a30f5161e}{array\+\_\+index\+\_\+t}} num\+\_\+param)
+\item 
+void \mbox{\hyperlink{operator_8h_abb67cdf1a8a6af21edb83ee865e895a5}{O\+P\+\_\+\+F\+A\+I\+L\+\_\+\+O\+N\+\_\+\+D\+T\+Y\+PE}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op, \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355}{C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+T\+Y\+PE}} data\+\_\+type)
+\item 
+\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}} $\ast$ \mbox{\hyperlink{operator_8h_aa912c0fd2500c4c77d900da1e14cb08b}{cth\+\_\+get\+\_\+input\+\_\+by\+\_\+name}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op, const char $\ast$name, bool fail\+\_\+exit)
+\item 
+\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}} $\ast$ \mbox{\hyperlink{operator_8h_af6d57757c60454a463b96fcdae7da46e}{get\+\_\+output\+\_\+by\+\_\+name}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op, const char $\ast$name, bool fail\+\_\+exit)
+\item 
+\mbox{\hyperlink{structCTorchParam}{C\+Torch\+Param}} $\ast$ \mbox{\hyperlink{operator_8h_ac3ae14110b0f050d9418373ce403b893}{cth\+\_\+get\+\_\+param\+\_\+by\+\_\+type}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op, const \mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954e}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+PE}} type, bool fail\+\_\+exit)
+\item 
+void \mbox{\hyperlink{consts_8h_ad7d837be8ea11a60ea35da351cb958e7}{struct\+\_\+deep\+\_\+free}}() \mbox{\hyperlink{operator_8h_a36725058751c6af7eec0a33db4cc831d}{C\+Torch\+Operator}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{operator_8h_aa8d781516dad89cc56c6552365cef482}\label{operator_8h_aa8d781516dad89cc56c6552365cef482}} 
+\index{operator.h@{operator.h}!CTorchOperator@{CTorchOperator}}
+\index{CTorchOperator@{CTorchOperator}!operator.h@{operator.h}}
+\doxysubsubsection{\texorpdfstring{CTorchOperator}{CTorchOperator}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} \mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{operator_8h_aa912c0fd2500c4c77d900da1e14cb08b}\label{operator_8h_aa912c0fd2500c4c77d900da1e14cb08b}} 
+\index{operator.h@{operator.h}!cth\_get\_input\_by\_name@{cth\_get\_input\_by\_name}}
+\index{cth\_get\_input\_by\_name@{cth\_get\_input\_by\_name}!operator.h@{operator.h}}
+\doxysubsubsection{\texorpdfstring{cth\_get\_input\_by\_name()}{cth\_get\_input\_by\_name()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}}$\ast$ cth\+\_\+get\+\_\+input\+\_\+by\+\_\+name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op,  }\item[{const char $\ast$}]{name,  }\item[{bool}]{fail\+\_\+exit }\end{DoxyParamCaption})}
+
+Get input tensor by name. Call F\+A\+I\+L\+\_\+\+E\+X\+IT if set fail\+\_\+exit to true and not found. \mbox{\Hypertarget{operator_8h_ac3ae14110b0f050d9418373ce403b893}\label{operator_8h_ac3ae14110b0f050d9418373ce403b893}} 
+\index{operator.h@{operator.h}!cth\_get\_param\_by\_type@{cth\_get\_param\_by\_type}}
+\index{cth\_get\_param\_by\_type@{cth\_get\_param\_by\_type}!operator.h@{operator.h}}
+\doxysubsubsection{\texorpdfstring{cth\_get\_param\_by\_type()}{cth\_get\_param\_by\_type()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structCTorchParam}{C\+Torch\+Param}}$\ast$ cth\+\_\+get\+\_\+param\+\_\+by\+\_\+type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op,  }\item[{const \mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954e}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+PE}}}]{type,  }\item[{bool}]{fail\+\_\+exit }\end{DoxyParamCaption})}
+
+Get param by type. Always return the first met one. \mbox{\Hypertarget{operator_8h_a36725058751c6af7eec0a33db4cc831d}\label{operator_8h_a36725058751c6af7eec0a33db4cc831d}} 
+\index{operator.h@{operator.h}!CTorchOperator@{CTorchOperator}}
+\index{CTorchOperator@{CTorchOperator}!operator.h@{operator.h}}
+\doxysubsubsection{\texorpdfstring{CTorchOperator()}{CTorchOperator()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{consts_8h_ad7d837be8ea11a60ea35da351cb958e7}{struct\+\_\+deep\+\_\+free}}() \mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+Deep free an operator. For inbound and outbound list, it will call \mbox{\hyperlink{list__d_8h_aedacf80b52ed1dfd5f447d830abf8c03}{free\+\_\+list\+\_\+deep(\+T)}}() \mbox{\Hypertarget{operator_8h_a20e1b674636a205f9508121af1486693}\label{operator_8h_a20e1b674636a205f9508121af1486693}} 
+\index{operator.h@{operator.h}!declare\_free\_list\_deep\_func@{declare\_free\_list\_deep\_func}}
+\index{declare\_free\_list\_deep\_func@{declare\_free\_list\_deep\_func}!operator.h@{operator.h}}
+\doxysubsubsection{\texorpdfstring{declare\_free\_list\_deep\_func()}{declare\_free\_list\_deep\_func()}}
+{\footnotesize\ttfamily declare\+\_\+free\+\_\+list\+\_\+deep\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{operator_8h_a8a17f1b9281da5d41af12272b7e2c39b}\label{operator_8h_a8a17f1b9281da5d41af12272b7e2c39b}} 
+\index{operator.h@{operator.h}!declare\_free\_list\_func@{declare\_free\_list\_func}}
+\index{declare\_free\_list\_func@{declare\_free\_list\_func}!operator.h@{operator.h}}
+\doxysubsubsection{\texorpdfstring{declare\_free\_list\_func()}{declare\_free\_list\_func()}}
+{\footnotesize\ttfamily declare\+\_\+free\+\_\+list\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{operator_8h_afd50fae0097f15693f9b20fbcb82a022}\label{operator_8h_afd50fae0097f15693f9b20fbcb82a022}} 
+\index{operator.h@{operator.h}!declare\_insert\_list\_func@{declare\_insert\_list\_func}}
+\index{declare\_insert\_list\_func@{declare\_insert\_list\_func}!operator.h@{operator.h}}
+\doxysubsubsection{\texorpdfstring{declare\_insert\_list\_func()}{declare\_insert\_list\_func()}}
+{\footnotesize\ttfamily declare\+\_\+insert\+\_\+list\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{operator_8h_ad297656c9c2da1f27522d03542928897}\label{operator_8h_ad297656c9c2da1f27522d03542928897}} 
+\index{operator.h@{operator.h}!declare\_list\_at\_func@{declare\_list\_at\_func}}
+\index{declare\_list\_at\_func@{declare\_list\_at\_func}!operator.h@{operator.h}}
+\doxysubsubsection{\texorpdfstring{declare\_list\_at\_func()}{declare\_list\_at\_func()}}
+{\footnotesize\ttfamily declare\+\_\+list\+\_\+at\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{operator_8h_ae647a75edb9cbfa625842aa3a9522212}\label{operator_8h_ae647a75edb9cbfa625842aa3a9522212}} 
+\index{operator.h@{operator.h}!declare\_list\_pop\_func@{declare\_list\_pop\_func}}
+\index{declare\_list\_pop\_func@{declare\_list\_pop\_func}!operator.h@{operator.h}}
+\doxysubsubsection{\texorpdfstring{declare\_list\_pop\_func()}{declare\_list\_pop\_func()}}
+{\footnotesize\ttfamily declare\+\_\+list\+\_\+pop\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{operator_8h_abe9831b14ef14baaa7c013cf17642cba}\label{operator_8h_abe9831b14ef14baaa7c013cf17642cba}} 
+\index{operator.h@{operator.h}!declare\_new\_list\_func@{declare\_new\_list\_func}}
+\index{declare\_new\_list\_func@{declare\_new\_list\_func}!operator.h@{operator.h}}
+\doxysubsubsection{\texorpdfstring{declare\_new\_list\_func()}{declare\_new\_list\_func()}}
+{\footnotesize\ttfamily declare\+\_\+new\+\_\+list\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{operator_8h_a16fe4125b89a4ee8751d99c8ac0b0449}\label{operator_8h_a16fe4125b89a4ee8751d99c8ac0b0449}} 
+\index{operator.h@{operator.h}!declare\_new\_list\_item\_func@{declare\_new\_list\_item\_func}}
+\index{declare\_new\_list\_item\_func@{declare\_new\_list\_item\_func}!operator.h@{operator.h}}
+\doxysubsubsection{\texorpdfstring{declare\_new\_list\_item\_func()}{declare\_new\_list\_item\_func()}}
+{\footnotesize\ttfamily declare\+\_\+new\+\_\+list\+\_\+item\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{operator_8h_abf5dc2471092826f441edd4791921c0d}\label{operator_8h_abf5dc2471092826f441edd4791921c0d}} 
+\index{operator.h@{operator.h}!def\_list@{def\_list}}
+\index{def\_list@{def\_list}!operator.h@{operator.h}}
+\doxysubsubsection{\texorpdfstring{def\_list()}{def\_list()}}
+{\footnotesize\ttfamily def\+\_\+list (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{operator_8h_a0ddf2495518bd7c7ddca0c07c3c03594}\label{operator_8h_a0ddf2495518bd7c7ddca0c07c3c03594}} 
+\index{operator.h@{operator.h}!def\_list\_item@{def\_list\_item}}
+\index{def\_list\_item@{def\_list\_item}!operator.h@{operator.h}}
+\doxysubsubsection{\texorpdfstring{def\_list\_item()}{def\_list\_item()}}
+{\footnotesize\ttfamily def\+\_\+list\+\_\+item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{operator_8h_a7056a14913f74d8438d2a961081bb629}\label{operator_8h_a7056a14913f74d8438d2a961081bb629}} 
+\index{operator.h@{operator.h}!FORCE\_INPUT\_OUTPUT\_TSR\_NUM\_EQ@{FORCE\_INPUT\_OUTPUT\_TSR\_NUM\_EQ}}
+\index{FORCE\_INPUT\_OUTPUT\_TSR\_NUM\_EQ@{FORCE\_INPUT\_OUTPUT\_TSR\_NUM\_EQ}!operator.h@{operator.h}}
+\doxysubsubsection{\texorpdfstring{FORCE\_INPUT\_OUTPUT\_TSR\_NUM\_EQ()}{FORCE\_INPUT\_OUTPUT\_TSR\_NUM\_EQ()}}
+{\footnotesize\ttfamily void F\+O\+R\+C\+E\+\_\+\+I\+N\+P\+U\+T\+\_\+\+O\+U\+T\+P\+U\+T\+\_\+\+T\+S\+R\+\_\+\+N\+U\+M\+\_\+\+EQ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+Check if \# of in\+\_\+bound\+\_\+tensors == \# of out\+\_\+bound\+\_\+tensors for given operator. If not, exit and give error info. \mbox{\Hypertarget{operator_8h_a897df6bf3c46fc85c50f90b52e56e310}\label{operator_8h_a897df6bf3c46fc85c50f90b52e56e310}} 
+\index{operator.h@{operator.h}!FORCE\_OP\_INPUT\_EXIST@{FORCE\_OP\_INPUT\_EXIST}}
+\index{FORCE\_OP\_INPUT\_EXIST@{FORCE\_OP\_INPUT\_EXIST}!operator.h@{operator.h}}
+\doxysubsubsection{\texorpdfstring{FORCE\_OP\_INPUT\_EXIST()}{FORCE\_OP\_INPUT\_EXIST()}}
+{\footnotesize\ttfamily void F\+O\+R\+C\+E\+\_\+\+O\+P\+\_\+\+I\+N\+P\+U\+T\+\_\+\+E\+X\+I\+ST (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op,  }\item[{const char $\ast$}]{target\+\_\+name,  }\item[{\mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355}{C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+T\+Y\+PE}}}]{data\+\_\+type }\end{DoxyParamCaption})}
+
+Check if operator has input tensor with given name and type \mbox{\Hypertarget{operator_8h_a4d2cd9a6722b264af95a7af4de8e3b13}\label{operator_8h_a4d2cd9a6722b264af95a7af4de8e3b13}} 
+\index{operator.h@{operator.h}!FORCE\_OP\_INPUT\_OUTPUT\_TENSOR\_NUM@{FORCE\_OP\_INPUT\_OUTPUT\_TENSOR\_NUM}}
+\index{FORCE\_OP\_INPUT\_OUTPUT\_TENSOR\_NUM@{FORCE\_OP\_INPUT\_OUTPUT\_TENSOR\_NUM}!operator.h@{operator.h}}
+\doxysubsubsection{\texorpdfstring{FORCE\_OP\_INPUT\_OUTPUT\_TENSOR\_NUM()}{FORCE\_OP\_INPUT\_OUTPUT\_TENSOR\_NUM()}}
+{\footnotesize\ttfamily void F\+O\+R\+C\+E\+\_\+\+O\+P\+\_\+\+I\+N\+P\+U\+T\+\_\+\+O\+U\+T\+P\+U\+T\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+N\+UM (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op,  }\item[{const \mbox{\hyperlink{generic__array_8h_a5576d7cabba712c1f5704c9a30f5161e}{array\+\_\+index\+\_\+t}}}]{num\+\_\+input,  }\item[{const \mbox{\hyperlink{generic__array_8h_a5576d7cabba712c1f5704c9a30f5161e}{array\+\_\+index\+\_\+t}}}]{num\+\_\+output }\end{DoxyParamCaption})}
+
+Check if operator has required number of inputs \& outputs
+
+Arguments\+:
+\begin{DoxyItemize}
+\item op\+: operator
+\item num\+\_\+input\+: required no. of imput tensors
+\item num\+\_\+output\+: required no. of output tensors 
+\end{DoxyItemize}\mbox{\Hypertarget{operator_8h_a983d61cac21ced452eeb3cb21bce8636}\label{operator_8h_a983d61cac21ced452eeb3cb21bce8636}} 
+\index{operator.h@{operator.h}!FORCE\_OP\_PARAM\_EXIST@{FORCE\_OP\_PARAM\_EXIST}}
+\index{FORCE\_OP\_PARAM\_EXIST@{FORCE\_OP\_PARAM\_EXIST}!operator.h@{operator.h}}
+\doxysubsubsection{\texorpdfstring{FORCE\_OP\_PARAM\_EXIST()}{FORCE\_OP\_PARAM\_EXIST()}}
+{\footnotesize\ttfamily void F\+O\+R\+C\+E\+\_\+\+O\+P\+\_\+\+P\+A\+R\+A\+M\+\_\+\+E\+X\+I\+ST (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op,  }\item[{const \mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954e}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+PE}}}]{type }\end{DoxyParamCaption})}
+
+Check if operatr has a parameter with given type \mbox{\Hypertarget{operator_8h_acc9a1868f0ed2f66f3c0863ac011b494}\label{operator_8h_acc9a1868f0ed2f66f3c0863ac011b494}} 
+\index{operator.h@{operator.h}!FORCE\_OP\_PARAM\_NUM@{FORCE\_OP\_PARAM\_NUM}}
+\index{FORCE\_OP\_PARAM\_NUM@{FORCE\_OP\_PARAM\_NUM}!operator.h@{operator.h}}
+\doxysubsubsection{\texorpdfstring{FORCE\_OP\_PARAM\_NUM()}{FORCE\_OP\_PARAM\_NUM()}}
+{\footnotesize\ttfamily void F\+O\+R\+C\+E\+\_\+\+O\+P\+\_\+\+P\+A\+R\+A\+M\+\_\+\+N\+UM (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op,  }\item[{const \mbox{\hyperlink{generic__array_8h_a5576d7cabba712c1f5704c9a30f5161e}{array\+\_\+index\+\_\+t}}}]{num\+\_\+param }\end{DoxyParamCaption})}
+
+Check if operator has required num of params \mbox{\Hypertarget{operator_8h_af6d57757c60454a463b96fcdae7da46e}\label{operator_8h_af6d57757c60454a463b96fcdae7da46e}} 
+\index{operator.h@{operator.h}!get\_output\_by\_name@{get\_output\_by\_name}}
+\index{get\_output\_by\_name@{get\_output\_by\_name}!operator.h@{operator.h}}
+\doxysubsubsection{\texorpdfstring{get\_output\_by\_name()}{get\_output\_by\_name()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}}$\ast$ get\+\_\+output\+\_\+by\+\_\+name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op,  }\item[{const char $\ast$}]{name,  }\item[{bool}]{fail\+\_\+exit }\end{DoxyParamCaption})}
+
+Call F\+A\+I\+L\+\_\+\+E\+X\+IT if set fail\+\_\+exit to true and not found. \mbox{\Hypertarget{operator_8h_abb67cdf1a8a6af21edb83ee865e895a5}\label{operator_8h_abb67cdf1a8a6af21edb83ee865e895a5}} 
+\index{operator.h@{operator.h}!OP\_FAIL\_ON\_DTYPE@{OP\_FAIL\_ON\_DTYPE}}
+\index{OP\_FAIL\_ON\_DTYPE@{OP\_FAIL\_ON\_DTYPE}!operator.h@{operator.h}}
+\doxysubsubsection{\texorpdfstring{OP\_FAIL\_ON\_DTYPE()}{OP\_FAIL\_ON\_DTYPE()}}
+{\footnotesize\ttfamily void O\+P\+\_\+\+F\+A\+I\+L\+\_\+\+O\+N\+\_\+\+D\+T\+Y\+PE (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op,  }\item[{\mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355}{C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+T\+Y\+PE}}}]{data\+\_\+type }\end{DoxyParamCaption})}
+
+If any input \& output tensor\textquotesingle{}s datatypes is unsupported, fail this op\textquotesingle{}s execution. 

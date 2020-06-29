@@ -1,0 +1,55 @@
+\hypertarget{op__angle__default_8c}{}\doxysection{c\+Torch/operators/default/op\+\_\+angle\+\_\+default.c File Reference}
+\label{op__angle__default_8c}\index{cTorch/operators/default/op\_angle\_default.c@{cTorch/operators/default/op\_angle\_default.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/op\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/util.\+h\char`\"{}}\newline
+Include dependency graph for op\+\_\+angle\+\_\+default.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{op__angle__default_8c_a556d22eaefb812ccf82a6b1a29950062}{\+\_\+cth\+\_\+angle\+\_\+kernel}}(input\+\_\+ptr,  output\+\_\+ptr,  N,  data\+\_\+type)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__angle__default_8c_a9c6db587a2cca2e1cd4fdf6380a387ad}{op\+\_\+angle\+\_\+cpu}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{op__angle__default_8c_a556d22eaefb812ccf82a6b1a29950062}\label{op__angle__default_8c_a556d22eaefb812ccf82a6b1a29950062}} 
+\index{op\_angle\_default.c@{op\_angle\_default.c}!\_cth\_angle\_kernel@{\_cth\_angle\_kernel}}
+\index{\_cth\_angle\_kernel@{\_cth\_angle\_kernel}!op\_angle\_default.c@{op\_angle\_default.c}}
+\doxysubsubsection{\texorpdfstring{\_cth\_angle\_kernel}{\_cth\_angle\_kernel}}
+{\footnotesize\ttfamily \#define \+\_\+cth\+\_\+angle\+\_\+kernel(\begin{DoxyParamCaption}\item[{}]{input\+\_\+ptr,  }\item[{}]{output\+\_\+ptr,  }\item[{}]{N,  }\item[{}]{data\+\_\+type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                                                         \(\backslash\)}
+\DoxyCodeLine{    data\_type *input\_t = (data\_type *)input\_ptr;                               \(\backslash\)}
+\DoxyCodeLine{    data\_type *output\_t = (data\_type *)output\_ptr;                             \(\backslash\)}
+\DoxyCodeLine{    for (\textcolor{keywordtype}{int} i = 0; i < N; i++) \{                                              \(\backslash\)}
+\DoxyCodeLine{      output\_t[i] = (data\_type)((\textcolor{keywordtype}{float})input\_t[i] / \mbox{\hyperlink{consts_8h_a5c8f874ed9ba794cfee41fc451834911}{CTH\_PI}});                   \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__angle__default_8c_a9c6db587a2cca2e1cd4fdf6380a387ad}\label{op__angle__default_8c_a9c6db587a2cca2e1cd4fdf6380a387ad}} 
+\index{op\_angle\_default.c@{op\_angle\_default.c}!op\_angle\_cpu@{op\_angle\_cpu}}
+\index{op\_angle\_cpu@{op\_angle\_cpu}!op\_angle\_default.c@{op\_angle\_default.c}}
+\doxysubsubsection{\texorpdfstring{op\_angle\_cpu()}{op\_angle\_cpu()}}
+{\footnotesize\ttfamily void op\+\_\+angle\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+Computes the element-\/wise angle (in radians) of the given input tensor. Computation\+: input / Pi
+
+Note\+: During computation, input values will be converted to float first and then final result will be stored into output tensor as its datatype.
+
+Inputs \& outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 1
+\item \# of output\+: 1
+\item Input and output should be same dimention and type. 
+\end{DoxyItemize}

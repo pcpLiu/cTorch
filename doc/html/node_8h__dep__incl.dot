@@ -1,0 +1,40 @@
+digraph "cTorch/node.h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="cTorch/node.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="cTorch/engine.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$engine_8h.html",tooltip=" "];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="cTorch/c_torch.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$c__torch_8h.html",tooltip=" "];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="cTorch/engine.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$engine_8c.html",tooltip=" "];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="cTorch/graph.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$graph_8h.html",tooltip=" "];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="cTorch/scheduler.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$scheduler_8h.html",tooltip=" "];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="cTorch/pool.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pool_8h.html",tooltip=" "];
+  Node7 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="cTorch/pool.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pool_8c.html",tooltip=" "];
+  Node6 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="cTorch/scheduler.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$scheduler_8c.html",tooltip=" "];
+  Node5 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="cTorch/graph.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$graph_8c.html",tooltip=" "];
+  Node5 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="cTorch/loader.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$loader_8h.html",tooltip=" "];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="cTorch/queue.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$queue_8h.html",tooltip=" "];
+  Node12 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="cTorch/queue.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$queue_8c.html",tooltip=" "];
+  Node1 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="cTorch/node.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$node_8c.html",tooltip=" "];
+}

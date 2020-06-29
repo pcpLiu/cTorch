@@ -1,0 +1,274 @@
+\hypertarget{storage_8h}{}\doxysection{c\+Torch/storage.h File Reference}
+\label{storage_8h}\index{cTorch/storage.h@{cTorch/storage.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/consts.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/generic\+\_\+array.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/list\+\_\+d.\+h\char`\"{}}\newline
+Include dependency graph for storage.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structCTorchTensorMeta}{C\+Torch\+Tensor\+Meta}}
+\item 
+struct \mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structCTorchTensorMeta}{C\+Torch\+Tensor\+Meta}} \mbox{\hyperlink{storage_8h_a2b5c4f1562d46f832910c7c081ac5a1f}{C\+Torch\+Tensor\+Meta}}
+\item 
+typedef struct \mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}} \mbox{\hyperlink{storage_8h_a564f8bf5ec3c3b4689267fa3532071d4}{C\+Torch\+Tensor}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{consts_8h_ad7d837be8ea11a60ea35da351cb958e7}{struct\+\_\+deep\+\_\+free}}() \mbox{\hyperlink{storage_8h_accc5451c21727843668fc9688abc032c}{C\+Torch\+Tensor\+Meta}} (\mbox{\hyperlink{structCTorchTensorMeta}{C\+Torch\+Tensor\+Meta}} $\ast$meta\+\_\+info)
+\item 
+void \mbox{\hyperlink{consts_8h_ad7d837be8ea11a60ea35da351cb958e7}{struct\+\_\+deep\+\_\+free}}() \mbox{\hyperlink{storage_8h_a3ff281dfbf68e8ea083d4ba79bd15b1b}{C\+Torch\+Tensor}} (\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}} $\ast$tensor)
+\item 
+\mbox{\hyperlink{storage_8h_ae403faf56e27ee28e5c31675f1d6f29e}{def\+\_\+list\+\_\+item}} (\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}})
+\item 
+\mbox{\hyperlink{storage_8h_a62dcd66f5bb707e0c9e097aeda53bf64}{def\+\_\+list}} (\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}})
+\item 
+\mbox{\hyperlink{storage_8h_a07fe0a24af376a002b45012dcefb5417}{declare\+\_\+new\+\_\+list\+\_\+item\+\_\+func}} (\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}})
+\item 
+\mbox{\hyperlink{storage_8h_ac7e6163580315592b575b2f750dc7945}{declare\+\_\+new\+\_\+list\+\_\+func}} (\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}})
+\item 
+\mbox{\hyperlink{storage_8h_a1753ce4d1a512f5272b22b7ef0561c28}{declare\+\_\+insert\+\_\+list\+\_\+func}} (\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}})
+\item 
+\mbox{\hyperlink{storage_8h_a7e0c8b3875bb3eb7b2166c0e640b8c79}{declare\+\_\+list\+\_\+contains\+\_\+data\+\_\+func}} (\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}})
+\item 
+\mbox{\hyperlink{storage_8h_a354fa5ebb718a8f97b4ed3b7cc19a0b3}{declare\+\_\+list\+\_\+contains\+\_\+item\+\_\+func}} (\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}})
+\item 
+\mbox{\hyperlink{storage_8h_ad27f8cd02b9e899256084967f1ae9b80}{declare\+\_\+list\+\_\+at\+\_\+func}} (\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}})
+\item 
+\mbox{\hyperlink{storage_8h_a2376b83a83aafdb781695c09f30d2814}{declare\+\_\+list\+\_\+pop\+\_\+func}} (\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}})
+\item 
+\mbox{\hyperlink{storage_8h_ab8ae0462ac1ebfcffee6c6a2eb25866e}{declare\+\_\+free\+\_\+list\+\_\+func}} (\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}})
+\item 
+\mbox{\hyperlink{storage_8h_aa7a65d8aa1879d2883faa826ffddfdd9}{declare\+\_\+free\+\_\+list\+\_\+deep\+\_\+func}} (\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}})
+\item 
+\mbox{\hyperlink{storage_8h_a9ddc3a8c4d34a6038d05b92eba46227c}{def\+\_\+array}} (\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}})
+\item 
+\mbox{\hyperlink{storage_8h_acc7c87413600f08aaf47b10c57409cf4}{declare\+\_\+new\+\_\+array\+\_\+func}} (\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}})
+\item 
+\mbox{\hyperlink{storage_8h_ad182bc6a4ef3e42e83453b449d2cc26f}{declare\+\_\+array\+\_\+at\+\_\+func}} (\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}})
+\item 
+\mbox{\hyperlink{storage_8h_a522035a054f6df1cc83a7c9662a8749a}{declare\+\_\+array\+\_\+set\+\_\+func}} (\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}})
+\item 
+\mbox{\hyperlink{storage_8h_acff87067e1a6bce81277bff52b7a62ff}{declare\+\_\+free\+\_\+array\+\_\+deep\+\_\+func}} (\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}})
+\item 
+void $\ast$ \mbox{\hyperlink{storage_8h_a5f7e0f6acc721e15a9bede88fadce007}{cth\+\_\+tensor\+\_\+ptr\+\_\+offset}} (\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}} $\ast$tensor, \mbox{\hyperlink{consts_8h_a836488a94280dd54797615abb7e699ca}{tensor\+\_\+size\+\_\+t}} n\+\_\+elements)
+\item 
+void \mbox{\hyperlink{storage_8h_a9f5ed012973ea0ccc7210143a9394956}{cth\+\_\+tensor\+\_\+set\+\_\+name}} (\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}} $\ast$tensor, const char $\ast$target\+\_\+name)
+\item 
+size\+\_\+t \mbox{\hyperlink{storage_8h_a5884d1aa3f88af62aff95fa9a6b73faa}{cth\+\_\+tensor\+\_\+data\+\_\+size}} (\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}} $\ast$tensor)
+\item 
+bool \mbox{\hyperlink{storage_8h_a658e1e1be5892fc0815db14295ed43cd}{cth\+\_\+tensor\+\_\+name\+\_\+match}} (\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}} $\ast$tensor, const char $\ast$target\+\_\+name)
+\item 
+void \mbox{\hyperlink{storage_8h_a269bd19cf94fde44a1d9d003cf8797f9}{F\+O\+R\+C\+E\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+I\+M\+E\+N\+S\+I\+ON}} (\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}} $\ast$tensor, \mbox{\hyperlink{consts_8h_ac54e145e3f0a5221e8a40556ea246c4a}{tensor\+\_\+dim\+\_\+t}} $\ast$target\+\_\+dims)
+\item 
+void \mbox{\hyperlink{storage_8h_ac830b3af4da8842308d56c67eaf9f028}{F\+O\+R\+C\+E\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+N\+U\+M\+\_\+\+E\+L\+E\+M\+E\+N\+TS}} (\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}} $\ast$tensor, const \mbox{\hyperlink{consts_8h_a836488a94280dd54797615abb7e699ca}{tensor\+\_\+size\+\_\+t}} target\+\_\+n)
+\item 
+void \mbox{\hyperlink{storage_8h_a6c476861ad87d9d06c7c1835f5d6dd56}{F\+O\+R\+C\+E\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+N\+A\+ME}} (\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}} $\ast$tensor, const char $\ast$target\+\_\+name)
+\item 
+void \mbox{\hyperlink{storage_8h_a32f174b2f473474b60b1c5394f39dc10}{F\+O\+R\+C\+E\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+T\+Y\+P\+ES}} (\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}} $\ast$tensor, \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355}{C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+T\+Y\+PE}} $\ast$types, \mbox{\hyperlink{generic__array_8h_a5576d7cabba712c1f5704c9a30f5161e}{array\+\_\+index\+\_\+t}} n\+\_\+types)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{storage_8h_a564f8bf5ec3c3b4689267fa3532071d4}\label{storage_8h_a564f8bf5ec3c3b4689267fa3532071d4}} 
+\index{storage.h@{storage.h}!CTorchTensor@{CTorchTensor}}
+\index{CTorchTensor@{CTorchTensor}!storage.h@{storage.h}}
+\doxysubsubsection{\texorpdfstring{CTorchTensor}{CTorchTensor}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}} \mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}}}
+
+Tensor struct.
+
+Note\+:
+\begin{DoxyItemize}
+\item The tensor layout is using Row-\/major 
+\end{DoxyItemize}\mbox{\Hypertarget{storage_8h_a2b5c4f1562d46f832910c7c081ac5a1f}\label{storage_8h_a2b5c4f1562d46f832910c7c081ac5a1f}} 
+\index{storage.h@{storage.h}!CTorchTensorMeta@{CTorchTensorMeta}}
+\index{CTorchTensorMeta@{CTorchTensorMeta}!storage.h@{storage.h}}
+\doxysubsubsection{\texorpdfstring{CTorchTensorMeta}{CTorchTensorMeta}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structCTorchTensorMeta}{C\+Torch\+Tensor\+Meta}} \mbox{\hyperlink{structCTorchTensorMeta}{C\+Torch\+Tensor\+Meta}}}
+
+\mbox{\hyperlink{structCTorchTensorMeta}{C\+Torch\+Tensor\+Meta}} This struct contains Meta information of a tensor. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{storage_8h_a5884d1aa3f88af62aff95fa9a6b73faa}\label{storage_8h_a5884d1aa3f88af62aff95fa9a6b73faa}} 
+\index{storage.h@{storage.h}!cth\_tensor\_data\_size@{cth\_tensor\_data\_size}}
+\index{cth\_tensor\_data\_size@{cth\_tensor\_data\_size}!storage.h@{storage.h}}
+\doxysubsubsection{\texorpdfstring{cth\_tensor\_data\_size()}{cth\_tensor\_data\_size()}}
+{\footnotesize\ttfamily size\+\_\+t cth\+\_\+tensor\+\_\+data\+\_\+size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}} $\ast$}]{tensor }\end{DoxyParamCaption})}
+
+Get tensor\textquotesingle{}s data type size.
+
+Note\+: alignment is N\+OT included. \mbox{\Hypertarget{storage_8h_a658e1e1be5892fc0815db14295ed43cd}\label{storage_8h_a658e1e1be5892fc0815db14295ed43cd}} 
+\index{storage.h@{storage.h}!cth\_tensor\_name\_match@{cth\_tensor\_name\_match}}
+\index{cth\_tensor\_name\_match@{cth\_tensor\_name\_match}!storage.h@{storage.h}}
+\doxysubsubsection{\texorpdfstring{cth\_tensor\_name\_match()}{cth\_tensor\_name\_match()}}
+{\footnotesize\ttfamily bool cth\+\_\+tensor\+\_\+name\+\_\+match (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}} $\ast$}]{tensor,  }\item[{const char $\ast$}]{target\+\_\+name }\end{DoxyParamCaption})}
+
+Check if a tensor\textquotesingle{}s name match target name. \mbox{\Hypertarget{storage_8h_a5f7e0f6acc721e15a9bede88fadce007}\label{storage_8h_a5f7e0f6acc721e15a9bede88fadce007}} 
+\index{storage.h@{storage.h}!cth\_tensor\_ptr\_offset@{cth\_tensor\_ptr\_offset}}
+\index{cth\_tensor\_ptr\_offset@{cth\_tensor\_ptr\_offset}!storage.h@{storage.h}}
+\doxysubsubsection{\texorpdfstring{cth\_tensor\_ptr\_offset()}{cth\_tensor\_ptr\_offset()}}
+{\footnotesize\ttfamily void$\ast$ cth\+\_\+tensor\+\_\+ptr\+\_\+offset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}} $\ast$}]{tensor,  }\item[{\mbox{\hyperlink{consts_8h_a836488a94280dd54797615abb7e699ca}{tensor\+\_\+size\+\_\+t}}}]{n\+\_\+elements }\end{DoxyParamCaption})}
+
+Get the pointer address by offsetting gieven tensor\textquotesingle{}s ptr with given number of elements. \mbox{\Hypertarget{storage_8h_a9f5ed012973ea0ccc7210143a9394956}\label{storage_8h_a9f5ed012973ea0ccc7210143a9394956}} 
+\index{storage.h@{storage.h}!cth\_tensor\_set\_name@{cth\_tensor\_set\_name}}
+\index{cth\_tensor\_set\_name@{cth\_tensor\_set\_name}!storage.h@{storage.h}}
+\doxysubsubsection{\texorpdfstring{cth\_tensor\_set\_name()}{cth\_tensor\_set\_name()}}
+{\footnotesize\ttfamily void cth\+\_\+tensor\+\_\+set\+\_\+name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}} $\ast$}]{tensor,  }\item[{const char $\ast$}]{target\+\_\+name }\end{DoxyParamCaption})}
+
+Set tensor\textquotesingle{}S name. This function directly overrides the tensor\textquotesingle{}s name.
+
+Note\+: this function will copy {\ttfamily target\+\_\+name}. It is safe to release {\ttfamily target\+\_\+name} after calling. \mbox{\Hypertarget{storage_8h_a3ff281dfbf68e8ea083d4ba79bd15b1b}\label{storage_8h_a3ff281dfbf68e8ea083d4ba79bd15b1b}} 
+\index{storage.h@{storage.h}!CTorchTensor@{CTorchTensor}}
+\index{CTorchTensor@{CTorchTensor}!storage.h@{storage.h}}
+\doxysubsubsection{\texorpdfstring{CTorchTensor()}{CTorchTensor()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{consts_8h_ad7d837be8ea11a60ea35da351cb958e7}{struct\+\_\+deep\+\_\+free}}() \mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}} $\ast$}]{tensor }\end{DoxyParamCaption})}
+
+Deep free a tensor. Function name follows pattern defined in \mbox{\hyperlink{list__d_8h}{list\+\_\+d.\+h}} If the tensor is a sharded one, function will not release value block.
+
+Note\+: If pointer is N\+U\+LL, error raised and exit. \mbox{\Hypertarget{storage_8h_accc5451c21727843668fc9688abc032c}\label{storage_8h_accc5451c21727843668fc9688abc032c}} 
+\index{storage.h@{storage.h}!CTorchTensorMeta@{CTorchTensorMeta}}
+\index{CTorchTensorMeta@{CTorchTensorMeta}!storage.h@{storage.h}}
+\doxysubsubsection{\texorpdfstring{CTorchTensorMeta()}{CTorchTensorMeta()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{consts_8h_ad7d837be8ea11a60ea35da351cb958e7}{struct\+\_\+deep\+\_\+free}}() \mbox{\hyperlink{structCTorchTensorMeta}{C\+Torch\+Tensor\+Meta}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchTensorMeta}{C\+Torch\+Tensor\+Meta}} $\ast$}]{meta\+\_\+info }\end{DoxyParamCaption})}
+
+Deep free a meta info.
+
+Note\+: If pointer is N\+U\+LL, error raised and exit. \mbox{\Hypertarget{storage_8h_ad182bc6a4ef3e42e83453b449d2cc26f}\label{storage_8h_ad182bc6a4ef3e42e83453b449d2cc26f}} 
+\index{storage.h@{storage.h}!declare\_array\_at\_func@{declare\_array\_at\_func}}
+\index{declare\_array\_at\_func@{declare\_array\_at\_func}!storage.h@{storage.h}}
+\doxysubsubsection{\texorpdfstring{declare\_array\_at\_func()}{declare\_array\_at\_func()}}
+{\footnotesize\ttfamily declare\+\_\+array\+\_\+at\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{storage_8h_a522035a054f6df1cc83a7c9662a8749a}\label{storage_8h_a522035a054f6df1cc83a7c9662a8749a}} 
+\index{storage.h@{storage.h}!declare\_array\_set\_func@{declare\_array\_set\_func}}
+\index{declare\_array\_set\_func@{declare\_array\_set\_func}!storage.h@{storage.h}}
+\doxysubsubsection{\texorpdfstring{declare\_array\_set\_func()}{declare\_array\_set\_func()}}
+{\footnotesize\ttfamily declare\+\_\+array\+\_\+set\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{storage_8h_acff87067e1a6bce81277bff52b7a62ff}\label{storage_8h_acff87067e1a6bce81277bff52b7a62ff}} 
+\index{storage.h@{storage.h}!declare\_free\_array\_deep\_func@{declare\_free\_array\_deep\_func}}
+\index{declare\_free\_array\_deep\_func@{declare\_free\_array\_deep\_func}!storage.h@{storage.h}}
+\doxysubsubsection{\texorpdfstring{declare\_free\_array\_deep\_func()}{declare\_free\_array\_deep\_func()}}
+{\footnotesize\ttfamily declare\+\_\+free\+\_\+array\+\_\+deep\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{storage_8h_aa7a65d8aa1879d2883faa826ffddfdd9}\label{storage_8h_aa7a65d8aa1879d2883faa826ffddfdd9}} 
+\index{storage.h@{storage.h}!declare\_free\_list\_deep\_func@{declare\_free\_list\_deep\_func}}
+\index{declare\_free\_list\_deep\_func@{declare\_free\_list\_deep\_func}!storage.h@{storage.h}}
+\doxysubsubsection{\texorpdfstring{declare\_free\_list\_deep\_func()}{declare\_free\_list\_deep\_func()}}
+{\footnotesize\ttfamily declare\+\_\+free\+\_\+list\+\_\+deep\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{storage_8h_ab8ae0462ac1ebfcffee6c6a2eb25866e}\label{storage_8h_ab8ae0462ac1ebfcffee6c6a2eb25866e}} 
+\index{storage.h@{storage.h}!declare\_free\_list\_func@{declare\_free\_list\_func}}
+\index{declare\_free\_list\_func@{declare\_free\_list\_func}!storage.h@{storage.h}}
+\doxysubsubsection{\texorpdfstring{declare\_free\_list\_func()}{declare\_free\_list\_func()}}
+{\footnotesize\ttfamily declare\+\_\+free\+\_\+list\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{storage_8h_a1753ce4d1a512f5272b22b7ef0561c28}\label{storage_8h_a1753ce4d1a512f5272b22b7ef0561c28}} 
+\index{storage.h@{storage.h}!declare\_insert\_list\_func@{declare\_insert\_list\_func}}
+\index{declare\_insert\_list\_func@{declare\_insert\_list\_func}!storage.h@{storage.h}}
+\doxysubsubsection{\texorpdfstring{declare\_insert\_list\_func()}{declare\_insert\_list\_func()}}
+{\footnotesize\ttfamily declare\+\_\+insert\+\_\+list\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{storage_8h_ad27f8cd02b9e899256084967f1ae9b80}\label{storage_8h_ad27f8cd02b9e899256084967f1ae9b80}} 
+\index{storage.h@{storage.h}!declare\_list\_at\_func@{declare\_list\_at\_func}}
+\index{declare\_list\_at\_func@{declare\_list\_at\_func}!storage.h@{storage.h}}
+\doxysubsubsection{\texorpdfstring{declare\_list\_at\_func()}{declare\_list\_at\_func()}}
+{\footnotesize\ttfamily declare\+\_\+list\+\_\+at\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{storage_8h_a7e0c8b3875bb3eb7b2166c0e640b8c79}\label{storage_8h_a7e0c8b3875bb3eb7b2166c0e640b8c79}} 
+\index{storage.h@{storage.h}!declare\_list\_contains\_data\_func@{declare\_list\_contains\_data\_func}}
+\index{declare\_list\_contains\_data\_func@{declare\_list\_contains\_data\_func}!storage.h@{storage.h}}
+\doxysubsubsection{\texorpdfstring{declare\_list\_contains\_data\_func()}{declare\_list\_contains\_data\_func()}}
+{\footnotesize\ttfamily declare\+\_\+list\+\_\+contains\+\_\+data\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{storage_8h_a354fa5ebb718a8f97b4ed3b7cc19a0b3}\label{storage_8h_a354fa5ebb718a8f97b4ed3b7cc19a0b3}} 
+\index{storage.h@{storage.h}!declare\_list\_contains\_item\_func@{declare\_list\_contains\_item\_func}}
+\index{declare\_list\_contains\_item\_func@{declare\_list\_contains\_item\_func}!storage.h@{storage.h}}
+\doxysubsubsection{\texorpdfstring{declare\_list\_contains\_item\_func()}{declare\_list\_contains\_item\_func()}}
+{\footnotesize\ttfamily declare\+\_\+list\+\_\+contains\+\_\+item\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{storage_8h_a2376b83a83aafdb781695c09f30d2814}\label{storage_8h_a2376b83a83aafdb781695c09f30d2814}} 
+\index{storage.h@{storage.h}!declare\_list\_pop\_func@{declare\_list\_pop\_func}}
+\index{declare\_list\_pop\_func@{declare\_list\_pop\_func}!storage.h@{storage.h}}
+\doxysubsubsection{\texorpdfstring{declare\_list\_pop\_func()}{declare\_list\_pop\_func()}}
+{\footnotesize\ttfamily declare\+\_\+list\+\_\+pop\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{storage_8h_acc7c87413600f08aaf47b10c57409cf4}\label{storage_8h_acc7c87413600f08aaf47b10c57409cf4}} 
+\index{storage.h@{storage.h}!declare\_new\_array\_func@{declare\_new\_array\_func}}
+\index{declare\_new\_array\_func@{declare\_new\_array\_func}!storage.h@{storage.h}}
+\doxysubsubsection{\texorpdfstring{declare\_new\_array\_func()}{declare\_new\_array\_func()}}
+{\footnotesize\ttfamily declare\+\_\+new\+\_\+array\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{storage_8h_ac7e6163580315592b575b2f750dc7945}\label{storage_8h_ac7e6163580315592b575b2f750dc7945}} 
+\index{storage.h@{storage.h}!declare\_new\_list\_func@{declare\_new\_list\_func}}
+\index{declare\_new\_list\_func@{declare\_new\_list\_func}!storage.h@{storage.h}}
+\doxysubsubsection{\texorpdfstring{declare\_new\_list\_func()}{declare\_new\_list\_func()}}
+{\footnotesize\ttfamily declare\+\_\+new\+\_\+list\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{storage_8h_a07fe0a24af376a002b45012dcefb5417}\label{storage_8h_a07fe0a24af376a002b45012dcefb5417}} 
+\index{storage.h@{storage.h}!declare\_new\_list\_item\_func@{declare\_new\_list\_item\_func}}
+\index{declare\_new\_list\_item\_func@{declare\_new\_list\_item\_func}!storage.h@{storage.h}}
+\doxysubsubsection{\texorpdfstring{declare\_new\_list\_item\_func()}{declare\_new\_list\_item\_func()}}
+{\footnotesize\ttfamily declare\+\_\+new\+\_\+list\+\_\+item\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{storage_8h_a9ddc3a8c4d34a6038d05b92eba46227c}\label{storage_8h_a9ddc3a8c4d34a6038d05b92eba46227c}} 
+\index{storage.h@{storage.h}!def\_array@{def\_array}}
+\index{def\_array@{def\_array}!storage.h@{storage.h}}
+\doxysubsubsection{\texorpdfstring{def\_array()}{def\_array()}}
+{\footnotesize\ttfamily def\+\_\+array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{storage_8h_a62dcd66f5bb707e0c9e097aeda53bf64}\label{storage_8h_a62dcd66f5bb707e0c9e097aeda53bf64}} 
+\index{storage.h@{storage.h}!def\_list@{def\_list}}
+\index{def\_list@{def\_list}!storage.h@{storage.h}}
+\doxysubsubsection{\texorpdfstring{def\_list()}{def\_list()}}
+{\footnotesize\ttfamily def\+\_\+list (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{storage_8h_ae403faf56e27ee28e5c31675f1d6f29e}\label{storage_8h_ae403faf56e27ee28e5c31675f1d6f29e}} 
+\index{storage.h@{storage.h}!def\_list\_item@{def\_list\_item}}
+\index{def\_list\_item@{def\_list\_item}!storage.h@{storage.h}}
+\doxysubsubsection{\texorpdfstring{def\_list\_item()}{def\_list\_item()}}
+{\footnotesize\ttfamily def\+\_\+list\+\_\+item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{storage_8h_a269bd19cf94fde44a1d9d003cf8797f9}\label{storage_8h_a269bd19cf94fde44a1d9d003cf8797f9}} 
+\index{storage.h@{storage.h}!FORCE\_TENSOR\_DIMENSION@{FORCE\_TENSOR\_DIMENSION}}
+\index{FORCE\_TENSOR\_DIMENSION@{FORCE\_TENSOR\_DIMENSION}!storage.h@{storage.h}}
+\doxysubsubsection{\texorpdfstring{FORCE\_TENSOR\_DIMENSION()}{FORCE\_TENSOR\_DIMENSION()}}
+{\footnotesize\ttfamily void F\+O\+R\+C\+E\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+I\+M\+E\+N\+S\+I\+ON (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}} $\ast$}]{tensor,  }\item[{\mbox{\hyperlink{consts_8h_ac54e145e3f0a5221e8a40556ea246c4a}{tensor\+\_\+dim\+\_\+t}} $\ast$}]{target\+\_\+dims }\end{DoxyParamCaption})}
+
+Check if given tensor has target dimension. F\+A\+I\+L\+\_\+\+E\+X\+IT if not match. \mbox{\Hypertarget{storage_8h_a6c476861ad87d9d06c7c1835f5d6dd56}\label{storage_8h_a6c476861ad87d9d06c7c1835f5d6dd56}} 
+\index{storage.h@{storage.h}!FORCE\_TENSOR\_NAME@{FORCE\_TENSOR\_NAME}}
+\index{FORCE\_TENSOR\_NAME@{FORCE\_TENSOR\_NAME}!storage.h@{storage.h}}
+\doxysubsubsection{\texorpdfstring{FORCE\_TENSOR\_NAME()}{FORCE\_TENSOR\_NAME()}}
+{\footnotesize\ttfamily void F\+O\+R\+C\+E\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+N\+A\+ME (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}} $\ast$}]{tensor,  }\item[{const char $\ast$}]{target\+\_\+name }\end{DoxyParamCaption})}
+
+Check if given tensor has target name. F\+A\+I\+L\+\_\+\+E\+X\+IT if not match. \mbox{\Hypertarget{storage_8h_ac830b3af4da8842308d56c67eaf9f028}\label{storage_8h_ac830b3af4da8842308d56c67eaf9f028}} 
+\index{storage.h@{storage.h}!FORCE\_TENSOR\_NUM\_ELEMENTS@{FORCE\_TENSOR\_NUM\_ELEMENTS}}
+\index{FORCE\_TENSOR\_NUM\_ELEMENTS@{FORCE\_TENSOR\_NUM\_ELEMENTS}!storage.h@{storage.h}}
+\doxysubsubsection{\texorpdfstring{FORCE\_TENSOR\_NUM\_ELEMENTS()}{FORCE\_TENSOR\_NUM\_ELEMENTS()}}
+{\footnotesize\ttfamily void F\+O\+R\+C\+E\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+N\+U\+M\+\_\+\+E\+L\+E\+M\+E\+N\+TS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}} $\ast$}]{tensor,  }\item[{const \mbox{\hyperlink{consts_8h_a836488a94280dd54797615abb7e699ca}{tensor\+\_\+size\+\_\+t}}}]{target\+\_\+n }\end{DoxyParamCaption})}
+
+Check if given tensor has target no. of elements. F\+A\+I\+L\+\_\+\+E\+X\+IT if not match. \mbox{\Hypertarget{storage_8h_a32f174b2f473474b60b1c5394f39dc10}\label{storage_8h_a32f174b2f473474b60b1c5394f39dc10}} 
+\index{storage.h@{storage.h}!FORCE\_TENSOR\_TYPES@{FORCE\_TENSOR\_TYPES}}
+\index{FORCE\_TENSOR\_TYPES@{FORCE\_TENSOR\_TYPES}!storage.h@{storage.h}}
+\doxysubsubsection{\texorpdfstring{FORCE\_TENSOR\_TYPES()}{FORCE\_TENSOR\_TYPES()}}
+{\footnotesize\ttfamily void F\+O\+R\+C\+E\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+T\+Y\+P\+ES (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}} $\ast$}]{tensor,  }\item[{\mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355}{C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+T\+Y\+PE}} $\ast$}]{types,  }\item[{\mbox{\hyperlink{generic__array_8h_a5576d7cabba712c1f5704c9a30f5161e}{array\+\_\+index\+\_\+t}}}]{n\+\_\+types }\end{DoxyParamCaption})}
+
+Check if tensor has one of given types.
+
+Arguments\+:
+\begin{DoxyItemize}
+\item tensor\+: tensor
+\item types\+: array of types
+\item n\+\_\+types\+: no. of types in array 
+\end{DoxyItemize}

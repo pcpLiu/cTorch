@@ -1,0 +1,229 @@
+\hypertarget{util_8h}{}\doxysection{c\+Torch/operators/default/util.h File Reference}
+\label{util_8h}\index{cTorch/operators/default/util.h@{cTorch/operators/default/util.h}}
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{util_8h_aae4b1c48c0f08ab34489bcbec7f6bb59}{\+\_\+cpu\+\_\+1d\+\_\+map\+\_\+elewise\+\_\+unary\+\_\+forloop}}( input\+\_\+ptr,  output\+\_\+ptr,  N,  kernel,  type\+\_\+t)
+\item 
+\#define \mbox{\hyperlink{util_8h_a3742a52b20264476d0683fe021bd0751}{\+\_\+cpu\+\_\+1d\+\_\+map\+\_\+elewise\+\_\+binary\+\_\+forloop}}( input\+\_\+ptr\+\_\+a,  input\+\_\+ptr\+\_\+b,  output\+\_\+ptr,  N,  kernel,  type\+\_\+t)
+\item 
+\#define \mbox{\hyperlink{util_8h_aebc46d4306fe1848bbedeaab5f446eab}{\+\_\+cpu\+\_\+1d\+\_\+map\+\_\+elewise\+\_\+unary}}(input\+\_\+ptr,  output\+\_\+ptr,  data\+\_\+type,  N,  kernel)
+\item 
+\#define \mbox{\hyperlink{util_8h_a4a101e1b53a2f6e43bf153a5b993aff6}{\+\_\+cpu\+\_\+1d\+\_\+map\+\_\+elewise\+\_\+unary\+\_\+generic}}( input\+\_\+ptr,  output\+\_\+ptr,  data\+\_\+type,  N,  kernel)
+\item 
+\#define \mbox{\hyperlink{util_8h_a022ef19aabf55739b3b1bad6bf494b54}{\+\_\+cpu\+\_\+1d\+\_\+map\+\_\+elewise\+\_\+binary}}( input\+\_\+ptr\+\_\+a,  input\+\_\+ptr\+\_\+b,  output\+\_\+ptr,  data\+\_\+type,  N,  kernel)
+\item 
+\#define \mbox{\hyperlink{util_8h_a7223a894b8711d50d98b9fac10c3c1f8}{\+\_\+cpu\+\_\+generic\+\_\+compute}}(op,  compute\+\_\+fn,  data\+\_\+type)
+\item 
+\#define \mbox{\hyperlink{util_8h_acc61ccd93bc1eff816ced98e712f149e}{\+\_\+cpu\+\_\+bit\+\_\+compute}}(op,  compute\+\_\+fn,  data\+\_\+type)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{util_8h_a022ef19aabf55739b3b1bad6bf494b54}\label{util_8h_a022ef19aabf55739b3b1bad6bf494b54}} 
+\index{util.h@{util.h}!\_cpu\_1d\_map\_elewise\_binary@{\_cpu\_1d\_map\_elewise\_binary}}
+\index{\_cpu\_1d\_map\_elewise\_binary@{\_cpu\_1d\_map\_elewise\_binary}!util.h@{util.h}}
+\doxysubsubsection{\texorpdfstring{\_cpu\_1d\_map\_elewise\_binary}{\_cpu\_1d\_map\_elewise\_binary}}
+{\footnotesize\ttfamily \#define \+\_\+cpu\+\_\+1d\+\_\+map\+\_\+elewise\+\_\+binary(\begin{DoxyParamCaption}\item[{}]{input\+\_\+ptr\+\_\+a,  }\item[{}]{input\+\_\+ptr\+\_\+b,  }\item[{}]{output\+\_\+ptr,  }\item[{}]{data\+\_\+type,  }\item[{}]{N,  }\item[{}]{kernel }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \{                                                                            \(\backslash\)}
+\DoxyCodeLine{    if (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355ac119fd4bedb33831236974862b5ff45e}{CTH\_TENSOR\_DATA\_TYPE\_BOOL}}) \{                              \(\backslash\)}
+\DoxyCodeLine{      \_cpu\_1d\_map\_elewise\_binary\_forloop(                                      \(\backslash\)}
+\DoxyCodeLine{          input\_ptr\_a, input\_ptr\_b, output\_ptr, N, kernel, \textcolor{keywordtype}{bool});              \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a7ec2ebe6cf92c44f53ba6d88c3a48816}{CTH\_TENSOR\_DATA\_TYPE\_INT\_16}}) \{                     \(\backslash\)}
+\DoxyCodeLine{      \_cpu\_1d\_map\_elewise\_binary\_forloop(                                      \(\backslash\)}
+\DoxyCodeLine{          input\_ptr\_a, input\_ptr\_b, output\_ptr, N, kernel, int16\_t);           \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a37f6d1066978b8597ff2f3601f793fb1}{CTH\_TENSOR\_DATA\_TYPE\_INT\_32}}) \{                     \(\backslash\)}
+\DoxyCodeLine{      \_cpu\_1d\_map\_elewise\_binary\_forloop(                                      \(\backslash\)}
+\DoxyCodeLine{          input\_ptr\_a, input\_ptr\_b, output\_ptr, N, kernel, int32\_t);           \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a81804b46c3a09d0379cafc6ed2797c63}{CTH\_TENSOR\_DATA\_TYPE\_INT\_64}}) \{                     \(\backslash\)}
+\DoxyCodeLine{      \_cpu\_1d\_map\_elewise\_binary\_forloop(                                      \(\backslash\)}
+\DoxyCodeLine{          input\_ptr\_a, input\_ptr\_b, output\_ptr, N, kernel, int64\_t);           \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a013257b03f9c935a0632870b0a3dc175}{CTH\_TENSOR\_DATA\_TYPE\_UINT\_8}}) \{                     \(\backslash\)}
+\DoxyCodeLine{      \_cpu\_1d\_map\_elewise\_binary\_forloop(                                      \(\backslash\)}
+\DoxyCodeLine{          input\_ptr\_a, input\_ptr\_b, output\_ptr, N, kernel, uint8\_t);           \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a5304679a46753a9c9a651fc4600e9d2f}{CTH\_TENSOR\_DATA\_TYPE\_FLOAT\_16}}) \{                   \(\backslash\)}
+\DoxyCodeLine{      \_cpu\_1d\_map\_elewise\_binary\_forloop(                                      \(\backslash\)}
+\DoxyCodeLine{          input\_ptr\_a, input\_ptr\_b, output\_ptr, N, kernel, \textcolor{keywordtype}{float});             \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a3c2141e561fafc5c113a1e0f74ee8494}{CTH\_TENSOR\_DATA\_TYPE\_FLOAT\_32}}) \{                   \(\backslash\)}
+\DoxyCodeLine{      \_cpu\_1d\_map\_elewise\_binary\_forloop(                                      \(\backslash\)}
+\DoxyCodeLine{          input\_ptr\_a, input\_ptr\_b, output\_ptr, N, kernel, \textcolor{keywordtype}{float});             \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a3b3e271ef78a842c489769d06a245984}{CTH\_TENSOR\_DATA\_TYPE\_FLOAT\_64}}) \{                   \(\backslash\)}
+\DoxyCodeLine{      \_cpu\_1d\_map\_elewise\_binary\_forloop(                                      \(\backslash\)}
+\DoxyCodeLine{          input\_ptr\_a, input\_ptr\_b, output\_ptr, N, kernel, \textcolor{keywordtype}{double});            \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \{                                                                   \(\backslash\)}
+\DoxyCodeLine{      FAIL\_EXIT(                                                               \(\backslash\)}
+\DoxyCodeLine{          \mbox{\hyperlink{logger__util_8h_ad9ab19b2b3e07e3ac860411d60ae4e52}{CTH\_LOG\_ERR}}, \textcolor{stringliteral}{"Unsupported data type in \_cpu\_1d\_map\_elewise\_binary"}); \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+Apply 1d binary kernel on input and output pointers in element wise way \mbox{\Hypertarget{util_8h_a3742a52b20264476d0683fe021bd0751}\label{util_8h_a3742a52b20264476d0683fe021bd0751}} 
+\index{util.h@{util.h}!\_cpu\_1d\_map\_elewise\_binary\_forloop@{\_cpu\_1d\_map\_elewise\_binary\_forloop}}
+\index{\_cpu\_1d\_map\_elewise\_binary\_forloop@{\_cpu\_1d\_map\_elewise\_binary\_forloop}!util.h@{util.h}}
+\doxysubsubsection{\texorpdfstring{\_cpu\_1d\_map\_elewise\_binary\_forloop}{\_cpu\_1d\_map\_elewise\_binary\_forloop}}
+{\footnotesize\ttfamily \#define \+\_\+cpu\+\_\+1d\+\_\+map\+\_\+elewise\+\_\+binary\+\_\+forloop(\begin{DoxyParamCaption}\item[{}]{input\+\_\+ptr\+\_\+a,  }\item[{}]{input\+\_\+ptr\+\_\+b,  }\item[{}]{output\+\_\+ptr,  }\item[{}]{N,  }\item[{}]{kernel,  }\item[{}]{type\+\_\+t }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \{                                                                            \(\backslash\)}
+\DoxyCodeLine{    type\_t *input\_a\_t = (type\_t *)input\_ptr\_a;                                 \(\backslash\)}
+\DoxyCodeLine{    type\_t *input\_b\_t = (type\_t *)input\_ptr\_b;                                 \(\backslash\)}
+\DoxyCodeLine{    type\_t *output\_t = (type\_t *)output\_ptr;                                   \(\backslash\)}
+\DoxyCodeLine{    for (\textcolor{keywordtype}{int} i = 0; i < N; i++) \{                                              \(\backslash\)}
+\DoxyCodeLine{      output\_t[i] = kernel(input\_a\_t[i], input\_b\_t[i]);                        \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+Conduct binary operation element wise \mbox{\Hypertarget{util_8h_aebc46d4306fe1848bbedeaab5f446eab}\label{util_8h_aebc46d4306fe1848bbedeaab5f446eab}} 
+\index{util.h@{util.h}!\_cpu\_1d\_map\_elewise\_unary@{\_cpu\_1d\_map\_elewise\_unary}}
+\index{\_cpu\_1d\_map\_elewise\_unary@{\_cpu\_1d\_map\_elewise\_unary}!util.h@{util.h}}
+\doxysubsubsection{\texorpdfstring{\_cpu\_1d\_map\_elewise\_unary}{\_cpu\_1d\_map\_elewise\_unary}}
+{\footnotesize\ttfamily \#define \+\_\+cpu\+\_\+1d\+\_\+map\+\_\+elewise\+\_\+unary(\begin{DoxyParamCaption}\item[{}]{input\+\_\+ptr,  }\item[{}]{output\+\_\+ptr,  }\item[{}]{data\+\_\+type,  }\item[{}]{N,  }\item[{}]{kernel }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \{                                                                            \(\backslash\)}
+\DoxyCodeLine{    if (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355ac119fd4bedb33831236974862b5ff45e}{CTH\_TENSOR\_DATA\_TYPE\_BOOL}}) \{                              \(\backslash\)}
+\DoxyCodeLine{      \_cpu\_1d\_map\_elewise\_unary\_forloop(                                       \(\backslash\)}
+\DoxyCodeLine{          input\_ptr, output\_ptr, N, kernel, \textcolor{keywordtype}{bool});                             \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a7ec2ebe6cf92c44f53ba6d88c3a48816}{CTH\_TENSOR\_DATA\_TYPE\_INT\_16}}) \{                     \(\backslash\)}
+\DoxyCodeLine{      \_cpu\_1d\_map\_elewise\_unary\_forloop(                                       \(\backslash\)}
+\DoxyCodeLine{          input\_ptr, output\_ptr, N, kernel, int16\_t);                          \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a37f6d1066978b8597ff2f3601f793fb1}{CTH\_TENSOR\_DATA\_TYPE\_INT\_32}}) \{                     \(\backslash\)}
+\DoxyCodeLine{      \_cpu\_1d\_map\_elewise\_unary\_forloop(                                       \(\backslash\)}
+\DoxyCodeLine{          input\_ptr, output\_ptr, N, kernel, int32\_t);                          \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a81804b46c3a09d0379cafc6ed2797c63}{CTH\_TENSOR\_DATA\_TYPE\_INT\_64}}) \{                     \(\backslash\)}
+\DoxyCodeLine{      \_cpu\_1d\_map\_elewise\_unary\_forloop(                                       \(\backslash\)}
+\DoxyCodeLine{          input\_ptr, output\_ptr, N, kernel, int64\_t);                          \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a013257b03f9c935a0632870b0a3dc175}{CTH\_TENSOR\_DATA\_TYPE\_UINT\_8}}) \{                     \(\backslash\)}
+\DoxyCodeLine{      \_cpu\_1d\_map\_elewise\_unary\_forloop(                                       \(\backslash\)}
+\DoxyCodeLine{          input\_ptr, output\_ptr, N, kernel, uint8\_t);                          \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a5304679a46753a9c9a651fc4600e9d2f}{CTH\_TENSOR\_DATA\_TYPE\_FLOAT\_16}}) \{                   \(\backslash\)}
+\DoxyCodeLine{      \_cpu\_1d\_map\_elewise\_unary\_forloop(                                       \(\backslash\)}
+\DoxyCodeLine{          input\_ptr, output\_ptr, N, kernel, \textcolor{keywordtype}{float});                            \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a3c2141e561fafc5c113a1e0f74ee8494}{CTH\_TENSOR\_DATA\_TYPE\_FLOAT\_32}}) \{                   \(\backslash\)}
+\DoxyCodeLine{      \_cpu\_1d\_map\_elewise\_unary\_forloop(                                       \(\backslash\)}
+\DoxyCodeLine{          input\_ptr, output\_ptr, N, kernel, \textcolor{keywordtype}{float});                            \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a3b3e271ef78a842c489769d06a245984}{CTH\_TENSOR\_DATA\_TYPE\_FLOAT\_64}}) \{                   \(\backslash\)}
+\DoxyCodeLine{      \_cpu\_1d\_map\_elewise\_unary\_forloop(                                       \(\backslash\)}
+\DoxyCodeLine{          input\_ptr, output\_ptr, N, kernel, \textcolor{keywordtype}{double});                           \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \{                                                                   \(\backslash\)}
+\DoxyCodeLine{      FAIL\_EXIT(                                                               \(\backslash\)}
+\DoxyCodeLine{          \mbox{\hyperlink{logger__util_8h_ad9ab19b2b3e07e3ac860411d60ae4e52}{CTH\_LOG\_ERR}}, \textcolor{stringliteral}{"Unsupported data type in \_cpu\_1d\_map\_elewise\_unary"});  \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+Apply 1D unary kernel on input and output pointers in element wise way \mbox{\Hypertarget{util_8h_aae4b1c48c0f08ab34489bcbec7f6bb59}\label{util_8h_aae4b1c48c0f08ab34489bcbec7f6bb59}} 
+\index{util.h@{util.h}!\_cpu\_1d\_map\_elewise\_unary\_forloop@{\_cpu\_1d\_map\_elewise\_unary\_forloop}}
+\index{\_cpu\_1d\_map\_elewise\_unary\_forloop@{\_cpu\_1d\_map\_elewise\_unary\_forloop}!util.h@{util.h}}
+\doxysubsubsection{\texorpdfstring{\_cpu\_1d\_map\_elewise\_unary\_forloop}{\_cpu\_1d\_map\_elewise\_unary\_forloop}}
+{\footnotesize\ttfamily \#define \+\_\+cpu\+\_\+1d\+\_\+map\+\_\+elewise\+\_\+unary\+\_\+forloop(\begin{DoxyParamCaption}\item[{}]{input\+\_\+ptr,  }\item[{}]{output\+\_\+ptr,  }\item[{}]{N,  }\item[{}]{kernel,  }\item[{}]{type\+\_\+t }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \{                                                                            \(\backslash\)}
+\DoxyCodeLine{    type\_t *input\_t = (type\_t *)input\_ptr;                                     \(\backslash\)}
+\DoxyCodeLine{    type\_t *output\_t = (type\_t *)output\_ptr;                                   \(\backslash\)}
+\DoxyCodeLine{    for (\textcolor{keywordtype}{int} i = 0; i < N; i++) \{                                              \(\backslash\)}
+\DoxyCodeLine{      output\_t[i] = kernel(input\_t[i]);                                        \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+Conduct unary operation element wise \mbox{\Hypertarget{util_8h_a4a101e1b53a2f6e43bf153a5b993aff6}\label{util_8h_a4a101e1b53a2f6e43bf153a5b993aff6}} 
+\index{util.h@{util.h}!\_cpu\_1d\_map\_elewise\_unary\_generic@{\_cpu\_1d\_map\_elewise\_unary\_generic}}
+\index{\_cpu\_1d\_map\_elewise\_unary\_generic@{\_cpu\_1d\_map\_elewise\_unary\_generic}!util.h@{util.h}}
+\doxysubsubsection{\texorpdfstring{\_cpu\_1d\_map\_elewise\_unary\_generic}{\_cpu\_1d\_map\_elewise\_unary\_generic}}
+{\footnotesize\ttfamily \#define \+\_\+cpu\+\_\+1d\+\_\+map\+\_\+elewise\+\_\+unary\+\_\+generic(\begin{DoxyParamCaption}\item[{}]{input\+\_\+ptr,  }\item[{}]{output\+\_\+ptr,  }\item[{}]{data\+\_\+type,  }\item[{}]{N,  }\item[{}]{kernel }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \{                                                                            \(\backslash\)}
+\DoxyCodeLine{    if (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355ac119fd4bedb33831236974862b5ff45e}{CTH\_TENSOR\_DATA\_TYPE\_BOOL}}) \{                              \(\backslash\)}
+\DoxyCodeLine{      kernel(input\_ptr, output\_ptr, N, \textcolor{keywordtype}{bool});                                  \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a7ec2ebe6cf92c44f53ba6d88c3a48816}{CTH\_TENSOR\_DATA\_TYPE\_INT\_16}}) \{                     \(\backslash\)}
+\DoxyCodeLine{      kernel(input\_ptr, output\_ptr, N, int16\_t);                               \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a37f6d1066978b8597ff2f3601f793fb1}{CTH\_TENSOR\_DATA\_TYPE\_INT\_32}}) \{                     \(\backslash\)}
+\DoxyCodeLine{      kernel(input\_ptr, output\_ptr, N, int32\_t);                               \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a81804b46c3a09d0379cafc6ed2797c63}{CTH\_TENSOR\_DATA\_TYPE\_INT\_64}}) \{                     \(\backslash\)}
+\DoxyCodeLine{      kernel(input\_ptr, output\_ptr, N, int64\_t);                               \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a013257b03f9c935a0632870b0a3dc175}{CTH\_TENSOR\_DATA\_TYPE\_UINT\_8}}) \{                     \(\backslash\)}
+\DoxyCodeLine{      kernel(input\_ptr, output\_ptr, N, uint8\_t);                               \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a5304679a46753a9c9a651fc4600e9d2f}{CTH\_TENSOR\_DATA\_TYPE\_FLOAT\_16}}) \{                   \(\backslash\)}
+\DoxyCodeLine{      kernel(input\_ptr, output\_ptr, N, \textcolor{keywordtype}{float});                                 \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a3c2141e561fafc5c113a1e0f74ee8494}{CTH\_TENSOR\_DATA\_TYPE\_FLOAT\_32}}) \{                   \(\backslash\)}
+\DoxyCodeLine{      kernel(input\_ptr, output\_ptr, N, \textcolor{keywordtype}{float});                                 \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a3b3e271ef78a842c489769d06a245984}{CTH\_TENSOR\_DATA\_TYPE\_FLOAT\_64}}) \{                   \(\backslash\)}
+\DoxyCodeLine{      kernel(input\_ptr, output\_ptr, N, \textcolor{keywordtype}{double});                                \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \{                                                                   \(\backslash\)}
+\DoxyCodeLine{      FAIL\_EXIT(                                                               \(\backslash\)}
+\DoxyCodeLine{          \mbox{\hyperlink{logger__util_8h_ad9ab19b2b3e07e3ac860411d60ae4e52}{CTH\_LOG\_ERR}},                                                         \(\backslash\)}
+\DoxyCodeLine{          \textcolor{stringliteral}{"Unsupported data type in \_cpu\_1d\_map\_elewise\_unary\_generic"});       \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+Generic compute elewise unary \mbox{\Hypertarget{util_8h_acc61ccd93bc1eff816ced98e712f149e}\label{util_8h_acc61ccd93bc1eff816ced98e712f149e}} 
+\index{util.h@{util.h}!\_cpu\_bit\_compute@{\_cpu\_bit\_compute}}
+\index{\_cpu\_bit\_compute@{\_cpu\_bit\_compute}!util.h@{util.h}}
+\doxysubsubsection{\texorpdfstring{\_cpu\_bit\_compute}{\_cpu\_bit\_compute}}
+{\footnotesize\ttfamily \#define \+\_\+cpu\+\_\+bit\+\_\+compute(\begin{DoxyParamCaption}\item[{}]{op,  }\item[{}]{compute\+\_\+fn,  }\item[{}]{data\+\_\+type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \{                                                                            \(\backslash\)}
+\DoxyCodeLine{    if (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355ac119fd4bedb33831236974862b5ff45e}{CTH\_TENSOR\_DATA\_TYPE\_BOOL}}) \{                              \(\backslash\)}
+\DoxyCodeLine{      compute\_fn(op, \textcolor{keywordtype}{bool});                                                    \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a7ec2ebe6cf92c44f53ba6d88c3a48816}{CTH\_TENSOR\_DATA\_TYPE\_INT\_16}}) \{                     \(\backslash\)}
+\DoxyCodeLine{      compute\_fn(op, int16\_t);                                                 \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a37f6d1066978b8597ff2f3601f793fb1}{CTH\_TENSOR\_DATA\_TYPE\_INT\_32}}) \{                     \(\backslash\)}
+\DoxyCodeLine{      compute\_fn(op, int32\_t);                                                 \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a81804b46c3a09d0379cafc6ed2797c63}{CTH\_TENSOR\_DATA\_TYPE\_INT\_64}}) \{                     \(\backslash\)}
+\DoxyCodeLine{      compute\_fn(op, int64\_t);                                                 \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a013257b03f9c935a0632870b0a3dc175}{CTH\_TENSOR\_DATA\_TYPE\_UINT\_8}}) \{                     \(\backslash\)}
+\DoxyCodeLine{      compute\_fn(op, uint8\_t);                                                 \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \{                                                                   \(\backslash\)}
+\DoxyCodeLine{      FAIL\_EXIT(\mbox{\hyperlink{logger__util_8h_ad9ab19b2b3e07e3ac860411d60ae4e52}{CTH\_LOG\_ERR}}, \textcolor{stringliteral}{"Unsupported data type in \_cpu\_bit\_compute"});     \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+Expand a computation to all bit computation supported types \mbox{\Hypertarget{util_8h_a7223a894b8711d50d98b9fac10c3c1f8}\label{util_8h_a7223a894b8711d50d98b9fac10c3c1f8}} 
+\index{util.h@{util.h}!\_cpu\_generic\_compute@{\_cpu\_generic\_compute}}
+\index{\_cpu\_generic\_compute@{\_cpu\_generic\_compute}!util.h@{util.h}}
+\doxysubsubsection{\texorpdfstring{\_cpu\_generic\_compute}{\_cpu\_generic\_compute}}
+{\footnotesize\ttfamily \#define \+\_\+cpu\+\_\+generic\+\_\+compute(\begin{DoxyParamCaption}\item[{}]{op,  }\item[{}]{compute\+\_\+fn,  }\item[{}]{data\+\_\+type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \{                                                                            \(\backslash\)}
+\DoxyCodeLine{    if (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355ac119fd4bedb33831236974862b5ff45e}{CTH\_TENSOR\_DATA\_TYPE\_BOOL}}) \{                              \(\backslash\)}
+\DoxyCodeLine{      compute\_fn(op, \textcolor{keywordtype}{bool});                                                    \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a7ec2ebe6cf92c44f53ba6d88c3a48816}{CTH\_TENSOR\_DATA\_TYPE\_INT\_16}}) \{                     \(\backslash\)}
+\DoxyCodeLine{      compute\_fn(op, int16\_t);                                                 \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a37f6d1066978b8597ff2f3601f793fb1}{CTH\_TENSOR\_DATA\_TYPE\_INT\_32}}) \{                     \(\backslash\)}
+\DoxyCodeLine{      compute\_fn(op, int32\_t);                                                 \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a81804b46c3a09d0379cafc6ed2797c63}{CTH\_TENSOR\_DATA\_TYPE\_INT\_64}}) \{                     \(\backslash\)}
+\DoxyCodeLine{      compute\_fn(op, int64\_t);                                                 \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a013257b03f9c935a0632870b0a3dc175}{CTH\_TENSOR\_DATA\_TYPE\_UINT\_8}}) \{                     \(\backslash\)}
+\DoxyCodeLine{      compute\_fn(op, uint8\_t);                                                 \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a5304679a46753a9c9a651fc4600e9d2f}{CTH\_TENSOR\_DATA\_TYPE\_FLOAT\_16}}) \{                   \(\backslash\)}
+\DoxyCodeLine{      compute\_fn(op, \textcolor{keywordtype}{float});                                                   \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a3c2141e561fafc5c113a1e0f74ee8494}{CTH\_TENSOR\_DATA\_TYPE\_FLOAT\_32}}) \{                   \(\backslash\)}
+\DoxyCodeLine{      compute\_fn(op, \textcolor{keywordtype}{float});                                                   \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a3b3e271ef78a842c489769d06a245984}{CTH\_TENSOR\_DATA\_TYPE\_FLOAT\_64}}) \{                   \(\backslash\)}
+\DoxyCodeLine{      compute\_fn(op, \textcolor{keywordtype}{double});                                                  \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \{                                                                   \(\backslash\)}
+\DoxyCodeLine{      FAIL\_EXIT(\mbox{\hyperlink{logger__util_8h_ad9ab19b2b3e07e3ac860411d60ae4e52}{CTH\_LOG\_ERR}}, \textcolor{stringliteral}{"Unsupported data type in \_cpu\_generic\_compute"}); \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+Expand a computation to a generic type 

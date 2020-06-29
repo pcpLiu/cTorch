@@ -1,0 +1,350 @@
+\hypertarget{generic__array_8h}{}\doxysection{c\+Torch/generic\+\_\+array.h File Reference}
+\label{generic__array_8h}\index{cTorch/generic\_array.h@{cTorch/generic\_array.h}}
+{\ttfamily \#include \char`\"{}c\+Torch/logger\+\_\+util.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/mem\+\_\+util.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+Include dependency graph for generic\+\_\+array.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{generic__array_8h_a63831a0f4382b42bdc2f6f59babed432}{Array}}(T)~array\+\_\+\#\#T
+\item 
+\#define \mbox{\hyperlink{generic__array_8h_a7ea7bade4042b5149a09b92a7896ea87}{Array\+Struct}}(T)
+\item 
+\#define \mbox{\hyperlink{generic__array_8h_ab6ee439c43ce2fb0228574971b13f6fa}{def\+\_\+array}}(T)~typedef \mbox{\hyperlink{generic__array_8h_a7ea7bade4042b5149a09b92a7896ea87}{Array\+Struct}}(T) \mbox{\hyperlink{generic__array_8h_a63831a0f4382b42bdc2f6f59babed432}{Array}}(T)
+\item 
+\#define \mbox{\hyperlink{generic__array_8h_ac9966bb21ce19c8e697390fbfb8b6d6e}{new\+\_\+array}}(T)~new\+\_\+array\+\_\+\#\#T
+\item 
+\#define \mbox{\hyperlink{generic__array_8h_ab537449c265e7ba0ff6e98d18f4dd543}{\+\_\+declare\+\_\+new\+\_\+array\+\_\+func}}(T,  func\+\_\+name,  array\+\_\+T)~array\+\_\+T $\ast$func\+\_\+name(\mbox{\hyperlink{generic__array_8h_a5576d7cabba712c1f5704c9a30f5161e}{array\+\_\+index\+\_\+t}} size)
+\item 
+\#define \mbox{\hyperlink{generic__array_8h_a6f61f54c05cca602bbfe92b153791a7c}{declare\+\_\+new\+\_\+array\+\_\+func}}(T)~\mbox{\hyperlink{generic__array_8h_ab537449c265e7ba0ff6e98d18f4dd543}{\+\_\+declare\+\_\+new\+\_\+array\+\_\+func}}(T, \mbox{\hyperlink{generic__array_8h_ac9966bb21ce19c8e697390fbfb8b6d6e}{new\+\_\+array}}(T), \mbox{\hyperlink{generic__array_8h_a63831a0f4382b42bdc2f6f59babed432}{Array}}(T))
+\item 
+\#define \mbox{\hyperlink{generic__array_8h_a8743c39eb3333d8050e3c8ea7e0670ae}{\+\_\+impl\+\_\+new\+\_\+array\+\_\+func}}(T,  func\+\_\+name,  array\+\_\+T)
+\item 
+\#define \mbox{\hyperlink{generic__array_8h_a6c6307463b58a551efef537a27e4641b}{impl\+\_\+new\+\_\+array\+\_\+func}}(T)~\mbox{\hyperlink{generic__array_8h_a8743c39eb3333d8050e3c8ea7e0670ae}{\+\_\+impl\+\_\+new\+\_\+array\+\_\+func}}(T, \mbox{\hyperlink{generic__array_8h_ac9966bb21ce19c8e697390fbfb8b6d6e}{new\+\_\+array}}(T), \mbox{\hyperlink{generic__array_8h_a63831a0f4382b42bdc2f6f59babed432}{Array}}(T))
+\item 
+\#define \mbox{\hyperlink{generic__array_8h_a0c79b2a31b1e22d0eda22aa186c6b5dc}{array\+\_\+set}}(T)~array\+\_\+set\+\_\+\#\#T
+\item 
+\#define \mbox{\hyperlink{generic__array_8h_aca8be39765c587cc72cbb26744acc4dc}{\+\_\+declare\+\_\+array\+\_\+set\+\_\+func}}(T,  func\+\_\+name,  array\+\_\+T)~void func\+\_\+name(array\+\_\+T $\ast$array, \mbox{\hyperlink{generic__array_8h_a5576d7cabba712c1f5704c9a30f5161e}{array\+\_\+index\+\_\+t}} i, T $\ast$val)
+\item 
+\#define \mbox{\hyperlink{generic__array_8h_ad0b08a5e18910ea079282781ec0efdef}{declare\+\_\+array\+\_\+set\+\_\+func}}(T)~\mbox{\hyperlink{generic__array_8h_aca8be39765c587cc72cbb26744acc4dc}{\+\_\+declare\+\_\+array\+\_\+set\+\_\+func}}(T, \mbox{\hyperlink{generic__array_8h_a0c79b2a31b1e22d0eda22aa186c6b5dc}{array\+\_\+set}}(T), \mbox{\hyperlink{generic__array_8h_a63831a0f4382b42bdc2f6f59babed432}{Array}}(T))
+\item 
+\#define \mbox{\hyperlink{generic__array_8h_ae5a928dbf8fccfcc0fed05e774ebfeb2}{\+\_\+impl\+\_\+array\+\_\+set\+\_\+func}}(T,  func\+\_\+name,  array\+\_\+T)
+\item 
+\#define \mbox{\hyperlink{generic__array_8h_ad82261eab7eeb9f5df1bc775f50ad2ce}{impl\+\_\+array\+\_\+set\+\_\+func}}(T)~\mbox{\hyperlink{generic__array_8h_ae5a928dbf8fccfcc0fed05e774ebfeb2}{\+\_\+impl\+\_\+array\+\_\+set\+\_\+func}}(T, \mbox{\hyperlink{generic__array_8h_a0c79b2a31b1e22d0eda22aa186c6b5dc}{array\+\_\+set}}(T), \mbox{\hyperlink{generic__array_8h_a63831a0f4382b42bdc2f6f59babed432}{Array}}(T))
+\item 
+\#define \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\+\_\+at}}(T)~array\+\_\+at\+\_\+\#\#T
+\item 
+\#define \mbox{\hyperlink{generic__array_8h_af8460c915935256ddd1705bfb592f85e}{\+\_\+declare\+\_\+array\+\_\+at\+\_\+func}}(T,  func\+\_\+name,  array\+\_\+T)~T $\ast$func\+\_\+name(array\+\_\+T $\ast$array, \mbox{\hyperlink{generic__array_8h_a5576d7cabba712c1f5704c9a30f5161e}{array\+\_\+index\+\_\+t}} i)
+\item 
+\#define \mbox{\hyperlink{generic__array_8h_a24175435ba14524c81ad70c05aa4eb77}{declare\+\_\+array\+\_\+at\+\_\+func}}(T)~\mbox{\hyperlink{generic__array_8h_af8460c915935256ddd1705bfb592f85e}{\+\_\+declare\+\_\+array\+\_\+at\+\_\+func}}(T, \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\+\_\+at}}(T), \mbox{\hyperlink{generic__array_8h_a63831a0f4382b42bdc2f6f59babed432}{Array}}(T))
+\item 
+\#define \mbox{\hyperlink{generic__array_8h_a6f4ecd218ae1d9161eaa1a250d191131}{\+\_\+impl\+\_\+array\+\_\+at\+\_\+func}}(T,  func\+\_\+name,  array\+\_\+T)
+\item 
+\#define \mbox{\hyperlink{generic__array_8h_acff0ba8d5ca81d82abbe6f1db8869a1e}{impl\+\_\+array\+\_\+at\+\_\+func}}(T)~\mbox{\hyperlink{generic__array_8h_a6f4ecd218ae1d9161eaa1a250d191131}{\+\_\+impl\+\_\+array\+\_\+at\+\_\+func}}(T, \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\+\_\+at}}(T), \mbox{\hyperlink{generic__array_8h_a63831a0f4382b42bdc2f6f59babed432}{Array}}(T))
+\item 
+\#define \mbox{\hyperlink{generic__array_8h_a9122f02aa81f3f4da89719af92296c3e}{free\+\_\+array}}(T)~free\+\_\+array\+\_\+\#\#T
+\item 
+\#define \mbox{\hyperlink{generic__array_8h_afbb8ae896ddfe06397c17ed210be2c19}{\+\_\+declare\+\_\+free\+\_\+array\+\_\+func}}(func\+\_\+name,  array\+\_\+T)~void func\+\_\+name(array\+\_\+T $\ast$array);
+\item 
+\#define \mbox{\hyperlink{generic__array_8h_a7d55715084a1df86875a75637dc4c2f2}{declare\+\_\+free\+\_\+array\+\_\+func}}(T)~\mbox{\hyperlink{generic__array_8h_afbb8ae896ddfe06397c17ed210be2c19}{\+\_\+declare\+\_\+free\+\_\+array\+\_\+func}}(\mbox{\hyperlink{generic__array_8h_a9122f02aa81f3f4da89719af92296c3e}{free\+\_\+array}}(T), \mbox{\hyperlink{generic__array_8h_a63831a0f4382b42bdc2f6f59babed432}{Array}}(T))
+\item 
+\#define \mbox{\hyperlink{generic__array_8h_affebbc872f9c13a3a56ac5501a43a2c2}{\+\_\+impl\+\_\+free\+\_\+array\+\_\+func}}(func\+\_\+name,  array\+\_\+T)
+\item 
+\#define \mbox{\hyperlink{generic__array_8h_a16d74e37e962d31b7441f22054e71ab1}{impl\+\_\+free\+\_\+array\+\_\+func}}(T)~\mbox{\hyperlink{generic__array_8h_affebbc872f9c13a3a56ac5501a43a2c2}{\+\_\+impl\+\_\+free\+\_\+array\+\_\+func}}(\mbox{\hyperlink{generic__array_8h_a9122f02aa81f3f4da89719af92296c3e}{free\+\_\+array}}(T), \mbox{\hyperlink{generic__array_8h_a63831a0f4382b42bdc2f6f59babed432}{Array}}(T))
+\item 
+\#define \mbox{\hyperlink{generic__array_8h_acabc4aaf206fe2618d51ab1eaa11e3b6}{free\+\_\+array\+\_\+deep}}(T)~free\+\_\+array\+\_\+deep\+\_\+\#\#T
+\item 
+\#define \mbox{\hyperlink{generic__array_8h_a7866fc824492721bd52e6b4948032303}{\+\_\+declare\+\_\+free\+\_\+array\+\_\+deep\+\_\+func}}(func\+\_\+name,  array\+\_\+T)~void func\+\_\+name(array\+\_\+T $\ast$array);
+\item 
+\#define \mbox{\hyperlink{generic__array_8h_a619355483f53d18fe13ca942a8497a49}{declare\+\_\+free\+\_\+array\+\_\+deep\+\_\+func}}(T)~\mbox{\hyperlink{generic__array_8h_a7866fc824492721bd52e6b4948032303}{\+\_\+declare\+\_\+free\+\_\+array\+\_\+deep\+\_\+func}}(\mbox{\hyperlink{generic__array_8h_acabc4aaf206fe2618d51ab1eaa11e3b6}{free\+\_\+array\+\_\+deep}}(T), \mbox{\hyperlink{generic__array_8h_a63831a0f4382b42bdc2f6f59babed432}{Array}}(T))
+\item 
+\#define \mbox{\hyperlink{generic__array_8h_a33f3e3177795d396687f8814cbaef6d7}{\+\_\+impl\+\_\+free\+\_\+array\+\_\+deep\+\_\+func}}(func\+\_\+name,  array\+\_\+T,  T)
+\item 
+\#define \mbox{\hyperlink{generic__array_8h_aef8c2084e5b52deb1422cf480a369b9f}{impl\+\_\+free\+\_\+array\+\_\+deep\+\_\+func}}(T)~\mbox{\hyperlink{generic__array_8h_a33f3e3177795d396687f8814cbaef6d7}{\+\_\+impl\+\_\+free\+\_\+array\+\_\+deep\+\_\+func}}(\mbox{\hyperlink{generic__array_8h_acabc4aaf206fe2618d51ab1eaa11e3b6}{free\+\_\+array\+\_\+deep}}(T), \mbox{\hyperlink{generic__array_8h_a63831a0f4382b42bdc2f6f59babed432}{Array}}(T), T)
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint32\+\_\+t \mbox{\hyperlink{generic__array_8h_a5576d7cabba712c1f5704c9a30f5161e}{array\+\_\+index\+\_\+t}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{generic__array_8h_af8460c915935256ddd1705bfb592f85e}\label{generic__array_8h_af8460c915935256ddd1705bfb592f85e}} 
+\index{generic\_array.h@{generic\_array.h}!\_declare\_array\_at\_func@{\_declare\_array\_at\_func}}
+\index{\_declare\_array\_at\_func@{\_declare\_array\_at\_func}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{\_declare\_array\_at\_func}{\_declare\_array\_at\_func}}
+{\footnotesize\ttfamily \#define \+\_\+declare\+\_\+array\+\_\+at\+\_\+func(\begin{DoxyParamCaption}\item[{}]{T,  }\item[{}]{func\+\_\+name,  }\item[{}]{array\+\_\+T }\end{DoxyParamCaption})~T $\ast$func\+\_\+name(array\+\_\+T $\ast$array, \mbox{\hyperlink{generic__array_8h_a5576d7cabba712c1f5704c9a30f5161e}{array\+\_\+index\+\_\+t}} i)}
+
+\mbox{\Hypertarget{generic__array_8h_aca8be39765c587cc72cbb26744acc4dc}\label{generic__array_8h_aca8be39765c587cc72cbb26744acc4dc}} 
+\index{generic\_array.h@{generic\_array.h}!\_declare\_array\_set\_func@{\_declare\_array\_set\_func}}
+\index{\_declare\_array\_set\_func@{\_declare\_array\_set\_func}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{\_declare\_array\_set\_func}{\_declare\_array\_set\_func}}
+{\footnotesize\ttfamily \#define \+\_\+declare\+\_\+array\+\_\+set\+\_\+func(\begin{DoxyParamCaption}\item[{}]{T,  }\item[{}]{func\+\_\+name,  }\item[{}]{array\+\_\+T }\end{DoxyParamCaption})~void func\+\_\+name(array\+\_\+T $\ast$array, \mbox{\hyperlink{generic__array_8h_a5576d7cabba712c1f5704c9a30f5161e}{array\+\_\+index\+\_\+t}} i, T $\ast$val)}
+
+\mbox{\Hypertarget{generic__array_8h_a7866fc824492721bd52e6b4948032303}\label{generic__array_8h_a7866fc824492721bd52e6b4948032303}} 
+\index{generic\_array.h@{generic\_array.h}!\_declare\_free\_array\_deep\_func@{\_declare\_free\_array\_deep\_func}}
+\index{\_declare\_free\_array\_deep\_func@{\_declare\_free\_array\_deep\_func}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{\_declare\_free\_array\_deep\_func}{\_declare\_free\_array\_deep\_func}}
+{\footnotesize\ttfamily \#define \+\_\+declare\+\_\+free\+\_\+array\+\_\+deep\+\_\+func(\begin{DoxyParamCaption}\item[{}]{func\+\_\+name,  }\item[{}]{array\+\_\+T }\end{DoxyParamCaption})~void func\+\_\+name(array\+\_\+T $\ast$array);}
+
+\mbox{\Hypertarget{generic__array_8h_afbb8ae896ddfe06397c17ed210be2c19}\label{generic__array_8h_afbb8ae896ddfe06397c17ed210be2c19}} 
+\index{generic\_array.h@{generic\_array.h}!\_declare\_free\_array\_func@{\_declare\_free\_array\_func}}
+\index{\_declare\_free\_array\_func@{\_declare\_free\_array\_func}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{\_declare\_free\_array\_func}{\_declare\_free\_array\_func}}
+{\footnotesize\ttfamily \#define \+\_\+declare\+\_\+free\+\_\+array\+\_\+func(\begin{DoxyParamCaption}\item[{}]{func\+\_\+name,  }\item[{}]{array\+\_\+T }\end{DoxyParamCaption})~void func\+\_\+name(array\+\_\+T $\ast$array);}
+
+\mbox{\Hypertarget{generic__array_8h_ab537449c265e7ba0ff6e98d18f4dd543}\label{generic__array_8h_ab537449c265e7ba0ff6e98d18f4dd543}} 
+\index{generic\_array.h@{generic\_array.h}!\_declare\_new\_array\_func@{\_declare\_new\_array\_func}}
+\index{\_declare\_new\_array\_func@{\_declare\_new\_array\_func}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{\_declare\_new\_array\_func}{\_declare\_new\_array\_func}}
+{\footnotesize\ttfamily \#define \+\_\+declare\+\_\+new\+\_\+array\+\_\+func(\begin{DoxyParamCaption}\item[{}]{T,  }\item[{}]{func\+\_\+name,  }\item[{}]{array\+\_\+T }\end{DoxyParamCaption})~array\+\_\+T $\ast$func\+\_\+name(\mbox{\hyperlink{generic__array_8h_a5576d7cabba712c1f5704c9a30f5161e}{array\+\_\+index\+\_\+t}} size)}
+
+\mbox{\Hypertarget{generic__array_8h_a6f4ecd218ae1d9161eaa1a250d191131}\label{generic__array_8h_a6f4ecd218ae1d9161eaa1a250d191131}} 
+\index{generic\_array.h@{generic\_array.h}!\_impl\_array\_at\_func@{\_impl\_array\_at\_func}}
+\index{\_impl\_array\_at\_func@{\_impl\_array\_at\_func}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{\_impl\_array\_at\_func}{\_impl\_array\_at\_func}}
+{\footnotesize\ttfamily \#define \+\_\+impl\+\_\+array\+\_\+at\+\_\+func(\begin{DoxyParamCaption}\item[{}]{T,  }\item[{}]{func\+\_\+name,  }\item[{}]{array\+\_\+T }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  T *func\_name(array\_T *array, \mbox{\hyperlink{generic__array_8h_a5576d7cabba712c1f5704c9a30f5161e}{array\_index\_t}} i) \{                              \(\backslash\)}
+\DoxyCodeLine{    FAIL\_NULL\_PTR(array);                                                      \(\backslash\)}
+\DoxyCodeLine{                                                                               \(\backslash\)}
+\DoxyCodeLine{    if (i >= array-\/>size) \{                                                    \(\backslash\)}
+\DoxyCodeLine{      FAIL\_EXIT(                                                               \(\backslash\)}
+\DoxyCodeLine{          \mbox{\hyperlink{logger__util_8h_ad9ab19b2b3e07e3ac860411d60ae4e52}{CTH\_LOG\_ERR}},                                                         \(\backslash\)}
+\DoxyCodeLine{          \textcolor{stringliteral}{"Array index out of boundary. Given index \%ud while array size is "}  \(\backslash\)}
+\DoxyCodeLine{          \textcolor{stringliteral}{"\%ud"},                                                               \(\backslash\)}
+\DoxyCodeLine{          i,                                                                   \(\backslash\)}
+\DoxyCodeLine{          array-\/>size);                                                        \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{    return *(array-\/>\_data + i);                                                \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{generic__array_8h_ae5a928dbf8fccfcc0fed05e774ebfeb2}\label{generic__array_8h_ae5a928dbf8fccfcc0fed05e774ebfeb2}} 
+\index{generic\_array.h@{generic\_array.h}!\_impl\_array\_set\_func@{\_impl\_array\_set\_func}}
+\index{\_impl\_array\_set\_func@{\_impl\_array\_set\_func}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{\_impl\_array\_set\_func}{\_impl\_array\_set\_func}}
+{\footnotesize\ttfamily \#define \+\_\+impl\+\_\+array\+\_\+set\+\_\+func(\begin{DoxyParamCaption}\item[{}]{T,  }\item[{}]{func\+\_\+name,  }\item[{}]{array\+\_\+T }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordtype}{void} func\_name(array\_T *array, \mbox{\hyperlink{generic__array_8h_a5576d7cabba712c1f5704c9a30f5161e}{array\_index\_t}} i, T *val) \{                    \(\backslash\)}
+\DoxyCodeLine{    FAIL\_NULL\_PTR(array);                                                      \(\backslash\)}
+\DoxyCodeLine{                                                                               \(\backslash\)}
+\DoxyCodeLine{    if (i >= array-\/>size) \{                                                    \(\backslash\)}
+\DoxyCodeLine{      FAIL\_EXIT(                                                               \(\backslash\)}
+\DoxyCodeLine{          \mbox{\hyperlink{logger__util_8h_ad9ab19b2b3e07e3ac860411d60ae4e52}{CTH\_LOG\_ERR}},                                                         \(\backslash\)}
+\DoxyCodeLine{          \textcolor{stringliteral}{"Array index out of boundary."}                                       \(\backslash\)}
+\DoxyCodeLine{          \textcolor{stringliteral}{" Given index \%d while array size is \%d"},                            \(\backslash\)}
+\DoxyCodeLine{          i,                                                                   \(\backslash\)}
+\DoxyCodeLine{          array-\/>size);                                                        \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{                                                                               \(\backslash\)}
+\DoxyCodeLine{    *(array-\/>\_data + i) = val;                                                 \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{generic__array_8h_a33f3e3177795d396687f8814cbaef6d7}\label{generic__array_8h_a33f3e3177795d396687f8814cbaef6d7}} 
+\index{generic\_array.h@{generic\_array.h}!\_impl\_free\_array\_deep\_func@{\_impl\_free\_array\_deep\_func}}
+\index{\_impl\_free\_array\_deep\_func@{\_impl\_free\_array\_deep\_func}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{\_impl\_free\_array\_deep\_func}{\_impl\_free\_array\_deep\_func}}
+{\footnotesize\ttfamily \#define \+\_\+impl\+\_\+free\+\_\+array\+\_\+deep\+\_\+func(\begin{DoxyParamCaption}\item[{}]{func\+\_\+name,  }\item[{}]{array\+\_\+T,  }\item[{}]{T }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordtype}{void} func\_name(array\_T *array) \{                                             \(\backslash\)}
+\DoxyCodeLine{    FAIL\_NULL\_PTR(array);                                                      \(\backslash\)}
+\DoxyCodeLine{                                                                               \(\backslash\)}
+\DoxyCodeLine{    array\_index\_t i = 0;                                                       \(\backslash\)}
+\DoxyCodeLine{    while (i < array-\/>size) \{                                                  \(\backslash\)}
+\DoxyCodeLine{      struct\_deep\_free(T)(\mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\_at}}(T)(array, i));                              \(\backslash\)}
+\DoxyCodeLine{      i++;                                                                     \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{    FREE\_SOFT(array-\/>\_data);                                                   \(\backslash\)}
+\DoxyCodeLine{    FREE(array);                                                               \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{generic__array_8h_affebbc872f9c13a3a56ac5501a43a2c2}\label{generic__array_8h_affebbc872f9c13a3a56ac5501a43a2c2}} 
+\index{generic\_array.h@{generic\_array.h}!\_impl\_free\_array\_func@{\_impl\_free\_array\_func}}
+\index{\_impl\_free\_array\_func@{\_impl\_free\_array\_func}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{\_impl\_free\_array\_func}{\_impl\_free\_array\_func}}
+{\footnotesize\ttfamily \#define \+\_\+impl\+\_\+free\+\_\+array\+\_\+func(\begin{DoxyParamCaption}\item[{}]{func\+\_\+name,  }\item[{}]{array\+\_\+T }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordtype}{void} func\_name(array\_T *array) \{                                             \(\backslash\)}
+\DoxyCodeLine{    FAIL\_NULL\_PTR(array);                                                      \mbox{\hyperlink{mem__util_8h_a105949c59c998e38aad80266afac92bf}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{mem__util_8h_a105949c59c998e38aad80266afac92bf}{                                                                               \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{mem__util_8h_a105949c59c998e38aad80266afac92bf}{    FREE}}(array-\/>data);                                                         \(\backslash\)}
+\DoxyCodeLine{    FREE(array);                                                               \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{generic__array_8h_a8743c39eb3333d8050e3c8ea7e0670ae}\label{generic__array_8h_a8743c39eb3333d8050e3c8ea7e0670ae}} 
+\index{generic\_array.h@{generic\_array.h}!\_impl\_new\_array\_func@{\_impl\_new\_array\_func}}
+\index{\_impl\_new\_array\_func@{\_impl\_new\_array\_func}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{\_impl\_new\_array\_func}{\_impl\_new\_array\_func}}
+{\footnotesize\ttfamily \#define \+\_\+impl\+\_\+new\+\_\+array\+\_\+func(\begin{DoxyParamCaption}\item[{}]{T,  }\item[{}]{func\+\_\+name,  }\item[{}]{array\+\_\+T }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  array\_T *func\_name(\mbox{\hyperlink{generic__array_8h_a5576d7cabba712c1f5704c9a30f5161e}{array\_index\_t}} size) \{                                     \(\backslash\)}
+\DoxyCodeLine{    array\_T *array = (array\_T *)\mbox{\hyperlink{mem__util_8h_a3078f3c259e2a871314e3e0194896357}{MALLOC}}(\textcolor{keyword}{sizeof}(array\_T));                       \(\backslash\)}
+\DoxyCodeLine{    array-\/>size = size;                                                        \(\backslash\)}
+\DoxyCodeLine{    array-\/>\_data = NULL;                                                       \(\backslash\)}
+\DoxyCodeLine{    if (size > 0) \{                                                            \(\backslash\)}
+\DoxyCodeLine{      array-\/>\_data = (T **)\mbox{\hyperlink{mem__util_8h_a3078f3c259e2a871314e3e0194896357}{MALLOC}}(\textcolor{keyword}{sizeof}(T *) * size);                         \(\backslash\)}
+\DoxyCodeLine{      for (\mbox{\hyperlink{generic__array_8h_a5576d7cabba712c1f5704c9a30f5161e}{array\_index\_t}} i = 0; i < size; i++) \{                               \(\backslash\)}
+\DoxyCodeLine{        *(array-\/>\_data + i) = NULL;                                            \(\backslash\)}
+\DoxyCodeLine{      \}                                                                        \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{    return array;                                                              \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{generic__array_8h_a63831a0f4382b42bdc2f6f59babed432}\label{generic__array_8h_a63831a0f4382b42bdc2f6f59babed432}} 
+\index{generic\_array.h@{generic\_array.h}!Array@{Array}}
+\index{Array@{Array}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{Array}{Array}}
+{\footnotesize\ttfamily \#define Array(\begin{DoxyParamCaption}\item[{}]{T }\end{DoxyParamCaption})~array\+\_\+\#\#T}
+
+\mbox{\hyperlink{generic__array_8h_a63831a0f4382b42bdc2f6f59babed432}{Array(\+T)}} --- generic array type name \mbox{\hyperlink{generic__array_8h_a7ea7bade4042b5149a09b92a7896ea87}{Array\+Struct(\+T)}} --- generic array struct
+\begin{DoxyItemize}
+\item size\+: size
+\item \+\_\+data\+: array of data pointers \mbox{\hyperlink{generic__array_8h_ab6ee439c43ce2fb0228574971b13f6fa}{def\+\_\+array(\+T)}} --- typedef a generic array for T 
+\end{DoxyItemize}\mbox{\Hypertarget{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}\label{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}} 
+\index{generic\_array.h@{generic\_array.h}!array\_at@{array\_at}}
+\index{array\_at@{array\_at}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{array\_at}{array\_at}}
+{\footnotesize\ttfamily \#define array\+\_\+at(\begin{DoxyParamCaption}\item[{}]{T }\end{DoxyParamCaption})~array\+\_\+at\+\_\+\#\#T}
+
+Get element at index i
+
+\mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\+\_\+at(\+T)}} --- func name \mbox{\hyperlink{generic__array_8h_a24175435ba14524c81ad70c05aa4eb77}{declare\+\_\+array\+\_\+at\+\_\+func(\+T)}} --- declare array at function \mbox{\hyperlink{generic__array_8h_acff0ba8d5ca81d82abbe6f1db8869a1e}{impl\+\_\+array\+\_\+at\+\_\+func(\+T)}} --- implement array at function \mbox{\Hypertarget{generic__array_8h_a0c79b2a31b1e22d0eda22aa186c6b5dc}\label{generic__array_8h_a0c79b2a31b1e22d0eda22aa186c6b5dc}} 
+\index{generic\_array.h@{generic\_array.h}!array\_set@{array\_set}}
+\index{array\_set@{array\_set}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{array\_set}{array\_set}}
+{\footnotesize\ttfamily \#define array\+\_\+set(\begin{DoxyParamCaption}\item[{}]{T }\end{DoxyParamCaption})~array\+\_\+set\+\_\+\#\#T}
+
+\mbox{\Hypertarget{generic__array_8h_a7ea7bade4042b5149a09b92a7896ea87}\label{generic__array_8h_a7ea7bade4042b5149a09b92a7896ea87}} 
+\index{generic\_array.h@{generic\_array.h}!ArrayStruct@{ArrayStruct}}
+\index{ArrayStruct@{ArrayStruct}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{ArrayStruct}{ArrayStruct}}
+{\footnotesize\ttfamily \#define Array\+Struct(\begin{DoxyParamCaption}\item[{}]{T }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keyword}{struct }Array(T) \{                                                            \(\backslash\)}
+\DoxyCodeLine{    array\_index\_t size;                                                        \(\backslash\)}
+\DoxyCodeLine{    T **\_data;                                                                 \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{generic__array_8h_a24175435ba14524c81ad70c05aa4eb77}\label{generic__array_8h_a24175435ba14524c81ad70c05aa4eb77}} 
+\index{generic\_array.h@{generic\_array.h}!declare\_array\_at\_func@{declare\_array\_at\_func}}
+\index{declare\_array\_at\_func@{declare\_array\_at\_func}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{declare\_array\_at\_func}{declare\_array\_at\_func}}
+{\footnotesize\ttfamily \#define declare\+\_\+array\+\_\+at\+\_\+func(\begin{DoxyParamCaption}\item[{}]{T }\end{DoxyParamCaption})~\mbox{\hyperlink{generic__array_8h_af8460c915935256ddd1705bfb592f85e}{\+\_\+declare\+\_\+array\+\_\+at\+\_\+func}}(T, \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\+\_\+at}}(T), \mbox{\hyperlink{generic__array_8h_a63831a0f4382b42bdc2f6f59babed432}{Array}}(T))}
+
+\mbox{\Hypertarget{generic__array_8h_ad0b08a5e18910ea079282781ec0efdef}\label{generic__array_8h_ad0b08a5e18910ea079282781ec0efdef}} 
+\index{generic\_array.h@{generic\_array.h}!declare\_array\_set\_func@{declare\_array\_set\_func}}
+\index{declare\_array\_set\_func@{declare\_array\_set\_func}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{declare\_array\_set\_func}{declare\_array\_set\_func}}
+{\footnotesize\ttfamily \#define declare\+\_\+array\+\_\+set\+\_\+func(\begin{DoxyParamCaption}\item[{}]{T }\end{DoxyParamCaption})~\mbox{\hyperlink{generic__array_8h_aca8be39765c587cc72cbb26744acc4dc}{\+\_\+declare\+\_\+array\+\_\+set\+\_\+func}}(T, \mbox{\hyperlink{generic__array_8h_a0c79b2a31b1e22d0eda22aa186c6b5dc}{array\+\_\+set}}(T), \mbox{\hyperlink{generic__array_8h_a63831a0f4382b42bdc2f6f59babed432}{Array}}(T))}
+
+\mbox{\Hypertarget{generic__array_8h_a619355483f53d18fe13ca942a8497a49}\label{generic__array_8h_a619355483f53d18fe13ca942a8497a49}} 
+\index{generic\_array.h@{generic\_array.h}!declare\_free\_array\_deep\_func@{declare\_free\_array\_deep\_func}}
+\index{declare\_free\_array\_deep\_func@{declare\_free\_array\_deep\_func}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{declare\_free\_array\_deep\_func}{declare\_free\_array\_deep\_func}}
+{\footnotesize\ttfamily \#define declare\+\_\+free\+\_\+array\+\_\+deep\+\_\+func(\begin{DoxyParamCaption}\item[{}]{T }\end{DoxyParamCaption})~\mbox{\hyperlink{generic__array_8h_a7866fc824492721bd52e6b4948032303}{\+\_\+declare\+\_\+free\+\_\+array\+\_\+deep\+\_\+func}}(\mbox{\hyperlink{generic__array_8h_acabc4aaf206fe2618d51ab1eaa11e3b6}{free\+\_\+array\+\_\+deep}}(T), \mbox{\hyperlink{generic__array_8h_a63831a0f4382b42bdc2f6f59babed432}{Array}}(T))}
+
+\mbox{\Hypertarget{generic__array_8h_a7d55715084a1df86875a75637dc4c2f2}\label{generic__array_8h_a7d55715084a1df86875a75637dc4c2f2}} 
+\index{generic\_array.h@{generic\_array.h}!declare\_free\_array\_func@{declare\_free\_array\_func}}
+\index{declare\_free\_array\_func@{declare\_free\_array\_func}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{declare\_free\_array\_func}{declare\_free\_array\_func}}
+{\footnotesize\ttfamily \#define declare\+\_\+free\+\_\+array\+\_\+func(\begin{DoxyParamCaption}\item[{}]{T }\end{DoxyParamCaption})~\mbox{\hyperlink{generic__array_8h_afbb8ae896ddfe06397c17ed210be2c19}{\+\_\+declare\+\_\+free\+\_\+array\+\_\+func}}(\mbox{\hyperlink{generic__array_8h_a9122f02aa81f3f4da89719af92296c3e}{free\+\_\+array}}(T), \mbox{\hyperlink{generic__array_8h_a63831a0f4382b42bdc2f6f59babed432}{Array}}(T))}
+
+\mbox{\Hypertarget{generic__array_8h_a6f61f54c05cca602bbfe92b153791a7c}\label{generic__array_8h_a6f61f54c05cca602bbfe92b153791a7c}} 
+\index{generic\_array.h@{generic\_array.h}!declare\_new\_array\_func@{declare\_new\_array\_func}}
+\index{declare\_new\_array\_func@{declare\_new\_array\_func}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{declare\_new\_array\_func}{declare\_new\_array\_func}}
+{\footnotesize\ttfamily \#define declare\+\_\+new\+\_\+array\+\_\+func(\begin{DoxyParamCaption}\item[{}]{T }\end{DoxyParamCaption})~\mbox{\hyperlink{generic__array_8h_ab537449c265e7ba0ff6e98d18f4dd543}{\+\_\+declare\+\_\+new\+\_\+array\+\_\+func}}(T, \mbox{\hyperlink{generic__array_8h_ac9966bb21ce19c8e697390fbfb8b6d6e}{new\+\_\+array}}(T), \mbox{\hyperlink{generic__array_8h_a63831a0f4382b42bdc2f6f59babed432}{Array}}(T))}
+
+\mbox{\Hypertarget{generic__array_8h_ab6ee439c43ce2fb0228574971b13f6fa}\label{generic__array_8h_ab6ee439c43ce2fb0228574971b13f6fa}} 
+\index{generic\_array.h@{generic\_array.h}!def\_array@{def\_array}}
+\index{def\_array@{def\_array}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{def\_array}{def\_array}}
+{\footnotesize\ttfamily \#define def\+\_\+array(\begin{DoxyParamCaption}\item[{}]{T }\end{DoxyParamCaption})~typedef \mbox{\hyperlink{generic__array_8h_a7ea7bade4042b5149a09b92a7896ea87}{Array\+Struct}}(T) \mbox{\hyperlink{generic__array_8h_a63831a0f4382b42bdc2f6f59babed432}{Array}}(T)}
+
+\mbox{\Hypertarget{generic__array_8h_a9122f02aa81f3f4da89719af92296c3e}\label{generic__array_8h_a9122f02aa81f3f4da89719af92296c3e}} 
+\index{generic\_array.h@{generic\_array.h}!free\_array@{free\_array}}
+\index{free\_array@{free\_array}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{free\_array}{free\_array}}
+{\footnotesize\ttfamily \#define free\+\_\+array(\begin{DoxyParamCaption}\item[{}]{T }\end{DoxyParamCaption})~free\+\_\+array\+\_\+\#\#T}
+
+Free an array. Would N\+OT free contained data
+
+\mbox{\hyperlink{generic__array_8h_a9122f02aa81f3f4da89719af92296c3e}{free\+\_\+array(\+T)}} --- func name \mbox{\hyperlink{generic__array_8h_a7d55715084a1df86875a75637dc4c2f2}{declare\+\_\+free\+\_\+array\+\_\+func(\+T)}} --- declare \mbox{\hyperlink{generic__array_8h_a16d74e37e962d31b7441f22054e71ab1}{impl\+\_\+free\+\_\+array\+\_\+func(\+T)}} --- implementation \mbox{\Hypertarget{generic__array_8h_acabc4aaf206fe2618d51ab1eaa11e3b6}\label{generic__array_8h_acabc4aaf206fe2618d51ab1eaa11e3b6}} 
+\index{generic\_array.h@{generic\_array.h}!free\_array\_deep@{free\_array\_deep}}
+\index{free\_array\_deep@{free\_array\_deep}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{free\_array\_deep}{free\_array\_deep}}
+{\footnotesize\ttfamily \#define free\+\_\+array\+\_\+deep(\begin{DoxyParamCaption}\item[{}]{T }\end{DoxyParamCaption})~free\+\_\+array\+\_\+deep\+\_\+\#\#T}
+
+Free an array in a deep wayy. Would also free contained data
+
+\mbox{\hyperlink{generic__array_8h_acabc4aaf206fe2618d51ab1eaa11e3b6}{free\+\_\+array\+\_\+deep(\+T)}} --- func name \mbox{\hyperlink{generic__array_8h_a619355483f53d18fe13ca942a8497a49}{declare\+\_\+free\+\_\+array\+\_\+deep\+\_\+func(\+T)}} --- declare \mbox{\hyperlink{generic__array_8h_aef8c2084e5b52deb1422cf480a369b9f}{impl\+\_\+free\+\_\+array\+\_\+deep\+\_\+func(\+T)}} --- implementation \mbox{\Hypertarget{generic__array_8h_acff0ba8d5ca81d82abbe6f1db8869a1e}\label{generic__array_8h_acff0ba8d5ca81d82abbe6f1db8869a1e}} 
+\index{generic\_array.h@{generic\_array.h}!impl\_array\_at\_func@{impl\_array\_at\_func}}
+\index{impl\_array\_at\_func@{impl\_array\_at\_func}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{impl\_array\_at\_func}{impl\_array\_at\_func}}
+{\footnotesize\ttfamily \#define impl\+\_\+array\+\_\+at\+\_\+func(\begin{DoxyParamCaption}\item[{}]{T }\end{DoxyParamCaption})~\mbox{\hyperlink{generic__array_8h_a6f4ecd218ae1d9161eaa1a250d191131}{\+\_\+impl\+\_\+array\+\_\+at\+\_\+func}}(T, \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\+\_\+at}}(T), \mbox{\hyperlink{generic__array_8h_a63831a0f4382b42bdc2f6f59babed432}{Array}}(T))}
+
+\mbox{\Hypertarget{generic__array_8h_ad82261eab7eeb9f5df1bc775f50ad2ce}\label{generic__array_8h_ad82261eab7eeb9f5df1bc775f50ad2ce}} 
+\index{generic\_array.h@{generic\_array.h}!impl\_array\_set\_func@{impl\_array\_set\_func}}
+\index{impl\_array\_set\_func@{impl\_array\_set\_func}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{impl\_array\_set\_func}{impl\_array\_set\_func}}
+{\footnotesize\ttfamily \#define impl\+\_\+array\+\_\+set\+\_\+func(\begin{DoxyParamCaption}\item[{}]{T }\end{DoxyParamCaption})~\mbox{\hyperlink{generic__array_8h_ae5a928dbf8fccfcc0fed05e774ebfeb2}{\+\_\+impl\+\_\+array\+\_\+set\+\_\+func}}(T, \mbox{\hyperlink{generic__array_8h_a0c79b2a31b1e22d0eda22aa186c6b5dc}{array\+\_\+set}}(T), \mbox{\hyperlink{generic__array_8h_a63831a0f4382b42bdc2f6f59babed432}{Array}}(T))}
+
+\mbox{\Hypertarget{generic__array_8h_aef8c2084e5b52deb1422cf480a369b9f}\label{generic__array_8h_aef8c2084e5b52deb1422cf480a369b9f}} 
+\index{generic\_array.h@{generic\_array.h}!impl\_free\_array\_deep\_func@{impl\_free\_array\_deep\_func}}
+\index{impl\_free\_array\_deep\_func@{impl\_free\_array\_deep\_func}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{impl\_free\_array\_deep\_func}{impl\_free\_array\_deep\_func}}
+{\footnotesize\ttfamily \#define impl\+\_\+free\+\_\+array\+\_\+deep\+\_\+func(\begin{DoxyParamCaption}\item[{}]{T }\end{DoxyParamCaption})~\mbox{\hyperlink{generic__array_8h_a33f3e3177795d396687f8814cbaef6d7}{\+\_\+impl\+\_\+free\+\_\+array\+\_\+deep\+\_\+func}}(\mbox{\hyperlink{generic__array_8h_acabc4aaf206fe2618d51ab1eaa11e3b6}{free\+\_\+array\+\_\+deep}}(T), \mbox{\hyperlink{generic__array_8h_a63831a0f4382b42bdc2f6f59babed432}{Array}}(T), T)}
+
+\mbox{\Hypertarget{generic__array_8h_a16d74e37e962d31b7441f22054e71ab1}\label{generic__array_8h_a16d74e37e962d31b7441f22054e71ab1}} 
+\index{generic\_array.h@{generic\_array.h}!impl\_free\_array\_func@{impl\_free\_array\_func}}
+\index{impl\_free\_array\_func@{impl\_free\_array\_func}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{impl\_free\_array\_func}{impl\_free\_array\_func}}
+{\footnotesize\ttfamily \#define impl\+\_\+free\+\_\+array\+\_\+func(\begin{DoxyParamCaption}\item[{}]{T }\end{DoxyParamCaption})~\mbox{\hyperlink{generic__array_8h_affebbc872f9c13a3a56ac5501a43a2c2}{\+\_\+impl\+\_\+free\+\_\+array\+\_\+func}}(\mbox{\hyperlink{generic__array_8h_a9122f02aa81f3f4da89719af92296c3e}{free\+\_\+array}}(T), \mbox{\hyperlink{generic__array_8h_a63831a0f4382b42bdc2f6f59babed432}{Array}}(T))}
+
+\mbox{\Hypertarget{generic__array_8h_a6c6307463b58a551efef537a27e4641b}\label{generic__array_8h_a6c6307463b58a551efef537a27e4641b}} 
+\index{generic\_array.h@{generic\_array.h}!impl\_new\_array\_func@{impl\_new\_array\_func}}
+\index{impl\_new\_array\_func@{impl\_new\_array\_func}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{impl\_new\_array\_func}{impl\_new\_array\_func}}
+{\footnotesize\ttfamily \#define impl\+\_\+new\+\_\+array\+\_\+func(\begin{DoxyParamCaption}\item[{}]{T }\end{DoxyParamCaption})~\mbox{\hyperlink{generic__array_8h_a8743c39eb3333d8050e3c8ea7e0670ae}{\+\_\+impl\+\_\+new\+\_\+array\+\_\+func}}(T, \mbox{\hyperlink{generic__array_8h_ac9966bb21ce19c8e697390fbfb8b6d6e}{new\+\_\+array}}(T), \mbox{\hyperlink{generic__array_8h_a63831a0f4382b42bdc2f6f59babed432}{Array}}(T))}
+
+\mbox{\Hypertarget{generic__array_8h_ac9966bb21ce19c8e697390fbfb8b6d6e}\label{generic__array_8h_ac9966bb21ce19c8e697390fbfb8b6d6e}} 
+\index{generic\_array.h@{generic\_array.h}!new\_array@{new\_array}}
+\index{new\_array@{new\_array}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{new\_array}{new\_array}}
+{\footnotesize\ttfamily \#define new\+\_\+array(\begin{DoxyParamCaption}\item[{}]{T }\end{DoxyParamCaption})~new\+\_\+array\+\_\+\#\#T}
+
+Create a new array given its size. All data pointers point to N\+U\+LL. We allow 0 size array.
+
+\mbox{\hyperlink{generic__array_8h_ac9966bb21ce19c8e697390fbfb8b6d6e}{new\+\_\+array(\+T)}} --- func name \mbox{\hyperlink{generic__array_8h_a6f61f54c05cca602bbfe92b153791a7c}{declare\+\_\+new\+\_\+array\+\_\+func(\+T)}} --- declare array at function \mbox{\hyperlink{generic__array_8h_a6c6307463b58a551efef537a27e4641b}{impl\+\_\+new\+\_\+array\+\_\+func(\+T)}} --- implement array at function 
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{generic__array_8h_a5576d7cabba712c1f5704c9a30f5161e}\label{generic__array_8h_a5576d7cabba712c1f5704c9a30f5161e}} 
+\index{generic\_array.h@{generic\_array.h}!array\_index\_t@{array\_index\_t}}
+\index{array\_index\_t@{array\_index\_t}!generic\_array.h@{generic\_array.h}}
+\doxysubsubsection{\texorpdfstring{array\_index\_t}{array\_index\_t}}
+{\footnotesize\ttfamily typedef uint32\+\_\+t \mbox{\hyperlink{generic__array_8h_a5576d7cabba712c1f5704c9a30f5161e}{array\+\_\+index\+\_\+t}}}
+
+This file offers utils to build and manipulate a generic array Type for array index and size 

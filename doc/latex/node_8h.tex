@@ -1,0 +1,142 @@
+\hypertarget{node_8h}{}\doxysection{c\+Torch/node.h File Reference}
+\label{node_8h}\index{cTorch/node.h@{cTorch/node.h}}
+{\ttfamily \#include \char`\"{}c\+Torch/consts.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/generic\+\_\+array.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operator.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/storage.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+Include dependency graph for node.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+union \mbox{\hyperlink{unionCTorchNodeContent}{C\+Torch\+Node\+Content}}
+\item 
+struct \mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint32\+\_\+t \mbox{\hyperlink{node_8h_a73f4d0460435afc1b22ef1d3f01f4f5a}{node\+\_\+id\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{node_8h_a61f3ff8b80b72b1caafdcdf7ed602905}{def\+\_\+array}} (\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}})
+\item 
+\mbox{\hyperlink{node_8h_a78b14c9e3f4d7369dc4741747754b267}{declare\+\_\+new\+\_\+array\+\_\+func}} (\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}})
+\item 
+\mbox{\hyperlink{node_8h_aee3462ac81fc8a87cc0bff3191967837}{declare\+\_\+array\+\_\+at\+\_\+func}} (\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}})
+\item 
+\mbox{\hyperlink{node_8h_a110b7ecf9d0ef78a8c5c93550a58bffd}{declare\+\_\+array\+\_\+set\+\_\+func}} (\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}})
+\item 
+\mbox{\hyperlink{node_8h_a99cb755116fd005f66530fd84ce6910b}{def\+\_\+list\+\_\+item}} (\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}})
+\item 
+\mbox{\hyperlink{node_8h_a93c8525674ba171d15e9b282ab85b0b4}{def\+\_\+list}} (\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}})
+\item 
+\mbox{\hyperlink{node_8h_aee972a41cb4cd88a1aacf4570cf7e964}{declare\+\_\+new\+\_\+list\+\_\+item\+\_\+func}} (\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}})
+\item 
+\mbox{\hyperlink{node_8h_a9b98e2c5a5a6b4487124b35c84e4ced0}{declare\+\_\+new\+\_\+list\+\_\+func}} (\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}})
+\item 
+\mbox{\hyperlink{node_8h_a73f0d9970f424efcd5661b001d65d1cc}{declare\+\_\+insert\+\_\+list\+\_\+func}} (\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}})
+\item 
+\mbox{\hyperlink{node_8h_a4bb8950edf94e7c2f6cfb0ed52b97eb6}{declare\+\_\+list\+\_\+contains\+\_\+data\+\_\+func}} (\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}})
+\item 
+\mbox{\hyperlink{node_8h_a0187c5e4a9139dc915f04b71c1f45199}{declare\+\_\+list\+\_\+contains\+\_\+item\+\_\+func}} (\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}})
+\item 
+\mbox{\hyperlink{node_8h_a772f9fbd416f471c9109f38ee02743f4}{declare\+\_\+list\+\_\+at\+\_\+func}} (\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}})
+\item 
+\mbox{\hyperlink{node_8h_a54c4a81d498436edca4ab8e771af6a35}{declare\+\_\+list\+\_\+pop\+\_\+func}} (\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{node_8h_a73f4d0460435afc1b22ef1d3f01f4f5a}\label{node_8h_a73f4d0460435afc1b22ef1d3f01f4f5a}} 
+\index{node.h@{node.h}!node\_id\_t@{node\_id\_t}}
+\index{node\_id\_t@{node\_id\_t}!node.h@{node.h}}
+\doxysubsubsection{\texorpdfstring{node\_id\_t}{node\_id\_t}}
+{\footnotesize\ttfamily typedef uint32\+\_\+t \mbox{\hyperlink{node_8h_a73f4d0460435afc1b22ef1d3f01f4f5a}{node\+\_\+id\+\_\+t}}}
+
+Node id type 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{node_8h_aee3462ac81fc8a87cc0bff3191967837}\label{node_8h_aee3462ac81fc8a87cc0bff3191967837}} 
+\index{node.h@{node.h}!declare\_array\_at\_func@{declare\_array\_at\_func}}
+\index{declare\_array\_at\_func@{declare\_array\_at\_func}!node.h@{node.h}}
+\doxysubsubsection{\texorpdfstring{declare\_array\_at\_func()}{declare\_array\_at\_func()}}
+{\footnotesize\ttfamily declare\+\_\+array\+\_\+at\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{node_8h_a110b7ecf9d0ef78a8c5c93550a58bffd}\label{node_8h_a110b7ecf9d0ef78a8c5c93550a58bffd}} 
+\index{node.h@{node.h}!declare\_array\_set\_func@{declare\_array\_set\_func}}
+\index{declare\_array\_set\_func@{declare\_array\_set\_func}!node.h@{node.h}}
+\doxysubsubsection{\texorpdfstring{declare\_array\_set\_func()}{declare\_array\_set\_func()}}
+{\footnotesize\ttfamily declare\+\_\+array\+\_\+set\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{node_8h_a73f0d9970f424efcd5661b001d65d1cc}\label{node_8h_a73f0d9970f424efcd5661b001d65d1cc}} 
+\index{node.h@{node.h}!declare\_insert\_list\_func@{declare\_insert\_list\_func}}
+\index{declare\_insert\_list\_func@{declare\_insert\_list\_func}!node.h@{node.h}}
+\doxysubsubsection{\texorpdfstring{declare\_insert\_list\_func()}{declare\_insert\_list\_func()}}
+{\footnotesize\ttfamily declare\+\_\+insert\+\_\+list\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{node_8h_a772f9fbd416f471c9109f38ee02743f4}\label{node_8h_a772f9fbd416f471c9109f38ee02743f4}} 
+\index{node.h@{node.h}!declare\_list\_at\_func@{declare\_list\_at\_func}}
+\index{declare\_list\_at\_func@{declare\_list\_at\_func}!node.h@{node.h}}
+\doxysubsubsection{\texorpdfstring{declare\_list\_at\_func()}{declare\_list\_at\_func()}}
+{\footnotesize\ttfamily declare\+\_\+list\+\_\+at\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{node_8h_a4bb8950edf94e7c2f6cfb0ed52b97eb6}\label{node_8h_a4bb8950edf94e7c2f6cfb0ed52b97eb6}} 
+\index{node.h@{node.h}!declare\_list\_contains\_data\_func@{declare\_list\_contains\_data\_func}}
+\index{declare\_list\_contains\_data\_func@{declare\_list\_contains\_data\_func}!node.h@{node.h}}
+\doxysubsubsection{\texorpdfstring{declare\_list\_contains\_data\_func()}{declare\_list\_contains\_data\_func()}}
+{\footnotesize\ttfamily declare\+\_\+list\+\_\+contains\+\_\+data\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{node_8h_a0187c5e4a9139dc915f04b71c1f45199}\label{node_8h_a0187c5e4a9139dc915f04b71c1f45199}} 
+\index{node.h@{node.h}!declare\_list\_contains\_item\_func@{declare\_list\_contains\_item\_func}}
+\index{declare\_list\_contains\_item\_func@{declare\_list\_contains\_item\_func}!node.h@{node.h}}
+\doxysubsubsection{\texorpdfstring{declare\_list\_contains\_item\_func()}{declare\_list\_contains\_item\_func()}}
+{\footnotesize\ttfamily declare\+\_\+list\+\_\+contains\+\_\+item\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{node_8h_a54c4a81d498436edca4ab8e771af6a35}\label{node_8h_a54c4a81d498436edca4ab8e771af6a35}} 
+\index{node.h@{node.h}!declare\_list\_pop\_func@{declare\_list\_pop\_func}}
+\index{declare\_list\_pop\_func@{declare\_list\_pop\_func}!node.h@{node.h}}
+\doxysubsubsection{\texorpdfstring{declare\_list\_pop\_func()}{declare\_list\_pop\_func()}}
+{\footnotesize\ttfamily declare\+\_\+list\+\_\+pop\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{node_8h_a78b14c9e3f4d7369dc4741747754b267}\label{node_8h_a78b14c9e3f4d7369dc4741747754b267}} 
+\index{node.h@{node.h}!declare\_new\_array\_func@{declare\_new\_array\_func}}
+\index{declare\_new\_array\_func@{declare\_new\_array\_func}!node.h@{node.h}}
+\doxysubsubsection{\texorpdfstring{declare\_new\_array\_func()}{declare\_new\_array\_func()}}
+{\footnotesize\ttfamily declare\+\_\+new\+\_\+array\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{node_8h_a9b98e2c5a5a6b4487124b35c84e4ced0}\label{node_8h_a9b98e2c5a5a6b4487124b35c84e4ced0}} 
+\index{node.h@{node.h}!declare\_new\_list\_func@{declare\_new\_list\_func}}
+\index{declare\_new\_list\_func@{declare\_new\_list\_func}!node.h@{node.h}}
+\doxysubsubsection{\texorpdfstring{declare\_new\_list\_func()}{declare\_new\_list\_func()}}
+{\footnotesize\ttfamily declare\+\_\+new\+\_\+list\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{node_8h_aee972a41cb4cd88a1aacf4570cf7e964}\label{node_8h_aee972a41cb4cd88a1aacf4570cf7e964}} 
+\index{node.h@{node.h}!declare\_new\_list\_item\_func@{declare\_new\_list\_item\_func}}
+\index{declare\_new\_list\_item\_func@{declare\_new\_list\_item\_func}!node.h@{node.h}}
+\doxysubsubsection{\texorpdfstring{declare\_new\_list\_item\_func()}{declare\_new\_list\_item\_func()}}
+{\footnotesize\ttfamily declare\+\_\+new\+\_\+list\+\_\+item\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{node_8h_a61f3ff8b80b72b1caafdcdf7ed602905}\label{node_8h_a61f3ff8b80b72b1caafdcdf7ed602905}} 
+\index{node.h@{node.h}!def\_array@{def\_array}}
+\index{def\_array@{def\_array}!node.h@{node.h}}
+\doxysubsubsection{\texorpdfstring{def\_array()}{def\_array()}}
+{\footnotesize\ttfamily def\+\_\+array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{node_8h_a93c8525674ba171d15e9b282ab85b0b4}\label{node_8h_a93c8525674ba171d15e9b282ab85b0b4}} 
+\index{node.h@{node.h}!def\_list@{def\_list}}
+\index{def\_list@{def\_list}!node.h@{node.h}}
+\doxysubsubsection{\texorpdfstring{def\_list()}{def\_list()}}
+{\footnotesize\ttfamily def\+\_\+list (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{node_8h_a99cb755116fd005f66530fd84ce6910b}\label{node_8h_a99cb755116fd005f66530fd84ce6910b}} 
+\index{node.h@{node.h}!def\_list\_item@{def\_list\_item}}
+\index{def\_list\_item@{def\_list\_item}!node.h@{node.h}}
+\doxysubsubsection{\texorpdfstring{def\_list\_item()}{def\_list\_item()}}
+{\footnotesize\ttfamily def\+\_\+list\+\_\+item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}}}]{ }\end{DoxyParamCaption})}
+

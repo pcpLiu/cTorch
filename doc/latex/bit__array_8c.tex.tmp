@@ -1,0 +1,90 @@
+\hypertarget{bit__array_8c}{}\doxysection{c\+Torch/bit\+\_\+array.c File Reference}
+\label{bit__array_8c}\index{cTorch/bit\_array.c@{cTorch/bit\_array.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/bit\+\_\+array.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/logger\+\_\+util.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/mem\+\_\+util.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$tgmath.\+h$>$}\newline
+Include dependency graph for bit\+\_\+array.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{bit__array_8c_ae65c428077bf4dbac8fe731a851b43f4}{F\+O\+R\+C\+E\+\_\+\+B\+I\+T\+S\+\_\+\+S\+I\+ZE}}(size,  limit)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structbit__array__t}{bit\+\_\+array\+\_\+t}} $\ast$ \mbox{\hyperlink{bit__array_8c_ab37d60359d6a615ab5b8a069deca3751}{cth\+\_\+new\+\_\+bit\+\_\+array}} (\mbox{\hyperlink{bit__array_8h_ae42e26e9c0f7b7250af3a34768d6b410}{bit\+\_\+array\+\_\+index\+\_\+t}} size)
+\item 
+void \mbox{\hyperlink{bit__array_8c_a4e35a6dfb4ce21e399f6e9ba389c49f0}{cth\+\_\+set\+\_\+bit}} (\mbox{\hyperlink{structbit__array__t}{bit\+\_\+array\+\_\+t}} $\ast$array, \mbox{\hyperlink{bit__array_8h_ae42e26e9c0f7b7250af3a34768d6b410}{bit\+\_\+array\+\_\+index\+\_\+t}} i)
+\item 
+void \mbox{\hyperlink{bit__array_8c_ab8706e13fbd9f41faa51b6a29e2d25a6}{cth\+\_\+clear\+\_\+bit}} (\mbox{\hyperlink{structbit__array__t}{bit\+\_\+array\+\_\+t}} $\ast$array, \mbox{\hyperlink{bit__array_8h_ae42e26e9c0f7b7250af3a34768d6b410}{bit\+\_\+array\+\_\+index\+\_\+t}} i)
+\item 
+bool \mbox{\hyperlink{bit__array_8c_abc66e8d83c02f7ac77f37a6d93afbae9}{cth\+\_\+is\+\_\+bit\+\_\+set}} (\mbox{\hyperlink{structbit__array__t}{bit\+\_\+array\+\_\+t}} $\ast$array, \mbox{\hyperlink{bit__array_8h_ae42e26e9c0f7b7250af3a34768d6b410}{bit\+\_\+array\+\_\+index\+\_\+t}} i)
+\item 
+bool \mbox{\hyperlink{bit__array_8c_a8ee97a090c1879a4ad4ba4d011fc8d5d}{cth\+\_\+are\+\_\+all\+\_\+bits\+\_\+clear}} (\mbox{\hyperlink{structbit__array__t}{bit\+\_\+array\+\_\+t}} $\ast$array)
+\item 
+bool \mbox{\hyperlink{bit__array_8c_a0c214cad83395dc86a4dc49694e9e7ba}{cth\+\_\+are\+\_\+all\+\_\+bits\+\_\+set}} (\mbox{\hyperlink{structbit__array__t}{bit\+\_\+array\+\_\+t}} $\ast$array)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{bit__array_8c_ae65c428077bf4dbac8fe731a851b43f4}\label{bit__array_8c_ae65c428077bf4dbac8fe731a851b43f4}} 
+\index{bit\_array.c@{bit\_array.c}!FORCE\_BITS\_SIZE@{FORCE\_BITS\_SIZE}}
+\index{FORCE\_BITS\_SIZE@{FORCE\_BITS\_SIZE}!bit\_array.c@{bit\_array.c}}
+\doxysubsubsection{\texorpdfstring{FORCE\_BITS\_SIZE}{FORCE\_BITS\_SIZE}}
+{\footnotesize\ttfamily \#define F\+O\+R\+C\+E\+\_\+\+B\+I\+T\+S\+\_\+\+S\+I\+ZE(\begin{DoxyParamCaption}\item[{}]{size,  }\item[{}]{limit }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \{                                                                            \(\backslash\)}
+\DoxyCodeLine{    if (size > limit) \{                                                        \(\backslash\)}
+\DoxyCodeLine{      FAIL\_EXIT(\mbox{\hyperlink{logger__util_8h_ad9ab19b2b3e07e3ac860411d60ae4e52}{CTH\_LOG\_ERR}}, \textcolor{stringliteral}{"Bit size \%d beyond 2\string^32 bits."}, size);           \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{  \}                                                                            \(\backslash\)}
+\DoxyCodeLine{  while (0)}
+
+\end{DoxyCode}
+If size $>$ 2$^\wedge$32, it beyond bit array\textquotesingle{}s capability. \mbox{\hyperlink{logger__util_8h_a71f6cbed2a6b2ec7a80242d2607e6571}{F\+A\+I\+L\+\_\+\+E\+X\+I\+T()}} 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{bit__array_8c_a8ee97a090c1879a4ad4ba4d011fc8d5d}\label{bit__array_8c_a8ee97a090c1879a4ad4ba4d011fc8d5d}} 
+\index{bit\_array.c@{bit\_array.c}!cth\_are\_all\_bits\_clear@{cth\_are\_all\_bits\_clear}}
+\index{cth\_are\_all\_bits\_clear@{cth\_are\_all\_bits\_clear}!bit\_array.c@{bit\_array.c}}
+\doxysubsubsection{\texorpdfstring{cth\_are\_all\_bits\_clear()}{cth\_are\_all\_bits\_clear()}}
+{\footnotesize\ttfamily bool cth\+\_\+are\+\_\+all\+\_\+bits\+\_\+clear (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structbit__array__t}{bit\+\_\+array\+\_\+t}} $\ast$}]{array }\end{DoxyParamCaption})}
+
+Check if all logical bits in this array are cleared. All integers\textquotesingle{} values are 0\mbox{\Hypertarget{bit__array_8c_a0c214cad83395dc86a4dc49694e9e7ba}\label{bit__array_8c_a0c214cad83395dc86a4dc49694e9e7ba}} 
+\index{bit\_array.c@{bit\_array.c}!cth\_are\_all\_bits\_set@{cth\_are\_all\_bits\_set}}
+\index{cth\_are\_all\_bits\_set@{cth\_are\_all\_bits\_set}!bit\_array.c@{bit\_array.c}}
+\doxysubsubsection{\texorpdfstring{cth\_are\_all\_bits\_set()}{cth\_are\_all\_bits\_set()}}
+{\footnotesize\ttfamily bool cth\+\_\+are\+\_\+all\+\_\+bits\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structbit__array__t}{bit\+\_\+array\+\_\+t}} $\ast$}]{array }\end{DoxyParamCaption})}
+
+Check if all logical bits in this array are set. First n-\/1 integers\textquotesingle{} values are 2$^\wedge$32.
+
+Last integer, bits in range \mbox{[}size \% 32\+: 0\mbox{]} should 1. Like\+: 0...000011111...11\mbox{\Hypertarget{bit__array_8c_ab8706e13fbd9f41faa51b6a29e2d25a6}\label{bit__array_8c_ab8706e13fbd9f41faa51b6a29e2d25a6}} 
+\index{bit\_array.c@{bit\_array.c}!cth\_clear\_bit@{cth\_clear\_bit}}
+\index{cth\_clear\_bit@{cth\_clear\_bit}!bit\_array.c@{bit\_array.c}}
+\doxysubsubsection{\texorpdfstring{cth\_clear\_bit()}{cth\_clear\_bit()}}
+{\footnotesize\ttfamily void cth\+\_\+clear\+\_\+bit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structbit__array__t}{bit\+\_\+array\+\_\+t}} $\ast$}]{array,  }\item[{\mbox{\hyperlink{bit__array_8h_ae42e26e9c0f7b7250af3a34768d6b410}{bit\+\_\+array\+\_\+index\+\_\+t}}}]{i }\end{DoxyParamCaption})}
+
+Set bit at index i to 0 \mbox{\Hypertarget{bit__array_8c_abc66e8d83c02f7ac77f37a6d93afbae9}\label{bit__array_8c_abc66e8d83c02f7ac77f37a6d93afbae9}} 
+\index{bit\_array.c@{bit\_array.c}!cth\_is\_bit\_set@{cth\_is\_bit\_set}}
+\index{cth\_is\_bit\_set@{cth\_is\_bit\_set}!bit\_array.c@{bit\_array.c}}
+\doxysubsubsection{\texorpdfstring{cth\_is\_bit\_set()}{cth\_is\_bit\_set()}}
+{\footnotesize\ttfamily bool cth\+\_\+is\+\_\+bit\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structbit__array__t}{bit\+\_\+array\+\_\+t}} $\ast$}]{array,  }\item[{\mbox{\hyperlink{bit__array_8h_ae42e26e9c0f7b7250af3a34768d6b410}{bit\+\_\+array\+\_\+index\+\_\+t}}}]{i }\end{DoxyParamCaption})}
+
+Check if bit at index i is 1 \mbox{\Hypertarget{bit__array_8c_ab37d60359d6a615ab5b8a069deca3751}\label{bit__array_8c_ab37d60359d6a615ab5b8a069deca3751}} 
+\index{bit\_array.c@{bit\_array.c}!cth\_new\_bit\_array@{cth\_new\_bit\_array}}
+\index{cth\_new\_bit\_array@{cth\_new\_bit\_array}!bit\_array.c@{bit\_array.c}}
+\doxysubsubsection{\texorpdfstring{cth\_new\_bit\_array()}{cth\_new\_bit\_array()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structbit__array__t}{bit\+\_\+array\+\_\+t}}$\ast$ cth\+\_\+new\+\_\+bit\+\_\+array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bit__array_8h_ae42e26e9c0f7b7250af3a34768d6b410}{bit\+\_\+array\+\_\+index\+\_\+t}}}]{size }\end{DoxyParamCaption})}
+
+Create a new bit array with targed size. When created, all bits are cleared. \mbox{\Hypertarget{bit__array_8c_a4e35a6dfb4ce21e399f6e9ba389c49f0}\label{bit__array_8c_a4e35a6dfb4ce21e399f6e9ba389c49f0}} 
+\index{bit\_array.c@{bit\_array.c}!cth\_set\_bit@{cth\_set\_bit}}
+\index{cth\_set\_bit@{cth\_set\_bit}!bit\_array.c@{bit\_array.c}}
+\doxysubsubsection{\texorpdfstring{cth\_set\_bit()}{cth\_set\_bit()}}
+{\footnotesize\ttfamily void cth\+\_\+set\+\_\+bit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structbit__array__t}{bit\+\_\+array\+\_\+t}} $\ast$}]{array,  }\item[{\mbox{\hyperlink{bit__array_8h_ae42e26e9c0f7b7250af3a34768d6b410}{bit\+\_\+array\+\_\+index\+\_\+t}}}]{i }\end{DoxyParamCaption})}
+
+Set bit at index i to 1 

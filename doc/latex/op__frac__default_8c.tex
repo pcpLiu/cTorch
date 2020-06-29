@@ -1,0 +1,55 @@
+\hypertarget{op__frac__default_8c}{}\doxysection{c\+Torch/operators/default/op\+\_\+frac\+\_\+default.c File Reference}
+\label{op__frac__default_8c}\index{cTorch/operators/default/op\_frac\_default.c@{cTorch/operators/default/op\_frac\_default.c}}
+{\ttfamily \#include $<$tgmath.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/op\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/util.\+h\char`\"{}}\newline
+Include dependency graph for op\+\_\+frac\+\_\+default.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{op__frac__default_8c_a284bf1cd2e38a5c0517f06d7c56e7601}{\+\_\+cth\+\_\+frac\+\_\+kernel}}(input\+\_\+ptr,  output\+\_\+ptr,  N,  data\+\_\+type)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__frac__default_8c_a8d56fe96a802686deccd2fb27008ac02}{op\+\_\+frac\+\_\+cpu}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{op__frac__default_8c_a284bf1cd2e38a5c0517f06d7c56e7601}\label{op__frac__default_8c_a284bf1cd2e38a5c0517f06d7c56e7601}} 
+\index{op\_frac\_default.c@{op\_frac\_default.c}!\_cth\_frac\_kernel@{\_cth\_frac\_kernel}}
+\index{\_cth\_frac\_kernel@{\_cth\_frac\_kernel}!op\_frac\_default.c@{op\_frac\_default.c}}
+\doxysubsubsection{\texorpdfstring{\_cth\_frac\_kernel}{\_cth\_frac\_kernel}}
+{\footnotesize\ttfamily \#define \+\_\+cth\+\_\+frac\+\_\+kernel(\begin{DoxyParamCaption}\item[{}]{input\+\_\+ptr,  }\item[{}]{output\+\_\+ptr,  }\item[{}]{N,  }\item[{}]{data\+\_\+type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                                                         \(\backslash\)}
+\DoxyCodeLine{    data\_type *input\_t = (data\_type *)input\_ptr;                               \(\backslash\)}
+\DoxyCodeLine{    data\_type *output\_t = (data\_type *)output\_ptr;                             \(\backslash\)}
+\DoxyCodeLine{    double holder = 0;                                                         \(\backslash\)}
+\DoxyCodeLine{    for (\textcolor{keywordtype}{int} i = 0; i < N; i++) \{                                              \(\backslash\)}
+\DoxyCodeLine{      output\_t[i] = (data\_type)modf(input\_t[i], \&holder);                      \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__frac__default_8c_a8d56fe96a802686deccd2fb27008ac02}\label{op__frac__default_8c_a8d56fe96a802686deccd2fb27008ac02}} 
+\index{op\_frac\_default.c@{op\_frac\_default.c}!op\_frac\_cpu@{op\_frac\_cpu}}
+\index{op\_frac\_cpu@{op\_frac\_cpu}!op\_frac\_default.c@{op\_frac\_default.c}}
+\doxysubsubsection{\texorpdfstring{op\_frac\_cpu()}{op\_frac\_cpu()}}
+{\footnotesize\ttfamily void op\+\_\+frac\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+Computes the fractional portion of each element in input
+
+Inputs \& outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 1
+\item \# of output\+: 1
+\item Input and output should be same dimention and type. 
+\end{DoxyItemize}

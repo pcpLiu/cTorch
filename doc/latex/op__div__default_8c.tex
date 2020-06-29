@@ -1,0 +1,38 @@
+\hypertarget{op__div__default_8c}{}\doxysection{c\+Torch/operators/default/op\+\_\+div\+\_\+default.c File Reference}
+\label{op__div__default_8c}\index{cTorch/operators/default/op\_div\_default.c@{cTorch/operators/default/op\_div\_default.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operator.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/op\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/util.\+h\char`\"{}}\newline
+Include dependency graph for op\+\_\+div\+\_\+default.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{op__div__default_8c_a99f818c581d7bd904769e48750333057}{\+\_\+cth\+\_\+div\+\_\+kernel}}(a,  b)~(a / b)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__div__default_8c_a851ca7716d36baa74f3eb86d033062f2}{op\+\_\+div\+\_\+cpu}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{op__div__default_8c_a99f818c581d7bd904769e48750333057}\label{op__div__default_8c_a99f818c581d7bd904769e48750333057}} 
+\index{op\_div\_default.c@{op\_div\_default.c}!\_cth\_div\_kernel@{\_cth\_div\_kernel}}
+\index{\_cth\_div\_kernel@{\_cth\_div\_kernel}!op\_div\_default.c@{op\_div\_default.c}}
+\doxysubsubsection{\texorpdfstring{\_cth\_div\_kernel}{\_cth\_div\_kernel}}
+{\footnotesize\ttfamily \#define \+\_\+cth\+\_\+div\+\_\+kernel(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})~(a / b)}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__div__default_8c_a851ca7716d36baa74f3eb86d033062f2}\label{op__div__default_8c_a851ca7716d36baa74f3eb86d033062f2}} 
+\index{op\_div\_default.c@{op\_div\_default.c}!op\_div\_cpu@{op\_div\_cpu}}
+\index{op\_div\_cpu@{op\_div\_cpu}!op\_div\_default.c@{op\_div\_default.c}}
+\doxysubsubsection{\texorpdfstring{op\_div\_cpu()}{op\_div\_cpu()}}
+{\footnotesize\ttfamily void op\+\_\+div\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+Add two input tensors and store result in output tensor. No broadcast support.
+
+Assume input and output tensor have same datatypes. If not, this op will fail. 

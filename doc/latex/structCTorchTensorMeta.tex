@@ -1,0 +1,92 @@
+\hypertarget{structCTorchTensorMeta}{}\doxysection{C\+Torch\+Tensor\+Meta Struct Reference}
+\label{structCTorchTensorMeta}\index{CTorchTensorMeta@{CTorchTensorMeta}}
+
+
+{\ttfamily \#include $<$storage.\+h$>$}
+
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structCTorchTensorMeta_a67ccc387406d5acbc661ae86b62ab7ef}{value\+\_\+size\+\_\+of}}
+\item 
+\mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355}{C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{structCTorchTensorMeta_ac26e8260196651d8595316212d576d7b}{data\+\_\+type}}
+\item 
+\mbox{\hyperlink{consts_8h_ac54e145e3f0a5221e8a40556ea246c4a}{tensor\+\_\+dim\+\_\+t}} \mbox{\hyperlink{structCTorchTensorMeta_ad2cf8e745ed7ec5521d0af93fa9f8dbf}{n\+\_\+dim}}
+\item 
+\mbox{\hyperlink{consts_8h_ac54e145e3f0a5221e8a40556ea246c4a}{tensor\+\_\+dim\+\_\+t}} $\ast$ \mbox{\hyperlink{structCTorchTensorMeta_af171c378147156512fa47b7db2526bb2}{dims}}
+\item 
+\mbox{\hyperlink{consts_8h_a836488a94280dd54797615abb7e699ca}{tensor\+\_\+size\+\_\+t}} \mbox{\hyperlink{structCTorchTensorMeta_abf7c67f844a06b6bd5fd1d28d9eec1bf}{n\+\_\+elements}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structCTorchTensorMeta_ac168c708b747537c8491a87e42e8f3e3}{align\+\_\+size}}
+\item 
+\mbox{\hyperlink{consts_8h_a1583cd727b34ebbc46552a8a02f125b4}{C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{structCTorchTensorMeta_a3f2ab30fa266e915c3af0db2c5adc5e7}{type}}
+\item 
+bool \mbox{\hyperlink{structCTorchTensorMeta_a33aaa814898f475226731922d5364cad}{is\+\_\+sharded}}
+\item 
+char $\ast$ \mbox{\hyperlink{structCTorchTensorMeta_ac914ef3427f1081dba55918371828139}{tensor\+\_\+name}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structCTorchTensorMeta}{C\+Torch\+Tensor\+Meta}} This struct contains Meta information of a tensor. 
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{structCTorchTensorMeta_ac168c708b747537c8491a87e42e8f3e3}\label{structCTorchTensorMeta_ac168c708b747537c8491a87e42e8f3e3}} 
+\index{CTorchTensorMeta@{CTorchTensorMeta}!align\_size@{align\_size}}
+\index{align\_size@{align\_size}!CTorchTensorMeta@{CTorchTensorMeta}}
+\doxysubsubsection{\texorpdfstring{align\_size}{align\_size}}
+{\footnotesize\ttfamily uint16\+\_\+t C\+Torch\+Tensor\+Meta\+::align\+\_\+size}
+
+\mbox{\Hypertarget{structCTorchTensorMeta_ac26e8260196651d8595316212d576d7b}\label{structCTorchTensorMeta_ac26e8260196651d8595316212d576d7b}} 
+\index{CTorchTensorMeta@{CTorchTensorMeta}!data\_type@{data\_type}}
+\index{data\_type@{data\_type}!CTorchTensorMeta@{CTorchTensorMeta}}
+\doxysubsubsection{\texorpdfstring{data\_type}{data\_type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355}{C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+T\+Y\+PE}} C\+Torch\+Tensor\+Meta\+::data\+\_\+type}
+
+\mbox{\Hypertarget{structCTorchTensorMeta_af171c378147156512fa47b7db2526bb2}\label{structCTorchTensorMeta_af171c378147156512fa47b7db2526bb2}} 
+\index{CTorchTensorMeta@{CTorchTensorMeta}!dims@{dims}}
+\index{dims@{dims}!CTorchTensorMeta@{CTorchTensorMeta}}
+\doxysubsubsection{\texorpdfstring{dims}{dims}}
+{\footnotesize\ttfamily \mbox{\hyperlink{consts_8h_ac54e145e3f0a5221e8a40556ea246c4a}{tensor\+\_\+dim\+\_\+t}}$\ast$ C\+Torch\+Tensor\+Meta\+::dims}
+
+\mbox{\Hypertarget{structCTorchTensorMeta_a33aaa814898f475226731922d5364cad}\label{structCTorchTensorMeta_a33aaa814898f475226731922d5364cad}} 
+\index{CTorchTensorMeta@{CTorchTensorMeta}!is\_sharded@{is\_sharded}}
+\index{is\_sharded@{is\_sharded}!CTorchTensorMeta@{CTorchTensorMeta}}
+\doxysubsubsection{\texorpdfstring{is\_sharded}{is\_sharded}}
+{\footnotesize\ttfamily bool C\+Torch\+Tensor\+Meta\+::is\+\_\+sharded}
+
+\mbox{\Hypertarget{structCTorchTensorMeta_ad2cf8e745ed7ec5521d0af93fa9f8dbf}\label{structCTorchTensorMeta_ad2cf8e745ed7ec5521d0af93fa9f8dbf}} 
+\index{CTorchTensorMeta@{CTorchTensorMeta}!n\_dim@{n\_dim}}
+\index{n\_dim@{n\_dim}!CTorchTensorMeta@{CTorchTensorMeta}}
+\doxysubsubsection{\texorpdfstring{n\_dim}{n\_dim}}
+{\footnotesize\ttfamily \mbox{\hyperlink{consts_8h_ac54e145e3f0a5221e8a40556ea246c4a}{tensor\+\_\+dim\+\_\+t}} C\+Torch\+Tensor\+Meta\+::n\+\_\+dim}
+
+\mbox{\Hypertarget{structCTorchTensorMeta_abf7c67f844a06b6bd5fd1d28d9eec1bf}\label{structCTorchTensorMeta_abf7c67f844a06b6bd5fd1d28d9eec1bf}} 
+\index{CTorchTensorMeta@{CTorchTensorMeta}!n\_elements@{n\_elements}}
+\index{n\_elements@{n\_elements}!CTorchTensorMeta@{CTorchTensorMeta}}
+\doxysubsubsection{\texorpdfstring{n\_elements}{n\_elements}}
+{\footnotesize\ttfamily \mbox{\hyperlink{consts_8h_a836488a94280dd54797615abb7e699ca}{tensor\+\_\+size\+\_\+t}} C\+Torch\+Tensor\+Meta\+::n\+\_\+elements}
+
+\mbox{\Hypertarget{structCTorchTensorMeta_ac914ef3427f1081dba55918371828139}\label{structCTorchTensorMeta_ac914ef3427f1081dba55918371828139}} 
+\index{CTorchTensorMeta@{CTorchTensorMeta}!tensor\_name@{tensor\_name}}
+\index{tensor\_name@{tensor\_name}!CTorchTensorMeta@{CTorchTensorMeta}}
+\doxysubsubsection{\texorpdfstring{tensor\_name}{tensor\_name}}
+{\footnotesize\ttfamily char$\ast$ C\+Torch\+Tensor\+Meta\+::tensor\+\_\+name}
+
+\mbox{\Hypertarget{structCTorchTensorMeta_a3f2ab30fa266e915c3af0db2c5adc5e7}\label{structCTorchTensorMeta_a3f2ab30fa266e915c3af0db2c5adc5e7}} 
+\index{CTorchTensorMeta@{CTorchTensorMeta}!type@{type}}
+\index{type@{type}!CTorchTensorMeta@{CTorchTensorMeta}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{consts_8h_a1583cd727b34ebbc46552a8a02f125b4}{C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+T\+Y\+PE}} C\+Torch\+Tensor\+Meta\+::type}
+
+\mbox{\Hypertarget{structCTorchTensorMeta_a67ccc387406d5acbc661ae86b62ab7ef}\label{structCTorchTensorMeta_a67ccc387406d5acbc661ae86b62ab7ef}} 
+\index{CTorchTensorMeta@{CTorchTensorMeta}!value\_size\_of@{value\_size\_of}}
+\index{value\_size\_of@{value\_size\_of}!CTorchTensorMeta@{CTorchTensorMeta}}
+\doxysubsubsection{\texorpdfstring{value\_size\_of}{value\_size\_of}}
+{\footnotesize\ttfamily uint8\+\_\+t C\+Torch\+Tensor\+Meta\+::value\+\_\+size\+\_\+of}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+c\+Torch/\mbox{\hyperlink{storage_8h}{storage.\+h}}\end{DoxyCompactItemize}

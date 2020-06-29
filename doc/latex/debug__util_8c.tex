@@ -1,0 +1,92 @@
+\hypertarget{debug__util_8c}{}\doxysection{c\+Torch/debug\+\_\+util.c File Reference}
+\label{debug__util_8c}\index{cTorch/debug\_util.c@{cTorch/debug\_util.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/debug\+\_\+util.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/list\+\_\+d.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+Include dependency graph for debug\+\_\+util.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structMemoryRecord}{Memory\+Record}} $\ast$ \mbox{\hyperlink{debug__util_8c_aafd8442fa4ab701b02f97a62da25d9c3}{cth\+\_\+add\+\_\+mem\+\_\+record}} (void $\ast$ptr)
+\item 
+\mbox{\hyperlink{structMemoryRecord}{Memory\+Record}} $\ast$ \mbox{\hyperlink{debug__util_8c_aadde4fb8e35581e08c4ee78c77ff9bb8}{cth\+\_\+get\+\_\+mem\+\_\+record}} (void $\ast$ptr)
+\item 
+int \mbox{\hyperlink{debug__util_8c_a3f92080d5f42b19f07d3297213b8a149}{cth\+\_\+get\+\_\+num\+\_\+unfree\+\_\+records}} ()
+\item 
+void \mbox{\hyperlink{debug__util_8c_a93be220ef3947b1cfa47d0d0fe1612b1}{cth\+\_\+print\+\_\+unfree\+\_\+records}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structMemoryRecord}{Memory\+Record}} $\ast$ \mbox{\hyperlink{debug__util_8c_a8b4e4c4c119a8b5a6300b21cd250ba1b}{C\+T\+H\+\_\+\+M\+E\+M\+\_\+\+R\+E\+C\+O\+R\+DS}}
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{debug__util_8c_a77d156f6ab7e784ec95b9e3ea88d889d}{C\+T\+H\+\_\+\+N\+\_\+\+R\+E\+C\+O\+R\+DS}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{debug__util_8c_aafd8442fa4ab701b02f97a62da25d9c3}\label{debug__util_8c_aafd8442fa4ab701b02f97a62da25d9c3}} 
+\index{debug\_util.c@{debug\_util.c}!cth\_add\_mem\_record@{cth\_add\_mem\_record}}
+\index{cth\_add\_mem\_record@{cth\_add\_mem\_record}!debug\_util.c@{debug\_util.c}}
+\doxysubsubsection{\texorpdfstring{cth\_add\_mem\_record()}{cth\_add\_mem\_record()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structMemoryRecord}{Memory\+Record}}$\ast$ cth\+\_\+add\+\_\+mem\+\_\+record (\begin{DoxyParamCaption}\item[{void $\ast$}]{ptr }\end{DoxyParamCaption})}
+
+Add an allocated addr to track.
+
+Params\+:
+\begin{DoxyItemize}
+\item ptr\+: void$\ast$, allocated address
+\end{DoxyItemize}
+
+Returns\+: The newly added memory record
+
+Note\+: If the address already in records, it will return existing memory record \mbox{\Hypertarget{debug__util_8c_aadde4fb8e35581e08c4ee78c77ff9bb8}\label{debug__util_8c_aadde4fb8e35581e08c4ee78c77ff9bb8}} 
+\index{debug\_util.c@{debug\_util.c}!cth\_get\_mem\_record@{cth\_get\_mem\_record}}
+\index{cth\_get\_mem\_record@{cth\_get\_mem\_record}!debug\_util.c@{debug\_util.c}}
+\doxysubsubsection{\texorpdfstring{cth\_get\_mem\_record()}{cth\_get\_mem\_record()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structMemoryRecord}{Memory\+Record}}$\ast$ cth\+\_\+get\+\_\+mem\+\_\+record (\begin{DoxyParamCaption}\item[{void $\ast$}]{ptr }\end{DoxyParamCaption})}
+
+Fetch memory record with given mem address.
+
+Params\+:
+\begin{DoxyItemize}
+\item ptr\+: void$\ast$, allocated address. If ptr is N\+U\+LL, function F\+A\+I\+L\+\_\+\+N\+U\+L\+L\+\_\+\+P\+TR.
+\end{DoxyItemize}
+
+Returns\+: record\+: Memory\+Record$\ast$, memory record if found.
+
+Note\+: N\+U\+LL will be returned if memory record is not found \mbox{\Hypertarget{debug__util_8c_a3f92080d5f42b19f07d3297213b8a149}\label{debug__util_8c_a3f92080d5f42b19f07d3297213b8a149}} 
+\index{debug\_util.c@{debug\_util.c}!cth\_get\_num\_unfree\_records@{cth\_get\_num\_unfree\_records}}
+\index{cth\_get\_num\_unfree\_records@{cth\_get\_num\_unfree\_records}!debug\_util.c@{debug\_util.c}}
+\doxysubsubsection{\texorpdfstring{cth\_get\_num\_unfree\_records()}{cth\_get\_num\_unfree\_records()}}
+{\footnotesize\ttfamily int cth\+\_\+get\+\_\+num\+\_\+unfree\+\_\+records (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Get number of memory records that not freed \mbox{\Hypertarget{debug__util_8c_a93be220ef3947b1cfa47d0d0fe1612b1}\label{debug__util_8c_a93be220ef3947b1cfa47d0d0fe1612b1}} 
+\index{debug\_util.c@{debug\_util.c}!cth\_print\_unfree\_records@{cth\_print\_unfree\_records}}
+\index{cth\_print\_unfree\_records@{cth\_print\_unfree\_records}!debug\_util.c@{debug\_util.c}}
+\doxysubsubsection{\texorpdfstring{cth\_print\_unfree\_records()}{cth\_print\_unfree\_records()}}
+{\footnotesize\ttfamily void cth\+\_\+print\+\_\+unfree\+\_\+records (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Print unfreed records 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{debug__util_8c_a8b4e4c4c119a8b5a6300b21cd250ba1b}\label{debug__util_8c_a8b4e4c4c119a8b5a6300b21cd250ba1b}} 
+\index{debug\_util.c@{debug\_util.c}!CTH\_MEM\_RECORDS@{CTH\_MEM\_RECORDS}}
+\index{CTH\_MEM\_RECORDS@{CTH\_MEM\_RECORDS}!debug\_util.c@{debug\_util.c}}
+\doxysubsubsection{\texorpdfstring{CTH\_MEM\_RECORDS}{CTH\_MEM\_RECORDS}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structMemoryRecord}{Memory\+Record}}$\ast$ C\+T\+H\+\_\+\+M\+E\+M\+\_\+\+R\+E\+C\+O\+R\+DS}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \&(\mbox{\hyperlink{debug__util_8h_ab8ab18bf4d41cc6036cc41400a11e9c1}{MemoryRecord}})\{}
+\DoxyCodeLine{    .addr = NULL, .status = \mbox{\hyperlink{debug__util_8h_a6f9072f38e92beee00feb307d0a40ce5a89800df2eba54683dd07869441b58796}{CTH\_MEM\_RECORD\_STATUS\_ALLOCATED}}, .next = NULL\}}
+
+\end{DoxyCode}
+Global variable. List of allocated memory records. It always points to the 1st dummy node. \mbox{\Hypertarget{debug__util_8c_a77d156f6ab7e784ec95b9e3ea88d889d}\label{debug__util_8c_a77d156f6ab7e784ec95b9e3ea88d889d}} 
+\index{debug\_util.c@{debug\_util.c}!CTH\_N\_RECORDS@{CTH\_N\_RECORDS}}
+\index{CTH\_N\_RECORDS@{CTH\_N\_RECORDS}!debug\_util.c@{debug\_util.c}}
+\doxysubsubsection{\texorpdfstring{CTH\_N\_RECORDS}{CTH\_N\_RECORDS}}
+{\footnotesize\ttfamily uint32\+\_\+t C\+T\+H\+\_\+\+N\+\_\+\+R\+E\+C\+O\+R\+DS = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+Number of records we are tracking (does not include 1st dummy node) 

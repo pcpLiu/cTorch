@@ -1,0 +1,50 @@
+\hypertarget{op__fmod__default_8c}{}\doxysection{c\+Torch/operators/default/op\+\_\+fmod\+\_\+default.c File Reference}
+\label{op__fmod__default_8c}\index{cTorch/operators/default/op\_fmod\_default.c@{cTorch/operators/default/op\_fmod\_default.c}}
+{\ttfamily \#include $<$tgmath.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operator.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/op\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/util.\+h\char`\"{}}\newline
+Include dependency graph for op\+\_\+fmod\+\_\+default.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{op__fmod__default_8c_a1069066996ba551d3785f0eeeac1e52c}{\+\_\+cth\+\_\+add\+\_\+kernel}}(a,  b)~fmod(b, a)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__fmod__default_8c_a72157acf6b90b0b1b499a77de6b8703a}{op\+\_\+fmod\+\_\+cpu}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{op__fmod__default_8c_a1069066996ba551d3785f0eeeac1e52c}\label{op__fmod__default_8c_a1069066996ba551d3785f0eeeac1e52c}} 
+\index{op\_fmod\_default.c@{op\_fmod\_default.c}!\_cth\_add\_kernel@{\_cth\_add\_kernel}}
+\index{\_cth\_add\_kernel@{\_cth\_add\_kernel}!op\_fmod\_default.c@{op\_fmod\_default.c}}
+\doxysubsubsection{\texorpdfstring{\_cth\_add\_kernel}{\_cth\_add\_kernel}}
+{\footnotesize\ttfamily \#define \+\_\+cth\+\_\+add\+\_\+kernel(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})~fmod(b, a)}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__fmod__default_8c_a72157acf6b90b0b1b499a77de6b8703a}\label{op__fmod__default_8c_a72157acf6b90b0b1b499a77de6b8703a}} 
+\index{op\_fmod\_default.c@{op\_fmod\_default.c}!op\_fmod\_cpu@{op\_fmod\_cpu}}
+\index{op\_fmod\_cpu@{op\_fmod\_cpu}!op\_fmod\_default.c@{op\_fmod\_default.c}}
+\doxysubsubsection{\texorpdfstring{op\_fmod\_cpu()}{op\_fmod\_cpu()}}
+{\footnotesize\ttfamily void op\+\_\+fmod\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+fmod element wise.
+
+Op requirement\+:
+\begin{DoxyItemize}
+\item \# of input tensors\+: 2
+\begin{DoxyItemize}
+\item 0\+: dividend
+\item 1\+: divisor
+\end{DoxyItemize}
+\item \# of output tensors\+: 1
+\begin{DoxyItemize}
+\item output\+: the input always at index 0 
+\end{DoxyItemize}
+\end{DoxyItemize}

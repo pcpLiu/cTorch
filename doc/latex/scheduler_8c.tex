@@ -1,0 +1,69 @@
+\hypertarget{scheduler_8c}{}\doxysection{c\+Torch/scheduler.c File Reference}
+\label{scheduler_8c}\index{cTorch/scheduler.c@{cTorch/scheduler.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/scheduler.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/mem\+\_\+util.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+Include dependency graph for scheduler.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structCTorchScheduler}{C\+Torch\+Scheduler}} $\ast$ \mbox{\hyperlink{scheduler_8c_a246659566e09ebb96f90e7f3bccab396}{cth\+\_\+new\+\_\+scheduler}} (\mbox{\hyperlink{structCTorchConfig}{C\+Torch\+Config}} $\ast$config, \mbox{\hyperlink{structCTorchGraph}{C\+Torch\+Graph}} $\ast$graph)
+\item 
+void \mbox{\hyperlink{scheduler_8c_a78ed43786968c8bb499a6ff92ef3a937}{cth\+\_\+search\+\_\+ready\+\_\+jobs}} (\mbox{\hyperlink{structCTorchScheduler}{C\+Torch\+Scheduler}} $\ast$scheduler, \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(\mbox{\hyperlink{structCTorchQueueJob}{C\+Torch\+Queue\+Job}}) $\ast$ready\+\_\+jobs)
+\item 
+void \mbox{\hyperlink{scheduler_8c_a0f11776a230172d770f23c9f91d48055}{cth\+\_\+start\+\_\+scheduler\+\_\+v3}} (\mbox{\hyperlink{structCTorchScheduler}{C\+Torch\+Scheduler}} $\ast$scheduler)
+\item 
+void \mbox{\hyperlink{scheduler_8c_ac3feb3392bd169e26c04d0e07c11a1fc}{cth\+\_\+start\+\_\+scheduler}} (\mbox{\hyperlink{structCTorchScheduler}{C\+Torch\+Scheduler}} $\ast$scheduler)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{scheduler_8c_a246659566e09ebb96f90e7f3bccab396}\label{scheduler_8c_a246659566e09ebb96f90e7f3bccab396}} 
+\index{scheduler.c@{scheduler.c}!cth\_new\_scheduler@{cth\_new\_scheduler}}
+\index{cth\_new\_scheduler@{cth\_new\_scheduler}!scheduler.c@{scheduler.c}}
+\doxysubsubsection{\texorpdfstring{cth\_new\_scheduler()}{cth\_new\_scheduler()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structCTorchScheduler}{C\+Torch\+Scheduler}}$\ast$ cth\+\_\+new\+\_\+scheduler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchConfig}{C\+Torch\+Config}} $\ast$}]{config,  }\item[{\mbox{\hyperlink{structCTorchGraph}{C\+Torch\+Graph}} $\ast$}]{graph }\end{DoxyParamCaption})}
+
+Create a new scheduler based on config and graph. Function will parse graph\textquotesingle{}s nodes and fill into job\+\_\+list.
+
+Arguments
+\begin{DoxyItemize}
+\item config\+: execution config
+\item graph\+: a computation graph 
+\end{DoxyItemize}Fill job\+\_\+list.
+
+Note\+: for each node\textquotesingle{}s node\+\_\+id in this graph, scheduler will reassign them from 0 -\/ N. The queue\+\_\+status, done\+\_\+status \& ready\+\_\+status have a assumption that all nodes\textquotesingle{} node\+\_\+id are natural numbers starting from 0.\mbox{\Hypertarget{scheduler_8c_a78ed43786968c8bb499a6ff92ef3a937}\label{scheduler_8c_a78ed43786968c8bb499a6ff92ef3a937}} 
+\index{scheduler.c@{scheduler.c}!cth\_search\_ready\_jobs@{cth\_search\_ready\_jobs}}
+\index{cth\_search\_ready\_jobs@{cth\_search\_ready\_jobs}!scheduler.c@{scheduler.c}}
+\doxysubsubsection{\texorpdfstring{cth\_search\_ready\_jobs()}{cth\_search\_ready\_jobs()}}
+{\footnotesize\ttfamily void cth\+\_\+search\+\_\+ready\+\_\+jobs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchScheduler}{C\+Torch\+Scheduler}} $\ast$}]{scheduler,  }\item[{\mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(\mbox{\hyperlink{structCTorchQueueJob}{C\+Torch\+Queue\+Job}}) $\ast$}]{ready\+\_\+jobs }\end{DoxyParamCaption})}
+
+Search ready jobs and insert into ready\+\_\+jobs
+
+Arguments\+:
+\begin{DoxyItemize}
+\item scheduler\+: scheduler
+\item ready\+\_\+jobs\+: list to insert results 
+\end{DoxyItemize}A queue node is ready\+:
+\begin{DoxyItemize}
+\item All its inbounds nodes are ready, this node is ready;
+\item Or, it has no inbounds nodes
+\end{DoxyItemize}\mbox{\Hypertarget{scheduler_8c_ac3feb3392bd169e26c04d0e07c11a1fc}\label{scheduler_8c_ac3feb3392bd169e26c04d0e07c11a1fc}} 
+\index{scheduler.c@{scheduler.c}!cth\_start\_scheduler@{cth\_start\_scheduler}}
+\index{cth\_start\_scheduler@{cth\_start\_scheduler}!scheduler.c@{scheduler.c}}
+\doxysubsubsection{\texorpdfstring{cth\_start\_scheduler()}{cth\_start\_scheduler()}}
+{\footnotesize\ttfamily void cth\+\_\+start\+\_\+scheduler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchScheduler}{C\+Torch\+Scheduler}} $\ast$}]{scheduler }\end{DoxyParamCaption})}
+
+Turn on scheduler to put job into pipe til all jobs are done \mbox{\Hypertarget{scheduler_8c_a0f11776a230172d770f23c9f91d48055}\label{scheduler_8c_a0f11776a230172d770f23c9f91d48055}} 
+\index{scheduler.c@{scheduler.c}!cth\_start\_scheduler\_v3@{cth\_start\_scheduler\_v3}}
+\index{cth\_start\_scheduler\_v3@{cth\_start\_scheduler\_v3}!scheduler.c@{scheduler.c}}
+\doxysubsubsection{\texorpdfstring{cth\_start\_scheduler\_v3()}{cth\_start\_scheduler\_v3()}}
+{\footnotesize\ttfamily void cth\+\_\+start\+\_\+scheduler\+\_\+v3 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchScheduler}{C\+Torch\+Scheduler}} $\ast$}]{scheduler }\end{DoxyParamCaption})}
+
+Scheduler main loop\+:
+\begin{DoxyItemize}
+\item Find ready nodes, write them into ready queue
+\item Wait on nodes popping up from done queue
+\item Terminate loop when all jobs done
+\end{DoxyItemize}

@@ -161,6 +161,7 @@
   wrap(logdet) \
   wrap(logical_and) \
   wrap(logical_not) \
+  wrap(logical_or) \
   wrap(logical_xor) \
   wrap(LogSigmoid) \
   wrap(LogSoftmax) \

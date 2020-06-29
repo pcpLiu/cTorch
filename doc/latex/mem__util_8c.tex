@@ -1,0 +1,53 @@
+\hypertarget{mem__util_8c}{}\doxysection{c\+Torch/mem\+\_\+util.c File Reference}
+\label{mem__util_8c}\index{cTorch/mem\_util.c@{cTorch/mem\_util.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/mem\+\_\+util.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/logger\+\_\+util.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+Include dependency graph for mem\+\_\+util.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \mbox{\hyperlink{mem__util_8c_adfcbe83a51779f41f38798ed6893de7f}{cth\+\_\+malloc}} (size\+\_\+t size, const char $\ast$name)
+\item 
+void \mbox{\hyperlink{mem__util_8c_a8fafe435a419aa9b56ab0a87d343118b}{cth\+\_\+free}} (void $\ast$ptr, const char $\ast$file\+\_\+name, int line\+\_\+num, const char $\ast$func\+\_\+name)
+\item 
+void \mbox{\hyperlink{mem__util_8c_a466bd7cc2958d3d1c404048abc5ac397}{cth\+\_\+free\+\_\+soft}} (void $\ast$ptr, const char $\ast$file\+\_\+name, int line\+\_\+num, const char $\ast$func\+\_\+name)
+\item 
+int \mbox{\hyperlink{mem__util_8c_a2d2b5e7c9f6b7f5f14200838cce79a31}{cth\+\_\+asprintf}} (char $\ast$$\ast$strp, const char $\ast$fmt,...)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{mem__util_8c_a2d2b5e7c9f6b7f5f14200838cce79a31}\label{mem__util_8c_a2d2b5e7c9f6b7f5f14200838cce79a31}} 
+\index{mem\_util.c@{mem\_util.c}!cth\_asprintf@{cth\_asprintf}}
+\index{cth\_asprintf@{cth\_asprintf}!mem\_util.c@{mem\_util.c}}
+\doxysubsubsection{\texorpdfstring{cth\_asprintf()}{cth\_asprintf()}}
+{\footnotesize\ttfamily int cth\+\_\+asprintf (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$}]{strp,  }\item[{const char $\ast$}]{fmt,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+Just a wrapper of asprintf with memory record management for debug \mbox{\Hypertarget{mem__util_8c_a8fafe435a419aa9b56ab0a87d343118b}\label{mem__util_8c_a8fafe435a419aa9b56ab0a87d343118b}} 
+\index{mem\_util.c@{mem\_util.c}!cth\_free@{cth\_free}}
+\index{cth\_free@{cth\_free}!mem\_util.c@{mem\_util.c}}
+\doxysubsubsection{\texorpdfstring{cth\_free()}{cth\_free()}}
+{\footnotesize\ttfamily void cth\+\_\+free (\begin{DoxyParamCaption}\item[{void $\ast$}]{ptr,  }\item[{const char $\ast$}]{file\+\_\+name,  }\item[{int}]{lineno,  }\item[{const char $\ast$}]{func\+\_\+name }\end{DoxyParamCaption})}
+
+Free pointer with some location info passed. \mbox{\Hypertarget{mem__util_8c_a466bd7cc2958d3d1c404048abc5ac397}\label{mem__util_8c_a466bd7cc2958d3d1c404048abc5ac397}} 
+\index{mem\_util.c@{mem\_util.c}!cth\_free\_soft@{cth\_free\_soft}}
+\index{cth\_free\_soft@{cth\_free\_soft}!mem\_util.c@{mem\_util.c}}
+\doxysubsubsection{\texorpdfstring{cth\_free\_soft()}{cth\_free\_soft()}}
+{\footnotesize\ttfamily void cth\+\_\+free\+\_\+soft (\begin{DoxyParamCaption}\item[{void $\ast$}]{ptr,  }\item[{const char $\ast$}]{file\+\_\+name,  }\item[{int}]{lineno,  }\item[{const char $\ast$}]{func\+\_\+name }\end{DoxyParamCaption})}
+
+Free if pointer is not N\+U\+LL. If it\textquotesingle{}s N\+U\+LL, do nothing. \mbox{\Hypertarget{mem__util_8c_adfcbe83a51779f41f38798ed6893de7f}\label{mem__util_8c_adfcbe83a51779f41f38798ed6893de7f}} 
+\index{mem\_util.c@{mem\_util.c}!cth\_malloc@{cth\_malloc}}
+\index{cth\_malloc@{cth\_malloc}!mem\_util.c@{mem\_util.c}}
+\doxysubsubsection{\texorpdfstring{cth\_malloc()}{cth\_malloc()}}
+{\footnotesize\ttfamily void$\ast$ cth\+\_\+malloc (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+Malloc with optional argument to give a descriptive name to this memory.
+
+Parameters\+:
+\begin{DoxyItemize}
+\item size\+: memory size
+\item name\+: memory block name. Could be N\+U\+LL 
+\end{DoxyItemize}

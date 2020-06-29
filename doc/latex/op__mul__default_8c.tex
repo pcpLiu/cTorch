@@ -1,0 +1,47 @@
+\hypertarget{op__mul__default_8c}{}\doxysection{c\+Torch/operators/default/op\+\_\+mul\+\_\+default.c File Reference}
+\label{op__mul__default_8c}\index{cTorch/operators/default/op\_mul\_default.c@{cTorch/operators/default/op\_mul\_default.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operator.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/op\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/util.\+h\char`\"{}}\newline
+Include dependency graph for op\+\_\+mul\+\_\+default.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{op__mul__default_8c_aec58a524bd3557e86a463977504d6be8}{\+\_\+cth\+\_\+mul\+\_\+kernel}}(a,  b)~(a $\ast$ b)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__mul__default_8c_ada7c8bd128fcd7ec68acb1152f754642}{op\+\_\+mul\+\_\+cpu}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em Each element of the tensor input is multiplied by the corresponding element ofhe Tensor other. The resulting tensor is returned. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{op__mul__default_8c_aec58a524bd3557e86a463977504d6be8}\label{op__mul__default_8c_aec58a524bd3557e86a463977504d6be8}} 
+\index{op\_mul\_default.c@{op\_mul\_default.c}!\_cth\_mul\_kernel@{\_cth\_mul\_kernel}}
+\index{\_cth\_mul\_kernel@{\_cth\_mul\_kernel}!op\_mul\_default.c@{op\_mul\_default.c}}
+\doxysubsubsection{\texorpdfstring{\_cth\_mul\_kernel}{\_cth\_mul\_kernel}}
+{\footnotesize\ttfamily \#define \+\_\+cth\+\_\+mul\+\_\+kernel(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})~(a $\ast$ b)}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__mul__default_8c_ada7c8bd128fcd7ec68acb1152f754642}\label{op__mul__default_8c_ada7c8bd128fcd7ec68acb1152f754642}} 
+\index{op\_mul\_default.c@{op\_mul\_default.c}!op\_mul\_cpu@{op\_mul\_cpu}}
+\index{op\_mul\_cpu@{op\_mul\_cpu}!op\_mul\_default.c@{op\_mul\_default.c}}
+\doxysubsubsection{\texorpdfstring{op\_mul\_cpu()}{op\_mul\_cpu()}}
+{\footnotesize\ttfamily void op\+\_\+mul\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+Each element of the tensor input is multiplied by the corresponding element ofhe Tensor other. The resulting tensor is returned. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em op} & operator\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Assume input and output tensor have same datatypes. If not, this op will fail. 
+\end{DoxyNote}

@@ -1,0 +1,64 @@
+\hypertarget{op__atan2__default_8c}{}\doxysection{c\+Torch/operators/default/op\+\_\+atan2\+\_\+default.c File Reference}
+\label{op__atan2__default_8c}\index{cTorch/operators/default/op\_atan2\_default.c@{cTorch/operators/default/op\_atan2\_default.c}}
+{\ttfamily \#include $<$tgmath.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/op\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/util.\+h\char`\"{}}\newline
+Include dependency graph for op\+\_\+atan2\+\_\+default.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{op__atan2__default_8c_a2814d49a6b85ff918f30dfb27dac44c7}{\+\_\+cth\+\_\+atan2\+\_\+kernel}}(op,  data\+\_\+type)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__atan2__default_8c_a7967e69c1d933c1116c3be8714c680ad}{op\+\_\+atan2\+\_\+cpu}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{op__atan2__default_8c_a2814d49a6b85ff918f30dfb27dac44c7}\label{op__atan2__default_8c_a2814d49a6b85ff918f30dfb27dac44c7}} 
+\index{op\_atan2\_default.c@{op\_atan2\_default.c}!\_cth\_atan2\_kernel@{\_cth\_atan2\_kernel}}
+\index{\_cth\_atan2\_kernel@{\_cth\_atan2\_kernel}!op\_atan2\_default.c@{op\_atan2\_default.c}}
+\doxysubsubsection{\texorpdfstring{\_cth\_atan2\_kernel}{\_cth\_atan2\_kernel}}
+{\footnotesize\ttfamily \#define \+\_\+cth\+\_\+atan2\+\_\+kernel(\begin{DoxyParamCaption}\item[{}]{op,  }\item[{}]{data\+\_\+type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                                                         \(\backslash\)}
+\DoxyCodeLine{    CTorchTensor *input\_x = \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\_at}}(\mbox{\hyperlink{structCTorchTensor}{CTorchTensor}})(op-\/>in\_bound\_tensors, 0);   \(\backslash\)}
+\DoxyCodeLine{    CTorchTensor *input\_y = \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\_at}}(\mbox{\hyperlink{structCTorchTensor}{CTorchTensor}})(op-\/>in\_bound\_tensors, 1);   \(\backslash\)}
+\DoxyCodeLine{    CTorchTensor *output = \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\_at}}(\mbox{\hyperlink{structCTorchTensor}{CTorchTensor}})(op-\/>out\_bound\_tensors, 0);   \(\backslash\)}
+\DoxyCodeLine{    data\_type *ptr\_x = (data\_type *)input\_x-\/>values;                           \(\backslash\)}
+\DoxyCodeLine{    data\_type *ptr\_y = (data\_type *)input\_y-\/>values;                           \(\backslash\)}
+\DoxyCodeLine{    data\_type *ptr\_output = (data\_type *)output-\/>values;                       \(\backslash\)}
+\DoxyCodeLine{    \mbox{\hyperlink{consts_8h_a836488a94280dd54797615abb7e699ca}{tensor\_size\_t}} N = input\_x-\/>meta\_info-\/>n\_elements;                          \(\backslash\)}
+\DoxyCodeLine{                                                                               \(\backslash\)}
+\DoxyCodeLine{    for (\mbox{\hyperlink{consts_8h_a836488a94280dd54797615abb7e699ca}{tensor\_size\_t}} i = 0; i < N; i++) \{                                    \(\backslash\)}
+\DoxyCodeLine{      ptr\_output[i] = atan2(ptr\_y[i], ptr\_x[i]);                               \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__atan2__default_8c_a7967e69c1d933c1116c3be8714c680ad}\label{op__atan2__default_8c_a7967e69c1d933c1116c3be8714c680ad}} 
+\index{op\_atan2\_default.c@{op\_atan2\_default.c}!op\_atan2\_cpu@{op\_atan2\_cpu}}
+\index{op\_atan2\_cpu@{op\_atan2\_cpu}!op\_atan2\_default.c@{op\_atan2\_default.c}}
+\doxysubsubsection{\texorpdfstring{op\_atan2\_cpu()}{op\_atan2\_cpu()}}
+{\footnotesize\ttfamily void op\+\_\+atan2\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+Computation see wiki\+: \href{https://en.wikipedia.org/wiki/Atan2}{\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+Atan2}}
+
+Inputs \& outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 2
+\begin{DoxyItemize}
+\item 0\+: x
+\item 1\+: y
+\end{DoxyItemize}
+\item \# of output\+: 1
+\item Input and output should be same dimention and type. 
+\end{DoxyItemize}

@@ -1,0 +1,64 @@
+\hypertarget{engine_8h}{}\doxysection{c\+Torch/engine.h File Reference}
+\label{engine_8h}\index{cTorch/engine.h@{cTorch/engine.h}}
+{\ttfamily \#include \char`\"{}c\+Torch/config.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/consts.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/node.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/pool.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/queue.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/scheduler.\+h\char`\"{}}\newline
+Include dependency graph for engine.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structCTorchEngine}{C\+Torch\+Engine}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structCTorchEngine}{C\+Torch\+Engine}} \mbox{\hyperlink{engine_8h_a5d7df24c56d7038f74cc18ec932a42a4}{C\+Torch\+Engine}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structCTorchEngine}{C\+Torch\+Engine}} $\ast$ \mbox{\hyperlink{engine_8h_addba73950bdd13b4fcaf941311b5f677}{cth\+\_\+new\+\_\+engine}} (\mbox{\hyperlink{structCTorchConfig}{C\+Torch\+Config}} $\ast$config)
+\item 
+void \mbox{\hyperlink{engine_8h_a66d505af1852629e89291f2079f5e8ba}{cth\+\_\+execute\+\_\+node}} (\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}} $\ast$node, \mbox{\hyperlink{consts_8h_a2b134eeb7503f45168871021ab72fe40}{C\+T\+H\+\_\+\+B\+A\+C\+K\+E\+ND}} backend)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{engine_8h_a5d7df24c56d7038f74cc18ec932a42a4}\label{engine_8h_a5d7df24c56d7038f74cc18ec932a42a4}} 
+\index{engine.h@{engine.h}!CTorchEngine@{CTorchEngine}}
+\index{CTorchEngine@{CTorchEngine}!engine.h@{engine.h}}
+\doxysubsubsection{\texorpdfstring{CTorchEngine}{CTorchEngine}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structCTorchEngine}{C\+Torch\+Engine}} \mbox{\hyperlink{structCTorchEngine}{C\+Torch\+Engine}}}
+
+Execution engine 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{engine_8h_a66d505af1852629e89291f2079f5e8ba}\label{engine_8h_a66d505af1852629e89291f2079f5e8ba}} 
+\index{engine.h@{engine.h}!cth\_execute\_node@{cth\_execute\_node}}
+\index{cth\_execute\_node@{cth\_execute\_node}!engine.h@{engine.h}}
+\doxysubsubsection{\texorpdfstring{cth\_execute\_node()}{cth\_execute\_node()}}
+{\footnotesize\ttfamily void cth\+\_\+execute\+\_\+node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{consts_8h_a2b134eeb7503f45168871021ab72fe40}{C\+T\+H\+\_\+\+B\+A\+C\+K\+E\+ND}}}]{backend }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{engine_8h_addba73950bdd13b4fcaf941311b5f677}\label{engine_8h_addba73950bdd13b4fcaf941311b5f677}} 
+\index{engine.h@{engine.h}!cth\_new\_engine@{cth\_new\_engine}}
+\index{cth\_new\_engine@{cth\_new\_engine}!engine.h@{engine.h}}
+\doxysubsubsection{\texorpdfstring{cth\_new\_engine()}{cth\_new\_engine()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structCTorchEngine}{C\+Torch\+Engine}}$\ast$ cth\+\_\+new\+\_\+engine (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchConfig}{C\+Torch\+Config}} $\ast$}]{config }\end{DoxyParamCaption})}
+
+Create an engine to execute graph. In this function, what c\+Torch will do\+:
+\begin{DoxyItemize}
+\item Initialize a thread pool to execute ops
+\item Initialzie a scheduler
+\item Create pipes used to communicate between pool and main process
+\end{DoxyItemize}
+
+Arguments\+:
+\begin{DoxyItemize}
+\item config\+: execution config 
+\end{DoxyItemize}

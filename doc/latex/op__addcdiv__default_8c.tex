@@ -1,0 +1,76 @@
+\hypertarget{op__addcdiv__default_8c}{}\doxysection{c\+Torch/operators/default/op\+\_\+addcdiv\+\_\+default.c File Reference}
+\label{op__addcdiv__default_8c}\index{cTorch/operators/default/op\_addcdiv\_default.c@{cTorch/operators/default/op\_addcdiv\_default.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/op\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/util.\+h\char`\"{}}\newline
+Include dependency graph for op\+\_\+addcdiv\+\_\+default.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{op__addcdiv__default_8c_a33d0ef7de888a2220b61a0d26e39824e}{\+\_\+cth\+\_\+addcdiv}}(op,  data\+\_\+type)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__addcdiv__default_8c_a215abdb6c1dcac634e61b05037e5295a}{op\+\_\+addcdiv\+\_\+cpu}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{op__addcdiv__default_8c_a33d0ef7de888a2220b61a0d26e39824e}\label{op__addcdiv__default_8c_a33d0ef7de888a2220b61a0d26e39824e}} 
+\index{op\_addcdiv\_default.c@{op\_addcdiv\_default.c}!\_cth\_addcdiv@{\_cth\_addcdiv}}
+\index{\_cth\_addcdiv@{\_cth\_addcdiv}!op\_addcdiv\_default.c@{op\_addcdiv\_default.c}}
+\doxysubsubsection{\texorpdfstring{\_cth\_addcdiv}{\_cth\_addcdiv}}
+{\footnotesize\ttfamily \#define \+\_\+cth\+\_\+addcdiv(\begin{DoxyParamCaption}\item[{}]{op,  }\item[{}]{data\+\_\+type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                                                         \(\backslash\)}
+\DoxyCodeLine{    CTorchTensor *input = \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\_at}}(\mbox{\hyperlink{structCTorchTensor}{CTorchTensor}})(op-\/>in\_bound\_tensors, 0);     \(\backslash\)}
+\DoxyCodeLine{    CTorchTensor *tensor\_1 = \mbox{\hyperlink{operator_8c_aa912c0fd2500c4c77d900da1e14cb08b}{cth\_get\_input\_by\_name}}(op, \textcolor{stringliteral}{"tensor\_1"}, \textcolor{keyword}{false});     \(\backslash\)}
+\DoxyCodeLine{    CTorchTensor *tensor\_2 = \mbox{\hyperlink{operator_8c_aa912c0fd2500c4c77d900da1e14cb08b}{cth\_get\_input\_by\_name}}(op, \textcolor{stringliteral}{"tensor\_2"}, \textcolor{keyword}{false});     \(\backslash\)}
+\DoxyCodeLine{    CTorchParam *param =                                                       \(\backslash\)}
+\DoxyCodeLine{        cth\_get\_param\_by\_type(op, \mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea2a46ce3264751a991119f9661d6bd31a}{CTH\_PARAM\_TYPE\_MULTIPLIER\_FLOAT32}}, \textcolor{keyword}{true});    \(\backslash\)}
+\DoxyCodeLine{    float multiplier = param-\/>data.multiplier;                                 \(\backslash\)}
+\DoxyCodeLine{    CTorchTensor *output = \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\_at}}(\mbox{\hyperlink{structCTorchTensor}{CTorchTensor}})(op-\/>out\_bound\_tensors, 0);   \(\backslash\)}
+\DoxyCodeLine{    tensor\_size\_t N = tensor\_1-\/>meta\_info-\/>n\_elements;                         \(\backslash\)}
+\DoxyCodeLine{                                                                               \(\backslash\)}
+\DoxyCodeLine{    for (\mbox{\hyperlink{consts_8h_a836488a94280dd54797615abb7e699ca}{tensor\_size\_t}} i = 0; i < N; i++) \{                                    \(\backslash\)}
+\DoxyCodeLine{      ((data\_type *)output-\/>values)[i] =                                       \(\backslash\)}
+\DoxyCodeLine{          ((data\_type *)input-\/>values)[i] +                                    \(\backslash\)}
+\DoxyCodeLine{          multiplier * (((data\_type *)tensor\_1-\/>values)[i] /                   \(\backslash\)}
+\DoxyCodeLine{                        ((data\_type *)tensor\_2-\/>values)[i]);                   \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0);}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__addcdiv__default_8c_a215abdb6c1dcac634e61b05037e5295a}\label{op__addcdiv__default_8c_a215abdb6c1dcac634e61b05037e5295a}} 
+\index{op\_addcdiv\_default.c@{op\_addcdiv\_default.c}!op\_addcdiv\_cpu@{op\_addcdiv\_cpu}}
+\index{op\_addcdiv\_cpu@{op\_addcdiv\_cpu}!op\_addcdiv\_default.c@{op\_addcdiv\_default.c}}
+\doxysubsubsection{\texorpdfstring{op\_addcdiv\_cpu()}{op\_addcdiv\_cpu()}}
+{\footnotesize\ttfamily void op\+\_\+addcdiv\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+out = input + multiplier $\ast$ (tensor\+\_\+1 / tensor\+\_\+2) ref\+: \href{https://pytorch.org/docs/stable/torch.html\#torch.addcdiv}{\texttt{ https\+://pytorch.\+org/docs/stable/torch.\+html\#torch.\+addcdiv}}
+
+Op requirement\+:
+\begin{DoxyItemize}
+\item \# of input tensors\+: 4
+\begin{DoxyItemize}
+\item input\+: the input always at index 0
+\item tensor\+\_\+1\+: tensor with name {\ttfamily tensor\+\_\+1}
+\item tensor\+\_\+2\+: tensor with name {\ttfamily tensor\+\_\+2}
+\end{DoxyItemize}
+\item \# of arguments\+: 1
+\begin{DoxyItemize}
+\item C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+M\+U\+L\+T\+I\+P\+L\+I\+E\+R\+\_\+\+F\+L\+O\+A\+T32
+\end{DoxyItemize}
+\item \# of output tensors\+: 1
+\begin{DoxyItemize}
+\item output\+: the input always at index 0
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Note\+: does not support boradcast 

@@ -1,0 +1,48 @@
+\hypertarget{op__abs__default_8c}{}\doxysection{c\+Torch/operators/default/op\+\_\+abs\+\_\+default.c File Reference}
+\label{op__abs__default_8c}\index{cTorch/operators/default/op\_abs\_default.c@{cTorch/operators/default/op\_abs\_default.c}}
+{\ttfamily \#include $<$tgmath.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/op\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/util.\+h\char`\"{}}\newline
+Include dependency graph for op\+\_\+abs\+\_\+default.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{op__abs__default_8c_a20149496c898815ed22d9d2c7e389a01}{\+\_\+cth\+\_\+abs}}(x)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__abs__default_8c_ac2bd178a998d8f6348c3f4441c4afc72}{op\+\_\+abs\+\_\+cpu}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{op__abs__default_8c_a20149496c898815ed22d9d2c7e389a01}\label{op__abs__default_8c_a20149496c898815ed22d9d2c7e389a01}} 
+\index{op\_abs\_default.c@{op\_abs\_default.c}!\_cth\_abs@{\_cth\_abs}}
+\index{\_cth\_abs@{\_cth\_abs}!op\_abs\_default.c@{op\_abs\_default.c}}
+\doxysubsubsection{\texorpdfstring{\_cth\_abs}{\_cth\_abs}}
+{\footnotesize\ttfamily \#define \+\_\+cth\+\_\+abs(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \_Generic((x),                                                                \(\backslash\)}
+\DoxyCodeLine{    \textcolor{keywordtype}{float}: fabs,                                                               \(\backslash\)}
+\DoxyCodeLine{    \textcolor{keywordtype}{double}: fabs,                                                              \(\backslash\)}
+\DoxyCodeLine{    int16\_t: abs,                                                              \(\backslash\)}
+\DoxyCodeLine{    int32\_t: abs,                                                    \(\backslash\)}
+\DoxyCodeLine{    int64\_t: abs,                                                    \(\backslash\)}
+\DoxyCodeLine{    uint8\_t: abs,                                                              \(\backslash\)}
+\DoxyCodeLine{    \textcolor{keywordtype}{bool}: abs                                                       \(\backslash\)}
+\DoxyCodeLine{  )(x)}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__abs__default_8c_ac2bd178a998d8f6348c3f4441c4afc72}\label{op__abs__default_8c_ac2bd178a998d8f6348c3f4441c4afc72}} 
+\index{op\_abs\_default.c@{op\_abs\_default.c}!op\_abs\_cpu@{op\_abs\_cpu}}
+\index{op\_abs\_cpu@{op\_abs\_cpu}!op\_abs\_default.c@{op\_abs\_default.c}}
+\doxysubsubsection{\texorpdfstring{op\_abs\_cpu()}{op\_abs\_cpu()}}
+{\footnotesize\ttfamily void op\+\_\+abs\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+

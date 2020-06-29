@@ -1,0 +1,82 @@
+\hypertarget{pool_8h}{}\doxysection{c\+Torch/pool.h File Reference}
+\label{pool_8h}\index{cTorch/pool.h@{cTorch/pool.h}}
+{\ttfamily \#include \char`\"{}c\+Torch/config.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/scheduler.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+Include dependency graph for pool.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structCTorchWorkerPool}{C\+Torch\+Worker\+Pool}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structCTorchWorkerPool}{C\+Torch\+Worker\+Pool}} \mbox{\hyperlink{pool_8h_abe0d4bfdccea30581c476acf7bde539e}{C\+Torch\+Worker\+Pool}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structCTorchWorkerPool}{C\+Torch\+Worker\+Pool}} $\ast$ \mbox{\hyperlink{pool_8h_a6d726aba47ea54b822e2439653133a52}{cth\+\_\+new\+\_\+pool}} (\mbox{\hyperlink{structCTorchScheduler}{C\+Torch\+Scheduler}} $\ast$scheduler, \mbox{\hyperlink{structCTorchConfig}{C\+Torch\+Config}} $\ast$config)
+\item 
+void \mbox{\hyperlink{pool_8h_a31ba852ecd25aaaf622cc2371ae1ad8e}{cth\+\_\+close\+\_\+pool}} (\mbox{\hyperlink{structCTorchScheduler}{C\+Torch\+Scheduler}} $\ast$scheduler, \mbox{\hyperlink{structCTorchWorkerPool}{C\+Torch\+Worker\+Pool}} $\ast$pool)
+\item 
+void $\ast$ \mbox{\hyperlink{pool_8h_ae913da19d6fd79a685029f7d3a77f848}{cth\+\_\+worker}} (void $\ast$scheduler)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{pool_8h_abe0d4bfdccea30581c476acf7bde539e}\label{pool_8h_abe0d4bfdccea30581c476acf7bde539e}} 
+\index{pool.h@{pool.h}!CTorchWorkerPool@{CTorchWorkerPool}}
+\index{CTorchWorkerPool@{CTorchWorkerPool}!pool.h@{pool.h}}
+\doxysubsubsection{\texorpdfstring{CTorchWorkerPool}{CTorchWorkerPool}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structCTorchWorkerPool}{C\+Torch\+Worker\+Pool}} \mbox{\hyperlink{structCTorchWorkerPool}{C\+Torch\+Worker\+Pool}}}
+
+Thread pool to execute operators 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{pool_8h_a31ba852ecd25aaaf622cc2371ae1ad8e}\label{pool_8h_a31ba852ecd25aaaf622cc2371ae1ad8e}} 
+\index{pool.h@{pool.h}!cth\_close\_pool@{cth\_close\_pool}}
+\index{cth\_close\_pool@{cth\_close\_pool}!pool.h@{pool.h}}
+\doxysubsubsection{\texorpdfstring{cth\_close\_pool()}{cth\_close\_pool()}}
+{\footnotesize\ttfamily void cth\+\_\+close\+\_\+pool (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchScheduler}{C\+Torch\+Scheduler}} $\ast$}]{scheduler,  }\item[{\mbox{\hyperlink{structCTorchWorkerPool}{C\+Torch\+Worker\+Pool}} $\ast$}]{pool }\end{DoxyParamCaption})}
+
+Close a work pool. Kill all working threads. This funcion use pthread\+\_\+join, so it will block till all jobs finished.
+
+Note\+: this func does not do any memory cleanning stuff.
+
+Arguments\+:
+\begin{DoxyItemize}
+\item scheduler\+: attached scheduler
+\item pool\+: pool to be closed 
+\end{DoxyItemize}\mbox{\Hypertarget{pool_8h_a6d726aba47ea54b822e2439653133a52}\label{pool_8h_a6d726aba47ea54b822e2439653133a52}} 
+\index{pool.h@{pool.h}!cth\_new\_pool@{cth\_new\_pool}}
+\index{cth\_new\_pool@{cth\_new\_pool}!pool.h@{pool.h}}
+\doxysubsubsection{\texorpdfstring{cth\_new\_pool()}{cth\_new\_pool()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structCTorchWorkerPool}{C\+Torch\+Worker\+Pool}}$\ast$ cth\+\_\+new\+\_\+pool (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchScheduler}{C\+Torch\+Scheduler}} $\ast$}]{scheduler,  }\item[{\mbox{\hyperlink{structCTorchConfig}{C\+Torch\+Config}} $\ast$}]{config }\end{DoxyParamCaption})}
+
+Create a worker pool. Once created, all workers are waiting data from scheduler til kill signals are sent.
+
+Arguments\+:
+\begin{DoxyItemize}
+\item scheduelr\+: the scheduler used for this pool
+\item config\+: execution config 
+\end{DoxyItemize}\mbox{\Hypertarget{pool_8h_ae913da19d6fd79a685029f7d3a77f848}\label{pool_8h_ae913da19d6fd79a685029f7d3a77f848}} 
+\index{pool.h@{pool.h}!cth\_worker@{cth\_worker}}
+\index{cth\_worker@{cth\_worker}!pool.h@{pool.h}}
+\doxysubsubsection{\texorpdfstring{cth\_worker()}{cth\_worker()}}
+{\footnotesize\ttfamily void$\ast$ cth\+\_\+worker (\begin{DoxyParamCaption}\item[{void $\ast$}]{scheduler }\end{DoxyParamCaption})}
+
+The worker function
+
+Arguments\+:
+\begin{DoxyItemize}
+\item scheduler\+: a scheduler 
+\end{DoxyItemize}Loop til a killer switch message fetched\+:
+\begin{DoxyItemize}
+\item Fetch messsage from exe\+\_\+queue and execute it
+\item Update message\textquotesingle{}s job status and put it to ret\+\_\+queue
+\end{DoxyItemize}

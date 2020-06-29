@@ -1,0 +1,78 @@
+\hypertarget{op__clamp__default_8c}{}\doxysection{c\+Torch/operators/default/op\+\_\+clamp\+\_\+default.c File Reference}
+\label{op__clamp__default_8c}\index{cTorch/operators/default/op\_clamp\_default.c@{cTorch/operators/default/op\_clamp\_default.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/op\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/util.\+h\char`\"{}}\newline
+Include dependency graph for op\+\_\+clamp\+\_\+default.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{op__clamp__default_8c_a3c8a177f3480bc7dd6fcdcac51cd4bf0}{\+\_\+cth\+\_\+clamp}}(op,  data\+\_\+type)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__clamp__default_8c_a3c40461de59ba68eda85a51f7b061ecc}{op\+\_\+clamp\+\_\+cpu}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{op__clamp__default_8c_a3c8a177f3480bc7dd6fcdcac51cd4bf0}\label{op__clamp__default_8c_a3c8a177f3480bc7dd6fcdcac51cd4bf0}} 
+\index{op\_clamp\_default.c@{op\_clamp\_default.c}!\_cth\_clamp@{\_cth\_clamp}}
+\index{\_cth\_clamp@{\_cth\_clamp}!op\_clamp\_default.c@{op\_clamp\_default.c}}
+\doxysubsubsection{\texorpdfstring{\_cth\_clamp}{\_cth\_clamp}}
+{\footnotesize\ttfamily \#define \+\_\+cth\+\_\+clamp(\begin{DoxyParamCaption}\item[{}]{op,  }\item[{}]{data\+\_\+type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                                                         \(\backslash\)}
+\DoxyCodeLine{    CTorchTensor *input = \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\_at}}(\mbox{\hyperlink{structCTorchTensor}{CTorchTensor}})(op-\/>in\_bound\_tensors, 0);     \(\backslash\)}
+\DoxyCodeLine{    data\_type *input\_ptr = (data\_type *)input-\/>values;                         \(\backslash\)}
+\DoxyCodeLine{    \mbox{\hyperlink{structCTorchTensor}{CTorchTensor}} *output = \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\_at}}(\mbox{\hyperlink{structCTorchTensor}{CTorchTensor}})(op-\/>out\_bound\_tensors, 0);   \(\backslash\)}
+\DoxyCodeLine{    data\_type *output\_ptr = (data\_type *)output-\/>values;                       \(\backslash\)}
+\DoxyCodeLine{    \textcolor{keywordtype}{float} min, max;                                                            \(\backslash\)}
+\DoxyCodeLine{    \mbox{\hyperlink{params_8h_ac513cf2f45d51f597ea72592b0f32a78}{EXTRACT\_PARAM\_VALUE}}(op, \mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954ead63c3bfc56de2014cdf608baa80ae6ff}{CTH\_PARAM\_TYPE\_MIN\_FLOAT32}}, min, min);             \(\backslash\)}
+\DoxyCodeLine{    EXTRACT\_PARAM\_VALUE(op, \mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea12d718a190ee00a1c22857f99573dbc9}{CTH\_PARAM\_TYPE\_MAX\_FLOAT32}}, max, max);             \(\backslash\)}
+\DoxyCodeLine{    tensor\_size\_t N = input-\/>meta\_info-\/>n\_elements;                            \(\backslash\)}
+\DoxyCodeLine{                                                                               \(\backslash\)}
+\DoxyCodeLine{    for (\mbox{\hyperlink{consts_8h_a836488a94280dd54797615abb7e699ca}{tensor\_size\_t}} i = 0; i < N; i++) \{                                    \(\backslash\)}
+\DoxyCodeLine{      if (input\_ptr[i] < min) \{                                                \(\backslash\)}
+\DoxyCodeLine{        output\_ptr[i] = min;                                                   \(\backslash\)}
+\DoxyCodeLine{      \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (input\_ptr[i] > max) \{                                         \(\backslash\)}
+\DoxyCodeLine{        output\_ptr[i] = max;                                                   \(\backslash\)}
+\DoxyCodeLine{      \} \textcolor{keywordflow}{else} \{                                                                 \(\backslash\)}
+\DoxyCodeLine{        output\_ptr[i] = input\_ptr[i];                                          \(\backslash\)}
+\DoxyCodeLine{      \}                                                                        \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0);}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__clamp__default_8c_a3c40461de59ba68eda85a51f7b061ecc}\label{op__clamp__default_8c_a3c40461de59ba68eda85a51f7b061ecc}} 
+\index{op\_clamp\_default.c@{op\_clamp\_default.c}!op\_clamp\_cpu@{op\_clamp\_cpu}}
+\index{op\_clamp\_cpu@{op\_clamp\_cpu}!op\_clamp\_default.c@{op\_clamp\_default.c}}
+\doxysubsubsection{\texorpdfstring{op\_clamp\_cpu()}{op\_clamp\_cpu()}}
+{\footnotesize\ttfamily void op\+\_\+clamp\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+Clamp op\+: \href{https://pytorch.org/docs/stable/torch.html\#torch.clamp}{\texttt{ https\+://pytorch.\+org/docs/stable/torch.\+html\#torch.\+clamp}}
+
+Op requirement\+:
+\begin{DoxyItemize}
+\item \# of input tensors\+: 1
+\begin{DoxyItemize}
+\item input\+: the input always at index 0
+\end{DoxyItemize}
+\item \# of arguments\+: 2
+\begin{DoxyItemize}
+\item C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+M\+I\+N\+\_\+\+F\+L\+O\+A\+T32
+\item C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+M\+A\+X\+\_\+\+F\+L\+O\+A\+T32
+\end{DoxyItemize}
+\item \# of output tensors\+: 1
+\begin{DoxyItemize}
+\item output\+: the input always at index 0
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Note\+: does not support boradcast 

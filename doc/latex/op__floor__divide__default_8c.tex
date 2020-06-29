@@ -1,0 +1,60 @@
+\hypertarget{op__floor__divide__default_8c}{}\doxysection{c\+Torch/operators/default/op\+\_\+floor\+\_\+divide\+\_\+default.c File Reference}
+\label{op__floor__divide__default_8c}\index{cTorch/operators/default/op\_floor\_divide\_default.c@{cTorch/operators/default/op\_floor\_divide\_default.c}}
+{\ttfamily \#include $<$tgmath.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/op\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/util.\+h\char`\"{}}\newline
+Include dependency graph for op\+\_\+floor\+\_\+divide\+\_\+default.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{op__floor__divide__default_8c_ae466460d7e00a217210ee344e6e4c2d1}{\+\_\+cth\+\_\+floor\+\_\+divide}}(op,  data\+\_\+type)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__floor__divide__default_8c_ab9d49b5b356b62a3e18c43abaf1d1fe0}{op\+\_\+floor\+\_\+divide\+\_\+cpu}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{op__floor__divide__default_8c_ae466460d7e00a217210ee344e6e4c2d1}\label{op__floor__divide__default_8c_ae466460d7e00a217210ee344e6e4c2d1}} 
+\index{op\_floor\_divide\_default.c@{op\_floor\_divide\_default.c}!\_cth\_floor\_divide@{\_cth\_floor\_divide}}
+\index{\_cth\_floor\_divide@{\_cth\_floor\_divide}!op\_floor\_divide\_default.c@{op\_floor\_divide\_default.c}}
+\doxysubsubsection{\texorpdfstring{\_cth\_floor\_divide}{\_cth\_floor\_divide}}
+{\footnotesize\ttfamily \#define \+\_\+cth\+\_\+floor\+\_\+divide(\begin{DoxyParamCaption}\item[{}]{op,  }\item[{}]{data\+\_\+type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                                                         \(\backslash\)}
+\DoxyCodeLine{    CTorchTensor *input\_1 = \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\_at}}(\mbox{\hyperlink{structCTorchTensor}{CTorchTensor}})(op-\/>in\_bound\_tensors, 0);   \(\backslash\)}
+\DoxyCodeLine{    CTorchTensor *input\_2 = \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\_at}}(\mbox{\hyperlink{structCTorchTensor}{CTorchTensor}})(op-\/>in\_bound\_tensors, 1);   \(\backslash\)}
+\DoxyCodeLine{    CTorchTensor *output = \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\_at}}(\mbox{\hyperlink{structCTorchTensor}{CTorchTensor}})(op-\/>out\_bound\_tensors, 0);   \(\backslash\)}
+\DoxyCodeLine{    data\_type *input\_1\_ptr = (data\_type *)input\_1-\/>values;                     \(\backslash\)}
+\DoxyCodeLine{    data\_type *input\_2\_ptr = (data\_type *)input\_2-\/>values;                     \(\backslash\)}
+\DoxyCodeLine{    data\_type *output\_ptr = (data\_type *)output-\/>values;                       \(\backslash\)}
+\DoxyCodeLine{    \mbox{\hyperlink{consts_8h_a836488a94280dd54797615abb7e699ca}{tensor\_size\_t}} N = input\_1-\/>meta\_info-\/>n\_elements;                          \(\backslash\)}
+\DoxyCodeLine{                                                                               \(\backslash\)}
+\DoxyCodeLine{    for (\mbox{\hyperlink{consts_8h_a836488a94280dd54797615abb7e699ca}{tensor\_size\_t}} i = 0; i < N; i++) \{                                    \(\backslash\)}
+\DoxyCodeLine{      output\_ptr[i] = (data\_type)floor(1.0 * input\_1\_ptr[i] / input\_2\_ptr[i]); \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0);}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__floor__divide__default_8c_ab9d49b5b356b62a3e18c43abaf1d1fe0}\label{op__floor__divide__default_8c_ab9d49b5b356b62a3e18c43abaf1d1fe0}} 
+\index{op\_floor\_divide\_default.c@{op\_floor\_divide\_default.c}!op\_floor\_divide\_cpu@{op\_floor\_divide\_cpu}}
+\index{op\_floor\_divide\_cpu@{op\_floor\_divide\_cpu}!op\_floor\_divide\_default.c@{op\_floor\_divide\_default.c}}
+\doxysubsubsection{\texorpdfstring{op\_floor\_divide\_cpu()}{op\_floor\_divide\_cpu()}}
+{\footnotesize\ttfamily void op\+\_\+floor\+\_\+divide\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+Computes exp(x) -\/1
+
+Inputs \& outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 1
+\item \# of output\+: 1
+\item Input and output should be same dimention and type. 
+\end{DoxyItemize}

@@ -1,0 +1,66 @@
+\hypertarget{sharder_8h}{}\doxysection{c\+Torch/sharder.h File Reference}
+\label{sharder_8h}\index{cTorch/sharder.h@{cTorch/sharder.h}}
+{\ttfamily \#include \char`\"{}c\+Torch/operator.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/storage.\+h\char`\"{}}\newline
+Include dependency graph for sharder.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{sharder_8h_a0453c0b8c5ae82e2b4290f9a7a3639bd}{cth\+\_\+sharding\+\_\+op\+\_\+elewise}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op, \mbox{\hyperlink{consts_8h_a157c2065f4ca7bee275f51520e56a173}{thread\+\_\+n\+\_\+t}} n\+\_\+shards, \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}}) $\ast$ops)
+\item 
+void \mbox{\hyperlink{sharder_8h_abd7e037d08e83352d34ded0de8a89cf6}{cth\+\_\+sharding\+\_\+tensor\+\_\+elewise}} (\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}} $\ast$tensor, \mbox{\hyperlink{consts_8h_a157c2065f4ca7bee275f51520e56a173}{thread\+\_\+n\+\_\+t}} n\+\_\+shards, \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}}) $\ast$tensors)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{sharder_8h_a0453c0b8c5ae82e2b4290f9a7a3639bd}\label{sharder_8h_a0453c0b8c5ae82e2b4290f9a7a3639bd}} 
+\index{sharder.h@{sharder.h}!cth\_sharding\_op\_elewise@{cth\_sharding\_op\_elewise}}
+\index{cth\_sharding\_op\_elewise@{cth\_sharding\_op\_elewise}!sharder.h@{sharder.h}}
+\doxysubsubsection{\texorpdfstring{cth\_sharding\_op\_elewise()}{cth\_sharding\_op\_elewise()}}
+{\footnotesize\ttfamily void cth\+\_\+sharding\+\_\+op\+\_\+elewise (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op,  }\item[{\mbox{\hyperlink{consts_8h_a157c2065f4ca7bee275f51520e56a173}{thread\+\_\+n\+\_\+t}}}]{n\+\_\+shards,  }\item[{\mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}}) $\ast$}]{ops }\end{DoxyParamCaption})}
+
+Sharding an op\textquotesingle{}s inputs \& outputs for element-\/wise operation
+
+New memory allocation\+:
+\begin{DoxyItemize}
+\item A list of sharded input \& output tensors
+\item A list of sharded ops
+\end{DoxyItemize}
+
+Params\+:
+\begin{DoxyItemize}
+\item op\+: the target operator
+\item n\+\_\+shards\+: number of sharding pieces
+\item ops\+: sharded operator list to be appended
+\end{DoxyItemize}
+
+Return\+: List of sharded operator 
+\begin{DoxyEnumerate}
+\item Create sharded ops
+\item Prepare inbound \& outbound tensors for each sharded ops 2.\+1. Shard a tensor 2.\+2. Assign each sharded piece to corresponding sharded op
+\end{DoxyEnumerate}\mbox{\Hypertarget{sharder_8h_abd7e037d08e83352d34ded0de8a89cf6}\label{sharder_8h_abd7e037d08e83352d34ded0de8a89cf6}} 
+\index{sharder.h@{sharder.h}!cth\_sharding\_tensor\_elewise@{cth\_sharding\_tensor\_elewise}}
+\index{cth\_sharding\_tensor\_elewise@{cth\_sharding\_tensor\_elewise}!sharder.h@{sharder.h}}
+\doxysubsubsection{\texorpdfstring{cth\_sharding\_tensor\_elewise()}{cth\_sharding\_tensor\_elewise()}}
+{\footnotesize\ttfamily void cth\+\_\+sharding\+\_\+tensor\+\_\+elewise (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}} $\ast$}]{tensor,  }\item[{\mbox{\hyperlink{consts_8h_a157c2065f4ca7bee275f51520e56a173}{thread\+\_\+n\+\_\+t}}}]{n\+\_\+shards,  }\item[{\mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}}) $\ast$}]{tensors }\end{DoxyParamCaption})}
+
+Sharding a tensor for element-\/wise operator
+
+New memory allocation\+:
+\begin{DoxyItemize}
+\item A list of sharded tensors
+\end{DoxyItemize}
+
+Params\+:
+\begin{DoxyItemize}
+\item tensor\+: target tensor
+\item n\+\_\+shards\+: total number of sharding pieces
+\item tensors\+: sharded tensor list to be appended
+\end{DoxyItemize}
+
+Return\+: List of sharded tensors Shard a tensor into n\+\_\+shards tensors evenly, except the last one which will have all the rest values.
+
+Note\+: When sharding a tensor, we will ignore it\textquotesingle{}s dimension and view the tensor as a flattned 1D tensor.

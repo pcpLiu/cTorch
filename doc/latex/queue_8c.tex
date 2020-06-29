@@ -1,0 +1,127 @@
+\hypertarget{queue_8c}{}\doxysection{c\+Torch/queue.c File Reference}
+\label{queue_8c}\index{cTorch/queue.c@{cTorch/queue.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/queue.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/logger\+\_\+util.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/mem\+\_\+util.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+Include dependency graph for queue.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{queue_8c_acfa61d8491e548f52f7866d5239d8573}{impl\+\_\+new\+\_\+list\+\_\+item\+\_\+func}} (\mbox{\hyperlink{structCTorchQueueJob}{C\+Torch\+Queue\+Job}})
+\item 
+\mbox{\hyperlink{queue_8c_aec89b2001ac8878a45fbd889bc33d3fa}{impl\+\_\+new\+\_\+list\+\_\+func}} (\mbox{\hyperlink{structCTorchQueueJob}{C\+Torch\+Queue\+Job}})
+\item 
+\mbox{\hyperlink{queue_8c_a5ba452e70d44f86b79c319847bd98dfc}{impl\+\_\+insert\+\_\+list\+\_\+func}} (\mbox{\hyperlink{structCTorchQueueJob}{C\+Torch\+Queue\+Job}})
+\item 
+\mbox{\hyperlink{queue_8c_ac238bee1c15fe62aa098484babd244d9}{impl\+\_\+list\+\_\+contains\+\_\+data\+\_\+func}} (\mbox{\hyperlink{structCTorchQueueJob}{C\+Torch\+Queue\+Job}})
+\item 
+\mbox{\hyperlink{queue_8c_af790793c4e509312e008d246eec5530e}{impl\+\_\+list\+\_\+contains\+\_\+item\+\_\+func}} (\mbox{\hyperlink{structCTorchQueueJob}{C\+Torch\+Queue\+Job}})
+\item 
+\mbox{\hyperlink{queue_8c_a837ea8de2514f251387683fc25a18022}{impl\+\_\+list\+\_\+at\+\_\+func}} (\mbox{\hyperlink{structCTorchQueueJob}{C\+Torch\+Queue\+Job}})
+\item 
+\mbox{\hyperlink{queue_8c_a42fb01c04cce9b4354e06dd7422ef71c}{impl\+\_\+list\+\_\+pop\+\_\+func}} (\mbox{\hyperlink{structCTorchQueueJob}{C\+Torch\+Queue\+Job}})
+\item 
+\mbox{\hyperlink{queue_8c_a278e64a80876462a2a8bc2b63f2610ff}{impl\+\_\+free\+\_\+list\+\_\+func}} (\mbox{\hyperlink{structCTorchQueueJob}{C\+Torch\+Queue\+Job}})
+\item 
+\mbox{\hyperlink{queue_8c_a6cdd1b41832e8bf8b808ed0a550c227c}{impl\+\_\+list\+\_\+del\+\_\+func}} (\mbox{\hyperlink{structCTorchQueueJob}{C\+Torch\+Queue\+Job}})
+\item 
+\mbox{\hyperlink{queue_8c_adfc5594a910cc0d102bd9d7a91ac0d78}{impl\+\_\+new\+\_\+array\+\_\+func}} (\mbox{\hyperlink{structCTorchQueueJob}{C\+Torch\+Queue\+Job}})
+\item 
+\mbox{\hyperlink{queue_8c_a743789b1e34219a396610aa8232be662}{impl\+\_\+array\+\_\+at\+\_\+func}} (\mbox{\hyperlink{structCTorchQueueJob}{C\+Torch\+Queue\+Job}})
+\item 
+\mbox{\hyperlink{queue_8c_a9ea8c14f4140bb2051c244f5f1d8866d}{impl\+\_\+array\+\_\+set\+\_\+func}} (\mbox{\hyperlink{structCTorchQueueJob}{C\+Torch\+Queue\+Job}})
+\item 
+void \mbox{\hyperlink{queue_8c_ae02d2b25cdccbafa8aa0e18f2fba04a8}{set\+\_\+non\+\_\+block}} (int fd)
+\item 
+\mbox{\hyperlink{structCTorchQueue}{C\+Torch\+Queue}} $\ast$ \mbox{\hyperlink{queue_8c_a1b8fa7315acbf6fd4e47c7aff9d1362e}{cth\+\_\+new\+\_\+queue}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{queue_8c_a1b8fa7315acbf6fd4e47c7aff9d1362e}\label{queue_8c_a1b8fa7315acbf6fd4e47c7aff9d1362e}} 
+\index{queue.c@{queue.c}!cth\_new\_queue@{cth\_new\_queue}}
+\index{cth\_new\_queue@{cth\_new\_queue}!queue.c@{queue.c}}
+\doxysubsubsection{\texorpdfstring{cth\_new\_queue()}{cth\_new\_queue()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structCTorchQueue}{C\+Torch\+Queue}}$\ast$ cth\+\_\+new\+\_\+queue (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Create a new op queue \mbox{\Hypertarget{queue_8c_a743789b1e34219a396610aa8232be662}\label{queue_8c_a743789b1e34219a396610aa8232be662}} 
+\index{queue.c@{queue.c}!impl\_array\_at\_func@{impl\_array\_at\_func}}
+\index{impl\_array\_at\_func@{impl\_array\_at\_func}!queue.c@{queue.c}}
+\doxysubsubsection{\texorpdfstring{impl\_array\_at\_func()}{impl\_array\_at\_func()}}
+{\footnotesize\ttfamily impl\+\_\+array\+\_\+at\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchQueueJob}{C\+Torch\+Queue\+Job}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{queue_8c_a9ea8c14f4140bb2051c244f5f1d8866d}\label{queue_8c_a9ea8c14f4140bb2051c244f5f1d8866d}} 
+\index{queue.c@{queue.c}!impl\_array\_set\_func@{impl\_array\_set\_func}}
+\index{impl\_array\_set\_func@{impl\_array\_set\_func}!queue.c@{queue.c}}
+\doxysubsubsection{\texorpdfstring{impl\_array\_set\_func()}{impl\_array\_set\_func()}}
+{\footnotesize\ttfamily impl\+\_\+array\+\_\+set\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchQueueJob}{C\+Torch\+Queue\+Job}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{queue_8c_a278e64a80876462a2a8bc2b63f2610ff}\label{queue_8c_a278e64a80876462a2a8bc2b63f2610ff}} 
+\index{queue.c@{queue.c}!impl\_free\_list\_func@{impl\_free\_list\_func}}
+\index{impl\_free\_list\_func@{impl\_free\_list\_func}!queue.c@{queue.c}}
+\doxysubsubsection{\texorpdfstring{impl\_free\_list\_func()}{impl\_free\_list\_func()}}
+{\footnotesize\ttfamily impl\+\_\+free\+\_\+list\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchQueueJob}{C\+Torch\+Queue\+Job}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{queue_8c_a5ba452e70d44f86b79c319847bd98dfc}\label{queue_8c_a5ba452e70d44f86b79c319847bd98dfc}} 
+\index{queue.c@{queue.c}!impl\_insert\_list\_func@{impl\_insert\_list\_func}}
+\index{impl\_insert\_list\_func@{impl\_insert\_list\_func}!queue.c@{queue.c}}
+\doxysubsubsection{\texorpdfstring{impl\_insert\_list\_func()}{impl\_insert\_list\_func()}}
+{\footnotesize\ttfamily impl\+\_\+insert\+\_\+list\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchQueueJob}{C\+Torch\+Queue\+Job}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{queue_8c_a837ea8de2514f251387683fc25a18022}\label{queue_8c_a837ea8de2514f251387683fc25a18022}} 
+\index{queue.c@{queue.c}!impl\_list\_at\_func@{impl\_list\_at\_func}}
+\index{impl\_list\_at\_func@{impl\_list\_at\_func}!queue.c@{queue.c}}
+\doxysubsubsection{\texorpdfstring{impl\_list\_at\_func()}{impl\_list\_at\_func()}}
+{\footnotesize\ttfamily impl\+\_\+list\+\_\+at\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchQueueJob}{C\+Torch\+Queue\+Job}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{queue_8c_ac238bee1c15fe62aa098484babd244d9}\label{queue_8c_ac238bee1c15fe62aa098484babd244d9}} 
+\index{queue.c@{queue.c}!impl\_list\_contains\_data\_func@{impl\_list\_contains\_data\_func}}
+\index{impl\_list\_contains\_data\_func@{impl\_list\_contains\_data\_func}!queue.c@{queue.c}}
+\doxysubsubsection{\texorpdfstring{impl\_list\_contains\_data\_func()}{impl\_list\_contains\_data\_func()}}
+{\footnotesize\ttfamily impl\+\_\+list\+\_\+contains\+\_\+data\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchQueueJob}{C\+Torch\+Queue\+Job}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{queue_8c_af790793c4e509312e008d246eec5530e}\label{queue_8c_af790793c4e509312e008d246eec5530e}} 
+\index{queue.c@{queue.c}!impl\_list\_contains\_item\_func@{impl\_list\_contains\_item\_func}}
+\index{impl\_list\_contains\_item\_func@{impl\_list\_contains\_item\_func}!queue.c@{queue.c}}
+\doxysubsubsection{\texorpdfstring{impl\_list\_contains\_item\_func()}{impl\_list\_contains\_item\_func()}}
+{\footnotesize\ttfamily impl\+\_\+list\+\_\+contains\+\_\+item\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchQueueJob}{C\+Torch\+Queue\+Job}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{queue_8c_a6cdd1b41832e8bf8b808ed0a550c227c}\label{queue_8c_a6cdd1b41832e8bf8b808ed0a550c227c}} 
+\index{queue.c@{queue.c}!impl\_list\_del\_func@{impl\_list\_del\_func}}
+\index{impl\_list\_del\_func@{impl\_list\_del\_func}!queue.c@{queue.c}}
+\doxysubsubsection{\texorpdfstring{impl\_list\_del\_func()}{impl\_list\_del\_func()}}
+{\footnotesize\ttfamily impl\+\_\+list\+\_\+del\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchQueueJob}{C\+Torch\+Queue\+Job}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{queue_8c_a42fb01c04cce9b4354e06dd7422ef71c}\label{queue_8c_a42fb01c04cce9b4354e06dd7422ef71c}} 
+\index{queue.c@{queue.c}!impl\_list\_pop\_func@{impl\_list\_pop\_func}}
+\index{impl\_list\_pop\_func@{impl\_list\_pop\_func}!queue.c@{queue.c}}
+\doxysubsubsection{\texorpdfstring{impl\_list\_pop\_func()}{impl\_list\_pop\_func()}}
+{\footnotesize\ttfamily impl\+\_\+list\+\_\+pop\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchQueueJob}{C\+Torch\+Queue\+Job}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{queue_8c_adfc5594a910cc0d102bd9d7a91ac0d78}\label{queue_8c_adfc5594a910cc0d102bd9d7a91ac0d78}} 
+\index{queue.c@{queue.c}!impl\_new\_array\_func@{impl\_new\_array\_func}}
+\index{impl\_new\_array\_func@{impl\_new\_array\_func}!queue.c@{queue.c}}
+\doxysubsubsection{\texorpdfstring{impl\_new\_array\_func()}{impl\_new\_array\_func()}}
+{\footnotesize\ttfamily impl\+\_\+new\+\_\+array\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchQueueJob}{C\+Torch\+Queue\+Job}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{queue_8c_aec89b2001ac8878a45fbd889bc33d3fa}\label{queue_8c_aec89b2001ac8878a45fbd889bc33d3fa}} 
+\index{queue.c@{queue.c}!impl\_new\_list\_func@{impl\_new\_list\_func}}
+\index{impl\_new\_list\_func@{impl\_new\_list\_func}!queue.c@{queue.c}}
+\doxysubsubsection{\texorpdfstring{impl\_new\_list\_func()}{impl\_new\_list\_func()}}
+{\footnotesize\ttfamily impl\+\_\+new\+\_\+list\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchQueueJob}{C\+Torch\+Queue\+Job}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{queue_8c_acfa61d8491e548f52f7866d5239d8573}\label{queue_8c_acfa61d8491e548f52f7866d5239d8573}} 
+\index{queue.c@{queue.c}!impl\_new\_list\_item\_func@{impl\_new\_list\_item\_func}}
+\index{impl\_new\_list\_item\_func@{impl\_new\_list\_item\_func}!queue.c@{queue.c}}
+\doxysubsubsection{\texorpdfstring{impl\_new\_list\_item\_func()}{impl\_new\_list\_item\_func()}}
+{\footnotesize\ttfamily impl\+\_\+new\+\_\+list\+\_\+item\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchQueueJob}{C\+Torch\+Queue\+Job}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{queue_8c_ae02d2b25cdccbafa8aa0e18f2fba04a8}\label{queue_8c_ae02d2b25cdccbafa8aa0e18f2fba04a8}} 
+\index{queue.c@{queue.c}!set\_non\_block@{set\_non\_block}}
+\index{set\_non\_block@{set\_non\_block}!queue.c@{queue.c}}
+\doxysubsubsection{\texorpdfstring{set\_non\_block()}{set\_non\_block()}}
+{\footnotesize\ttfamily void set\+\_\+non\+\_\+block (\begin{DoxyParamCaption}\item[{int}]{fd }\end{DoxyParamCaption})}
+

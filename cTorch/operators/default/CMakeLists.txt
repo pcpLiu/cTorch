@@ -38,6 +38,10 @@ set(ops_default_all
     operators/default/op_log1p_default.c
     operators/default/op_log2_default.c
     operators/default/op_logical_and_default.c
+    operators/default/op_logical_not_default.c
+    operators/default/op_logical_or_default.c
+    operators/default/op_logical_xor_default.c
+    operators/default/op_mul_default.c
 )
 
 ################################################################################

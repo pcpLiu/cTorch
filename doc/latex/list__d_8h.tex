@@ -1,0 +1,824 @@
+\hypertarget{list__d_8h}{}\doxysection{c\+Torch/list\+\_\+d.h File Reference}
+\label{list__d_8h}\index{cTorch/list\_d.h@{cTorch/list\_d.h}}
+{\ttfamily \#include \char`\"{}c\+Torch/consts.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/logger\+\_\+util.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/mem\+\_\+util.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+Include dependency graph for list\+\_\+d.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}{List\+Item}}(data\+\_\+type)~List\+Item\#\#data\+\_\+type
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a2c09f6fb9c9e71a675bf9a245a0c7760}{List\+Item\+Struct}}(data\+\_\+type)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a41ac4ed0e5995780dc97753186ced1e9}{def\+\_\+list\+\_\+item}}(data\+\_\+type)~typedef \mbox{\hyperlink{list__d_8h_a2c09f6fb9c9e71a675bf9a245a0c7760}{List\+Item\+Struct}}(data\+\_\+type) \mbox{\hyperlink{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}{List\+Item}}(data\+\_\+type)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a001ff51a8b47d4eaf514c17e99483760}{new\+\_\+list\+\_\+item}}(data\+\_\+type)~new\+\_\+list\+\_\+item\#\#data\+\_\+type
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a5513723b22cbcae83f326fef830f0df5}{\+\_\+declare\+\_\+new\+\_\+list\+\_\+item\+\_\+func}}(data\+\_\+type,  func\+\_\+name)~\mbox{\hyperlink{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}{List\+Item}}(data\+\_\+type) $\ast$ func\+\_\+name(data\+\_\+type $\ast$)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_aff3790484b0a4af439ccabdff123215b}{declare\+\_\+new\+\_\+list\+\_\+item\+\_\+func}}(data\+\_\+type)~\mbox{\hyperlink{list__d_8h_a5513723b22cbcae83f326fef830f0df5}{\+\_\+declare\+\_\+new\+\_\+list\+\_\+item\+\_\+func}}(data\+\_\+type, \mbox{\hyperlink{list__d_8h_a001ff51a8b47d4eaf514c17e99483760}{new\+\_\+list\+\_\+item}}(data\+\_\+type))
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a2465540fa7b130f57053d59c64a6bdaf}{\+\_\+impl\+\_\+new\+\_\+list\+\_\+item\+\_\+func}}(data\+\_\+type,  list\+\_\+type,  func\+\_\+name)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a9465c11307cfeb5cdc9bbab9583c093d}{impl\+\_\+new\+\_\+list\+\_\+item\+\_\+func}}(data\+\_\+type)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\+\_\+type)~List\#\#data\+\_\+type
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a5208b099758fdcf5078a05c5a2aad4e7}{List\+Struct}}(data\+\_\+type)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a9ce4f9dda34a01d714a5575c39a78710}{def\+\_\+list}}(data\+\_\+type)~typedef \mbox{\hyperlink{list__d_8h_a5208b099758fdcf5078a05c5a2aad4e7}{List\+Struct}}(data\+\_\+type) \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\+\_\+type)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_afb59ed2f8308a6aeabfc10dd7c46fab9}{new\+\_\+list}}(data\+\_\+type)~new\+\_\+list\#\#data\+\_\+type
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a9596ca08c93befad60084ce12853126c}{\+\_\+declare\+\_\+new\+\_\+list\+\_\+func}}(list\+\_\+type,  func\+\_\+name)~list\+\_\+type $\ast$func\+\_\+name()
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a048809f5dd094c15175e3c8c7ad82887}{declare\+\_\+new\+\_\+list\+\_\+func}}(data\+\_\+type)~\mbox{\hyperlink{list__d_8h_a9596ca08c93befad60084ce12853126c}{\+\_\+declare\+\_\+new\+\_\+list\+\_\+func}}(\mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\+\_\+type), \mbox{\hyperlink{list__d_8h_afb59ed2f8308a6aeabfc10dd7c46fab9}{new\+\_\+list}}(data\+\_\+type))
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a429dd2fa4320a91d9876af3e12351b57}{\+\_\+impl\+\_\+new\+\_\+list\+\_\+func}}(list\+\_\+type,  func\+\_\+name)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a1e5180e4dbe391316d0308f7e4b81ef1}{impl\+\_\+new\+\_\+list\+\_\+func}}(data\+\_\+type)~\mbox{\hyperlink{list__d_8h_a429dd2fa4320a91d9876af3e12351b57}{\+\_\+impl\+\_\+new\+\_\+list\+\_\+func}}(\mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\+\_\+type), \mbox{\hyperlink{list__d_8h_afb59ed2f8308a6aeabfc10dd7c46fab9}{new\+\_\+list}}(data\+\_\+type))
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a4cb4c4287a041a6db641ea206a581f15}{insert\+\_\+list}}(data\+\_\+type)~insert\+\_\+list\+\_\+\#\#data\+\_\+type
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a5c8bfb5aebed0a4643194718f3f782b8}{\+\_\+declare\+\_\+insert\+\_\+list\+\_\+func}}(data\+\_\+type,  item\+\_\+type,  list\+\_\+type,  func\+\_\+name)~item\+\_\+type $\ast$func\+\_\+name(list\+\_\+type $\ast$, data\+\_\+type $\ast$)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a1421f54595a6ce31a27aef4a05dd0373}{declare\+\_\+insert\+\_\+list\+\_\+func}}(data\+\_\+type)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_af68f4572bec8bccbad938331faf02298}{\+\_\+impl\+\_\+insert\+\_\+list\+\_\+func}}(data\+\_\+type,  item\+\_\+type,  list\+\_\+type,  func\+\_\+name)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a206c4f3c9af89b692a48f849b480aa6f}{impl\+\_\+insert\+\_\+list\+\_\+func}}(data\+\_\+type)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a55e5377af54685a808236569db9ff1aa}{list\+\_\+contains\+\_\+data}}(data\+\_\+type)~list\+\_\+contains\+\_\+data\+\_\+\#\#data\+\_\+type
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a6ab88b34613a1e0dfdaa5c9d94f889dc}{\+\_\+declare\+\_\+list\+\_\+contains\+\_\+data\+\_\+func}}( data\+\_\+type,  item\+\_\+type,  list\+\_\+type,  func\+\_\+name)~item\+\_\+type $\ast$func\+\_\+name(list\+\_\+type $\ast$, data\+\_\+type $\ast$)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_aa9308cd0d2de4fc54016740dba028753}{declare\+\_\+list\+\_\+contains\+\_\+data\+\_\+func}}(data\+\_\+type)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_ae4337132cdbb74e9fea3e4b5d70be715}{\+\_\+impl\+\_\+list\+\_\+contains\+\_\+data\+\_\+func}}( data\+\_\+type,  item\+\_\+type,  list\+\_\+type,  func\+\_\+name)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_aa71a00975ac47064c13dee41462a2cbc}{impl\+\_\+list\+\_\+contains\+\_\+data\+\_\+func}}(data\+\_\+type)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_ab08ba2bb6ac3e5a93b0a93f46b16cd32}{list\+\_\+contains\+\_\+item}}(data\+\_\+type)~list\+\_\+contains\+\_\+item\+\_\+\#\#data\+\_\+type
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a055520a0488a46f1c1d5134b513ca4a2}{\+\_\+declare\+\_\+list\+\_\+contains\+\_\+item\+\_\+func}}(item\+\_\+type,  list\+\_\+type,  func\+\_\+name)~bool func\+\_\+name(list\+\_\+type $\ast$, item\+\_\+type $\ast$)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_abd1f268b65e9d38a627b69993a336a6a}{declare\+\_\+list\+\_\+contains\+\_\+item\+\_\+func}}(data\+\_\+type)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a9df9514fae02742a6804d5bf585be24e}{\+\_\+impl\+\_\+list\+\_\+contains\+\_\+item\+\_\+func}}(item\+\_\+type,  list\+\_\+type,  func\+\_\+name)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_aaa125d1dc93a70a2a1b3f22e26ac0f99}{impl\+\_\+list\+\_\+contains\+\_\+item\+\_\+func}}(data\+\_\+type)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_af24c4dbe2985b366c0962ee26df935cc}{list\+\_\+pop}}(data\+\_\+type)~list\+\_\+pop\+\_\+\#\#data\+\_\+type
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a3f5c5660ef28f6542bc29b1d13ec94ce}{\+\_\+declare\+\_\+list\+\_\+pop\+\_\+func}}(data\+\_\+type,  list\+\_\+type,  func\+\_\+name)~data\+\_\+type $\ast$func\+\_\+name(list\+\_\+type $\ast$)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a23d4d62d285526344ae226b8dde1dc15}{declare\+\_\+list\+\_\+pop\+\_\+func}}(data\+\_\+type)~\mbox{\hyperlink{list__d_8h_a3f5c5660ef28f6542bc29b1d13ec94ce}{\+\_\+declare\+\_\+list\+\_\+pop\+\_\+func}}(data\+\_\+type, \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\+\_\+type), \mbox{\hyperlink{list__d_8h_af24c4dbe2985b366c0962ee26df935cc}{list\+\_\+pop}}(data\+\_\+type))
+\item 
+\#define \mbox{\hyperlink{list__d_8h_ab320e104a585f9cc216bc42f6ac6ed1d}{\+\_\+impl\+\_\+list\+\_\+pop\+\_\+func}}(data\+\_\+type,  list\+\_\+type,  func\+\_\+name)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a17641cdb02328bdd812027fd0d7a0087}{impl\+\_\+list\+\_\+pop\+\_\+func}}(data\+\_\+type)~\mbox{\hyperlink{list__d_8h_ab320e104a585f9cc216bc42f6ac6ed1d}{\+\_\+impl\+\_\+list\+\_\+pop\+\_\+func}}(data\+\_\+type, \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\+\_\+type), \mbox{\hyperlink{list__d_8h_af24c4dbe2985b366c0962ee26df935cc}{list\+\_\+pop}}(data\+\_\+type))
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a5621b9f407c147912e9bea229fab0202}{list\+\_\+at}}(data\+\_\+type)~list\+\_\+at\+\_\+\#\#data\+\_\+type
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a015e531875494ee768c5f7b7416e999b}{\+\_\+declare\+\_\+list\+\_\+at\+\_\+func}}(data\+\_\+type,  list\+\_\+type,  func\+\_\+name)~data\+\_\+type $\ast$func\+\_\+name(list\+\_\+type $\ast$list, \mbox{\hyperlink{list__d_8h_a14351ea53983e3c71f4f15a63c65774c}{list\+\_\+index\+\_\+t}} index)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a52b29b0ccc6a910f649290519ffd8732}{declare\+\_\+list\+\_\+at\+\_\+func}}(data\+\_\+type)~\mbox{\hyperlink{list__d_8h_a015e531875494ee768c5f7b7416e999b}{\+\_\+declare\+\_\+list\+\_\+at\+\_\+func}}(data\+\_\+type, \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\+\_\+type), \mbox{\hyperlink{list__d_8h_a5621b9f407c147912e9bea229fab0202}{list\+\_\+at}}(data\+\_\+type))
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a43918ba3ebeaf8ba83a6f1b5cfacb267}{\+\_\+impl\+\_\+list\+\_\+at\+\_\+func}}(data\+\_\+type,  list\+\_\+type,  func\+\_\+name)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a34922487287f5b7d969248c0aa2c088c}{impl\+\_\+list\+\_\+at\+\_\+func}}(data\+\_\+type)~\mbox{\hyperlink{list__d_8h_a43918ba3ebeaf8ba83a6f1b5cfacb267}{\+\_\+impl\+\_\+list\+\_\+at\+\_\+func}}(data\+\_\+type, \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\+\_\+type), \mbox{\hyperlink{list__d_8h_a5621b9f407c147912e9bea229fab0202}{list\+\_\+at}}(data\+\_\+type))
+\item 
+\#define \mbox{\hyperlink{list__d_8h_af921a609d16a9ffbd8998e651f23dae7}{free\+\_\+list}}(data\+\_\+type)~free\+\_\+list\+\_\+\#\#data\+\_\+type
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a9473b33c81706f6e46ed9c7f40d01675}{\+\_\+declare\+\_\+free\+\_\+list\+\_\+func}}(data\+\_\+type,  list\+\_\+type,  func\+\_\+name)~void func\+\_\+name(list\+\_\+type $\ast$list)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a396bbc734305830ed8e8d332bc01f218}{declare\+\_\+free\+\_\+list\+\_\+func}}(data\+\_\+type)~\mbox{\hyperlink{list__d_8h_a9473b33c81706f6e46ed9c7f40d01675}{\+\_\+declare\+\_\+free\+\_\+list\+\_\+func}}(data\+\_\+type, \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\+\_\+type), \mbox{\hyperlink{list__d_8h_af921a609d16a9ffbd8998e651f23dae7}{free\+\_\+list}}(data\+\_\+type))
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a8ff3e062d275a0e8feb42ec51d248a2e}{\+\_\+impl\+\_\+free\+\_\+list\+\_\+func}}(data\+\_\+type,  list\+\_\+type,  func\+\_\+name)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a00d022badaa4102d65564430fea673a9}{impl\+\_\+free\+\_\+list\+\_\+func}}(data\+\_\+type)~\mbox{\hyperlink{list__d_8h_a8ff3e062d275a0e8feb42ec51d248a2e}{\+\_\+impl\+\_\+free\+\_\+list\+\_\+func}}(data\+\_\+type, \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\+\_\+type), \mbox{\hyperlink{list__d_8h_af921a609d16a9ffbd8998e651f23dae7}{free\+\_\+list}}(data\+\_\+type))
+\item 
+\#define \mbox{\hyperlink{list__d_8h_aedacf80b52ed1dfd5f447d830abf8c03}{free\+\_\+list\+\_\+deep}}(data\+\_\+type)~free\+\_\+list\+\_\+deep\+\_\+\#\#data\+\_\+type
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a43b66d2bd0c816451587fe8172362f92}{\+\_\+declare\+\_\+free\+\_\+list\+\_\+deep\+\_\+func}}(data\+\_\+type,  list\+\_\+type,  func\+\_\+name)~void func\+\_\+name(list\+\_\+type $\ast$list)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_ace368d3127328613d18bdbc048728c0d}{declare\+\_\+free\+\_\+list\+\_\+deep\+\_\+func}}(data\+\_\+type)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a155287135480d1ebe36636e4320fa3b8}{\+\_\+impl\+\_\+free\+\_\+list\+\_\+deep\+\_\+func}}( data\+\_\+type,  list\+\_\+type,  data\+\_\+free\+\_\+func,  func\+\_\+name)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_ab8c70f57612c06934d620968c0387287}{impl\+\_\+free\+\_\+list\+\_\+deep\+\_\+func}}(data\+\_\+type)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a1bf728906db25f3b2880d642577a9467}{list\+\_\+del}}(data\+\_\+type)~list\+\_\+del\+\_\+\#\#data\+\_\+type
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a56cabbedb29c8db3e5ac3125e79301de}{\+\_\+declare\+\_\+list\+\_\+del\+\_\+func}}(data\+\_\+type,  list\+\_\+type,  func\+\_\+name)~void func\+\_\+name(list\+\_\+type $\ast$list, const data\+\_\+type $\ast$data)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_af7db6a1ba188ba2d4bc8c1dcff944d6d}{declare\+\_\+list\+\_\+del\+\_\+func}}(data\+\_\+type)~\mbox{\hyperlink{list__d_8h_a56cabbedb29c8db3e5ac3125e79301de}{\+\_\+declare\+\_\+list\+\_\+del\+\_\+func}}(data\+\_\+type, \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\+\_\+type), \mbox{\hyperlink{list__d_8h_a1bf728906db25f3b2880d642577a9467}{list\+\_\+del}}(data\+\_\+type))
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a08ed49669e9f7e65dd4b0f026d803fa6}{\+\_\+impl\+\_\+list\+\_\+del\+\_\+func}}(data\+\_\+type,  list\+\_\+type,  func\+\_\+name)
+\item 
+\#define \mbox{\hyperlink{list__d_8h_a2cab38530ed4c0c6c8130e320f40ee13}{impl\+\_\+list\+\_\+del\+\_\+func}}(data\+\_\+type)~\mbox{\hyperlink{list__d_8h_a08ed49669e9f7e65dd4b0f026d803fa6}{\+\_\+impl\+\_\+list\+\_\+del\+\_\+func}}(data\+\_\+type, \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\+\_\+type), \mbox{\hyperlink{list__d_8h_a1bf728906db25f3b2880d642577a9467}{list\+\_\+del}}(data\+\_\+type))
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint32\+\_\+t \mbox{\hyperlink{list__d_8h_a14351ea53983e3c71f4f15a63c65774c}{list\+\_\+index\+\_\+t}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{list__d_8h_a43b66d2bd0c816451587fe8172362f92}\label{list__d_8h_a43b66d2bd0c816451587fe8172362f92}} 
+\index{list\_d.h@{list\_d.h}!\_declare\_free\_list\_deep\_func@{\_declare\_free\_list\_deep\_func}}
+\index{\_declare\_free\_list\_deep\_func@{\_declare\_free\_list\_deep\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{\_declare\_free\_list\_deep\_func}{\_declare\_free\_list\_deep\_func}}
+{\footnotesize\ttfamily \#define \+\_\+declare\+\_\+free\+\_\+list\+\_\+deep\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type,  }\item[{}]{list\+\_\+type,  }\item[{}]{func\+\_\+name }\end{DoxyParamCaption})~void func\+\_\+name(list\+\_\+type $\ast$list)}
+
+\mbox{\Hypertarget{list__d_8h_a9473b33c81706f6e46ed9c7f40d01675}\label{list__d_8h_a9473b33c81706f6e46ed9c7f40d01675}} 
+\index{list\_d.h@{list\_d.h}!\_declare\_free\_list\_func@{\_declare\_free\_list\_func}}
+\index{\_declare\_free\_list\_func@{\_declare\_free\_list\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{\_declare\_free\_list\_func}{\_declare\_free\_list\_func}}
+{\footnotesize\ttfamily \#define \+\_\+declare\+\_\+free\+\_\+list\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type,  }\item[{}]{list\+\_\+type,  }\item[{}]{func\+\_\+name }\end{DoxyParamCaption})~void func\+\_\+name(list\+\_\+type $\ast$list)}
+
+\mbox{\Hypertarget{list__d_8h_a5c8bfb5aebed0a4643194718f3f782b8}\label{list__d_8h_a5c8bfb5aebed0a4643194718f3f782b8}} 
+\index{list\_d.h@{list\_d.h}!\_declare\_insert\_list\_func@{\_declare\_insert\_list\_func}}
+\index{\_declare\_insert\_list\_func@{\_declare\_insert\_list\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{\_declare\_insert\_list\_func}{\_declare\_insert\_list\_func}}
+{\footnotesize\ttfamily \#define \+\_\+declare\+\_\+insert\+\_\+list\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type,  }\item[{}]{item\+\_\+type,  }\item[{}]{list\+\_\+type,  }\item[{}]{func\+\_\+name }\end{DoxyParamCaption})~item\+\_\+type $\ast$func\+\_\+name(list\+\_\+type $\ast$, data\+\_\+type $\ast$)}
+
+\mbox{\Hypertarget{list__d_8h_a015e531875494ee768c5f7b7416e999b}\label{list__d_8h_a015e531875494ee768c5f7b7416e999b}} 
+\index{list\_d.h@{list\_d.h}!\_declare\_list\_at\_func@{\_declare\_list\_at\_func}}
+\index{\_declare\_list\_at\_func@{\_declare\_list\_at\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{\_declare\_list\_at\_func}{\_declare\_list\_at\_func}}
+{\footnotesize\ttfamily \#define \+\_\+declare\+\_\+list\+\_\+at\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type,  }\item[{}]{list\+\_\+type,  }\item[{}]{func\+\_\+name }\end{DoxyParamCaption})~data\+\_\+type $\ast$func\+\_\+name(list\+\_\+type $\ast$list, \mbox{\hyperlink{list__d_8h_a14351ea53983e3c71f4f15a63c65774c}{list\+\_\+index\+\_\+t}} index)}
+
+\mbox{\Hypertarget{list__d_8h_a6ab88b34613a1e0dfdaa5c9d94f889dc}\label{list__d_8h_a6ab88b34613a1e0dfdaa5c9d94f889dc}} 
+\index{list\_d.h@{list\_d.h}!\_declare\_list\_contains\_data\_func@{\_declare\_list\_contains\_data\_func}}
+\index{\_declare\_list\_contains\_data\_func@{\_declare\_list\_contains\_data\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{\_declare\_list\_contains\_data\_func}{\_declare\_list\_contains\_data\_func}}
+{\footnotesize\ttfamily \#define \+\_\+declare\+\_\+list\+\_\+contains\+\_\+data\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type,  }\item[{}]{item\+\_\+type,  }\item[{}]{list\+\_\+type,  }\item[{}]{func\+\_\+name }\end{DoxyParamCaption})~item\+\_\+type $\ast$func\+\_\+name(list\+\_\+type $\ast$, data\+\_\+type $\ast$)}
+
+\mbox{\Hypertarget{list__d_8h_a055520a0488a46f1c1d5134b513ca4a2}\label{list__d_8h_a055520a0488a46f1c1d5134b513ca4a2}} 
+\index{list\_d.h@{list\_d.h}!\_declare\_list\_contains\_item\_func@{\_declare\_list\_contains\_item\_func}}
+\index{\_declare\_list\_contains\_item\_func@{\_declare\_list\_contains\_item\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{\_declare\_list\_contains\_item\_func}{\_declare\_list\_contains\_item\_func}}
+{\footnotesize\ttfamily \#define \+\_\+declare\+\_\+list\+\_\+contains\+\_\+item\+\_\+func(\begin{DoxyParamCaption}\item[{}]{item\+\_\+type,  }\item[{}]{list\+\_\+type,  }\item[{}]{func\+\_\+name }\end{DoxyParamCaption})~bool func\+\_\+name(list\+\_\+type $\ast$, item\+\_\+type $\ast$)}
+
+\mbox{\Hypertarget{list__d_8h_a56cabbedb29c8db3e5ac3125e79301de}\label{list__d_8h_a56cabbedb29c8db3e5ac3125e79301de}} 
+\index{list\_d.h@{list\_d.h}!\_declare\_list\_del\_func@{\_declare\_list\_del\_func}}
+\index{\_declare\_list\_del\_func@{\_declare\_list\_del\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{\_declare\_list\_del\_func}{\_declare\_list\_del\_func}}
+{\footnotesize\ttfamily \#define \+\_\+declare\+\_\+list\+\_\+del\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type,  }\item[{}]{list\+\_\+type,  }\item[{}]{func\+\_\+name }\end{DoxyParamCaption})~void func\+\_\+name(list\+\_\+type $\ast$list, const data\+\_\+type $\ast$data)}
+
+\mbox{\Hypertarget{list__d_8h_a3f5c5660ef28f6542bc29b1d13ec94ce}\label{list__d_8h_a3f5c5660ef28f6542bc29b1d13ec94ce}} 
+\index{list\_d.h@{list\_d.h}!\_declare\_list\_pop\_func@{\_declare\_list\_pop\_func}}
+\index{\_declare\_list\_pop\_func@{\_declare\_list\_pop\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{\_declare\_list\_pop\_func}{\_declare\_list\_pop\_func}}
+{\footnotesize\ttfamily \#define \+\_\+declare\+\_\+list\+\_\+pop\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type,  }\item[{}]{list\+\_\+type,  }\item[{}]{func\+\_\+name }\end{DoxyParamCaption})~data\+\_\+type $\ast$func\+\_\+name(list\+\_\+type $\ast$)}
+
+\mbox{\Hypertarget{list__d_8h_a9596ca08c93befad60084ce12853126c}\label{list__d_8h_a9596ca08c93befad60084ce12853126c}} 
+\index{list\_d.h@{list\_d.h}!\_declare\_new\_list\_func@{\_declare\_new\_list\_func}}
+\index{\_declare\_new\_list\_func@{\_declare\_new\_list\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{\_declare\_new\_list\_func}{\_declare\_new\_list\_func}}
+{\footnotesize\ttfamily \#define \+\_\+declare\+\_\+new\+\_\+list\+\_\+func(\begin{DoxyParamCaption}\item[{}]{list\+\_\+type,  }\item[{}]{func\+\_\+name }\end{DoxyParamCaption})~list\+\_\+type $\ast$func\+\_\+name()}
+
+\mbox{\Hypertarget{list__d_8h_a5513723b22cbcae83f326fef830f0df5}\label{list__d_8h_a5513723b22cbcae83f326fef830f0df5}} 
+\index{list\_d.h@{list\_d.h}!\_declare\_new\_list\_item\_func@{\_declare\_new\_list\_item\_func}}
+\index{\_declare\_new\_list\_item\_func@{\_declare\_new\_list\_item\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{\_declare\_new\_list\_item\_func}{\_declare\_new\_list\_item\_func}}
+{\footnotesize\ttfamily \#define \+\_\+declare\+\_\+new\+\_\+list\+\_\+item\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type,  }\item[{}]{func\+\_\+name }\end{DoxyParamCaption})~\mbox{\hyperlink{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}{List\+Item}}(data\+\_\+type) $\ast$ func\+\_\+name(data\+\_\+type $\ast$)}
+
+\mbox{\Hypertarget{list__d_8h_a155287135480d1ebe36636e4320fa3b8}\label{list__d_8h_a155287135480d1ebe36636e4320fa3b8}} 
+\index{list\_d.h@{list\_d.h}!\_impl\_free\_list\_deep\_func@{\_impl\_free\_list\_deep\_func}}
+\index{\_impl\_free\_list\_deep\_func@{\_impl\_free\_list\_deep\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{\_impl\_free\_list\_deep\_func}{\_impl\_free\_list\_deep\_func}}
+{\footnotesize\ttfamily \#define \+\_\+impl\+\_\+free\+\_\+list\+\_\+deep\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type,  }\item[{}]{list\+\_\+type,  }\item[{}]{data\+\_\+free\+\_\+func,  }\item[{}]{func\+\_\+name }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordtype}{void} func\_name(list\_type *list) \{                                            \(\backslash\)}
+\DoxyCodeLine{    FAIL\_NULL\_PTR(list);                                                       \(\backslash\)}
+\DoxyCodeLine{    while (list-\/>size > 0) \{                                                   \(\backslash\)}
+\DoxyCodeLine{      data\_type *data = \mbox{\hyperlink{list__d_8h_af24c4dbe2985b366c0962ee26df935cc}{list\_pop}}(data\_type)(list);                             \(\backslash\)}
+\DoxyCodeLine{      data\_free\_func(data);                                                    \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{    FREE(list);                                                                \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{list__d_8h_a8ff3e062d275a0e8feb42ec51d248a2e}\label{list__d_8h_a8ff3e062d275a0e8feb42ec51d248a2e}} 
+\index{list\_d.h@{list\_d.h}!\_impl\_free\_list\_func@{\_impl\_free\_list\_func}}
+\index{\_impl\_free\_list\_func@{\_impl\_free\_list\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{\_impl\_free\_list\_func}{\_impl\_free\_list\_func}}
+{\footnotesize\ttfamily \#define \+\_\+impl\+\_\+free\+\_\+list\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type,  }\item[{}]{list\+\_\+type,  }\item[{}]{func\+\_\+name }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordtype}{void} func\_name(list\_type *list) \{                                            \(\backslash\)}
+\DoxyCodeLine{    FAIL\_NULL\_PTR(list);                                                       \(\backslash\)}
+\DoxyCodeLine{    while (list-\/>size > 0) \{                                                   \(\backslash\)}
+\DoxyCodeLine{      list\_pop(data\_type)(list);                                               \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{    FREE(list);                                                                \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{list__d_8h_af68f4572bec8bccbad938331faf02298}\label{list__d_8h_af68f4572bec8bccbad938331faf02298}} 
+\index{list\_d.h@{list\_d.h}!\_impl\_insert\_list\_func@{\_impl\_insert\_list\_func}}
+\index{\_impl\_insert\_list\_func@{\_impl\_insert\_list\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{\_impl\_insert\_list\_func}{\_impl\_insert\_list\_func}}
+{\footnotesize\ttfamily \#define \+\_\+impl\+\_\+insert\+\_\+list\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type,  }\item[{}]{item\+\_\+type,  }\item[{}]{list\+\_\+type,  }\item[{}]{func\+\_\+name }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  item\_type *func\_name(list\_type *list, data\_type *data) \{                     \(\backslash\)}
+\DoxyCodeLine{    FAIL\_NULL\_PTR(list);                                                       \(\backslash\)}
+\DoxyCodeLine{    FAIL\_NULL\_PTR(data);                                                       \(\backslash\)}
+\DoxyCodeLine{    ListItem(data\_type) *item = \mbox{\hyperlink{list__d_8h_a001ff51a8b47d4eaf514c17e99483760}{new\_list\_item}}(data\_type)(data);                \(\backslash\)}
+\DoxyCodeLine{    if (list-\/>size == 0) \{                                                     \(\backslash\)}
+\DoxyCodeLine{      list-\/>tail = item;                                                       \(\backslash\)}
+\DoxyCodeLine{      list-\/>head = item;                                                       \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \{                                                                   \(\backslash\)}
+\DoxyCodeLine{      list-\/>tail-\/>next\_item = item;                                            \(\backslash\)}
+\DoxyCodeLine{      item-\/>prev\_item = list-\/>tail;                                            \(\backslash\)}
+\DoxyCodeLine{      list-\/>tail = item;                                                       \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{    list-\/>size = list-\/>size + 1;                                               \(\backslash\)}
+\DoxyCodeLine{    return item;                                                               \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{list__d_8h_a43918ba3ebeaf8ba83a6f1b5cfacb267}\label{list__d_8h_a43918ba3ebeaf8ba83a6f1b5cfacb267}} 
+\index{list\_d.h@{list\_d.h}!\_impl\_list\_at\_func@{\_impl\_list\_at\_func}}
+\index{\_impl\_list\_at\_func@{\_impl\_list\_at\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{\_impl\_list\_at\_func}{\_impl\_list\_at\_func}}
+{\footnotesize\ttfamily \#define \+\_\+impl\+\_\+list\+\_\+at\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type,  }\item[{}]{list\+\_\+type,  }\item[{}]{func\+\_\+name }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  data\_type *func\_name(list\_type *list, \mbox{\hyperlink{list__d_8h_a14351ea53983e3c71f4f15a63c65774c}{list\_index\_t}} index) \{                  \(\backslash\)}
+\DoxyCodeLine{    FAIL\_NULL\_PTR(list);                                                       \(\backslash\)}
+\DoxyCodeLine{    if (index >= list-\/>size) \{                                                 \(\backslash\)}
+\DoxyCodeLine{      FAIL\_EXIT(                                                               \(\backslash\)}
+\DoxyCodeLine{          \mbox{\hyperlink{logger__util_8h_ad9ab19b2b3e07e3ac860411d60ae4e52}{CTH\_LOG\_ERR}},                                                         \(\backslash\)}
+\DoxyCodeLine{          \textcolor{stringliteral}{"Error at func list\_at: Given index \%d is larger than or "}           \(\backslash\)}
+\DoxyCodeLine{          \textcolor{stringliteral}{"equal to list size \%d."},                                            \(\backslash\)}
+\DoxyCodeLine{          index,                                                               \(\backslash\)}
+\DoxyCodeLine{          list-\/>size);                                                         \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \mbox{\hyperlink{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}{                                                                               \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}{    ListItem}}(data\_type) *item = NULL;                                          \(\backslash\)}
+\DoxyCodeLine{    if (index < list-\/>size / 2) \{                                              \(\backslash\)}
+\DoxyCodeLine{      item = list-\/>head;                                                       \(\backslash\)}
+\DoxyCodeLine{      list\_index\_t i = 0;                                                      \(\backslash\)}
+\DoxyCodeLine{      while (i != index) \{                                                     \(\backslash\)}
+\DoxyCodeLine{        item = item-\/>next\_item;                                                \(\backslash\)}
+\DoxyCodeLine{        i++;                                                                   \(\backslash\)}
+\DoxyCodeLine{      \};                                                                       \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \{                                                                   \(\backslash\)}
+\DoxyCodeLine{      item = list-\/>tail;                                                       \(\backslash\)}
+\DoxyCodeLine{      list\_index\_t i = list-\/>size -\/ 1;                                         \(\backslash\)}
+\DoxyCodeLine{      while (i != index) \{                                                     \(\backslash\)}
+\DoxyCodeLine{        item = item-\/>prev\_item;                                                \(\backslash\)}
+\DoxyCodeLine{        i-\/-\/;                                                                   \(\backslash\)}
+\DoxyCodeLine{      \};                                                                       \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{    return item-\/>data;                                                         \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{list__d_8h_ae4337132cdbb74e9fea3e4b5d70be715}\label{list__d_8h_ae4337132cdbb74e9fea3e4b5d70be715}} 
+\index{list\_d.h@{list\_d.h}!\_impl\_list\_contains\_data\_func@{\_impl\_list\_contains\_data\_func}}
+\index{\_impl\_list\_contains\_data\_func@{\_impl\_list\_contains\_data\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{\_impl\_list\_contains\_data\_func}{\_impl\_list\_contains\_data\_func}}
+{\footnotesize\ttfamily \#define \+\_\+impl\+\_\+list\+\_\+contains\+\_\+data\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type,  }\item[{}]{item\+\_\+type,  }\item[{}]{list\+\_\+type,  }\item[{}]{func\+\_\+name }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  item\_type *func\_name(list\_type *list, data\_type *data) \{                     \(\backslash\)}
+\DoxyCodeLine{    FAIL\_NULL\_PTR(list);                                                       \(\backslash\)}
+\DoxyCodeLine{    FAIL\_NULL\_PTR(data);                                                       \(\backslash\)}
+\DoxyCodeLine{    item\_type *found = NULL;                                                   \(\backslash\)}
+\DoxyCodeLine{    if (list-\/>size != 0) \{                                                     \(\backslash\)}
+\DoxyCodeLine{      ListItem(data\_type) *item = list-\/>head;                                  \(\backslash\)}
+\DoxyCodeLine{      do \{                                                                     \(\backslash\)}
+\DoxyCodeLine{        if (item-\/>data == data) \{                                              \(\backslash\)}
+\DoxyCodeLine{          found = item;                                                        \(\backslash\)}
+\DoxyCodeLine{          break;                                                               \(\backslash\)}
+\DoxyCodeLine{        \}                                                                      \(\backslash\)}
+\DoxyCodeLine{        item = item-\/>next\_item;                                                \(\backslash\)}
+\DoxyCodeLine{      \} \textcolor{keywordflow}{while} (item != NULL);                                                  \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{    return found;                                                              \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{list__d_8h_a9df9514fae02742a6804d5bf585be24e}\label{list__d_8h_a9df9514fae02742a6804d5bf585be24e}} 
+\index{list\_d.h@{list\_d.h}!\_impl\_list\_contains\_item\_func@{\_impl\_list\_contains\_item\_func}}
+\index{\_impl\_list\_contains\_item\_func@{\_impl\_list\_contains\_item\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{\_impl\_list\_contains\_item\_func}{\_impl\_list\_contains\_item\_func}}
+{\footnotesize\ttfamily \#define \+\_\+impl\+\_\+list\+\_\+contains\+\_\+item\+\_\+func(\begin{DoxyParamCaption}\item[{}]{item\+\_\+type,  }\item[{}]{list\+\_\+type,  }\item[{}]{func\+\_\+name }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordtype}{bool} func\_name(list\_type *list, item\_type *target\_item) \{                    \(\backslash\)}
+\DoxyCodeLine{    FAIL\_NULL\_PTR(list);                                                       \(\backslash\)}
+\DoxyCodeLine{    FAIL\_NULL\_PTR(target\_item);                                                \(\backslash\)}
+\DoxyCodeLine{    bool contain = \textcolor{keyword}{false};                                                      \(\backslash\)}
+\DoxyCodeLine{    if (list-\/>size != 0) \{                                                     \(\backslash\)}
+\DoxyCodeLine{      item\_type *item = list-\/>head;                                            \(\backslash\)}
+\DoxyCodeLine{      do \{                                                                     \(\backslash\)}
+\DoxyCodeLine{        if (item == target\_item) \{                                             \(\backslash\)}
+\DoxyCodeLine{          contain = \textcolor{keyword}{true};                                                      \(\backslash\)}
+\DoxyCodeLine{          break;                                                               \(\backslash\)}
+\DoxyCodeLine{        \}                                                                      \(\backslash\)}
+\DoxyCodeLine{        item = item-\/>next\_item;                                                \(\backslash\)}
+\DoxyCodeLine{      \} \textcolor{keywordflow}{while} (item != NULL);                                                  \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{    return contain;                                                            \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{list__d_8h_a08ed49669e9f7e65dd4b0f026d803fa6}\label{list__d_8h_a08ed49669e9f7e65dd4b0f026d803fa6}} 
+\index{list\_d.h@{list\_d.h}!\_impl\_list\_del\_func@{\_impl\_list\_del\_func}}
+\index{\_impl\_list\_del\_func@{\_impl\_list\_del\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{\_impl\_list\_del\_func}{\_impl\_list\_del\_func}}
+{\footnotesize\ttfamily \#define \+\_\+impl\+\_\+list\+\_\+del\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type,  }\item[{}]{list\+\_\+type,  }\item[{}]{func\+\_\+name }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordtype}{void} func\_name(list\_type *list, \textcolor{keyword}{const} data\_type *target\_data) \{              \(\backslash\)}
+\DoxyCodeLine{    FAIL\_NULL\_PTR(list);                                                       \(\backslash\)}
+\DoxyCodeLine{    FAIL\_NULL\_PTR(target\_data);                                                \(\backslash\)}
+\DoxyCodeLine{    ListItem(data\_type) *item = list-\/>head;                                    \(\backslash\)}
+\DoxyCodeLine{    while (item != NULL) \{                                                     \(\backslash\)}
+\DoxyCodeLine{      if (target\_data == item-\/>data) \{                                         \(\backslash\)}
+\DoxyCodeLine{        if (item-\/>prev\_item != NULL) \{                                         \(\backslash\)}
+\DoxyCodeLine{          item-\/>prev\_item-\/>next\_item = item-\/>next\_item;                        \(\backslash\)}
+\DoxyCodeLine{        \}                                                                      \(\backslash\)}
+\DoxyCodeLine{        if (item-\/>next\_item != NULL) \{                                         \(\backslash\)}
+\DoxyCodeLine{          item-\/>next\_item-\/>prev\_item = item-\/>prev\_item;                        \(\backslash\)}
+\DoxyCodeLine{        \}                                                                      \(\backslash\)}
+\DoxyCodeLine{        list-\/>size-\/-\/;                                                          \(\backslash\)}
+\DoxyCodeLine{                                                                               \(\backslash\)}
+\DoxyCodeLine{        if (item == list-\/>head) \{                                              \(\backslash\)}
+\DoxyCodeLine{          list-\/>head = item-\/>next\_item;                                        \(\backslash\)}
+\DoxyCodeLine{        \}                                                                      \(\backslash\)}
+\DoxyCodeLine{        if (item == list-\/>tail) \{                                              \(\backslash\)}
+\DoxyCodeLine{          list-\/>tail = item-\/>prev\_item;                                        \(\backslash\)}
+\DoxyCodeLine{        \}                                                                      \mbox{\hyperlink{mem__util_8h_a105949c59c998e38aad80266afac92bf}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{mem__util_8h_a105949c59c998e38aad80266afac92bf}{                                                                               \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{mem__util_8h_a105949c59c998e38aad80266afac92bf}{        FREE}}(item);                                                            \(\backslash\)}
+\DoxyCodeLine{        break;                                                                 \(\backslash\)}
+\DoxyCodeLine{      \}                                                                        \(\backslash\)}
+\DoxyCodeLine{      item = item-\/>next\_item;                                                  \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{list__d_8h_ab320e104a585f9cc216bc42f6ac6ed1d}\label{list__d_8h_ab320e104a585f9cc216bc42f6ac6ed1d}} 
+\index{list\_d.h@{list\_d.h}!\_impl\_list\_pop\_func@{\_impl\_list\_pop\_func}}
+\index{\_impl\_list\_pop\_func@{\_impl\_list\_pop\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{\_impl\_list\_pop\_func}{\_impl\_list\_pop\_func}}
+{\footnotesize\ttfamily \#define \+\_\+impl\+\_\+list\+\_\+pop\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type,  }\item[{}]{list\+\_\+type,  }\item[{}]{func\+\_\+name }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  data\_type *func\_name(list\_type *list) \{                                      \(\backslash\)}
+\DoxyCodeLine{    FAIL\_NULL\_PTR(list);                                                       \(\backslash\)}
+\DoxyCodeLine{    if (list-\/>size == 0) \{                                                     \(\backslash\)}
+\DoxyCodeLine{      return NULL;                                                             \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \mbox{\hyperlink{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}{                                                                               \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}{    ListItem}}(data\_type) *old\_head = list-\/>head;                                \(\backslash\)}
+\DoxyCodeLine{    list-\/>head = old\_head-\/>next\_item;                                          \(\backslash\)}
+\DoxyCodeLine{    if (list-\/>head \&\& list-\/>head-\/>prev\_item != NULL) \{                         \(\backslash\)}
+\DoxyCodeLine{      list-\/>head-\/>prev\_item = NULL;                                            \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{    list-\/>size-\/-\/;                                                              \(\backslash\)}
+\DoxyCodeLine{    if (list-\/>size == 0) \{                                                     \(\backslash\)}
+\DoxyCodeLine{      list-\/>tail = NULL;                                                       \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{                                                                               \(\backslash\)}
+\DoxyCodeLine{    data\_type *ret = old\_head-\/>data;                                           \(\backslash\)}
+\DoxyCodeLine{    FREE(old\_head);                                                            \(\backslash\)}
+\DoxyCodeLine{    return ret;                                                                \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{list__d_8h_a429dd2fa4320a91d9876af3e12351b57}\label{list__d_8h_a429dd2fa4320a91d9876af3e12351b57}} 
+\index{list\_d.h@{list\_d.h}!\_impl\_new\_list\_func@{\_impl\_new\_list\_func}}
+\index{\_impl\_new\_list\_func@{\_impl\_new\_list\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{\_impl\_new\_list\_func}{\_impl\_new\_list\_func}}
+{\footnotesize\ttfamily \#define \+\_\+impl\+\_\+new\+\_\+list\+\_\+func(\begin{DoxyParamCaption}\item[{}]{list\+\_\+type,  }\item[{}]{func\+\_\+name }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  list\_type *func\_name() \{                                                     \(\backslash\)}
+\DoxyCodeLine{    list\_type *list = (list\_type *)\mbox{\hyperlink{mem__util_8h_a3078f3c259e2a871314e3e0194896357}{MALLOC}}(\textcolor{keyword}{sizeof}(list\_type));                  \(\backslash\)}
+\DoxyCodeLine{    list-\/>head = NULL;                                                         \(\backslash\)}
+\DoxyCodeLine{    list-\/>tail = NULL;                                                         \(\backslash\)}
+\DoxyCodeLine{    list-\/>size = 0;                                                            \(\backslash\)}
+\DoxyCodeLine{    return list;                                                               \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{list__d_8h_a2465540fa7b130f57053d59c64a6bdaf}\label{list__d_8h_a2465540fa7b130f57053d59c64a6bdaf}} 
+\index{list\_d.h@{list\_d.h}!\_impl\_new\_list\_item\_func@{\_impl\_new\_list\_item\_func}}
+\index{\_impl\_new\_list\_item\_func@{\_impl\_new\_list\_item\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{\_impl\_new\_list\_item\_func}{\_impl\_new\_list\_item\_func}}
+{\footnotesize\ttfamily \#define \+\_\+impl\+\_\+new\+\_\+list\+\_\+item\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type,  }\item[{}]{list\+\_\+type,  }\item[{}]{func\+\_\+name }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  list\_type *func\_name(data\_type *data) \{                                      \(\backslash\)}
+\DoxyCodeLine{    FAIL\_NULL\_PTR(data);                                                       \(\backslash\)}
+\DoxyCodeLine{    list\_type *item = (list\_type *)\mbox{\hyperlink{mem__util_8h_a3078f3c259e2a871314e3e0194896357}{MALLOC}}(\textcolor{keyword}{sizeof}(list\_type));                  \(\backslash\)}
+\DoxyCodeLine{    item-\/>data = data;                                                         \(\backslash\)}
+\DoxyCodeLine{    item-\/>prev\_item = NULL;                                                    \(\backslash\)}
+\DoxyCodeLine{    item-\/>next\_item = NULL;                                                    \(\backslash\)}
+\DoxyCodeLine{    return item;                                                               \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{list__d_8h_ace368d3127328613d18bdbc048728c0d}\label{list__d_8h_ace368d3127328613d18bdbc048728c0d}} 
+\index{list\_d.h@{list\_d.h}!declare\_free\_list\_deep\_func@{declare\_free\_list\_deep\_func}}
+\index{declare\_free\_list\_deep\_func@{declare\_free\_list\_deep\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{declare\_free\_list\_deep\_func}{declare\_free\_list\_deep\_func}}
+{\footnotesize\ttfamily \#define declare\+\_\+free\+\_\+list\+\_\+deep\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \mbox{\hyperlink{list__d_8h_a43b66d2bd0c816451587fe8172362f92}{\_declare\_free\_list\_deep\_func}}(                                                \(\backslash\)}
+\DoxyCodeLine{      data\_type, \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\_type), \mbox{\hyperlink{list__d_8h_aedacf80b52ed1dfd5f447d830abf8c03}{free\_list\_deep}}(data\_type))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{list__d_8h_a396bbc734305830ed8e8d332bc01f218}\label{list__d_8h_a396bbc734305830ed8e8d332bc01f218}} 
+\index{list\_d.h@{list\_d.h}!declare\_free\_list\_func@{declare\_free\_list\_func}}
+\index{declare\_free\_list\_func@{declare\_free\_list\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{declare\_free\_list\_func}{declare\_free\_list\_func}}
+{\footnotesize\ttfamily \#define declare\+\_\+free\+\_\+list\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})~\mbox{\hyperlink{list__d_8h_a9473b33c81706f6e46ed9c7f40d01675}{\+\_\+declare\+\_\+free\+\_\+list\+\_\+func}}(data\+\_\+type, \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\+\_\+type), \mbox{\hyperlink{list__d_8h_af921a609d16a9ffbd8998e651f23dae7}{free\+\_\+list}}(data\+\_\+type))}
+
+\mbox{\Hypertarget{list__d_8h_a1421f54595a6ce31a27aef4a05dd0373}\label{list__d_8h_a1421f54595a6ce31a27aef4a05dd0373}} 
+\index{list\_d.h@{list\_d.h}!declare\_insert\_list\_func@{declare\_insert\_list\_func}}
+\index{declare\_insert\_list\_func@{declare\_insert\_list\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{declare\_insert\_list\_func}{declare\_insert\_list\_func}}
+{\footnotesize\ttfamily \#define declare\+\_\+insert\+\_\+list\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \mbox{\hyperlink{list__d_8h_a5c8bfb5aebed0a4643194718f3f782b8}{\_declare\_insert\_list\_func}}(                                                   \(\backslash\)}
+\DoxyCodeLine{      data\_type, \mbox{\hyperlink{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}{ListItem}}(data\_type), \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\_type), \mbox{\hyperlink{list__d_8h_a4cb4c4287a041a6db641ea206a581f15}{insert\_list}}(data\_type))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{list__d_8h_a52b29b0ccc6a910f649290519ffd8732}\label{list__d_8h_a52b29b0ccc6a910f649290519ffd8732}} 
+\index{list\_d.h@{list\_d.h}!declare\_list\_at\_func@{declare\_list\_at\_func}}
+\index{declare\_list\_at\_func@{declare\_list\_at\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{declare\_list\_at\_func}{declare\_list\_at\_func}}
+{\footnotesize\ttfamily \#define declare\+\_\+list\+\_\+at\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})~\mbox{\hyperlink{list__d_8h_a015e531875494ee768c5f7b7416e999b}{\+\_\+declare\+\_\+list\+\_\+at\+\_\+func}}(data\+\_\+type, \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\+\_\+type), \mbox{\hyperlink{list__d_8h_a5621b9f407c147912e9bea229fab0202}{list\+\_\+at}}(data\+\_\+type))}
+
+\mbox{\Hypertarget{list__d_8h_aa9308cd0d2de4fc54016740dba028753}\label{list__d_8h_aa9308cd0d2de4fc54016740dba028753}} 
+\index{list\_d.h@{list\_d.h}!declare\_list\_contains\_data\_func@{declare\_list\_contains\_data\_func}}
+\index{declare\_list\_contains\_data\_func@{declare\_list\_contains\_data\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{declare\_list\_contains\_data\_func}{declare\_list\_contains\_data\_func}}
+{\footnotesize\ttfamily \#define declare\+\_\+list\+\_\+contains\+\_\+data\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \mbox{\hyperlink{list__d_8h_a6ab88b34613a1e0dfdaa5c9d94f889dc}{\_declare\_list\_contains\_data\_func}}(                                            \(\backslash\)}
+\DoxyCodeLine{      data\_type,                                                               \(\backslash\)}
+\DoxyCodeLine{      \mbox{\hyperlink{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}{ListItem}}(data\_type),                                                     \(\backslash\)}
+\DoxyCodeLine{      \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\_type),                                                         \(\backslash\)}
+\DoxyCodeLine{      \mbox{\hyperlink{list__d_8h_a55e5377af54685a808236569db9ff1aa}{list\_contains\_data}}(data\_type))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{list__d_8h_abd1f268b65e9d38a627b69993a336a6a}\label{list__d_8h_abd1f268b65e9d38a627b69993a336a6a}} 
+\index{list\_d.h@{list\_d.h}!declare\_list\_contains\_item\_func@{declare\_list\_contains\_item\_func}}
+\index{declare\_list\_contains\_item\_func@{declare\_list\_contains\_item\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{declare\_list\_contains\_item\_func}{declare\_list\_contains\_item\_func}}
+{\footnotesize\ttfamily \#define declare\+\_\+list\+\_\+contains\+\_\+item\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \mbox{\hyperlink{list__d_8h_a055520a0488a46f1c1d5134b513ca4a2}{\_declare\_list\_contains\_item\_func}}(                                            \(\backslash\)}
+\DoxyCodeLine{      \mbox{\hyperlink{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}{ListItem}}(data\_type), \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\_type), \mbox{\hyperlink{list__d_8h_ab08ba2bb6ac3e5a93b0a93f46b16cd32}{list\_contains\_item}}(data\_type))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{list__d_8h_af7db6a1ba188ba2d4bc8c1dcff944d6d}\label{list__d_8h_af7db6a1ba188ba2d4bc8c1dcff944d6d}} 
+\index{list\_d.h@{list\_d.h}!declare\_list\_del\_func@{declare\_list\_del\_func}}
+\index{declare\_list\_del\_func@{declare\_list\_del\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{declare\_list\_del\_func}{declare\_list\_del\_func}}
+{\footnotesize\ttfamily \#define declare\+\_\+list\+\_\+del\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})~\mbox{\hyperlink{list__d_8h_a56cabbedb29c8db3e5ac3125e79301de}{\+\_\+declare\+\_\+list\+\_\+del\+\_\+func}}(data\+\_\+type, \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\+\_\+type), \mbox{\hyperlink{list__d_8h_a1bf728906db25f3b2880d642577a9467}{list\+\_\+del}}(data\+\_\+type))}
+
+\mbox{\Hypertarget{list__d_8h_a23d4d62d285526344ae226b8dde1dc15}\label{list__d_8h_a23d4d62d285526344ae226b8dde1dc15}} 
+\index{list\_d.h@{list\_d.h}!declare\_list\_pop\_func@{declare\_list\_pop\_func}}
+\index{declare\_list\_pop\_func@{declare\_list\_pop\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{declare\_list\_pop\_func}{declare\_list\_pop\_func}}
+{\footnotesize\ttfamily \#define declare\+\_\+list\+\_\+pop\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})~\mbox{\hyperlink{list__d_8h_a3f5c5660ef28f6542bc29b1d13ec94ce}{\+\_\+declare\+\_\+list\+\_\+pop\+\_\+func}}(data\+\_\+type, \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\+\_\+type), \mbox{\hyperlink{list__d_8h_af24c4dbe2985b366c0962ee26df935cc}{list\+\_\+pop}}(data\+\_\+type))}
+
+\mbox{\Hypertarget{list__d_8h_a048809f5dd094c15175e3c8c7ad82887}\label{list__d_8h_a048809f5dd094c15175e3c8c7ad82887}} 
+\index{list\_d.h@{list\_d.h}!declare\_new\_list\_func@{declare\_new\_list\_func}}
+\index{declare\_new\_list\_func@{declare\_new\_list\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{declare\_new\_list\_func}{declare\_new\_list\_func}}
+{\footnotesize\ttfamily \#define declare\+\_\+new\+\_\+list\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})~\mbox{\hyperlink{list__d_8h_a9596ca08c93befad60084ce12853126c}{\+\_\+declare\+\_\+new\+\_\+list\+\_\+func}}(\mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\+\_\+type), \mbox{\hyperlink{list__d_8h_afb59ed2f8308a6aeabfc10dd7c46fab9}{new\+\_\+list}}(data\+\_\+type))}
+
+\mbox{\Hypertarget{list__d_8h_aff3790484b0a4af439ccabdff123215b}\label{list__d_8h_aff3790484b0a4af439ccabdff123215b}} 
+\index{list\_d.h@{list\_d.h}!declare\_new\_list\_item\_func@{declare\_new\_list\_item\_func}}
+\index{declare\_new\_list\_item\_func@{declare\_new\_list\_item\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{declare\_new\_list\_item\_func}{declare\_new\_list\_item\_func}}
+{\footnotesize\ttfamily \#define declare\+\_\+new\+\_\+list\+\_\+item\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})~\mbox{\hyperlink{list__d_8h_a5513723b22cbcae83f326fef830f0df5}{\+\_\+declare\+\_\+new\+\_\+list\+\_\+item\+\_\+func}}(data\+\_\+type, \mbox{\hyperlink{list__d_8h_a001ff51a8b47d4eaf514c17e99483760}{new\+\_\+list\+\_\+item}}(data\+\_\+type))}
+
+\mbox{\Hypertarget{list__d_8h_a9ce4f9dda34a01d714a5575c39a78710}\label{list__d_8h_a9ce4f9dda34a01d714a5575c39a78710}} 
+\index{list\_d.h@{list\_d.h}!def\_list@{def\_list}}
+\index{def\_list@{def\_list}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{def\_list}{def\_list}}
+{\footnotesize\ttfamily \#define def\+\_\+list(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})~typedef \mbox{\hyperlink{list__d_8h_a5208b099758fdcf5078a05c5a2aad4e7}{List\+Struct}}(data\+\_\+type) \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\+\_\+type)}
+
+\mbox{\Hypertarget{list__d_8h_a41ac4ed0e5995780dc97753186ced1e9}\label{list__d_8h_a41ac4ed0e5995780dc97753186ced1e9}} 
+\index{list\_d.h@{list\_d.h}!def\_list\_item@{def\_list\_item}}
+\index{def\_list\_item@{def\_list\_item}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{def\_list\_item}{def\_list\_item}}
+{\footnotesize\ttfamily \#define def\+\_\+list\+\_\+item(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})~typedef \mbox{\hyperlink{list__d_8h_a2c09f6fb9c9e71a675bf9a245a0c7760}{List\+Item\+Struct}}(data\+\_\+type) \mbox{\hyperlink{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}{List\+Item}}(data\+\_\+type)}
+
+\mbox{\Hypertarget{list__d_8h_af921a609d16a9ffbd8998e651f23dae7}\label{list__d_8h_af921a609d16a9ffbd8998e651f23dae7}} 
+\index{list\_d.h@{list\_d.h}!free\_list@{free\_list}}
+\index{free\_list@{free\_list}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{free\_list}{free\_list}}
+{\footnotesize\ttfamily \#define free\+\_\+list(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})~free\+\_\+list\+\_\+\#\#data\+\_\+type}
+
+\mbox{\Hypertarget{list__d_8h_aedacf80b52ed1dfd5f447d830abf8c03}\label{list__d_8h_aedacf80b52ed1dfd5f447d830abf8c03}} 
+\index{list\_d.h@{list\_d.h}!free\_list\_deep@{free\_list\_deep}}
+\index{free\_list\_deep@{free\_list\_deep}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{free\_list\_deep}{free\_list\_deep}}
+{\footnotesize\ttfamily \#define free\+\_\+list\+\_\+deep(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})~free\+\_\+list\+\_\+deep\+\_\+\#\#data\+\_\+type}
+
+\mbox{\Hypertarget{list__d_8h_ab8c70f57612c06934d620968c0387287}\label{list__d_8h_ab8c70f57612c06934d620968c0387287}} 
+\index{list\_d.h@{list\_d.h}!impl\_free\_list\_deep\_func@{impl\_free\_list\_deep\_func}}
+\index{impl\_free\_list\_deep\_func@{impl\_free\_list\_deep\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{impl\_free\_list\_deep\_func}{impl\_free\_list\_deep\_func}}
+{\footnotesize\ttfamily \#define impl\+\_\+free\+\_\+list\+\_\+deep\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \mbox{\hyperlink{list__d_8h_a155287135480d1ebe36636e4320fa3b8}{\_impl\_free\_list\_deep\_func}}(                                                   \(\backslash\)}
+\DoxyCodeLine{      data\_type,                                                               \(\backslash\)}
+\DoxyCodeLine{      \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\_type),                                                         \(\backslash\)}
+\DoxyCodeLine{      \mbox{\hyperlink{consts_8h_ad7d837be8ea11a60ea35da351cb958e7}{struct\_deep\_free}}(data\_type),                                             \(\backslash\)}
+\DoxyCodeLine{      \mbox{\hyperlink{list__d_8h_aedacf80b52ed1dfd5f447d830abf8c03}{free\_list\_deep}}(data\_type))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{list__d_8h_a00d022badaa4102d65564430fea673a9}\label{list__d_8h_a00d022badaa4102d65564430fea673a9}} 
+\index{list\_d.h@{list\_d.h}!impl\_free\_list\_func@{impl\_free\_list\_func}}
+\index{impl\_free\_list\_func@{impl\_free\_list\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{impl\_free\_list\_func}{impl\_free\_list\_func}}
+{\footnotesize\ttfamily \#define impl\+\_\+free\+\_\+list\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})~\mbox{\hyperlink{list__d_8h_a8ff3e062d275a0e8feb42ec51d248a2e}{\+\_\+impl\+\_\+free\+\_\+list\+\_\+func}}(data\+\_\+type, \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\+\_\+type), \mbox{\hyperlink{list__d_8h_af921a609d16a9ffbd8998e651f23dae7}{free\+\_\+list}}(data\+\_\+type))}
+
+\mbox{\Hypertarget{list__d_8h_a206c4f3c9af89b692a48f849b480aa6f}\label{list__d_8h_a206c4f3c9af89b692a48f849b480aa6f}} 
+\index{list\_d.h@{list\_d.h}!impl\_insert\_list\_func@{impl\_insert\_list\_func}}
+\index{impl\_insert\_list\_func@{impl\_insert\_list\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{impl\_insert\_list\_func}{impl\_insert\_list\_func}}
+{\footnotesize\ttfamily \#define impl\+\_\+insert\+\_\+list\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \mbox{\hyperlink{list__d_8h_af68f4572bec8bccbad938331faf02298}{\_impl\_insert\_list\_func}}(                                                      \(\backslash\)}
+\DoxyCodeLine{      data\_type, \mbox{\hyperlink{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}{ListItem}}(data\_type), \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\_type), \mbox{\hyperlink{list__d_8h_a4cb4c4287a041a6db641ea206a581f15}{insert\_list}}(data\_type))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{list__d_8h_a34922487287f5b7d969248c0aa2c088c}\label{list__d_8h_a34922487287f5b7d969248c0aa2c088c}} 
+\index{list\_d.h@{list\_d.h}!impl\_list\_at\_func@{impl\_list\_at\_func}}
+\index{impl\_list\_at\_func@{impl\_list\_at\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{impl\_list\_at\_func}{impl\_list\_at\_func}}
+{\footnotesize\ttfamily \#define impl\+\_\+list\+\_\+at\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})~\mbox{\hyperlink{list__d_8h_a43918ba3ebeaf8ba83a6f1b5cfacb267}{\+\_\+impl\+\_\+list\+\_\+at\+\_\+func}}(data\+\_\+type, \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\+\_\+type), \mbox{\hyperlink{list__d_8h_a5621b9f407c147912e9bea229fab0202}{list\+\_\+at}}(data\+\_\+type))}
+
+\mbox{\Hypertarget{list__d_8h_aa71a00975ac47064c13dee41462a2cbc}\label{list__d_8h_aa71a00975ac47064c13dee41462a2cbc}} 
+\index{list\_d.h@{list\_d.h}!impl\_list\_contains\_data\_func@{impl\_list\_contains\_data\_func}}
+\index{impl\_list\_contains\_data\_func@{impl\_list\_contains\_data\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{impl\_list\_contains\_data\_func}{impl\_list\_contains\_data\_func}}
+{\footnotesize\ttfamily \#define impl\+\_\+list\+\_\+contains\+\_\+data\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \mbox{\hyperlink{list__d_8h_ae4337132cdbb74e9fea3e4b5d70be715}{\_impl\_list\_contains\_data\_func}}(                                               \(\backslash\)}
+\DoxyCodeLine{      data\_type,                                                               \(\backslash\)}
+\DoxyCodeLine{      \mbox{\hyperlink{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}{ListItem}}(data\_type),                                                     \(\backslash\)}
+\DoxyCodeLine{      \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\_type),                                                         \(\backslash\)}
+\DoxyCodeLine{      \mbox{\hyperlink{list__d_8h_a55e5377af54685a808236569db9ff1aa}{list\_contains\_data}}(data\_type))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{list__d_8h_aaa125d1dc93a70a2a1b3f22e26ac0f99}\label{list__d_8h_aaa125d1dc93a70a2a1b3f22e26ac0f99}} 
+\index{list\_d.h@{list\_d.h}!impl\_list\_contains\_item\_func@{impl\_list\_contains\_item\_func}}
+\index{impl\_list\_contains\_item\_func@{impl\_list\_contains\_item\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{impl\_list\_contains\_item\_func}{impl\_list\_contains\_item\_func}}
+{\footnotesize\ttfamily \#define impl\+\_\+list\+\_\+contains\+\_\+item\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \mbox{\hyperlink{list__d_8h_a9df9514fae02742a6804d5bf585be24e}{\_impl\_list\_contains\_item\_func}}(                                               \(\backslash\)}
+\DoxyCodeLine{      \mbox{\hyperlink{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}{ListItem}}(data\_type), \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\_type), \mbox{\hyperlink{list__d_8h_ab08ba2bb6ac3e5a93b0a93f46b16cd32}{list\_contains\_item}}(data\_type))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{list__d_8h_a2cab38530ed4c0c6c8130e320f40ee13}\label{list__d_8h_a2cab38530ed4c0c6c8130e320f40ee13}} 
+\index{list\_d.h@{list\_d.h}!impl\_list\_del\_func@{impl\_list\_del\_func}}
+\index{impl\_list\_del\_func@{impl\_list\_del\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{impl\_list\_del\_func}{impl\_list\_del\_func}}
+{\footnotesize\ttfamily \#define impl\+\_\+list\+\_\+del\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})~\mbox{\hyperlink{list__d_8h_a08ed49669e9f7e65dd4b0f026d803fa6}{\+\_\+impl\+\_\+list\+\_\+del\+\_\+func}}(data\+\_\+type, \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\+\_\+type), \mbox{\hyperlink{list__d_8h_a1bf728906db25f3b2880d642577a9467}{list\+\_\+del}}(data\+\_\+type))}
+
+\mbox{\Hypertarget{list__d_8h_a17641cdb02328bdd812027fd0d7a0087}\label{list__d_8h_a17641cdb02328bdd812027fd0d7a0087}} 
+\index{list\_d.h@{list\_d.h}!impl\_list\_pop\_func@{impl\_list\_pop\_func}}
+\index{impl\_list\_pop\_func@{impl\_list\_pop\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{impl\_list\_pop\_func}{impl\_list\_pop\_func}}
+{\footnotesize\ttfamily \#define impl\+\_\+list\+\_\+pop\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})~\mbox{\hyperlink{list__d_8h_ab320e104a585f9cc216bc42f6ac6ed1d}{\+\_\+impl\+\_\+list\+\_\+pop\+\_\+func}}(data\+\_\+type, \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\+\_\+type), \mbox{\hyperlink{list__d_8h_af24c4dbe2985b366c0962ee26df935cc}{list\+\_\+pop}}(data\+\_\+type))}
+
+\mbox{\Hypertarget{list__d_8h_a1e5180e4dbe391316d0308f7e4b81ef1}\label{list__d_8h_a1e5180e4dbe391316d0308f7e4b81ef1}} 
+\index{list\_d.h@{list\_d.h}!impl\_new\_list\_func@{impl\_new\_list\_func}}
+\index{impl\_new\_list\_func@{impl\_new\_list\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{impl\_new\_list\_func}{impl\_new\_list\_func}}
+{\footnotesize\ttfamily \#define impl\+\_\+new\+\_\+list\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})~\mbox{\hyperlink{list__d_8h_a429dd2fa4320a91d9876af3e12351b57}{\+\_\+impl\+\_\+new\+\_\+list\+\_\+func}}(\mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(data\+\_\+type), \mbox{\hyperlink{list__d_8h_afb59ed2f8308a6aeabfc10dd7c46fab9}{new\+\_\+list}}(data\+\_\+type))}
+
+\mbox{\Hypertarget{list__d_8h_a9465c11307cfeb5cdc9bbab9583c093d}\label{list__d_8h_a9465c11307cfeb5cdc9bbab9583c093d}} 
+\index{list\_d.h@{list\_d.h}!impl\_new\_list\_item\_func@{impl\_new\_list\_item\_func}}
+\index{impl\_new\_list\_item\_func@{impl\_new\_list\_item\_func}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{impl\_new\_list\_item\_func}{impl\_new\_list\_item\_func}}
+{\footnotesize\ttfamily \#define impl\+\_\+new\+\_\+list\+\_\+item\+\_\+func(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \mbox{\hyperlink{list__d_8h_a2465540fa7b130f57053d59c64a6bdaf}{\_impl\_new\_list\_item\_func}}(                                                    \(\backslash\)}
+\DoxyCodeLine{      data\_type, \mbox{\hyperlink{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}{ListItem}}(data\_type), \mbox{\hyperlink{list__d_8h_a001ff51a8b47d4eaf514c17e99483760}{new\_list\_item}}(data\_type))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{list__d_8h_a4cb4c4287a041a6db641ea206a581f15}\label{list__d_8h_a4cb4c4287a041a6db641ea206a581f15}} 
+\index{list\_d.h@{list\_d.h}!insert\_list@{insert\_list}}
+\index{insert\_list@{insert\_list}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{insert\_list}{insert\_list}}
+{\footnotesize\ttfamily \#define insert\+\_\+list(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})~insert\+\_\+list\+\_\+\#\#data\+\_\+type}
+
+\mbox{\Hypertarget{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}\label{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}} 
+\index{list\_d.h@{list\_d.h}!List@{List}}
+\index{List@{List}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{List}{List}}
+{\footnotesize\ttfamily \#define List(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})~List\#\#data\+\_\+type}
+
+\mbox{\Hypertarget{list__d_8h_a5621b9f407c147912e9bea229fab0202}\label{list__d_8h_a5621b9f407c147912e9bea229fab0202}} 
+\index{list\_d.h@{list\_d.h}!list\_at@{list\_at}}
+\index{list\_at@{list\_at}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{list\_at}{list\_at}}
+{\footnotesize\ttfamily \#define list\+\_\+at(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})~list\+\_\+at\+\_\+\#\#data\+\_\+type}
+
+\mbox{\Hypertarget{list__d_8h_a55e5377af54685a808236569db9ff1aa}\label{list__d_8h_a55e5377af54685a808236569db9ff1aa}} 
+\index{list\_d.h@{list\_d.h}!list\_contains\_data@{list\_contains\_data}}
+\index{list\_contains\_data@{list\_contains\_data}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{list\_contains\_data}{list\_contains\_data}}
+{\footnotesize\ttfamily \#define list\+\_\+contains\+\_\+data(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})~list\+\_\+contains\+\_\+data\+\_\+\#\#data\+\_\+type}
+
+\mbox{\Hypertarget{list__d_8h_ab08ba2bb6ac3e5a93b0a93f46b16cd32}\label{list__d_8h_ab08ba2bb6ac3e5a93b0a93f46b16cd32}} 
+\index{list\_d.h@{list\_d.h}!list\_contains\_item@{list\_contains\_item}}
+\index{list\_contains\_item@{list\_contains\_item}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{list\_contains\_item}{list\_contains\_item}}
+{\footnotesize\ttfamily \#define list\+\_\+contains\+\_\+item(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})~list\+\_\+contains\+\_\+item\+\_\+\#\#data\+\_\+type}
+
+\mbox{\Hypertarget{list__d_8h_a1bf728906db25f3b2880d642577a9467}\label{list__d_8h_a1bf728906db25f3b2880d642577a9467}} 
+\index{list\_d.h@{list\_d.h}!list\_del@{list\_del}}
+\index{list\_del@{list\_del}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{list\_del}{list\_del}}
+{\footnotesize\ttfamily \#define list\+\_\+del(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})~list\+\_\+del\+\_\+\#\#data\+\_\+type}
+
+\mbox{\Hypertarget{list__d_8h_af24c4dbe2985b366c0962ee26df935cc}\label{list__d_8h_af24c4dbe2985b366c0962ee26df935cc}} 
+\index{list\_d.h@{list\_d.h}!list\_pop@{list\_pop}}
+\index{list\_pop@{list\_pop}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{list\_pop}{list\_pop}}
+{\footnotesize\ttfamily \#define list\+\_\+pop(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})~list\+\_\+pop\+\_\+\#\#data\+\_\+type}
+
+\mbox{\Hypertarget{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}\label{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}} 
+\index{list\_d.h@{list\_d.h}!ListItem@{ListItem}}
+\index{ListItem@{ListItem}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{ListItem}{ListItem}}
+{\footnotesize\ttfamily \#define List\+Item(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})~List\+Item\#\#data\+\_\+type}
+
+\mbox{\Hypertarget{list__d_8h_a2c09f6fb9c9e71a675bf9a245a0c7760}\label{list__d_8h_a2c09f6fb9c9e71a675bf9a245a0c7760}} 
+\index{list\_d.h@{list\_d.h}!ListItemStruct@{ListItemStruct}}
+\index{ListItemStruct@{ListItemStruct}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{ListItemStruct}{ListItemStruct}}
+{\footnotesize\ttfamily \#define List\+Item\+Struct(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keyword}{struct }ListItem(data\_type) \{                                                 \(\backslash\)}
+\DoxyCodeLine{    data\_type *data;                                                           \(\backslash\)}
+\DoxyCodeLine{    struct \mbox{\hyperlink{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}{ListItem}}(data\_type) * prev\_item;                                    \(\backslash\)}
+\DoxyCodeLine{    struct \mbox{\hyperlink{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}{ListItem}}(data\_type) * next\_item;                                    \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{list__d_8h_a5208b099758fdcf5078a05c5a2aad4e7}\label{list__d_8h_a5208b099758fdcf5078a05c5a2aad4e7}} 
+\index{list\_d.h@{list\_d.h}!ListStruct@{ListStruct}}
+\index{ListStruct@{ListStruct}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{ListStruct}{ListStruct}}
+{\footnotesize\ttfamily \#define List\+Struct(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keyword}{struct }List(data\_type) \{                                                     \(\backslash\)}
+\DoxyCodeLine{    list\_index\_t size;                                                         \(\backslash\)}
+\DoxyCodeLine{    struct \mbox{\hyperlink{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}{ListItem}}(data\_type) * head;                                         \(\backslash\)}
+\DoxyCodeLine{    struct \mbox{\hyperlink{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}{ListItem}}(data\_type) * tail;                                         \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{list__d_8h_afb59ed2f8308a6aeabfc10dd7c46fab9}\label{list__d_8h_afb59ed2f8308a6aeabfc10dd7c46fab9}} 
+\index{list\_d.h@{list\_d.h}!new\_list@{new\_list}}
+\index{new\_list@{new\_list}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{new\_list}{new\_list}}
+{\footnotesize\ttfamily \#define new\+\_\+list(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})~new\+\_\+list\#\#data\+\_\+type}
+
+\mbox{\Hypertarget{list__d_8h_a001ff51a8b47d4eaf514c17e99483760}\label{list__d_8h_a001ff51a8b47d4eaf514c17e99483760}} 
+\index{list\_d.h@{list\_d.h}!new\_list\_item@{new\_list\_item}}
+\index{new\_list\_item@{new\_list\_item}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{new\_list\_item}{new\_list\_item}}
+{\footnotesize\ttfamily \#define new\+\_\+list\+\_\+item(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})~new\+\_\+list\+\_\+item\#\#data\+\_\+type}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{list__d_8h_a14351ea53983e3c71f4f15a63c65774c}\label{list__d_8h_a14351ea53983e3c71f4f15a63c65774c}} 
+\index{list\_d.h@{list\_d.h}!list\_index\_t@{list\_index\_t}}
+\index{list\_index\_t@{list\_index\_t}!list\_d.h@{list\_d.h}}
+\doxysubsubsection{\texorpdfstring{list\_index\_t}{list\_index\_t}}
+{\footnotesize\ttfamily typedef uint32\+\_\+t \mbox{\hyperlink{list__d_8h_a14351ea53983e3c71f4f15a63c65774c}{list\+\_\+index\+\_\+t}}}
+
+This file supports a generic Double-\/linked list structure and supporting functions.
+
+This structure is supposed to be used inside library. Some implementatons are based on this assumption.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{Structures\string~\string~\string~\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}{ListItem}}(T)}
+\DoxyCodeLine{   -\/ data: T*, contained data}
+\DoxyCodeLine{   -\/ prev\_item: \mbox{\hyperlink{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}{ListItem}}(T)*, previous item}
+\DoxyCodeLine{   -\/ next\_item: \mbox{\hyperlink{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}{ListItem}}(T)*, next item}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(T)}
+\DoxyCodeLine{   -\/ size: \mbox{\hyperlink{list__d_8h_a14351ea53983e3c71f4f15a63c65774c}{list\_index\_t}}, size of list}
+\DoxyCodeLine{   -\/ head: \mbox{\hyperlink{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}{ListItem}}(T)*, head item of list}
+\DoxyCodeLine{   -\/ tail: \mbox{\hyperlink{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}{ListItem}}(T)*, tail item of list}
+\DoxyCodeLine{}
+\DoxyCodeLine{\string~\string~\string~Function}
+\end{DoxyCode}
+
+
+\mbox{\hyperlink{list__d_8h_af43d1714ac5e1379c2dd6de1b35bc94a}{List\+Item(\+T)}}$\ast$ \mbox{\hyperlink{list__d_8h_a001ff51a8b47d4eaf514c17e99483760}{new\+\_\+list\+\_\+item(\+T)}}(T$\ast$ data)
+\begin{DoxyItemize}
+\item Create a new list item. Caller needs tacking care of its memory releasing
+\end{DoxyItemize}
+
+\mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List(\+T)}}$\ast$ \mbox{\hyperlink{list__d_8h_afb59ed2f8308a6aeabfc10dd7c46fab9}{new\+\_\+list(\+T)}}()
+\begin{DoxyItemize}
+\item Create a new list, caller needs taking care of its memory releasing
+\end{DoxyItemize}
+
+void \mbox{\hyperlink{list__d_8h_a4cb4c4287a041a6db641ea206a581f15}{insert\+\_\+list(\+T)}}(\mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List(\+T)}}$\ast$ list, T$\ast$ data)
+\begin{DoxyItemize}
+\item Insert a data into a list
+\end{DoxyItemize}
+
+bool \mbox{\hyperlink{list__d_8h_a55e5377af54685a808236569db9ff1aa}{list\+\_\+contains\+\_\+data(\+T)}}(\mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List(\+T)}}$\ast$ list, T$\ast$ data)
+\begin{DoxyItemize}
+\item Check if list contains a item has same data value as given data
+\end{DoxyItemize}
+
+T$\ast$ \mbox{\hyperlink{list__d_8h_af24c4dbe2985b366c0962ee26df935cc}{list\+\_\+pop(\+T)}}(\mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List(\+T)}}$\ast$ list)
+\begin{DoxyItemize}
+\item Pop the head item of the list
+\item Function will free popped data\textquotesingle{}s item
+\end{DoxyItemize}
+
+T$\ast$ \mbox{\hyperlink{list__d_8h_a5621b9f407c147912e9bea229fab0202}{list\+\_\+at(\+T)}}(\mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List(\+T)}} $\ast$list, list\+\_\+index\+\_\+t index)
+\begin{DoxyItemize}
+\item Get data at given index
+\end{DoxyItemize}
+
+void \mbox{\hyperlink{list__d_8h_af921a609d16a9ffbd8998e651f23dae7}{free\+\_\+list(\+T)}}(\mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List(\+T)}} $\ast$list)
+\begin{DoxyItemize}
+\item Free a list and all items it contains. This function does not free data
+\end{DoxyItemize}
+
+void \mbox{\hyperlink{list__d_8h_aedacf80b52ed1dfd5f447d830abf8c03}{free\+\_\+list\+\_\+deep(\+T)}}(\mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List(\+T)}} $\ast$list)
+\begin{DoxyItemize}
+\item Free a list and all items it contains. Also, it frees stored data.
+\item We assume contained data has a corresponding deep free function
+\end{DoxyItemize}
+
+void \mbox{\hyperlink{list__d_8h_a1bf728906db25f3b2880d642577a9467}{list\+\_\+del(\+T)}}(\mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List(\+T)}} $\ast$list, T $\ast$data)
+\begin{DoxyItemize}
+\item Delete an item from list that contains given data
+\item The item itself will not be free List index type 
+\end{DoxyItemize}

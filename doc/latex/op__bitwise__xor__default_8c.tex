@@ -1,0 +1,53 @@
+\hypertarget{op__bitwise__xor__default_8c}{}\doxysection{c\+Torch/operators/default/op\+\_\+bitwise\+\_\+xor\+\_\+default.c File Reference}
+\label{op__bitwise__xor__default_8c}\index{cTorch/operators/default/op\_bitwise\_xor\_default.c@{cTorch/operators/default/op\_bitwise\_xor\_default.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/op\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/util.\+h\char`\"{}}\newline
+Include dependency graph for op\+\_\+bitwise\+\_\+xor\+\_\+default.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{op__bitwise__xor__default_8c_a4e69ac83f65da3d36b4695393734c8f3}{\+\_\+cth\+\_\+bitwise\+\_\+xor}}(op,  data\+\_\+type)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__bitwise__xor__default_8c_a45ec5bf0ebf42628b89e5eec253fb049}{op\+\_\+bitwise\+\_\+xor\+\_\+cpu}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{op__bitwise__xor__default_8c_a4e69ac83f65da3d36b4695393734c8f3}\label{op__bitwise__xor__default_8c_a4e69ac83f65da3d36b4695393734c8f3}} 
+\index{op\_bitwise\_xor\_default.c@{op\_bitwise\_xor\_default.c}!\_cth\_bitwise\_xor@{\_cth\_bitwise\_xor}}
+\index{\_cth\_bitwise\_xor@{\_cth\_bitwise\_xor}!op\_bitwise\_xor\_default.c@{op\_bitwise\_xor\_default.c}}
+\doxysubsubsection{\texorpdfstring{\_cth\_bitwise\_xor}{\_cth\_bitwise\_xor}}
+{\footnotesize\ttfamily \#define \+\_\+cth\+\_\+bitwise\+\_\+xor(\begin{DoxyParamCaption}\item[{}]{op,  }\item[{}]{data\+\_\+type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                                                         \(\backslash\)}
+\DoxyCodeLine{    CTorchTensor *input\_1 = \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\_at}}(\mbox{\hyperlink{structCTorchTensor}{CTorchTensor}})(op-\/>in\_bound\_tensors, 0);   \(\backslash\)}
+\DoxyCodeLine{    CTorchTensor *input\_2 = \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\_at}}(\mbox{\hyperlink{structCTorchTensor}{CTorchTensor}})(op-\/>in\_bound\_tensors, 1);   \(\backslash\)}
+\DoxyCodeLine{    CTorchTensor *output = \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\_at}}(\mbox{\hyperlink{structCTorchTensor}{CTorchTensor}})(op-\/>out\_bound\_tensors, 0);   \(\backslash\)}
+\DoxyCodeLine{    data\_type *in\_ptr\_1 = (data\_type *)input\_1-\/>values;                        \(\backslash\)}
+\DoxyCodeLine{    data\_type *in\_ptr\_2 = (data\_type *)input\_2-\/>values;                        \(\backslash\)}
+\DoxyCodeLine{    data\_type *out\_ptr = (data\_type *)output-\/>values;                          \(\backslash\)}
+\DoxyCodeLine{    \mbox{\hyperlink{consts_8h_a836488a94280dd54797615abb7e699ca}{tensor\_size\_t}} N = input\_1-\/>meta\_info-\/>n\_elements;                          \(\backslash\)}
+\DoxyCodeLine{                                                                               \(\backslash\)}
+\DoxyCodeLine{    for (\mbox{\hyperlink{consts_8h_a836488a94280dd54797615abb7e699ca}{tensor\_size\_t}} i = 0; i < N; i++) \{                                    \(\backslash\)}
+\DoxyCodeLine{      out\_ptr[i] = in\_ptr\_1[i] \string^ in\_ptr\_2[i];                                  \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__bitwise__xor__default_8c_a45ec5bf0ebf42628b89e5eec253fb049}\label{op__bitwise__xor__default_8c_a45ec5bf0ebf42628b89e5eec253fb049}} 
+\index{op\_bitwise\_xor\_default.c@{op\_bitwise\_xor\_default.c}!op\_bitwise\_xor\_cpu@{op\_bitwise\_xor\_cpu}}
+\index{op\_bitwise\_xor\_cpu@{op\_bitwise\_xor\_cpu}!op\_bitwise\_xor\_default.c@{op\_bitwise\_xor\_default.c}}
+\doxysubsubsection{\texorpdfstring{op\_bitwise\_xor\_cpu()}{op\_bitwise\_xor\_cpu()}}
+{\footnotesize\ttfamily void op\+\_\+bitwise\+\_\+xor\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+Computes the bitwise X\+OR of the given two input tensor. The input tensor must be of integral or Boolean types. For bool tensors, it computes the logical X\+OR.\hypertarget{op__bitwise__xor__default_8c_autotoc_md6}{}\doxysubsection{of input\+: 2}\label{op__bitwise__xor__default_8c_autotoc_md6}
+\hypertarget{op__bitwise__xor__default_8c_autotoc_md7}{}\doxysubsection{of output\+: 1}\label{op__bitwise__xor__default_8c_autotoc_md7}

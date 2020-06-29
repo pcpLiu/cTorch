@@ -20,6 +20,8 @@
  * Computes the element-wise logical AND of the given input tensors. Zeros are
  * treated as False and nonzeros are treated as True.
  *
+ * Note: Both inputs should have same data types.
+ *
  * # of input: 2
  * # of output: 1
  *    - Must be bool type

@@ -1,0 +1,19 @@
+digraph "cTorch/operators" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_4f783408a90c79069ee8a6459ffae78f {
+    graph [ bgcolor="#ddddee", pencolor="black", label="cTorch" fontname="Helvetica", fontsize="10", URL="dir_4f783408a90c79069ee8a6459ffae78f.html"]
+  subgraph clusterdir_fe853cb77c2d75d984b93720a04eebde {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_fe853cb77c2d75d984b93720a04eebde.html"];
+    dir_fe853cb77c2d75d984b93720a04eebde [shape=plaintext label="operators"];
+    dir_15dbdc33d20e1c03ddd6e1222b754cc3 [shape=box label="accelerate" color="black" fillcolor="white" style="filled" URL="dir_15dbdc33d20e1c03ddd6e1222b754cc3.html"];
+    dir_525668a993d8dfe11aa91449dfc3def5 [shape=box label="cuda" color="black" fillcolor="white" style="filled" URL="dir_525668a993d8dfe11aa91449dfc3def5.html"];
+    dir_3194c601f52e11277ed1639d7ae5a527 [shape=box label="default" color="black" fillcolor="white" style="filled" URL="dir_3194c601f52e11277ed1639d7ae5a527.html"];
+    dir_470abe42dd930a6f004b4d8de7ffeb0c [shape=box label="mkl" color="black" fillcolor="white" style="filled" URL="dir_470abe42dd930a6f004b4d8de7ffeb0c.html"];
+    dir_f0e0910976fcf1ee8f38e829f6d617ca [shape=box label="openblas" color="black" fillcolor="white" style="filled" URL="dir_f0e0910976fcf1ee8f38e829f6d617ca.html"];
+    dir_d8a4544b799f4f42cd075b1d8664784b [shape=box label="x86" color="red" fillcolor="white" style="filled" URL="dir_d8a4544b799f4f42cd075b1d8664784b.html"];
+  }
+  }
+  dir_fe853cb77c2d75d984b93720a04eebde->dir_3194c601f52e11277ed1639d7ae5a527 [headlabel="1", labeldistance=1.5 headhref="dir_000001_000004.html"];
+}

@@ -1,0 +1,99 @@
+\hypertarget{op__digamma__default_8c}{}\doxysection{c\+Torch/operators/default/op\+\_\+digamma\+\_\+default.c File Reference}
+\label{op__digamma__default_8c}\index{cTorch/operators/default/op\_digamma\_default.c@{cTorch/operators/default/op\_digamma\_default.c}}
+{\ttfamily \#include $<$tgmath.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/op\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/util.\+h\char`\"{}}\newline
+Include dependency graph for op\+\_\+digamma\+\_\+default.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{op__digamma__default_8c_a126570edaffa4fa37291be26b3b8fdce}{M\+\_\+\+P\+Il}}~3.\+1415926535897932384626433832795029L
+\item 
+\#define \mbox{\hyperlink{op__digamma__default_8c_ace90a019856823d9d5080605baff4e86}{M\+\_\+\+G\+A\+M\+M\+Al}}~0.\+5772156649015328606065120900824024L
+\item 
+\#define \mbox{\hyperlink{op__digamma__default_8c_a977ed5f9353c93e68594d93e42256bf1}{M\+\_\+\+L\+N2l}}~0.\+6931471805599453094172321214581766L
+\item 
+\#define \mbox{\hyperlink{op__digamma__default_8c_ae075d3d040ed2ef9796fedf2a3491504}{\+\_\+cth\+\_\+digamma\+\_\+kernel}}(input\+\_\+ptr,  output\+\_\+ptr,  N,  data\+\_\+type)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+long double \mbox{\hyperlink{op__digamma__default_8c_a248caef611a435b8a29560229bad212d}{digammal}} (long double x)
+\item 
+void \mbox{\hyperlink{op__digamma__default_8c_a21600e17f1ae31aee8b0e0abe11ccf7d}{op\+\_\+digamma\+\_\+cpu}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{op__digamma__default_8c_ae075d3d040ed2ef9796fedf2a3491504}\label{op__digamma__default_8c_ae075d3d040ed2ef9796fedf2a3491504}} 
+\index{op\_digamma\_default.c@{op\_digamma\_default.c}!\_cth\_digamma\_kernel@{\_cth\_digamma\_kernel}}
+\index{\_cth\_digamma\_kernel@{\_cth\_digamma\_kernel}!op\_digamma\_default.c@{op\_digamma\_default.c}}
+\doxysubsubsection{\texorpdfstring{\_cth\_digamma\_kernel}{\_cth\_digamma\_kernel}}
+{\footnotesize\ttfamily \#define \+\_\+cth\+\_\+digamma\+\_\+kernel(\begin{DoxyParamCaption}\item[{}]{input\+\_\+ptr,  }\item[{}]{output\+\_\+ptr,  }\item[{}]{N,  }\item[{}]{data\+\_\+type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                                                         \(\backslash\)}
+\DoxyCodeLine{    data\_type *input\_t = (data\_type *)input\_ptr;                               \(\backslash\)}
+\DoxyCodeLine{    data\_type *output\_t = (data\_type *)output\_ptr;                             \(\backslash\)}
+\DoxyCodeLine{    for (\textcolor{keywordtype}{int} i = 0; i < N; i++) \{                                              \(\backslash\)}
+\DoxyCodeLine{      output\_t[i] = (data\_type)\mbox{\hyperlink{op__digamma__default_8c_a248caef611a435b8a29560229bad212d}{digammal}}(input\_t[i]);                           \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{op__digamma__default_8c_ace90a019856823d9d5080605baff4e86}\label{op__digamma__default_8c_ace90a019856823d9d5080605baff4e86}} 
+\index{op\_digamma\_default.c@{op\_digamma\_default.c}!M\_GAMMAl@{M\_GAMMAl}}
+\index{M\_GAMMAl@{M\_GAMMAl}!op\_digamma\_default.c@{op\_digamma\_default.c}}
+\doxysubsubsection{\texorpdfstring{M\_GAMMAl}{M\_GAMMAl}}
+{\footnotesize\ttfamily \#define M\+\_\+\+G\+A\+M\+M\+Al~0.\+5772156649015328606065120900824024L}
+
+Euler\textquotesingle{}s constant in high precision \mbox{\Hypertarget{op__digamma__default_8c_a977ed5f9353c93e68594d93e42256bf1}\label{op__digamma__default_8c_a977ed5f9353c93e68594d93e42256bf1}} 
+\index{op\_digamma\_default.c@{op\_digamma\_default.c}!M\_LN2l@{M\_LN2l}}
+\index{M\_LN2l@{M\_LN2l}!op\_digamma\_default.c@{op\_digamma\_default.c}}
+\doxysubsubsection{\texorpdfstring{M\_LN2l}{M\_LN2l}}
+{\footnotesize\ttfamily \#define M\+\_\+\+L\+N2l~0.\+6931471805599453094172321214581766L}
+
+the natural logarithm of 2 in high precision \mbox{\Hypertarget{op__digamma__default_8c_a126570edaffa4fa37291be26b3b8fdce}\label{op__digamma__default_8c_a126570edaffa4fa37291be26b3b8fdce}} 
+\index{op\_digamma\_default.c@{op\_digamma\_default.c}!M\_PIl@{M\_PIl}}
+\index{M\_PIl@{M\_PIl}!op\_digamma\_default.c@{op\_digamma\_default.c}}
+\doxysubsubsection{\texorpdfstring{M\_PIl}{M\_PIl}}
+{\footnotesize\ttfamily \#define M\+\_\+\+P\+Il~3.\+1415926535897932384626433832795029L}
+
+The constant Pi in high precision 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__digamma__default_8c_a248caef611a435b8a29560229bad212d}\label{op__digamma__default_8c_a248caef611a435b8a29560229bad212d}} 
+\index{op\_digamma\_default.c@{op\_digamma\_default.c}!digammal@{digammal}}
+\index{digammal@{digammal}!op\_digamma\_default.c@{op\_digamma\_default.c}}
+\doxysubsubsection{\texorpdfstring{digammal()}{digammal()}}
+{\footnotesize\ttfamily long double digammal (\begin{DoxyParamCaption}\item[{long double}]{x }\end{DoxyParamCaption})}
+
+The digamma function in long double precision. 
+\begin{DoxyParams}{Parameters}
+{\em x} & the real value of the argument \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the value of the digamma (psi) function at that point 
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Richard J. Mathar 
+\end{DoxyAuthor}
+\begin{DoxySince}{Since}
+2005-\/11-\/24
+\end{DoxySince}
+\href{https://www2.mpia-hd.mpg.de}{\texttt{ https\+://www2.\+mpia-\/hd.\+mpg.\+de}}/$\sim$mathar/progs/digamma.c \mbox{\Hypertarget{op__digamma__default_8c_a21600e17f1ae31aee8b0e0abe11ccf7d}\label{op__digamma__default_8c_a21600e17f1ae31aee8b0e0abe11ccf7d}} 
+\index{op\_digamma\_default.c@{op\_digamma\_default.c}!op\_digamma\_cpu@{op\_digamma\_cpu}}
+\index{op\_digamma\_cpu@{op\_digamma\_cpu}!op\_digamma\_default.c@{op\_digamma\_default.c}}
+\doxysubsubsection{\texorpdfstring{op\_digamma\_cpu()}{op\_digamma\_cpu()}}
+{\footnotesize\ttfamily void op\+\_\+digamma\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+Computes the logarithmic derivative of the gamma function on input.
+
+Inputs \& outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 1
+\item \# of output\+: 1 
+\end{DoxyItemize}

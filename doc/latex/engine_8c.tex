@@ -1,0 +1,68 @@
+\hypertarget{engine_8c}{}\doxysection{c\+Torch/engine.c File Reference}
+\label{engine_8c}\index{cTorch/engine.c@{cTorch/engine.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/engine.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/logger\+\_\+util.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/op\+\_\+list.\+h\char`\"{}}\newline
+Include dependency graph for engine.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{engine_8c_aab820303a3663cef9a301e4cd4078476}{\+\_\+\+B\+A\+C\+K\+E\+N\+D\+\_\+\+M\+I\+S\+S\+I\+N\+G\+\_\+\+E\+R\+R\+\_\+\+M\+SG}}(backend)
+\item 
+\#define \mbox{\hyperlink{engine_8c_a5ae8b5ab46ebc70c355e4bc1d81353a5}{\+\_\+\+B\+A\+C\+K\+E\+N\+D\+\_\+\+F\+A\+L\+L\+B\+A\+C\+K\+\_\+\+E\+XE}}(op\+\_\+fps)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{engine_8c_aed6d38c4751d004f9faa7e0a3de510ba}{dispatch\+\_\+op\+\_\+execution}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op, \mbox{\hyperlink{consts_8h_a2b134eeb7503f45168871021ab72fe40}{C\+T\+H\+\_\+\+B\+A\+C\+K\+E\+ND}} backend)
+\item 
+void \mbox{\hyperlink{engine_8c_a66d505af1852629e89291f2079f5e8ba}{cth\+\_\+execute\+\_\+node}} (\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}} $\ast$node, \mbox{\hyperlink{consts_8h_a2b134eeb7503f45168871021ab72fe40}{C\+T\+H\+\_\+\+B\+A\+C\+K\+E\+ND}} backend)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{engine_8c_a5ae8b5ab46ebc70c355e4bc1d81353a5}\label{engine_8c_a5ae8b5ab46ebc70c355e4bc1d81353a5}} 
+\index{engine.c@{engine.c}!\_BACKEND\_FALLBACK\_EXE@{\_BACKEND\_FALLBACK\_EXE}}
+\index{\_BACKEND\_FALLBACK\_EXE@{\_BACKEND\_FALLBACK\_EXE}!engine.c@{engine.c}}
+\doxysubsubsection{\texorpdfstring{\_BACKEND\_FALLBACK\_EXE}{\_BACKEND\_FALLBACK\_EXE}}
+{\footnotesize\ttfamily \#define \+\_\+\+B\+A\+C\+K\+E\+N\+D\+\_\+\+F\+A\+L\+L\+B\+A\+C\+K\+\_\+\+E\+XE(\begin{DoxyParamCaption}\item[{}]{op\+\_\+fps }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \{                                                                            \(\backslash\)}
+\DoxyCodeLine{    if (op\_fps[op\_id] == NULL) \{                                               \(\backslash\)}
+\DoxyCodeLine{      fall\_back = \textcolor{keyword}{true};                                                        \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \{                                                                   \(\backslash\)}
+\DoxyCodeLine{      (*\mbox{\hyperlink{default_2op__list_8c_ad8a13cc50e8c2f3e22da1d73ee77cafd}{fps\_op\_default}}[op\_id])(op);                                            \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{engine_8c_aab820303a3663cef9a301e4cd4078476}\label{engine_8c_aab820303a3663cef9a301e4cd4078476}} 
+\index{engine.c@{engine.c}!\_BACKEND\_MISSING\_ERR\_MSG@{\_BACKEND\_MISSING\_ERR\_MSG}}
+\index{\_BACKEND\_MISSING\_ERR\_MSG@{\_BACKEND\_MISSING\_ERR\_MSG}!engine.c@{engine.c}}
+\doxysubsubsection{\texorpdfstring{\_BACKEND\_MISSING\_ERR\_MSG}{\_BACKEND\_MISSING\_ERR\_MSG}}
+{\footnotesize\ttfamily \#define \+\_\+\+B\+A\+C\+K\+E\+N\+D\+\_\+\+M\+I\+S\+S\+I\+N\+G\+\_\+\+E\+R\+R\+\_\+\+M\+SG(\begin{DoxyParamCaption}\item[{}]{backend }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{stringliteral}{"Try to execute operator on "} \#backend                                       \(\backslash\)}
+\DoxyCodeLine{  \textcolor{stringliteral}{"backend. But cTorch was not built for this backend."}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{engine_8c_a66d505af1852629e89291f2079f5e8ba}\label{engine_8c_a66d505af1852629e89291f2079f5e8ba}} 
+\index{engine.c@{engine.c}!cth\_execute\_node@{cth\_execute\_node}}
+\index{cth\_execute\_node@{cth\_execute\_node}!engine.c@{engine.c}}
+\doxysubsubsection{\texorpdfstring{cth\_execute\_node()}{cth\_execute\_node()}}
+{\footnotesize\ttfamily void cth\+\_\+execute\+\_\+node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{consts_8h_a2b134eeb7503f45168871021ab72fe40}{C\+T\+H\+\_\+\+B\+A\+C\+K\+E\+ND}}}]{backend }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{engine_8c_aed6d38c4751d004f9faa7e0a3de510ba}\label{engine_8c_aed6d38c4751d004f9faa7e0a3de510ba}} 
+\index{engine.c@{engine.c}!dispatch\_op\_execution@{dispatch\_op\_execution}}
+\index{dispatch\_op\_execution@{dispatch\_op\_execution}!engine.c@{engine.c}}
+\doxysubsubsection{\texorpdfstring{dispatch\_op\_execution()}{dispatch\_op\_execution()}}
+{\footnotesize\ttfamily void dispatch\+\_\+op\+\_\+execution (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op,  }\item[{\mbox{\hyperlink{consts_8h_a2b134eeb7503f45168871021ab72fe40}{C\+T\+H\+\_\+\+B\+A\+C\+K\+E\+ND}}}]{backend }\end{DoxyParamCaption})}
+

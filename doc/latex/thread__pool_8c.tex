@@ -1,0 +1,185 @@
+\hypertarget{thread__pool_8c}{}\doxysection{c\+Torch/thread\+\_\+pool.c File Reference}
+\label{thread__pool_8c}\index{cTorch/thread\_pool.c@{cTorch/thread\_pool.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/thread\+\_\+pool.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+Include dependency graph for thread\+\_\+pool.\+c\+:
+% FIG 0
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structjob}{job}}
+\item 
+struct \mbox{\hyperlink{structactive}{active}}
+\item 
+struct \mbox{\hyperlink{structthr__pool}{thr\+\_\+pool}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{thread__pool_8c_ac15da069257627fefd71d875d538b73d}{\+\_\+\+R\+E\+E\+N\+T\+R\+A\+NT}}
+\item 
+\#define \mbox{\hyperlink{thread__pool_8c_aa2ebdca71e2e84a9078f15249312ddda}{P\+O\+O\+L\+\_\+\+W\+A\+IT}}~0x01 /$\ast$ waiting in \mbox{\hyperlink{thread__pool_8c_aa40e547b0636ba5caf0113a920a459cb}{thr\+\_\+pool\+\_\+wait}}() $\ast$/
+\item 
+\#define \mbox{\hyperlink{thread__pool_8c_ae4f4e73e3cfaf241efb423f0a121d625}{P\+O\+O\+L\+\_\+\+D\+E\+S\+T\+R\+OY}}~0x02 /$\ast$ pool is being destroyed $\ast$/
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structjob}{job}} \mbox{\hyperlink{thread__pool_8c_ad80922c610b6e71fdc834b6bd2af79f2}{job\+\_\+t}}
+\item 
+typedef struct \mbox{\hyperlink{structactive}{active}} \mbox{\hyperlink{thread__pool_8c_a28b2e3de1462fae6e6be928ae2caa893}{active\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void $\ast$ \mbox{\hyperlink{thread__pool_8c_ab3aea968b334ca0d66f4ddeeb1671ed6}{worker\+\_\+thread}} (void $\ast$)
+\item 
+static int \mbox{\hyperlink{thread__pool_8c_a7fba7a18212c86292b0b07a572905ce2}{create\+\_\+worker}} (thr\+\_\+pool\+\_\+t $\ast$pool)
+\item 
+static void \mbox{\hyperlink{thread__pool_8c_ac9583c7f1fabbf88bf3f12d59f2a242b}{worker\+\_\+cleanup}} (thr\+\_\+pool\+\_\+t $\ast$pool)
+\item 
+static void \mbox{\hyperlink{thread__pool_8c_a57c134a0b40e6e4e85b10d269605e983}{notify\+\_\+waiters}} (thr\+\_\+pool\+\_\+t $\ast$pool)
+\item 
+static void \mbox{\hyperlink{thread__pool_8c_a198f9146b2ce6f3dc66806278be53fb6}{job\+\_\+cleanup}} (thr\+\_\+pool\+\_\+t $\ast$pool)
+\item 
+static void \mbox{\hyperlink{thread__pool_8c_a569f32ed150c6cb7479ebe945a6212e4}{clone\+\_\+attributes}} (pthread\+\_\+attr\+\_\+t $\ast$new\+\_\+attr, pthread\+\_\+attr\+\_\+t $\ast$old\+\_\+attr)
+\item 
+thr\+\_\+pool\+\_\+t $\ast$ \mbox{\hyperlink{thread__pool_8c_a90b52c0d3c2e77ce033e3e41c5b044d9}{thr\+\_\+pool\+\_\+create}} (uint\+\_\+t min\+\_\+threads, uint\+\_\+t max\+\_\+threads, uint\+\_\+t linger, pthread\+\_\+attr\+\_\+t $\ast$attr)
+\item 
+int \mbox{\hyperlink{thread__pool_8c_ac63ab741917e0810c23b968f5d02881c}{thr\+\_\+pool\+\_\+queue}} (thr\+\_\+pool\+\_\+t $\ast$pool, void $\ast$($\ast$func)(void $\ast$), void $\ast$arg)
+\item 
+void \mbox{\hyperlink{thread__pool_8c_aa40e547b0636ba5caf0113a920a459cb}{thr\+\_\+pool\+\_\+wait}} (thr\+\_\+pool\+\_\+t $\ast$pool)
+\item 
+void \mbox{\hyperlink{thread__pool_8c_a5440052bff2d9eb010dfe75f1532d073}{thr\+\_\+pool\+\_\+destroy}} (thr\+\_\+pool\+\_\+t $\ast$pool)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static thr\+\_\+pool\+\_\+t $\ast$ \mbox{\hyperlink{thread__pool_8c_af6b70e3342fe42f4b7144fc6877f099d}{thr\+\_\+pools}} = N\+U\+LL
+\item 
+static pthread\+\_\+mutex\+\_\+t \mbox{\hyperlink{thread__pool_8c_a3cf67543bf1c5c1242b42bf4e86f8d54}{thr\+\_\+pool\+\_\+lock}} = P\+T\+H\+R\+E\+A\+D\+\_\+\+M\+U\+T\+E\+X\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER
+\item 
+static sigset\+\_\+t \mbox{\hyperlink{thread__pool_8c_abe7e2e56e7722bff571c0fbf438c134e}{fillset}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{thread__pool_8c_ac15da069257627fefd71d875d538b73d}\label{thread__pool_8c_ac15da069257627fefd71d875d538b73d}} 
+\index{thread\_pool.c@{thread\_pool.c}!\_REENTRANT@{\_REENTRANT}}
+\index{\_REENTRANT@{\_REENTRANT}!thread\_pool.c@{thread\_pool.c}}
+\doxysubsubsection{\texorpdfstring{\_REENTRANT}{\_REENTRANT}}
+{\footnotesize\ttfamily \#define \+\_\+\+R\+E\+E\+N\+T\+R\+A\+NT}
+
+\mbox{\Hypertarget{thread__pool_8c_ae4f4e73e3cfaf241efb423f0a121d625}\label{thread__pool_8c_ae4f4e73e3cfaf241efb423f0a121d625}} 
+\index{thread\_pool.c@{thread\_pool.c}!POOL\_DESTROY@{POOL\_DESTROY}}
+\index{POOL\_DESTROY@{POOL\_DESTROY}!thread\_pool.c@{thread\_pool.c}}
+\doxysubsubsection{\texorpdfstring{POOL\_DESTROY}{POOL\_DESTROY}}
+{\footnotesize\ttfamily \#define P\+O\+O\+L\+\_\+\+D\+E\+S\+T\+R\+OY~0x02 /$\ast$ pool is being destroyed $\ast$/}
+
+\mbox{\Hypertarget{thread__pool_8c_aa2ebdca71e2e84a9078f15249312ddda}\label{thread__pool_8c_aa2ebdca71e2e84a9078f15249312ddda}} 
+\index{thread\_pool.c@{thread\_pool.c}!POOL\_WAIT@{POOL\_WAIT}}
+\index{POOL\_WAIT@{POOL\_WAIT}!thread\_pool.c@{thread\_pool.c}}
+\doxysubsubsection{\texorpdfstring{POOL\_WAIT}{POOL\_WAIT}}
+{\footnotesize\ttfamily \#define P\+O\+O\+L\+\_\+\+W\+A\+IT~0x01 /$\ast$ waiting in \mbox{\hyperlink{thread__pool_8c_aa40e547b0636ba5caf0113a920a459cb}{thr\+\_\+pool\+\_\+wait}}() $\ast$/}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{thread__pool_8c_a28b2e3de1462fae6e6be928ae2caa893}\label{thread__pool_8c_a28b2e3de1462fae6e6be928ae2caa893}} 
+\index{thread\_pool.c@{thread\_pool.c}!active\_t@{active\_t}}
+\index{active\_t@{active\_t}!thread\_pool.c@{thread\_pool.c}}
+\doxysubsubsection{\texorpdfstring{active\_t}{active\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structactive}{active}} \mbox{\hyperlink{thread__pool_8c_a28b2e3de1462fae6e6be928ae2caa893}{active\+\_\+t}}}
+
+\mbox{\Hypertarget{thread__pool_8c_ad80922c610b6e71fdc834b6bd2af79f2}\label{thread__pool_8c_ad80922c610b6e71fdc834b6bd2af79f2}} 
+\index{thread\_pool.c@{thread\_pool.c}!job\_t@{job\_t}}
+\index{job\_t@{job\_t}!thread\_pool.c@{thread\_pool.c}}
+\doxysubsubsection{\texorpdfstring{job\_t}{job\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structjob}{job}} \mbox{\hyperlink{thread__pool_8c_ad80922c610b6e71fdc834b6bd2af79f2}{job\+\_\+t}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{thread__pool_8c_a569f32ed150c6cb7479ebe945a6212e4}\label{thread__pool_8c_a569f32ed150c6cb7479ebe945a6212e4}} 
+\index{thread\_pool.c@{thread\_pool.c}!clone\_attributes@{clone\_attributes}}
+\index{clone\_attributes@{clone\_attributes}!thread\_pool.c@{thread\_pool.c}}
+\doxysubsubsection{\texorpdfstring{clone\_attributes()}{clone\_attributes()}}
+{\footnotesize\ttfamily static void clone\+\_\+attributes (\begin{DoxyParamCaption}\item[{pthread\+\_\+attr\+\_\+t $\ast$}]{new\+\_\+attr,  }\item[{pthread\+\_\+attr\+\_\+t $\ast$}]{old\+\_\+attr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{thread__pool_8c_a7fba7a18212c86292b0b07a572905ce2}\label{thread__pool_8c_a7fba7a18212c86292b0b07a572905ce2}} 
+\index{thread\_pool.c@{thread\_pool.c}!create\_worker@{create\_worker}}
+\index{create\_worker@{create\_worker}!thread\_pool.c@{thread\_pool.c}}
+\doxysubsubsection{\texorpdfstring{create\_worker()}{create\_worker()}}
+{\footnotesize\ttfamily static int create\+\_\+worker (\begin{DoxyParamCaption}\item[{thr\+\_\+pool\+\_\+t $\ast$}]{pool }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{thread__pool_8c_a198f9146b2ce6f3dc66806278be53fb6}\label{thread__pool_8c_a198f9146b2ce6f3dc66806278be53fb6}} 
+\index{thread\_pool.c@{thread\_pool.c}!job\_cleanup@{job\_cleanup}}
+\index{job\_cleanup@{job\_cleanup}!thread\_pool.c@{thread\_pool.c}}
+\doxysubsubsection{\texorpdfstring{job\_cleanup()}{job\_cleanup()}}
+{\footnotesize\ttfamily static void job\+\_\+cleanup (\begin{DoxyParamCaption}\item[{thr\+\_\+pool\+\_\+t $\ast$}]{pool }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{thread__pool_8c_a57c134a0b40e6e4e85b10d269605e983}\label{thread__pool_8c_a57c134a0b40e6e4e85b10d269605e983}} 
+\index{thread\_pool.c@{thread\_pool.c}!notify\_waiters@{notify\_waiters}}
+\index{notify\_waiters@{notify\_waiters}!thread\_pool.c@{thread\_pool.c}}
+\doxysubsubsection{\texorpdfstring{notify\_waiters()}{notify\_waiters()}}
+{\footnotesize\ttfamily static void notify\+\_\+waiters (\begin{DoxyParamCaption}\item[{thr\+\_\+pool\+\_\+t $\ast$}]{pool }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{thread__pool_8c_a90b52c0d3c2e77ce033e3e41c5b044d9}\label{thread__pool_8c_a90b52c0d3c2e77ce033e3e41c5b044d9}} 
+\index{thread\_pool.c@{thread\_pool.c}!thr\_pool\_create@{thr\_pool\_create}}
+\index{thr\_pool\_create@{thr\_pool\_create}!thread\_pool.c@{thread\_pool.c}}
+\doxysubsubsection{\texorpdfstring{thr\_pool\_create()}{thr\_pool\_create()}}
+{\footnotesize\ttfamily thr\+\_\+pool\+\_\+t$\ast$ thr\+\_\+pool\+\_\+create (\begin{DoxyParamCaption}\item[{uint\+\_\+t}]{min\+\_\+threads,  }\item[{uint\+\_\+t}]{max\+\_\+threads,  }\item[{uint\+\_\+t}]{linger,  }\item[{pthread\+\_\+attr\+\_\+t $\ast$}]{attr }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{thread__pool_8c_a5440052bff2d9eb010dfe75f1532d073}\label{thread__pool_8c_a5440052bff2d9eb010dfe75f1532d073}} 
+\index{thread\_pool.c@{thread\_pool.c}!thr\_pool\_destroy@{thr\_pool\_destroy}}
+\index{thr\_pool\_destroy@{thr\_pool\_destroy}!thread\_pool.c@{thread\_pool.c}}
+\doxysubsubsection{\texorpdfstring{thr\_pool\_destroy()}{thr\_pool\_destroy()}}
+{\footnotesize\ttfamily void thr\+\_\+pool\+\_\+destroy (\begin{DoxyParamCaption}\item[{thr\+\_\+pool\+\_\+t $\ast$}]{pool }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{thread__pool_8c_ac63ab741917e0810c23b968f5d02881c}\label{thread__pool_8c_ac63ab741917e0810c23b968f5d02881c}} 
+\index{thread\_pool.c@{thread\_pool.c}!thr\_pool\_queue@{thr\_pool\_queue}}
+\index{thr\_pool\_queue@{thr\_pool\_queue}!thread\_pool.c@{thread\_pool.c}}
+\doxysubsubsection{\texorpdfstring{thr\_pool\_queue()}{thr\_pool\_queue()}}
+{\footnotesize\ttfamily int thr\+\_\+pool\+\_\+queue (\begin{DoxyParamCaption}\item[{thr\+\_\+pool\+\_\+t $\ast$}]{pool,  }\item[{void $\ast$($\ast$)(void $\ast$)}]{func,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{thread__pool_8c_aa40e547b0636ba5caf0113a920a459cb}\label{thread__pool_8c_aa40e547b0636ba5caf0113a920a459cb}} 
+\index{thread\_pool.c@{thread\_pool.c}!thr\_pool\_wait@{thr\_pool\_wait}}
+\index{thr\_pool\_wait@{thr\_pool\_wait}!thread\_pool.c@{thread\_pool.c}}
+\doxysubsubsection{\texorpdfstring{thr\_pool\_wait()}{thr\_pool\_wait()}}
+{\footnotesize\ttfamily void thr\+\_\+pool\+\_\+wait (\begin{DoxyParamCaption}\item[{thr\+\_\+pool\+\_\+t $\ast$}]{pool }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{thread__pool_8c_ac9583c7f1fabbf88bf3f12d59f2a242b}\label{thread__pool_8c_ac9583c7f1fabbf88bf3f12d59f2a242b}} 
+\index{thread\_pool.c@{thread\_pool.c}!worker\_cleanup@{worker\_cleanup}}
+\index{worker\_cleanup@{worker\_cleanup}!thread\_pool.c@{thread\_pool.c}}
+\doxysubsubsection{\texorpdfstring{worker\_cleanup()}{worker\_cleanup()}}
+{\footnotesize\ttfamily static void worker\+\_\+cleanup (\begin{DoxyParamCaption}\item[{thr\+\_\+pool\+\_\+t $\ast$}]{pool }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{thread__pool_8c_ab3aea968b334ca0d66f4ddeeb1671ed6}\label{thread__pool_8c_ab3aea968b334ca0d66f4ddeeb1671ed6}} 
+\index{thread\_pool.c@{thread\_pool.c}!worker\_thread@{worker\_thread}}
+\index{worker\_thread@{worker\_thread}!thread\_pool.c@{thread\_pool.c}}
+\doxysubsubsection{\texorpdfstring{worker\_thread()}{worker\_thread()}}
+{\footnotesize\ttfamily static void $\ast$ worker\+\_\+thread (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{thread__pool_8c_abe7e2e56e7722bff571c0fbf438c134e}\label{thread__pool_8c_abe7e2e56e7722bff571c0fbf438c134e}} 
+\index{thread\_pool.c@{thread\_pool.c}!fillset@{fillset}}
+\index{fillset@{fillset}!thread\_pool.c@{thread\_pool.c}}
+\doxysubsubsection{\texorpdfstring{fillset}{fillset}}
+{\footnotesize\ttfamily sigset\+\_\+t fillset\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{thread__pool_8c_a3cf67543bf1c5c1242b42bf4e86f8d54}\label{thread__pool_8c_a3cf67543bf1c5c1242b42bf4e86f8d54}} 
+\index{thread\_pool.c@{thread\_pool.c}!thr\_pool\_lock@{thr\_pool\_lock}}
+\index{thr\_pool\_lock@{thr\_pool\_lock}!thread\_pool.c@{thread\_pool.c}}
+\doxysubsubsection{\texorpdfstring{thr\_pool\_lock}{thr\_pool\_lock}}
+{\footnotesize\ttfamily pthread\+\_\+mutex\+\_\+t thr\+\_\+pool\+\_\+lock = P\+T\+H\+R\+E\+A\+D\+\_\+\+M\+U\+T\+E\+X\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{thread__pool_8c_af6b70e3342fe42f4b7144fc6877f099d}\label{thread__pool_8c_af6b70e3342fe42f4b7144fc6877f099d}} 
+\index{thread\_pool.c@{thread\_pool.c}!thr\_pools@{thr\_pools}}
+\index{thr\_pools@{thr\_pools}!thread\_pool.c@{thread\_pool.c}}
+\doxysubsubsection{\texorpdfstring{thr\_pools}{thr\_pools}}
+{\footnotesize\ttfamily thr\+\_\+pool\+\_\+t$\ast$ thr\+\_\+pools = N\+U\+LL\hspace{0.3cm}{\ttfamily [static]}}
+

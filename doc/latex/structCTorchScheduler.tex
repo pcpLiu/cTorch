@@ -1,0 +1,78 @@
+\hypertarget{structCTorchScheduler}{}\doxysection{C\+Torch\+Scheduler Struct Reference}
+\label{structCTorchScheduler}\index{CTorchScheduler@{CTorchScheduler}}
+
+
+{\ttfamily \#include $<$scheduler.\+h$>$}
+
+
+
+Collaboration diagram for C\+Torch\+Scheduler\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structCTorchScheduler_aec3bd76acd495d240b2dd833281e216f}{Array}} (\mbox{\hyperlink{structCTorchQueueJob}{C\+Torch\+Queue\+Job}}) $\ast$job\+\_\+list
+\end{DoxyCompactItemize}
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structCTorchQueue}{C\+Torch\+Queue}} $\ast$ \mbox{\hyperlink{structCTorchScheduler_a4125cb47c71701e3c4791f3ffee8f837}{exe\+\_\+queue}}
+\item 
+\mbox{\hyperlink{structCTorchQueue}{C\+Torch\+Queue}} $\ast$ \mbox{\hyperlink{structCTorchScheduler_aff6be78d35825c4744de8caa7acf4de6}{ret\+\_\+queue}}
+\item 
+\mbox{\hyperlink{structbit__array__t}{bit\+\_\+array\+\_\+t}} $\ast$ \mbox{\hyperlink{structCTorchScheduler_a7014749bb66173d1abbc94d4ad15e909}{queue\+\_\+status}}
+\item 
+\mbox{\hyperlink{structbit__array__t}{bit\+\_\+array\+\_\+t}} $\ast$ \mbox{\hyperlink{structCTorchScheduler_af6d0881841867fb9ef4026724a601e2f}{done\+\_\+status}}
+\item 
+\mbox{\hyperlink{structbit__array__t}{bit\+\_\+array\+\_\+t}} $\ast$ \mbox{\hyperlink{structCTorchScheduler_a30ce2fd4ce4f94267fc09a9dee24e169}{ready\+\_\+status}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Scheduler is used to arrange a graph\textquotesingle{}s execution order 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structCTorchScheduler_aec3bd76acd495d240b2dd833281e216f}\label{structCTorchScheduler_aec3bd76acd495d240b2dd833281e216f}} 
+\index{CTorchScheduler@{CTorchScheduler}!Array@{Array}}
+\index{Array@{Array}!CTorchScheduler@{CTorchScheduler}}
+\doxysubsubsection{\texorpdfstring{Array()}{Array()}}
+{\footnotesize\ttfamily C\+Torch\+Scheduler\+::\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchQueueJob}{C\+Torch\+Queue\+Job}}}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{structCTorchScheduler_af6d0881841867fb9ef4026724a601e2f}\label{structCTorchScheduler_af6d0881841867fb9ef4026724a601e2f}} 
+\index{CTorchScheduler@{CTorchScheduler}!done\_status@{done\_status}}
+\index{done\_status@{done\_status}!CTorchScheduler@{CTorchScheduler}}
+\doxysubsubsection{\texorpdfstring{done\_status}{done\_status}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structbit__array__t}{bit\+\_\+array\+\_\+t}}$\ast$ C\+Torch\+Scheduler\+::done\+\_\+status}
+
+\mbox{\Hypertarget{structCTorchScheduler_a4125cb47c71701e3c4791f3ffee8f837}\label{structCTorchScheduler_a4125cb47c71701e3c4791f3ffee8f837}} 
+\index{CTorchScheduler@{CTorchScheduler}!exe\_queue@{exe\_queue}}
+\index{exe\_queue@{exe\_queue}!CTorchScheduler@{CTorchScheduler}}
+\doxysubsubsection{\texorpdfstring{exe\_queue}{exe\_queue}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structCTorchQueue}{C\+Torch\+Queue}}$\ast$ C\+Torch\+Scheduler\+::exe\+\_\+queue}
+
+\mbox{\Hypertarget{structCTorchScheduler_a7014749bb66173d1abbc94d4ad15e909}\label{structCTorchScheduler_a7014749bb66173d1abbc94d4ad15e909}} 
+\index{CTorchScheduler@{CTorchScheduler}!queue\_status@{queue\_status}}
+\index{queue\_status@{queue\_status}!CTorchScheduler@{CTorchScheduler}}
+\doxysubsubsection{\texorpdfstring{queue\_status}{queue\_status}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structbit__array__t}{bit\+\_\+array\+\_\+t}}$\ast$ C\+Torch\+Scheduler\+::queue\+\_\+status}
+
+\mbox{\Hypertarget{structCTorchScheduler_a30ce2fd4ce4f94267fc09a9dee24e169}\label{structCTorchScheduler_a30ce2fd4ce4f94267fc09a9dee24e169}} 
+\index{CTorchScheduler@{CTorchScheduler}!ready\_status@{ready\_status}}
+\index{ready\_status@{ready\_status}!CTorchScheduler@{CTorchScheduler}}
+\doxysubsubsection{\texorpdfstring{ready\_status}{ready\_status}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structbit__array__t}{bit\+\_\+array\+\_\+t}}$\ast$ C\+Torch\+Scheduler\+::ready\+\_\+status}
+
+\mbox{\Hypertarget{structCTorchScheduler_aff6be78d35825c4744de8caa7acf4de6}\label{structCTorchScheduler_aff6be78d35825c4744de8caa7acf4de6}} 
+\index{CTorchScheduler@{CTorchScheduler}!ret\_queue@{ret\_queue}}
+\index{ret\_queue@{ret\_queue}!CTorchScheduler@{CTorchScheduler}}
+\doxysubsubsection{\texorpdfstring{ret\_queue}{ret\_queue}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structCTorchQueue}{C\+Torch\+Queue}}$\ast$ C\+Torch\+Scheduler\+::ret\+\_\+queue}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+c\+Torch/\mbox{\hyperlink{scheduler_8h}{scheduler.\+h}}\end{DoxyCompactItemize}
