@@ -15,12 +15,6 @@
   <a>
     <img src="https://img.shields.io/badge/license-MIT-lightgrey">
   </a>
-  <a>
-    <img alt="GitHub All Releases" src="https://img.shields.io/github/downloads/pcpLiu/cTorch/total?color=informational">
-  </a>
-  <a>
-    <img alt="GitHub issues" src="https://img.shields.io/github/issues/pcpLiu/cTorch">
-  </a>
 </p>
 
 cTorch is an inference engine implemented with C.
