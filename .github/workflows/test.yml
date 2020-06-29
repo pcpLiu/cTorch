@@ -29,8 +29,5 @@ jobs:
         run: bash ci/test.sh
 
       - name: 5) Upload coverage to Codecov (only on Ubuntu)
-        run: |
-          if [ "$RUNNER_OS" == "Linux" ]; then
-            bash ci/codecov.sh
-          fi
+        run: if [ "$RUNNER_OS" == "Linux" ]; then bash ci/codecov.sh fi
         shell: bash
