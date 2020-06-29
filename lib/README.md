@@ -1,4 +1,4 @@
 # Vendor libs
 
-- [googltests](https://github.com/google/googletest) (For test only)
-- [openBLAS](https://github.com/xianyi/OpenBLAS)
+- [googltests](https://github.com/google/googletest): Used to run tests
+- [openBLAS](https://github.com/xianyi/OpenBLAS): openBLAS backend
