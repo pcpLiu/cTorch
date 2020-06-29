@@ -17,55 +17,53 @@
   </a>
 </p>
 
-cTorch is an inference engine implemented with C.
-
-# Backends
-
-All operators are implemented with standard C.
-However, cTorch also supports several backends by utilizing their performance APIs (Not all operators are supported).
-When your machine supports one or more backends and you enable building against them, cTorch could execute ops on alternative backends.
-
-## Backend dependencies
-
-cTorch supports 6 backends: [x86 Intrinsics](), [ARM Intrinsics](), [OpenBLAS](), [Intel MKL](), [Accelerate]() and [CUDA]().
-Based on your environment and needs, you should install one or all of them before heading to cTorch installation.
-
-- **x86 Intrinsics**: support from SSE to AVX512
-- **OpenBLAS**: A high-performance BLAS implementation.
-- **Intel MKL**:
-- **Accelerate**: (No installation needed) Available on iOS && MacOS systems. It's a high-performance computational library offered by Apple.
-- **CUDA**: cTorch supports CUDA 9
-
-## Supported CPUs with Intrinsics Functions
-
-- x86-64
-  - Intel: Sandy Bridge & Later
-  - AMD: Bulldozer & Zen
-
-### Runtime backends V.S. built backend
-
-When you are building cTorch, you could build against to multiple backends.
-As you are using cTorch in your program, a specific operator will be executed on one backend.
-If user specifies an unbuilt backend, runtime error will be raised.
-
-### Automatically execution fallback
-
-If you chose op to run on backend `X` while `X` does not support this operator, cTorch will
-automatically switch execution to default implementation.
-
-# Build instructions
+# I. Build instructions
 
 Building dependencies:
 
-- cMake
+- CMake
 - gcc or Clang (g++ for running testing)
 - POSIX Thread
+
+### Quick build & install
+
+```bash
+$ git clone https://github.com/pcpLiu/cTorch
+$ cd cTorch
+$ mkdir build && cd build
+$ cmake .. && make
+$ sudo make install
+```
 
 ### Build with selective operators
 
 In `src/operators/CMakeLists.txt`, list operators into variable `ops_disabled`.
 Those operators will be excluded from building.
 All available operators' names are defined in `src/operators/op_list.h`.
+
+# II. Backends
+
+All operators in cTorch have a default implementation with standard C without dependency of any external lib.
+cTorch also supports several high-performance backends: [x86 Intrinsics](), [ARM](), [OpenBLAS](), [Intel MKL](), [Apple]() and [CUDA]().
+Based on your environment and needs, you should install one or all of them before heading to cTorch installation.
+
+- [**x86 Intrinsics**](): support from SSE to AVX512
+- [**ARM**](): [ARMNN]() and [ARM computer library]()
+- [**OpenBLAS**](): A high-performance BLAS implementation
+- [**Intel MKL**]():
+- [**Apple**](): [Accelerate](https://developer.apple.com/documentation/accelerate), [Metal](https://developer.apple.com/documentation/metal) and [ML Compute](https://developer.apple.com/documentation/mlcompute) .
+- [**CUDA**](): cTorch supports CUDA 9
+
+### Runtime backends V.S. built backend
+
+When you are building cTorch, you could build against to multiple backends.
+As you are using cTorch in your program, an operator will be executed on one backend.
+If user specifies an unbuilt backend, runtime error will be raised.
+
+### Automatically execution fallback
+
+If you chose op to run on backend `X` while `X` does not support this operator, cTorch will
+automatically switch execution to default implementation.
 
 # Contributors
 
