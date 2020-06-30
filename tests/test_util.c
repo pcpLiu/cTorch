@@ -18,7 +18,9 @@ bool _rand_bool(void) {
 
 #define _fill_tensor(type, n_ele, tensor, rand_func, ...)                      \
   do {                                                                         \
-    tensor->values = (type *)MALLOC(sizeof(type) * n_ele);                     \
+    tensor->meta_info->value_size_of = sizeof(type);                           \
+    tensor->values =                                                           \
+        (type *)MALLOC_NAME(sizeof(type) * n_ele, "tensor values");            \
     type *val = (type *)tensor->values;                                        \
     for (int i = 0; i < tensor->meta_info->n_elements; i++) {                  \
       val[i] = (type)rand_func(__VA_ARGS__);                                   \
@@ -28,11 +30,14 @@ bool _rand_bool(void) {
 CTorchTensor *create_dummy_tensor(tensor_dim_t *dims, tensor_dim_t n_dim,
                                   CTH_TENSOR_DATA_TYPE data_type, float min,
                                   float max) {
-  CTorchTensor *tensor = (CTorchTensor *)MALLOC(sizeof(CTorchTensor));
-  tensor->meta_info = (CTorchTensorMeta *)MALLOC(sizeof(CTorchTensorMeta));
+  CTorchTensor *tensor =
+      (CTorchTensor *)MALLOC_NAME(sizeof(CTorchTensor), "tensor");
+  tensor->meta_info =
+      (CTorchTensorMeta *)MALLOC_NAME(sizeof(CTorchTensorMeta), "meta info");
   tensor->meta_info->dims = dims;
   tensor->meta_info->n_dim = n_dim;
   tensor->meta_info->data_type = data_type;
+  tensor->meta_info->is_sharded = false;
   cth_tensor_set_name(tensor, "Dummy Tensor");
 
   uint64_t n_ele = 1;

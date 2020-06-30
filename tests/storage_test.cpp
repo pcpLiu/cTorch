@@ -19,8 +19,8 @@ TEST(cTorchStorageTest, testForceTensorDimension) {
       create_dummy_tensor(dims, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 2.0);
 
   tensor_dim_t test_dims[] = {30, 20};
-  EXPECT_NO_FATAL_FAILURE(FORCE_TENSOR_DIMENSION(tensor, dims));
-  EXPECT_EXIT(FORCE_TENSOR_DIMENSION(tensor, test_dims),
+  EXPECT_NO_FATAL_FAILURE(FORCE_TENSOR_DIMENSION(tensor, dims, 2));
+  EXPECT_EXIT(FORCE_TENSOR_DIMENSION(tensor, test_dims, 2),
               ::testing::ExitedWithCode(1), "FORCE_TENSOR_DIMENSION failes.");
 }
 

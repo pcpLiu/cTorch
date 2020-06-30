@@ -98,6 +98,7 @@ TEST(cTorchOperatorTest, testDeepFreeMEMRECORD) {
   array_set(CTorchParam)(op->params, 0, param);
 
   struct_deep_free(CTorchOperator)(op);
+
   EXPECT_EQ(0, cth_get_num_unfree_records());
 }
 

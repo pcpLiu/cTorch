@@ -69,7 +69,9 @@ endif()
 if(${DEBUG_TEST})
     message(
         WARNING
-        "[cTorch] DEBUG_TEST is turned ON. Option should only be enabled for running tests."
+        "[cTorch]: DEBUG_TEST is set to ON. "
+        "This opiton should only be enabled for debugging cTorch."
+        "Turning it on will lead to performance regression."
     )
     # Enable debug code compiling
     add_compile_definitions(CTH_TEST_DEBUG)

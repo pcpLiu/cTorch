@@ -8,13 +8,18 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
-void *cth_malloc(size_t size, const char *name) {
-  void *mem = malloc(size);
+void *cth_malloc(
+    size_t size,
+    const char *record_name,
+    const char *file_name,
+    int line_num,
+    const char *func_name) {
+  void *mem = calloc(0, size);
   FAIL_NULL_PTR(mem);
 
 #ifdef CTH_TEST_DEBUG
   MemoryRecord *record = cth_add_mem_record(mem);
-  record->name = name;
+  record->name = record_name;
 #endif
 
   return mem;
@@ -50,6 +55,7 @@ void cth_free_soft(
   char *msg = NULL;
   asprintf(
       &msg,
+      "cth_get_mem_record() failed. "
       "Calling from line: %d, function: %s, file: %s",
       line_num,
       func_name,

@@ -98,6 +98,15 @@ float _rand_float(float min, float max);
     }                                                                          \
   }
 
+inline int *heap_int(int x) {
+  int *ptr = (int *)MALLOC(sizeof(int));
+  *ptr = x;
+  return ptr;
+}
+
+// for testFreeListDeep
+inline void free_deep_int(int *x) { FREE(x); }
+
 #ifdef __cplusplus
 }
 #endif

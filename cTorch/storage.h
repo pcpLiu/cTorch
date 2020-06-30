@@ -12,7 +12,7 @@
  * This struct contains Meta information of a tensor.
  */
 typedef struct CTorchTensorMeta {
-  uint8_t value_size_of;          /* Element size */
+  uint16_t value_size_of;         /* Element size */
   CTH_TENSOR_DATA_TYPE data_type; /* Value data type */
   tensor_dim_t n_dim;             /* Number of dimensions */
   tensor_dim_t *dims;             /* Dimension array */
@@ -101,10 +101,14 @@ size_t cth_tensor_data_size(CTorchTensor *tensor);
 bool cth_tensor_name_match(CTorchTensor *tensor, const char *target_name);
 
 /**
- * Check if given tensor has target dimension.
- * FAIL_EXIT if not match.
+ * @brief Check if tensor has target dimensions, fail if not
+ *
+ * @param tensor tensor
+ * @param target_dims target dims array
+ * @param target_n_dim target number of dims
  */
-void FORCE_TENSOR_DIMENSION(CTorchTensor *tensor, tensor_dim_t *target_dims);
+void FORCE_TENSOR_DIMENSION(
+    CTorchTensor *tensor, tensor_dim_t *target_dims, tensor_dim_t target_n_dim);
 
 /**
  * Check if given tensor has target no. of elements. FAIL_EXIT if not match.

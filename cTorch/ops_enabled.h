@@ -4,7 +4,7 @@
 /*
   Number of enabled operators
 */
-#define ENABLED_OP_NUM 299
+#define ENABLED_OP_NUM 300
 
 // clang-format off
 

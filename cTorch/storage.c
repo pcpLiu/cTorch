@@ -49,9 +49,11 @@ size_t cth_tensor_data_size(CTorchTensor *tensor) {
   return ele_size * tensor->meta_info->n_elements;
 }
 
-void FORCE_TENSOR_DIMENSION(CTorchTensor *tensor, tensor_dim_t *target_dims) {
+void FORCE_TENSOR_DIMENSION(
+    CTorchTensor *tensor,
+    tensor_dim_t *target_dims,
+    tensor_dim_t target_n_dim) {
   // n_dim
-  tensor_dim_t target_n_dim = sizeof(target_dims) / sizeof(target_dims[0]);
   bool match_n_dim = (tensor->meta_info->n_dim == target_n_dim);
 
   // dims

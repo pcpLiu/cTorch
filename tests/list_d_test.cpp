@@ -1,15 +1,16 @@
 #include "cTorch/c_torch.h"
+#include "tests/test_util.h"
 #include "gtest/gtest.h"
 
-// for testFreeListDeep
-int *heap_int(int x) {
-  int *ptr = (int *)MALLOC(sizeof(int));
-  *ptr = x;
-  return ptr;
-}
+// // for testFreeListDeep
+// int *heap_int(int x) {
+//   int *ptr = (int *)MALLOC(sizeof(int));
+//   *ptr = x;
+//   return ptr;
+// }
 
-// for testFreeListDeep
-void free_deep_int(int *x) { FREE(x); }
+// // for testFreeListDeep
+// void free_deep_int(int *x) { FREE(x); }
 
 def_list_item(int);
 def_list(int);

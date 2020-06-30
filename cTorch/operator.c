@@ -1,7 +1,7 @@
 #include "cTorch/operator.h"
 #include "cTorch/consts.h"
+#include "cTorch/debug_util.h"
 #include "cTorch/logger_util.h"
-#include "cTorch/mem_util.h"
 
 #include <string.h>
 
