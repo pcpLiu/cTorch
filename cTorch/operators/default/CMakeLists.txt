@@ -45,6 +45,9 @@ set(ops_default_all
     operators/default/op_mvlgamma_default.c
     operators/default/op_neg_default.c
     operators/default/op_polygamma_default.c
+    operators/default/op_pow_default.c
+    operators/default/op_reciprocal_default.c
+    operators/default/op_remainder_default.c
 )
 
 ################################################################################

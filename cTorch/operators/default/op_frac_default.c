@@ -14,7 +14,7 @@
   } while (0)
 
 /**
- * Computes the fractional portion of each element in input
+ * @brief Computes the fractional portion of each element in input
  *
  * Inputs & outputs:
  *    - # of input: 1

@@ -93,7 +93,8 @@
   }
 
 /**
- * Apply 1d binary kernel on input and output pointers in element wise way
+ * Apply 1d binary kernel on input and output pointers in element wise way.
+ * This one assumes both input have same data types.
  */
 #define _cpu_1d_map_elewise_binary(                                            \
     input_ptr_a, input_ptr_b, output_ptr, data_type, N, kernel)                \
