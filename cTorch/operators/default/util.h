@@ -10,7 +10,7 @@
     type_t *input_t = (type_t *)input_ptr;                                     \
     type_t *output_t = (type_t *)output_ptr;                                   \
     for (int i = 0; i < N; i++) {                                              \
-      output_t[i] = kernel(input_t[i]);                                        \
+      output_t[i] = (type_t)kernel(input_t[i]);                                \
     }                                                                          \
   }
 
@@ -24,7 +24,7 @@
     type_t *input_b_t = (type_t *)input_ptr_b;                                 \
     type_t *output_t = (type_t *)output_ptr;                                   \
     for (int i = 0; i < N; i++) {                                              \
-      output_t[i] = kernel(input_a_t[i], input_b_t[i]);                        \
+      output_t[i] = (type_t)kernel(input_a_t[i], input_b_t[i]);                \
     }                                                                          \
   }
 
