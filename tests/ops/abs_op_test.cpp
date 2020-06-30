@@ -1,4 +1,4 @@
-#include <ctgmath>
+#include <tgmath.h>
 
 #include "cTorch/c_torch.h"
 #include "tests/test_util.h"
@@ -19,15 +19,13 @@ void test_abs(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_64) {
     _ele_wise_equal_unary(op, double, EXPECT_DOUBLE_EQ, fabs);
   } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_16) {
-    _ele_wise_equal_unary(op, int16_t, EXPECT_EQ, abs);
+    _ele_wise_equal_unary(op, int16_t, EXPECT_EQ, fabs);
   } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_32) {
-    _ele_wise_equal_unary(op, int32_t, EXPECT_EQ, abs);
+    _ele_wise_equal_unary(op, int32_t, EXPECT_EQ, fabs);
   } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_64) {
-    _ele_wise_equal_unary(op, int64_t, EXPECT_EQ, abs);
+    _ele_wise_equal_unary(op, int64_t, EXPECT_EQ, fabs);
   } else if (data_type == CTH_TENSOR_DATA_TYPE_UINT_8) {
-    _ele_wise_equal_unary(op, uint8_t, EXPECT_EQ, abs);
-  } else if (data_type == CTH_TENSOR_DATA_TYPE_BOOL) {
-    _ele_wise_equal_unary(op, bool, EXPECT_EQ, abs);
+    _ele_wise_equal_unary(op, uint8_t, EXPECT_EQ, fabs);
   }
 }
 
@@ -57,8 +55,4 @@ TEST(cTorchAbsOpTest, testInt64Default) {
 
 TEST(cTorchAbsOpTest, testUInt8Default) {
   test_abs(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_UINT_8, -100.0, 100.0);
-}
-
-TEST(cTorchAbsOpTest, testBoolDefault) {
-  test_abs(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_BOOL, -100.0, 100.0);
 }
