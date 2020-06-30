@@ -41,6 +41,12 @@ void test_logical_or(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type,
 
   op_logical_or_cpu(op);
 
+  // may print out werid result for signed int due to type conversion
+  sample_print_triple(
+      data_type, array_at(CTorchTensor)(op->in_bound_tensors, 0)->values,
+      array_at(CTorchTensor)(op->in_bound_tensors, 1)->values,
+      array_at(CTorchTensor)(op->out_bound_tensors, 0)->values, 2);
+
   if (data_type == CTH_TENSOR_DATA_TYPE_INT_16) {
     _verify_logical_or(op, int16_t, EXPECT_EQ);
   } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_32) {

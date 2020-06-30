@@ -30,6 +30,11 @@ void test_logical_not(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type,
 
   op_logical_not_cpu(op);
 
+  // may print out werid result for signed int due to type conversion
+  sample_print(data_type,
+               array_at(CTorchTensor)(op->in_bound_tensors, 0)->values,
+               array_at(CTorchTensor)(op->out_bound_tensors, 0)->values, 2);
+
   if (data_type == CTH_TENSOR_DATA_TYPE_INT_16) {
     _verify_logical_and(op, int16_t, EXPECT_EQ);
   } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_32) {
@@ -79,8 +84,7 @@ TEST(cTorchLogicalNotOpTest, testInt64Default) {
 }
 
 TEST(cTorchLogicalNotOpTest, testUInt8Default) {
-  test_logical_not(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_UINT_8, -10.0,
-                   10.0);
+  test_logical_not(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_UINT_8, 1.0, 10.0);
 }
 
 TEST(cTorchLogicalNotOpTest, testBoolDefault) {

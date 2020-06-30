@@ -13,6 +13,10 @@ void test_neg(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   CTorchOperator *op = op_node->conent.op;
   op_neg_cpu(op);
 
+  sample_print(data_type,
+               array_at(CTorchTensor)(op->in_bound_tensors, 0)->values,
+               array_at(CTorchTensor)(op->out_bound_tensors, 0)->values, 2);
+
   if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||
       data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {
     _ele_wise_equal_unary(op, float, EXPECT_FLOAT_EQ, _cth_neg_test);
@@ -53,8 +57,4 @@ TEST(cTorchNegOpTest, testInt32Default) {
 
 TEST(cTorchNegOpTest, testInt64Default) {
   test_neg(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_64, -100.0, 100.0);
-}
-
-TEST(cTorchNegOpTest, testUInt8Default) {
-  test_neg(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_UINT_8, -100.0, 100.0);
 }

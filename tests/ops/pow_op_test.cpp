@@ -22,6 +22,11 @@ void test_pow(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
 
   op_pow_cpu(op);
 
+  sample_print_triple(
+      data_type, array_at(CTorchTensor)(op->in_bound_tensors, 0)->values,
+      array_at(CTorchTensor)(op->in_bound_tensors, 1)->values,
+      array_at(CTorchTensor)(op->out_bound_tensors, 0)->values, 2);
+
   if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||
       data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {
     _ele_wise_equal_binary(op, float, EXPECT_FLOAT_EQ, _cth_test_pow);
@@ -39,29 +44,29 @@ void test_pow(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
 }
 
 TEST(cTorchPowOpTest, testFloat16Default) {
-  test_pow(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_16, 1.0, 100.0);
+  test_pow(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_16, 1.0, 10);
 }
 
 TEST(cTorchPowOpTest, testFloat32Default) {
-  test_pow(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 100.0);
+  test_pow(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10);
 }
 
 TEST(cTorchPowOpTest, testFloat64Default) {
-  test_pow(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, 1.0, 100.0);
+  test_pow(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, 1.0, 10);
 }
 
 TEST(cTorchPowOpTest, testInt16Default) {
-  test_pow(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_16, 1.0, 100.0);
+  test_pow(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_16, 1.0, 10);
 }
 
 TEST(cTorchPowOpTest, testInt32Default) {
-  test_pow(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_32, 1.0, 100.0);
+  test_pow(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_32, 1.0, 10);
 }
 
 TEST(cTorchPowOpTest, testInt64Default) {
-  test_pow(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_64, 1.0, 100.0);
+  test_pow(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_64, 1.0, 10);
 }
 
 TEST(cTorchPowOpTest, testUInt8Default) {
-  test_pow(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_UINT_8, 1.0, 100.0);
+  test_pow(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_UINT_8, 1.0, 10);
 }

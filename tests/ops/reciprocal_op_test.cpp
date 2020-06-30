@@ -13,6 +13,10 @@ void test_reciprocal(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type,
   CTorchOperator *op = op_node->conent.op;
   op_reciprocal_cpu(op);
 
+  sample_print(data_type,
+               array_at(CTorchTensor)(op->in_bound_tensors, 0)->values,
+               array_at(CTorchTensor)(op->out_bound_tensors, 0)->values, 2);
+
   if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||
       data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {
     _ele_wise_equal_unary(op, float, EXPECT_FLOAT_EQ, _cth_reciprocal_test);

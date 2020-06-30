@@ -4,7 +4,7 @@
 /*
   Number of enabled operators
 */
-#define ENABLED_OP_NUM 300
+#define ENABLED_OP_NUM 302
 
 // clang-format off
 
@@ -269,6 +269,7 @@
   wrap(sort) \
   wrap(split) \
   wrap(sqrt) \
+  wrap(square) \
   wrap(squeeze) \
   wrap(stack) \
   wrap(std_mean) \
@@ -283,6 +284,7 @@
   wrap(tan) \
   wrap(Tanh) \
   wrap(tanh) \
+  wrap(true_divide) \
   wrap(Tanhshrink) \
   wrap(tensordot) \
   wrap(Threshold) \

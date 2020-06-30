@@ -98,6 +98,20 @@ float _rand_float(float min, float max);
     }                                                                          \
   }
 
+/**
+ * @brief Print out sample value
+ *
+ * @param type
+ * @param in_ptr
+ * @param out_ptr
+ * @param i
+ */
+void sample_print(CTH_TENSOR_DATA_TYPE type, void *in_ptr, void *out_ptr,
+                  tensor_size_t i);
+
+void sample_print_triple(CTH_TENSOR_DATA_TYPE type, void *in_ptr_1,
+                         void *in_ptr_2, void *out_ptr, tensor_size_t i);
+
 inline int *heap_int(int x) {
   int *ptr = (int *)MALLOC(sizeof(int));
   *ptr = x;

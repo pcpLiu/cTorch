@@ -22,6 +22,11 @@ void test_remainder(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type,
 
   op_remainder_cpu(op);
 
+  sample_print_triple(
+      data_type, array_at(CTorchTensor)(op->in_bound_tensors, 0)->values,
+      array_at(CTorchTensor)(op->in_bound_tensors, 1)->values,
+      array_at(CTorchTensor)(op->out_bound_tensors, 0)->values, 2);
+
   if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||
       data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {
     _ele_wise_equal_binary(op, float, EXPECT_FLOAT_EQ, _cth_test_remainder);

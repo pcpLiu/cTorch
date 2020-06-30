@@ -27,6 +27,19 @@ bool _rand_bool(void) {
     }                                                                          \
   } while (0)
 
+#define _print_out_value(type, print_format, in_ptr, out_ptr, i)               \
+  do {                                                                         \
+    CTH_LOG(CTH_LOG_INFO, print_format, ((type *)in_ptr)[i],                   \
+            ((type *)out_ptr)[i]);                                             \
+  } while (0)
+
+#define _print_out_value_triple(type, print_format, in_ptr_1, in_ptr_2,        \
+                                out_ptr, i)                                    \
+  do {                                                                         \
+    CTH_LOG(CTH_LOG_INFO, print_format, ((type *)in_ptr_1)[i],                 \
+            ((type *)in_ptr_2)[i], ((type *)out_ptr)[i]);                      \
+  } while (0)
+
 CTorchTensor *create_dummy_tensor(tensor_dim_t *dims, tensor_dim_t n_dim,
                                   CTH_TENSOR_DATA_TYPE data_type, float min,
                                   float max) {
@@ -183,4 +196,51 @@ CTorchNode *create_dummy_node(node_id_t id, array_index_t inbound_size,
   node->inbound_nodes = new_array(CTorchNode)(inbound_size);
   node->outbound_nodes = new_array(CTorchNode)(outbound_size);
   return node;
+}
+
+void sample_print(CTH_TENSOR_DATA_TYPE data_type, void *in_ptr, void *out_ptr,
+                  tensor_size_t i) {
+  if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||
+      data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {
+    _print_out_value(float, "input: %f, output: %f", in_ptr, out_ptr, i);
+  } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_64) {
+    _print_out_value(double, "input: %f, output: %f", in_ptr, out_ptr, i);
+  } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_16) {
+    _print_out_value(int16_t, "input: %d, output: %d", in_ptr, out_ptr, i);
+  } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_32) {
+    _print_out_value(int32_t, "input: %d, output: %d", in_ptr, out_ptr, i);
+  } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_64) {
+    _print_out_value(int64_t, "input: %ld, output: %ld", in_ptr, out_ptr, i);
+  } else if (data_type == CTH_TENSOR_DATA_TYPE_UINT_8) {
+    _print_out_value(uint8_t, "input: %u, output: %u", in_ptr, out_ptr, i);
+  } else if (data_type == CTH_TENSOR_DATA_TYPE_BOOL) {
+    _print_out_value(bool, "input: %d, output: %d", in_ptr, out_ptr, i);
+  }
+}
+
+void sample_print_triple(CTH_TENSOR_DATA_TYPE data_type, void *in_ptr_1,
+                         void *in_ptr_2, void *out_ptr, tensor_size_t i) {
+  if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||
+      data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {
+    _print_out_value_triple(float, "input: %f, input: %f, output: %f", in_ptr_1,
+                            in_ptr_2, out_ptr, i);
+  } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_64) {
+    _print_out_value_triple(double, "input: %f, input: %f, output: %f",
+                            in_ptr_1, in_ptr_2, out_ptr, i);
+  } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_16) {
+    _print_out_value_triple(int16_t, "input: %d, input: %d, output: %d",
+                            in_ptr_1, in_ptr_2, out_ptr, i);
+  } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_32) {
+    _print_out_value_triple(int32_t, "input: %d, input: %d, output: %d",
+                            in_ptr_1, in_ptr_2, out_ptr, i);
+  } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_64) {
+    _print_out_value_triple(int64_t, "input: %ld, input: %ld, output: %ld",
+                            in_ptr_1, in_ptr_2, out_ptr, i);
+  } else if (data_type == CTH_TENSOR_DATA_TYPE_UINT_8) {
+    _print_out_value_triple(uint8_t, "input: %u, input: %u, output: %u",
+                            in_ptr_1, in_ptr_2, out_ptr, i);
+  } else if (data_type == CTH_TENSOR_DATA_TYPE_BOOL) {
+    _print_out_value_triple(bool, "input: %d, input: %d, output: %d", in_ptr_1,
+                            in_ptr_2, out_ptr, i);
+  }
 }

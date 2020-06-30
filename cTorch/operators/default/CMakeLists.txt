@@ -48,6 +48,18 @@ set(ops_default_all
     operators/default/op_pow_default.c
     operators/default/op_reciprocal_default.c
     operators/default/op_remainder_default.c
+    operators/default/op_round_default.c
+    operators/default/op_rsqrt_default.c
+    operators/default/op_sigmoid_default.c
+    operators/default/op_sign_default.c
+    operators/default/op_sin_default.c
+    operators/default/op_sinh_default.c
+    operators/default/op_sqrt_default.c
+    operators/default/op_square_default.c
+    operators/default/op_tan_default.c
+    operators/default/op_tanh_default.c
+    operators/default/op_true_divide_default.c
+    operators/default/op_trunc_default.c
 )
 
 ################################################################################

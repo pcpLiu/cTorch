@@ -21,6 +21,11 @@ void test_mul(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
 
   op_mul_cpu(op);
 
+  sample_print_triple(
+      data_type, array_at(CTorchTensor)(op->in_bound_tensors, 0)->values,
+      array_at(CTorchTensor)(op->in_bound_tensors, 1)->values,
+      array_at(CTorchTensor)(op->out_bound_tensors, 0)->values, 2);
+
   if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||
       data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {
     _ele_wise_equal_binary(op, float, EXPECT_FLOAT_EQ, _cth_test_mul);
@@ -62,5 +67,5 @@ TEST(cTorchMulOpTest, testInt64Default) {
 }
 
 TEST(cTorchMulOpTest, testUInt8Default) {
-  test_mul(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_UINT_8, -100.0, 100.0);
+  test_mul(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_UINT_8, 1, 10);
 }
