@@ -18,7 +18,7 @@ cd build
 
 cmake -DCMAKE_BUILD_TYPE=Debug \
     -DDEBUG_TEST=ON \
-    -DBACKEND_MKL_LIB_DIR=../third_party/intel_mkl/${OS_NAME}/lib \
+    -DBACKEND_MKL_LIB_DIR=../third_party/intel_mkl/${OS_NAME}/lib/intel64 \
     -DBACKEND_MKL_INCLUDE_DIR=../third_party/intel_mkl/${OS_NAME}/include \
     ..
 

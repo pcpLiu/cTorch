@@ -1,6 +1,10 @@
+cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
+
 project(cTorch_lib DESCRIPTION "cTorch lib" LANGUAGES C)
 
 set(cTorch_lib_VERSION 0.1.0)
+
+set(CMAKE_C_STANDARD 11)
 
 ################################################################################
 #
@@ -207,7 +211,7 @@ endif()
 
 ################################################################################
 #
-# Install config
+# Install cTorch
 #
 
 include(GNUInstallDirs)
@@ -220,25 +224,4 @@ install(
     DIRECTORY ${cTorch_lib_SOURCE_DIR}
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
     FILES_MATCHING PATTERN "*.h"
-)
-
-################################################################################
-#
-# Setup CMake package configures
-#
-
-include(CMakePackageConfigHelpers)
-
-write_basic_package_version_file(
-  "${PROJECT_SOURCE_DIR}/CMake/cTorchConfigVersion.cmake"
-  VERSION ${cTorch_lib_VERSION}
-  COMPATIBILITY AnyNewerVersion
-)
-export(EXPORT cTorchTargets
-  FILE "${PROJECT_SOURCE_DIR}/CMake/cTorchTargets.cmake"
-)
-configure_file(
-    "${PROJECT_SOURCE_DIR}/CMake/cTorchTargets.cmake"
-    "${PROJECT_SOURCE_DIR}/CMake/cTorchConfig.cmake"
-     COPYONLY
 )

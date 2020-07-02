@@ -1,9 +1,10 @@
 project(cTorch_test LANGUAGES CXX)
 
+set(CMAKE_CXX_STANDARD 11)
+
 # Profiling in linux
 if(
-    ${DEBUG_TEST}
-    AND ${CMAKE_SYSTEM_NAME} STREQUAL "Linux"
+    ${CMAKE_SYSTEM_NAME} STREQUAL "Linux"
     AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU"
 )
     message("[cTorch_test] Append flag: -pg")
@@ -29,12 +30,6 @@ add_executable(${test_target}
     ${test_sources}
     ${test_util_src}
     main.cpp
-)
-
-# find cTorch package
-find_package(
-    cTorch CONFIG REQUIRED
-    PATHS "../cTorch/CMake"
 )
 
 add_test(NAME ${test_target} COMMAND ${test_target})
