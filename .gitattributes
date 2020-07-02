@@ -2,5 +2,5 @@
 *.h linguist-language=c
 
 # ignore vendor & test for stats
-lib/* linguist-vendored
+third_party/* linguist-vendored
 tests/* linguist-vendored
