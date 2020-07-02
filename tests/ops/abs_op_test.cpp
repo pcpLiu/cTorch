@@ -11,7 +11,12 @@ void test_abs(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   CTorchNode *op_node = create_dummy_op_node_unary(CTH_OP_ID_abs, dims, n_dim,
                                                    data_type, min, max);
   CTorchOperator *op = op_node->conent.op;
-  op_abs_cpu(op);
+
+  if (backend == CTH_BACKEND_DEFAULT) {
+    op_abs_cpu(op);
+  } else if (backend == CTH_BACKEND_MKL) {
+    op_abs_mkl(op);
+  }
 
   if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||
       data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {
@@ -37,8 +42,16 @@ TEST(cTorchAbsOpTest, testFloat32Default) {
   test_abs(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_32, -100.0, 100.0);
 }
 
+TEST(cTorchAbsOpTest, testFloat32DefaultMKL) {
+  test_abs(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_32, -100.0, 100.0);
+}
+
 TEST(cTorchAbsOpTest, testFloat64Default) {
   test_abs(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, -100.0, 100.0);
+}
+
+TEST(cTorchAbsOpTest, testFloat64DefaultMKL) {
+  test_abs(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, -100.0, 100.0);
 }
 
 TEST(cTorchAbsOpTest, testInt16Default) {

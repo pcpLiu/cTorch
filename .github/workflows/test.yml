@@ -29,13 +29,7 @@ jobs:
         run: git submodule init && git submodule update
 
       - name: 2) CMake configure
-        run: mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Debug  -DDEBUG_TEST=ON ..
-
-      - name: 3) Build all targets
-        run: cd build && make
-
-      - name: 4) Run test scripts
-        run: bash ci/test.sh
+        run: bash ci/test.sh ${{matrix.os}}
 
       - name: 5) Upload coverage to Codecov (only on Ubuntu)
         if: matrix.os == 'ubuntu-latest'

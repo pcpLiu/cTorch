@@ -1,5 +1,6 @@
 set(ops_mkl_all
-    PARENT_SCOPE
+    operators/mkl/op_list_mkl.c
+    operators/mkl/op_abs_mkl.c
 )
 
 # Remove disabled operators

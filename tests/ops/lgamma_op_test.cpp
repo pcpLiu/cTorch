@@ -34,27 +34,27 @@ void test_lgamma(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
 }
 
 TEST(cTorchLgammaOpTest, testFloat16Default) {
-  test_lgamma(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_16, -20.0, 20.0);
+  test_lgamma(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_16, 1.0, 20.0);
 }
 
 TEST(cTorchLgammaOpTest, testFloat32Default) {
-  test_lgamma(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_32, -20.0, 20.0);
+  test_lgamma(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 20.0);
 }
 
 TEST(cTorchLgammaOpTest, testFloat64Default) {
-  test_lgamma(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, -20.0, 20.0);
+  test_lgamma(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, 1.0, 20.0);
 }
 
 TEST(cTorchLgammaOpTest, testInt16Default) {
-  test_lgamma(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_16, -20.0, 20.0);
+  test_lgamma(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_16, 1.0, 20.0);
 }
 
 TEST(cTorchLgammaOpTest, testInt32Default) {
-  test_lgamma(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_32, -20.0, 20.0);
+  test_lgamma(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_32, 1.0, 20.0);
 }
 
 TEST(cTorchLgammaOpTest, testInt64Default) {
-  test_lgamma(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_64, -20.0, 20.0);
+  test_lgamma(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_64, 1.0, 20.0);
 }
 
 TEST(cTorchLgammaOpTest, testUInt8Default) {

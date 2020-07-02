@@ -6,5 +6,5 @@ set(CMAKE_CXX_STANDARD 11)
 
 enable_testing()
 add_subdirectory(cTorch)
-add_subdirectory(lib/googletest)
+add_subdirectory(third_party/googletest)
 add_subdirectory(tests)

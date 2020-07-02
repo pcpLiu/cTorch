@@ -1,5 +1,5 @@
 set(ops_cuda_all
-    PARENT_SCOPE
+    operators/cuda/op_list_cuda.c
 )
 
 # Remove disabled operators

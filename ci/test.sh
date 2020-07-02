@@ -1,11 +1,39 @@
 #!/bin/sh
 
-cd build/tests
+#############################################################
+#
+# Build
+#
+
+OS_NAME="linux"
+if [[ "$1" == *"macos"* ]]; then
+    OS_NAME="mac"
+fi
+
+if [ ! -d "build" ]; then
+    mkdir build
+fi
+
+cd build
+
+cmake -DCMAKE_BUILD_TYPE=Debug \
+    -DDEBUG_TEST=ON \
+    -DBACKEND_MKL_LIB_DIR=../third_party/intel_mkl/${OS_NAME}/lib \
+    -DBACKEND_MKL_INCLUDE_DIR=../third_party/intel_mkl/${OS_NAME}/include \
+    ..
+
+make cTorch_test
+
+#############################################################
+#
+# Test
+#
+
+cd tests
 
 # Any test fails, whole script execution fails.
 # This is used to signal Github Actions
 EXIT_STATUS=0
-
 
 # tests can be run in paralllel
 ./cTorch_test --gtest_filter="-*MEMRECORD*" || EXIT_STATUS=$?
