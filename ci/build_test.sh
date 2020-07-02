@@ -17,6 +17,7 @@ fi
 
 cd build
 
+pwd
 cmake -DCMAKE_BUILD_TYPE=Debug \
     -DDEBUG_TEST=ON \
     -DBACKEND_MKL_LIB_DIR=../third_party/intel_mkl/${OS_NAME}/lib/intel64 \
