@@ -9,6 +9,7 @@ OS_NAME="linux"
 if [[ "$1" == *"macos"* ]]; then
     OS_NAME="mac"
 fi
+echo "Running on OS $1"
 
 if [ ! -d "build" ]; then
     mkdir build

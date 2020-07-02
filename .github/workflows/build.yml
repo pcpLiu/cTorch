@@ -29,7 +29,7 @@ jobs:
         run: git submodule init && git submodule update
 
       - name: 2) Build & Test
-        run: bash ci/build_test.sh ${{matrix.os}}
+        run: bash ci/build_test.sh ${{ runner.os }}
 
       - name: 5) Upload coverage to Codecov (only on Ubuntu)
         if: matrix.os == 'ubuntu-latest'
