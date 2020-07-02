@@ -173,12 +173,6 @@ if(${BACKEND_MKL_ENABLE})
         PATHS ${BACKEND_MKL_LIB_DIR}
         REQUIRED
     )
-    if(${MKL_CORE_LIB} STREQUAL "MKL_CORE_LIB-NOTFOUND")
-        message(
-            WARNING
-            "Didn't find lib at dir: ${BACKEND_MKL_LIB_DIR}"
-        )
-    endif()
     find_library(
         MKL_INTERFACE_LIB
         NAMES mkl_intel_ilp64
