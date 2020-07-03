@@ -1,12 +1,12 @@
-set(ops_accelerate_all
-    PARENT_SCOPE
+set(ops_apple_all
+    operators/apple/op_list_apple.c
 )
 
 # Remove disabled operators
 foreach(disabled_op ${ops_disabled})
-    list(FILTER ${ops_accelerate_all}
+    list(FILTER ${ops_apple_all}
         EXCLUDE
-        REGEX ^src/operators/accelerate/${disabled_op}_accelerate.c$
+        REGEX ^src/operators/apple/${disabled_op}_apple.c$
     )
 endforeach()
 
@@ -14,7 +14,7 @@ endforeach()
 #
 # Export
 #
-set(ops_accelerate
-    ${ops_accelerate_all}
+set(ops_apple
+    ${ops_apple_all}
     PARENT_SCOPE
 )

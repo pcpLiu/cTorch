@@ -55,9 +55,9 @@ void dispatch_op_execution(CTorchOperator *op, CTH_BACKEND backend) {
 #else
     FAIL_EXIT(CTH_LOG_ERR, _BACKEND_MISSING_ERR_MSG(openBLAS));
 #endif
-  } else if (backend == CTH_BACKEND_ACCELERATE) {
-#ifdef BACKEND_ACCELERATE
-    _BACKEND_FALLBACK_EXE(fps_op_openblas);
+  } else if (backend == CTH_BACKEND_APPLE) {
+#ifdef BACKEND_APPLE
+    _BACKEND_FALLBACK_EXE(fps_op_apple);
 #else
     FAIL_EXIT(CTH_LOG_ERR, _BACKEND_MISSING_ERR_MSG(Accelerate));
 #endif

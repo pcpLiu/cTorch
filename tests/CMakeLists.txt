@@ -14,16 +14,10 @@ endif()
 # Test files
 file(GLOB_RECURSE test_sources LIST_DIRECTORIES false *_test.cpp)
 
-# Enable test debug option in cTorch building
-add_compile_definitions(CTH_TEST_DEBUG)
-
 # Utils
 set(test_util_src
     test_util.c
 )
-
-# TODO: asprintf
-add_compile_definitions(_GNU_SOURCE)
 
 set(test_target cTorch_test)
 add_executable(${test_target}

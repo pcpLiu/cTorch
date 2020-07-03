@@ -8,78 +8,24 @@ set(CMAKE_C_STANDARD 11)
 
 ################################################################################
 #
-# Build options
-#
-
-set(TARGET_CPU_ARCH "x86" CACHE STRING
-    "Target cpu architecture. \
-     Supported architectures: [x86, arm] "
-)
-
-set(BACKEND_OPENBLAS_ENABLE ON CACHE BOOL
-    "Build backend with openBLAS"
-)
-
-set(BACKEND_MKL_ENABLE ON CACHE BOOL
-    "Build backend with Intel MKL"
-)
-set(BACKEND_MKL_LIB_DIR "/opt/intel/mkl/lib/intel64" CACHE PATH
-    "MKL library dir. Default: /opt/intel/lib/intel64"
-)
-set(BACKEND_MKL_INCLUDE_DIR "/opt/intel/mkl/include" CACHE PATH
-    "MKL include dir. Default: /opt/intel/include"
-)
-
-set(BACKEND_CUDA_ENABLE ON CACHE BOOL
-    "Build backend with CUDA"
-)
-
-set(BACKEND_ACCELERATE_ENABLE ON CACHE BOOL
-    "Build backend with Apple Accelerate"
-)
-
-set(PTHREAD_ENABLE ON CACHE BOOL
-    "Build with pthread support. Default ON."
-)
-
-set(DEBUG_TEST OFF CACHE BOOL
-    "Enable debug test options. Default ON. Option should only be enabled for running tests."
-)
-
-################################################################################
-#
-# Debug test setup
-#
-
-if(${DEBUG_TEST})
-    message(
-        WARNING
-        "[cTorch]: DEBUG_TEST is set to ON. "
-        "This opiton should only be enabled for debugging cTorch."
-        "Turning it on will lead to performance regression."
-    )
-    # Enable debug code compiling
-    add_compile_definitions(CTH_TEST_DEBUG)
-
-    # profiling enable on linux
-    if(
-        ${CMAKE_SYSTEM_NAME} STREQUAL "Linux"
-        AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU"
-    )
-        message("[cTorch] Append flag: -pg --coverage")
-        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pg --coverage")
-    endif()
-endif()
-
-################################################################################
-#
 # pthread
 #
 
 set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
 find_package(Threads REQUIRED)
 
-add_compile_definitions(USE_PTHREAD)
+################################################################################
+#
+# gprof
+#
+
+if(${DEBUG_TEST}
+    AND ${CMAKE_SYSTEM_NAME} STREQUAL "Linux"
+    AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU"
+)
+    message("[cTorch] Append flag: -pg --coverage")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pg --coverage")
+endif()
 
 ################################################################################
 #
@@ -113,9 +59,6 @@ if(${DEBUG_TEST})
     )
 endif()
 
-# asprintf
-add_compile_definitions(_GNU_SOURCE)
-
 ################################################################################
 #
 # Setup cTorch target
@@ -148,25 +91,21 @@ endif()
 
 ################################################################################
 #
-# Backends define & link
+# Backends link
 #
 
 if(${TARGET_CPU_ARCH} STREQUAL "x86")
-    add_compile_definitions(BACKEND_CPU_X86)
 elseif(${TARGET_CPU_ARCH} STREQUAL "arm")
-    add_compile_definitions(BACKEND_CPU_ARM)
 else()
     message(FATAL_ERROR "Unsupported CPU architecture: " ${TARGET_CPU_ARCH})
 endif()
 
 # Openblas
 if(${BACKEND_OPENBLAS_ENABLE})
-    add_compile_definitions(BACKEND_OPENBLAS)
 endif()
 
 # MKL
 if(${BACKEND_MKL_ENABLE})
-    add_compile_definitions(BACKEND_MKL)
     find_library(
         MKL_CORE_LIB
         NAMES mkl_core
@@ -209,12 +148,20 @@ endif()
 
 # CUDA
 if(${BACKEND_CUDA_ENABLE})
-    add_compile_definitions(BACKEND_CUDA)
 endif()
 
 # Apple
-if(${BACKEND_ACCELERATE_ENABLE})
-    add_compile_definitions(BACKEND_ACCELERATE)
+if(${BACKEND_APPLE_ENABLE})
+    find_library(
+        APPLE_ACCELERATE_FRAMEWORK
+        NAMES Accelerate
+        PATHS "/Library"
+        REQUIRED
+    )
+    target_link_libraries(
+        cTorch PUBLIC
+        ${APPLE_ACCELERATE_FRAMEWORK}
+    )
 endif()
 
 
