@@ -189,7 +189,7 @@ if(${BACKEND_MKL_ENABLE})
     else()
         find_library(
             MKL_THREAD_LIB
-            NAMES mkl_intel_thread
+            NAMES mkl_tbb_thread
             PATHS ${BACKEND_MKL_LIB_DIR}
             REQUIRED
         )
