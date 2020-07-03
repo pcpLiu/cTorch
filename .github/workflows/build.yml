@@ -33,6 +33,7 @@ jobs:
         with:
           aws-access-key-id: AKIATGUE5JHV5TX52MJP
           aws-secret-access-key: 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
+          aws-region: us-east-2
 
       - name: 3) Pull data from S3
         run: aws s3 sync s3://ctorch.github/intel_mkl third_party/intel_mkl
