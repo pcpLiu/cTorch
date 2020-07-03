@@ -179,12 +179,21 @@ if(${BACKEND_MKL_ENABLE})
         PATHS ${BACKEND_MKL_LIB_DIR}
         REQUIRED
     )
-    find_library(
-        MKL_THREAD_LIB
-        NAMES mkl_intel_thread
-        PATHS ${BACKEND_MKL_LIB_DIR}
-        REQUIRED
-    )
+    if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+        find_library(
+            MKL_THREAD_LIB
+            NAMES mkl_gnu_thread
+            PATHS ${BACKEND_MKL_LIB_DIR}
+            REQUIRED
+        )
+    else()
+        find_library(
+            MKL_THREAD_LIB
+            NAMES mkl_intel_thread
+            PATHS ${BACKEND_MKL_LIB_DIR}
+            REQUIRED
+        )
+    endif()
     find_package(OpenMP REQUIRED)
     set(${CMAKE_C_FLAGS} "${CMAKE_C_FLAGS} -m64")
     target_include_directories(cTorch PRIVATE ${BACKEND_MKL_INCLUDE_DIR})

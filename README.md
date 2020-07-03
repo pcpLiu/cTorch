@@ -19,7 +19,7 @@
 Building dependencies:
 
 - CMake
-- gcc or Clang (g++ for running testing)
+- gcc (g++ for running testing)
 - POSIX Thread
 
 ### Quick build & install
