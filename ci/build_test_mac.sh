@@ -22,6 +22,9 @@ fi
 
 cd build
 
+# install Intel tbb
+brew install tbb
+
 # We use GCC instead of clang cause we need openMP support for Intel MKL
 CC=gcc-9  CXX=g++-9 cmake \
     -DCMAKE_BUILD_TYPE=Debug \
