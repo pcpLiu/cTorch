@@ -23,9 +23,7 @@ fi
 cd build
 
 # We use GCC instead of clang cause we need openMP support for Intel MKL
-cmake \
-    -CC=gcc-9 \
-    -CXX=g++-9 \
+CC=gcc-9  CXX=g++-9 cmake \
     -DCMAKE_BUILD_TYPE=Debug \
     -DDEBUG_TEST=ON \
     -DBACKEND_MKL_LIB_DIR=../third_party/intel_mkl/mac/lib/intel64 \
