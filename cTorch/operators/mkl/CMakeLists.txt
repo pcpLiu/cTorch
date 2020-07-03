@@ -10,6 +10,30 @@ set(ops_mkl_all
     operators/mkl/op_div_mkl.c
     operators/mkl/op_sqrt_mkl.c
     operators/mkl/op_rsqrt_mkl.c
+    operators/mkl/op_pow_mkl.c
+    operators/mkl/op_exp_mkl.c
+    operators/mkl/op_expm1_mkl.c
+    operators/mkl/op_log_mkl.c
+    operators/mkl/op_log2_mkl.c
+    operators/mkl/op_log10_mkl.c
+    operators/mkl/op_log1p_mkl.c
+    operators/mkl/op_cos_mkl.c
+    operators/mkl/op_sin_mkl.c
+    operators/mkl/op_tan_mkl.c
+    operators/mkl/op_asin_mkl.c
+    operators/mkl/op_atan_mkl.c
+    operators/mkl/op_atan2_mkl.c
+    operators/mkl/op_cosh_mkl.c
+    operators/mkl/op_sinh_mkl.c
+    operators/mkl/op_tanh_mkl.c
+    operators/mkl/op_erf_mkl.c
+    operators/mkl/op_erfc_mkl.c
+    operators/mkl/op_erfinv_mkl.c
+    operators/mkl/op_floor_mkl.c
+    operators/mkl/op_ceil_mkl.c
+    operators/mkl/op_trunc_mkl.c
+    operators/mkl/op_round_mkl.c
+    operators/mkl/op_frac_mkl.c
 )
 
 # Remove disabled operators

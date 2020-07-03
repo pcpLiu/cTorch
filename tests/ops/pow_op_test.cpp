@@ -20,7 +20,11 @@ void test_pow(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
       op->out_bound_tensors, 0,
       create_dummy_tensor(dims, n_dim, data_type, min, max));
 
-  op_pow_cpu(op);
+  if (backend == CTH_BACKEND_DEFAULT) {
+    op_pow_cpu(op);
+  } else if (backend == CTH_BACKEND_MKL) {
+    op_pow_mkl(op);
+  }
 
   sample_print_triple(
       data_type, array_at(CTorchTensor)(op->in_bound_tensors, 0)->values,
@@ -51,8 +55,16 @@ TEST(cTorchPowOpTest, testFloat32Default) {
   test_pow(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10);
 }
 
+TEST(cTorchPowOpTest, testFloat32MKL) {
+  test_pow(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10);
+}
+
 TEST(cTorchPowOpTest, testFloat64Default) {
   test_pow(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, 1.0, 10);
+}
+
+TEST(cTorchPowOpTest, testFloat64MKL) {
+  test_pow(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, 1.0, 10);
 }
 
 TEST(cTorchPowOpTest, testInt16Default) {

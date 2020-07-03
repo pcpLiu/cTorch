@@ -24,7 +24,16 @@ void test_frac(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   CTorchNode *op_node = create_dummy_op_node_unary(CTH_OP_ID_frac, dims, n_dim,
                                                    data_type, min, max);
   CTorchOperator *op = op_node->conent.op;
-  op_frac_cpu(op);
+
+  if (backend == CTH_BACKEND_DEFAULT) {
+    op_frac_cpu(op);
+  } else if (backend == CTH_BACKEND_MKL) {
+    op_frac_mkl(op);
+  }
+
+  sample_print(data_type,
+               array_at(CTorchTensor)(op->in_bound_tensors, 0)->values,
+               array_at(CTorchTensor)(op->out_bound_tensors, 0)->values, 2);
 
   if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||
       data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {
@@ -45,29 +54,37 @@ void test_frac(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
 }
 
 TEST(cTorchFracOpTest, testFloat16Default) {
-  test_frac(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_16, -1.0, 1.0);
+  test_frac(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_16, -10.0, 10.0);
 }
 
 TEST(cTorchFracOpTest, testFloat32Default) {
-  test_frac(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_32, -1.0, 1.0);
+  test_frac(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_32, -10.0, 10.0);
 }
 
 TEST(cTorchFracOpTest, testFloat64Default) {
-  test_frac(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, -1.0, 1.0);
+  test_frac(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, -10.0, 10.0);
+}
+
+TEST(cTorchFracOpTest, testFloat32MKL) {
+  test_frac(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_32, -10.0, 10.0);
+}
+
+TEST(cTorchFracOpTest, testFloat64MKL) {
+  test_frac(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, -10.0, 10.0);
 }
 
 TEST(cTorchFracOpTest, testInt16Default) {
-  test_frac(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_16, -1.0, 1.0);
+  test_frac(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_16, -10.0, 10.0);
 }
 
 TEST(cTorchFracOpTest, testInt32Default) {
-  test_frac(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_32, -1.0, 1.0);
+  test_frac(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_32, -10.0, 10.0);
 }
 
 TEST(cTorchFracOpTest, testInt64Default) {
-  test_frac(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_64, -1.0, 1.0);
+  test_frac(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_64, -10.0, 10.0);
 }
 
 TEST(cTorchFracOpTest, testUInt8Default) {
-  test_frac(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_UINT_8, 0.0, 1.0);
+  test_frac(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_UINT_8, 0.0, 10.0);
 }

@@ -11,7 +11,16 @@ void test_cosh(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   CTorchNode *op_node = create_dummy_op_node_unary(CTH_OP_ID_cosh, dims, n_dim,
                                                    data_type, min, max);
   CTorchOperator *op = op_node->conent.op;
-  op_cosh_cpu(op);
+
+  if (backend == CTH_BACKEND_DEFAULT) {
+    op_cosh_cpu(op);
+  } else if (backend == CTH_BACKEND_MKL) {
+    op_cosh_mkl(op);
+  }
+
+  sample_print(data_type,
+               array_at(CTorchTensor)(op->in_bound_tensors, 0)->values,
+               array_at(CTorchTensor)(op->out_bound_tensors, 0)->values, 2);
 
   if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||
       data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {
@@ -30,29 +39,37 @@ void test_cosh(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
 }
 
 TEST(cTorchCoshOpTest, testFloat16Default) {
-  test_cosh(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_16, -100.0, 100.0);
+  test_cosh(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_16, -10.0, 10.0);
 }
 
 TEST(cTorchCoshOpTest, testFloat32Default) {
-  test_cosh(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_32, -100.0, 100.0);
+  test_cosh(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_32, -10.0, 10.0);
+}
+
+TEST(cTorchCoshOpTest, testFloat32MKL) {
+  test_cosh(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_32, -10.0, 10.0);
 }
 
 TEST(cTorchCoshOpTest, testFloat64Default) {
-  test_cosh(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, -100.0, 100.0);
+  test_cosh(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, -10.0, 10.0);
+}
+
+TEST(cTorchCoshOpTest, testFloat64MKL) {
+  test_cosh(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, -10.0, 10.0);
 }
 
 TEST(cTorchCoshOpTest, testInt16Default) {
-  test_cosh(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_16, -100.0, 100.0);
+  test_cosh(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_16, -10.0, 10.0);
 }
 
 TEST(cTorchCoshOpTest, testInt32Default) {
-  test_cosh(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_32, -100.0, 100.0);
+  test_cosh(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_32, -10.0, 10.0);
 }
 
 TEST(cTorchCoshOpTest, testInt64Default) {
-  test_cosh(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_64, -100.0, 100.0);
+  test_cosh(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_64, -10.0, 10.0);
 }
 
 TEST(cTorchCoshOpTest, testUInt8Default) {
-  test_cosh(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_UINT_8, -100.0, 100.0);
+  test_cosh(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_UINT_8, -10.0, 10.0);
 }

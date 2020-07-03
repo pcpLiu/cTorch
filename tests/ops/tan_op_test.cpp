@@ -10,7 +10,12 @@ void test_tan(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   CTorchNode *op_node = create_dummy_op_node_unary(CTH_OP_ID_tan, dims, n_dim,
                                                    data_type, min, max);
   CTorchOperator *op = op_node->conent.op;
-  op_tan_cpu(op);
+
+  if (backend == CTH_BACKEND_DEFAULT) {
+    op_tan_cpu(op);
+  } else if (backend == CTH_BACKEND_MKL) {
+    op_tan_mkl(op);
+  }
 
   sample_print(data_type,
                array_at(CTorchTensor)(op->in_bound_tensors, 0)->values,
@@ -40,8 +45,16 @@ TEST(cTorchTanOpTest, testFloat32Default) {
   test_tan(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_32, -20.0, 20.0);
 }
 
+TEST(cTorchTanOpTest, testFloat32MKL) {
+  test_tan(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_32, -20.0, 20.0);
+}
+
 TEST(cTorchTanOpTest, testFloat64Default) {
   test_tan(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, -20.0, 20.0);
+}
+
+TEST(cTorchTanOpTest, testFloat64MKL) {
+  test_tan(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, -20.0, 20.0);
 }
 
 TEST(cTorchTanOpTest, testInt16Default) {

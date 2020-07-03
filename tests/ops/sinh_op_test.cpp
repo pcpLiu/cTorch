@@ -10,7 +10,12 @@ void test_sinh(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   CTorchNode *op_node = create_dummy_op_node_unary(CTH_OP_ID_sinh, dims, n_dim,
                                                    data_type, min, max);
   CTorchOperator *op = op_node->conent.op;
-  op_sinh_cpu(op);
+
+  if (backend == CTH_BACKEND_DEFAULT) {
+    op_sinh_cpu(op);
+  } else if (backend == CTH_BACKEND_MKL) {
+    op_sinh_mkl(op);
+  }
 
   sample_print(data_type,
                array_at(CTorchTensor)(op->in_bound_tensors, 0)->values,
@@ -42,6 +47,14 @@ TEST(cTorchSinhOpTest, testFloat32Default) {
 
 TEST(cTorchSinhOpTest, testFloat64Default) {
   test_sinh(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, -20.0, 20.0);
+}
+
+TEST(cTorchSinhOpTest, testFloat32MKL) {
+  test_sinh(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_32, -20.0, 20.0);
+}
+
+TEST(cTorchSinhOpTest, testFloat64MKL) {
+  test_sinh(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, -20.0, 20.0);
 }
 
 TEST(cTorchSinhOpTest, testInt16Default) {

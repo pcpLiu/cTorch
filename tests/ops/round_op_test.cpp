@@ -11,7 +11,12 @@ void test_round(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   CTorchNode *op_node = create_dummy_op_node_unary(CTH_OP_ID_round, dims, n_dim,
                                                    data_type, min, max);
   CTorchOperator *op = op_node->conent.op;
-  op_round_cpu(op);
+
+  if (backend == CTH_BACKEND_DEFAULT) {
+    op_round_cpu(op);
+  } else if (backend == CTH_BACKEND_MKL) {
+    op_round_mkl(op);
+  }
 
   sample_print(data_type,
                array_at(CTorchTensor)(op->in_bound_tensors, 0)->values,
@@ -43,6 +48,14 @@ TEST(cTorchRoundOpTest, testFloat32Default) {
 
 TEST(cTorchRoundOpTest, testFloat64Default) {
   test_round(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, 0.01, 20.0);
+}
+
+TEST(cTorchRoundOpTest, testFloat32MKL) {
+  test_round(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_32, 0.01, 20.0);
+}
+
+TEST(cTorchRoundOpTest, testFloat64MKL) {
+  test_round(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, 0.01, 20.0);
 }
 
 TEST(cTorchRoundOpTest, testInt16Default) {
