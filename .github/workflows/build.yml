@@ -38,9 +38,14 @@ jobs:
       - name: 3) Pull data from S3
         run: aws s3 sync s3://ctorch.github/intel_mkl third_party/intel_mkl
 
-      - name: 3) Build & Test
-        run: bash ci/build_test.sh ${{ runner.os }}
+      - name: 3)-1 Build & Test on Linux
+        if: matrix.os == 'ubuntu-latest'
+        run: bash ci/build_test_linux.sh
 
-      - name: 4) Upload coverage to Codecov (only on Ubuntu)
+      - name: 3)-2 Build & Test on Mac
+        if: matrix.os == 'macos-latest'
+        run: bash ci/build_mac.sh
+
+      - name: 4) Upload coverage to Codecov (only on Linux)
         if: matrix.os == 'ubuntu-latest'
         run: bash ci/codecov.sh

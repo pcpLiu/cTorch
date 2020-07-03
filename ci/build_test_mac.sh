@@ -2,14 +2,19 @@
 
 #############################################################
 #
+# Build & test on Linux with backends:
+#   - Default
+#   - Intel MKL
+#   - Apple
+#   - OpenBLAS
+#
+#############################################################
+
+
+#############################################################
+#
 # Build
 #
-
-OS_NAME="linux"
-if [[ "$1" == *"macos"* ]]; then
-    OS_NAME="mac"
-fi
-echo "Running on OS $1"
 
 if [ ! -d "build" ]; then
     mkdir build
@@ -17,11 +22,14 @@ fi
 
 cd build
 
-pwd
-cmake -DCMAKE_BUILD_TYPE=Debug \
+# We use GCC instead of clang cause we need openMP support for Intel MKL
+cmake \
+    -CC=gcc-9 \
+    -CXX=g++-9 \
+    -DCMAKE_BUILD_TYPE=Debug \
     -DDEBUG_TEST=ON \
-    -DBACKEND_MKL_LIB_DIR=../third_party/intel_mkl/${OS_NAME}/lib/intel64 \
-    -DBACKEND_MKL_INCLUDE_DIR=../third_party/intel_mkl/${OS_NAME}/include \
+    -DBACKEND_MKL_LIB_DIR=../third_party/intel_mkl/mac/lib/intel64 \
+    -DBACKEND_MKL_INCLUDE_DIR=../third_party/intel_mkl/mac/include \
     ..
 
 make cTorch_test
