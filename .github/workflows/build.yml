@@ -24,25 +24,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: jakejarvis/s3-sync-action@master
-        with:
-          args: --acl public-read --follow-symlinks --delete
-        env:
-          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: "us-west-1" # optional: defaults to us-east-1
-          SOURCE_DIR: "public" # optional: defaults to entire repository
 
       - name: 1) Pull submodules
         run: git submodule init && git submodule update
 
       - name: 2) Pull data from S3
-        run:
+        run: bash ci/aws_s3.sh
 
-      - name: 2) Build & Test
+      - name: 3) Build & Test
         run: bash ci/build_test.sh ${{ runner.os }}
 
-      - name: 5) Upload coverage to Codecov (only on Ubuntu)
+      - name: 4) Upload coverage to Codecov (only on Ubuntu)
         if: matrix.os == 'ubuntu-latest'
         run: bash ci/codecov.sh

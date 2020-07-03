@@ -1,3 +1,5 @@
 ## Building stage
 installed/*
-intel_mkl/
+
+# pull from aws s3
+intel_mkl
