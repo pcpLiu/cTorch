@@ -11,8 +11,8 @@ sudo ./aws/install
 #
 # CP credential
 #
-aws configure set aws_access_key_id AKIATGUE5JHV5TX52MJP
-aws configure set aws_secret_access_key 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
+sudo aws configure set aws_access_key_id AKIATGUE5JHV5TX52MJP
+sudo aws configure set aws_secret_access_key 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
 
 
 ################################################################################
@@ -20,5 +20,5 @@ aws configure set aws_secret_access_key s+WfDP5hxN7644TvkeFwEcQPey05xqfqGNA4/jYO
 # Pull MKL lib for tests
 #
 mkdir third_party/intel_mkl
-aws s3 sync s3://ctorch.github/intel_mkl third_party/intel_mkl
+sudo aws s3 sync s3://ctorch.github/intel_mkl third_party/intel_mkl
 
