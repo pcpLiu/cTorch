@@ -181,11 +181,11 @@ if(${BACKEND_MKL_ENABLE})
     )
     find_library(
         MKL_THREAD_LIB
-        NAMES mkl_gnu_thread
+        NAMES mkl_intel_thread
         PATHS ${BACKEND_MKL_LIB_DIR}
         REQUIRED
     )
-    # find_package(OpenMP REQUIRED)
+    find_package(OpenMP REQUIRED)
     set(${CMAKE_C_FLAGS} "${CMAKE_C_FLAGS} -m64")
     target_include_directories(cTorch PRIVATE ${BACKEND_MKL_INCLUDE_DIR})
     # !Link order matters!
@@ -194,7 +194,7 @@ if(${BACKEND_MKL_ENABLE})
         ${MKL_INTERFACE_LIB}
         ${MKL_CORE_LIB}
         ${MKL_THREAD_LIB}
-        # OpenMP::OpenMP_C
+        OpenMP::OpenMP_C
     )
 endif()
 
