@@ -20,7 +20,11 @@ void test_remainder(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type,
       op->out_bound_tensors, 0,
       create_dummy_tensor(dims, n_dim, data_type, min, max));
 
-  op_remainder_cpu(op);
+  if (backend == CTH_BACKEND_DEFAULT) {
+    op_remainder_cpu(op);
+  } else if (backend == CTH_BACKEND_MKL) {
+    op_remainder_mkl(op);
+  }
 
   sample_print_triple(
       data_type, array_at(CTorchTensor)(op->in_bound_tensors, 0)->values,
@@ -53,9 +57,17 @@ TEST(cTorchRemainderOpTest, testFloat32Default) {
                  100.0);
 }
 
+TEST(cTorchRemainderOpTest, testFloat32MKL) {
+  test_remainder(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_32, -100.0, 100.0);
+}
+
 TEST(cTorchRemainderOpTest, testFloat64Default) {
   test_remainder(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, -100.0,
                  100.0);
+}
+
+TEST(cTorchRemainderOpTest, testFloat64MKL) {
+  test_remainder(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, -100.0, 100.0);
 }
 
 TEST(cTorchRemainderOpTest, testInt16Default) {

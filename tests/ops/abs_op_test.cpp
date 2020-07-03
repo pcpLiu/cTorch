@@ -42,7 +42,7 @@ TEST(cTorchAbsOpTest, testFloat32Default) {
   test_abs(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_32, -100.0, 100.0);
 }
 
-TEST(cTorchAbsOpTest, testFloat32DefaultMKL) {
+TEST(cTorchAbsOpTest, testFloat32MKL) {
   test_abs(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_32, -100.0, 100.0);
 }
 
@@ -50,7 +50,7 @@ TEST(cTorchAbsOpTest, testFloat64Default) {
   test_abs(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, -100.0, 100.0);
 }
 
-TEST(cTorchAbsOpTest, testFloat64DefaultMKL) {
+TEST(cTorchAbsOpTest, testFloat64MKL) {
   test_abs(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, -100.0, 100.0);
 }
 

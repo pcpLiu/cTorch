@@ -11,7 +11,12 @@ void test_acos(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   CTorchNode *op_node = create_dummy_op_node_unary(CTH_OP_ID_acos, dims, n_dim,
                                                    data_type, min, max);
   CTorchOperator *op = op_node->conent.op;
-  op_acos_cpu(op);
+
+  if (backend == CTH_BACKEND_DEFAULT) {
+    op_acos_cpu(op);
+  } else if (backend == CTH_BACKEND_MKL) {
+    op_acos_mkl(op);
+  }
 
   if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||
       data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {
@@ -37,8 +42,16 @@ TEST(cTorchAcosOpTest, testFloat32Default) {
   test_acos(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_32, -1.0, 1.0);
 }
 
+TEST(cTorchAcosOpTest, testFloat32MKL) {
+  test_acos(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_32, -1.0, 1.0);
+}
+
 TEST(cTorchAcosOpTest, testFloat64Default) {
   test_acos(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, -1.0, 1.0);
+}
+
+TEST(cTorchAcosOpTest, testFloat64MKL) {
+  test_acos(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, -1.0, 1.0);
 }
 
 TEST(cTorchAcosOpTest, testInt16Default) {

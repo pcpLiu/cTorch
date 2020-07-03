@@ -4,8 +4,6 @@
 #include "cTorch/operators/default/op_list.h"
 #include "cTorch/operators/default/util.h"
 
-#define _cth_add_kernel(a, b) fmod(b, a)
-
 /**
  * fmod element wise.
  *
@@ -30,5 +28,5 @@ void op_fmod_cpu(CTorchOperator *op) {
       out->values,
       in_a->meta_info->data_type,
       N,
-      _cth_add_kernel);
+      fmod);
 }
