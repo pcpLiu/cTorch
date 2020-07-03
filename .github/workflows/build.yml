@@ -36,7 +36,7 @@ jobs:
           aws-region: us-east-2
 
       - name: 3) Pull data from S3
-        run: aws s3 sync s3://ctorch.github/intel_mkl third_party/intel_mkl
+        run: bash ci/aws_s3.sh
 
       - name: 4-A) Build & Test on Linux
         if: matrix.os == 'ubuntu-latest'
