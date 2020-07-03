@@ -11,12 +11,8 @@ sudo ./aws/install
 #
 # CP credential
 #
-
-if [ ! -d "~/.aws" ]; then
-    mkdir ~/.aws
-fi
-cp ci/aws_credential ~/.aws/credentials
-
+aws configure set aws_access_key_id AKIATGUE5JHV5TX52MJP
+aws configure set aws_secret_access_key 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
 
 
 ################################################################################
