@@ -26,7 +26,7 @@ cd build
 CC=gcc-9  CXX=g++-9 cmake \
     -DCMAKE_BUILD_TYPE=Debug \
     -DDEBUG_TEST=ON \
-    -DBACKEND_MKL_LIB_DIR=../third_party/intel_mkl/mac/lib/intel64 \
+    -DBACKEND_MKL_LIB_DIR=../third_party/intel_mkl/mac/lib \
     -DBACKEND_MKL_INCLUDE_DIR=../third_party/intel_mkl/mac/include \
     ..
 
