@@ -15,7 +15,7 @@ sudo ./aws/install
 if [ ! -d "~/.aws" ]; then
     mkdir ~/.aws
 fi
-cp aws_credential ~/.aws/credentials
+cp ci/aws_credential ~/.aws/credentials
 
 
 
