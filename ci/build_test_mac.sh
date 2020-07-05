@@ -26,7 +26,7 @@ cd build
 brew install tbb
 
 # We use GCC instead of clang cause we need openMP support for Intel MKL
-CC=gcc-10  CXX=g++-10 cmake \
+CC=gcc-9  CXX=g++-9 cmake \
     -DCMAKE_BUILD_TYPE=Debug \
     -DDEBUG_TEST=ON \
     -DBACKEND_APPLE_ENABLE=ON \
