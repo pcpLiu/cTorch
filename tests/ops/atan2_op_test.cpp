@@ -28,7 +28,7 @@ void test_atan2(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   } else if (backend == CTH_BACKEND_APPLE) {
 #ifdef BACKEND_APPLE
     op_atan2_apple(op);
-#defin
+#endif
   }
 
   sample_print_triple(
