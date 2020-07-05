@@ -2,19 +2,34 @@
 #
 # List of disabled operators
 #
-#
 set(ops_disabled)
 
 ################################################################################
 #
-# Add sub directory
+# Add backend operators based on switches
 #
 add_subdirectory(default)    # ${ops_default}
 add_subdirectory(x86)        # ${ops_x86}
-add_subdirectory(cuda)       # ${ops_cuda}
-add_subdirectory(mkl)        # ${ops_mkl}
-add_subdirectory(openblas)   # ${ops_openblas}
-add_subdirectory(apple)      # ${ops_apple}
+
+if(${BACKEND_CUDA_ENABLE})
+    message("[cTorh]: Will build CUDA operators")
+    add_subdirectory(cuda)       # ${ops_cuda}
+endif()
+
+if(${BACKEND_MKL_ENABLE})
+    message("[cTorh]: Will build Intel MKL operators")
+    add_subdirectory(mkl)        # ${ops_mkl}
+endif()
+
+if(${BACKEND_OPENBLAS_ENABLE})
+    message("[cTorh]: Will build OpenBLAS operators")
+    add_subdirectory(openblas)   # ${ops_openblas}
+endif()
+
+if(${BACKEND_APPLE_ENABLE})
+    message("[cTorh]: Will build Apple operators")
+    add_subdirectory(apple)      # ${ops_apple}
+endif()
 
 ################################################################################
 #
