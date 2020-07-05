@@ -13,6 +13,12 @@ void test_reciprocal(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type,
   CTorchOperator *op = op_node->conent.op;
   op_reciprocal_cpu(op);
 
+  if (backend == CTH_BACKEND_DEFAULT) {
+    op_reciprocal_cpu(op);
+  } else if (backend == CTH_BACKEND_APPLE) {
+    op_reciprocal_apple(op);
+  }
+
   sample_print(data_type,
                array_at(CTorchTensor)(op->in_bound_tensors, 0)->values,
                array_at(CTorchTensor)(op->out_bound_tensors, 0)->values, 2);
@@ -48,6 +54,14 @@ TEST(cTorchReciprocalOpTest, testFloat32Default) {
 TEST(cTorchReciprocalOpTest, testFloat64Default) {
   test_reciprocal(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, 1.0,
                   100.0);
+}
+
+TEST(cTorchReciprocalOpTest, testFloat64Apple) {
+  test_reciprocal(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_64, 1.0, 100.0);
+}
+
+TEST(cTorchReciprocalOpTest, testFloat32Apple) {
+  test_reciprocal(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_16, 1.0, 100.0);
 }
 
 TEST(cTorchReciprocalOpTest, testInt16Default) {

@@ -16,6 +16,8 @@ void test_log(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
     op_log_cpu(op);
   } else if (backend == CTH_BACKEND_MKL) {
     op_log_mkl(op);
+  } else if (backend == CTH_BACKEND_APPLE) {
+    op_log_apple(op);
   }
 
   sample_print(data_type,
@@ -56,6 +58,14 @@ TEST(cTorchLogOpTest, testFloat64Default) {
 
 TEST(cTorchLogOpTest, testFloat64MKL) {
   test_log(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, 0.01, 20.0);
+}
+
+TEST(cTorchLogOpTest, testFloat32Apple) {
+  test_log(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_32, 0.01, 20.0);
+}
+
+TEST(cTorchLogOpTest, testFloat64Apple) {
+  test_log(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_64, 0.01, 20.0);
 }
 
 TEST(cTorchLogOpTest, testInt16Default) {

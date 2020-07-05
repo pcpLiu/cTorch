@@ -15,6 +15,8 @@ void test_tan(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
     op_tan_cpu(op);
   } else if (backend == CTH_BACKEND_MKL) {
     op_tan_mkl(op);
+  } else if (backend == CTH_BACKEND_APPLE) {
+    op_tan_apple(op);
   }
 
   sample_print(data_type,
@@ -55,6 +57,14 @@ TEST(cTorchTanOpTest, testFloat64Default) {
 
 TEST(cTorchTanOpTest, testFloat64MKL) {
   test_tan(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, -20.0, 20.0);
+}
+
+TEST(cTorchTanOpTest, testFloat32Apple) {
+  test_tan(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_32, -20.0, 20.0);
+}
+
+TEST(cTorchTanOpTest, testFloat64Apple) {
+  test_tan(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_64, -20.0, 20.0);
 }
 
 TEST(cTorchTanOpTest, testInt16Default) {

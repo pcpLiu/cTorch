@@ -22,11 +22,11 @@ fi
 
 cd build
 
-# # install Intel tbb
+# install Intel tbb & libomp for MKL backend
 brew install tbb
+brew install libomp
 
-# We use GCC instead of clang cause we need openMP support for Intel MKL
-CC=gcc-9  CXX=g++-9 cmake \
+cmake \
     -DCMAKE_BUILD_TYPE=Debug \
     -DDEBUG_TEST=ON \
     -DBACKEND_APPLE_ENABLE=ON \

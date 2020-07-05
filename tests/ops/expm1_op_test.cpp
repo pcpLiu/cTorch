@@ -16,6 +16,8 @@ void test_expm1(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
     op_expm1_cpu(op);
   } else if (backend == CTH_BACKEND_MKL) {
     op_expm1_mkl(op);
+  } else if (backend == CTH_BACKEND_APPLE) {
+    op_expm1_apple(op);
   }
 
   sample_print(data_type,
@@ -56,6 +58,14 @@ TEST(cTorchExpm1OpTest, testFloat64Default) {
 
 TEST(cTorchExpm1OpTest, testFloat64MKL) {
   test_expm1(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, -20.0, 20.0);
+}
+
+TEST(cTorchExpm1OpTest, testFloat32Apple) {
+  test_expm1(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_32, -20.0, 20.0);
+}
+
+TEST(cTorchExpm1OpTest, testFloat64Apple) {
+  test_expm1(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_64, -20.0, 20.0);
 }
 
 TEST(cTorchExpm1OpTest, testInt16Default) {

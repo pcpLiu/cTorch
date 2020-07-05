@@ -16,7 +16,13 @@ void test_acos(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
     op_acos_cpu(op);
   } else if (backend == CTH_BACKEND_MKL) {
     op_acos_mkl(op);
+  } else if (backend == CTH_BACKEND_APPLE) {
+    op_acos_apple(op);
   }
+
+  sample_print(data_type,
+               array_at(CTorchTensor)(op->in_bound_tensors, 0)->values,
+               array_at(CTorchTensor)(op->out_bound_tensors, 0)->values, 2);
 
   if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||
       data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {
@@ -54,6 +60,14 @@ TEST(cTorchAcosOpTest, testFloat64MKL) {
   test_acos(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, -1.0, 1.0);
 }
 
+TEST(cTorchAcosOpTest, testFloat32Apple) {
+  test_acos(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_32, -1.0, 1.0);
+}
+
+TEST(cTorchAcosOpTest, testFloat64Apple) {
+  test_acos(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_64, -1.0, 1.0);
+}
+
 TEST(cTorchAcosOpTest, testInt16Default) {
   test_acos(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_16, -1.0, 1.0);
 }
@@ -68,15 +82,4 @@ TEST(cTorchAcosOpTest, testInt64Default) {
 
 TEST(cTorchAcosOpTest, testUInt8Default) {
   test_acos(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_UINT_8, 0.0, 1.0);
-}
-
-TEST(cTorchAcosOpTest, testBoolDefaultExpectExit) {
-  CTH_NAN_EXIT = true;
-  tensor_dim_t dims[] = {1, 1};
-  tensor_dim_t n_dim = sizeof(dims) / sizeof(dims[0]);
-  CTorchNode *op_node = create_dummy_op_node_unary(
-      CTH_OP_ID_acos, dims, n_dim, CTH_TENSOR_DATA_TYPE_BOOL, 0, 0);
-  EXPECT_EXIT(cth_execute_node(op_node, CTH_BACKEND_DEFAULT),
-              ::testing::ExitedWithCode(1),
-              "Operator does not support data type");
 }

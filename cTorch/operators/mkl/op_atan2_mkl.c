@@ -27,7 +27,7 @@ void op_atan2_mkl(CTorchOperator *op) {
   CTorchTensor *in_a = array_at(CTorchTensor)(op->in_bound_tensors, 0);
   CTorchTensor *in_b = array_at(CTorchTensor)(op->in_bound_tensors, 1);
   CTorchTensor *out = array_at(CTorchTensor)(op->out_bound_tensors, 0);
-  int64_t N = in_a->meta_info->n_elements;
+  tensor_size_t N = in_a->meta_info->n_elements;
   _cth_mkl_vm_function_call_binary(
       in_a->meta_info->data_type,
       Atan2,

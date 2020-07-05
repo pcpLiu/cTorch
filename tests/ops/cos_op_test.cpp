@@ -16,6 +16,8 @@ void test_cos(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
     op_cos_cpu(op);
   } else if (backend == CTH_BACKEND_MKL) {
     op_cos_mkl(op);
+  } else if (backend == CTH_BACKEND_APPLE) {
+    op_cos_apple(op);
   }
 
   sample_print(data_type,
@@ -56,6 +58,14 @@ TEST(cTorchCosOpTest, testFloat64Default) {
 
 TEST(cTorchCosOpTest, testFloat64MKL) {
   test_cos(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, -100.0, 100.0);
+}
+
+TEST(cTorchCosOpTest, testFloat32Apple) {
+  test_cos(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_32, -20.0, 20.0);
+}
+
+TEST(cTorchCosOpTest, testFloat64Apple) {
+  test_cos(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_64, -20.0, 20.0);
 }
 
 TEST(cTorchCosOpTest, testInt16Default) {

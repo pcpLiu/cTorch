@@ -15,6 +15,8 @@ void test_sin(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
     op_sin_cpu(op);
   } else if (backend == CTH_BACKEND_MKL) {
     op_sin_mkl(op);
+  } else if (backend == CTH_BACKEND_APPLE) {
+    op_sin_apple(op);
   }
 
   sample_print(data_type,
@@ -55,6 +57,14 @@ TEST(cTorchSinOpTest, testFloat64Default) {
 
 TEST(cTorchSinOpTest, testFloat64MKL) {
   test_sin(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, -20.0, 20.0);
+}
+
+TEST(cTorchSinOpTest, testFloat32Apple) {
+  test_sin(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_32, -20.0, 20.0);
+}
+
+TEST(cTorchSinOpTest, testFloat64Apple) {
+  test_sin(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_64, -20.0, 20.0);
 }
 
 TEST(cTorchSinOpTest, testInt16Default) {

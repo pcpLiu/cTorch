@@ -59,25 +59,25 @@ endif()
 # Openblas
 if(${BACKEND_OPENBLAS_ENABLE})
     add_compile_definitions(BACKEND_OPENBLAS)
-    message("[cTorch]: Enable OpenBLAS backend")
+    message("[cTorch]: Enable building with OpenBLAS backend")
 endif()
 
 # MKL
 if(${BACKEND_MKL_ENABLE})
     add_compile_definitions(BACKEND_MKL)
-    message("[cTorch]: Enable Intel MKL backend")
+    message("[cTorch]: Enable building with Intel MKL backend")
 endif()
 
 # CUDA
 if(${BACKEND_CUDA_ENABLE})
     add_compile_definitions(BACKEND_CUDA)
-    message("[cTorch]: Enable CUDA backend")
+    message("[cTorch]: Enable building with CUDA backend")
 endif()
 
 # Apple
 if(${BACKEND_APPLE_ENABLE})
     add_compile_definitions(BACKEND_APPLE)
-    message("[cTorch]: Enable Apple backend")
+    message("[cTorch]: Enable building with Apple backend")
 endif()
 
 # asprintf

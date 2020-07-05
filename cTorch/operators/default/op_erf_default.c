@@ -17,7 +17,7 @@ void op_erf_cpu(CTorchOperator *op) {
 
   CTorchTensor *in = array_at(CTorchTensor)(op->in_bound_tensors, 0);
   CTorchTensor *out = array_at(CTorchTensor)(op->out_bound_tensors, 0);
-  int64_t N = in->meta_info->n_elements;
+  tensor_size_t N = in->meta_info->n_elements;
   _cpu_1d_map_elewise_unary(
       in->values, out->values, in->meta_info->data_type, N, erf);
 }

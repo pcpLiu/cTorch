@@ -23,6 +23,8 @@ void test_div(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
     op_div_cpu(op);
   } else if (backend == CTH_BACKEND_MKL) {
     op_div_mkl(op);
+  } else if (backend == CTH_BACKEND_APPLE) {
+    op_div_apple(op);
   }
 
   sample_print_triple(
@@ -64,6 +66,14 @@ TEST(cTorchDivOpTest, testFloat64Default) {
 
 TEST(cTorchDivOpTest, testFloat64MKL) {
   test_div(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, 1.0, 100.0);
+}
+
+TEST(cTorchDivOpTest, testFloat32Apple) {
+  test_div(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_32, -10.0, 10.0);
+}
+
+TEST(cTorchDivOpTest, testFloat64Apple) {
+  test_div(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_64, -10.0, 10.0);
 }
 
 TEST(cTorchDivOpTest, testInt16Default) {

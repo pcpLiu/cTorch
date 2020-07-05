@@ -106,7 +106,6 @@ endif()
 
 # MKL
 if(${BACKEND_MKL_ENABLE})
-    message("sub use BACKEND_MKL")
     find_library(
         MKL_CORE_LIB
         NAMES mkl_core
@@ -137,6 +136,10 @@ if(${BACKEND_MKL_ENABLE})
     find_package(OpenMP REQUIRED)
     set(${CMAKE_C_FLAGS} "${CMAKE_C_FLAGS} -m64")
     target_include_directories(cTorch PRIVATE ${BACKEND_MKL_INCLUDE_DIR})
+    message(
+        "[cTorch]: Append link libraries for MKL backend: "
+        "${MKL_INTERFACE_LIB}, ${MKL_CORE_LIB}, ${MKL_THREAD_LIB}"
+    )
     # !Link order matters!
     target_link_libraries(
         cTorch PUBLIC
@@ -155,9 +158,13 @@ endif()
 if(${BACKEND_APPLE_ENABLE})
     find_library(
         APPLE_ACCELERATE_FRAMEWORK
-        NAMES Accelerate
+        NAMES Accelerate accelerate
         PATHS "/Library"
         REQUIRED
+    )
+    message(
+        "[cTorch]: Append link libraries for Apple backend: "
+        "${APPLE_ACCELERATE_FRAMEWORK}"
     )
     target_link_libraries(
         cTorch PUBLIC

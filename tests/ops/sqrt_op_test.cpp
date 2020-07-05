@@ -15,6 +15,8 @@ void test_sqrt(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
     op_sqrt_cpu(op);
   } else if (backend == CTH_BACKEND_MKL) {
     op_sqrt_mkl(op);
+  } else if (backend == CTH_BACKEND_APPLE) {
+    op_sqrt_apple(op);
   }
 
   sample_print(data_type,
@@ -55,6 +57,14 @@ TEST(cTorchSqrtOpTest, testFloat64Default) {
 
 TEST(cTorchSqrtOpTest, testFloat64MKL) {
   test_sqrt(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, 0.1, 20.0);
+}
+
+TEST(cTorchSqrtOpTest, testFloat32Apple) {
+  test_sqrt(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_32, 0.01, 20.0);
+}
+
+TEST(cTorchSqrtOpTest, testFloat64Apple) {
+  test_sqrt(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_64, 0.01, 20.0);
 }
 
 TEST(cTorchSqrtOpTest, testInt16Default) {
