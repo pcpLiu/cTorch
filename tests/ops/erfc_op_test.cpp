@@ -39,37 +39,37 @@ void test_erfc(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
 }
 
 TEST(cTorchErfcOpTest, testFloat16Default) {
-  test_erfc(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_16, -1.0, 1.0);
+  test_erfc(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_16, -100.0, -100.0);
 }
 
 TEST(cTorchErfcOpTest, testFloat32Default) {
-  test_erfc(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_32, -1.0, 1.0);
+  test_erfc(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_32, -100.0, -100.0);
 }
 
 TEST(cTorchErfcOpTest, testFloat64Default) {
-  test_erfc(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, -1.0, 1.0);
+  test_erfc(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, -100.0, -100.0);
 }
 
 TEST(cTorchErfcOpTest, testFloat32MKL) {
-  test_erfc(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_32, -1.0, 1.0);
+  test_erfc(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_32, -100.0, -100.0);
 }
 
 TEST(cTorchErfcOpTest, testFloat64MKL) {
-  test_erfc(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, -1.0, 1.0);
+  test_erfc(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, -100.0, -100.0);
 }
 
 TEST(cTorchErfcOpTest, testInt16Default) {
-  test_erfc(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_16, -1.0, 1.0);
+  test_erfc(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_16, -100.0, -100.0);
 }
 
 TEST(cTorchErfcOpTest, testInt32Default) {
-  test_erfc(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_32, -1.0, 1.0);
+  test_erfc(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_32, -100.0, -100.0);
 }
 
 TEST(cTorchErfcOpTest, testInt64Default) {
-  test_erfc(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_64, -1.0, 1.0);
+  test_erfc(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_64, -100.0, -100.0);
 }
 
 TEST(cTorchErfcOpTest, testUInt8Default) {
-  test_erfc(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_UINT_8, 0.0, 1.0);
+  test_erfc(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_UINT_8, 0.0, -100.0);
 }

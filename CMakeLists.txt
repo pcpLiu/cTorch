@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.17 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
 
 project(cTorch_project DESCRIPTION "cTorch project" LANGUAGES C CXX)
 
