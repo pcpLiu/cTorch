@@ -69,11 +69,11 @@ TEST(cTorchFmodOpTest, testFloat64MKL) {
 }
 
 TEST(cTorchFmodOpTest, testFloat32Apple) {
-  test_fmod(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_32, -1.0, 1.0);
+  test_fmod(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_32, -100.0, 100.0);
 }
 
 TEST(cTorchFmodOpTest, testFloat64Apple) {
-  test_fmod(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_64, -1.0, 1.0);
+  test_fmod(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_64, -100.0, 100.0);
 }
 
 TEST(cTorchFmodOpTest, testInt16Default) {

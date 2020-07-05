@@ -45,7 +45,7 @@ cd tests
 EXIT_STATUS=0
 
 # tests can be run in paralllel
-./cTorch_test --gtest_filter="-*MEMRECORD*" || EXIT_STATUS=$?
+./cTorch_test --gtest_filter="-*MEMRECORD:*Apple" || EXIT_STATUS=$?
 
 # Involve with mem record count, run separatelly avoid of pthread abruption
 ./cTorch_test --gtest_filter="cTorchOperatorTest.testDeepFreeMEMRECORD" || EXIT_STATUS=$?
