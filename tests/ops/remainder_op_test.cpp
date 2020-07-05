@@ -25,7 +25,9 @@ void test_remainder(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type,
   } else if (backend == CTH_BACKEND_MKL) {
     op_remainder_mkl(op);
   } else if (backend == CTH_BACKEND_APPLE) {
+#ifdef BACKEND_APPLE
     op_remainder_apple(op);
+#endif
   }
 
   sample_print_triple(

@@ -16,7 +16,9 @@ void test_reciprocal(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type,
   if (backend == CTH_BACKEND_DEFAULT) {
     op_reciprocal_cpu(op);
   } else if (backend == CTH_BACKEND_APPLE) {
+#ifdef BACKEND_APPLE
     op_reciprocal_apple(op);
+#endif
   }
 
   sample_print(data_type,

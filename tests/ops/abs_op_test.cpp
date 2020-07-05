@@ -17,7 +17,9 @@ void test_abs(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   } else if (backend == CTH_BACKEND_MKL) {
     op_abs_mkl(op);
   } else if (backend == CTH_BACKEND_APPLE) {
+#ifdef BACKEND_APPLE
     op_abs_apple(op);
+#endif
   }
 
   sample_print(data_type,

@@ -16,7 +16,9 @@ void test_tan(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   } else if (backend == CTH_BACKEND_MKL) {
     op_tan_mkl(op);
   } else if (backend == CTH_BACKEND_APPLE) {
+#ifdef BACKEND_APPLE
     op_tan_apple(op);
+#endif
   }
 
   sample_print(data_type,
