@@ -26,7 +26,7 @@ cmake \
     -DCMAKE_BUILD_TYPE=Debug \
     -DDEBUG_TEST=ON \
     -DBACKEND_APPLE_ENABLE=OFF \
-    -DBACKEND_MKL=ON \
+    -DBACKEND_MKL_ENABLE=ON \
     -DBACKEND_MKL_LIB_DIR=../third_party/intel_mkl/linux/lib/intel64 \
     -DBACKEND_MKL_INCLUDE_DIR=../third_party/intel_mkl/linux/include \
     ..
