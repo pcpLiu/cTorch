@@ -23,14 +23,14 @@ fi
 cd build
 
 # # install Intel tbb
-# brew install tbb
+brew install tbb
 
 # We use GCC instead of clang cause we need openMP support for Intel MKL
-CC=gcc  CXX=g++ cmake \
+CC=gcc-10  CXX=g++-10 cmake \
     -DCMAKE_BUILD_TYPE=Debug \
     -DDEBUG_TEST=ON \
     -DBACKEND_APPLE_ENABLE=ON \
-    -DBACKEND_MKL=ON \
+    -DBACKEND_MKL_ENABLE=ON \
     -DBACKEND_MKL_LIB_DIR=../third_party/intel_mkl/mac/lib \
     -DBACKEND_MKL_INCLUDE_DIR=../third_party/intel_mkl/mac/include \
     ..

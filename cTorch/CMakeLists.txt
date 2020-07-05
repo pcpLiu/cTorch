@@ -106,6 +106,7 @@ endif()
 
 # MKL
 if(${BACKEND_MKL_ENABLE})
+    message("sub use BACKEND_MKL")
     find_library(
         MKL_CORE_LIB
         NAMES mkl_core
