@@ -63,7 +63,7 @@ TEST(cTorchReciprocalOpTest, testFloat64Apple) {
 }
 
 TEST(cTorchReciprocalOpTest, testFloat32Apple) {
-  test_reciprocal(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_INT_16, 1.0, 100.0);
+  test_reciprocal(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 100.0);
 }
 #endif
 
