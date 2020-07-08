@@ -20,6 +20,10 @@ void test_asin(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
 #ifdef BACKEND_APPLE
     op_asin_apple(op);
 #endif
+  } else if (backend == CTH_BACKEND_CUDA) {
+#ifdef BACKEND_CUDA
+    op_asin_cuda(op);
+#endif
   }
 
   sample_print(data_type,
@@ -62,6 +66,7 @@ TEST(cTorchAsinOpTest, testFloat64MKL) {
   test_asin(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, -1.0, 1.0);
 }
 
+#ifdef BACKEND_APPLE
 TEST(cTorchAsinOpTest, testFloat32Apple) {
   test_asin(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_32, -1.0, 1.0);
 }
@@ -69,6 +74,17 @@ TEST(cTorchAsinOpTest, testFloat32Apple) {
 TEST(cTorchAsinOpTest, testFloat64Apple) {
   test_asin(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_64, -1.0, 1.0);
 }
+#endif
+
+#ifdef BACKEND_CUDA
+TEST(cTorchAsinOpTest, testFloat32CUDA) {
+  test_asin(CTH_BACKEND_CUDA, CTH_TENSOR_DATA_TYPE_FLOAT_32, -1.0, 1.0);
+}
+
+TEST(cTorchAsinOpTest, testFloat64CUDA) {
+  test_asin(CTH_BACKEND_CUDA, CTH_TENSOR_DATA_TYPE_FLOAT_64, -1.0, 1.0);
+}
+#endif
 
 TEST(cTorchAsinOpTest, testInt16Default) {
   test_asin(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_16, -1.0, 1.0);

@@ -19,6 +19,10 @@ void test_sinh(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
 #ifdef BACKEND_APPLE
     op_sinh_apple(op);
 #endif
+  } else if (backend == CTH_BACKEND_CUDA) {
+#ifdef BACKEND_CUDA
+    op_sinh_cuda(op);
+#endif
   }
 
   sample_print(data_type,
@@ -61,6 +65,7 @@ TEST(cTorchSinhOpTest, testFloat64MKL) {
   test_sinh(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, -20.0, 20.0);
 }
 
+#ifdef BACKEND_APPLE
 TEST(cTorchSinhOpTest, testFloat32Apple) {
   test_sinh(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_32, -20.0, 20.0);
 }
@@ -68,6 +73,17 @@ TEST(cTorchSinhOpTest, testFloat32Apple) {
 TEST(cTorchSinhOpTest, testFloat64Apple) {
   test_sinh(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_64, -20.0, 20.0);
 }
+#endif
+
+#ifdef BACKEND_CUDA
+TEST(cTorchSinhOpTest, testFloat32CUDA) {
+  test_sinh(CTH_BACKEND_CUDA, CTH_TENSOR_DATA_TYPE_FLOAT_32, -20.0, 20.0);
+}
+
+TEST(cTorchSinhOpTest, testFloat64CUDA) {
+  test_sinh(CTH_BACKEND_CUDA, CTH_TENSOR_DATA_TYPE_FLOAT_64, -20.0, 20.0);
+}
+#endif
 
 TEST(cTorchSinhOpTest, testInt16Default) {
   test_sinh(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_16, -20.0, 20.0);

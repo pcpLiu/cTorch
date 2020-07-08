@@ -19,6 +19,7 @@ typedef struct CTorchTensorMeta {
   tensor_size_t n_elements;       /* Number of elements */
   uint16_t align_size;            /* Alignment size of this storage */
   CTH_TENSOR_TYPE type;           /* Tensor type: normal or params */
+  CTH_TENSOR_DEVICE device;       /* Device where tensor lives */
   bool is_sharded;   /* If this tensor is a sharding piece of another tensor */
   char *tensor_name; /* For CTH_TENSOR_TYPE_PARAM type node, this is parameter
                         name. As for other types, this is an optiona field and

@@ -20,6 +20,10 @@ void test_ceil(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
 #ifdef BACKEND_APPLE
     op_ceil_apple(op);
 #endif
+  } else if (backend == CTH_BACKEND_CUDA) {
+#ifdef BACKEND_CUDA
+    op_ceil_cuda(op);
+#endif
   }
 
   sample_print(data_type,
@@ -54,6 +58,7 @@ TEST(cTorchCeilOpTest, testFloat64Default) {
   test_ceil(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, -10.0, 10.0);
 }
 
+#ifdef BACKEND_APPLE
 TEST(cTorchCeilOpTest, testFloat32Apple) {
   test_ceil(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_32, -10.0, 10.0);
 }
@@ -61,6 +66,17 @@ TEST(cTorchCeilOpTest, testFloat32Apple) {
 TEST(cTorchCeilOpTest, testFloat64Apple) {
   test_ceil(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_64, -10.0, 10.0);
 }
+#endif
+
+#ifdef BACKEND_CUDA
+TEST(cTorchCeilOpTest, testFloat32CUDA) {
+  test_ceil(CTH_BACKEND_CUDA, CTH_TENSOR_DATA_TYPE_FLOAT_32, -1.0, 1.0);
+}
+
+TEST(cTorchCeilOpTest, testFloat64CUDA) {
+  test_ceil(CTH_BACKEND_CUDA, CTH_TENSOR_DATA_TYPE_FLOAT_64, -1.0, 1.0);
+}
+#endif
 
 TEST(cTorchCeilOpTest, testFloat32MKL) {
   test_ceil(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_32, -10.0, 10.0);

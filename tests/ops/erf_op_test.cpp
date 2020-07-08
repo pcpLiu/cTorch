@@ -16,6 +16,10 @@ void test_erf(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
     op_erf_cpu(op);
   } else if (backend == CTH_BACKEND_MKL) {
     op_erf_mkl(op);
+  } else if (backend == CTH_BACKEND_CUDA) {
+#ifdef BACKEND_CUDA
+    op_erf_cuda(op);
+#endif
   }
 
   sample_print(data_type,
@@ -57,6 +61,16 @@ TEST(cTorchErfOpTest, testFloat32MKL) {
 TEST(cTorchErfOpTest, testFloat64MKL) {
   test_erf(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, -1.0, 1.0);
 }
+
+#ifdef BACKEND_CUDA
+TEST(cTorchErfOpTest, testFloat32CUDA) {
+  test_erf(CTH_BACKEND_CUDA, CTH_TENSOR_DATA_TYPE_FLOAT_32, -1.0, 1.0);
+}
+
+TEST(cTorchErfOpTest, testFloat64CUDA) {
+  test_erf(CTH_BACKEND_CUDA, CTH_TENSOR_DATA_TYPE_FLOAT_64, -1.0, 1.0);
+}
+#endif
 
 TEST(cTorchErfOpTest, testInt16Default) {
   test_erf(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_16, -1.0, 1.0);

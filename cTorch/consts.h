@@ -55,6 +55,18 @@ typedef enum CTH_TENSOR_TYPE {
   CTH_TENSOR_TYPE_PARAM,
 } CTH_TENSOR_TYPE;
 
+/**
+ * @brief Tensor physical device
+ *
+ * Types:
+ *    - CTH_TENSOR_DEVICE_NORMAL: normal tensor lives in main mem
+ *    - CTH_TENSOR_DEVICE_CUDA: tensor lives in CUDA mem
+ */
+typedef enum CTH_TENSOR_DEVICE {
+  CTH_TENSOR_DEVICE_NORMAL,
+  CTH_TENSOR_DEVICE_CUDA,
+} CTH_TENSOR_DEVICE;
+
 /*
   Job execution status:
     - CTH_JOB_STATUS_WAIT: job is waiting for depedency

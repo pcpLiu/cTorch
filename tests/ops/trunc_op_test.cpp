@@ -19,6 +19,10 @@ void test_trunc(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
 #ifdef BACKEND_APPLE
     op_trunc_apple(op);
 #endif
+  } else if (backend == CTH_BACKEND_CUDA) {
+#ifdef BACKEND_CUDA
+    op_trunc_cuda(op);
+#endif
   }
 
   sample_print(data_type,
@@ -57,13 +61,25 @@ TEST(cTorchTruncOpTest, testFloat32MKL) {
   test_trunc(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_32, -20.0, 20.0);
 }
 
+#ifdef BACKEND_APPLE
 TEST(cTorchTruncOpTest, testFloat32Apple) {
-  test_trunc(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_32, -1.0, 1.0);
+  test_trunc(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_32, -20.0, 20.0);
 }
 
 TEST(cTorchTruncOpTest, testFloat64Apple) {
-  test_trunc(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_64, -1.0, 1.0);
+  test_trunc(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_64, -20.0, 20.0);
 }
+#endif
+
+#ifdef BACKEND_CUDA
+TEST(cTorchTruncOpTest, testFloat32CUDA) {
+  test_trunc(CTH_BACKEND_CUDA, CTH_TENSOR_DATA_TYPE_FLOAT_32, -20.0, 20.0);
+}
+
+TEST(cTorchTruncOpTest, testFloat64CUDA) {
+  test_trunc(CTH_BACKEND_CUDA, CTH_TENSOR_DATA_TYPE_FLOAT_64, -20.0, 20.0);
+}
+#endif
 
 TEST(cTorchTruncOpTest, testFloat64MKL) {
   test_trunc(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, -20.0, 20.0);

@@ -6,9 +6,8 @@
 #include "cTorch/storage.h"
 
 /**
- * Declare cpu op functions. These three macros will finally expand to a list of
- * functions like:
- *    void op_XXXXXX_cpu(CTorchOperator *);
+ * Declare cuda op functions. These three macros will finally expand to a list
+ * of functions like: void op_XXXXXX_cuda(CTorchOperator *);
  */
 #define CUDA_OP_FUNC_NAME(op) op_##op##_cuda
 #define CUDA_OP_FUNC_DECLARE(op) void CUDA_OP_FUNC_NAME(op)(CTorchOperator *);

@@ -27,6 +27,10 @@ void test_div(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
 #ifdef BACKEND_APPLE
     op_div_apple(op);
 #endif
+  } else if (backend == CTH_BACKEND_CUDA) {
+#ifdef BACKEND_CUDA
+    op_div_cuda(op);
+#endif
   }
 
   sample_print_triple(
@@ -70,6 +74,7 @@ TEST(cTorchDivOpTest, testFloat64MKL) {
   test_div(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, 1.0, 100.0);
 }
 
+#ifdef BACKEND_APPLE
 TEST(cTorchDivOpTest, testFloat32Apple) {
   test_div(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_32, -10.0, 10.0);
 }
@@ -77,6 +82,17 @@ TEST(cTorchDivOpTest, testFloat32Apple) {
 TEST(cTorchDivOpTest, testFloat64Apple) {
   test_div(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_64, -10.0, 10.0);
 }
+#endif
+
+#ifdef BACKEND_CUDA
+TEST(cTorchDivOpTest, testFloat32CUDA) {
+  test_div(CTH_BACKEND_CUDA, CTH_TENSOR_DATA_TYPE_FLOAT_32, -1.0, 1.0);
+}
+
+TEST(cTorchDivOpTest, testFloat64CUDA) {
+  test_div(CTH_BACKEND_CUDA, CTH_TENSOR_DATA_TYPE_FLOAT_64, -1.0, 1.0);
+}
+#endif
 
 TEST(cTorchDivOpTest, testInt16Default) {
   test_div(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_16, 1.0, 100.0);

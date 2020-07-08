@@ -65,7 +65,7 @@ endif()
 #
 
 add_library(cTorch
-    STATIC
+    SHARED
     ${core_src}
     ${operator_src}
 )
@@ -138,7 +138,7 @@ if(${BACKEND_MKL_ENABLE})
     target_include_directories(cTorch PRIVATE ${BACKEND_MKL_INCLUDE_DIR})
     message(
         "[cTorch]: Append link libraries for MKL backend: "
-        "${MKL_INTERFACE_LIB}, ${MKL_CORE_LIB}, ${MKL_THREAD_LIB}"
+        "${MKL_INTERFACE_LIB}, ${MKL_CORE_LIB}, ${MKL_THREAD_LIB}, OpenMP::OpenMP_C"
     )
     # !Link order matters!
     target_link_libraries(

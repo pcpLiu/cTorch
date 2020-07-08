@@ -49,7 +49,7 @@ cd tests
 EXIT_STATUS=0
 
 # tests can be run in paralllel and no CUDA backend
-./cTorch_test --gtest_filter="-*MEMRECORD:*CUDA" || EXIT_STATUS=$?
+./cTorch_test --gtest_filter="-*MEMRECORD" || EXIT_STATUS=$?
 
 # Involve with mem record count, run separatelly avoid of pthread abruption
 ./cTorch_test --gtest_filter="cTorchOperatorTest.testDeepFreeMEMRECORD" || EXIT_STATUS=$?

@@ -20,6 +20,10 @@ void test_cosh(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
 #ifdef BACKEND_APPLE
     op_cosh_apple(op);
 #endif
+  } else if (backend == CTH_BACKEND_CUDA) {
+#ifdef BACKEND_CUDA
+    op_cosh_cuda(op);
+#endif
   }
 
   sample_print(data_type,
@@ -62,6 +66,7 @@ TEST(cTorchCoshOpTest, testFloat64MKL) {
   test_cosh(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, -10.0, 10.0);
 }
 
+#ifdef BACKEND_APPLE
 TEST(cTorchCoshOpTest, testFloat32Apple) {
   test_cosh(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_32, -20.0, 20.0);
 }
@@ -69,6 +74,17 @@ TEST(cTorchCoshOpTest, testFloat32Apple) {
 TEST(cTorchCoshOpTest, testFloat64Apple) {
   test_cosh(CTH_BACKEND_APPLE, CTH_TENSOR_DATA_TYPE_FLOAT_64, -20.0, 20.0);
 }
+#endif
+
+#ifdef BACKEND_CUDA
+TEST(cTorchCoshOpTest, testFloat32CUDA) {
+  test_cosh(CTH_BACKEND_CUDA, CTH_TENSOR_DATA_TYPE_FLOAT_32, -1.0, 1.0);
+}
+
+TEST(cTorchCoshOpTest, testFloat64CUDA) {
+  test_cosh(CTH_BACKEND_CUDA, CTH_TENSOR_DATA_TYPE_FLOAT_64, -1.0, 1.0);
+}
+#endif
 
 TEST(cTorchCoshOpTest, testInt16Default) {
   test_cosh(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_16, -10.0, 10.0);

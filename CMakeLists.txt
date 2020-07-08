@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
 
-project(cTorch_project DESCRIPTION "cTorch project" LANGUAGES C CXX)
+project(cTorch_project DESCRIPTION "cTorch project" LANGUAGES C)
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 11)
@@ -17,11 +17,11 @@ set(TARGET_CPU_ARCH "x86" CACHE STRING
 )
 
 set(BACKEND_OPENBLAS_ENABLE OFF CACHE BOOL
-    "Build backend with openBLAS"
+    "Build with backend openBLAS backend"
 )
 
 set(BACKEND_MKL_ENABLE OFF CACHE BOOL
-    "Build backend with Intel MKL"
+    "Build backend with Intel MKL backend"
 )
 set(BACKEND_MKL_LIB_DIR "/opt/intel/mkl/lib/intel64" CACHE PATH
     "MKL library dir. Default: /opt/intel/lib/intel64"
@@ -31,11 +31,11 @@ set(BACKEND_MKL_INCLUDE_DIR "/opt/intel/mkl/include" CACHE PATH
 )
 
 set(BACKEND_CUDA_ENABLE OFF CACHE BOOL
-    "Build backend with CUDA"
+    "Build with CUDA backend"
 )
 
 set(BACKEND_APPLE_ENABLE OFF CACHE BOOL
-    "Build backend with Apple's libraries"
+    "Build with Apple backend"
 )
 
 set(DEBUG_TEST OFF CACHE BOOL
@@ -70,6 +70,7 @@ endif()
 
 # CUDA
 if(${BACKEND_CUDA_ENABLE})
+    enable_language(CUDA)
     add_compile_definitions(BACKEND_CUDA)
     message("[cTorch]: Enable building with CUDA backend")
 endif()
@@ -85,13 +86,13 @@ add_compile_definitions(_GNU_SOURCE)
 
 ################################################################################
 #
-# Debug test turned on
+# Debug test macro
 #
 
 if(${DEBUG_TEST})
     message(
         WARNING
-        "[cTorch]: DEBUG_TEST is set to ON. "
+        "[cTorch]: DEBUG_TEST is turned ON. "
         "This opiton should only be enabled for debugging cTorch. "
         "Turning it on will lead to performance regression."
     )
@@ -102,9 +103,16 @@ endif()
 
 ################################################################################
 #
-# Subdirectories
+# Core lib
 #
-
 add_subdirectory(cTorch)
-add_subdirectory(third_party/googletest)
-add_subdirectory(tests)
+
+################################################################################
+#
+# Tests
+#
+if(${DEBUG_TEST})
+    enable_language(CXX)
+    add_subdirectory(third_party/googletest)
+    add_subdirectory(tests)
+endif()

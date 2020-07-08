@@ -23,6 +23,10 @@ void test_mul(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
     op_mul_cpu(op);
   } else if (backend == CTH_BACKEND_MKL) {
     op_mul_mkl(op);
+  } else if (backend == CTH_BACKEND_CUDA) {
+#ifdef BACKEND_CUDA
+    op_mul_cuda(op);
+#endif
   }
 
   sample_print_triple(
@@ -65,6 +69,16 @@ TEST(cTorchMulOpTest, testFloat64Default) {
 TEST(cTorchMulOpTest, testFloat64MKL) {
   test_mul(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, -100.0, 100.0);
 }
+
+#ifdef BACKEND_CUDA
+TEST(cTorchMulOpTest, testFloat32CUDA) {
+  test_mul(CTH_BACKEND_CUDA, CTH_TENSOR_DATA_TYPE_FLOAT_32, 0.01, 20.0);
+}
+
+TEST(cTorchMulOpTest, testFloat64CUDA) {
+  test_mul(CTH_BACKEND_CUDA, CTH_TENSOR_DATA_TYPE_FLOAT_64, 0.01, 20.0);
+}
+#endif
 
 TEST(cTorchMulOpTest, testInt16Default) {
   test_mul(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_16, -100.0, 100.0);
