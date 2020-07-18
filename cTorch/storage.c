@@ -178,3 +178,49 @@ void FORCE_TENSOR_TYPES(
         data_type);
   }
 }
+
+tensor_dim_t cth_tensor_reduce_startoffset(
+    CTorchTensor *tensor,
+    tensor_dim_t *index_dims,
+    const tensor_dim_t reduce_dim) {
+  FAIL_NULL_PTR(tensor);
+  FAIL_NULL_PTR(index_dims);
+
+  tensor_dim_t *tensor_dims = tensor->meta_info->dims;
+  tensor_dim_t tensor_n_dim = tensor->meta_info->n_dim;
+  tensor_dim_t offset = 0, i = 0;
+  while (i < tensor_n_dim) {
+    if (reduce_dim == i) {
+      i++;
+      continue;
+    }
+
+    tensor_dim_t n_eles_after = 1;
+    tensor_dim_t j = i + 1;
+    while (j < tensor_n_dim) {
+      n_eles_after = n_eles_after * tensor_dims[j];
+      j++;
+    }
+
+    tensor_dim_t index_dim_i = (i > reduce_dim ? i - 1 : i);
+    offset = offset + n_eles_after * index_dims[index_dim_i];
+    i++;
+  }
+
+  return offset;
+}
+
+tensor_dim_t
+cth_tensor_reduce_inneroffset(CTorchTensor *tensor, tensor_dim_t reduce_dim) {
+  FAIL_NULL_PTR(tensor);
+
+  tensor_dim_t offset = 1;
+  tensor_dim_t i = reduce_dim + 1;
+  tensor_dim_t *tensor_dims = tensor->meta_info->dims;
+  while (i < tensor->meta_info->n_dim) {
+    offset = offset * tensor_dims[i];
+    i++;
+  }
+
+  return offset;
+}

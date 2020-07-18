@@ -60,6 +60,7 @@ set(ops_default_all
     operators/default/op_tanh_default.c
     operators/default/op_true_divide_default.c
     operators/default/op_trunc_default.c
+    operators/default/op_argmax_default.c
 )
 
 ################################################################################

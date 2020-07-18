@@ -102,6 +102,28 @@ size_t cth_tensor_data_size(CTorchTensor *tensor);
 bool cth_tensor_name_match(CTorchTensor *tensor, const char *target_name);
 
 /**
+ * @brief Get starting offset on reduce action for reduce_dim_i
+ *
+ * @param tensor Target tensor
+ * @param index_dims Dim index t oreduce
+ * @param reduce_dim Which dim to reduce
+ * @return tensor_dim_t The ptr offset to act on
+ */
+tensor_dim_t cth_tensor_reduce_startoffset(
+    CTorchTensor *tensor, tensor_dim_t *index_dims, tensor_dim_t reduce_dim);
+
+/**
+ * @brief  Get inner reduced elements offset on reduce action for reduce_dim_i
+ *
+ * @param tensor
+ * @param reduce_dim
+ * @param reduce_dim_i
+ * @return * tensor_dim_t
+ */
+tensor_dim_t cth_tensor_reduce_inneroffset(
+    CTorchTensor *tensor, const tensor_dim_t reduce_dim);
+
+/**
  * @brief Check if tensor has target dimensions, fail if not
  *
  * @param tensor tensor
@@ -109,7 +131,9 @@ bool cth_tensor_name_match(CTorchTensor *tensor, const char *target_name);
  * @param target_n_dim target number of dims
  */
 void FORCE_TENSOR_DIMENSION(
-    CTorchTensor *tensor, tensor_dim_t *target_dims, tensor_dim_t target_n_dim);
+    CTorchTensor *tensor,
+    tensor_dim_t *target_dims,
+    const tensor_dim_t target_n_dim);
 
 /**
  * Check if given tensor has target no. of elements. FAIL_EXIT if not match.

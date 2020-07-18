@@ -11,6 +11,7 @@ typedef enum CTH_PARAM_TYPE {
   CTH_PARAM_TYPE_MULTIPLIER_FLOAT32,
   CTH_PARAM_TYPE_MIN_FLOAT32,
   CTH_PARAM_TYPE_MAX_FLOAT32,
+  CTH_PARAM_TYPE_DIM_INT32,
 } CTH_PARAM_TYPE;
 
 /**
@@ -23,6 +24,8 @@ typedef union CTorchParamData {
   float min;
   /* Max value threshold */
   float max;
+  /* Dimension to reduce */
+  int32_t dim;
 } CTorchParamData;
 
 typedef struct CTorchParam {

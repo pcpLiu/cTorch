@@ -14,6 +14,12 @@
   </a>
 </p>
 
+# Introduction
+
+cTorch is a light weight and flexible neural network inference library.
+
+Check more at [FAQ]() page.
+
 # I. Build instructions
 
 Building dependencies:

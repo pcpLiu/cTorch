@@ -65,7 +65,7 @@ endif()
 #
 
 add_library(cTorch
-    SHARED
+    STATIC
     ${core_src}
     ${operator_src}
 )

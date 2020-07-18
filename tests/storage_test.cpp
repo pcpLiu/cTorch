@@ -46,3 +46,82 @@ TEST(cTorchStorageTest, testFreeTensor) {
   EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_dims->status);
   EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_values->status);
 }
+
+TEST(cTorchStorageTest, testReductionStartoffset) {
+  tensor_dim_t n_dim = 4;
+  tensor_dim_t *dims = (tensor_dim_t *)MALLOC(n_dim * sizeof(tensor_dim_t));
+  dims[0] = 2;
+  dims[1] = 3;
+  dims[2] = 2;
+  dims[3] = 4;
+  CTorchTensor *tensor = create_dummy_tensor(
+      dims, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
+
+  // reduce dim 1
+  tensor_dim_t reduce_dim = 1;
+
+  tensor_dim_t index_dims[] = {0, 0, 0};
+  tensor_dim_t startoffset =
+      cth_tensor_reduce_startoffset(tensor, index_dims, reduce_dim);
+  EXPECT_EQ(startoffset, 0);
+
+  tensor_dim_t index_dims_1[] = {0, 1, 0};
+  startoffset = cth_tensor_reduce_startoffset(tensor, index_dims_1, reduce_dim);
+  EXPECT_EQ(startoffset, 4);
+
+  tensor_dim_t index_dims_2[] = {1, 0, 3};
+  startoffset = cth_tensor_reduce_startoffset(tensor, index_dims_2, reduce_dim);
+  EXPECT_EQ(startoffset, 27);
+
+  tensor_dim_t index_dims_3[] = {1, 1, 3};
+  startoffset = cth_tensor_reduce_startoffset(tensor, index_dims_3, reduce_dim);
+  EXPECT_EQ(startoffset, 31);
+
+  tensor_dim_t index_dims_4[] = {0, 1, 3};
+  startoffset = cth_tensor_reduce_startoffset(tensor, index_dims_4, reduce_dim);
+  EXPECT_EQ(startoffset, 7);
+
+  // reduce dim 0
+  reduce_dim = 0;
+
+  tensor_dim_t index_dims_5[] = {1, 0, 3};
+  startoffset = cth_tensor_reduce_startoffset(tensor, index_dims_5, reduce_dim);
+  EXPECT_EQ(startoffset, 11);
+
+  tensor_dim_t index_dims_6[] = {0, 0, 1};
+  startoffset = cth_tensor_reduce_startoffset(tensor, index_dims_6, reduce_dim);
+  EXPECT_EQ(startoffset, 1);
+
+  // reduce dim 3
+  reduce_dim = 3;
+
+  tensor_dim_t index_dims_7[] = {1, 2, 1};
+  startoffset = cth_tensor_reduce_startoffset(tensor, index_dims_7, reduce_dim);
+  EXPECT_EQ(startoffset, 44);
+}
+
+TEST(cTorchStorageTest, testReductionInnerOffset) {
+  tensor_dim_t n_dim = 4;
+  tensor_dim_t *dims = (tensor_dim_t *)MALLOC(n_dim * sizeof(tensor_dim_t));
+  dims[0] = 2;
+  dims[1] = 3;
+  dims[2] = 2;
+  dims[3] = 4;
+  CTorchTensor *tensor = create_dummy_tensor(
+      dims, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
+
+  // reduce dime 1
+  tensor_dim_t reduce_dim = 1;
+  tensor_dim_t innerOffset = cth_tensor_reduce_inneroffset(tensor, reduce_dim);
+  EXPECT_EQ(innerOffset, 8);
+
+  // reduce dim 0
+  reduce_dim = 0;
+  innerOffset = cth_tensor_reduce_inneroffset(tensor, reduce_dim);
+  EXPECT_EQ(innerOffset, 24);
+
+  // reduce dim 0
+  reduce_dim = 3;
+  innerOffset = cth_tensor_reduce_inneroffset(tensor, reduce_dim);
+  EXPECT_EQ(innerOffset, 1);
+}

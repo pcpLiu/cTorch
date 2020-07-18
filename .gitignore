@@ -4,3 +4,5 @@ build/**/*
 *.bak
 
 *DS_Store
+# hidden files
+._*
