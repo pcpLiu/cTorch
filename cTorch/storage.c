@@ -210,8 +210,8 @@ tensor_dim_t cth_tensor_reduce_startoffset(
   return offset;
 }
 
-tensor_dim_t
-cth_tensor_reduce_inneroffset(CTorchTensor *tensor, tensor_dim_t reduce_dim) {
+tensor_dim_t cth_tensor_reduce_inneroffset(
+    const CTorchTensor *tensor, tensor_dim_t reduce_dim) {
   FAIL_NULL_PTR(tensor);
 
   tensor_dim_t offset = 1;
@@ -223,4 +223,47 @@ cth_tensor_reduce_inneroffset(CTorchTensor *tensor, tensor_dim_t reduce_dim) {
   }
 
   return offset;
+}
+
+tensor_dim_t cth_tensor_reduce_result_offset(
+    const tensor_dim_t *reduce_index_dims, const tensor_dim_t index_size) {
+  tensor_dim_t result = 1;
+  for (tensor_dim_t i = 0; i < index_size; i++) {
+    result = result * reduce_index_dims[i];
+  }
+  return result;
+}
+
+void cth_tensor_get_reduce_index(
+    const CTorchTensor *tensor,
+    tensor_dim_t group_index,
+    tensor_dim_t reduce_dim,
+    tensor_dim_t *result) {
+  /**
+   * Convert from group_index to reduce index list:
+   *   - From biggest dimension to smallest dimension
+   *   - On each dimension, do div
+   */
+  tensor_dim_t *dims = tensor->meta_info->dims;
+  tensor_dim_t n_dim = tensor->meta_info->n_dim;
+  for (tensor_dim_t i = 0; i < n_dim; i++) {
+    if (i == reduce_dim) {
+      continue;
+    }
+
+    tensor_dim_t n_eles_after = 1;
+    tensor_dim_t j = i + 1;
+    while (j < n_dim) {
+      n_eles_after = n_eles_after * dims[j];
+      j++;
+    }
+
+    tensor_dim_t reduce_index_i = (i > reduce_dim ? i - 1 : i);
+    if (i == n_dim - 1) {
+      result[reduce_index_i] = group_index;
+    } else {
+      result[reduce_index_i] = group_index / n_eles_after;
+      group_index = group_index % n_eles_after;
+    }
+  }
 }

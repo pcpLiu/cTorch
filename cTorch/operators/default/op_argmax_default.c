@@ -1,49 +1,35 @@
 #include "cTorch/operators/default/op_list.h"
 #include "cTorch/operators/default/util.h"
 
-/**
- * 1. Get pre offset and post offset
- * 2. Search
- */
-#define _cth_argmanx_serach(                                                   \
-    in_ptr, out_ptr, dims, n_dim, reduce_size, input_data_type, i)             \
+#define _cth_argmax(                                                           \
+    in_ptr,                                                                    \
+    out_ptr,                                                                   \
+    input_data_type,                                                           \
+    start_offset,                                                              \
+    inner_offset,                                                              \
+    result_offset,                                                             \
+    reduce_size)                                                               \
   do {                                                                         \
-                                                                               \
-  } while (0)
-
-/**
- * 1. Get reduce dim
- * 2. call _cth_argmanx_flat_serach
- */
-#define _cth_argmax(op, input_data_type)                                       \
-  do {                                                                         \
-    CTorchParam *dim_param =                                                   \
-        cth_get_param_by_type(op, CTH_PARAM_TYPE_DIM_INT32, true);             \
-    tensor_dim_t dim = (tensor_dim_t)dim_param->data.dim;                      \
-    tensor_size_t reduce_size = in->meta_info->dims[dim];                      \
-                                                                               \
-    CTorchTensor *in = array_at(CTorchTensor)(op->in_bound_tensors, 0);        \
-    CTorchTensor *out = array_at(CTorchTensor)(op->out_bound_tensors, 0);      \
-    input_data_type *in_ptr = (input_data_type *)in->values;                   \
-    int64_t *out_ptr = (int64_t *)out->values;                                 \
-                                                                               \
-    for (tensor_size_t reduce_i = 0; reduce_i < reduce_size; reduce_i++) {     \
-      _cth_argmanx_serach(                                                     \
-          in_ptr,                                                              \
-          out_ptr,                                                             \
-          in->meta_info->dims,                                                 \
-          in->meta_info->n_dim,                                                \
-          reduce_size,                                                         \
-          input_data_type,                                                     \
-          i);                                                                  \
+    tensor_dim_t max_i = 0;                                                    \
+    input_data_type max_val = in_ptr[0];                                       \
+    for (tensor_dim_t i = 0; i < reduce_size; i++) {                           \
+      input_data_type val = in_ptr[start_offset + i * inner_offset];           \
+      if (val > max_val) {                                                     \
+        max_val = val;                                                         \
+        max_i = i;                                                             \
+      }                                                                        \
     }                                                                          \
+                                                                               \
+    out_ptr[result_offset] = max_i;                                            \
   } while (0)
 
 /**
  * @brief Returns the indices of the maximum values of a tensor across a
  * dimension.
  *
- * @par In this implementation, keepdim is always false
+ * @par When there's multiple max values, it returns 1st position it meets.
+ *
+ * @note In this implementation, keepdim is always false.
  *
  * @param op
  *
@@ -67,5 +53,5 @@ void op_argmax_cpu(CTorchOperator *op) {
   FORCE_TENSOR_TYPES(out, types, 1);
 
   CTorchTensor *in = array_at(CTorchTensor)(op->in_bound_tensors, 0);
-  _cpu_generic_compute(op, _cth_argmax, in->meta_info->data_type);
+  _cpu_reduce_generic(op, in->meta_info->data_type, _cth_argmax);
 }

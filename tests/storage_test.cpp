@@ -125,3 +125,27 @@ TEST(cTorchStorageTest, testReductionInnerOffset) {
   innerOffset = cth_tensor_reduce_inneroffset(tensor, reduce_dim);
   EXPECT_EQ(innerOffset, 1);
 }
+
+TEST(cTorchStorageTest, testReductionIndexGeneration) {
+  tensor_dim_t n_dim = 4;
+  tensor_dim_t *dims = (tensor_dim_t *)MALLOC(n_dim * sizeof(tensor_dim_t));
+  dims[0] = 2;
+  dims[1] = 3;
+  dims[2] = 2;
+  dims[3] = 4;
+  CTorchTensor *tensor = create_dummy_tensor(
+      dims, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
+
+  tensor_dim_t reduce_dim = 0;
+
+  tensor_dim_t reduce_index[] = {0, 0, 0};
+  cth_tensor_get_reduce_index(tensor, 0, reduce_dim, reduce_index);
+  EXPECT_EQ(0, reduce_index[0]);
+  EXPECT_EQ(0, reduce_index[1]);
+  EXPECT_EQ(0, reduce_index[2]);
+
+  cth_tensor_get_reduce_index(tensor, 22, reduce_dim, reduce_index);
+  EXPECT_EQ(2, reduce_index[0]);
+  EXPECT_EQ(1, reduce_index[1]);
+  EXPECT_EQ(2, reduce_index[2]);
+}

@@ -121,6 +121,11 @@ typedef uint16_t thread_n_t;
 #define tensor_size_t uint32_t
 
 /**
+ * @brief Tensor reduce action index data type
+ */
+#define tensor_reduce_index_t int64_t
+
+/**
  * Pi value. 10 digits
  */
 #define CTH_PI 3.1415926535

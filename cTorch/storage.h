@@ -118,10 +118,35 @@ tensor_dim_t cth_tensor_reduce_startoffset(
  * @param tensor
  * @param reduce_dim
  * @param reduce_dim_i
+ *
  * @return * tensor_dim_t
  */
 tensor_dim_t cth_tensor_reduce_inneroffset(
-    CTorchTensor *tensor, const tensor_dim_t reduce_dim);
+    const CTorchTensor *tensor, const tensor_dim_t reduce_dim);
+
+/**
+ * @brief Get result ptr offset based on reduce index dims
+ *
+ * @param reduce_index_dims reduce index
+ *
+ * @return tensor_dim_t
+ */
+tensor_dim_t cth_tensor_reduce_result_offset(
+    const tensor_dim_t *reduce_index_dims, const tensor_dim_t index_size);
+
+/**
+ * @brief  Generate reduce index list for target group
+ *
+ * @param tensor Tensor
+ * @param group_index Which reduce group
+ * @param reduce_dim Which dim to reduce
+ * @param result Result index list array
+ */
+void cth_tensor_get_reduce_index(
+    const CTorchTensor *tensor,
+    tensor_dim_t group_index,
+    tensor_dim_t reduce_dim,
+    tensor_dim_t *result);
 
 /**
  * @brief Check if tensor has target dimensions, fail if not
