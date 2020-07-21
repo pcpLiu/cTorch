@@ -11,6 +11,15 @@ if(
     set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -pg)
 endif()
 
+# libtorch
+get_filename_component(PARENT_DIR ../ ABSOLUTE)
+find_package(
+    Torch REQUIRED
+    HINTS ${PARENT_DIR}/third_party/libtorch
+)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}")
+
+
 # Test files
 file(GLOB_RECURSE test_sources LIST_DIRECTORIES false *_test.cpp)
 
@@ -28,6 +37,6 @@ add_executable(${test_target}
 
 add_test(NAME ${test_target} COMMAND ${test_target})
 target_include_directories(${test_target} PRIVATE ${cTorch_project_SOURCE_DIR})
-target_link_libraries(${test_target} PUBLIC gtest cTorch)
+target_link_libraries(${test_target} PUBLIC cTorch ${TORCH_LIBRARIES} gtest)
 set_target_properties(${test_target} PROPERTIES CXX_STANDARD 11)
 

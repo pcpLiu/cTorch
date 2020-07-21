@@ -3,3 +3,6 @@ installed/*
 
 # pull from aws s3
 intel_mkl*
+
+# libtorch
+libtorch/

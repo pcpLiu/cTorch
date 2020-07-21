@@ -9,6 +9,13 @@
 #
 #############################################################
 
+#############################################################
+#
+# Download libtorch
+#
+https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-1.5.1%2Bcpu.zip
+unzip libtorch-cxx11-abi-shared-with-deps-1.5.1+cpu.zip
+mv libtorch third_party/
 
 #############################################################
 #
