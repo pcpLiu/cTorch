@@ -1,31 +1,30 @@
 #ifndef C_TORCH_LIBRARY_H
 #define C_TORCH_LIBRARY_H
 
+/* Export private symbols in debug mode */
+#ifdef CTH_TEST_DEBUG
+#define CTH_EXPORT_PRIVATE
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#include "cTorch/consts.h"
-#include "cTorch/engine.h"
-#include "cTorch/graph.h"
-#include "cTorch/scheduler.h"
-#include "cTorch/storage.h"
-
-/**
- * Export internal files only in test mode
- */
-#ifdef CTH_TEST_DEBUG
 #include "cTorch/bit_array.h"
+#include "cTorch/consts.h"
 #include "cTorch/debug_util.h"
+#include "cTorch/engine.h"
 #include "cTorch/generic_array.h"
+#include "cTorch/graph.h"
 #include "cTorch/list_d.h"
 #include "cTorch/node.h"
 #include "cTorch/operator.h"
 #include "cTorch/operators/op_list.h"
 #include "cTorch/pool.h"
 #include "cTorch/queue.h"
+#include "cTorch/scheduler.h"
 #include "cTorch/sharder.h"
-#endif // CTH_TEST_DEBUG
+#include "cTorch/storage.h"
 
 #ifdef __cplusplus
 }

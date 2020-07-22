@@ -8,8 +8,8 @@
 */
 void abs_op_x86_haswell(CTorchOperator *op) {
   FORCE_INPUT_OUTPUT_TSR_NUM_EQ(op);
-  ListItem(CTorchTensor) *in = op->in_bound_tensors->head;
-  ListItem(CTorchTensor) *out = op->out_bound_tensors->head;
+  CTHListItem(CTorchTensor) *in = op->in_bound_tensors->head;
+  CTHListItem(CTorchTensor) *out = op->out_bound_tensors->head;
   CTH_TENSOR_DATA_TYPE dtype = in->data->meta_info->data_type;
 
   for (int i = 0; i < op->in_bound_tensors->size; i++) {

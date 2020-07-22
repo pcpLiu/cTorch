@@ -25,7 +25,7 @@ typedef struct CTorchEngine {
  * Arguments:
  *    - config: execution config
  */
-CTorchEngine *cth_new_engine(CTorchConfig *config);
+CTorchEngine *cth_new_engine(CTHConfig *config);
 
 void cth_execute_node(CTorchNode *node, CTH_BACKEND backend);
 

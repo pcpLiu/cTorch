@@ -16,19 +16,19 @@
 typedef uint32_t array_index_t;
 
 /**
- * Array(T) --- generic array type name
+ * CTHArray(T) --- generic array type name
  * ArrayStruct(T) --- generic array struct
  *    - size: size
  *    - _data: array of data pointers
  * def_array(T) --- typedef a generic array for T
  */
-#define Array(T) array_##T
+#define CTHArray(T) array_##T
 #define ArrayStruct(T)                                                         \
-  struct Array(T) {                                                            \
+  struct CTHArray(T) {                                                         \
     array_index_t size;                                                        \
     T **_data;                                                                 \
   }
-#define def_array(T) typedef ArrayStruct(T) Array(T)
+#define def_array(T) typedef ArrayStruct(T) CTHArray(T)
 
 /**
  * Create a new array given its size. All data pointers point to NULL.
@@ -42,7 +42,7 @@ typedef uint32_t array_index_t;
 #define _declare_new_array_func(T, func_name, array_T)                         \
   array_T *func_name(array_index_t size)
 #define declare_new_array_func(T)                                              \
-  _declare_new_array_func(T, new_array(T), Array(T))
+  _declare_new_array_func(T, new_array(T), CTHArray(T))
 #define _impl_new_array_func(T, func_name, array_T)                            \
   array_T *func_name(array_index_t size) {                                     \
     array_T *array = (array_T *)MALLOC(sizeof(array_T));                       \
@@ -56,13 +56,14 @@ typedef uint32_t array_index_t;
     }                                                                          \
     return array;                                                              \
   }
-#define impl_new_array_func(T) _impl_new_array_func(T, new_array(T), Array(T))
+#define impl_new_array_func(T)                                                 \
+  _impl_new_array_func(T, new_array(T), CTHArray(T))
 
 #define array_set(T) array_set_##T
 #define _declare_array_set_func(T, func_name, array_T)                         \
   void func_name(array_T *array, array_index_t i, T *val)
 #define declare_array_set_func(T)                                              \
-  _declare_array_set_func(T, array_set(T), Array(T))
+  _declare_array_set_func(T, array_set(T), CTHArray(T))
 #define _impl_array_set_func(T, func_name, array_T)                            \
   void func_name(array_T *array, array_index_t i, T *val) {                    \
     FAIL_NULL_PTR(array);                                                      \
@@ -78,7 +79,8 @@ typedef uint32_t array_index_t;
                                                                                \
     *(array->_data + i) = val;                                                 \
   }
-#define impl_array_set_func(T) _impl_array_set_func(T, array_set(T), Array(T))
+#define impl_array_set_func(T)                                                 \
+  _impl_array_set_func(T, array_set(T), CTHArray(T))
 
 /**
  * Get element at index i
@@ -91,7 +93,7 @@ typedef uint32_t array_index_t;
 #define _declare_array_at_func(T, func_name, array_T)                          \
   T *func_name(array_T *array, array_index_t i)
 #define declare_array_at_func(T)                                               \
-  _declare_array_at_func(T, array_at(T), Array(T))
+  _declare_array_at_func(T, array_at(T), CTHArray(T))
 #define _impl_array_at_func(T, func_name, array_T)                             \
   T *func_name(array_T *array, array_index_t i) {                              \
     FAIL_NULL_PTR(array);                                                      \
@@ -106,7 +108,7 @@ typedef uint32_t array_index_t;
     }                                                                          \
     return *(array->_data + i);                                                \
   }
-#define impl_array_at_func(T) _impl_array_at_func(T, array_at(T), Array(T))
+#define impl_array_at_func(T) _impl_array_at_func(T, array_at(T), CTHArray(T))
 
 /**
  * Free an array. Would NOT free contained data
@@ -119,7 +121,7 @@ typedef uint32_t array_index_t;
 #define _declare_free_array_func(func_name, array_T)                           \
   void func_name(array_T *array);
 #define declare_free_array_func(T)                                             \
-  _declare_free_array_func(free_array(T), Array(T))
+  _declare_free_array_func(free_array(T), CTHArray(T))
 #define _impl_free_array_func(func_name, array_T)                              \
   void func_name(array_T *array) {                                             \
     FAIL_NULL_PTR(array);                                                      \
@@ -127,7 +129,8 @@ typedef uint32_t array_index_t;
     FREE(array->data);                                                         \
     FREE(array);                                                               \
   }
-#define impl_free_array_func(T) _impl_free_array_func(free_array(T), Array(T))
+#define impl_free_array_func(T)                                                \
+  _impl_free_array_func(free_array(T), CTHArray(T))
 
 /**
  * Free an array in a deep wayy. Would also free contained data
@@ -140,7 +143,7 @@ typedef uint32_t array_index_t;
 #define _declare_free_array_deep_func(func_name, array_T)                      \
   void func_name(array_T *array);
 #define declare_free_array_deep_func(T)                                        \
-  _declare_free_array_deep_func(free_array_deep(T), Array(T))
+  _declare_free_array_deep_func(free_array_deep(T), CTHArray(T))
 #define _impl_free_array_deep_func(func_name, array_T, T)                      \
   void func_name(array_T *array) {                                             \
     FAIL_NULL_PTR(array);                                                      \
@@ -154,6 +157,6 @@ typedef uint32_t array_index_t;
     FREE(array);                                                               \
   }
 #define impl_free_array_deep_func(T)                                           \
-  _impl_free_array_deep_func(free_array_deep(T), Array(T), T)
+  _impl_free_array_deep_func(free_array_deep(T), CTHArray(T), T)
 
 #endif /* GENERIC_ARRAY_H */

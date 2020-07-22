@@ -9,7 +9,7 @@ TEST(cTorchSchedulerTest, testCreate) {
     array_set(CTorchNode)(graph->node_list, i, create_dummy_node(i, 0, 0));
   }
 
-  CTorchConfig *config = (CTorchConfig *)MALLOC(sizeof(CTorchConfig));
+  CTHConfig *config = (CTHConfig *)MALLOC(sizeof(CTHConfig));
   config->num_workers = 4;
 
   CTorchScheduler *scheduler = cth_new_scheduler(config, graph);
@@ -45,7 +45,7 @@ TEST(cTorchSchedulerTest, testSearchReadyJob) {
   array_set(CTorchNode)(graph->node_list, 3, node_4);
   array_set(CTorchNode)(graph->node_list, 4, node_5);
 
-  CTorchConfig *config = (CTorchConfig *)MALLOC(sizeof(CTorchConfig));
+  CTHConfig *config = (CTHConfig *)MALLOC(sizeof(CTHConfig));
   config->num_workers = 4;
   CTorchScheduler *scheduler = cth_new_scheduler(config, graph);
 
@@ -62,7 +62,7 @@ TEST(cTorchSchedulerTest, testSearchReadyJob) {
   cth_clear_bit(scheduler->ready_status, 2);
   cth_clear_bit(scheduler->queue_status, 2);
 
-  List(CTorchQueueJob) *ready_jobs = new_list(CTorchQueueJob)();
+  CTHList(CTorchQueueJob) *ready_jobs = cth_new_list(CTorchQueueJob)();
   cth_search_ready_jobs(scheduler, ready_jobs);
 
   // NODE 4 ready
@@ -104,7 +104,7 @@ TEST(cTorchSchedulerTest, testStartScheduler) {
   array_set(CTorchNode)(graph->node_list, 3, node_4);
   array_set(CTorchNode)(graph->node_list, 4, node_5);
 
-  CTorchConfig *config = (CTorchConfig *)MALLOC(sizeof(CTorchConfig));
+  CTHConfig *config = (CTHConfig *)MALLOC(sizeof(CTHConfig));
   config->num_workers = CPU_CORES;
   CTorchScheduler *scheduler = cth_new_scheduler(config, graph);
   CTorchWorkerPool *pool = cth_new_pool(scheduler, config);
@@ -139,7 +139,7 @@ TEST(cTorchSchedulerTest, testManyTasks) {
     array_set(CTorchNode)(graph->node_list, i, node);
   }
 
-  CTorchConfig *config = (CTorchConfig *)MALLOC(sizeof(CTorchConfig));
+  CTHConfig *config = (CTHConfig *)MALLOC(sizeof(CTHConfig));
   config->num_workers = CPU_CORES;
   CTorchScheduler *scheduler = cth_new_scheduler(config, graph);
   CTorchWorkerPool *pool = cth_new_pool(scheduler, config);

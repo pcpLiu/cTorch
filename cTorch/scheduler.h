@@ -17,11 +17,11 @@ typedef struct CTorchScheduler {
   CTorchQueue
       *ret_queue; /* Queue for executed nodes. Workers will put nodes in this
                       queue and scheduler will fetch nodes from this queue  */
-  Array(CTorchQueueJob) *
-      job_list;              /* List of jobs executed by this scheduler */
-  bit_array_t *queue_status; /* Queue status of all jobs */
-  bit_array_t *done_status;  /* Done status of all jobs */
-  bit_array_t *ready_status; /* Ready status of all jobs */
+  CTHArray(CTorchQueueJob) *
+      job_list;                  /* List of jobs executed by this scheduler */
+  cth_bit_array_t *queue_status; /* Queue status of all jobs */
+  cth_bit_array_t *done_status;  /* Done status of all jobs */
+  cth_bit_array_t *ready_status; /* Ready status of all jobs */
 } CTorchScheduler;
 
 /**
@@ -32,7 +32,7 @@ typedef struct CTorchScheduler {
  *    - config: execution config
  *    - graph: a computation graph
  */
-CTorchScheduler *cth_new_scheduler(CTorchConfig *config, CTorchGraph *graph);
+CTorchScheduler *cth_new_scheduler(CTHConfig *config, CTorchGraph *graph);
 
 /**
  * Turn on scheduler to put job into pipe til all jobs are done
@@ -47,6 +47,6 @@ void cth_start_scheduler(CTorchScheduler *scheduler);
  *    - ready_jobs: list to insert results
  */
 void cth_search_ready_jobs(
-    CTorchScheduler *scheduler, List(CTorchQueueJob) * ready_jobs);
+    CTorchScheduler *scheduler, CTHList(CTorchQueueJob) * ready_jobs);
 
 #endif /* SCHEDULER_H */

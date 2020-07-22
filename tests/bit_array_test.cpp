@@ -4,13 +4,13 @@
 #include <tgmath.h>
 
 TEST(cTorchBitsArrayTest, testCreate) {
-  bit_array_t *bits_array = cth_new_bit_array(200);
+  cth_bit_array_t *bits_array = cth_new_bit_array(200);
   EXPECT_EQ(bits_array->num_ints, ceil((double)200 / (double)32));
   EXPECT_EQ(bits_array->size, 200);
 }
 
 TEST(cTorchBitsArrayTest, testSet) {
-  bit_array_t *bits_array = cth_new_bit_array(200);
+  cth_bit_array_t *bits_array = cth_new_bit_array(200);
   cth_set_bit(bits_array, 0);
   cth_set_bit(bits_array, 17);
   cth_set_bit(bits_array, 100);
@@ -34,7 +34,7 @@ TEST(cTorchBitsArrayTest, testSet) {
 }
 
 TEST(cTorchBitsArrayTest, testClear) {
-  bit_array_t *bits_array = cth_new_bit_array(200);
+  cth_bit_array_t *bits_array = cth_new_bit_array(200);
   cth_set_bit(bits_array, 0);
   cth_set_bit(bits_array, 17);
   cth_set_bit(bits_array, 100);
@@ -62,7 +62,7 @@ TEST(cTorchBitsArrayTest, testClear) {
 }
 
 TEST(cTorchBitsArrayTest, testCheck) {
-  bit_array_t *bits_array = cth_new_bit_array(200);
+  cth_bit_array_t *bits_array = cth_new_bit_array(200);
   cth_set_bit(bits_array, 0);
   cth_set_bit(bits_array, 17);
   cth_set_bit(bits_array, 100);
@@ -78,7 +78,7 @@ TEST(cTorchBitsArrayTest, testCheck) {
 }
 
 TEST(cTorchBitsArrayTest, testAllClearSetCheck) {
-  bit_array_t *bits_array = cth_new_bit_array(500);
+  cth_bit_array_t *bits_array = cth_new_bit_array(500);
   EXPECT_EQ(cth_are_all_bits_clear(bits_array), true);
 
   cth_set_bit(bits_array, 0);
@@ -89,14 +89,14 @@ TEST(cTorchBitsArrayTest, testAllClearSetCheck) {
   EXPECT_EQ(cth_are_all_bits_set(bits_array), false);
   EXPECT_EQ(cth_are_all_bits_clear(bits_array), false);
 
-  for (bit_array_index_t i = 0; i < 500; i++) {
+  for (cth_bit_array_index_t i = 0; i < 500; i++) {
     cth_set_bit(bits_array, i);
   }
   EXPECT_EQ(cth_are_all_bits_clear(bits_array), false);
   EXPECT_EQ(cth_are_all_bits_set(bits_array), true);
 
-  bit_array_t *bits_array_2 = cth_new_bit_array(4);
-  for (bit_array_index_t i = 0; i < 4; i++) {
+  cth_bit_array_t *bits_array_2 = cth_new_bit_array(4);
+  for (cth_bit_array_index_t i = 0; i < 4; i++) {
     cth_set_bit(bits_array_2, i);
   }
 

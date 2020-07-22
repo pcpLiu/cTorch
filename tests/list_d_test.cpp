@@ -12,22 +12,22 @@
 // // for testFreeListDeep
 // void free_deep_int(int *x) { FREE(x); }
 
-def_list_item(int);
+cth_def_list_item(int);
 def_list(int);
-impl_new_list_item_func(int);
-impl_new_list_func(int);
-impl_insert_list_func(int);
-impl_list_contains_data_func(int);
-impl_list_contains_item_func(int);
-impl_list_pop_func(int);
-impl_list_at_func(int);
-impl_free_list_func(int);
-impl_free_list_deep_func(int);
-impl_list_del_func(int);
+cth_impl_new_list_item_func(int);
+cth_impl_new_list_func(int);
+cth_impl_insert_list_func(int);
+cth_impl_list_contains_data_func(int);
+cth_impl_list_contains_item_func(int);
+cth_impl_list_pop_func(int);
+cth_impl_list_at_func(int);
+cth_impl_free_list_func(int);
+cth_impl_free_list_deep_func(int);
+cth_impl_list_del_func(int);
 
 TEST(cTorchListTest, testItemDefine) {
   int a = 3;
-  ListItem(int) item = {
+  CTHListItem(int) item = {
       .data = &a,
       .prev_item = NULL,
       .next_item = NULL,
@@ -38,7 +38,7 @@ TEST(cTorchListTest, testItemDefine) {
 }
 
 TEST(cTorchListTest, testListDefine) {
-  List(int) list = {
+  CTHList(int) list = {
       .size = 0,
       .head = NULL,
       .tail = NULL,
@@ -50,26 +50,26 @@ TEST(cTorchListTest, testListDefine) {
 
 TEST(cTorchListTest, testNewListItemFunc) {
   int a = 3;
-  ListItem(int) *item = new_list_item(int)(&a);
+  CTHListItem(int) *item = cth_new_list_item(int)(&a);
   EXPECT_EQ(*item->data, 3);
   EXPECT_EQ(item->prev_item, nullptr);
   EXPECT_EQ(item->next_item, nullptr);
 }
 
 TEST(cTorchListTest, testNewListItemFuncFail) {
-  EXPECT_EXIT(new_list_item(int)(NULL), ::testing::ExitedWithCode(1),
+  EXPECT_EXIT(cth_new_list_item(int)(NULL), ::testing::ExitedWithCode(1),
               "[.]*Pointer is NULL");
 }
 
 TEST(cTorchListTest, testNewListFunc) {
-  List(int) *list = new_list(int)();
+  CTHList(int) *list = cth_new_list(int)();
   EXPECT_EQ(list->size, 0);
   EXPECT_EQ(list->head, nullptr);
   EXPECT_EQ(list->tail, nullptr);
 }
 
 TEST(cTorchListTest, testNewListFuncStruct) {
-  List(CTorchTensor) *list = new_list(CTorchTensor)();
+  CTHList(CTorchTensor) *list = cth_new_list(CTorchTensor)();
   EXPECT_EQ(list->size, 0);
   EXPECT_EQ(list->head, nullptr);
   EXPECT_EQ(list->tail, nullptr);
@@ -77,11 +77,11 @@ TEST(cTorchListTest, testNewListFuncStruct) {
 
 TEST(cTorchListTest, testListInsertFunc) {
   int x[] = {1, 2, 3, 4};
-  List(int) *list = new_list(int)();
-  ListItem(int) *item_1 = insert_list(int)(list, &x[0]);
-  ListItem(int) *item_2 = insert_list(int)(list, &x[1]);
-  ListItem(int) *item_3 = insert_list(int)(list, &x[2]);
-  ListItem(int) *item_4 = insert_list(int)(list, &x[3]);
+  CTHList(int) *list = cth_new_list(int)();
+  CTHListItem(int) *item_1 = cth_insert_list(int)(list, &x[0]);
+  CTHListItem(int) *item_2 = cth_insert_list(int)(list, &x[1]);
+  CTHListItem(int) *item_3 = cth_insert_list(int)(list, &x[2]);
+  CTHListItem(int) *item_4 = cth_insert_list(int)(list, &x[3]);
 
   EXPECT_EQ(list->size, 4);
   EXPECT_EQ(list->head, item_1);
@@ -106,95 +106,95 @@ TEST(cTorchListTest, testListInsertFunc) {
 
 TEST(cTorchListTest, testListInsertFuncFail) {
   int x[] = {1, 2, 3, 4};
-  List(int) *list = new_list(int)();
+  CTHList(int) *list = cth_new_list(int)();
 
-  EXPECT_EXIT(insert_list(int)(NULL, &x[0]), ::testing::ExitedWithCode(1),
+  EXPECT_EXIT(cth_insert_list(int)(NULL, &x[0]), ::testing::ExitedWithCode(1),
               "[.]*Pointer is NULL");
-  EXPECT_EXIT(insert_list(int)(list, NULL), ::testing::ExitedWithCode(1),
+  EXPECT_EXIT(cth_insert_list(int)(list, NULL), ::testing::ExitedWithCode(1),
               "[.]*Pointer is NULL");
-  EXPECT_EXIT(insert_list(int)(NULL, NULL), ::testing::ExitedWithCode(1),
+  EXPECT_EXIT(cth_insert_list(int)(NULL, NULL), ::testing::ExitedWithCode(1),
               "[.]*Pointer is NULL");
 }
 
 TEST(cTorchListTest, testListContains) {
   int x[] = {1, 2, 3, 4, 5};
-  List(int) *list = new_list(int)();
-  ListItem(int) *item_1 = insert_list(int)(list, &x[0]);
-  ListItem(int) *item_2 = insert_list(int)(list, &x[1]);
-  ListItem(int) *item_3 = insert_list(int)(list, &x[2]);
-  ListItem(int) *item_4 = insert_list(int)(list, &x[3]);
+  CTHList(int) *list = cth_new_list(int)();
+  CTHListItem(int) *item_1 = cth_insert_list(int)(list, &x[0]);
+  CTHListItem(int) *item_2 = cth_insert_list(int)(list, &x[1]);
+  CTHListItem(int) *item_3 = cth_insert_list(int)(list, &x[2]);
+  CTHListItem(int) *item_4 = cth_insert_list(int)(list, &x[3]);
 
-  ListItem(int) * found_item;
-  found_item = list_contains_data(int)(list, &x[0]);
+  CTHListItem(int) * found_item;
+  found_item = cth_list_contains_data(int)(list, &x[0]);
   EXPECT_EQ(item_1, found_item);
-  found_item = list_contains_data(int)(list, &x[1]);
+  found_item = cth_list_contains_data(int)(list, &x[1]);
   EXPECT_EQ(item_2, found_item);
-  found_item = list_contains_data(int)(list, &x[2]);
+  found_item = cth_list_contains_data(int)(list, &x[2]);
   EXPECT_EQ(item_3, found_item);
-  found_item = list_contains_data(int)(list, &x[3]);
+  found_item = cth_list_contains_data(int)(list, &x[3]);
   EXPECT_EQ(item_4, found_item);
-  found_item = list_contains_data(int)(list, &x[4]);
+  found_item = cth_list_contains_data(int)(list, &x[4]);
   EXPECT_EQ(nullptr, found_item);
 
-  free_list(int)(list);
+  cth_free_list(int)(list);
 }
 
 TEST(cTorchListTest, testListContainsFails) {
   int x[] = {1, 2, 3, 4};
-  List(int) *list = new_list(int)();
+  CTHList(int) *list = cth_new_list(int)();
 
-  EXPECT_EXIT(list_contains_data(int)(NULL, &x[0]),
+  EXPECT_EXIT(cth_list_contains_data(int)(NULL, &x[0]),
               ::testing::ExitedWithCode(1), "[.]*Pointer is NULL");
-  EXPECT_EXIT(list_contains_data(int)(list, NULL), ::testing::ExitedWithCode(1),
-              "[.]*Pointer is NULL");
-  EXPECT_EXIT(list_contains_data(int)(NULL, NULL), ::testing::ExitedWithCode(1),
-              "[.]*Pointer is NULL");
+  EXPECT_EXIT(cth_list_contains_data(int)(list, NULL),
+              ::testing::ExitedWithCode(1), "[.]*Pointer is NULL");
+  EXPECT_EXIT(cth_list_contains_data(int)(NULL, NULL),
+              ::testing::ExitedWithCode(1), "[.]*Pointer is NULL");
 }
 
 TEST(cTorchListTest, testListContainsItem) {
   int x[] = {1, 2, 3, 4, 5};
-  List(int) *list = new_list(int)();
-  ListItem(int) *item_1 = insert_list(int)(list, &x[0]);
-  ListItem(int) *item_2 = insert_list(int)(list, &x[1]);
-  ListItem(int) *item_3 = insert_list(int)(list, &x[2]);
-  ListItem(int) *item_4 = insert_list(int)(list, &x[3]);
-  ListItem(int) *item_5 = new_list_item(int)(&x[4]);
+  CTHList(int) *list = cth_new_list(int)();
+  CTHListItem(int) *item_1 = cth_insert_list(int)(list, &x[0]);
+  CTHListItem(int) *item_2 = cth_insert_list(int)(list, &x[1]);
+  CTHListItem(int) *item_3 = cth_insert_list(int)(list, &x[2]);
+  CTHListItem(int) *item_4 = cth_insert_list(int)(list, &x[3]);
+  CTHListItem(int) *item_5 = cth_new_list_item(int)(&x[4]);
 
   bool found;
-  found = list_contains_item(int)(list, item_1);
+  found = cth_list_contains_item(int)(list, item_1);
   EXPECT_EQ(true, found);
-  found = list_contains_item(int)(list, item_2);
+  found = cth_list_contains_item(int)(list, item_2);
   EXPECT_EQ(true, found);
-  found = list_contains_item(int)(list, item_3);
+  found = cth_list_contains_item(int)(list, item_3);
   EXPECT_EQ(true, found);
-  found = list_contains_item(int)(list, item_4);
+  found = cth_list_contains_item(int)(list, item_4);
   EXPECT_EQ(true, found);
-  found = list_contains_item(int)(list, item_5);
+  found = cth_list_contains_item(int)(list, item_5);
   EXPECT_EQ(false, found);
 }
 
 TEST(cTorchListTest, testListContainsItemFails) {
   int x[] = {1, 2, 3, 4};
-  ListItem(int) *item = new_list_item(int)(&x[4]);
-  List(int) *list = new_list(int)();
+  CTHListItem(int) *item = cth_new_list_item(int)(&x[4]);
+  CTHList(int) *list = cth_new_list(int)();
 
-  EXPECT_EXIT(list_contains_item(int)(NULL, item), ::testing::ExitedWithCode(1),
-              "[.]*Pointer is NULL");
-  EXPECT_EXIT(list_contains_item(int)(list, NULL), ::testing::ExitedWithCode(1),
-              "[.]*Pointer is NULL");
-  EXPECT_EXIT(list_contains_item(int)(NULL, NULL), ::testing::ExitedWithCode(1),
-              "[.]*Pointer is NULL");
+  EXPECT_EXIT(cth_list_contains_item(int)(NULL, item),
+              ::testing::ExitedWithCode(1), "[.]*Pointer is NULL");
+  EXPECT_EXIT(cth_list_contains_item(int)(list, NULL),
+              ::testing::ExitedWithCode(1), "[.]*Pointer is NULL");
+  EXPECT_EXIT(cth_list_contains_item(int)(NULL, NULL),
+              ::testing::ExitedWithCode(1), "[.]*Pointer is NULL");
 }
 
 TEST(cTorchListTest, testListPop) {
   int x[] = {1, 2, 3, 4};
-  List(int) *list = new_list(int)();
-  ListItem(int) *item_1 = insert_list(int)(list, &x[0]);
+  CTHList(int) *list = cth_new_list(int)();
+  CTHListItem(int) *item_1 = cth_insert_list(int)(list, &x[0]);
   MemoryRecord *record_item_1 = cth_get_mem_record(item_1);
-  ListItem(int) *item_2 = insert_list(int)(list, &x[1]);
-  ListItem(int) *item_3 = insert_list(int)(list, &x[2]);
-  ListItem(int) *item_4 = insert_list(int)(list, &x[3]);
-  int *pop = list_pop(int)(list);
+  CTHListItem(int) *item_2 = cth_insert_list(int)(list, &x[1]);
+  CTHListItem(int) *item_3 = cth_insert_list(int)(list, &x[2]);
+  CTHListItem(int) *item_4 = cth_insert_list(int)(list, &x[3]);
+  int *pop = cth_list_pop(int)(list);
   EXPECT_EQ(*pop, x[0]);
   EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_item_1->status);
   EXPECT_EQ(list->head, item_2);
@@ -203,40 +203,40 @@ TEST(cTorchListTest, testListPop) {
 
 TEST(cTorchListTest, testListAt) {
   int x[] = {1, 2, 3, 4};
-  List(int) *list = new_list(int)();
-  ListItem(int) *item_1 = insert_list(int)(list, &x[0]);
-  ListItem(int) *item_2 = insert_list(int)(list, &x[1]);
-  ListItem(int) *item_3 = insert_list(int)(list, &x[2]);
-  ListItem(int) *item_4 = insert_list(int)(list, &x[3]);
+  CTHList(int) *list = cth_new_list(int)();
+  CTHListItem(int) *item_1 = cth_insert_list(int)(list, &x[0]);
+  CTHListItem(int) *item_2 = cth_insert_list(int)(list, &x[1]);
+  CTHListItem(int) *item_3 = cth_insert_list(int)(list, &x[2]);
+  CTHListItem(int) *item_4 = cth_insert_list(int)(list, &x[3]);
 
-  EXPECT_EQ(*list_at(int)(list, 0), x[0]);
-  EXPECT_EQ(*list_at(int)(list, 1), x[1]);
-  EXPECT_EQ(*list_at(int)(list, 2), x[2]);
-  EXPECT_EQ(*list_at(int)(list, 3), x[3]);
+  EXPECT_EQ(*cth_list_at(int)(list, 0), x[0]);
+  EXPECT_EQ(*cth_list_at(int)(list, 1), x[1]);
+  EXPECT_EQ(*cth_list_at(int)(list, 2), x[2]);
+  EXPECT_EQ(*cth_list_at(int)(list, 3), x[3]);
 
-  EXPECT_EXIT(list_at(int)(list, 4), ::testing::ExitedWithCode(1),
+  EXPECT_EXIT(cth_list_at(int)(list, 4), ::testing::ExitedWithCode(1),
               "Error at func list_at:");
 }
 
 TEST(cTorchListTest, testFreeList) {
 
   int x[] = {1, 2, 3, 4};
-  List(int) *list = new_list(int)();
+  CTHList(int) *list = cth_new_list(int)();
   MemoryRecord *record_list = cth_get_mem_record(list);
 
-  ListItem(int) *item_1 = insert_list(int)(list, &x[0]);
+  CTHListItem(int) *item_1 = cth_insert_list(int)(list, &x[0]);
   MemoryRecord *record_item_1 = cth_get_mem_record(item_1);
 
-  ListItem(int) *item_2 = insert_list(int)(list, &x[1]);
+  CTHListItem(int) *item_2 = cth_insert_list(int)(list, &x[1]);
   MemoryRecord *record_item_2 = cth_get_mem_record(item_2);
 
-  ListItem(int) *item_3 = insert_list(int)(list, &x[2]);
+  CTHListItem(int) *item_3 = cth_insert_list(int)(list, &x[2]);
   MemoryRecord *record_item_3 = cth_get_mem_record(item_3);
 
-  ListItem(int) *item_4 = insert_list(int)(list, &x[3]);
+  CTHListItem(int) *item_4 = cth_insert_list(int)(list, &x[3]);
   MemoryRecord *record_item_4 = cth_get_mem_record(item_4);
 
-  free_list(int)(list);
+  cth_free_list(int)(list);
 
   EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_list->status);
   EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_item_1->status);
@@ -247,30 +247,30 @@ TEST(cTorchListTest, testFreeList) {
 
 TEST(cTorchListTest, testFreeListDeep) {
 
-  List(int) *list = new_list(int)();
+  CTHList(int) *list = cth_new_list(int)();
   MemoryRecord *record_list = cth_get_mem_record(list);
 
   int *data_1 = heap_int(1);
   MemoryRecord *record_data_1 = cth_get_mem_record(data_1);
-  ListItem(int) *item_1 = insert_list(int)(list, data_1);
+  CTHListItem(int) *item_1 = cth_insert_list(int)(list, data_1);
   MemoryRecord *record_item_1 = cth_get_mem_record(item_1);
 
   int *data_2 = heap_int(2);
   MemoryRecord *record_data_2 = cth_get_mem_record(data_2);
-  ListItem(int) *item_2 = insert_list(int)(list, data_2);
+  CTHListItem(int) *item_2 = cth_insert_list(int)(list, data_2);
   MemoryRecord *record_item_2 = cth_get_mem_record(item_2);
 
   int *data_3 = heap_int(3);
   MemoryRecord *record_data_3 = cth_get_mem_record(data_3);
-  ListItem(int) *item_3 = insert_list(int)(list, data_3);
+  CTHListItem(int) *item_3 = cth_insert_list(int)(list, data_3);
   MemoryRecord *record_item_3 = cth_get_mem_record(item_3);
 
   int *data_4 = heap_int(4);
   MemoryRecord *record_data_4 = cth_get_mem_record(data_4);
-  ListItem(int) *item_4 = insert_list(int)(list, data_4);
+  CTHListItem(int) *item_4 = cth_insert_list(int)(list, data_4);
   MemoryRecord *record_item_4 = cth_get_mem_record(item_4);
 
-  free_list_deep(int)(list);
+  cth_free_list_deep(int)(list);
 
   EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_list->status);
   EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_item_1->status);
@@ -285,18 +285,18 @@ TEST(cTorchListTest, testFreeListDeep) {
 
 TEST(cTorchListTest, testDeleteDataMEMRECORD) {
   // single thread execution
-  List(int) *list = new_list(int)();
+  CTHList(int) *list = cth_new_list(int)();
   int *data_1 = heap_int(1);
-  ListItem(int) *item_1 = insert_list(int)(list, data_1);
+  CTHListItem(int) *item_1 = cth_insert_list(int)(list, data_1);
   MemoryRecord *record_item_1 = cth_get_mem_record(item_1);
 
   int *data_2 = heap_int(2);
-  insert_list(int)(list, data_2);
+  cth_insert_list(int)(list, data_2);
   int *data_3 = heap_int(3);
-  insert_list(int)(list, data_3);
+  cth_insert_list(int)(list, data_3);
 
   int before_num = cth_get_num_unfree_records();
-  list_del(int)(list, data_1);
+  cth_list_del(int)(list, data_1);
   int after_num = cth_get_num_unfree_records();
   EXPECT_EQ(after_num + 1, before_num);
   EXPECT_EQ(CTH_MEM_RECORD_STATUS_FREED, record_item_1->status);

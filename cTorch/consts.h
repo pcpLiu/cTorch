@@ -93,17 +93,17 @@ typedef enum CTH_QUEUE_STATUS {
 /**
  * Type to denote thread num
  */
-typedef uint16_t thread_n_t;
+typedef uint16_t cth_thread_n_t;
 
 /*
   To define operator enums
 */
-#define ENUMFY_OP(x) CTH_OP_ID_##x,
+#define _ENUMFY_OP(x) CTH_OP_ID_##x,
 
 /*
   To declare array of op names
 */
-#define STRINGTIFY_OP(x) #x,
+#define _STRINGTIFY_OP(x) #x,
 
 /**
  * Universal struct deep free function name in cToRCH
@@ -140,6 +140,6 @@ extern char *CTH_OPERATOR_NAMES[ENABLED_OP_NUM];
 /*
   Operator ID enum
 */
-typedef enum CTH_OP_ID { FOREACH_OP_ID(ENUMFY_OP) } CTH_OP_ID;
+typedef enum CTH_OP_ID { FOREACH_OP_ID(_ENUMFY_OP) } CTH_OP_ID;
 
 #endif /* CONSTS_H */

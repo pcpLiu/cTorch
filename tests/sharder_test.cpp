@@ -12,7 +12,7 @@ TEST(cTorchSharderTest, testTensorElewiseShardingMEMRECORD) {
   dims[2] = 20;
   CTorchTensor *tensor = create_dummy_tensor(
       dims, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_32, -1.0, 1.0);
-  List(CTorchTensor) *shards = new_list(CTorchTensor)();
+  CTHList(CTorchTensor) *shards = cth_new_list(CTorchTensor)();
   cth_sharding_tensor_elewise(tensor, 7, shards);
 
   EXPECT_EQ(shards->size, 7);
@@ -21,7 +21,7 @@ TEST(cTorchSharderTest, testTensorElewiseShardingMEMRECORD) {
   float *val_ptr = (float *)tensor->values;
   tensor_size_t ele_per_shard = 3 * 20;
   for (int shdard_i = 0; shdard_i < 7; shdard_i++) {
-    CTorchTensor *sharded_tensor = list_at(CTorchTensor)(shards, shdard_i);
+    CTorchTensor *sharded_tensor = cth_list_at(CTorchTensor)(shards, shdard_i);
     EXPECT_EQ(sharded_tensor->meta_info->n_elements, ele_per_shard);
 
     float *shard_ptr = (float *)sharded_tensor->values;
@@ -35,7 +35,7 @@ TEST(cTorchSharderTest, testTensorElewiseShardingMEMRECORD) {
 
   // test in sing-thread mode
   struct_deep_free(CTorchTensor)(tensor);
-  free_list_deep(CTorchTensor)(shards);
+  cth_free_list_deep(CTorchTensor)(shards);
   EXPECT_EQ(0, cth_get_num_unfree_records());
 }
 
@@ -57,13 +57,13 @@ TEST(cTorchSharderTest, testOperatorElewiseShardingMEMRECORD) {
   array_set(CTorchTensor)(op->in_bound_tensors, 0, input);
   array_set(CTorchTensor)(op->out_bound_tensors, 0, output);
 
-  List(CTorchOperator) *sharded_ops = new_list(CTorchOperator)();
+  CTHList(CTorchOperator) *sharded_ops = cth_new_list(CTorchOperator)();
   cth_sharding_op_elewise(op, 10, sharded_ops);
 
   EXPECT_EQ(10, sharded_ops->size);
   tensor_size_t n_ele_sum = 0;
   for (int i = 0; i < 10; i++) {
-    CTorchOperator *op = list_at(CTorchOperator)(sharded_ops, i);
+    CTorchOperator *op = cth_list_at(CTorchOperator)(sharded_ops, i);
     CTorchTensor *input_tensor =
         array_at(CTorchTensor)(op->in_bound_tensors, 0);
     CTorchTensor *output_tensor =
@@ -83,7 +83,7 @@ TEST(cTorchSharderTest, testOperatorElewiseShardingMEMRECORD) {
   EXPECT_EQ(output->meta_info->n_elements, n_ele_sum);
 
   // test in sing-thread mode
-  free_list_deep(CTorchOperator)(sharded_ops);
+  cth_free_list_deep(CTorchOperator)(sharded_ops);
   struct_deep_free(CTorchOperator)(op);
   EXPECT_EQ(0, cth_get_num_unfree_records());
 }

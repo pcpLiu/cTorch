@@ -3,7 +3,7 @@
 
 #include <unistd.h>
 
-CTorchScheduler *cth_new_scheduler(CTorchConfig *config, CTorchGraph *graph) {
+CTorchScheduler *cth_new_scheduler(CTHConfig *config, CTorchGraph *graph) {
   FAIL_NULL_PTR(config);
   FAIL_NULL_PTR(graph);
 
@@ -36,14 +36,15 @@ CTorchScheduler *cth_new_scheduler(CTorchConfig *config, CTorchGraph *graph) {
 }
 
 void cth_search_ready_jobs(
-    CTorchScheduler *scheduler, List(CTorchQueueJob) * ready_jobs) {
-  bit_array_t *queue_status = scheduler->queue_status;
-  bit_array_t *done_status = scheduler->done_status;
-  bit_array_t *ready_status = scheduler->ready_status;
+    CTorchScheduler *scheduler, CTHList(CTorchQueueJob) * ready_jobs) {
+  cth_bit_array_t *queue_status = scheduler->queue_status;
+  cth_bit_array_t *done_status = scheduler->done_status;
+  cth_bit_array_t *ready_status = scheduler->ready_status;
 
   CTorchNode *queue_node = NULL;
   CTorchQueueJob *queue_job = NULL;
-  for (bit_array_index_t queue_job_id = 0; queue_job_id < queue_status->size;
+  for (cth_bit_array_index_t queue_job_id = 0;
+       queue_job_id < queue_status->size;
        queue_job_id++) {
     /* Job is not in queue */
     if (!cth_is_bit_set(queue_status, queue_job_id)) {
@@ -63,7 +64,7 @@ void cth_search_ready_jobs(
     bool job_ready = true;
     for (list_index_t i = 0; i < queue_node->inbound_nodes->size; i++) {
       // node_id_t dependent_node_id =
-      //     list_at(CTorchNode)(queue_node->inbound_nodes, i)->node_id;
+      //     cth_list_at(CTorchNode)(queue_node->inbound_nodes, i)->node_id;
       node_id_t dependent_node_id =
           array_at(CTorchNode)(queue_node->inbound_nodes, i)->node_id;
 
@@ -79,7 +80,7 @@ void cth_search_ready_jobs(
       cth_clear_bit(scheduler->queue_status, queue_job->node->node_id);
       cth_set_bit(scheduler->ready_status, queue_job->node->node_id);
       queue_job->status = CTH_JOB_STATUS_READY;
-      insert_list(CTorchQueueJob)(ready_jobs, queue_job);
+      cth_insert_list(CTorchQueueJob)(ready_jobs, queue_job);
     }
   }
 }
@@ -87,7 +88,7 @@ void cth_search_ready_jobs(
 void cth_start_scheduler_v3(CTorchScheduler *scheduler) {
   FAIL_NULL_PTR(scheduler);
 
-  List(CTorchQueueJob) *ready_jobs = new_list(CTorchQueueJob)();
+  CTHList(CTorchQueueJob) *ready_jobs = cth_new_list(CTorchQueueJob)();
   CTorchQueueJob *job = NULL;
 
   /**
@@ -99,7 +100,7 @@ void cth_start_scheduler_v3(CTorchScheduler *scheduler) {
   while (!cth_are_all_bits_set(scheduler->done_status)) {
     cth_search_ready_jobs(scheduler, ready_jobs);
     while (ready_jobs->size > 0) {
-      job = list_pop(CTorchQueueJob)(ready_jobs);
+      job = cth_list_pop(CTorchQueueJob)(ready_jobs);
       write(scheduler->exe_queue->pipe_fd[1], &job, sizeof(CTorchQueueJob *));
     }
 

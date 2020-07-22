@@ -5,13 +5,13 @@
 
 #include <string.h>
 
-impl_new_list_item_func(CTorchOperator);
-impl_new_list_func(CTorchOperator);
-impl_insert_list_func(CTorchOperator);
-impl_list_at_func(CTorchOperator);
-impl_list_pop_func(CTorchOperator);
-impl_free_list_func(CTorchOperator);
-impl_free_list_deep_func(CTorchOperator);
+cth_impl_new_list_item_func(CTorchOperator);
+cth_impl_new_list_func(CTorchOperator);
+cth_impl_insert_list_func(CTorchOperator);
+cth_impl_list_at_func(CTorchOperator);
+cth_impl_list_pop_func(CTorchOperator);
+cth_impl_free_list_func(CTorchOperator);
+cth_impl_free_list_deep_func(CTorchOperator);
 
 void FORCE_INPUT_OUTPUT_TSR_NUM_EQ(CTorchOperator *op) {
   FAIL_NULL_PTR(op);
@@ -115,7 +115,7 @@ void FORCE_OP_PARAM_EXIST(CTorchOperator *op, const CTH_PARAM_TYPE type) {
 }
 
 CTorchTensor *_get_tensor_by_name(
-    Array(CTorchTensor) * tensor_array, const char *name, bool fail_exit) {
+    CTHArray(CTorchTensor) * tensor_array, const char *name, bool fail_exit) {
   FAIL_NULL_PTR(tensor_array);
   CTorchTensor *target_tensor = NULL;
   for (array_index_t i = 0; i < tensor_array->size; i++) {

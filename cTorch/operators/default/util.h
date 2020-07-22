@@ -179,20 +179,21 @@
  * @brief General reduce computation
  *
  */
-#define _cpu_reduce_compute(op, reduce_action, input_data_type)                \
+#define _cpu_reduce_arg_compute(op, reduce_action, input_data_type)            \
   do {                                                                         \
     CTorchParam *dim_param =                                                   \
         cth_get_param_by_type(op, CTH_PARAM_TYPE_DIM_INT32, true);             \
     tensor_dim_t reduce_dim = (tensor_dim_t)dim_param->data.dim;               \
-    tensor_size_t reduce_size = in->meta_info->dims[reduce_dim];               \
+    tensor_size_t reduce_dim_size = in->meta_info->dims[reduce_dim];           \
                                                                                \
     CTorchTensor *in = array_at(CTorchTensor)(op->in_bound_tensors, 0);        \
     CTorchTensor *out = array_at(CTorchTensor)(op->out_bound_tensors, 0);      \
     input_data_type *in_ptr = (input_data_type *)in->values;                   \
-    tensor_reduce_index_t *out_ptr = (tensor_reduce_index_t *)out->values;     \
+    int64_t *out_ptr = (int64_t *)out->values;                                 \
                                                                                \
+    tensor_dim_t input_n_eles = in->meta_info->n_elements;                     \
     tensor_dim_t tensor_n_dim = in->meta_info->n_dim;                          \
-    tensor_dim_t num_reduce_groups = tensor_n_dim / reduce_size;               \
+    tensor_dim_t num_reduce_groups = input_n_eles / reduce_dim_size;           \
     tensor_dim_t inner_offset = cth_tensor_reduce_inneroffset(in, reduce_dim); \
     tensor_dim_t reduce_index_size = tensor_n_dim - 1;                         \
     tensor_dim_t *reduce_index_dims =                                          \
@@ -201,38 +202,40 @@
       cth_tensor_get_reduce_index(in, group_i, reduce_dim, reduce_index_dims); \
       tensor_dim_t start_offset =                                              \
           cth_tensor_reduce_startoffset(in, reduce_index_dims, reduce_dim);    \
-      tensor_dim_t result_offset = cth_tensor_reduce_result_offset(            \
-          reduce_index_dims, reduce_index_size);                               \
       reduce_action(                                                           \
           in_ptr,                                                              \
           out_ptr,                                                             \
           input_data_type,                                                     \
           start_offset,                                                        \
           inner_offset,                                                        \
-          result_offset,                                                       \
-          reduce_size);                                                        \
+          group_i,                                                             \
+          reduce_dim_size);                                                    \
     }                                                                          \
     FREE(reduce_index_dims);                                                   \
   } while (0)
 
-#define _cpu_reduce_generic(op, input_data_type, reduce_action)                \
+/**
+ * @brief General logic to find index among a reduce dim
+ *
+ */
+#define _cpu_reduce_arg_generic(op, input_data_type, reduce_action)            \
   do {                                                                         \
     if (input_data_type == CTH_TENSOR_DATA_TYPE_BOOL) {                        \
-      _cpu_reduce_compute(op, reduce_action, bool);                            \
+      _cpu_reduce_arg_compute(op, reduce_action, bool);                        \
     } else if (input_data_type == CTH_TENSOR_DATA_TYPE_INT_16) {               \
-      _cpu_reduce_compute(op, reduce_action, int16_t);                         \
+      _cpu_reduce_arg_compute(op, reduce_action, int16_t);                     \
     } else if (input_data_type == CTH_TENSOR_DATA_TYPE_INT_32) {               \
-      _cpu_reduce_compute(op, reduce_action, int32_t);                         \
+      _cpu_reduce_arg_compute(op, reduce_action, int32_t);                     \
     } else if (input_data_type == CTH_TENSOR_DATA_TYPE_INT_64) {               \
-      _cpu_reduce_compute(op, reduce_action, int64_t);                         \
+      _cpu_reduce_arg_compute(op, reduce_action, int64_t);                     \
     } else if (input_data_type == CTH_TENSOR_DATA_TYPE_UINT_8) {               \
-      _cpu_reduce_compute(op, reduce_action, uint8_t);                         \
+      _cpu_reduce_arg_compute(op, reduce_action, uint8_t);                     \
     } else if (input_data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16) {             \
-      _cpu_reduce_compute(op, reduce_action, float);                           \
+      _cpu_reduce_arg_compute(op, reduce_action, float);                       \
     } else if (input_data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {             \
-      _cpu_reduce_compute(op, reduce_action, float);                           \
+      _cpu_reduce_arg_compute(op, reduce_action, float);                       \
     } else if (input_data_type == CTH_TENSOR_DATA_TYPE_FLOAT_64) {             \
-      _cpu_reduce_compute(op, reduce_action, double);                          \
+      _cpu_reduce_arg_compute(op, reduce_action, double);                      \
     } else {                                                                   \
       FAIL_EXIT(CTH_LOG_ERR, "Unsupported data type in _cpu_generic_compute"); \
     }                                                                          \

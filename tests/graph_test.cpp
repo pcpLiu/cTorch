@@ -11,24 +11,24 @@
 //       .node_type = CTH_NODE_TYPE_DATA,
 //       .exe_status = CTH_NODE_EXE_STATUS_CLEAN,
 //       .inbound_nodes = NULL,
-//       .outbound_nodes = NewList(ListTypeName(CTorchNode)),
+//       .outbound_nodes = NewCTHList(ListTypeName(CTorchNode)),
 //   };
 //   CTorchNode b = {
 //       .node_type = CTH_NODE_TYPE_DATA,
 //       .exe_status = CTH_NODE_EXE_STATUS_CLEAN,
-//       .inbound_nodes = NewList(ListTypeName(CTorchNode)),
-//       .outbound_nodes = NewList(ListTypeName(CTorchNode)),
+//       .inbound_nodes = NewCTHList(ListTypeName(CTorchNode)),
+//       .outbound_nodes = NewCTHList(ListTypeName(CTorchNode)),
 //   };
 //   CTorchNode c = {
 //       .node_type = CTH_NODE_TYPE_DATA,
 //       .exe_status = CTH_NODE_EXE_STATUS_CLEAN,
-//       .inbound_nodes = NewList(ListTypeName(CTorchNode)),
-//       .outbound_nodes = NewList(ListTypeName(CTorchNode)),
+//       .inbound_nodes = NewCTHList(ListTypeName(CTorchNode)),
+//       .outbound_nodes = NewCTHList(ListTypeName(CTorchNode)),
 //   };
 //   CTorchNode d = {
 //       .node_type = CTH_NODE_TYPE_DATA,
 //       .exe_status = CTH_NODE_EXE_STATUS_CLEAN,
 //       .inbound_nodes = NULL,
-//       .outbound_nodes = NewList(ListTypeName(CTorchNode)),
+//       .outbound_nodes = NewCTHList(ListTypeName(CTorchNode)),
 //   };
 // }

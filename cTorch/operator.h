@@ -7,24 +7,24 @@
 #include "cTorch/storage.h"
 
 typedef struct CTorchOperator {
-  CTH_OP_ID op_id;                         /* Operator ID */
-  Array(CTorchTensor) * in_bound_tensors;  /* List of input tensors. It includes
-                                             inputs, weights */
-  Array(CTorchTensor) * out_bound_tensors; /* List of output tensors */
-  Array(CTorchParam) * params;             /* Scalar parameters */
-  bool is_sharded;                         /* If op is a sharded one */
+  CTH_OP_ID op_id;                            /* Operator ID */
+  CTHArray(CTorchTensor) * in_bound_tensors;  /* List of input tensors. It
+                                             includes  inputs, weights */
+  CTHArray(CTorchTensor) * out_bound_tensors; /* List of output tensors */
+  CTHArray(CTorchParam) * params;             /* Scalar parameters */
+  bool is_sharded;                            /* If op is a sharded one */
 } CTorchOperator;
 
 // List utils for CTorchOperator
-def_list_item(CTorchOperator);
+cth_def_list_item(CTorchOperator);
 def_list(CTorchOperator);
-declare_new_list_item_func(CTorchOperator);
-declare_new_list_func(CTorchOperator);
-declare_insert_list_func(CTorchOperator);
-declare_list_at_func(CTorchOperator);
-declare_list_pop_func(CTorchOperator);
-declare_free_list_func(CTorchOperator);
-declare_free_list_deep_func(CTorchOperator);
+cth_declare_new_list_item_func(CTorchOperator);
+cth_declare_new_list_func(CTorchOperator);
+cth_declare_insert_list_func(CTorchOperator);
+cth_declare_list_at_func(CTorchOperator);
+cth_declare_list_pop_func(CTorchOperator);
+cth_declare_free_list_func(CTorchOperator);
+cth_declare_free_list_deep_func(CTorchOperator);
 
 /**
  * Check if # of in_bound_tensors == # of out_bound_tensors for given operator.
@@ -91,7 +91,7 @@ CTorchParam *cth_get_param_by_type(
 
 /**
  * Deep free an operator. For inbound and outbound list, it will call
- * free_list_deep(T)()
+ * cth_free_list_deep(T)()
  */
 void struct_deep_free(CTorchOperator)(CTorchOperator *op);
 

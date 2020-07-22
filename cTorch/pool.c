@@ -43,8 +43,7 @@ void *cth_worker(void *scheduler_v) {
   pthread_exit(NULL);
 }
 
-CTorchWorkerPool *
-cth_new_pool(CTorchScheduler *scheduler, CTorchConfig *config) {
+CTorchWorkerPool *cth_new_pool(CTorchScheduler *scheduler, CTHConfig *config) {
   FAIL_NULL_PTR(scheduler);
   FAIL_NULL_PTR(config);
 
@@ -57,7 +56,7 @@ cth_new_pool(CTorchScheduler *scheduler, CTorchConfig *config) {
   pthread_attr_init(&attr);
   pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
 
-  for (thread_n_t thread_i = 0; thread_i < pool->num_workers; thread_i++) {
+  for (cth_thread_n_t thread_i = 0; thread_i < pool->num_workers; thread_i++) {
     int ret = pthread_create(
         &pool->workers[thread_i], &attr, cth_worker, (void *)scheduler);
 
@@ -75,7 +74,7 @@ cth_new_pool(CTorchScheduler *scheduler, CTorchConfig *config) {
 void cth_close_pool(CTorchScheduler *scheduler, CTorchWorkerPool *pool) {
   FAIL_NULL_PTR(scheduler);
   FAIL_NULL_PTR(pool);
-  for (thread_n_t i = 0; i < pool->num_workers; i++) {
+  for (cth_thread_n_t i = 0; i < pool->num_workers; i++) {
     CTorchQueueJob *job = MALLOC(sizeof(CTorchQueueJob));
     job->worker_kill = true;
     write(scheduler->exe_queue->pipe_fd[1], &job, sizeof(CTorchQueueJob *));
@@ -84,7 +83,7 @@ void cth_close_pool(CTorchScheduler *scheduler, CTorchWorkerPool *pool) {
   // wait till all killed
   int err;
   void *status;
-  for (thread_n_t i = 0; i < pool->num_workers; i++) {
+  for (cth_thread_n_t i = 0; i < pool->num_workers; i++) {
     err = pthread_join(*(pool->workers + i), &status);
     if (err) {
       FAIL_EXIT(

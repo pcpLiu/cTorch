@@ -3,8 +3,6 @@ cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
 project(cTorch_project DESCRIPTION "cTorch project" LANGUAGES C)
 
 set(CMAKE_C_STANDARD 11)
-set(CMAKE_CXX_STANDARD 11)
-
 
 ################################################################################
 #
@@ -103,7 +101,7 @@ endif()
 
 ################################################################################
 #
-# Core lib
+# cTorch lib
 #
 add_subdirectory(cTorch)
 

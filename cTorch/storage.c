@@ -4,15 +4,15 @@
 
 #include <string.h>
 
-impl_new_list_item_func(CTorchTensor);
-impl_new_list_func(CTorchTensor);
-impl_insert_list_func(CTorchTensor);
-impl_list_contains_data_func(CTorchTensor);
-impl_list_contains_item_func(CTorchTensor);
-impl_list_at_func(CTorchTensor);
-impl_list_pop_func(CTorchTensor);
-impl_free_list_func(CTorchTensor);
-impl_free_list_deep_func(CTorchTensor);
+cth_impl_new_list_item_func(CTorchTensor);
+cth_impl_new_list_func(CTorchTensor);
+cth_impl_insert_list_func(CTorchTensor);
+cth_impl_list_contains_data_func(CTorchTensor);
+cth_impl_list_contains_item_func(CTorchTensor);
+cth_impl_list_at_func(CTorchTensor);
+cth_impl_list_pop_func(CTorchTensor);
+cth_impl_free_list_func(CTorchTensor);
+cth_impl_free_list_deep_func(CTorchTensor);
 
 impl_new_array_func(CTorchTensor);
 impl_array_at_func(CTorchTensor);
@@ -162,6 +162,9 @@ void FORCE_TENSOR_NUM_ELEMENTS(
 
 void FORCE_TENSOR_TYPES(
     CTorchTensor *tensor, CTH_TENSOR_DATA_TYPE *types, array_index_t n_types) {
+  FAIL_NULL_PTR(tensor);
+  FAIL_NULL_PTR(types);
+
   CTH_TENSOR_DATA_TYPE data_type = tensor->meta_info->data_type;
   bool match = false;
   for (int i = 0; i < n_types; i++) {
@@ -185,6 +188,7 @@ tensor_dim_t cth_tensor_reduce_startoffset(
     const tensor_dim_t reduce_dim) {
   FAIL_NULL_PTR(tensor);
   FAIL_NULL_PTR(index_dims);
+  // CTH_LOG(CTH_LOG_ERR, "~~~~begin cth_tensor_reduce_startoffset");
 
   tensor_dim_t *tensor_dims = tensor->meta_info->dims;
   tensor_dim_t tensor_n_dim = tensor->meta_info->n_dim;
@@ -197,6 +201,7 @@ tensor_dim_t cth_tensor_reduce_startoffset(
 
     tensor_dim_t n_eles_after = 1;
     tensor_dim_t j = i + 1;
+    // CTH_LOG(CTH_LOG_ERR, "i,: %d, j: %d", i, j);
     while (j < tensor_n_dim) {
       n_eles_after = n_eles_after * tensor_dims[j];
       j++;
@@ -205,8 +210,14 @@ tensor_dim_t cth_tensor_reduce_startoffset(
     tensor_dim_t index_dim_i = (i > reduce_dim ? i - 1 : i);
     offset = offset + n_eles_after * index_dims[index_dim_i];
     i++;
+    // CTH_LOG(
+    //     CTH_LOG_ERR,
+    //     "i: %d, reduce_dim:%d, tensor_n_dim: %d, offset:%d, n_eles_after: %d,
+    //     " "index_dims[index_dim_i]: %d", i, reduce_dim, tensor_n_dim, offset,
+    //     n_eles_after,
+    //     index_dims[index_dim_i]);
   }
-
+  // CTH_LOG(CTH_LOG_ERR, "~~~~end cth_tensor_reduce_startoffset");
   return offset;
 }
 
@@ -223,15 +234,6 @@ tensor_dim_t cth_tensor_reduce_inneroffset(
   }
 
   return offset;
-}
-
-tensor_dim_t cth_tensor_reduce_result_offset(
-    const tensor_dim_t *reduce_index_dims, const tensor_dim_t index_size) {
-  tensor_dim_t result = 1;
-  for (tensor_dim_t i = 0; i < index_size; i++) {
-    result = result * reduce_index_dims[i];
-  }
-  return result;
 }
 
 void cth_tensor_get_reduce_index(
@@ -254,16 +256,24 @@ void cth_tensor_get_reduce_index(
     tensor_dim_t n_eles_after = 1;
     tensor_dim_t j = i + 1;
     while (j < n_dim) {
-      n_eles_after = n_eles_after * dims[j];
+      if (j != reduce_dim) {
+        n_eles_after = n_eles_after * dims[j];
+      }
       j++;
     }
 
     tensor_dim_t reduce_index_i = (i > reduce_dim ? i - 1 : i);
-    if (i == n_dim - 1) {
+    if (reduce_index_i == n_dim - 2) {
       result[reduce_index_i] = group_index;
     } else {
       result[reduce_index_i] = group_index / n_eles_after;
       group_index = group_index % n_eles_after;
     }
+    // CTH_LOG(
+    //     CTH_LOG_ERR,
+    //     "i: %d, n_eles_after: %d, result[reduce_index_i]: %d",
+    //     i,
+    //     n_eles_after,
+    //     result[reduce_index_i]);
   }
 }

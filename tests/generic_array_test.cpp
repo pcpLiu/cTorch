@@ -9,7 +9,7 @@ impl_array_set_func(int);
 impl_free_array_deep_func(int);
 
 TEST(cTorchArrayTest, testCreate) {
-  Array(int) *array = new_array(int)(100);
+  CTHArray(int) *array = new_array(int)(100);
   EXPECT_EQ(array->size, 100);
   for (array_index_t i = 0; i < 100; i++) {
     EXPECT_EQ(*(array->_data + i), nullptr);
@@ -17,7 +17,7 @@ TEST(cTorchArrayTest, testCreate) {
 }
 
 TEST(cTorchArrayTest, testSet) {
-  Array(int) *array = new_array(int)(4);
+  CTHArray(int) *array = new_array(int)(4);
 
   int *val_1 = heap_int(1);
   int *val_2 = heap_int(2);
@@ -36,7 +36,7 @@ TEST(cTorchArrayTest, testSet) {
 }
 
 TEST(cTorchArrayTest, testAt) {
-  Array(int) *array = new_array(int)(4);
+  CTHArray(int) *array = new_array(int)(4);
 
   int *val_1 = heap_int(1);
   int *val_2 = heap_int(2);
@@ -55,7 +55,7 @@ TEST(cTorchArrayTest, testAt) {
 }
 
 TEST(cTorchArrayTest, testErr) {
-  Array(int) *array = new_array(int)(4);
+  CTHArray(int) *array = new_array(int)(4);
   int *val_1 = heap_int(1);
 
   EXPECT_EXIT(array_set(int)(array, 10, val_1), ::testing::ExitedWithCode(1),
@@ -66,7 +66,7 @@ TEST(cTorchArrayTest, testErr) {
 }
 
 TEST(cTorchArrayTest, testDeepFreeArray) {
-  Array(int) *array = new_array(int)(3);
+  CTHArray(int) *array = new_array(int)(3);
   MemoryRecord *record_array = cth_get_mem_record(array);
 
   int *val_1 = heap_int(1);

@@ -9,8 +9,8 @@
  * This struct represents a computational graph.
  */
 typedef struct {
-  char *graph_name;              /* Graph name. Optional */
-  Array(CTorchNode) * node_list; /* Nodes containing in this graph */
+  char *graph_name;                 /* Graph name. Optional */
+  CTHArray(CTorchNode) * node_list; /* Nodes containing in this graph */
 } CTorchGraph;
 
 #endif /* GRAPH_H */

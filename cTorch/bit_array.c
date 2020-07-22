@@ -17,44 +17,44 @@
   }                                                                            \
   while (0)
 
-bit_array_t *cth_new_bit_array(bit_array_index_t size) {
+cth_bit_array_t *cth_new_bit_array(cth_bit_array_index_t size) {
   FORCE_NOT_EQ(0, size, "bit array size could not be 0");
 
-  bit_array_t *array = MALLOC(sizeof(bit_array_t));
+  cth_bit_array_t *array = MALLOC(sizeof(cth_bit_array_t));
   array->size = size;
   array->num_ints = 1 + ((size - 1) / BITS_INT_UNIT_SIZE); // size != 0
-  array->bits = MALLOC(sizeof(bit_array_int_t) * array->num_ints);
+  array->bits = MALLOC(sizeof(cth_bit_array_int_t) * array->num_ints);
 
   /* Clear all bits */
-  for (bit_array_index_t i = 0; i < array->num_ints; i++) {
+  for (cth_bit_array_index_t i = 0; i < array->num_ints; i++) {
     *(array->bits + i) = 0;
   }
   return array;
 }
 
-void cth_set_bit(bit_array_t *array, bit_array_index_t i) {
+void cth_set_bit(cth_bit_array_t *array, cth_bit_array_index_t i) {
   FORCE_BITS_SIZE(i, array->size - 1);
   FAIL_NULL_PTR(array);
 
-  bit_array_int_t flag = 1;
+  cth_bit_array_int_t flag = 1;
   flag = flag << (i % BITS_INT_UNIT_SIZE);
   *(array->bits + i / BITS_INT_UNIT_SIZE) |= flag;
 }
 
-void cth_clear_bit(bit_array_t *array, bit_array_index_t i) {
+void cth_clear_bit(cth_bit_array_t *array, cth_bit_array_index_t i) {
   FORCE_BITS_SIZE(i, array->size - 1);
   FAIL_NULL_PTR(array);
 
-  bit_array_int_t flag = 1;
+  cth_bit_array_int_t flag = 1;
   flag = ~(flag << (i % BITS_INT_UNIT_SIZE));
   *(array->bits + i / BITS_INT_UNIT_SIZE) &= flag;
 }
 
-bool cth_is_bit_set(bit_array_t *array, bit_array_index_t i) {
+bool cth_is_bit_set(cth_bit_array_t *array, cth_bit_array_index_t i) {
   FORCE_BITS_SIZE(i, array->size - 1);
   FAIL_NULL_PTR(array);
 
-  bit_array_int_t flag = 1;
+  cth_bit_array_int_t flag = 1;
   flag = flag << (i % BITS_INT_UNIT_SIZE);
   if (*(array->bits + i / BITS_INT_UNIT_SIZE) & flag) {
     return true;
@@ -63,13 +63,13 @@ bool cth_is_bit_set(bit_array_t *array, bit_array_index_t i) {
   }
 }
 
-bool cth_are_all_bits_clear(bit_array_t *array) {
+bool cth_are_all_bits_clear(cth_bit_array_t *array) {
   FAIL_NULL_PTR(array);
 
   /**
    * All integers' values are 0
    */
-  for (bit_array_index_t i = 0; i < array->num_ints; i++) {
+  for (cth_bit_array_index_t i = 0; i < array->num_ints; i++) {
     if (*(array->bits + i) != 0) {
       return false;
     }
@@ -78,15 +78,15 @@ bool cth_are_all_bits_clear(bit_array_t *array) {
   return true;
 }
 
-bool cth_are_all_bits_set(bit_array_t *array) {
+bool cth_are_all_bits_set(cth_bit_array_t *array) {
   FAIL_NULL_PTR(array);
 
   /**
    * First n-1 integers' values are 2^32.
    */
-  bit_array_int_t all_one = ~(0 & 0);
+  cth_bit_array_int_t all_one = ~(0 & 0);
   if (array->num_ints > 1) {
-    for (bit_array_index_t i = 0; i < array->num_ints - 1; i++) {
+    for (cth_bit_array_index_t i = 0; i < array->num_ints - 1; i++) {
       if (*(array->bits + i) != all_one) {
         return false;
       }
@@ -97,8 +97,8 @@ bool cth_are_all_bits_set(bit_array_t *array) {
    * Last integer, bits in range [size % 32: 0] should 1. Like:
    *    0...000011111...11
    */
-  bit_array_int_t mod_bits = array->size % BITS_INT_UNIT_SIZE;
-  bit_array_int_t mask = (1 << mod_bits) - 1; /* 0...000011111...11 */
-  bit_array_int_t last_int = *(array->bits + array->num_ints - 1);
+  cth_bit_array_int_t mod_bits = array->size % BITS_INT_UNIT_SIZE;
+  cth_bit_array_int_t mask = (1 << mod_bits) - 1; /* 0...000011111...11 */
+  cth_bit_array_int_t last_int = *(array->bits + array->num_ints - 1);
   return last_int == mask;
 }

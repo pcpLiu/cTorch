@@ -42,17 +42,17 @@ typedef struct CTorchQueueJob {
 } CTorchQueueJob;
 
 // List utils for CTorchTensor
-def_list_item(CTorchQueueJob);
+cth_def_list_item(CTorchQueueJob);
 def_list(CTorchQueueJob);
-declare_new_list_item_func(CTorchQueueJob);
-declare_new_list_func(CTorchQueueJob);
-declare_insert_list_func(CTorchQueueJob);
-declare_list_contains_data_func(CTorchQueueJob);
-declare_list_contains_item_func(CTorchQueueJob);
-declare_list_at_func(CTorchQueueJob);
-declare_list_pop_func(CTorchQueueJob);
-declare_free_list_func(CTorchQueueJob);
-declare_list_del_func(CTorchQueueJob);
+cth_declare_new_list_item_func(CTorchQueueJob);
+cth_declare_new_list_func(CTorchQueueJob);
+cth_declare_insert_list_func(CTorchQueueJob);
+cth_declare_list_contains_data_func(CTorchQueueJob);
+cth_declare_list_contains_item_func(CTorchQueueJob);
+cth_declare_list_at_func(CTorchQueueJob);
+cth_declare_list_pop_func(CTorchQueueJob);
+cth_declare_free_list_func(CTorchQueueJob);
+cth_declare_list_del_func(CTorchQueueJob);
 
 def_array(CTorchQueueJob);
 declare_new_array_func(CTorchQueueJob);

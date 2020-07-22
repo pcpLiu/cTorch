@@ -25,9 +25,9 @@ typedef uint32_t node_id_t;
 typedef struct {
   node_id_t node_id;       /* Node id. Starting from 0 and consecutive */
   CTH_NODE_TYPE node_type; /* Node type: op or tensor */
-  struct Array(CTorchNode) * inbound_nodes;  /* Inbounds nodes */
-  struct Array(CTorchNode) * outbound_nodes; /* Inbounds nodes */
-  CTorchNodeContent conent;                  /* Content */
+  struct CTHArray(CTorchNode) * inbound_nodes;  /* Inbounds nodes */
+  struct CTHArray(CTorchNode) * outbound_nodes; /* Inbounds nodes */
+  CTorchNodeContent conent;                     /* Content */
 } CTorchNode;
 
 // Array macros
@@ -37,14 +37,14 @@ declare_array_at_func(CTorchNode);
 declare_array_set_func(CTorchNode);
 
 // List macros
-def_list_item(CTorchNode);
+cth_def_list_item(CTorchNode);
 def_list(CTorchNode);
-declare_new_list_item_func(CTorchNode);
-declare_new_list_func(CTorchNode);
-declare_insert_list_func(CTorchNode);
-declare_list_contains_data_func(CTorchNode);
-declare_list_contains_item_func(CTorchNode);
-declare_list_at_func(CTorchNode);
-declare_list_pop_func(CTorchNode);
+cth_declare_new_list_item_func(CTorchNode);
+cth_declare_new_list_func(CTorchNode);
+cth_declare_insert_list_func(CTorchNode);
+cth_declare_list_contains_data_func(CTorchNode);
+cth_declare_list_contains_item_func(CTorchNode);
+cth_declare_list_at_func(CTorchNode);
+cth_declare_list_pop_func(CTorchNode);
 
 #endif /* NODE_H */

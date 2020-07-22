@@ -245,3 +245,29 @@ void sample_print_triple(CTH_TENSOR_DATA_TYPE data_type, void *in_ptr_1,
                             in_ptr_2, out_ptr, i);
   }
 }
+
+void _rand_dims(tensor_dim_t *dims, tensor_dim_t n_dim, tensor_dim_t min,
+                tensor_dim_t max) {
+  for (tensor_dim_t i = 0; i < n_dim; i++) {
+    dims[i] = _rand_int(min, max);
+  }
+}
+
+void _get_reduce_dims(tensor_dim_t *dims, tensor_dim_t n_dim,
+                      tensor_dim_t reduce_dim, tensor_dim_t *reduce_dims) {
+  for (tensor_dim_t i = 0, j = 0; i < n_dim; i++) {
+    if (i == reduce_dim) {
+      continue;
+    }
+    reduce_dims[j] = dims[i];
+    j++;
+  }
+}
+
+void _print_index(tensor_dim_t *dims, tensor_dim_t n_dim) {
+  printf("dims: [");
+  for (tensor_dim_t i = 0; i < n_dim; i++) {
+    printf("%d ", dims[i]);
+  }
+  printf("]\n");
+}

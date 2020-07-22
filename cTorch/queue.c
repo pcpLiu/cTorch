@@ -5,15 +5,15 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-impl_new_list_item_func(CTorchQueueJob);
-impl_new_list_func(CTorchQueueJob);
-impl_insert_list_func(CTorchQueueJob);
-impl_list_contains_data_func(CTorchQueueJob);
-impl_list_contains_item_func(CTorchQueueJob);
-impl_list_at_func(CTorchQueueJob);
-impl_list_pop_func(CTorchQueueJob);
-impl_free_list_func(CTorchQueueJob);
-impl_list_del_func(CTorchQueueJob);
+cth_impl_new_list_item_func(CTorchQueueJob);
+cth_impl_new_list_func(CTorchQueueJob);
+cth_impl_insert_list_func(CTorchQueueJob);
+cth_impl_list_contains_data_func(CTorchQueueJob);
+cth_impl_list_contains_item_func(CTorchQueueJob);
+cth_impl_list_at_func(CTorchQueueJob);
+cth_impl_list_pop_func(CTorchQueueJob);
+cth_impl_free_list_func(CTorchQueueJob);
+cth_impl_list_del_func(CTorchQueueJob);
 
 impl_new_array_func(CTorchQueueJob);
 impl_array_at_func(CTorchQueueJob);

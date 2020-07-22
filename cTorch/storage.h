@@ -55,17 +55,17 @@ typedef struct CTorchTensor {
 void struct_deep_free(CTorchTensor)(CTorchTensor *tensor);
 
 // List utils for CTorchTensor
-def_list_item(CTorchTensor);
+cth_def_list_item(CTorchTensor);
 def_list(CTorchTensor);
-declare_new_list_item_func(CTorchTensor);
-declare_new_list_func(CTorchTensor);
-declare_insert_list_func(CTorchTensor);
-declare_list_contains_data_func(CTorchTensor);
-declare_list_contains_item_func(CTorchTensor);
-declare_list_at_func(CTorchTensor);
-declare_list_pop_func(CTorchTensor);
-declare_free_list_func(CTorchTensor);
-declare_free_list_deep_func(CTorchTensor);
+cth_declare_new_list_item_func(CTorchTensor);
+cth_declare_new_list_func(CTorchTensor);
+cth_declare_insert_list_func(CTorchTensor);
+cth_declare_list_contains_data_func(CTorchTensor);
+cth_declare_list_contains_item_func(CTorchTensor);
+cth_declare_list_at_func(CTorchTensor);
+cth_declare_list_pop_func(CTorchTensor);
+cth_declare_free_list_func(CTorchTensor);
+cth_declare_free_list_deep_func(CTorchTensor);
 
 // Array macros
 def_array(CTorchTensor);
@@ -123,16 +123,6 @@ tensor_dim_t cth_tensor_reduce_startoffset(
  */
 tensor_dim_t cth_tensor_reduce_inneroffset(
     const CTorchTensor *tensor, const tensor_dim_t reduce_dim);
-
-/**
- * @brief Get result ptr offset based on reduce index dims
- *
- * @param reduce_index_dims reduce index
- *
- * @return tensor_dim_t
- */
-tensor_dim_t cth_tensor_reduce_result_offset(
-    const tensor_dim_t *reduce_index_dims, const tensor_dim_t index_size);
 
 /**
  * @brief  Generate reduce index list for target group

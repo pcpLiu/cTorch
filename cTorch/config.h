@@ -6,8 +6,8 @@
 /**
  * Execution config
  */
-typedef struct CTorchConfig {
-  thread_n_t num_workers; /* No. of workers in the pool */
-} CTorchConfig;
+typedef struct CTHConfig {
+  cth_thread_n_t num_workers; /* No. of workers in the pool */
+} CTHConfig;
 
 #endif /* CONFIG_H */

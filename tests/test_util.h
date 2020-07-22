@@ -99,6 +99,32 @@ float _rand_float(float min, float max);
   }
 
 /**
+ * @brief Reduce op verify
+ */
+#define _reduce_op(op, in_type, out_type, pytorch_call, eq_func)               \
+  {                                                                            \
+    CTorchTensor *tensor_input =                                               \
+        array_at(CTorchTensor)(op->in_bound_tensors, 0);                       \
+    CTorchTensor *tensor_output =                                              \
+        array_at(CTorchTensor)(op->out_bound_tensors, 0);                      \
+    out_type *output = (out_type *)tensor_output->values;                      \
+    CTorchParam *dim_param =                                                   \
+        cth_get_param_by_type(op, CTH_PARAM_TYPE_DIM_INT32, true);             \
+    tensor_dim_t reduce_dim = (tensor_dim_t)dim_param->data.dim;               \
+                                                                               \
+    auto pytorch_in_tensor = create_torch_tensor(tensor_input);                \
+    auto pytorch_result_tensor = pytorch_call(pytorch_in_tensor, reduce_dim);  \
+                                                                               \
+    tensor_size_t out_n_ele = tensor_output->meta_info->n_elements;            \
+    auto pytorch_result_tensor_flat =                                          \
+        pytorch_result_tensor.reshape({out_n_ele});                            \
+    auto expect_result = (int64_t *)pytorch_result_tensor_flat.data_ptr();     \
+    for (tensor_size_t i = 0; i < out_n_ele; i++) {                            \
+      eq_func(expect_result[i], output[i]);                                    \
+    }                                                                          \
+  }
+
+/**
  * @brief Print out sample value
  *
  * @param type
@@ -120,6 +146,37 @@ inline int *heap_int(int x) {
 
 // for testFreeListDeep
 inline void free_deep_int(int *x) { FREE(x); }
+
+/**
+ * @brief Generate random dim
+ *
+ * @param dims
+ * @param n_dim
+ */
+void _rand_dims(tensor_dim_t *dims, tensor_dim_t n_dim, tensor_dim_t min,
+                tensor_dim_t max);
+
+/**
+ * @brief Get reduc dims
+ *
+ * @param dims
+ * @param n_dim
+ * @param reduce_dim
+ * @param reduce_dims
+ */
+void _get_reduce_dims(tensor_dim_t *dims, tensor_dim_t n_dim,
+                      tensor_dim_t reduce_dim, tensor_dim_t *reduce_dims);
+
+/**
+ * @brief Generate randin int [min, max]
+ *
+ * @param min
+ * @param max
+ * @return int
+ */
+int _rand_int(int min, int max);
+
+void _print_index(tensor_dim_t *dims, tensor_dim_t n_dim);
 
 #ifdef __cplusplus
 }

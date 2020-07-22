@@ -5,7 +5,7 @@
 #include <unistd.h>
 
 TEST(cTorchPoolTest, testCreate) {
-  CTorchConfig *config = (CTorchConfig *)MALLOC(sizeof(CTorchConfig));
+  CTHConfig *config = (CTHConfig *)MALLOC(sizeof(CTHConfig));
   config->num_workers = 4;
 
   int num_nodes = 1000;
@@ -31,7 +31,7 @@ TEST(cTorchPoolTest, testCreate) {
   }
 
   // kill threads
-  for (thread_n_t i = 0; i < config->num_workers; i++) {
+  for (cth_thread_n_t i = 0; i < config->num_workers; i++) {
     CTorchQueueJob *job = (CTorchQueueJob *)MALLOC(sizeof(job));
     job->worker_kill = true;
     write(scheduler->exe_queue->pipe_fd[1], &job, sizeof(CTorchQueueJob *));
@@ -39,7 +39,7 @@ TEST(cTorchPoolTest, testCreate) {
 }
 
 TEST(cTorchPoolTest, testKill) {
-  CTorchConfig *config = (CTorchConfig *)MALLOC(sizeof(CTorchConfig));
+  CTHConfig *config = (CTHConfig *)MALLOC(sizeof(CTHConfig));
   config->num_workers = 4;
 
   int num_nodes = 1000;
