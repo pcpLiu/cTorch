@@ -40,6 +40,7 @@ cmake \
     -DBACKEND_MKL_ENABLE=ON \
     -DBACKEND_MKL_LIB_DIR=../third_party/intel_mkl/mac/lib \
     -DBACKEND_MKL_INCLUDE_DIR=../third_party/intel_mkl/mac/include \
+    -DCMAKE_PREFIX_PATH=../third_party/libtorch \
     ..
 
 make cTorch_test
