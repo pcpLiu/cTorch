@@ -22,7 +22,7 @@ bool _rand_bool(void) {
     tensor->values =                                                           \
         (type *)MALLOC_NAME(sizeof(type) * n_ele, "tensor values");            \
     type *val = (type *)tensor->values;                                        \
-    for (int i = 0; i < tensor->meta_info->n_elements; i++) {                  \
+    for (tensor_size_t i = 0; i < tensor->meta_info->n_elements; i++) {        \
       val[i] = (type)rand_func(__VA_ARGS__);                                   \
     }                                                                          \
   } while (0)
@@ -54,8 +54,8 @@ CTorchTensor *create_dummy_tensor(tensor_dim_t *dims, tensor_dim_t n_dim,
   tensor->meta_info->device = CTH_TENSOR_DEVICE_NORMAL;
   cth_tensor_set_name(tensor, "Dummy Tensor");
 
-  uint64_t n_ele = 1;
-  for (int i = 0; i < tensor->meta_info->n_dim; i++) {
+  tensor_size_t n_ele = 1;
+  for (tensor_size_t i = 0; i < tensor->meta_info->n_dim; i++) {
     n_ele *= tensor->meta_info->dims[i];
   }
   tensor->meta_info->n_elements = n_ele;
@@ -100,65 +100,6 @@ CTorchNode *create_dummy_op_node_unary(CTH_OP_ID op_id, tensor_dim_t *dims,
   node->conent.op = op;
   node->node_type = CTH_NODE_TYPE_OPERATOR;
   return node;
-}
-
-bool tensor_all_nan(CTorchTensor *tensor) {
-  bool ret = true;
-
-  void *val = tensor->values;
-  if (tensor->meta_info->data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||
-      tensor->meta_info->data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {
-    for (uint64_t i = 0; i < tensor->meta_info->n_elements; i++) {
-      if (((float *)val)[i] == ((float *)val)[i]) {
-        ret = false;
-        break;
-      }
-    }
-  } else if (tensor->meta_info->data_type == CTH_TENSOR_DATA_TYPE_FLOAT_64) {
-    for (uint64_t i = 0; i < tensor->meta_info->n_elements; i++) {
-      if (((double *)val)[i] == ((double *)val)[i]) {
-        ret = false;
-        break;
-      }
-    }
-  } else if (tensor->meta_info->data_type == CTH_TENSOR_DATA_TYPE_INT_16) {
-    for (uint64_t i = 0; i < tensor->meta_info->n_elements; i++) {
-      if (((int16_t *)val)[i] == ((int16_t *)val)[i]) {
-        ret = false;
-        break;
-      }
-    }
-  } else if (tensor->meta_info->data_type == CTH_TENSOR_DATA_TYPE_INT_32) {
-    for (uint64_t i = 0; i < tensor->meta_info->n_elements; i++) {
-      if (((int32_t *)val)[i] == ((int32_t *)val)[i]) {
-        ret = false;
-        break;
-      }
-    }
-  } else if (tensor->meta_info->data_type == CTH_TENSOR_DATA_TYPE_INT_64) {
-    for (uint64_t i = 0; i < tensor->meta_info->n_elements; i++) {
-      if (((int64_t *)val)[i] == ((int64_t *)val)[i]) {
-        ret = false;
-        break;
-      }
-    }
-  } else if (tensor->meta_info->data_type == CTH_TENSOR_DATA_TYPE_UINT_8) {
-    for (uint64_t i = 0; i < tensor->meta_info->n_elements; i++) {
-      if (((uint8_t *)val)[i] == ((uint8_t *)val)[i]) {
-        ret = false;
-        break;
-      }
-    }
-  } else if (tensor->meta_info->data_type == CTH_TENSOR_DATA_TYPE_BOOL) {
-    for (uint64_t i = 0; i < tensor->meta_info->n_elements; i++) {
-      if (((bool *)val)[i] == ((bool *)val)[i]) {
-        ret = false;
-        break;
-      }
-    }
-  }
-
-  return ret;
 }
 
 CTorchOperator *create_dummy_op(CTH_OP_ID op_id, array_index_t num_inputs,

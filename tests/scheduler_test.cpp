@@ -3,7 +3,7 @@
 #include "gtest/gtest.h"
 
 TEST(cTorchSchedulerTest, testCreate) {
-  int num_nodes = 10;
+  array_index_t num_nodes = 10;
   CTorchGraph *graph = create_dummy_graph(num_nodes);
   for (array_index_t i = 0; i < num_nodes; i++) {
     array_set(CTorchNode)(graph->node_list, i, create_dummy_node(i, 0, 0));
@@ -126,7 +126,7 @@ TEST(cTorchSchedulerTest, testManyTasks) {
   /**
    *  N nodes --> node_final
    */
-  int N_DEPENDENTS = 1000;
+  array_index_t N_DEPENDENTS = 1000;
 
   CTorchGraph *graph = create_dummy_graph(N_DEPENDENTS + 1);
 

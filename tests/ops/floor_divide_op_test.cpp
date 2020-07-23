@@ -12,7 +12,7 @@
     data_type *input_1_ptr = (data_type *)input_1->values;                     \
     data_type *input_2_ptr = (data_type *)input_2->values;                     \
     data_type *output_ptr = (data_type *)output->values;                       \
-    for (int i = 0; i < input_1->meta_info->n_elements; i++) {                 \
+    for (tensor_size_t i = 0; i < input_1->meta_info->n_elements; i++) {       \
       data_type val = (data_type)floor(1.0 * input_1_ptr[i] / input_2_ptr[i]); \
       expect_fn(output_ptr[i], val);                                           \
     }                                                                          \

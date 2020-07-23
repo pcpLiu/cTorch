@@ -9,7 +9,7 @@
     data_type *input_t = (data_type *)input->values;                           \
     bool *output_t = (bool *)output->values;                                   \
                                                                                \
-    for (int i = 0; i < input->meta_info->n_elements; i++) {                   \
+    for (tensor_size_t i = 0; i < input->meta_info->n_elements; i++) {         \
       uint16_t x = (0 == input_t[i] ? 0 : 1);                                  \
       bool val = (bool)(1 - x);                                                \
       expect_fn(output_t[i], val);                                             \

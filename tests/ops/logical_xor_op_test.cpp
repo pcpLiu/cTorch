@@ -11,7 +11,7 @@
     data_type *input_2_t = (data_type *)input_2->values;                       \
     bool *output_t = (bool *)output->values;                                   \
                                                                                \
-    for (int i = 0; i < input_1->meta_info->n_elements; i++) {                 \
+    for (tensor_size_t i = 0; i < input_1->meta_info->n_elements; i++) {       \
       uint16_t x = (0 == input_1_t[i] ? 0 : 1);                                \
       uint16_t y = (0 == input_2_t[i] ? 0 : 1);                                \
       bool val = (x != y);                                                     \

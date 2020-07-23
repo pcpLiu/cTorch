@@ -8,23 +8,24 @@ TEST(cTorchPoolTest, testCreate) {
   CTHConfig *config = (CTHConfig *)MALLOC(sizeof(CTHConfig));
   config->num_workers = 4;
 
-  int num_nodes = 1000;
+  array_index_t num_nodes = 1000;
   CTorchGraph *graph = create_dummy_graph(num_nodes);
   for (array_index_t i = 0; i < num_nodes; i++) {
     array_set(CTorchNode)(graph->node_list, i, create_dummy_node(i, 0, 0));
   }
 
   CTorchScheduler *scheduler = cth_new_scheduler(config, graph);
+  // create threads in pool
   CTorchWorkerPool *pool = cth_new_pool(scheduler, config);
 
   // Add job manually
-  for (int i = 0; i < num_nodes; i++) {
+  for (array_index_t i = 0; i < num_nodes; i++) {
     CTorchQueueJob *job = array_at(CTorchQueueJob)(scheduler->job_list, i);
     write(scheduler->exe_queue->pipe_fd[1], &job, sizeof(CTorchQueueJob *));
   }
 
   // check finish
-  for (int i = 0; i < num_nodes; i++) {
+  for (array_index_t i = 0; i < num_nodes; i++) {
     CTorchQueueJob *job = array_at(CTorchQueueJob)(scheduler->job_list, i);
     read(scheduler->ret_queue->pipe_fd[0], &job, sizeof(CTorchQueueJob *));
     EXPECT_EQ(CTH_JOB_STATUS_DONE, job->status);
@@ -42,7 +43,7 @@ TEST(cTorchPoolTest, testKill) {
   CTHConfig *config = (CTHConfig *)MALLOC(sizeof(CTHConfig));
   config->num_workers = 4;
 
-  int num_nodes = 1000;
+  array_index_t num_nodes = 1000;
   CTorchGraph *graph = create_dummy_graph(num_nodes);
   for (array_index_t i = 0; i < num_nodes; i++) {
     array_set(CTorchNode)(graph->node_list, i, create_dummy_node(i, 0, 0));
@@ -52,13 +53,13 @@ TEST(cTorchPoolTest, testKill) {
   CTorchWorkerPool *pool = cth_new_pool(scheduler, config);
 
   // Add job manually
-  for (int i = 0; i < num_nodes; i++) {
+  for (array_index_t i = 0; i < num_nodes; i++) {
     CTorchQueueJob *job = array_at(CTorchQueueJob)(scheduler->job_list, i);
     write(scheduler->exe_queue->pipe_fd[1], &job, sizeof(CTorchQueueJob *));
   }
 
   // check finish
-  for (int i = 0; i < num_nodes; i++) {
+  for (array_index_t i = 0; i < num_nodes; i++) {
     CTorchQueueJob *job = array_at(CTorchQueueJob)(scheduler->job_list, i);
     read(scheduler->ret_queue->pipe_fd[0], &job, sizeof(CTorchQueueJob *));
     EXPECT_EQ(CTH_JOB_STATUS_DONE, job->status);

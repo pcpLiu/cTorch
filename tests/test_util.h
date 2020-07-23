@@ -7,6 +7,7 @@ extern "C" {
 
 #include <stdbool.h>
 #include <stdlib.h>
+#include <tgmath.h>
 
 #include "cTorch/c_torch.h"
 
@@ -49,15 +50,19 @@ CTorchNode *create_dummy_node(node_id_t id, array_index_t inbound_size,
  */
 CTorchGraph *create_dummy_graph(array_index_t num_nodes);
 
-/*
-  If all values are NAN, return true.
-*/
-bool tensor_all_nan(CTorchTensor *);
-
 /**
  * Rand flost in range
  */
 float _rand_float(float min, float max);
+
+/**
+ * @brief with precision control
+ *
+ */
+#define EXPECT_EQ_PRECISION(val_1, val_2, precision)                           \
+  do {                                                                         \
+    EXPECT_TRUE(abs(val_1 - val_2) <= precision);                              \
+  } while (0)
 
 /**
  * Check element-wise equal between verify_func(input) and output
@@ -70,10 +75,34 @@ float _rand_float(float min, float max);
     CTorchTensor *tensor_output =                                              \
         array_at(CTorchTensor)(op->out_bound_tensors, 0);                      \
     type *output = (type *)tensor_output->values;                              \
-    uint64_t n_ele = tensor_input->meta_info->n_elements;                      \
-    for (int i = 0; i < n_ele; i++) {                                          \
+    tensor_size_t n_ele = tensor_input->meta_info->n_elements;                 \
+    for (tensor_size_t i = 0; i < n_ele; i++) {                                \
       type expect_result = (type)verify_func(input[i]);                        \
       eq_func(expect_result, output[i]);                                       \
+    }                                                                          \
+  }
+
+/**
+ * @brief Check element-wise equal between verify_func(input) and output with
+ * libtorch
+ *
+ */
+#define _ele_wise_equal_unary_pytorch(op, type, eq_func, eq_precision,         \
+                                      torch_call)                              \
+  {                                                                            \
+    CTorchTensor *tensor_input =                                               \
+        array_at(CTorchTensor)(op->in_bound_tensors, 0);                       \
+    CTorchTensor *tensor_output =                                              \
+        array_at(CTorchTensor)(op->out_bound_tensors, 0);                      \
+    type *output = (type *)tensor_output->values;                              \
+    tensor_size_t n_ele = tensor_input->meta_info->n_elements;                 \
+                                                                               \
+    auto pytorch_in_tensor = create_torch_tensor(tensor_input);                \
+    auto pytorch_out_tensor = torch_call(pytorch_in_tensor);                   \
+    auto pytorch_result_tensor_flat = pytorch_out_tensor.reshape({n_ele});     \
+    for (tensor_size_t i = 0; i < n_ele; i++) {                                \
+      eq_func(pytorch_result_tensor_flat[i].item<type>(), output[i],           \
+              eq_precision);                                                   \
     }                                                                          \
   }
 
@@ -92,7 +121,7 @@ float _rand_float(float min, float max);
         array_at(CTorchTensor)(op->out_bound_tensors, 0);                      \
     type *output = (type *)tensor_output->values;                              \
     uint64_t n_ele = tensor_input_a->meta_info->n_elements;                    \
-    for (int i = 0; i < n_ele; i++) {                                          \
+    for (tensor_size_t i = 0; i < n_ele; i++) {                                \
       type expect_result = verify_func(input_a[i], input_b[i]);                \
       eq_func(expect_result, output[i]);                                       \
     }                                                                          \

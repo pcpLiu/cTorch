@@ -11,7 +11,7 @@
     data_type *input_2_t = (data_type *)input_2->values;                       \
     float *output_t = (float *)output->values;                                 \
                                                                                \
-    for (int i = 0; i < input_1->meta_info->n_elements; i++) {                 \
+    for (tensor_size_t i = 0; i < input_1->meta_info->n_elements; i++) {       \
       float val = (float)input_1_t[i] / (float)input_2_t[i];                   \
       expect_fn(output_t[i], val);                                             \
     }                                                                          \

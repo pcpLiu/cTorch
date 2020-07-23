@@ -16,7 +16,7 @@
 /**
  * Ref: https://stackoverflow.com/questions/27229371/inverse-error-function-in-c
  */
-long double _cth_erfinv_impl(long double x) {
+long double _cth_erfinv_kernel(long double x) {
   long double tt1, tt2, lnx, sgn;
   sgn = (x < 0) ? -1.0f : 1.0f;
 
@@ -29,14 +29,14 @@ long double _cth_erfinv_impl(long double x) {
   return (sgn * sqrtf(-tt1 + sqrtf(tt1 * tt1 - tt2)));
 }
 
-#define _cth_erfinv_kernel(input_ptr, output_ptr, N, data_type)                \
-  do {                                                                         \
-    data_type *input_t = (data_type *)input_ptr;                               \
-    data_type *output_t = (data_type *)output_ptr;                             \
-    for (int i = 0; i < N; i++) {                                              \
-      output_t[i] = (data_type)digammal(input_t[i]);                           \
-    }                                                                          \
-  } while (0)
+// #define _cth_erfinv_kernel(input_ptr, output_ptr, N, data_type)                \
+//   do {                                                                         \
+//     data_type *input_t = (data_type *)input_ptr;                               \
+//     data_type *output_t = (data_type *)output_ptr;                             \
+//     for (int i = 0; i < N; i++) {                                              \
+//       output_t[i] = (data_type)digammal(input_t[i]);                           \
+//     }                                                                          \
+//   } while (0)
 
 /**
  * Computation inverse of erf

@@ -9,7 +9,7 @@
     data_type *input_t = (data_type *)input->values;                           \
     data_type *output_t = (data_type *)output->values;                         \
                                                                                \
-    for (int i = 0; i < input->meta_info->n_elements; i++) {                   \
+    for (tensor_size_t i = 0; i < input->meta_info->n_elements; i++) {         \
       data_type val = ~input_t[i];                                             \
       expect_fn(output_t[i], val);                                             \
     }                                                                          \

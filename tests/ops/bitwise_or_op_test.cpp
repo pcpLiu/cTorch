@@ -11,7 +11,7 @@
     data_type *input_2_t = (data_type *)input_2->values;                       \
     data_type *output_t = (data_type *)output->values;                         \
                                                                                \
-    for (int i = 0; i < input_1->meta_info->n_elements; i++) {                 \
+    for (tensor_size_t i = 0; i < input_1->meta_info->n_elements; i++) {       \
       data_type val = input_1_t[i] | input_2_t[i];                             \
       expect_fn(output_t[i], val);                                             \
     }                                                                          \
