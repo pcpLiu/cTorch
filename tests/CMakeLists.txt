@@ -37,5 +37,5 @@ add_executable(${test_target}
 add_test(NAME ${test_target} COMMAND ${test_target})
 target_include_directories(${test_target} PRIVATE ${cTorch_project_SOURCE_DIR})
 target_link_libraries(${test_target} PUBLIC cTorch ${TORCH_LIBRARIES} gtest)
-set_target_properties(${test_target} PROPERTIES CXX_STANDARD 14)
+# set_target_properties(${test_target} PROPERTIES CXX_STANDARD 14)
 
