@@ -33,6 +33,7 @@ cd build
 brew install tbb
 brew install libomp
 
+CC=clang CXX=clang++ \
 cmake \
     -DCMAKE_BUILD_TYPE=Debug \
     -DDEBUG_TEST=ON \
