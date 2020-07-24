@@ -1,9 +1,9 @@
 #ifndef CTH_TEST_UTL_H
 #define CTH_TEST_UTL_H
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+// #ifdef __cplusplus
+// extern "C" {
+// #endif
 
 #include <stdbool.h>
 #include <stdlib.h>
@@ -207,8 +207,8 @@ int _rand_int(int min, int max);
 
 void _print_index(tensor_dim_t *dims, tensor_dim_t n_dim);
 
-#ifdef __cplusplus
-}
-#endif
+// #ifdef __cplusplus
+// }
+// #endif
 
 #endif /* TEST_UTL_H */

@@ -104,7 +104,7 @@ CTorchNode *create_dummy_op_node_unary(CTH_OP_ID op_id, tensor_dim_t *dims,
 
 CTorchOperator *create_dummy_op(CTH_OP_ID op_id, array_index_t num_inputs,
                                 array_index_t num_outputs) {
-  CTorchOperator *op = MALLOC(sizeof(CTorchOperator));
+  CTorchOperator *op = (CTorchOperator*)MALLOC(sizeof(CTorchOperator));
   op->op_id = op_id;
   op->in_bound_tensors = new_array(CTorchTensor)(num_inputs);
   op->out_bound_tensors = new_array(CTorchTensor)(num_outputs);
@@ -116,7 +116,7 @@ CTorchOperator *create_dummy_op_with_param(CTH_OP_ID op_id,
                                            array_index_t num_inputs,
                                            array_index_t num_outputs,
                                            array_index_t num_param) {
-  CTorchOperator *op = MALLOC(sizeof(CTorchOperator));
+  CTorchOperator *op = (CTorchOperator *)MALLOC(sizeof(CTorchOperator));
   op->op_id = op_id;
   op->in_bound_tensors = new_array(CTorchTensor)(num_inputs);
   op->out_bound_tensors = new_array(CTorchTensor)(num_outputs);
@@ -125,7 +125,7 @@ CTorchOperator *create_dummy_op_with_param(CTH_OP_ID op_id,
 }
 
 CTorchGraph *create_dummy_graph(array_index_t num_nodes) {
-  CTorchGraph *graph = MALLOC(sizeof(CTorchGraph));
+  CTorchGraph *graph = (CTorchGraph*)MALLOC(sizeof(CTorchGraph));
   graph->node_list = new_array(CTorchNode)(num_nodes);
   return graph;
 }

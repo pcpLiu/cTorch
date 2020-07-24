@@ -23,7 +23,8 @@ file(GLOB_RECURSE test_sources LIST_DIRECTORIES false *_test.cpp)
 
 # Utils
 set(test_util_src
-    test_util.c
+    # test_util.c
+    test_util.cpp
     torch_util.cpp
 )
 
