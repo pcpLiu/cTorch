@@ -21,7 +21,11 @@ find_package(Threads REQUIRED)
 
 if(${DEBUG_TEST}
     AND ${CMAKE_SYSTEM_NAME} STREQUAL "Linux"
-    AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU"
+    AND (
+        CMAKE_C_COMPILER_ID STREQUAL "GNU"
+        OR
+        CMAKE_CXX_COMPILER_ID STREQUAL "GNU"
+    )
 )
     message("[cTorch] Append flag: -pg --coverage")
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pg --coverage")
@@ -82,7 +86,11 @@ endif()
 if(
     ${DEBUG_TEST}
     AND  ${CMAKE_SYSTEM_NAME} STREQUAL "Linux"
-    AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU"
+    AND (
+        CMAKE_C_COMPILER_ID STREQUAL "GNU"
+        OR
+        CMAKE_CXX_COMPILER_ID STREQUAL "GNU"
+    )
 )
     message("[cTorch]: Will link gcov")
     target_link_libraries(cTorch PUBLIC gcov)
