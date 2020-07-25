@@ -17,57 +17,57 @@
 # Introduction
 
 cTorch is a light weight and flexible neural network inference library.
+It is written in pure C11 and compatible with all operators of PyTorch.
+
+### Features
+
+- **Prunable.** You can build cTorch with selective operators and backends
+- **High-performance backends support.** cTorch supports several high performance backends: Intel MKL, CUDA etc
+- **One click convert.** We offer a python tool [Cerberus
+  ](https://github.com/pcpLiu/Cerberus) converting the existing PyTorch model to the format that can be exuecuted by cTorch
 
 Check more at [FAQ]() page.
 
-# I. Build instructions
+# Building & Installation
 
 Building dependencies:
 
 - CMake
-- gcc (g++ for running testing)
-- POSIX Thread
+- A C compiler: gcc or Clang
 
-### Quick build & install
+### Quick installation
 
 ```bash
 $ git clone https://github.com/pcpLiu/cTorch
 $ cd cTorch
 $ mkdir build && cd build
-$ cmake .. && make
+$ cmake .. && make cTorch
 $ sudo make install
 ```
 
-### Build with selective operators
-
-In `src/operators/CMakeLists.txt`, list operators into variable `ops_disabled`.
-Those operators will be excluded from building.
-All available operators' names are defined in `src/operators/op_list.h`.
-
-# II. Backends
+### Backends
 
 All operators in cTorch have a default implementation with standard C without dependency of any external lib.
-cTorch also supports several high-performance backends: [x86 Intrinsics](), [ARM](), [OpenBLAS](), [Intel MKL](), [Apple]() and [CUDA]().
-Based on your environment and needs, you should install one or all of them before heading to cTorch installation.
+cTorch also supports several high-performance backends: [OpenBLAS](), [Intel MKL](), [Apple]() and [CUDA]().
 
-- [**x86 Intrinsics**](): support from SSE to AVX512
-- [**ARM**](): [ARMNN]() and [ARM computer library]()
-- [**OpenBLAS**](): A high-performance BLAS implementation
-- [**Intel MKL**]():
-- [**Apple**](): [Accelerate](https://developer.apple.com/documentation/accelerate), [Metal](https://developer.apple.com/documentation/metal) and [ML Compute](https://developer.apple.com/documentation/mlcompute) .
-- [**CUDA**](): cTorch supports CUDA 9
+See [Building and Installation Guide]() for more information.
 
-### Runtime backends V.S. built backend
+# Parallel model
 
-When you are building cTorch, you could build against to multiple backends.
-As you are using cTorch in your program, an operator will be executed on one backend.
-If user specifies an unbuilt backend, runtime error will be raised.
+cTorch is designed for a typical single-process multi-threading deployment environment.
+In terms of parallelism, there are two levels:
 
-### Automatically execution fallback
+1. Inter-op:
+2. Intra-op:
 
-If you chose op to run on backend `X` while `X` does not support this operator, cTorch will
-automatically switch execution to default implementation.
+# License
 
-# Contributors
+cTorch is [MIT](https://github.com/pcpLiu/cTorch/blob/master/LICENSE) licensed.
 
-This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+# Releases and Contributing
+
+cTorch has a bi-weekly release focusing on bug-fix.
+We also have a 90-day major release walking with PyTorch.
+
+We appreciate all contributions.
+Take a loot at our [Contribution Guide]() see how you can help make cTorch better!
