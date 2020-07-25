@@ -6,13 +6,15 @@
 
 #define OPENBLAS_OP_FUNC_NAME(op) op_##op_openblas
 
-#define OPENBLAS_OP_FUNC_DECLARE(op) void OPENBLAS_OP_FUNC_NAME(op)(CTorchOperator *)
+#define OPENBLAS_OP_FUNC_DECLARE(op)                                           \
+  void OPENBLAS_OP_FUNC_NAME(op)(CTHOperator *)
 
-#define DECLARE_OPENBLAS_ALL_OP_FUNCS FOREACH_OP_ID(OPENBLAS_OP_FUNC_DECLARE, SEMI_COL)
+#define DECLARE_OPENBLAS_ALL_OP_FUNCS                                          \
+  FOREACH_OP_ID(OPENBLAS_OP_FUNC_DECLARE, SEMI_COL)
 
 /*
   Array of function pointers corresponding to each enabled operator
 */
-static void (*fps_op_openblas[ENABLED_OP_NUM])(CTorchOperator *);
+static void (*fps_op_openblas[ENABLED_OP_NUM])(CTHOperator *);
 
 #endif /* OP_LIST_OPENBLAS_H */

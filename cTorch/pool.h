@@ -9,10 +9,10 @@
 /**
  * Thread pool to execute operators
  */
-typedef struct CTorchWorkerPool {
+typedef struct CTHWorkerPool {
   pthread_t *workers;         /* thread array */
   cth_thread_n_t num_workers; /* No. of workers */
-} CTorchWorkerPool;
+} CTHWorkerPool;
 
 /**
  * Create a worker pool. Once created, all workers are waiting data from
@@ -22,7 +22,7 @@ typedef struct CTorchWorkerPool {
  *    - scheduelr: the scheduler used for this pool
  *    - config: execution config
  */
-CTorchWorkerPool *cth_new_pool(CTorchScheduler *scheduler, CTHConfig *config);
+CTHWorkerPool *cth_new_pool(CTHScheduler *scheduler, CTHConfig *config);
 
 /**
  * Close a work pool. Kill all working threads. This funcion use pthread_join,
@@ -34,7 +34,7 @@ CTorchWorkerPool *cth_new_pool(CTorchScheduler *scheduler, CTHConfig *config);
  *    - scheduler: attached scheduler
  *    - pool: pool to be closed
  */
-void cth_close_pool(CTorchScheduler *scheduler, CTorchWorkerPool *pool);
+void cth_close_pool(CTHScheduler *scheduler, CTHWorkerPool *pool);
 
 /**
  * The worker function

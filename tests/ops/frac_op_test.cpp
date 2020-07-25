@@ -6,12 +6,12 @@
 
 #define _verify_frac(op, data_type, expect_fn)                                 \
   do {                                                                         \
-    CTorchTensor *input = array_at(CTorchTensor)(op->in_bound_tensors, 0);     \
-    CTorchTensor *output = array_at(CTorchTensor)(op->out_bound_tensors, 0);   \
+    CTHTensor *input = cth_array_at(CTHTensor)(op->in_bound_tensors, 0);       \
+    CTHTensor *output = cth_array_at(CTHTensor)(op->out_bound_tensors, 0);     \
     data_type *input_t = (data_type *)input->values;                           \
     data_type *output_t = (data_type *)output->values;                         \
     double holder = 0;                                                         \
-    for (tensor_size_t i = 0; i < input->meta_info->n_elements; i++) {         \
+    for (cth_tensor_dim_t i = 0; i < input->meta_info->n_elements; i++) {      \
       data_type val = (data_type)modf(input_t[i], &holder);                    \
       expect_fn(output_t[i], val);                                             \
     }                                                                          \
@@ -19,11 +19,11 @@
   } while (0)
 void test_frac(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
                float max) {
-  tensor_dim_t dims[] = {100, 100};
-  tensor_dim_t n_dim = sizeof(dims) / sizeof(dims[0]);
-  CTorchNode *op_node = create_dummy_op_node_unary(CTH_OP_ID_frac, dims, n_dim,
-                                                   data_type, min, max);
-  CTorchOperator *op = op_node->conent.op;
+  cth_tensor_dim_t dims[] = {100, 100};
+  cth_tensor_dim_t n_dim = sizeof(dims) / sizeof(dims[0]);
+  CTHNode *op_node = create_dummy_op_node_unary(CTH_OP_ID_frac, dims, n_dim,
+                                                data_type, min, max);
+  CTHOperator *op = op_node->conent.op;
 
   if (backend == CTH_BACKEND_DEFAULT) {
     op_frac_cpu(op);
@@ -32,8 +32,8 @@ void test_frac(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   }
 
   sample_print(data_type,
-               array_at(CTorchTensor)(op->in_bound_tensors, 0)->values,
-               array_at(CTorchTensor)(op->out_bound_tensors, 0)->values, 2);
+               cth_array_at(CTHTensor)(op->in_bound_tensors, 0)->values,
+               cth_array_at(CTHTensor)(op->out_bound_tensors, 0)->values, 2);
 
   if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||
       data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {

@@ -4,7 +4,7 @@
 
 #include <unistd.h>
 
-void cth_worker_consume(CTorchQueueJob *msg) {
+void cth_worker_consume(CTHQueueJob *msg) {
   // TODO: IMPL
   msg->status = CTH_JOB_STATUS_DONE;
 }
@@ -17,15 +17,15 @@ void *cth_worker(void *scheduler_v) {
    */
   FAIL_NULL_PTR(scheduler_v);
 
-  CTorchScheduler *scheduler = (CTorchScheduler *)scheduler_v;
-  CTorchQueue *exe_queue = scheduler->exe_queue;
-  CTorchQueue *ret_queue = scheduler->ret_queue;
+  CTHScheduler *scheduler = (CTHScheduler *)scheduler_v;
+  CTHQueue *exe_queue = scheduler->exe_queue;
+  CTHQueue *ret_queue = scheduler->ret_queue;
 
-  CTorchQueueJob *msg;
+  CTHQueueJob *msg;
   while (true) {
     // TODO: do we need lock?
     pthread_mutex_lock(&exe_queue->read_mutex);
-    read(exe_queue->pipe_fd[0], &msg, sizeof(CTorchQueueJob *));
+    read(exe_queue->pipe_fd[0], &msg, sizeof(CTHQueueJob *));
     pthread_mutex_unlock(&exe_queue->read_mutex);
 
     if (msg->worker_kill) {
@@ -36,18 +36,18 @@ void *cth_worker(void *scheduler_v) {
 
     // TODO: do we need lock?
     pthread_mutex_lock(&ret_queue->write_mutex);
-    write(ret_queue->pipe_fd[1], &msg, sizeof(CTorchQueueJob *));
+    write(ret_queue->pipe_fd[1], &msg, sizeof(CTHQueueJob *));
     pthread_mutex_unlock(&ret_queue->write_mutex);
   }
 
   pthread_exit(NULL);
 }
 
-CTorchWorkerPool *cth_new_pool(CTorchScheduler *scheduler, CTHConfig *config) {
+CTHWorkerPool *cth_new_pool(CTHScheduler *scheduler, CTHConfig *config) {
   FAIL_NULL_PTR(scheduler);
   FAIL_NULL_PTR(config);
 
-  CTorchWorkerPool *pool = MALLOC(sizeof(CTorchWorkerPool));
+  CTHWorkerPool *pool = MALLOC(sizeof(CTHWorkerPool));
   pool->num_workers = config->num_workers;
   pool->workers = MALLOC(pool->num_workers * sizeof(pthread_t));
 
@@ -71,13 +71,13 @@ CTorchWorkerPool *cth_new_pool(CTorchScheduler *scheduler, CTHConfig *config) {
   return pool;
 }
 
-void cth_close_pool(CTorchScheduler *scheduler, CTorchWorkerPool *pool) {
+void cth_close_pool(CTHScheduler *scheduler, CTHWorkerPool *pool) {
   FAIL_NULL_PTR(scheduler);
   FAIL_NULL_PTR(pool);
   for (cth_thread_n_t i = 0; i < pool->num_workers; i++) {
-    CTorchQueueJob *job = MALLOC(sizeof(CTorchQueueJob));
+    CTHQueueJob *job = MALLOC(sizeof(CTHQueueJob));
     job->worker_kill = true;
-    write(scheduler->exe_queue->pipe_fd[1], &job, sizeof(CTorchQueueJob *));
+    write(scheduler->exe_queue->pipe_fd[1], &job, sizeof(CTHQueueJob *));
   }
 
   // wait till all killed

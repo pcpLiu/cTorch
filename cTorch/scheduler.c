@@ -3,11 +3,11 @@
 
 #include <unistd.h>
 
-CTorchScheduler *cth_new_scheduler(CTHConfig *config, CTorchGraph *graph) {
+CTHScheduler *cth_new_scheduler(CTHConfig *config, CTHGraph *graph) {
   FAIL_NULL_PTR(config);
   FAIL_NULL_PTR(graph);
 
-  CTorchScheduler *scheduler = MALLOC(sizeof(CTorchScheduler));
+  CTHScheduler *scheduler = MALLOC(sizeof(CTHScheduler));
   scheduler->ret_queue = cth_new_queue();
   scheduler->exe_queue = cth_new_queue();
   scheduler->queue_status = cth_new_bit_array(graph->node_list->size);
@@ -21,14 +21,14 @@ CTorchScheduler *cth_new_scheduler(CTHConfig *config, CTorchGraph *graph) {
    * from 0 - N. The queue_status, done_status & ready_status have a assumption
    * that all nodes' node_id are natural numbers starting from 0.
    */
-  scheduler->job_list = new_array(CTorchQueueJob)(graph->node_list->size);
+  scheduler->job_list = cth_new_array(CTHQueueJob)(graph->node_list->size);
   for (list_index_t i = 0; i < graph->node_list->size; i++) {
-    CTorchQueueJob *job = MALLOC(sizeof(CTorchQueueJob));
-    job->node = array_at(CTorchNode)(graph->node_list, i);
+    CTHQueueJob *job = MALLOC(sizeof(CTHQueueJob));
+    job->node = cth_array_at(CTHNode)(graph->node_list, i);
     job->status = CTH_JOB_STATUS_WAIT;
     job->worker_kill = false;
     job->node->node_id = i;
-    array_set(CTorchQueueJob)(scheduler->job_list, job->node->node_id, job);
+    cth_array_set(CTHQueueJob)(scheduler->job_list, job->node->node_id, job);
     cth_set_bit(scheduler->queue_status, i);
   }
 
@@ -36,14 +36,14 @@ CTorchScheduler *cth_new_scheduler(CTHConfig *config, CTorchGraph *graph) {
 }
 
 void cth_search_ready_jobs(
-    CTorchScheduler *scheduler, CTHList(CTorchQueueJob) * ready_jobs) {
+    CTHScheduler *scheduler, CTHList(CTHQueueJob) * ready_jobs) {
   cth_bit_array_t *queue_status = scheduler->queue_status;
   cth_bit_array_t *done_status = scheduler->done_status;
   cth_bit_array_t *ready_status = scheduler->ready_status;
 
-  CTorchNode *queue_node = NULL;
-  CTorchQueueJob *queue_job = NULL;
-  for (cth_bit_array_index_t queue_job_id = 0;
+  CTHNode *queue_node = NULL;
+  CTHQueueJob *queue_job = NULL;
+  for (cth_bit_cth_array_index_t queue_job_id = 0;
        queue_job_id < queue_status->size;
        queue_job_id++) {
     /* Job is not in queue */
@@ -58,15 +58,15 @@ void cth_search_ready_jobs(
      */
 
     /* This assumes job_list is sorted by node_id */
-    queue_job = array_at(CTorchQueueJob)(scheduler->job_list, queue_job_id);
+    queue_job = cth_array_at(CTHQueueJob)(scheduler->job_list, queue_job_id);
     queue_node = queue_job->node;
 
     bool job_ready = true;
     for (list_index_t i = 0; i < queue_node->inbound_nodes->size; i++) {
       // node_id_t dependent_node_id =
-      //     cth_list_at(CTorchNode)(queue_node->inbound_nodes, i)->node_id;
+      //     cth_list_at(CTHNode)(queue_node->inbound_nodes, i)->node_id;
       node_id_t dependent_node_id =
-          array_at(CTorchNode)(queue_node->inbound_nodes, i)->node_id;
+          cth_array_at(CTHNode)(queue_node->inbound_nodes, i)->node_id;
 
       /* Dependent is not done. Queue job is not ready */
       if (!cth_is_bit_set(done_status, dependent_node_id)) {
@@ -80,16 +80,16 @@ void cth_search_ready_jobs(
       cth_clear_bit(scheduler->queue_status, queue_job->node->node_id);
       cth_set_bit(scheduler->ready_status, queue_job->node->node_id);
       queue_job->status = CTH_JOB_STATUS_READY;
-      cth_insert_list(CTorchQueueJob)(ready_jobs, queue_job);
+      cth_insert_list(CTHQueueJob)(ready_jobs, queue_job);
     }
   }
 }
 
-void cth_start_scheduler_v3(CTorchScheduler *scheduler) {
+void cth_start_scheduler_v3(CTHScheduler *scheduler) {
   FAIL_NULL_PTR(scheduler);
 
-  CTHList(CTorchQueueJob) *ready_jobs = cth_new_list(CTorchQueueJob)();
-  CTorchQueueJob *job = NULL;
+  CTHList(CTHQueueJob) *ready_jobs = cth_new_list(CTHQueueJob)();
+  CTHQueueJob *job = NULL;
 
   /**
    * Scheduler main loop:
@@ -100,18 +100,18 @@ void cth_start_scheduler_v3(CTorchScheduler *scheduler) {
   while (!cth_are_all_bits_set(scheduler->done_status)) {
     cth_search_ready_jobs(scheduler, ready_jobs);
     while (ready_jobs->size > 0) {
-      job = cth_list_pop(CTorchQueueJob)(ready_jobs);
-      write(scheduler->exe_queue->pipe_fd[1], &job, sizeof(CTorchQueueJob *));
+      job = cth_list_pop(CTHQueueJob)(ready_jobs);
+      write(scheduler->exe_queue->pipe_fd[1], &job, sizeof(CTHQueueJob *));
     }
 
-    read(scheduler->ret_queue->pipe_fd[0], &job, sizeof(CTorchQueueJob *));
+    read(scheduler->ret_queue->pipe_fd[0], &job, sizeof(CTHQueueJob *));
     /* Mark status from ready to done */
     cth_clear_bit(scheduler->ready_status, job->node->node_id);
     cth_set_bit(scheduler->done_status, job->node->node_id);
   }
 }
 
-void cth_start_scheduler(CTorchScheduler *scheduler) {
+void cth_start_scheduler(CTHScheduler *scheduler) {
   // cth_start_scheduler_v1(scheduler);
   // cth_start_scheduler_v2(scheduler);
   cth_start_scheduler_v3(scheduler);

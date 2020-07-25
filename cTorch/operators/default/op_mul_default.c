@@ -13,15 +13,15 @@
  * @note Assume input and output tensor have same datatypes. If not, this op
  * will fail.
  */
-void op_mul_cpu(CTorchOperator *op) {
+void op_mul_cpu(CTHOperator *op) {
   FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(op, 2, 1);
   OP_FAIL_ON_DTYPE(op, CTH_TENSOR_DATA_TYPE_BOOL);
   // TODO: check dat type match
 
-  CTorchTensor *in_a = array_at(CTorchTensor)(op->in_bound_tensors, 0);
-  CTorchTensor *in_b = array_at(CTorchTensor)(op->in_bound_tensors, 1);
-  CTorchTensor *out = array_at(CTorchTensor)(op->out_bound_tensors, 0);
-  tensor_size_t N = in_a->meta_info->n_elements;
+  CTHTensor *in_a = cth_array_at(CTHTensor)(op->in_bound_tensors, 0);
+  CTHTensor *in_b = cth_array_at(CTHTensor)(op->in_bound_tensors, 1);
+  CTHTensor *out = cth_array_at(CTHTensor)(op->out_bound_tensors, 0);
+  cth_tensor_dim_t N = in_a->meta_info->n_elements;
   _cpu_1d_map_elewise_binary(
       in_a->values,
       in_b->values,

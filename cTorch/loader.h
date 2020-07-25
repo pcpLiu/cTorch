@@ -9,6 +9,6 @@
 
   Note: caller needs to release this plan manually.
 */
-CTorchGraph *load_graph(char *);
+CTHGraph *load_graph(char *);
 
 #endif /* LOADER_H */

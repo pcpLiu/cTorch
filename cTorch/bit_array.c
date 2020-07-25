@@ -17,7 +17,7 @@
   }                                                                            \
   while (0)
 
-cth_bit_array_t *cth_new_bit_array(cth_bit_array_index_t size) {
+cth_bit_array_t *cth_new_bit_array(cth_bit_cth_array_index_t size) {
   FORCE_NOT_EQ(0, size, "bit array size could not be 0");
 
   cth_bit_array_t *array = MALLOC(sizeof(cth_bit_array_t));
@@ -26,13 +26,13 @@ cth_bit_array_t *cth_new_bit_array(cth_bit_array_index_t size) {
   array->bits = MALLOC(sizeof(cth_bit_array_int_t) * array->num_ints);
 
   /* Clear all bits */
-  for (cth_bit_array_index_t i = 0; i < array->num_ints; i++) {
+  for (cth_bit_cth_array_index_t i = 0; i < array->num_ints; i++) {
     *(array->bits + i) = 0;
   }
   return array;
 }
 
-void cth_set_bit(cth_bit_array_t *array, cth_bit_array_index_t i) {
+void cth_set_bit(cth_bit_array_t *array, cth_bit_cth_array_index_t i) {
   FORCE_BITS_SIZE(i, array->size - 1);
   FAIL_NULL_PTR(array);
 
@@ -41,7 +41,7 @@ void cth_set_bit(cth_bit_array_t *array, cth_bit_array_index_t i) {
   *(array->bits + i / BITS_INT_UNIT_SIZE) |= flag;
 }
 
-void cth_clear_bit(cth_bit_array_t *array, cth_bit_array_index_t i) {
+void cth_clear_bit(cth_bit_array_t *array, cth_bit_cth_array_index_t i) {
   FORCE_BITS_SIZE(i, array->size - 1);
   FAIL_NULL_PTR(array);
 
@@ -50,7 +50,7 @@ void cth_clear_bit(cth_bit_array_t *array, cth_bit_array_index_t i) {
   *(array->bits + i / BITS_INT_UNIT_SIZE) &= flag;
 }
 
-bool cth_is_bit_set(cth_bit_array_t *array, cth_bit_array_index_t i) {
+bool cth_is_bit_set(cth_bit_array_t *array, cth_bit_cth_array_index_t i) {
   FORCE_BITS_SIZE(i, array->size - 1);
   FAIL_NULL_PTR(array);
 
@@ -69,7 +69,7 @@ bool cth_are_all_bits_clear(cth_bit_array_t *array) {
   /**
    * All integers' values are 0
    */
-  for (cth_bit_array_index_t i = 0; i < array->num_ints; i++) {
+  for (cth_bit_cth_array_index_t i = 0; i < array->num_ints; i++) {
     if (*(array->bits + i) != 0) {
       return false;
     }
@@ -86,7 +86,7 @@ bool cth_are_all_bits_set(cth_bit_array_t *array) {
    */
   cth_bit_array_int_t all_one = ~(0 & 0);
   if (array->num_ints > 1) {
-    for (cth_bit_array_index_t i = 0; i < array->num_ints - 1; i++) {
+    for (cth_bit_cth_array_index_t i = 0; i < array->num_ints - 1; i++) {
       if (*(array->bits + i) != all_one) {
         return false;
       }

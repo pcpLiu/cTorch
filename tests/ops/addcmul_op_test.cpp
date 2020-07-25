@@ -5,12 +5,12 @@
 #define _verify_addcmul(dtype, input, tensor_1, tensor_2, multiplier, output,  \
                         expect_eq)                                             \
   do {                                                                         \
-    tensor_size_t N = input->meta_info->n_elements;                            \
+    cth_tensor_dim_t N = input->meta_info->n_elements;                         \
     dtype *input_t = (dtype *)input->values;                                   \
     dtype *tensor_1_t = (dtype *)tensor_1->values;                             \
     dtype *tensor_2_t = (dtype *)tensor_2->values;                             \
     dtype *output_t = (dtype *)output->values;                                 \
-    for (tensor_size_t i = 0; i < N; i++) {                                    \
+    for (cth_tensor_dim_t i = 0; i < N; i++) {                                 \
       dtype expect_val =                                                       \
           input_t[i] + multiplier * tensor_1_t[i] * tensor_2_t[i];             \
       expect_eq(expect_val, output_t[i]);                                      \
@@ -19,30 +19,28 @@
 
 void test_addcmul(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type,
                   float min, float max) {
-  tensor_dim_t dims[] = {100, 100};
-  tensor_dim_t n_dim = 2;
-  CTorchOperator *op = create_dummy_op_with_param(CTH_OP_ID_add, 3, 1, 1);
+  cth_tensor_dim_t dims[] = {100, 100};
+  cth_tensor_dim_t n_dim = 2;
+  CTHOperator *op = create_dummy_op_with_param(CTH_OP_ID_add, 3, 1, 1);
 
-  CTorchTensor *input = create_dummy_tensor(dims, n_dim, data_type, min, max);
-  array_set(CTorchTensor)(op->in_bound_tensors, 0, input);
+  CTHTensor *input = create_dummy_tensor(dims, n_dim, data_type, min, max);
+  cth_array_set(CTHTensor)(op->in_bound_tensors, 0, input);
 
-  CTorchTensor *tensor_1 =
-      create_dummy_tensor(dims, n_dim, data_type, min, max);
+  CTHTensor *tensor_1 = create_dummy_tensor(dims, n_dim, data_type, min, max);
   tensor_1->meta_info->tensor_name = "tensor_1";
-  array_set(CTorchTensor)(op->in_bound_tensors, 1, tensor_1);
+  cth_array_set(CTHTensor)(op->in_bound_tensors, 1, tensor_1);
 
-  CTorchTensor *tensor_2 =
-      create_dummy_tensor(dims, n_dim, data_type, min, max);
+  CTHTensor *tensor_2 = create_dummy_tensor(dims, n_dim, data_type, min, max);
   tensor_2->meta_info->tensor_name = "tensor_2";
-  array_set(CTorchTensor)(op->in_bound_tensors, 2, tensor_2);
+  cth_array_set(CTHTensor)(op->in_bound_tensors, 2, tensor_2);
 
-  CTorchTensor *output = create_dummy_tensor(dims, n_dim, data_type, min, max);
-  array_set(CTorchTensor)(op->out_bound_tensors, 0, output);
+  CTHTensor *output = create_dummy_tensor(dims, n_dim, data_type, min, max);
+  cth_array_set(CTHTensor)(op->out_bound_tensors, 0, output);
 
-  CTorchParam *param = (CTorchParam *)MALLOC(sizeof(CTorchParam));
+  CTHParam *param = (CTHParam *)MALLOC(sizeof(CTHParam));
   param->type = CTH_PARAM_TYPE_MULTIPLIER_FLOAT32;
   param->data.multiplier = 0.5;
-  array_set(CTorchParam)(op->params, 0, param);
+  cth_array_set(CTHParam)(op->params, 0, param);
 
   op_addcmul_cpu(op);
 

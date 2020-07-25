@@ -108,22 +108,17 @@ typedef uint16_t cth_thread_n_t;
 /**
  * Universal struct deep free function name in cToRCH
  */
-#define struct_deep_free(data_type) free_deep_##data_type
+#define struct_deep_free(data_type) cth_free_deep_##data_type
 
 /**
- * Type to denote tensor dimension
+ * Type to denote tensor dimension & size
  */
-#define tensor_dim_t uint32_t
+#define cth_tensor_dim_t uint32_t
 
 /**
- * Type to denote tensor size
+ * @brief Index type of result tensro in reduce index op
  */
-#define tensor_size_t uint32_t
-
-/**
- * @brief Tensor reduce action index data type
- */
-#define tensor_reduce_index_t int64_t
+#define cth_tensor_reduce_index_t int64_t
 
 /**
  * Pi value. 10 digits
@@ -137,9 +132,10 @@ typedef uint16_t cth_thread_n_t;
 */
 extern char *CTH_OPERATOR_NAMES[ENABLED_OP_NUM];
 
-/*
-  Operator ID enum
-*/
+/**
+ * @brief Operator ID enum
+ * @note ending ';' is required
+ */
 typedef enum CTH_OP_ID { FOREACH_OP_ID(_ENUMFY_OP) } CTH_OP_ID;
 
 #endif /* CONSTS_H */

@@ -13,42 +13,42 @@
 
 #define CPU_CORES 4
 
-CTorchTensor *create_dummy_tensor(tensor_dim_t *dims, tensor_dim_t n_dim,
-                                  CTH_TENSOR_DATA_TYPE data_type, float min,
-                                  float max);
+CTHTensor *create_dummy_tensor(cth_tensor_dim_t *dims, cth_tensor_dim_t n_dim,
+                               CTH_TENSOR_DATA_TYPE data_type, float min,
+                               float max);
 
 /**
  * Create a dummy op node with one input and one output.
  * Input & output has same dimensions.
  */
-CTorchNode *create_dummy_op_node_unary(CTH_OP_ID op_id, uint32_t *dims,
-                                       tensor_dim_t n_dim,
-                                       CTH_TENSOR_DATA_TYPE data_type,
-                                       float min, float max);
+CTHNode *create_dummy_op_node_unary(CTH_OP_ID op_id, uint32_t *dims,
+                                    cth_tensor_dim_t n_dim,
+                                    CTH_TENSOR_DATA_TYPE data_type, float min,
+                                    float max);
 
 /*
   Create a dummy operator.
 */
-CTorchOperator *create_dummy_op(CTH_OP_ID op_id, array_index_t num_inputs,
-                                array_index_t num_outputs);
+CTHOperator *create_dummy_op(CTH_OP_ID op_id, cth_array_index_t num_inputs,
+                             cth_array_index_t num_outputs);
 
 /*
   Create a dummy operator.
 */
-CTorchOperator *create_dummy_op_with_param(CTH_OP_ID op_id,
-                                           array_index_t num_inputs,
-                                           array_index_t num_outputs,
-                                           array_index_t num_param);
+CTHOperator *create_dummy_op_with_param(CTH_OP_ID op_id,
+                                        cth_array_index_t num_inputs,
+                                        cth_array_index_t num_outputs,
+                                        cth_array_index_t num_param);
 /*
   Create a dummy node without any information.
 */
-CTorchNode *create_dummy_node(node_id_t id, array_index_t inbound_size,
-                              array_index_t outbound_size);
+CTHNode *create_dummy_node(node_id_t id, cth_array_index_t inbound_size,
+                           cth_array_index_t outbound_size);
 
 /**
  * Create a dummy graph
  */
-CTorchGraph *create_dummy_graph(array_index_t num_nodes);
+CTHGraph *create_dummy_graph(cth_array_index_t num_nodes);
 
 /**
  * Rand flost in range
@@ -69,14 +69,14 @@ float _rand_float(float min, float max);
  */
 #define _ele_wise_equal_unary(op, type, eq_func, verify_func)                  \
   {                                                                            \
-    CTorchTensor *tensor_input =                                               \
-        array_at(CTorchTensor)(op->in_bound_tensors, 0);                       \
+    CTHTensor *tensor_input =                                                  \
+        cth_array_at(CTHTensor)(op->in_bound_tensors, 0);                      \
     type *input = (type *)tensor_input->values;                                \
-    CTorchTensor *tensor_output =                                              \
-        array_at(CTorchTensor)(op->out_bound_tensors, 0);                      \
+    CTHTensor *tensor_output =                                                 \
+        cth_array_at(CTHTensor)(op->out_bound_tensors, 0);                     \
     type *output = (type *)tensor_output->values;                              \
-    tensor_size_t n_ele = tensor_input->meta_info->n_elements;                 \
-    for (tensor_size_t i = 0; i < n_ele; i++) {                                \
+    cth_tensor_dim_t n_ele = tensor_input->meta_info->n_elements;              \
+    for (cth_tensor_dim_t i = 0; i < n_ele; i++) {                             \
       type expect_result = (type)verify_func(input[i]);                        \
       eq_func(expect_result, output[i]);                                       \
     }                                                                          \
@@ -90,17 +90,17 @@ float _rand_float(float min, float max);
 #define _ele_wise_equal_unary_pytorch(op, type, eq_func, eq_precision,         \
                                       torch_call)                              \
   {                                                                            \
-    CTorchTensor *tensor_input =                                               \
-        array_at(CTorchTensor)(op->in_bound_tensors, 0);                       \
-    CTorchTensor *tensor_output =                                              \
-        array_at(CTorchTensor)(op->out_bound_tensors, 0);                      \
+    CTHTensor *tensor_input =                                                  \
+        cth_array_at(CTHTensor)(op->in_bound_tensors, 0);                      \
+    CTHTensor *tensor_output =                                                 \
+        cth_array_at(CTHTensor)(op->out_bound_tensors, 0);                     \
     type *output = (type *)tensor_output->values;                              \
-    tensor_size_t n_ele = tensor_input->meta_info->n_elements;                 \
+    cth_tensor_dim_t n_ele = tensor_input->meta_info->n_elements;              \
                                                                                \
     auto pytorch_in_tensor = create_torch_tensor(tensor_input);                \
     auto pytorch_out_tensor = torch_call(pytorch_in_tensor);                   \
     auto pytorch_result_tensor_flat = pytorch_out_tensor.reshape({n_ele});     \
-    for (tensor_size_t i = 0; i < n_ele; i++) {                                \
+    for (cth_tensor_dim_t i = 0; i < n_ele; i++) {                             \
       eq_func(pytorch_result_tensor_flat[i].item<type>(), output[i],           \
               eq_precision);                                                   \
     }                                                                          \
@@ -111,17 +111,17 @@ float _rand_float(float min, float max);
  */
 #define _ele_wise_equal_binary(op, type, eq_func, verify_func)                 \
   {                                                                            \
-    CTorchTensor *tensor_input_a =                                             \
-        array_at(CTorchTensor)(op->in_bound_tensors, 0);                       \
-    CTorchTensor *tensor_input_b =                                             \
-        array_at(CTorchTensor)(op->in_bound_tensors, 1);                       \
+    CTHTensor *tensor_input_a =                                                \
+        cth_array_at(CTHTensor)(op->in_bound_tensors, 0);                      \
+    CTHTensor *tensor_input_b =                                                \
+        cth_array_at(CTHTensor)(op->in_bound_tensors, 1);                      \
     type *input_a = (type *)tensor_input_a->values;                            \
     type *input_b = (type *)tensor_input_b->values;                            \
-    CTorchTensor *tensor_output =                                              \
-        array_at(CTorchTensor)(op->out_bound_tensors, 0);                      \
+    CTHTensor *tensor_output =                                                 \
+        cth_array_at(CTHTensor)(op->out_bound_tensors, 0);                     \
     type *output = (type *)tensor_output->values;                              \
     uint64_t n_ele = tensor_input_a->meta_info->n_elements;                    \
-    for (tensor_size_t i = 0; i < n_ele; i++) {                                \
+    for (cth_tensor_dim_t i = 0; i < n_ele; i++) {                             \
       type expect_result = verify_func(input_a[i], input_b[i]);                \
       eq_func(expect_result, output[i]);                                       \
     }                                                                          \
@@ -132,23 +132,23 @@ float _rand_float(float min, float max);
  */
 #define _reduce_op(op, in_type, out_type, pytorch_call, eq_func)               \
   {                                                                            \
-    CTorchTensor *tensor_input =                                               \
-        array_at(CTorchTensor)(op->in_bound_tensors, 0);                       \
-    CTorchTensor *tensor_output =                                              \
-        array_at(CTorchTensor)(op->out_bound_tensors, 0);                      \
+    CTHTensor *tensor_input =                                                  \
+        cth_array_at(CTHTensor)(op->in_bound_tensors, 0);                      \
+    CTHTensor *tensor_output =                                                 \
+        cth_array_at(CTHTensor)(op->out_bound_tensors, 0);                     \
     out_type *output = (out_type *)tensor_output->values;                      \
-    CTorchParam *dim_param =                                                   \
+    CTHParam *dim_param =                                                      \
         cth_get_param_by_type(op, CTH_PARAM_TYPE_DIM_INT32, true);             \
-    tensor_dim_t reduce_dim = (tensor_dim_t)dim_param->data.dim;               \
+    cth_tensor_dim_t reduce_dim = (cth_tensor_dim_t)dim_param->data.dim;       \
                                                                                \
     auto pytorch_in_tensor = create_torch_tensor(tensor_input);                \
     auto pytorch_result_tensor = pytorch_call(pytorch_in_tensor, reduce_dim);  \
                                                                                \
-    tensor_size_t out_n_ele = tensor_output->meta_info->n_elements;            \
+    cth_tensor_dim_t out_n_ele = tensor_output->meta_info->n_elements;         \
     auto pytorch_result_tensor_flat =                                          \
         pytorch_result_tensor.reshape({out_n_ele});                            \
     auto expect_result = (int64_t *)pytorch_result_tensor_flat.data_ptr();     \
-    for (tensor_size_t i = 0; i < out_n_ele; i++) {                            \
+    for (cth_tensor_dim_t i = 0; i < out_n_ele; i++) {                         \
       eq_func(expect_result[i], output[i]);                                    \
     }                                                                          \
   }
@@ -162,10 +162,10 @@ float _rand_float(float min, float max);
  * @param i
  */
 void sample_print(CTH_TENSOR_DATA_TYPE type, void *in_ptr, void *out_ptr,
-                  tensor_size_t i);
+                  cth_tensor_dim_t i);
 
 void sample_print_triple(CTH_TENSOR_DATA_TYPE type, void *in_ptr_1,
-                         void *in_ptr_2, void *out_ptr, tensor_size_t i);
+                         void *in_ptr_2, void *out_ptr, cth_tensor_dim_t i);
 
 inline int *heap_int(int x) {
   int *ptr = (int *)MALLOC(sizeof(int));
@@ -174,7 +174,7 @@ inline int *heap_int(int x) {
 }
 
 // for testFreeListDeep
-inline void free_deep_int(int *x) { FREE(x); }
+inline void cth_free_deep_int(int *x) { FREE(x); }
 
 /**
  * @brief Generate random dim
@@ -182,8 +182,8 @@ inline void free_deep_int(int *x) { FREE(x); }
  * @param dims
  * @param n_dim
  */
-void _rand_dims(tensor_dim_t *dims, tensor_dim_t n_dim, tensor_dim_t min,
-                tensor_dim_t max);
+void _rand_dims(cth_tensor_dim_t *dims, cth_tensor_dim_t n_dim,
+                cth_tensor_dim_t min, cth_tensor_dim_t max);
 
 /**
  * @brief Get reduc dims
@@ -193,8 +193,9 @@ void _rand_dims(tensor_dim_t *dims, tensor_dim_t n_dim, tensor_dim_t min,
  * @param reduce_dim
  * @param reduce_dims
  */
-void _get_reduce_dims(tensor_dim_t *dims, tensor_dim_t n_dim,
-                      tensor_dim_t reduce_dim, tensor_dim_t *reduce_dims);
+void _get_reduce_dims(cth_tensor_dim_t *dims, cth_tensor_dim_t n_dim,
+                      cth_tensor_dim_t reduce_dim,
+                      cth_tensor_dim_t *reduce_dims);
 
 /**
  * @brief Generate randin int [min, max]
@@ -205,7 +206,7 @@ void _get_reduce_dims(tensor_dim_t *dims, tensor_dim_t n_dim,
  */
 int _rand_int(int min, int max);
 
-void _print_index(tensor_dim_t *dims, tensor_dim_t n_dim);
+void _print_index(cth_tensor_dim_t *dims, cth_tensor_dim_t n_dim);
 
 // #ifdef __cplusplus
 // }

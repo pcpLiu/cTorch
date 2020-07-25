@@ -10,9 +10,9 @@
     result_offset,                                                             \
     reduce_size)                                                               \
   do {                                                                         \
-    tensor_dim_t max_i = 0;                                                    \
+    cth_tensor_dim_t max_i = 0;                                                \
     input_data_type max_val = in_ptr[start_offset];                            \
-    for (tensor_dim_t i = 0; i < reduce_size; i++) {                           \
+    for (cth_tensor_dim_t i = 0; i < reduce_size; i++) {                       \
       input_data_type val = in_ptr[start_offset + i * inner_offset];           \
       if (val >= max_val) {                                                    \
         max_val = val;                                                         \
@@ -41,7 +41,7 @@
  *      - dim (int): the dimension to reduce. If `-1`, the argmax of
  *        the flattened input is returned.
  */
-void op_argmax_cpu(CTorchOperator *op) {
+void op_argmax_cpu(CTHOperator *op) {
   FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(op, 1, 1);
   FORCE_OP_PARAM_NUM(op, 1);
   FORCE_OP_PARAM_EXIST(op, CTH_PARAM_TYPE_DIM_INT32);
@@ -49,9 +49,10 @@ void op_argmax_cpu(CTorchOperator *op) {
   CTH_TENSOR_DATA_TYPE types[1] = {
       CTH_TENSOR_DATA_TYPE_INT_64,
   };
-  CTorchTensor *out = array_at(CTorchTensor)(op->out_bound_tensors, 0);
-  FORCE_TENSOR_TYPES(out, types, 1);
+  CTHTensor *out = cth_array_at(CTHTensor)(op->out_bound_tensors, 0);
+  CTH_FORCE_TENSOR_TYPES(out, types, 1);
 
-  CTorchTensor *in = array_at(CTorchTensor)(op->in_bound_tensors, 0);
-  _cpu_reduce_arg_generic(op, in->meta_info->data_type, _cth_argmax);
+  CTHTensor *in = cth_array_at(CTHTensor)(op->in_bound_tensors, 0);
+  _cpu_reduce_arg_generic(
+      op, in->meta_info->data_type, cth_tensor_reduce_index_t, _cth_argmax);
 }

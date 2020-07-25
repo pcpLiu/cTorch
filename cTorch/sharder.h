@@ -21,7 +21,7 @@
  */
 
 void cth_sharding_op_elewise(
-    CTorchOperator *op, cth_thread_n_t n_shards, CTHList(CTorchOperator) * ops);
+    CTHOperator *op, cth_thread_n_t n_shards, CTHList(CTHOperator) * ops);
 
 /**
  * Sharding a tensor for element-wise operator
@@ -38,8 +38,6 @@ void cth_sharding_op_elewise(
  *  List of sharded tensors
  */
 void cth_sharding_tensor_elewise(
-    CTorchTensor *tensor,
-    cth_thread_n_t n_shards,
-    CTHList(CTorchTensor) * tensors);
+    CTHTensor *tensor, cth_thread_n_t n_shards, CTHList(CTHTensor) * tensors);
 
 #endif /* SHARDER_H */

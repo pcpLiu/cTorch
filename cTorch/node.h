@@ -8,9 +8,9 @@
 #include <stdlib.h>
 
 typedef union {
-  CTorchTensor *tensor;
-  CTorchOperator *op;
-} CTorchNodeContent;
+  CTHTensor *tensor;
+  CTHOperator *op;
+} CTHNodeContent;
 
 /**
  * Node id type
@@ -18,33 +18,33 @@ typedef union {
 typedef uint32_t node_id_t;
 
 /*
-  CTorchNode.
+  CTHNode.
   This struct represents a computational node in a torch graph.
   It could be either a operator or a tensor.
 */
 typedef struct {
   node_id_t node_id;       /* Node id. Starting from 0 and consecutive */
   CTH_NODE_TYPE node_type; /* Node type: op or tensor */
-  struct CTHArray(CTorchNode) * inbound_nodes;  /* Inbounds nodes */
-  struct CTHArray(CTorchNode) * outbound_nodes; /* Inbounds nodes */
-  CTorchNodeContent conent;                     /* Content */
-} CTorchNode;
+  struct CTHArray(CTHNode) * inbound_nodes;  /* Inbounds nodes */
+  struct CTHArray(CTHNode) * outbound_nodes; /* Inbounds nodes */
+  CTHNodeContent conent;                     /* Content */
+} CTHNode;
 
 // Array macros
-def_array(CTorchNode);
-declare_new_array_func(CTorchNode);
-declare_array_at_func(CTorchNode);
-declare_array_set_func(CTorchNode);
+cth_def_array(CTHNode);
+cth_declare_new_array_func(CTHNode);
+cth_declare_array_at_func(CTHNode);
+cth_declare_array_set_func(CTHNode);
 
 // List macros
-cth_def_list_item(CTorchNode);
-def_list(CTorchNode);
-cth_declare_new_list_item_func(CTorchNode);
-cth_declare_new_list_func(CTorchNode);
-cth_declare_insert_list_func(CTorchNode);
-cth_declare_list_contains_data_func(CTorchNode);
-cth_declare_list_contains_item_func(CTorchNode);
-cth_declare_list_at_func(CTorchNode);
-cth_declare_list_pop_func(CTorchNode);
+cth_def_list_item(CTHNode);
+def_list(CTHNode);
+cth_declare_new_list_item_func(CTHNode);
+cth_declare_new_list_func(CTHNode);
+cth_declare_insert_list_func(CTHNode);
+cth_declare_list_contains_data_func(CTHNode);
+cth_declare_list_contains_item_func(CTHNode);
+cth_declare_list_at_func(CTHNode);
+cth_declare_list_pop_func(CTHNode);
 
 #endif /* NODE_H */

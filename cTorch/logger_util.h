@@ -64,18 +64,6 @@
     }                                                                          \
   } while (0)
 
-/*
-  Exit if val is NAN.
-
-  If global config CTH_NAN_EXIT is false, it will not exit.
-*/
-#define NAN_EXIT(val)                                                          \
-  do {                                                                         \
-    if (val != val && CTH_NAN_EXIT == true) {                                  \
-      FAIL_EXIT(CTH_LOG_ERR, "Value is NaN");                                  \
-    }                                                                          \
-  } while (0)
-
 /**
  * Force a == b. This assumes a, b are primiteve types.
  */
@@ -106,13 +94,6 @@
 */
 #define CTH_LOG_ERR stderr
 #define CTH_LOG_INFO stdout
-
-/*
-  If true, execution will stop and exit if computation outputs NaN values.
-
-  Default: false
-*/
-extern bool CTH_NAN_EXIT;
 
 /*
   If true, LOG_F() will print out. Otherwise, ommit message.

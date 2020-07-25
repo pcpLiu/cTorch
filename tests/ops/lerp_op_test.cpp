@@ -4,15 +4,15 @@
 
 #define _verify_lerp(op, data_type, expect_fn)                                 \
   do {                                                                         \
-    CTorchTensor *input_1 = array_at(CTorchTensor)(op->in_bound_tensors, 0);   \
-    CTorchTensor *input_2 = array_at(CTorchTensor)(op->in_bound_tensors, 1);   \
-    CTorchTensor *input_3 = array_at(CTorchTensor)(op->in_bound_tensors, 2);   \
-    CTorchTensor *output = array_at(CTorchTensor)(op->out_bound_tensors, 0);   \
+    CTHTensor *input_1 = cth_array_at(CTHTensor)(op->in_bound_tensors, 0);     \
+    CTHTensor *input_2 = cth_array_at(CTHTensor)(op->in_bound_tensors, 1);     \
+    CTHTensor *input_3 = cth_array_at(CTHTensor)(op->in_bound_tensors, 2);     \
+    CTHTensor *output = cth_array_at(CTHTensor)(op->out_bound_tensors, 0);     \
     data_type *input_1_t = (data_type *)input_1->values;                       \
     data_type *input_2_t = (data_type *)input_2->values;                       \
     data_type *input_3_t = (data_type *)input_3->values;                       \
     data_type *output_t = (data_type *)output->values;                         \
-    for (tensor_size_t i = 0; i < input_1->meta_info->n_elements; i++) {       \
+    for (cth_tensor_dim_t i = 0; i < input_1->meta_info->n_elements; i++) {    \
       data_type val =                                                          \
           input_1_t[i] + input_3_t[i] * (input_2_t[i] - input_1_t[i]);         \
       expect_fn(output_t[i], val);                                             \
@@ -22,19 +22,19 @@
 
 void test_lerp(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
                float max) {
-  tensor_dim_t dims[] = {100, 100};
-  tensor_dim_t n_dim = sizeof(dims) / sizeof(dims[0]);
-  CTorchOperator *op = create_dummy_op(CTH_OP_ID_add, 3, 1);
-  array_set(CTorchTensor)(
+  cth_tensor_dim_t dims[] = {100, 100};
+  cth_tensor_dim_t n_dim = sizeof(dims) / sizeof(dims[0]);
+  CTHOperator *op = create_dummy_op(CTH_OP_ID_add, 3, 1);
+  cth_array_set(CTHTensor)(
       op->in_bound_tensors, 0,
       create_dummy_tensor(dims, n_dim, data_type, min, max));
-  array_set(CTorchTensor)(
+  cth_array_set(CTHTensor)(
       op->in_bound_tensors, 1,
       create_dummy_tensor(dims, n_dim, data_type, min, max));
-  array_set(CTorchTensor)(
+  cth_array_set(CTHTensor)(
       op->in_bound_tensors, 2,
       create_dummy_tensor(dims, n_dim, data_type, min, max));
-  array_set(CTorchTensor)(
+  cth_array_set(CTHTensor)(
       op->out_bound_tensors, 0,
       create_dummy_tensor(dims, n_dim, data_type, min, max));
 

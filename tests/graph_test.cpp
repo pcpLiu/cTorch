@@ -7,28 +7,28 @@
 //   d --------|
 // */
 // TEST(cTorchGraphTest, test_get_input_nodes) {
-//   CTorchNode a = {
+//   CTHNode a = {
 //       .node_type = CTH_NODE_TYPE_DATA,
 //       .exe_status = CTH_NODE_EXE_STATUS_CLEAN,
 //       .inbound_nodes = NULL,
-//       .outbound_nodes = NewCTHList(ListTypeName(CTorchNode)),
+//       .outbound_nodes = NewCTHList(ListTypeName(CTHNode)),
 //   };
-//   CTorchNode b = {
+//   CTHNode b = {
 //       .node_type = CTH_NODE_TYPE_DATA,
 //       .exe_status = CTH_NODE_EXE_STATUS_CLEAN,
-//       .inbound_nodes = NewCTHList(ListTypeName(CTorchNode)),
-//       .outbound_nodes = NewCTHList(ListTypeName(CTorchNode)),
+//       .inbound_nodes = NewCTHList(ListTypeName(CTHNode)),
+//       .outbound_nodes = NewCTHList(ListTypeName(CTHNode)),
 //   };
-//   CTorchNode c = {
+//   CTHNode c = {
 //       .node_type = CTH_NODE_TYPE_DATA,
 //       .exe_status = CTH_NODE_EXE_STATUS_CLEAN,
-//       .inbound_nodes = NewCTHList(ListTypeName(CTorchNode)),
-//       .outbound_nodes = NewCTHList(ListTypeName(CTorchNode)),
+//       .inbound_nodes = NewCTHList(ListTypeName(CTHNode)),
+//       .outbound_nodes = NewCTHList(ListTypeName(CTHNode)),
 //   };
-//   CTorchNode d = {
+//   CTHNode d = {
 //       .node_type = CTH_NODE_TYPE_DATA,
 //       .exe_status = CTH_NODE_EXE_STATUS_CLEAN,
 //       .inbound_nodes = NULL,
-//       .outbound_nodes = NewCTHList(ListTypeName(CTorchNode)),
+//       .outbound_nodes = NewCTHList(ListTypeName(CTHNode)),
 //   };
 // }

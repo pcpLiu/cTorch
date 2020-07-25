@@ -5,15 +5,15 @@
 
 #include <string.h>
 
-cth_impl_new_list_item_func(CTorchOperator);
-cth_impl_new_list_func(CTorchOperator);
-cth_impl_insert_list_func(CTorchOperator);
-cth_impl_list_at_func(CTorchOperator);
-cth_impl_list_pop_func(CTorchOperator);
-cth_impl_free_list_func(CTorchOperator);
-cth_impl_free_list_deep_func(CTorchOperator);
+cth_impl_new_list_item_func(CTHOperator);
+cth_impl_new_list_func(CTHOperator);
+cth_impl_insert_list_func(CTHOperator);
+cth_impl_list_at_func(CTHOperator);
+cth_impl_list_pop_func(CTHOperator);
+cth_impl_free_list_func(CTHOperator);
+cth_impl_free_list_deep_func(CTHOperator);
 
-void FORCE_INPUT_OUTPUT_TSR_NUM_EQ(CTorchOperator *op) {
+void FORCE_INPUT_OUTPUT_TSR_NUM_EQ(CTHOperator *op) {
   FAIL_NULL_PTR(op);
 
   if (op->in_bound_tensors->size != op->out_bound_tensors->size) {
@@ -23,19 +23,19 @@ void FORCE_INPUT_OUTPUT_TSR_NUM_EQ(CTorchOperator *op) {
   }
 }
 
-void OP_FAIL_ON_DTYPE(CTorchOperator *op, CTH_TENSOR_DATA_TYPE data_type) {
+void OP_FAIL_ON_DTYPE(CTHOperator *op, CTH_TENSOR_DATA_TYPE data_type) {
   FAIL_NULL_PTR(op);
 
-  CTorchTensor *tensor = NULL;
-  for (array_index_t i = 0; i < op->in_bound_tensors->size; i++) {
-    tensor = array_at(CTorchTensor)(op->in_bound_tensors, i);
+  CTHTensor *tensor = NULL;
+  for (cth_array_index_t i = 0; i < op->in_bound_tensors->size; i++) {
+    tensor = cth_array_at(CTHTensor)(op->in_bound_tensors, i);
     if (tensor->meta_info->data_type == data_type) {
       FAIL_EXIT(CTH_LOG_ERR, "Operator does not support data type.");
     }
   }
 
-  for (array_index_t i = 0; i < op->out_bound_tensors->size; i++) {
-    tensor = array_at(CTorchTensor)(op->in_bound_tensors, i);
+  for (cth_array_index_t i = 0; i < op->out_bound_tensors->size; i++) {
+    tensor = cth_array_at(CTHTensor)(op->in_bound_tensors, i);
     if (tensor->meta_info->data_type == data_type) {
       FAIL_EXIT(CTH_LOG_ERR, "Operator does not support data type.");
     }
@@ -43,13 +43,13 @@ void OP_FAIL_ON_DTYPE(CTorchOperator *op, CTH_TENSOR_DATA_TYPE data_type) {
 }
 
 void FORCE_OP_INPUT_EXIST(
-    CTorchOperator *op, const char *name, CTH_TENSOR_DATA_TYPE data_type) {
+    CTHOperator *op, const char *name, CTH_TENSOR_DATA_TYPE data_type) {
   FAIL_NULL_PTR(op);
 
-  CTorchTensor *tensor = NULL;
+  CTHTensor *tensor = NULL;
   bool found = false;
-  for (array_index_t i = 0; i < op->in_bound_tensors->size; i++) {
-    tensor = array_at(CTorchTensor)(op->in_bound_tensors, i);
+  for (cth_array_index_t i = 0; i < op->in_bound_tensors->size; i++) {
+    tensor = cth_array_at(CTHTensor)(op->in_bound_tensors, i);
     if (strcmp(name, tensor->meta_info->tensor_name) == 0 &&
         tensor->meta_info->data_type == data_type) {
       found = true;
@@ -63,9 +63,9 @@ void FORCE_OP_INPUT_EXIST(
 }
 
 void FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(
-    const CTorchOperator *op,
-    const array_index_t num_input,
-    const array_index_t num_output) {
+    const CTHOperator *op,
+    const cth_array_index_t num_input,
+    const cth_array_index_t num_output) {
   FAIL_NULL_PTR(op);
 
   if (num_input != op->in_bound_tensors->size) {
@@ -89,7 +89,7 @@ void FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(
 }
 
 void FORCE_OP_PARAM_NUM(
-    const CTorchOperator *op, const array_index_t num_param) {
+    const CTHOperator *op, const cth_array_index_t num_param) {
   FAIL_NULL_PTR(op);
 
   if (op->params->size != num_param) {
@@ -102,10 +102,10 @@ void FORCE_OP_PARAM_NUM(
   }
 }
 
-void FORCE_OP_PARAM_EXIST(CTorchOperator *op, const CTH_PARAM_TYPE type) {
+void FORCE_OP_PARAM_EXIST(CTHOperator *op, const CTH_PARAM_TYPE type) {
   FAIL_NULL_PTR(op);
-  for (array_index_t i = 0; i < op->params->size; i++) {
-    CTorchParam *param = array_at(CTorchParam)(op->params, i);
+  for (cth_array_index_t i = 0; i < op->params->size; i++) {
+    CTHParam *param = cth_array_at(CTHParam)(op->params, i);
     if (type == param->type) {
       return;
     }
@@ -114,12 +114,12 @@ void FORCE_OP_PARAM_EXIST(CTorchOperator *op, const CTH_PARAM_TYPE type) {
   FAIL_EXIT(CTH_LOG_ERR, "FORCE_OP_PARAM_EXIST failed.");
 }
 
-CTorchTensor *_get_tensor_by_name(
-    CTHArray(CTorchTensor) * tensor_array, const char *name, bool fail_exit) {
+CTHTensor *_get_tensor_by_name(
+    CTHArray(CTHTensor) * tensor_array, const char *name, bool fail_exit) {
   FAIL_NULL_PTR(tensor_array);
-  CTorchTensor *target_tensor = NULL;
-  for (array_index_t i = 0; i < tensor_array->size; i++) {
-    CTorchTensor *tensor = array_at(CTorchTensor)(tensor_array, i);
+  CTHTensor *target_tensor = NULL;
+  for (cth_array_index_t i = 0; i < tensor_array->size; i++) {
+    CTHTensor *tensor = cth_array_at(CTHTensor)(tensor_array, i);
     if (strcmp(tensor->meta_info->tensor_name, name) == 0) {
       target_tensor = tensor;
       break;
@@ -133,31 +133,31 @@ CTorchTensor *_get_tensor_by_name(
   }
 }
 
-CTorchTensor *
-cth_get_input_by_name(CTorchOperator *op, const char *name, bool fail_exit) {
+CTHTensor *
+cth_get_input_by_name(CTHOperator *op, const char *name, bool fail_exit) {
   FAIL_NULL_PTR(op);
   return _get_tensor_by_name(op->in_bound_tensors, name, true);
 }
 
-CTorchTensor *
-get_output_by_name(CTorchOperator *op, const char *name, bool fail_exit) {
+CTHTensor *
+get_output_by_name(CTHOperator *op, const char *name, bool fail_exit) {
   FAIL_NULL_PTR(op);
   return _get_tensor_by_name(op->out_bound_tensors, name, true);
 }
 
-void struct_deep_free(CTorchOperator)(CTorchOperator *op) {
-  free_array_deep(CTorchTensor)(op->in_bound_tensors);
-  free_array_deep(CTorchTensor)(op->out_bound_tensors);
-  free_array_deep(CTorchParam)(op->params);
+void struct_deep_free(CTHOperator)(CTHOperator *op) {
+  cth_free_array_deep(CTHTensor)(op->in_bound_tensors);
+  cth_free_array_deep(CTHTensor)(op->out_bound_tensors);
+  cth_free_array_deep(CTHParam)(op->params);
   FREE(op);
 }
 
-CTorchParam *cth_get_param_by_type(
-    CTorchOperator *op, const CTH_PARAM_TYPE type, bool fail_exit) {
+CTHParam *cth_get_param_by_type(
+    CTHOperator *op, const CTH_PARAM_TYPE type, bool fail_exit) {
   FAIL_NULL_PTR(op);
 
   for (int i = 0; i < op->params->size; i++) {
-    CTorchParam *param = array_at(CTorchParam)(op->params, i);
+    CTHParam *param = cth_array_at(CTHParam)(op->params, i);
     if (type == param->type) {
       return param;
     }

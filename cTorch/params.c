@@ -1,16 +1,16 @@
 #include "cTorch/params.h"
 
-impl_new_array_func(CTorchParam);
-impl_array_at_func(CTorchParam);
-impl_array_set_func(CTorchParam);
-impl_free_array_deep_func(CTorchParam);
+cth_impl_new_array_func(CTHParam);
+cth_impl_array_at_func(CTHParam);
+cth_impl_array_set_func(CTHParam);
+cth_impl_free_array_deep_func(CTHParam);
 
-void struct_deep_free(CTorchParam)(CTorchParam *param) {
+void struct_deep_free(CTHParam)(CTHParam *param) {
   FAIL_NULL_PTR(param);
   FREE(param);
 }
 
-void cth_copy_param(CTorchParam *from_param, CTorchParam *to_param) {
+void cth_copy_param(CTHParam *from_param, CTHParam *to_param) {
   FAIL_NULL_PTR(from_param);
   FAIL_NULL_PTR(to_param);
 

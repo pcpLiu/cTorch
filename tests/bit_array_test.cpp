@@ -89,14 +89,14 @@ TEST(cTorchBitsArrayTest, testAllClearSetCheck) {
   EXPECT_EQ(cth_are_all_bits_set(bits_array), false);
   EXPECT_EQ(cth_are_all_bits_clear(bits_array), false);
 
-  for (cth_bit_array_index_t i = 0; i < 500; i++) {
+  for (cth_bit_cth_array_index_t i = 0; i < 500; i++) {
     cth_set_bit(bits_array, i);
   }
   EXPECT_EQ(cth_are_all_bits_clear(bits_array), false);
   EXPECT_EQ(cth_are_all_bits_set(bits_array), true);
 
   cth_bit_array_t *bits_array_2 = cth_new_bit_array(4);
-  for (cth_bit_array_index_t i = 0; i < 4; i++) {
+  for (cth_bit_cth_array_index_t i = 0; i < 4; i++) {
     cth_set_bit(bits_array_2, i);
   }
 

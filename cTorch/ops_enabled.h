@@ -1,5 +1,5 @@
-#define COMMA ,
-#define SEMI_COL ;
+#ifndef CTH_OPS_ENABLED_H
+#define CTH_OPS_ENABLED_H
 
 /*
   Number of enabled operators
@@ -315,3 +315,5 @@
   wrap(var) \
   wrap(where) \
   wrap(ZeroPad2d)
+
+#endif /* OPS_ENABLED_H */

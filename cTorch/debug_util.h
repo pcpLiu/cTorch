@@ -16,18 +16,18 @@ typedef enum CTH_MEM_RECORD_STATUS {
 /**
  * Use to track memory allocation & free. Only used in debug test
  */
-typedef struct MemoryRecord {
-  void *addr; /* Address alocated */
+typedef struct CTHMemoryRecord {
+  void *addr;                   /* Address alocated */
   CTH_MEM_RECORD_STATUS status; /* status */
-  struct MemoryRecord *next; /* Next memory record */
-  const char *name; /* A readable name. */
-} MemoryRecord;
+  struct CTHMemoryRecord *next; /* Next memory record */
+  const char *name;             /* A readable name. */
+} CTHMemoryRecord;
 
 /**
  * Global variable. List of allocated memory records. It always points to the
  * 1st dummy node.
  */
-extern MemoryRecord *CTH_MEM_RECORDS;
+extern CTHMemoryRecord *CTH_MEM_RECORDS;
 
 /**
  * Add an allocated addr to track.
@@ -41,7 +41,7 @@ extern MemoryRecord *CTH_MEM_RECORDS;
  * Note:
  *    If the address already in records, it will return existing memory record
  */
-MemoryRecord *cth_add_mem_record(void *ptr);
+CTHMemoryRecord *cth_add_mem_record(void *ptr);
 
 /**
  * Fetch memory record with given mem address.
@@ -50,12 +50,12 @@ MemoryRecord *cth_add_mem_record(void *ptr);
  *    - ptr: void*, allocated address. If ptr is NULL, function FAIL_NULL_PTR.
  *
  * Returns:
- *    record: MemoryRecord*, memory record if found.
+ *    record: CTHMemoryRecord*, memory record if found.
  *
  * Note:
  *    NULL will be returned if memory record is not found
  */
-MemoryRecord *cth_get_mem_record(void *ptr);
+CTHMemoryRecord *cth_get_mem_record(void *ptr);
 
 /**
  * Get number of memory records that not freed

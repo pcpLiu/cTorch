@@ -6,10 +6,10 @@
 /*
   Computes the element-wise absolute value of the given input tensor.
 */
-void abs_op_x86_haswell(CTorchOperator *op) {
+void abs_op_x86_haswell(CTHOperator *op) {
   FORCE_INPUT_OUTPUT_TSR_NUM_EQ(op);
-  CTHListItem(CTorchTensor) *in = op->in_bound_tensors->head;
-  CTHListItem(CTorchTensor) *out = op->out_bound_tensors->head;
+  CTHListItem(CTHTensor) *in = op->in_bound_tensors->head;
+  CTHListItem(CTHTensor) *out = op->out_bound_tensors->head;
   CTH_TENSOR_DATA_TYPE dtype = in->data->meta_info->data_type;
 
   for (int i = 0; i < op->in_bound_tensors->size; i++) {

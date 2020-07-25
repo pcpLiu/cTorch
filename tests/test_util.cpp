@@ -22,7 +22,7 @@ bool _rand_bool(void) {
     tensor->values =                                                           \
         (type *)MALLOC_NAME(sizeof(type) * n_ele, "tensor values");            \
     type *val = (type *)tensor->values;                                        \
-    for (tensor_size_t i = 0; i < tensor->meta_info->n_elements; i++) {        \
+    for (cth_tensor_dim_t i = 0; i < tensor->meta_info->n_elements; i++) {     \
       val[i] = (type)rand_func(__VA_ARGS__);                                   \
     }                                                                          \
   } while (0)
@@ -40,13 +40,12 @@ bool _rand_bool(void) {
             ((type *)in_ptr_2)[i], ((type *)out_ptr)[i]);                      \
   } while (0)
 
-CTorchTensor *create_dummy_tensor(tensor_dim_t *dims, tensor_dim_t n_dim,
-                                  CTH_TENSOR_DATA_TYPE data_type, float min,
-                                  float max) {
-  CTorchTensor *tensor =
-      (CTorchTensor *)MALLOC_NAME(sizeof(CTorchTensor), "tensor");
+CTHTensor *create_dummy_tensor(cth_tensor_dim_t *dims, cth_tensor_dim_t n_dim,
+                               CTH_TENSOR_DATA_TYPE data_type, float min,
+                               float max) {
+  CTHTensor *tensor = (CTHTensor *)MALLOC_NAME(sizeof(CTHTensor), "tensor");
   tensor->meta_info =
-      (CTorchTensorMeta *)MALLOC_NAME(sizeof(CTorchTensorMeta), "meta info");
+      (CTHTensorMeta *)MALLOC_NAME(sizeof(CTHTensorMeta), "meta info");
   tensor->meta_info->dims = dims;
   tensor->meta_info->n_dim = n_dim;
   tensor->meta_info->data_type = data_type;
@@ -54,8 +53,8 @@ CTorchTensor *create_dummy_tensor(tensor_dim_t *dims, tensor_dim_t n_dim,
   tensor->meta_info->device = CTH_TENSOR_DEVICE_NORMAL;
   cth_tensor_set_name(tensor, "Dummy Tensor");
 
-  tensor_size_t n_ele = 1;
-  for (tensor_size_t i = 0; i < tensor->meta_info->n_dim; i++) {
+  cth_tensor_dim_t n_ele = 1;
+  for (cth_tensor_dim_t i = 0; i < tensor->meta_info->n_dim; i++) {
     n_ele *= tensor->meta_info->dims[i];
   }
   tensor->meta_info->n_elements = n_ele;
@@ -81,67 +80,67 @@ CTorchTensor *create_dummy_tensor(tensor_dim_t *dims, tensor_dim_t n_dim,
   return tensor;
 }
 
-CTorchNode *create_dummy_op_node_unary(CTH_OP_ID op_id, tensor_dim_t *dims,
-                                       tensor_dim_t n_dim,
-                                       CTH_TENSOR_DATA_TYPE data_type,
-                                       float min, float max) {
-  CTorchOperator *op = (CTorchOperator *)MALLOC(sizeof(CTorchOperator));
+CTHNode *create_dummy_op_node_unary(CTH_OP_ID op_id, cth_tensor_dim_t *dims,
+                                    cth_tensor_dim_t n_dim,
+                                    CTH_TENSOR_DATA_TYPE data_type, float min,
+                                    float max) {
+  CTHOperator *op = (CTHOperator *)MALLOC(sizeof(CTHOperator));
   op->op_id = op_id;
-  op->in_bound_tensors = new_array(CTorchTensor)(1);
-  op->out_bound_tensors = new_array(CTorchTensor)(1);
-  array_set(CTorchTensor)(
+  op->in_bound_tensors = cth_new_array(CTHTensor)(1);
+  op->out_bound_tensors = cth_new_array(CTHTensor)(1);
+  cth_array_set(CTHTensor)(
       op->in_bound_tensors, 0,
       create_dummy_tensor(dims, n_dim, data_type, min, max));
-  array_set(CTorchTensor)(
+  cth_array_set(CTHTensor)(
       op->out_bound_tensors, 0,
       create_dummy_tensor(dims, n_dim, data_type, min, max));
 
-  CTorchNode *node = (CTorchNode *)MALLOC(sizeof(CTorchNode));
+  CTHNode *node = (CTHNode *)MALLOC(sizeof(CTHNode));
   node->conent.op = op;
   node->node_type = CTH_NODE_TYPE_OPERATOR;
   return node;
 }
 
-CTorchOperator *create_dummy_op(CTH_OP_ID op_id, array_index_t num_inputs,
-                                array_index_t num_outputs) {
-  CTorchOperator *op = (CTorchOperator*)MALLOC(sizeof(CTorchOperator));
+CTHOperator *create_dummy_op(CTH_OP_ID op_id, cth_array_index_t num_inputs,
+                             cth_array_index_t num_outputs) {
+  CTHOperator *op = (CTHOperator *)MALLOC(sizeof(CTHOperator));
   op->op_id = op_id;
-  op->in_bound_tensors = new_array(CTorchTensor)(num_inputs);
-  op->out_bound_tensors = new_array(CTorchTensor)(num_outputs);
-  op->params = new_array(CTorchParam)(0);
+  op->in_bound_tensors = cth_new_array(CTHTensor)(num_inputs);
+  op->out_bound_tensors = cth_new_array(CTHTensor)(num_outputs);
+  op->params = cth_new_array(CTHParam)(0);
   return op;
 }
 
-CTorchOperator *create_dummy_op_with_param(CTH_OP_ID op_id,
-                                           array_index_t num_inputs,
-                                           array_index_t num_outputs,
-                                           array_index_t num_param) {
-  CTorchOperator *op = (CTorchOperator *)MALLOC(sizeof(CTorchOperator));
+CTHOperator *create_dummy_op_with_param(CTH_OP_ID op_id,
+                                        cth_array_index_t num_inputs,
+                                        cth_array_index_t num_outputs,
+                                        cth_array_index_t num_param) {
+  CTHOperator *op = (CTHOperator *)MALLOC(sizeof(CTHOperator));
   op->op_id = op_id;
-  op->in_bound_tensors = new_array(CTorchTensor)(num_inputs);
-  op->out_bound_tensors = new_array(CTorchTensor)(num_outputs);
-  op->params = new_array(CTorchParam)(num_param);
+  op->in_bound_tensors = cth_new_array(CTHTensor)(num_inputs);
+  op->out_bound_tensors = cth_new_array(CTHTensor)(num_outputs);
+  op->params = cth_new_array(CTHParam)(num_param);
   return op;
 }
 
-CTorchGraph *create_dummy_graph(array_index_t num_nodes) {
-  CTorchGraph *graph = (CTorchGraph*)MALLOC(sizeof(CTorchGraph));
-  graph->node_list = new_array(CTorchNode)(num_nodes);
+CTHGraph *create_dummy_graph(cth_array_index_t num_nodes) {
+  CTHGraph *graph = (CTHGraph *)MALLOC(sizeof(CTHGraph));
+  graph->node_list = cth_new_array(CTHNode)(num_nodes);
   return graph;
 }
 
-CTorchNode *create_dummy_node(node_id_t id, array_index_t inbound_size,
-                              array_index_t outbound_size) {
-  CTorchNode *node = (CTorchNode *)MALLOC(sizeof(CTorchNode));
+CTHNode *create_dummy_node(node_id_t id, cth_array_index_t inbound_size,
+                           cth_array_index_t outbound_size) {
+  CTHNode *node = (CTHNode *)MALLOC(sizeof(CTHNode));
   node->node_type = CTH_NODE_TYPE_OPERATOR;
   node->node_id = id;
-  node->inbound_nodes = new_array(CTorchNode)(inbound_size);
-  node->outbound_nodes = new_array(CTorchNode)(outbound_size);
+  node->inbound_nodes = cth_new_array(CTHNode)(inbound_size);
+  node->outbound_nodes = cth_new_array(CTHNode)(outbound_size);
   return node;
 }
 
 void sample_print(CTH_TENSOR_DATA_TYPE data_type, void *in_ptr, void *out_ptr,
-                  tensor_size_t i) {
+                  cth_tensor_dim_t i) {
   if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||
       data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {
     _print_out_value(float, "input: %f, output: %f", in_ptr, out_ptr, i);
@@ -161,7 +160,7 @@ void sample_print(CTH_TENSOR_DATA_TYPE data_type, void *in_ptr, void *out_ptr,
 }
 
 void sample_print_triple(CTH_TENSOR_DATA_TYPE data_type, void *in_ptr_1,
-                         void *in_ptr_2, void *out_ptr, tensor_size_t i) {
+                         void *in_ptr_2, void *out_ptr, cth_tensor_dim_t i) {
   if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||
       data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {
     _print_out_value_triple(float, "input: %f, input: %f, output: %f", in_ptr_1,
@@ -187,16 +186,17 @@ void sample_print_triple(CTH_TENSOR_DATA_TYPE data_type, void *in_ptr_1,
   }
 }
 
-void _rand_dims(tensor_dim_t *dims, tensor_dim_t n_dim, tensor_dim_t min,
-                tensor_dim_t max) {
-  for (tensor_dim_t i = 0; i < n_dim; i++) {
+void _rand_dims(cth_tensor_dim_t *dims, cth_tensor_dim_t n_dim,
+                cth_tensor_dim_t min, cth_tensor_dim_t max) {
+  for (cth_tensor_dim_t i = 0; i < n_dim; i++) {
     dims[i] = _rand_int(min, max);
   }
 }
 
-void _get_reduce_dims(tensor_dim_t *dims, tensor_dim_t n_dim,
-                      tensor_dim_t reduce_dim, tensor_dim_t *reduce_dims) {
-  for (tensor_dim_t i = 0, j = 0; i < n_dim; i++) {
+void _get_reduce_dims(cth_tensor_dim_t *dims, cth_tensor_dim_t n_dim,
+                      cth_tensor_dim_t reduce_dim,
+                      cth_tensor_dim_t *reduce_dims) {
+  for (cth_tensor_dim_t i = 0, j = 0; i < n_dim; i++) {
     if (i == reduce_dim) {
       continue;
     }
@@ -205,9 +205,9 @@ void _get_reduce_dims(tensor_dim_t *dims, tensor_dim_t n_dim,
   }
 }
 
-void _print_index(tensor_dim_t *dims, tensor_dim_t n_dim) {
+void _print_index(cth_tensor_dim_t *dims, cth_tensor_dim_t n_dim) {
   printf("dims: [");
-  for (tensor_dim_t i = 0; i < n_dim; i++) {
+  for (cth_tensor_dim_t i = 0; i < n_dim; i++) {
     printf("%d ", dims[i]);
   }
   printf("]\n");

@@ -10,6 +10,6 @@
  *
  * @todo Need implementation
  */
-void op_polygamma_cpu(CTorchOperator *op) {
+void op_polygamma_cpu(CTHOperator *op) {
   FAIL_EXIT(CTH_LOG_ERR, "op_polygamma_cpu not implemented");
 }

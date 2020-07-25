@@ -1,8 +1,6 @@
 #ifndef CTH_THREAD_POOL_H
 #define CTH_THREAD_POOL_H
 
-#ifdef USE_PTHREAD
-
 #include <pthread.h>
 
 /*
@@ -24,8 +22,11 @@ typedef struct thr_pool thr_pool_t;
  *			can be destroyed after calling thr_pool_create().
  * On error, thr_pool_create() returns NULL with errno set to the error code.
  */
-extern thr_pool_t *thr_pool_create(uint_t min_threads, uint_t max_threads,
-                                   uint_t linger, pthread_attr_t *attr);
+extern thr_pool_t *thr_pool_create(
+    uint_t min_threads,
+    uint_t max_threads,
+    uint_t linger,
+    pthread_attr_t *attr);
 
 /*
  * Enqueue a work request to the thread pool job queue.
@@ -52,6 +53,5 @@ extern void thr_pool_wait(thr_pool_t *pool);
  * Cancel all queued jobs and destroy the pool.
  */
 extern void thr_pool_destroy(thr_pool_t *pool);
-#endif /* USE_PTHREAD */
 
 #endif /* THREAD_POOL_H */

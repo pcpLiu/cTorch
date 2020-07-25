@@ -18,7 +18,7 @@ void *cth_malloc(
   FAIL_NULL_PTR(mem);
 
 #ifdef CTH_TEST_DEBUG
-  MemoryRecord *record = cth_add_mem_record(mem);
+  CTHMemoryRecord *record = cth_add_mem_record(mem);
   record->name = record_name;
 #endif
 
@@ -37,7 +37,7 @@ void cth_free(
   }
 
 #ifdef CTH_TEST_DEBUG
-  MemoryRecord *record = cth_get_mem_record(ptr);
+  CTHMemoryRecord *record = cth_get_mem_record(ptr);
   FAIL_NULL_PTR(record);
   record->status = CTH_MEM_RECORD_STATUS_FREED;
 #endif
@@ -51,7 +51,7 @@ void cth_free_soft(
   }
 
 #ifdef CTH_TEST_DEBUG
-  MemoryRecord *record = cth_get_mem_record(ptr);
+  CTHMemoryRecord *record = cth_get_mem_record(ptr);
   char *msg = NULL;
   asprintf(
       &msg,
@@ -73,7 +73,7 @@ int cth_asprintf(char **strp, const char *fmt, ...) {
   int ret = vasprintf(strp, fmt, args);
 
 #ifdef CTH_TEST_DEBUG
-  MemoryRecord *record = cth_add_mem_record(*strp);
+  CTHMemoryRecord *record = cth_add_mem_record(*strp);
 #endif
 
   return ret;

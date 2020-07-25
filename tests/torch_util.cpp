@@ -6,9 +6,9 @@
  *
  * @return std::vector<int64_t>
  */
-std::vector<int64_t> *get_dim_from_tensor(CTorchTensor *cth_tensor) {
+std::vector<int64_t> *get_dim_from_tensor(CTHTensor *cth_tensor) {
   auto shape = new std::vector<int64_t>();
-  for (tensor_dim_t i = 0; i < cth_tensor->meta_info->n_dim; i++) {
+  for (cth_tensor_dim_t i = 0; i < cth_tensor->meta_info->n_dim; i++) {
     shape->push_back((int64_t)cth_tensor->meta_info->dims[i]);
   }
   return shape;
@@ -20,7 +20,7 @@ std::vector<int64_t> *get_dim_from_tensor(CTorchTensor *cth_tensor) {
  * @param py_tensor
  * @param cth_tensor
  */
-torch::TensorOptions *make_options(CTorchTensor *cth_tensor) {
+torch::TensorOptions *make_options(CTHTensor *cth_tensor) {
   auto options = new torch::TensorOptions();
   options->layout(torch::kStrided);
   switch (cth_tensor->meta_info->data_type) {
@@ -67,9 +67,9 @@ torch::TensorOptions *make_options(CTorchTensor *cth_tensor) {
  * @param py_tensor
  * @param cth_tensor
  */
-void cp_values(torch::Tensor &py_tensor, CTorchTensor *cth_tensor) {
+void cp_values(torch::Tensor &py_tensor, CTHTensor *cth_tensor) {
   CTH_TENSOR_DATA_TYPE data_type = cth_tensor->meta_info->data_type;
-  for (tensor_dim_t i = 0; i < cth_tensor->meta_info->n_elements; i++) {
+  for (cth_tensor_dim_t i = 0; i < cth_tensor->meta_info->n_elements; i++) {
     if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||
         data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {
       _fill_value(py_tensor, ((float *)cth_tensor->values), i);
@@ -89,7 +89,7 @@ void cp_values(torch::Tensor &py_tensor, CTorchTensor *cth_tensor) {
   }
 }
 
-torch::Tensor create_torch_tensor(CTorchTensor *cth_tensor) {
+torch::Tensor create_torch_tensor(CTHTensor *cth_tensor) {
   auto options = make_options(cth_tensor);
   auto py_tensor = torch::zeros(cth_tensor->meta_info->n_elements, *options);
   cp_values(py_tensor, cth_tensor);

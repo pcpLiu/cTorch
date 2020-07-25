@@ -28,7 +28,7 @@
   Note:
    If the backend was not built at compiling time, cTorch directly exits.
 */
-void dispatch_op_execution(CTorchOperator *op, CTH_BACKEND backend) {
+void dispatch_op_execution(CTHOperator *op, CTH_BACKEND backend) {
   CTH_OP_ID op_id = op->op_id;
   bool fall_back = false;
   if (backend == CTH_BACKEND_CPU_X86) {
@@ -78,13 +78,13 @@ void dispatch_op_execution(CTorchOperator *op, CTH_BACKEND backend) {
   Params:
     - node: executable node
     - backend: execution backend
-    - engine: a configured CTorchEngine
+    - engine: a configured CTHEngine
 
   Note:
     - For operator node: execute the computation
     - For data node: only mark its status and do nothing else
 */
-void cth_execute_node(CTorchNode *node, CTH_BACKEND backend) {
+void cth_execute_node(CTHNode *node, CTH_BACKEND backend) {
   if (node->node_type == CTH_NODE_TYPE_OPERATOR) {
     dispatch_op_execution(node->conent.op, backend);
   }

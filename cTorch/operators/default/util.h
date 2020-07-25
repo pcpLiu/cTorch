@@ -179,28 +179,31 @@
  * @brief General reduce computation
  *
  */
-#define _cpu_reduce_arg_compute(op, reduce_action, input_data_type)            \
+#define _cpu_reduce_arg_compute(                                               \
+    op, reduce_action, input_data_type, output_data_type)                      \
   do {                                                                         \
-    CTorchParam *dim_param =                                                   \
+    CTHParam *dim_param =                                                      \
         cth_get_param_by_type(op, CTH_PARAM_TYPE_DIM_INT32, true);             \
-    tensor_dim_t reduce_dim = (tensor_dim_t)dim_param->data.dim;               \
-    tensor_size_t reduce_dim_size = in->meta_info->dims[reduce_dim];           \
+    cth_tensor_dim_t reduce_dim = (cth_tensor_dim_t)dim_param->data.dim;       \
+    cth_tensor_dim_t reduce_dim_size = in->meta_info->dims[reduce_dim];        \
                                                                                \
-    CTorchTensor *in = array_at(CTorchTensor)(op->in_bound_tensors, 0);        \
-    CTorchTensor *out = array_at(CTorchTensor)(op->out_bound_tensors, 0);      \
+    CTHTensor *in = cth_array_at(CTHTensor)(op->in_bound_tensors, 0);          \
+    CTHTensor *out = cth_array_at(CTHTensor)(op->out_bound_tensors, 0);        \
     input_data_type *in_ptr = (input_data_type *)in->values;                   \
-    int64_t *out_ptr = (int64_t *)out->values;                                 \
+    output_data_type *out_ptr = (output_data_type *)out->values;               \
                                                                                \
-    tensor_dim_t input_n_eles = in->meta_info->n_elements;                     \
-    tensor_dim_t tensor_n_dim = in->meta_info->n_dim;                          \
-    tensor_dim_t num_reduce_groups = input_n_eles / reduce_dim_size;           \
-    tensor_dim_t inner_offset = cth_tensor_reduce_inneroffset(in, reduce_dim); \
-    tensor_dim_t reduce_index_size = tensor_n_dim - 1;                         \
-    tensor_dim_t *reduce_index_dims =                                          \
-        MALLOC(sizeof(tensor_dim_t) * reduce_index_size);                      \
-    for (tensor_size_t group_i = 0; group_i < num_reduce_groups; group_i++) {  \
+    cth_tensor_dim_t input_n_eles = in->meta_info->n_elements;                 \
+    cth_tensor_dim_t tensor_n_dim = in->meta_info->n_dim;                      \
+    cth_tensor_dim_t num_reduce_groups = input_n_eles / reduce_dim_size;       \
+    cth_tensor_dim_t inner_offset =                                            \
+        cth_tensor_reduce_inneroffset(in, reduce_dim);                         \
+    cth_tensor_dim_t reduce_index_size = tensor_n_dim - 1;                     \
+    cth_tensor_dim_t *reduce_index_dims =                                      \
+        MALLOC(sizeof(cth_tensor_dim_t) * reduce_index_size);                  \
+    for (cth_tensor_dim_t group_i = 0; group_i < num_reduce_groups;            \
+         group_i++) {                                                          \
       cth_tensor_get_reduce_index(in, group_i, reduce_dim, reduce_index_dims); \
-      tensor_dim_t start_offset =                                              \
+      cth_tensor_dim_t start_offset =                                          \
           cth_tensor_reduce_startoffset(in, reduce_index_dims, reduce_dim);    \
       reduce_action(                                                           \
           in_ptr,                                                              \
@@ -218,24 +221,25 @@
  * @brief General logic to find index among a reduce dim
  *
  */
-#define _cpu_reduce_arg_generic(op, input_data_type, reduce_action)            \
+#define _cpu_reduce_arg_generic(                                               \
+    op, input_data_type, output_data_type, reduce_action)                      \
   do {                                                                         \
     if (input_data_type == CTH_TENSOR_DATA_TYPE_BOOL) {                        \
-      _cpu_reduce_arg_compute(op, reduce_action, bool);                        \
+      _cpu_reduce_arg_compute(op, reduce_action, bool, output_data_type);      \
     } else if (input_data_type == CTH_TENSOR_DATA_TYPE_INT_16) {               \
-      _cpu_reduce_arg_compute(op, reduce_action, int16_t);                     \
+      _cpu_reduce_arg_compute(op, reduce_action, int16_t, output_data_type);   \
     } else if (input_data_type == CTH_TENSOR_DATA_TYPE_INT_32) {               \
-      _cpu_reduce_arg_compute(op, reduce_action, int32_t);                     \
+      _cpu_reduce_arg_compute(op, reduce_action, int32_t, output_data_type);   \
     } else if (input_data_type == CTH_TENSOR_DATA_TYPE_INT_64) {               \
-      _cpu_reduce_arg_compute(op, reduce_action, int64_t);                     \
+      _cpu_reduce_arg_compute(op, reduce_action, int64_t, output_data_type);   \
     } else if (input_data_type == CTH_TENSOR_DATA_TYPE_UINT_8) {               \
-      _cpu_reduce_arg_compute(op, reduce_action, uint8_t);                     \
+      _cpu_reduce_arg_compute(op, reduce_action, uint8_t, output_data_type);   \
     } else if (input_data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16) {             \
-      _cpu_reduce_arg_compute(op, reduce_action, float);                       \
+      _cpu_reduce_arg_compute(op, reduce_action, float, output_data_type);     \
     } else if (input_data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {             \
-      _cpu_reduce_arg_compute(op, reduce_action, float);                       \
+      _cpu_reduce_arg_compute(op, reduce_action, float, output_data_type);     \
     } else if (input_data_type == CTH_TENSOR_DATA_TYPE_FLOAT_64) {             \
-      _cpu_reduce_arg_compute(op, reduce_action, double);                      \
+      _cpu_reduce_arg_compute(op, reduce_action, double, output_data_type);    \
     } else {                                                                   \
       FAIL_EXIT(CTH_LOG_ERR, "Unsupported data type in _cpu_generic_compute"); \
     }                                                                          \

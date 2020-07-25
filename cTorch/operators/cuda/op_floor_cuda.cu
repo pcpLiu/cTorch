@@ -10,7 +10,7 @@ _cth_declare_cuda_unary_kernel(cth_floor_cuda, floorf, floor);
 /**
  * @brief Calculate the largest integer less than or equal to x
  *
- * @param[CTorchOperator] op operator
+ * @param[CTHOperator] op operator
  *
  * @note CUDA onlly support float & double type
  *
@@ -19,10 +19,10 @@ _cth_declare_cuda_unary_kernel(cth_floor_cuda, floorf, floor);
  *   - # of output: 1
  *   - Assume input & output have same types
  */
-void op_floor_cuda(CTorchOperator *op) {
+void op_floor_cuda(CTHOperator *op) {
   FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(op, 1, 1);
-  CTorchTensor *input = array_at(CTorchTensor)(op->in_bound_tensors, 0);
-  CTorchTensor *output = array_at(CTorchTensor)(op->out_bound_tensors, 0);
+  CTHTensor *input = cth_array_at(CTHTensor)(op->in_bound_tensors, 0);
+  CTHTensor *output = cth_array_at(CTHTensor)(op->out_bound_tensors, 0);
   CTH_TENSOR_DEVICE device = input->meta_info->device;
 
   _cth_cuda_unary_workflow(

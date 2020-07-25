@@ -2,9 +2,9 @@
 #include <torch/torch.h>
 
 /**
- * @brief Create a torch tensor from a CTorchTensor
+ * @brief Create a torch tensor from a CTHTensor
  *
  * @param cth_tensor
  * @return torch::Tensor
  */
-torch::Tensor create_torch_tensor(CTorchTensor *cth_tensor);
+torch::Tensor create_torch_tensor(CTHTensor *cth_tensor);

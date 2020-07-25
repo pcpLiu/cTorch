@@ -4,12 +4,12 @@
 
 #define _verify_logical_and(op, data_type, expect_fn)                          \
   do {                                                                         \
-    CTorchTensor *input = array_at(CTorchTensor)(op->in_bound_tensors, 0);     \
-    CTorchTensor *output = array_at(CTorchTensor)(op->out_bound_tensors, 0);   \
+    CTHTensor *input = cth_array_at(CTHTensor)(op->in_bound_tensors, 0);       \
+    CTHTensor *output = cth_array_at(CTHTensor)(op->out_bound_tensors, 0);     \
     data_type *input_t = (data_type *)input->values;                           \
     bool *output_t = (bool *)output->values;                                   \
                                                                                \
-    for (tensor_size_t i = 0; i < input->meta_info->n_elements; i++) {         \
+    for (cth_tensor_dim_t i = 0; i < input->meta_info->n_elements; i++) {      \
       uint16_t x = (0 == input_t[i] ? 0 : 1);                                  \
       bool val = (bool)(1 - x);                                                \
       expect_fn(output_t[i], val);                                             \
@@ -18,13 +18,13 @@
 
 void test_logical_not(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type,
                       float min, float max) {
-  tensor_dim_t dims[] = {100, 100};
-  tensor_dim_t n_dim = 2;
-  CTorchOperator *op = create_dummy_op(CTH_OP_ID_add, 1, 1);
-  array_set(CTorchTensor)(
+  cth_tensor_dim_t dims[] = {100, 100};
+  cth_tensor_dim_t n_dim = 2;
+  CTHOperator *op = create_dummy_op(CTH_OP_ID_add, 1, 1);
+  cth_array_set(CTHTensor)(
       op->in_bound_tensors, 0,
       create_dummy_tensor(dims, n_dim, data_type, min, max));
-  array_set(CTorchTensor)(
+  cth_array_set(CTHTensor)(
       op->out_bound_tensors, 0,
       create_dummy_tensor(dims, n_dim, CTH_TENSOR_DATA_TYPE_BOOL, min, max));
 
@@ -32,8 +32,8 @@ void test_logical_not(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type,
 
   // may print out werid result for signed int due to type conversion
   sample_print(data_type,
-               array_at(CTorchTensor)(op->in_bound_tensors, 0)->values,
-               array_at(CTorchTensor)(op->out_bound_tensors, 0)->values, 2);
+               cth_array_at(CTHTensor)(op->in_bound_tensors, 0)->values,
+               cth_array_at(CTHTensor)(op->out_bound_tensors, 0)->values, 2);
 
   if (data_type == CTH_TENSOR_DATA_TYPE_INT_16) {
     _verify_logical_and(op, int16_t, EXPECT_EQ);

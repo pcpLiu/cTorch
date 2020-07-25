@@ -10,6 +10,6 @@
  *
  * @todo Need implementation
  */
-void op_mvlgamma_cpu(CTorchOperator *op) {
+void op_mvlgamma_cpu(CTHOperator *op) {
   FAIL_EXIT(CTH_LOG_ERR, "op_mvlgamma_cpu not implemented");
 }

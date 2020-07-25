@@ -17,7 +17,7 @@ typedef enum CTH_PARAM_TYPE {
 /**
  * Param data union
  */
-typedef union CTorchParamData {
+typedef union CTHParamData {
   /* multiplier */
   float multiplier;
   /* Min value threshold */
@@ -26,39 +26,39 @@ typedef union CTorchParamData {
   float max;
   /* Dimension to reduce */
   int32_t dim;
-} CTorchParamData;
+} CTHParamData;
 
-typedef struct CTorchParam {
+typedef struct CTHParam {
   CTH_PARAM_TYPE type;
-  CTorchParamData data;
-} CTorchParam;
+  CTHParamData data;
+} CTHParam;
 
 // Array macros
-def_array(CTorchParam);
-declare_new_array_func(CTorchParam);
-declare_array_at_func(CTorchParam);
-declare_array_set_func(CTorchParam);
-declare_free_array_deep_func(CTorchParam);
+cth_def_array(CTHParam);
+cth_declare_new_array_func(CTHParam);
+cth_declare_array_at_func(CTHParam);
+cth_declare_array_set_func(CTHParam);
+cth_declare_free_array_deep_func(CTHParam);
 
 /**
- * Deep free a CTorchParam
+ * Deep free a CTHParam
  *
  * Note:
  *    If pointer is NULL, error raised and exit.
  */
-void struct_deep_free(CTorchParam)(CTorchParam *param);
+void struct_deep_free(CTHParam)(CTHParam *param);
 
 /**
  * Copy fields from `from_param` to `to_param`
  */
-void cth_copy_param(CTorchParam *from_param, CTorchParam *to_param);
+void cth_copy_param(CTHParam *from_param, CTHParam *to_param);
 
 /**
  * Extract param value with given types
  */
 #define EXTRACT_PARAM_VALUE(op, param_type, param_data_field, param_var)       \
   do {                                                                         \
-    CTorchParam *param = cth_get_param_by_type(op, param_type, true);          \
+    CTHParam *param = cth_get_param_by_type(op, param_type, true);             \
     param_var =                                                                \
         cth_get_param_by_type(op, param_type, true)->data.param_data_field;    \
   } while (0)

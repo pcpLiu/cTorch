@@ -14,7 +14,7 @@ _cth_declare_cuda_binary_kernel(
  * @brief Each element of the tensor input is multiplied by the corresponding
  * element ofhe Tensor other. The resulting tensor is returned.
  *
- * @param[CTorchOperator] op operator
+ * @param[CTHOperator] op operator
  *
  * @note CUDA onlly support float & double type
  *
@@ -23,11 +23,11 @@ _cth_declare_cuda_binary_kernel(
  *   - # of output: 1
  *   - Assume input & output have same types
  */
-void op_mul_cuda(CTorchOperator *op) {
+void op_mul_cuda(CTHOperator *op) {
   FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(op, 2, 1);
-  CTorchTensor *input_1 = array_at(CTorchTensor)(op->in_bound_tensors, 0);
-  CTorchTensor *input_2 = array_at(CTorchTensor)(op->in_bound_tensors, 1);
-  CTorchTensor *output = array_at(CTorchTensor)(op->out_bound_tensors, 0);
+  CTHTensor *input_1 = cth_array_at(CTHTensor)(op->in_bound_tensors, 0);
+  CTHTensor *input_2 = cth_array_at(CTHTensor)(op->in_bound_tensors, 1);
+  CTHTensor *output = cth_array_at(CTHTensor)(op->out_bound_tensors, 0);
   CTH_TENSOR_DEVICE device = input_1->meta_info->device;
 
   _cth_cuda_binary_workflow(

@@ -4,22 +4,22 @@
 
 #include <string.h>
 
-cth_impl_new_list_item_func(CTorchTensor);
-cth_impl_new_list_func(CTorchTensor);
-cth_impl_insert_list_func(CTorchTensor);
-cth_impl_list_contains_data_func(CTorchTensor);
-cth_impl_list_contains_item_func(CTorchTensor);
-cth_impl_list_at_func(CTorchTensor);
-cth_impl_list_pop_func(CTorchTensor);
-cth_impl_free_list_func(CTorchTensor);
-cth_impl_free_list_deep_func(CTorchTensor);
+cth_impl_new_list_item_func(CTHTensor);
+cth_impl_new_list_func(CTHTensor);
+cth_impl_insert_list_func(CTHTensor);
+cth_impl_list_contains_data_func(CTHTensor);
+cth_impl_list_contains_item_func(CTHTensor);
+cth_impl_list_at_func(CTHTensor);
+cth_impl_list_pop_func(CTHTensor);
+cth_impl_free_list_func(CTHTensor);
+cth_impl_free_list_deep_func(CTHTensor);
 
-impl_new_array_func(CTorchTensor);
-impl_array_at_func(CTorchTensor);
-impl_array_set_func(CTorchTensor);
-impl_free_array_deep_func(CTorchTensor);
+cth_impl_new_array_func(CTHTensor);
+cth_impl_array_at_func(CTHTensor);
+cth_impl_array_set_func(CTHTensor);
+cth_impl_free_array_deep_func(CTHTensor);
 
-size_t cth_tensor_data_size(CTorchTensor *tensor) {
+size_t cth_tensor_data_size(CTHTensor *tensor) {
   size_t ele_size = 0;
   CTH_TENSOR_DATA_TYPE data_type = tensor->meta_info->data_type;
   if (data_type == CTH_TENSOR_DATA_TYPE_BOOL) {
@@ -49,10 +49,10 @@ size_t cth_tensor_data_size(CTorchTensor *tensor) {
   return ele_size * tensor->meta_info->n_elements;
 }
 
-void FORCE_TENSOR_DIMENSION(
-    CTorchTensor *tensor,
-    tensor_dim_t *target_dims,
-    tensor_dim_t target_n_dim) {
+void CTH_FORCE_TENSOR_DIMENSION(
+    CTHTensor *tensor,
+    cth_tensor_dim_t *target_dims,
+    cth_tensor_dim_t target_n_dim) {
   // n_dim
   bool match_n_dim = (tensor->meta_info->n_dim == target_n_dim);
 
@@ -70,29 +70,29 @@ void FORCE_TENSOR_DIMENSION(
 
   if (!match_dims || !match_n_dim) {
     // TODO: better logging
-    FAIL_EXIT(CTH_LOG_ERR, "FORCE_TENSOR_DIMENSION failes.");
+    FAIL_EXIT(CTH_LOG_ERR, "CTH_FORCE_TENSOR_DIMENSION failes.");
   }
 }
 
-bool cth_tensor_name_match(CTorchTensor *tensor, const char *target_name) {
+bool cth_tensor_name_match(CTHTensor *tensor, const char *target_name) {
   return strcmp(tensor->meta_info->tensor_name, target_name) == 0;
 }
 
-void FORCE_TENSOR_NAME(CTorchTensor *tensor, const char *target_name) {
+void CTH_FORCE_TENSOR_NAME(CTHTensor *tensor, const char *target_name) {
   if (!cth_tensor_name_match(tensor, target_name)) {
     // TODO: better logging
-    FAIL_EXIT(CTH_LOG_ERR, "FORCE_TENSOR_NAME fails.");
+    FAIL_EXIT(CTH_LOG_ERR, "CTH_FORCE_TENSOR_NAME fails.");
   }
 }
 
-void cth_tensor_set_name(CTorchTensor *tensor, const char *target_name) {
+void cth_tensor_set_name(CTHTensor *tensor, const char *target_name) {
   char *name = NULL;
   // asprintf(&name, target_name);
   cth_asprintf(&name, target_name);
   tensor->meta_info->tensor_name = name;
 }
 
-void *cth_tensor_ptr_offset(CTorchTensor *tensor, tensor_size_t n_elements) {
+void *cth_tensor_ptr_offset(CTHTensor *tensor, cth_tensor_dim_t n_elements) {
   if (n_elements == 0)
     return tensor->values;
 
@@ -125,7 +125,7 @@ void *cth_tensor_ptr_offset(CTorchTensor *tensor, tensor_size_t n_elements) {
   }
 }
 
-void struct_deep_free(CTorchTensorMeta)(CTorchTensorMeta *meta) {
+void struct_deep_free(CTHTensorMeta)(CTHTensorMeta *meta) {
   FAIL_NULL_PTR(meta);
 
   FREE_SOFT(meta->dims);
@@ -133,7 +133,7 @@ void struct_deep_free(CTorchTensorMeta)(CTorchTensorMeta *meta) {
   FREE(meta);
 }
 
-void struct_deep_free(CTorchTensor)(CTorchTensor *tensor) {
+void struct_deep_free(CTHTensor)(CTHTensor *tensor) {
   FAIL_NULL_PTR(tensor);
 
   if (!tensor->meta_info->is_sharded) {
@@ -141,14 +141,14 @@ void struct_deep_free(CTorchTensor)(CTorchTensor *tensor) {
   }
 
   if (tensor->meta_info != NULL) {
-    struct_deep_free(CTorchTensorMeta)(tensor->meta_info);
+    struct_deep_free(CTHTensorMeta)(tensor->meta_info);
   }
 
   FREE(tensor);
 }
 
-void FORCE_TENSOR_NUM_ELEMENTS(
-    CTorchTensor *tensor, const tensor_size_t target_n) {
+void CTH_FORCE_TENSOR_NUM_ELEMENTS(
+    CTHTensor *tensor, const cth_tensor_dim_t target_n) {
   FAIL_NULL_PTR(tensor);
 
   if (target_n != tensor->meta_info->n_elements) {
@@ -160,8 +160,8 @@ void FORCE_TENSOR_NUM_ELEMENTS(
   }
 }
 
-void FORCE_TENSOR_TYPES(
-    CTorchTensor *tensor, CTH_TENSOR_DATA_TYPE *types, array_index_t n_types) {
+void CTH_FORCE_TENSOR_TYPES(
+    CTHTensor *tensor, CTH_TENSOR_DATA_TYPE *types, cth_array_index_t n_types) {
   FAIL_NULL_PTR(tensor);
   FAIL_NULL_PTR(types);
 
@@ -177,37 +177,37 @@ void FORCE_TENSOR_TYPES(
   if (!match) {
     FAIL_EXIT(
         CTH_LOG_ERR,
-        "FORCE_TENSOR_TYPES failed. Type %d is not supported.",
+        "CTH_FORCE_TENSOR_TYPES failed. Type %d is not supported.",
         data_type);
   }
 }
 
-tensor_dim_t cth_tensor_reduce_startoffset(
-    CTorchTensor *tensor,
-    tensor_dim_t *index_dims,
-    const tensor_dim_t reduce_dim) {
+cth_tensor_dim_t cth_tensor_reduce_startoffset(
+    CTHTensor *tensor,
+    cth_tensor_dim_t *index_dims,
+    const cth_tensor_dim_t reduce_dim) {
   FAIL_NULL_PTR(tensor);
   FAIL_NULL_PTR(index_dims);
   // CTH_LOG(CTH_LOG_ERR, "~~~~begin cth_tensor_reduce_startoffset");
 
-  tensor_dim_t *tensor_dims = tensor->meta_info->dims;
-  tensor_dim_t tensor_n_dim = tensor->meta_info->n_dim;
-  tensor_dim_t offset = 0, i = 0;
+  cth_tensor_dim_t *tensor_dims = tensor->meta_info->dims;
+  cth_tensor_dim_t tensor_n_dim = tensor->meta_info->n_dim;
+  cth_tensor_dim_t offset = 0, i = 0;
   while (i < tensor_n_dim) {
     if (reduce_dim == i) {
       i++;
       continue;
     }
 
-    tensor_dim_t n_eles_after = 1;
-    tensor_dim_t j = i + 1;
+    cth_tensor_dim_t n_eles_after = 1;
+    cth_tensor_dim_t j = i + 1;
     // CTH_LOG(CTH_LOG_ERR, "i,: %d, j: %d", i, j);
     while (j < tensor_n_dim) {
       n_eles_after = n_eles_after * tensor_dims[j];
       j++;
     }
 
-    tensor_dim_t index_dim_i = (i > reduce_dim ? i - 1 : i);
+    cth_tensor_dim_t index_dim_i = (i > reduce_dim ? i - 1 : i);
     offset = offset + n_eles_after * index_dims[index_dim_i];
     i++;
     // CTH_LOG(
@@ -221,13 +221,13 @@ tensor_dim_t cth_tensor_reduce_startoffset(
   return offset;
 }
 
-tensor_dim_t cth_tensor_reduce_inneroffset(
-    const CTorchTensor *tensor, tensor_dim_t reduce_dim) {
+cth_tensor_dim_t cth_tensor_reduce_inneroffset(
+    const CTHTensor *tensor, cth_tensor_dim_t reduce_dim) {
   FAIL_NULL_PTR(tensor);
 
-  tensor_dim_t offset = 1;
-  tensor_dim_t i = reduce_dim + 1;
-  tensor_dim_t *tensor_dims = tensor->meta_info->dims;
+  cth_tensor_dim_t offset = 1;
+  cth_tensor_dim_t i = reduce_dim + 1;
+  cth_tensor_dim_t *tensor_dims = tensor->meta_info->dims;
   while (i < tensor->meta_info->n_dim) {
     offset = offset * tensor_dims[i];
     i++;
@@ -237,24 +237,24 @@ tensor_dim_t cth_tensor_reduce_inneroffset(
 }
 
 void cth_tensor_get_reduce_index(
-    const CTorchTensor *tensor,
-    tensor_dim_t group_index,
-    tensor_dim_t reduce_dim,
-    tensor_dim_t *result) {
+    const CTHTensor *tensor,
+    cth_tensor_dim_t group_index,
+    cth_tensor_dim_t reduce_dim,
+    cth_tensor_dim_t *result) {
   /**
    * Convert from group_index to reduce index list:
    *   - From biggest dimension to smallest dimension
    *   - On each dimension, do div
    */
-  tensor_dim_t *dims = tensor->meta_info->dims;
-  tensor_dim_t n_dim = tensor->meta_info->n_dim;
-  for (tensor_dim_t i = 0; i < n_dim; i++) {
+  cth_tensor_dim_t *dims = tensor->meta_info->dims;
+  cth_tensor_dim_t n_dim = tensor->meta_info->n_dim;
+  for (cth_tensor_dim_t i = 0; i < n_dim; i++) {
     if (i == reduce_dim) {
       continue;
     }
 
-    tensor_dim_t n_eles_after = 1;
-    tensor_dim_t j = i + 1;
+    cth_tensor_dim_t n_eles_after = 1;
+    cth_tensor_dim_t j = i + 1;
     while (j < n_dim) {
       if (j != reduce_dim) {
         n_eles_after = n_eles_after * dims[j];
@@ -262,7 +262,7 @@ void cth_tensor_get_reduce_index(
       j++;
     }
 
-    tensor_dim_t reduce_index_i = (i > reduce_dim ? i - 1 : i);
+    cth_tensor_dim_t reduce_index_i = (i > reduce_dim ? i - 1 : i);
     if (reduce_index_i == n_dim - 2) {
       result[reduce_index_i] = group_index;
     } else {

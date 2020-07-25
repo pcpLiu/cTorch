@@ -11,10 +11,10 @@
 /**
  * Execution engine
  */
-typedef struct CTorchEngine {
-  CTorchScheduler *scheduler; /* Execution scheduler */
-  CTorchWorkerPool *pool;     /* Thread pool to execute operators */
-} CTorchEngine;
+typedef struct CTHEngine {
+  CTHScheduler *scheduler; /* Execution scheduler */
+  CTHWorkerPool *pool;     /* Thread pool to execute operators */
+} CTHEngine;
 
 /**
  * Create an engine to execute graph. In this function, what cTorch will do:
@@ -25,8 +25,8 @@ typedef struct CTorchEngine {
  * Arguments:
  *    - config: execution config
  */
-CTorchEngine *cth_new_engine(CTHConfig *config);
+CTHEngine *cth_new_engine(CTHConfig *config);
 
-void cth_execute_node(CTorchNode *node, CTH_BACKEND backend);
+void cth_execute_node(CTHNode *node, CTH_BACKEND backend);
 
 #endif /* ENGINE_H */

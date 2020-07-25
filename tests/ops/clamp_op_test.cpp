@@ -4,10 +4,10 @@
 
 #define _verify_clamp(dtype, input, min, max, output, expect_eq)               \
   do {                                                                         \
-    tensor_size_t N = input->meta_info->n_elements;                            \
+    cth_tensor_dim_t N = input->meta_info->n_elements;                         \
     dtype *input_t = (dtype *)input->values;                                   \
     dtype *output_t = (dtype *)output->values;                                 \
-    for (tensor_size_t i = 0; i < N; i++) {                                    \
+    for (cth_tensor_dim_t i = 0; i < N; i++) {                                 \
       dtype expect_val;                                                        \
       if (input_t[i] < min) {                                                  \
         expect_val = min;                                                      \
@@ -22,27 +22,27 @@
 
 void test_clamp(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
                 float max) {
-  tensor_dim_t dims[] = {100, 100};
-  tensor_dim_t n_dim = 2;
-  CTorchOperator *op = create_dummy_op_with_param(CTH_OP_ID_add, 1, 1, 2);
+  cth_tensor_dim_t dims[] = {100, 100};
+  cth_tensor_dim_t n_dim = 2;
+  CTHOperator *op = create_dummy_op_with_param(CTH_OP_ID_add, 1, 1, 2);
 
-  CTorchTensor *input = create_dummy_tensor(dims, n_dim, data_type, min, max);
-  array_set(CTorchTensor)(op->in_bound_tensors, 0, input);
+  CTHTensor *input = create_dummy_tensor(dims, n_dim, data_type, min, max);
+  cth_array_set(CTHTensor)(op->in_bound_tensors, 0, input);
 
-  CTorchTensor *output = create_dummy_tensor(dims, n_dim, data_type, min, max);
-  array_set(CTorchTensor)(op->out_bound_tensors, 0, output);
+  CTHTensor *output = create_dummy_tensor(dims, n_dim, data_type, min, max);
+  cth_array_set(CTHTensor)(op->out_bound_tensors, 0, output);
 
-  CTorchParam *param = (CTorchParam *)MALLOC(sizeof(CTorchParam));
+  CTHParam *param = (CTHParam *)MALLOC(sizeof(CTHParam));
   param->type = CTH_PARAM_TYPE_MAX_FLOAT32;
   max = _rand_float(-10, 10);
   param->data.max = max;
-  array_set(CTorchParam)(op->params, 0, param);
+  cth_array_set(CTHParam)(op->params, 0, param);
 
-  CTorchParam *param2 = (CTorchParam *)MALLOC(sizeof(CTorchParam));
+  CTHParam *param2 = (CTHParam *)MALLOC(sizeof(CTHParam));
   param2->type = CTH_PARAM_TYPE_MIN_FLOAT32;
   min = _rand_float(-10, 10);
   param2->data.min = min;
-  array_set(CTorchParam)(op->params, 1, param2);
+  cth_array_set(CTHParam)(op->params, 1, param2);
 
   op_clamp_cpu(op);
 

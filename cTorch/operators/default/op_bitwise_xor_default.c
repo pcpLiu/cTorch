@@ -3,15 +3,15 @@
 
 #define _cth_bitwise_xor(op, data_type)                                        \
   do {                                                                         \
-    CTorchTensor *input_1 = array_at(CTorchTensor)(op->in_bound_tensors, 0);   \
-    CTorchTensor *input_2 = array_at(CTorchTensor)(op->in_bound_tensors, 1);   \
-    CTorchTensor *output = array_at(CTorchTensor)(op->out_bound_tensors, 0);   \
+    CTHTensor *input_1 = cth_array_at(CTHTensor)(op->in_bound_tensors, 0);     \
+    CTHTensor *input_2 = cth_array_at(CTHTensor)(op->in_bound_tensors, 1);     \
+    CTHTensor *output = cth_array_at(CTHTensor)(op->out_bound_tensors, 0);     \
     data_type *in_ptr_1 = (data_type *)input_1->values;                        \
     data_type *in_ptr_2 = (data_type *)input_2->values;                        \
     data_type *out_ptr = (data_type *)output->values;                          \
-    tensor_size_t N = input_1->meta_info->n_elements;                          \
+    cth_tensor_dim_t N = input_1->meta_info->n_elements;                       \
                                                                                \
-    for (tensor_size_t i = 0; i < N; i++) {                                    \
+    for (cth_tensor_dim_t i = 0; i < N; i++) {                                 \
       out_ptr[i] = in_ptr_1[i] ^ in_ptr_2[i];                                  \
     }                                                                          \
   } while (0)
@@ -24,12 +24,12 @@
  * # of input: 2
  * # of output: 1
  */
-void op_bitwise_xor_cpu(CTorchOperator *op) {
+void op_bitwise_xor_cpu(CTHOperator *op) {
   FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(op, 2, 1);
-  CTorchTensor *in_1 = array_at(CTorchTensor)(op->in_bound_tensors, 0);
-  CTorchTensor *in_2 = array_at(CTorchTensor)(op->in_bound_tensors, 1);
-  CTorchTensor *out = array_at(CTorchTensor)(op->out_bound_tensors, 0);
-  tensor_size_t N = in_1->meta_info->n_elements;
+  CTHTensor *in_1 = cth_array_at(CTHTensor)(op->in_bound_tensors, 0);
+  CTHTensor *in_2 = cth_array_at(CTHTensor)(op->in_bound_tensors, 1);
+  CTHTensor *out = cth_array_at(CTHTensor)(op->out_bound_tensors, 0);
+  cth_tensor_dim_t N = in_1->meta_info->n_elements;
   CTH_TENSOR_DATA_TYPE data_type = in_1->meta_info->data_type;
 
   CTH_TENSOR_DATA_TYPE types[5] = {
@@ -39,9 +39,9 @@ void op_bitwise_xor_cpu(CTorchOperator *op) {
       CTH_TENSOR_DATA_TYPE_INT_64,
       CTH_TENSOR_DATA_TYPE_UINT_8,
   };
-  FORCE_TENSOR_TYPES(in_1, types, 5);
-  FORCE_TENSOR_TYPES(in_2, types, 5);
-  FORCE_TENSOR_TYPES(out, types, 5);
+  CTH_FORCE_TENSOR_TYPES(in_1, types, 5);
+  CTH_FORCE_TENSOR_TYPES(in_2, types, 5);
+  CTH_FORCE_TENSOR_TYPES(out, types, 5);
 
   _cpu_bit_compute(op, _cth_bitwise_xor, data_type);
 }

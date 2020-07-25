@@ -5,7 +5,7 @@
 /**
  * @brief Compute the element-wise absolute value of the given input tensor.
  *
- * @param[CTorchOperator] op operator
+ * @param[CTHOperator] op operator
  *
  * @note MKL onlly support float & double type
  *
@@ -14,10 +14,10 @@
  *   - # of output: 1
  *   - Assume input & output have same types
  */
-void op_abs_mkl(CTorchOperator *op) {
+void op_abs_mkl(CTHOperator *op) {
   FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(op, 1, 1);
-  CTorchTensor *input = array_at(CTorchTensor)(op->in_bound_tensors, 0);
-  CTorchTensor *output = array_at(CTorchTensor)(op->out_bound_tensors, 0);
+  CTHTensor *input = cth_array_at(CTHTensor)(op->in_bound_tensors, 0);
+  CTHTensor *output = cth_array_at(CTHTensor)(op->out_bound_tensors, 0);
 
   _cth_mkl_vm_function_call_unary(
       input->meta_info->data_type,

@@ -5,35 +5,34 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-cth_impl_new_list_item_func(CTorchQueueJob);
-cth_impl_new_list_func(CTorchQueueJob);
-cth_impl_insert_list_func(CTorchQueueJob);
-cth_impl_list_contains_data_func(CTorchQueueJob);
-cth_impl_list_contains_item_func(CTorchQueueJob);
-cth_impl_list_at_func(CTorchQueueJob);
-cth_impl_list_pop_func(CTorchQueueJob);
-cth_impl_free_list_func(CTorchQueueJob);
-cth_impl_list_del_func(CTorchQueueJob);
+cth_impl_new_list_item_func(CTHQueueJob);
+cth_impl_new_list_func(CTHQueueJob);
+cth_impl_insert_list_func(CTHQueueJob);
+cth_impl_list_contains_data_func(CTHQueueJob);
+cth_impl_list_contains_item_func(CTHQueueJob);
+cth_impl_list_at_func(CTHQueueJob);
+cth_impl_list_pop_func(CTHQueueJob);
+cth_impl_free_list_func(CTHQueueJob);
+cth_impl_list_del_func(CTHQueueJob);
 
-impl_new_array_func(CTorchQueueJob);
-impl_array_at_func(CTorchQueueJob);
-impl_array_set_func(CTorchQueueJob);
+cth_impl_new_array_func(CTHQueueJob);
+cth_impl_array_at_func(CTHQueueJob);
+cth_impl_array_set_func(CTHQueueJob);
 
 void set_non_block(int fd) {
   int flags = fcntl(fd, F_GETFL, 0);
   fcntl(fd, F_SETFL, flags | O_NONBLOCK);
 }
 
-CTorchQueue *cth_new_queue() {
-  CTorchQueue *queue = MALLOC(sizeof(CTorchQueue));
+CTHQueue *cth_new_queue() {
+  CTHQueue *queue = MALLOC(sizeof(CTHQueue));
   pthread_mutex_init(&queue->read_mutex, NULL);
   pthread_mutex_init(&queue->write_mutex, NULL);
 
   if (pipe(queue->pipe_fd) == -1) {
     perror("Error: ");
     FAIL_EXIT(
-        CTH_LOG_ERR,
-        "Failed to create a CTorchQueue. See above error message.");
+        CTH_LOG_ERR, "Failed to create a CTHQueue. See above error message.");
   }
 
   // // set as non-blocking

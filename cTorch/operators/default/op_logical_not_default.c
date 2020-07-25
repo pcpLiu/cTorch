@@ -3,13 +3,13 @@
 
 #define _cth_logical_not(op, data_type)                                        \
   do {                                                                         \
-    CTorchTensor *input = array_at(CTorchTensor)(op->in_bound_tensors, 0);     \
-    CTorchTensor *output = array_at(CTorchTensor)(op->out_bound_tensors, 0);   \
+    CTHTensor *input = cth_array_at(CTHTensor)(op->in_bound_tensors, 0);       \
+    CTHTensor *output = cth_array_at(CTHTensor)(op->out_bound_tensors, 0);     \
     data_type *in_ptr = (data_type *)input->values;                            \
     bool *out_ptr = (bool *)output->values;                                    \
-    tensor_size_t N = input->meta_info->n_elements;                            \
+    cth_tensor_dim_t N = input->meta_info->n_elements;                         \
                                                                                \
-    for (tensor_size_t i = 0; i < N; i++) {                                    \
+    for (cth_tensor_dim_t i = 0; i < N; i++) {                                 \
       out_ptr[i] = (bool)(1 - (in_ptr[i] == 0 ? 0 : 1));                       \
     }                                                                          \
   } while (0)
@@ -25,13 +25,13 @@
  * # of output: 1
  *    - Must be bool type
  */
-void op_logical_not_cpu(CTorchOperator *op) {
+void op_logical_not_cpu(CTHOperator *op) {
   FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(op, 1, 1);
 
-  CTorchTensor *output = array_at(CTorchTensor)(op->out_bound_tensors, 0);
+  CTHTensor *output = cth_array_at(CTHTensor)(op->out_bound_tensors, 0);
   CTH_TENSOR_DATA_TYPE types[1] = {CTH_TENSOR_DATA_TYPE_BOOL};
-  FORCE_TENSOR_TYPES(output, types, 1);
+  CTH_FORCE_TENSOR_TYPES(output, types, 1);
 
-  CTorchTensor *input = array_at(CTorchTensor)(op->in_bound_tensors, 0);
+  CTHTensor *input = cth_array_at(CTHTensor)(op->in_bound_tensors, 0);
   _cpu_generic_compute(op, _cth_logical_not, input->meta_info->data_type);
 }

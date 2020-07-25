@@ -10,7 +10,7 @@ _cth_declare_cuda_unary_kernel(cth_log1p_cuda, log1pf, log1p);
 /**
  * @brief Calculate the value of loge( 1 + x )
  *
- * @param[CTorchOperator] op operator
+ * @param[CTHOperator] op operator
  *
  * @note CUDA onlly support float & double type
  *
@@ -19,10 +19,10 @@ _cth_declare_cuda_unary_kernel(cth_log1p_cuda, log1pf, log1p);
  *   - # of output: 1
  *   - Assume input & output have same types
  */
-void op_log1p_cuda(CTorchOperator *op) {
+void op_log1p_cuda(CTHOperator *op) {
   FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(op, 1, 1);
-  CTorchTensor *input = array_at(CTorchTensor)(op->in_bound_tensors, 0);
-  CTorchTensor *output = array_at(CTorchTensor)(op->out_bound_tensors, 0);
+  CTHTensor *input = cth_array_at(CTHTensor)(op->in_bound_tensors, 0);
+  CTHTensor *output = cth_array_at(CTHTensor)(op->out_bound_tensors, 0);
   CTH_TENSOR_DEVICE device = input->meta_info->device;
 
   _cth_cuda_unary_workflow(

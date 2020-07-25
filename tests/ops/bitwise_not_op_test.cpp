@@ -4,12 +4,12 @@
 
 #define _verify_bitwise_not(op, data_type, expect_fn)                          \
   do {                                                                         \
-    CTorchTensor *input = array_at(CTorchTensor)(op->in_bound_tensors, 0);     \
-    CTorchTensor *output = array_at(CTorchTensor)(op->out_bound_tensors, 0);   \
+    CTHTensor *input = cth_array_at(CTHTensor)(op->in_bound_tensors, 0);       \
+    CTHTensor *output = cth_array_at(CTHTensor)(op->out_bound_tensors, 0);     \
     data_type *input_t = (data_type *)input->values;                           \
     data_type *output_t = (data_type *)output->values;                         \
                                                                                \
-    for (tensor_size_t i = 0; i < input->meta_info->n_elements; i++) {         \
+    for (cth_tensor_dim_t i = 0; i < input->meta_info->n_elements; i++) {      \
       data_type val = ~input_t[i];                                             \
       expect_fn(output_t[i], val);                                             \
     }                                                                          \
@@ -17,11 +17,11 @@
 
 void test_bitwise_not(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type,
                       float min, float max) {
-  tensor_dim_t dims[] = {100, 100};
-  tensor_dim_t n_dim = sizeof(dims) / sizeof(dims[0]);
-  CTorchNode *op_node = create_dummy_op_node_unary(CTH_OP_ID_abs, dims, n_dim,
-                                                   data_type, min, max);
-  CTorchOperator *op = op_node->conent.op;
+  cth_tensor_dim_t dims[] = {100, 100};
+  cth_tensor_dim_t n_dim = sizeof(dims) / sizeof(dims[0]);
+  CTHNode *op_node = create_dummy_op_node_unary(CTH_OP_ID_abs, dims, n_dim,
+                                                data_type, min, max);
+  CTHOperator *op = op_node->conent.op;
 
   op_bitwise_not_cpu(op);
 

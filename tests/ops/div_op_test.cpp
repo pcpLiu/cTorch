@@ -6,16 +6,16 @@
 
 void test_div(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
               float max) {
-  tensor_dim_t dims[] = {100, 100};
-  tensor_dim_t n_dim = 2;
-  CTorchOperator *op = create_dummy_op(CTH_OP_ID_add, 2, 1);
-  array_set(CTorchTensor)(
+  cth_tensor_dim_t dims[] = {100, 100};
+  cth_tensor_dim_t n_dim = 2;
+  CTHOperator *op = create_dummy_op(CTH_OP_ID_add, 2, 1);
+  cth_array_set(CTHTensor)(
       op->in_bound_tensors, 0,
       create_dummy_tensor(dims, n_dim, data_type, min, max));
-  array_set(CTorchTensor)(
+  cth_array_set(CTHTensor)(
       op->in_bound_tensors, 1,
       create_dummy_tensor(dims, n_dim, data_type, min, max));
-  array_set(CTorchTensor)(
+  cth_array_set(CTHTensor)(
       op->out_bound_tensors, 0,
       create_dummy_tensor(dims, n_dim, data_type, min, max));
 
@@ -34,9 +34,9 @@ void test_div(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   }
 
   sample_print_triple(
-      data_type, array_at(CTorchTensor)(op->in_bound_tensors, 0)->values,
-      array_at(CTorchTensor)(op->in_bound_tensors, 1)->values,
-      array_at(CTorchTensor)(op->out_bound_tensors, 0)->values, 2);
+      data_type, cth_array_at(CTHTensor)(op->in_bound_tensors, 0)->values,
+      cth_array_at(CTHTensor)(op->in_bound_tensors, 1)->values,
+      cth_array_at(CTHTensor)(op->out_bound_tensors, 0)->values, 2);
 
   if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||
       data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {

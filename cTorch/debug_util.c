@@ -3,8 +3,7 @@
 
 #include <stdint.h>
 
-
-MemoryRecord *CTH_MEM_RECORDS = &(MemoryRecord){
+CTHMemoryRecord *CTH_MEM_RECORDS = &(CTHMemoryRecord){
     .addr = NULL, .status = CTH_MEM_RECORD_STATUS_ALLOCATED, .next = NULL};
 
 /**
@@ -12,21 +11,21 @@ MemoryRecord *CTH_MEM_RECORDS = &(MemoryRecord){
  */
 static uint32_t CTH_N_RECORDS = 0;
 
-MemoryRecord *cth_add_mem_record(void *ptr) {
+CTHMemoryRecord *cth_add_mem_record(void *ptr) {
   /* Check existing */
-  MemoryRecord *exist = cth_get_mem_record(ptr);
+  CTHMemoryRecord *exist = cth_get_mem_record(ptr);
   if (exist != NULL) {
     return exist;
   }
 
   /* use raw malloc avoiding of infinite loop */
-  MemoryRecord *record = malloc(sizeof(MemoryRecord));
+  CTHMemoryRecord *record = malloc(sizeof(CTHMemoryRecord));
   record->addr = ptr;
   record->status = CTH_MEM_RECORD_STATUS_ALLOCATED;
   record->next = NULL;
 
   /* Put new record to the end of the list */
-  MemoryRecord *item = CTH_MEM_RECORDS;
+  CTHMemoryRecord *item = CTH_MEM_RECORDS;
   while (item->next != NULL) {
     item = item->next;
   }
@@ -36,10 +35,10 @@ MemoryRecord *cth_add_mem_record(void *ptr) {
   return record;
 }
 
-MemoryRecord *cth_get_mem_record(void *ptr) {
+CTHMemoryRecord *cth_get_mem_record(void *ptr) {
   FAIL_NULL_PTR(ptr);
 
-  MemoryRecord *record = CTH_MEM_RECORDS->next; // 1st is dummy node
+  CTHMemoryRecord *record = CTH_MEM_RECORDS->next; // 1st is dummy node
   bool found = false;
   while (record != NULL) {
     if (ptr == record->addr) {
@@ -55,7 +54,7 @@ MemoryRecord *cth_get_mem_record(void *ptr) {
 
 int cth_get_num_unfree_records() {
   int count = 0;
-  MemoryRecord *record = CTH_MEM_RECORDS->next; // 1st is dummy node
+  CTHMemoryRecord *record = CTH_MEM_RECORDS->next; // 1st is dummy node
   while (record != NULL) {
     if (record->status == CTH_MEM_RECORD_STATUS_ALLOCATED) {
       count++;
@@ -67,13 +66,11 @@ int cth_get_num_unfree_records() {
 }
 
 void cth_print_unfree_records() {
-  MemoryRecord *record = CTH_MEM_RECORDS->next; // 1st is dummy node
+  CTHMemoryRecord *record = CTH_MEM_RECORDS->next; // 1st is dummy node
   while (record != NULL) {
     if (record->status == CTH_MEM_RECORD_STATUS_ALLOCATED) {
       printf(
-          "Unfreed record. Addr: %p, name: %s\n",
-          record->addr,
-          record->name);
+          "Unfreed record. Addr: %p, name: %s\n", record->addr, record->name);
     }
     record = record->next;
   }

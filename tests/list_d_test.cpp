@@ -69,7 +69,7 @@ TEST(cTorchListTest, testNewListFunc) {
 }
 
 TEST(cTorchListTest, testNewListFuncStruct) {
-  CTHList(CTorchTensor) *list = cth_new_list(CTorchTensor)();
+  CTHList(CTHTensor) *list = cth_new_list(CTHTensor)();
   EXPECT_EQ(list->size, 0);
   EXPECT_EQ(list->head, nullptr);
   EXPECT_EQ(list->tail, nullptr);
@@ -190,7 +190,7 @@ TEST(cTorchListTest, testListPop) {
   int x[] = {1, 2, 3, 4};
   CTHList(int) *list = cth_new_list(int)();
   CTHListItem(int) *item_1 = cth_insert_list(int)(list, &x[0]);
-  MemoryRecord *record_item_1 = cth_get_mem_record(item_1);
+  CTHMemoryRecord *record_item_1 = cth_get_mem_record(item_1);
   CTHListItem(int) *item_2 = cth_insert_list(int)(list, &x[1]);
   CTHListItem(int) *item_3 = cth_insert_list(int)(list, &x[2]);
   CTHListItem(int) *item_4 = cth_insert_list(int)(list, &x[3]);
@@ -222,19 +222,19 @@ TEST(cTorchListTest, testFreeList) {
 
   int x[] = {1, 2, 3, 4};
   CTHList(int) *list = cth_new_list(int)();
-  MemoryRecord *record_list = cth_get_mem_record(list);
+  CTHMemoryRecord *record_list = cth_get_mem_record(list);
 
   CTHListItem(int) *item_1 = cth_insert_list(int)(list, &x[0]);
-  MemoryRecord *record_item_1 = cth_get_mem_record(item_1);
+  CTHMemoryRecord *record_item_1 = cth_get_mem_record(item_1);
 
   CTHListItem(int) *item_2 = cth_insert_list(int)(list, &x[1]);
-  MemoryRecord *record_item_2 = cth_get_mem_record(item_2);
+  CTHMemoryRecord *record_item_2 = cth_get_mem_record(item_2);
 
   CTHListItem(int) *item_3 = cth_insert_list(int)(list, &x[2]);
-  MemoryRecord *record_item_3 = cth_get_mem_record(item_3);
+  CTHMemoryRecord *record_item_3 = cth_get_mem_record(item_3);
 
   CTHListItem(int) *item_4 = cth_insert_list(int)(list, &x[3]);
-  MemoryRecord *record_item_4 = cth_get_mem_record(item_4);
+  CTHMemoryRecord *record_item_4 = cth_get_mem_record(item_4);
 
   cth_free_list(int)(list);
 
@@ -248,27 +248,27 @@ TEST(cTorchListTest, testFreeList) {
 TEST(cTorchListTest, testFreeListDeep) {
 
   CTHList(int) *list = cth_new_list(int)();
-  MemoryRecord *record_list = cth_get_mem_record(list);
+  CTHMemoryRecord *record_list = cth_get_mem_record(list);
 
   int *data_1 = heap_int(1);
-  MemoryRecord *record_data_1 = cth_get_mem_record(data_1);
+  CTHMemoryRecord *record_data_1 = cth_get_mem_record(data_1);
   CTHListItem(int) *item_1 = cth_insert_list(int)(list, data_1);
-  MemoryRecord *record_item_1 = cth_get_mem_record(item_1);
+  CTHMemoryRecord *record_item_1 = cth_get_mem_record(item_1);
 
   int *data_2 = heap_int(2);
-  MemoryRecord *record_data_2 = cth_get_mem_record(data_2);
+  CTHMemoryRecord *record_data_2 = cth_get_mem_record(data_2);
   CTHListItem(int) *item_2 = cth_insert_list(int)(list, data_2);
-  MemoryRecord *record_item_2 = cth_get_mem_record(item_2);
+  CTHMemoryRecord *record_item_2 = cth_get_mem_record(item_2);
 
   int *data_3 = heap_int(3);
-  MemoryRecord *record_data_3 = cth_get_mem_record(data_3);
+  CTHMemoryRecord *record_data_3 = cth_get_mem_record(data_3);
   CTHListItem(int) *item_3 = cth_insert_list(int)(list, data_3);
-  MemoryRecord *record_item_3 = cth_get_mem_record(item_3);
+  CTHMemoryRecord *record_item_3 = cth_get_mem_record(item_3);
 
   int *data_4 = heap_int(4);
-  MemoryRecord *record_data_4 = cth_get_mem_record(data_4);
+  CTHMemoryRecord *record_data_4 = cth_get_mem_record(data_4);
   CTHListItem(int) *item_4 = cth_insert_list(int)(list, data_4);
-  MemoryRecord *record_item_4 = cth_get_mem_record(item_4);
+  CTHMemoryRecord *record_item_4 = cth_get_mem_record(item_4);
 
   cth_free_list_deep(int)(list);
 
@@ -288,7 +288,7 @@ TEST(cTorchListTest, testDeleteDataMEMRECORD) {
   CTHList(int) *list = cth_new_list(int)();
   int *data_1 = heap_int(1);
   CTHListItem(int) *item_1 = cth_insert_list(int)(list, data_1);
-  MemoryRecord *record_item_1 = cth_get_mem_record(item_1);
+  CTHMemoryRecord *record_item_1 = cth_get_mem_record(item_1);
 
   int *data_2 = heap_int(2);
   cth_insert_list(int)(list, data_2);

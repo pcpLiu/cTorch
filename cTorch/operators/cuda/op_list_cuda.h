@@ -7,10 +7,10 @@
 
 /**
  * Declare cuda op functions. These three macros will finally expand to a list
- * of functions like: void op_XXXXXX_cuda(CTorchOperator *);
+ * of functions like: void op_XXXXXX_cuda(CTHOperator *);
  */
 #define CUDA_OP_FUNC_NAME(op) op_##op##_cuda
-#define CUDA_OP_FUNC_DECLARE(op) void CUDA_OP_FUNC_NAME(op)(CTorchOperator *);
+#define CUDA_OP_FUNC_DECLARE(op) void CUDA_OP_FUNC_NAME(op)(CTHOperator *);
 #define DECLARE_CUDA_ALL_OP_FUNCS FOREACH_OP_ID(CUDA_OP_FUNC_DECLARE)
 DECLARE_CUDA_ALL_OP_FUNCS
 
@@ -23,6 +23,6 @@ DECLARE_CUDA_ALL_OP_FUNCS
 /**
  * Array of function pointers corresponding to each enabled operator
  */
-extern void (*fps_op_cuda[ENABLED_OP_NUM])(CTorchOperator *);
+extern void (*fps_op_cuda[ENABLED_OP_NUM])(CTHOperator *);
 
 #endif /* OP_LIST_CUDA_H */
