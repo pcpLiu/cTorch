@@ -21,7 +21,7 @@
         output_ptr[i] = input_ptr[i];                                          \
       }                                                                        \
     }                                                                          \
-  } while (0);
+  } while (0)
 
 /**
  * Clamp op: https://pytorch.org/docs/stable/torch.html#torch.clamp

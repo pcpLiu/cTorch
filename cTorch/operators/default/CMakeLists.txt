@@ -62,6 +62,8 @@ set(ops_default_all
     operators/default/op_trunc_default.c
     operators/default/op_argmax_default.c
     operators/default/op_erfinv_default.c
+    operators/default/op_argmin_default.c
+    operators/default/op_dist_default.c
 )
 
 ################################################################################

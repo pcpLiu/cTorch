@@ -11,6 +11,7 @@ typedef enum CTH_PARAM_TYPE {
   CTH_PARAM_TYPE_MULTIPLIER_FLOAT32,
   CTH_PARAM_TYPE_MIN_FLOAT32,
   CTH_PARAM_TYPE_MAX_FLOAT32,
+  CTH_PARAM_TYPE_P_FLOAT32,
   CTH_PARAM_TYPE_DIM_INT32,
 } CTH_PARAM_TYPE;
 
@@ -18,13 +19,10 @@ typedef enum CTH_PARAM_TYPE {
  * Param data union
  */
 typedef union CTHParamData {
-  /* multiplier */
   float multiplier;
-  /* Min value threshold */
   float min;
-  /* Max value threshold */
   float max;
-  /* Dimension to reduce */
+  float p;
   int32_t dim;
 } CTHParamData;
 

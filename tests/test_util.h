@@ -61,7 +61,11 @@ float _rand_float(float min, float max);
  */
 #define EXPECT_EQ_PRECISION(val_1, val_2, precision)                           \
   do {                                                                         \
-    EXPECT_TRUE(abs(val_1 - val_2) <= precision);                              \
+    if (abs(val_1 - val_2) <= precision) {                                     \
+      EXPECT_TRUE(true);                                                       \
+    } else {                                                                   \
+      EXPECT_EQ(val_1, val_2);                                                 \
+    }                                                                          \
   } while (0)
 
 /**

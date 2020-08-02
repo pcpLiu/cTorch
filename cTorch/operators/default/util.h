@@ -156,6 +156,32 @@
   }
 
 /**
+ * Expand a computation to a generic type with input, output type
+ */
+#define _cpu_generic_compute2(op, compute_fn, input_type, output_type)         \
+  {                                                                            \
+    if (input_type == CTH_TENSOR_DATA_TYPE_BOOL) {                             \
+      compute_fn(op, bool, input_type, output_type);                           \
+    } else if (input_type == CTH_TENSOR_DATA_TYPE_INT_16) {                    \
+      compute_fn(op, int16_t, input_type, output_type);                        \
+    } else if (input_type == CTH_TENSOR_DATA_TYPE_INT_32) {                    \
+      compute_fn(op, int32_t, input_type, output_type);                        \
+    } else if (input_type == CTH_TENSOR_DATA_TYPE_INT_64) {                    \
+      compute_fn(op, int64_t, input_type, output_type);                        \
+    } else if (input_type == CTH_TENSOR_DATA_TYPE_UINT_8) {                    \
+      compute_fn(op, uint8_t, input_type, output_type);                        \
+    } else if (input_type == CTH_TENSOR_DATA_TYPE_FLOAT_16) {                  \
+      compute_fn(op, float, input_type, output_type);                          \
+    } else if (input_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {                  \
+      compute_fn(op, float, input_type, output_type);                          \
+    } else if (input_type == CTH_TENSOR_DATA_TYPE_FLOAT_64) {                  \
+      compute_fn(op, double, input_type, output_type);                         \
+    } else {                                                                   \
+      FAIL_EXIT(CTH_LOG_ERR, "Unsupported data type in _cpu_generic_compute"); \
+    }                                                                          \
+  }
+
+/**
  * Expand a computation to all bit computation supported types
  */
 #define _cpu_bit_compute(op, compute_fn, data_type)                            \

@@ -39,6 +39,7 @@
 void op_addcmul_cpu(CTHOperator *op) {
   FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(op, 3, 1);
   FORCE_OP_PARAM_NUM(op, 1);
+  FORCE_OP_PARAM_EXIST(op, CTH_PARAM_TYPE_MULTIPLIER_FLOAT32);
 
   CTHTensor *input = cth_array_at(CTHTensor)(op->in_bound_tensors, 0);
   _cpu_generic_compute(op, _cth_addcmul, input->meta_info->data_type);
