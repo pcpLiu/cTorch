@@ -21,7 +21,7 @@ CTHTensor *create_dummy_tensor(cth_tensor_dim_t *dims, cth_tensor_dim_t n_dim,
  * Create a dummy op node with one input and one output.
  * Input & output has same dimensions.
  */
-CTHNode *create_dummy_op_node_unary(CTH_OP_ID op_id, uint32_t *dims,
+CTHNode *create_dummy_op_node_unary(CTH_OP_ID op_id, cth_tensor_dim_t *dims,
                                     cth_tensor_dim_t n_dim,
                                     CTH_TENSOR_DATA_TYPE data_type, float min,
                                     float max);
@@ -132,7 +132,7 @@ float _rand_float(float min, float max);
     CTHTensor *tensor_output =                                                 \
         cth_array_at(CTHTensor)(op->out_bound_tensors, 0);                     \
     type *output = (type *)tensor_output->values;                              \
-    uint64_t n_ele = tensor_input_a->meta_info->n_elements;                    \
+    cth_tensor_dim_t n_ele = tensor_input_a->meta_info->n_elements;            \
     for (cth_tensor_dim_t i = 0; i < n_ele; i++) {                             \
       type expect_result = verify_func(input_a[i], input_b[i]);                \
       eq_func(expect_result, output[i]);                                       \

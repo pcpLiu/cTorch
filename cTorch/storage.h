@@ -131,7 +131,7 @@ cth_tensor_dim_t cth_tensor_reduce_inneroffset(
  *
  * @param tensor Tensor
  * @param group_index Which reduce group
- * @param reduce_dim Which dim to reduce
+ * @param reduce_dim Which dim to reduce. If value is `-1`, flatten process
  * @param result Result index list array
  */
 void cth_tensor_get_reduce_index(

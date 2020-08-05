@@ -113,7 +113,7 @@ typedef uint16_t cth_thread_n_t;
 /**
  * Type to denote tensor dimension & size
  */
-#define cth_tensor_dim_t uint32_t
+#define cth_tensor_dim_t int64_t
 
 /**
  * @brief Index type of result tensro in reduce index op

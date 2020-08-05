@@ -208,7 +208,7 @@ void _get_reduce_dims(cth_tensor_dim_t *dims, cth_tensor_dim_t n_dim,
 void _print_index(cth_tensor_dim_t *dims, cth_tensor_dim_t n_dim) {
   printf("dims: [");
   for (cth_tensor_dim_t i = 0; i < n_dim; i++) {
-    printf("%d ", dims[i]);
+    printf("%ld ", dims[i]);
   }
   printf("]\n");
 }

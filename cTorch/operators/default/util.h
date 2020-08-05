@@ -216,7 +216,12 @@
     CTHParam *dim_param =                                                      \
         cth_get_param_by_type(op, CTH_PARAM_TYPE_DIM_INT32, true);             \
     cth_tensor_dim_t reduce_dim = (cth_tensor_dim_t)dim_param->data.dim;       \
-    cth_tensor_dim_t reduce_dim_size = in->meta_info->dims[reduce_dim];        \
+    cth_tensor_dim_t reduce_dim_size;                                          \
+    if (reduce_dim == -1) {                                                    \
+      reduce_dim_size = in->meta_info->n_elements;                             \
+    } else {                                                                   \
+      reduce_dim_size = in->meta_info->dims[reduce_dim];                       \
+    }                                                                          \
                                                                                \
     CTHTensor *in = cth_array_at(CTHTensor)(op->in_bound_tensors, 0);          \
     CTHTensor *out = cth_array_at(CTHTensor)(op->out_bound_tensors, 0);        \
@@ -229,6 +234,9 @@
     cth_tensor_dim_t inner_offset =                                            \
         cth_tensor_reduce_inneroffset(in, reduce_dim);                         \
     cth_tensor_dim_t reduce_index_size = tensor_n_dim - 1;                     \
+    if (reduce_dim == -1) {                                                    \
+      reduce_index_size = 1;                                                   \
+    }                                                                          \
     cth_tensor_dim_t *reduce_index_dims =                                      \
         MALLOC(sizeof(cth_tensor_dim_t) * reduce_index_size);                  \
     for (cth_tensor_dim_t group_i = 0; group_i < num_reduce_groups;            \

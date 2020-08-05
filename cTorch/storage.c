@@ -186,9 +186,12 @@ cth_tensor_dim_t cth_tensor_reduce_startoffset(
     CTHTensor *tensor,
     cth_tensor_dim_t *index_dims,
     const cth_tensor_dim_t reduce_dim) {
+  if (reduce_dim == -1) {
+    return 0;
+  }
+
   FAIL_NULL_PTR(tensor);
   FAIL_NULL_PTR(index_dims);
-  // CTH_LOG(CTH_LOG_ERR, "~~~~begin cth_tensor_reduce_startoffset");
 
   cth_tensor_dim_t *tensor_dims = tensor->meta_info->dims;
   cth_tensor_dim_t tensor_n_dim = tensor->meta_info->n_dim;
@@ -225,6 +228,10 @@ cth_tensor_dim_t cth_tensor_reduce_inneroffset(
     const CTHTensor *tensor, cth_tensor_dim_t reduce_dim) {
   FAIL_NULL_PTR(tensor);
 
+  if (reduce_dim == -1) {
+    return 1;
+  }
+
   cth_tensor_dim_t offset = 1;
   cth_tensor_dim_t i = reduce_dim + 1;
   cth_tensor_dim_t *tensor_dims = tensor->meta_info->dims;
@@ -241,11 +248,17 @@ void cth_tensor_get_reduce_index(
     cth_tensor_dim_t group_index,
     cth_tensor_dim_t reduce_dim,
     cth_tensor_dim_t *result) {
+  if (reduce_dim == -1) {
+    result[0] = 0;
+    return;
+  }
+
   /**
    * Convert from group_index to reduce index list:
    *   - From biggest dimension to smallest dimension
    *   - On each dimension, do div
    */
+
   cth_tensor_dim_t *dims = tensor->meta_info->dims;
   cth_tensor_dim_t n_dim = tensor->meta_info->n_dim;
   for (cth_tensor_dim_t i = 0; i < n_dim; i++) {
@@ -269,11 +282,5 @@ void cth_tensor_get_reduce_index(
       result[reduce_index_i] = group_index / n_eles_after;
       group_index = group_index % n_eles_after;
     }
-    // CTH_LOG(
-    //     CTH_LOG_ERR,
-    //     "i: %d, n_eles_after: %d, result[reduce_index_i]: %d",
-    //     i,
-    //     n_eles_after,
-    //     result[reduce_index_i]);
   }
 }
