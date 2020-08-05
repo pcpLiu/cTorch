@@ -18,7 +18,6 @@
     for (cth_tensor_dim_t i = 0; i < N; i++) {                                 \
       dist += pow(fabs((float)input_ptr_1[i] - (float)input_ptr_2[i]), p);     \
     }                                                                          \
-    CTH_LOG(CTH_LOG_ERR, "pow(dist, 1.0 / p): %lf", pow(dist, 1.0 / p));       \
     if (output_type_enum == CTH_TENSOR_DATA_TYPE_INT_16 ||                     \
         output_type_enum == CTH_TENSOR_DATA_TYPE_INT_32 ||                     \
         output_type_enum == CTH_TENSOR_DATA_TYPE_INT_64 ||                     \
@@ -31,7 +30,6 @@
 
 /**
  * out = p-norm dist (input_1 - input_2)
- * ref: https://pytorch.org/docs/stable/torch.html#torch.addcmul
  *
  * Op requirement:
  *    - # of input tensors: 2

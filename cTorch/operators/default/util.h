@@ -205,8 +205,13 @@
  * @brief General reduce computation
  *
  */
-#define _cpu_reduce_arg_compute(                                               \
-    op, reduce_action, input_data_type, output_data_type)                      \
+#define _cpu_reduce_dim_compute(                                               \
+    op,                                                                        \
+    reduce_action,                                                             \
+    input_data_type,                                                           \
+    output_data_type,                                                          \
+    input_dtype_enum,                                                          \
+    output_dtype_enum)                                                         \
   do {                                                                         \
     CTHParam *dim_param =                                                      \
         cth_get_param_by_type(op, CTH_PARAM_TYPE_DIM_INT32, true);             \
@@ -235,6 +240,9 @@
           in_ptr,                                                              \
           out_ptr,                                                             \
           input_data_type,                                                     \
+          output_data_type,                                                    \
+          input_dtype_enum,                                                    \
+          output_dtype_enum,                                                   \
           start_offset,                                                        \
           inner_offset,                                                        \
           group_i,                                                             \
@@ -243,29 +251,109 @@
     FREE(reduce_index_dims);                                                   \
   } while (0)
 
+#define _cput_reduce_dim_generic_out_type(                                     \
+    op, reduce_action, input_t, output_data_type, input_data_type)             \
+  do {                                                                         \
+    if (output_data_type == CTH_TENSOR_DATA_TYPE_BOOL) {                       \
+      _cpu_reduce_dim_compute(                                                 \
+          op,                                                                  \
+          reduce_action,                                                       \
+          input_t,                                                             \
+          bool,                                                                \
+          input_data_type,                                                     \
+          output_data_type);                                                   \
+    } else if (output_data_type == CTH_TENSOR_DATA_TYPE_INT_16) {              \
+      _cpu_reduce_dim_compute(                                                 \
+          op,                                                                  \
+          reduce_action,                                                       \
+          input_t,                                                             \
+          int16_t,                                                             \
+          input_data_type,                                                     \
+          output_data_type);                                                   \
+    } else if (output_data_type == CTH_TENSOR_DATA_TYPE_INT_32) {              \
+      _cpu_reduce_dim_compute(                                                 \
+          op,                                                                  \
+          reduce_action,                                                       \
+          input_t,                                                             \
+          int32_t,                                                             \
+          input_data_type,                                                     \
+          output_data_type);                                                   \
+    } else if (output_data_type == CTH_TENSOR_DATA_TYPE_INT_64) {              \
+      _cpu_reduce_dim_compute(                                                 \
+          op,                                                                  \
+          reduce_action,                                                       \
+          input_t,                                                             \
+          int64_t,                                                             \
+          input_data_type,                                                     \
+          output_data_type);                                                   \
+    } else if (output_data_type == CTH_TENSOR_DATA_TYPE_UINT_8) {              \
+      _cpu_reduce_dim_compute(                                                 \
+          op,                                                                  \
+          reduce_action,                                                       \
+          input_t,                                                             \
+          uint8_t,                                                             \
+          input_data_type,                                                     \
+          output_data_type);                                                   \
+    } else if (output_data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16) {            \
+      _cpu_reduce_dim_compute(                                                 \
+          op,                                                                  \
+          reduce_action,                                                       \
+          input_t,                                                             \
+          float,                                                               \
+          input_data_type,                                                     \
+          output_data_type);                                                   \
+    } else if (output_data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {            \
+      _cpu_reduce_dim_compute(                                                 \
+          op,                                                                  \
+          reduce_action,                                                       \
+          input_t,                                                             \
+          float,                                                               \
+          input_data_type,                                                     \
+          output_data_type);                                                   \
+    } else if (output_data_type == CTH_TENSOR_DATA_TYPE_FLOAT_64) {            \
+      _cpu_reduce_dim_compute(                                                 \
+          op,                                                                  \
+          reduce_action,                                                       \
+          input_t,                                                             \
+          double,                                                              \
+          input_data_type,                                                     \
+          output_data_type);                                                   \
+    } else {                                                                   \
+      FAIL_EXIT(CTH_LOG_ERR, "Unsupported data type in _cpu_generic_compute"); \
+    }                                                                          \
+  } while (0)
+
 /**
- * @brief General logic to find index among a reduce dim
+ * @brief General logic to do reduce op along a dim
  *
  */
-#define _cpu_reduce_arg_generic(                                               \
+#define _cpu_reduce_dim_generic(                                               \
     op, input_data_type, output_data_type, reduce_action)                      \
   do {                                                                         \
     if (input_data_type == CTH_TENSOR_DATA_TYPE_BOOL) {                        \
-      _cpu_reduce_arg_compute(op, reduce_action, bool, output_data_type);      \
+      _cput_reduce_dim_generic_out_type(                                       \
+          op, reduce_action, bool, output_data_type, input_data_type);         \
     } else if (input_data_type == CTH_TENSOR_DATA_TYPE_INT_16) {               \
-      _cpu_reduce_arg_compute(op, reduce_action, int16_t, output_data_type);   \
+      _cput_reduce_dim_generic_out_type(                                       \
+          op, reduce_action, int16_t, output_data_type, input_data_type);      \
     } else if (input_data_type == CTH_TENSOR_DATA_TYPE_INT_32) {               \
-      _cpu_reduce_arg_compute(op, reduce_action, int32_t, output_data_type);   \
+      _cput_reduce_dim_generic_out_type(                                       \
+          op, reduce_action, int32_t, output_data_type, input_data_type);      \
     } else if (input_data_type == CTH_TENSOR_DATA_TYPE_INT_64) {               \
-      _cpu_reduce_arg_compute(op, reduce_action, int64_t, output_data_type);   \
+      _cput_reduce_dim_generic_out_type(                                       \
+          op, reduce_action, int64_t, output_data_type, input_data_type);      \
     } else if (input_data_type == CTH_TENSOR_DATA_TYPE_UINT_8) {               \
-      _cpu_reduce_arg_compute(op, reduce_action, uint8_t, output_data_type);   \
+      _cput_reduce_dim_generic_out_type(                                       \
+          op, reduce_action, uint8_t, output_data_type, input_data_type);      \
     } else if (input_data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16) {             \
-      _cpu_reduce_arg_compute(op, reduce_action, float, output_data_type);     \
+      _cput_reduce_dim_generic_out_type(                                       \
+          op, reduce_action, float, output_data_type, input_data_type);        \
     } else if (input_data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {             \
-      _cpu_reduce_arg_compute(op, reduce_action, float, output_data_type);     \
+      _cput_reduce_dim_generic_out_type(                                       \
+          op, reduce_action, float, output_data_type, input_data_type);        \
     } else if (input_data_type == CTH_TENSOR_DATA_TYPE_FLOAT_64) {             \
-      _cpu_reduce_arg_compute(op, reduce_action, double, output_data_type);    \
+      _cput_reduce_dim_generic_out_type(                                       \
+          op, reduce_action, double, output_data_type, input_data_type);       \
     } else {                                                                   \
       FAIL_EXIT(CTH_LOG_ERR, "Unsupported data type in _cpu_generic_compute"); \
     }                                                                          \

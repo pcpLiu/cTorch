@@ -5,6 +5,9 @@
     in_ptr,                                                                    \
     out_ptr,                                                                   \
     input_data_type,                                                           \
+    output_data_type,                                                          \
+    input_dtype_enum,                                                          \
+    output_dtype_enum,                                                         \
     start_offset,                                                              \
     inner_offset,                                                              \
     result_offset,                                                             \
@@ -53,6 +56,6 @@ void op_argmin_cpu(CTHOperator *op) {
   CTH_FORCE_TENSOR_TYPES(out, types, 1);
 
   CTHTensor *in = cth_array_at(CTHTensor)(op->in_bound_tensors, 0);
-  _cpu_reduce_arg_generic(
-      op, in->meta_info->data_type, cth_tensor_reduce_index_t, _cth_argmin);
+  _cpu_reduce_dim_generic(
+      op, in->meta_info->data_type, out->meta_info->data_type, _cth_argmin);
 }

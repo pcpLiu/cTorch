@@ -36,21 +36,8 @@ void test_argmin(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   if (backend == CTH_BACKEND_DEFAULT) {
     op_argmin_cpu(op);
   }
-
-  if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||
-      data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {
-    _reduce_op(op, float, int64_t, __argmin_pytorch, EXPECT_EQ);
-  } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_64) {
-    _reduce_op(op, double, int64_t, __argmin_pytorch, EXPECT_EQ);
-  } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_16) {
-    _reduce_op(op, int16_t, int64_t, __argmin_pytorch, EXPECT_EQ);
-  } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_32) {
-    _reduce_op(op, int32_t, int64_t, __argmin_pytorch, EXPECT_EQ);
-  } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_64) {
-    _reduce_op(op, int64_t, int64_t, __argmin_pytorch, EXPECT_EQ);
-  } else if (data_type == CTH_TENSOR_DATA_TYPE_UINT_8) {
-    _reduce_op(op, uint8_t, int64_t, __argmin_pytorch, EXPECT_EQ);
-  }
+  _reduce_typing_test_flow(op, data_type, CTH_TENSOR_DATA_TYPE_INT_64, int64_t,
+                           __argmin_pytorch, EXPECT_EQ);
 }
 
 TEST(cTorchArgminOpTest, testFloat16Default) {

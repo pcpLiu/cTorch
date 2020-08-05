@@ -64,6 +64,7 @@ set(ops_default_all
     operators/default/op_erfinv_default.c
     operators/default/op_argmin_default.c
     operators/default/op_dist_default.c
+    operators/default/op_logsumexp_default.c
 )
 
 ################################################################################
