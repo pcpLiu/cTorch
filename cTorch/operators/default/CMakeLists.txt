@@ -66,6 +66,7 @@ set(ops_default_all
     operators/default/op_dist_default.c
     operators/default/op_logsumexp_default.c
     operators/default/op_mean_default.c
+    operators/default/op_sort_default.c
 )
 
 ################################################################################

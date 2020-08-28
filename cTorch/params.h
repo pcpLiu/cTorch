@@ -57,8 +57,7 @@ void cth_copy_param(CTHParam *from_param, CTHParam *to_param);
 #define EXTRACT_PARAM_VALUE(op, param_type, param_data_field, param_var)       \
   do {                                                                         \
     CTHParam *param = cth_get_param_by_type(op, param_type, true);             \
-    param_var =                                                                \
-        cth_get_param_by_type(op, param_type, true)->data.param_data_field;    \
+    param_var = param->data.param_data_field;                                  \
   } while (0)
 
 #endif /* PARAMS_H */

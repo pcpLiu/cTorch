@@ -2,7 +2,13 @@
 #define CTH_DEFAULT_UTIL_H
 
 /**
- * Conduct unary operation element wise
+ * @brief Conduct unary operation element wise
+ *
+ * @param input_ptr: C pointer, input values
+ * @param output_ptr: C pointer, output values
+ * @param N: cth_tensor_dim_t, num of elements
+ * @param kernel: compute function
+ * @param type_t: C type
  */
 #define _cpu_1d_map_elewise_unary_forloop(                                     \
     input_ptr, output_ptr, N, kernel, type_t)                                  \
@@ -15,7 +21,14 @@
   }
 
 /**
- * Conduct binary operation element wise
+ * @brief Conduct binary operation element wise
+ *
+ * @param input_ptr_a: C pointer, input a values
+ * @param input_ptr_b: C pointer, input b values
+ * @param output_ptr: C pointer, output values
+ * @param N: cth_tensor_dim_t, num of elements
+ * @param kernel: compute function
+ * @param type_t: C type
  */
 #define _cpu_1d_map_elewise_binary_forloop(                                    \
     input_ptr_a, input_ptr_b, output_ptr, N, kernel, type_t)                   \
@@ -29,7 +42,13 @@
   }
 
 /**
- * Apply 1D unary kernel on input and output pointers in element wise way
+ * @brief Apply 1D unary kernel on input and output pointers in element wise way
+ *
+ * @param input_ptr: C pointer, input values
+ * @param output_ptr: C pointer, output values
+ * @param data_type: CTH_TENSOR_DATA_TYPE, input type
+ * @param N: cth_tensor_dim_t, num of elements
+ * @param kernel: compute function
  */
 #define _cpu_1d_map_elewise_unary(input_ptr, output_ptr, data_type, N, kernel) \
   {                                                                            \
@@ -64,7 +83,13 @@
   }
 
 /**
- * Generic compute elewise unary
+ * @brief Generic compute elewise unary
+ *
+ * @param input_ptr: C pointer, input values
+ * @param output_ptr: C pointer, output values
+ * @param data_type: CTH_TENSOR_DATA_TYPE, input type
+ * @param N: cth_tensor_dim_t, num of elements
+ * @param kernel: compute function
  */
 #define _cpu_1d_map_elewise_unary_generic(                                     \
     input_ptr, output_ptr, data_type, N, kernel)                               \
@@ -93,8 +118,17 @@
   }
 
 /**
- * Apply 1d binary kernel on input and output pointers in element wise way.
- * This one assumes both input have same data types.
+ * @brief Apply 1d binary kernel on input and output pointers in element wise
+ * way
+ *
+ * @note This one assumes both input have same data types
+ *
+ * @param input_ptr_a: C pointer, input a
+ * @param input_ptr_b: C pointer, input b
+ * @param output_ptr: C pointer, output
+ * @param data_type: CTH_TENSOR_DATA_TYPE, input type
+ * @param N: cth_tensor_dim_t, num of elements
+ * @param kernel: compute function
  */
 #define _cpu_1d_map_elewise_binary(                                            \
     input_ptr_a, input_ptr_b, output_ptr, data_type, N, kernel)                \
@@ -130,7 +164,11 @@
   }
 
 /**
- * Expand a computation to a generic type
+ * @brief Expand a computation to a generic type
+ *
+ * @param op: operator
+ * @param compute_fn: compute function
+ * @param data_type: CTH_TENSOR_DATA_TYPE, inpute type
  */
 #define _cpu_generic_compute(op, compute_fn, data_type)                        \
   {                                                                            \
@@ -156,7 +194,12 @@
   }
 
 /**
- * Expand a computation to a generic type with input, output type
+ * @brief Expand a computation to a generic type with input, output type
+ *
+ * @param op: operator
+ * @param compute_fn: compute function
+ * @param input_type: CTH_TENSOR_DATA_TYPE, input type
+ * @param output_type: CTH_TENSOR_DATA_TYPE, output type
  */
 #define _cpu_generic_compute2(op, compute_fn, input_type, output_type)         \
   {                                                                            \
@@ -182,7 +225,11 @@
   }
 
 /**
- * Expand a computation to all bit computation supported types
+ * @brief Expand a computation to all bit computation supported types
+ *
+ * @param op: operator
+ * @param compute_fn: compute function
+ * @param data_type: CTH_TENSOR_DATA_TYPE, input data type
  */
 #define _cpu_bit_compute(op, compute_fn, data_type)                            \
   {                                                                            \
@@ -203,6 +250,13 @@
 
 /**
  * @brief General reduce computation
+ *
+ * @param op: operator
+ * @param reduce_action: reduce function
+ * @param input_data_type: input data C type
+ * @param output_data_type: output data C type
+ * @param input_dtype_enum: CTH_TENSOR_DATA_TYPE, input data type
+ * @param output_dtype_enum: CTH_TENSOR_DATA_TYPE, output data type
  *
  */
 #define _cpu_reduce_dim_compute(                                               \
@@ -259,6 +313,15 @@
     FREE(reduce_index_dims);                                                   \
   } while (0)
 
+/**
+ * @brief convert output type
+ *
+ * @param op: operator
+ * @param reduce_action: reduce function
+ * @param input_t: input data C type
+ * @param output_data_type: CTH_TENSOR_DATA_TYPE, output data type
+ * @param input_data_type: CTH_TENSOR_DATA_TYPE, input data type
+ */
 #define _cput_reduce_dim_generic_out_type(                                     \
     op, reduce_action, input_t, output_data_type, input_data_type)             \
   do {                                                                         \
@@ -334,6 +397,10 @@
 /**
  * @brief General logic to do reduce op along a dim
  *
+ * @param op: operator
+ * @param input_data_type: CTH_TENSOR_DATA_TYPE, input data type
+ * @param out_data_type: CTH_TENSOR_DATA_TYPE, output data type
+ * @param reduce_action: reduce function
  */
 #define _cpu_reduce_dim_generic(                                               \
     op, input_data_type, output_data_type, reduce_action)                      \
@@ -365,6 +432,39 @@
     } else {                                                                   \
       FAIL_EXIT(CTH_LOG_ERR, "Unsupported data type in _cpu_generic_compute"); \
     }                                                                          \
+  } while (0)
+
+/**
+ * @brief Sort an array inplace
+ *
+ * @param array: array pointer
+ * @param data_type: C type
+ * @param offset: int, offset between each element in array_ptr
+ * @param size: cth_array_index_t, array size
+ */
+#define _cth_sort_array_inplace(array, data_type, offset, size)                \
+  do {                                                                         \
+                                                                               \
+  } while (0)
+
+/**
+ * @brief Sort an array in place with index tracking
+ *
+ * @param array: array pointer
+ * @param index: index pointer
+ * @param data_type: C type
+ * @param offset: int, offset between each element in array_ptr
+ * @param size: cth_array_index_t, array_size
+ */
+#define _cth_sort_array_inplace_tracking(                                      \
+    array, index, data_type, offset, size)                                     \
+  do {                                                                         \
+    _cth_sort_array_inplace(array, data_type, offset, size);                   \
+                                                                               \
+    for (cth_array_index_t i = 0; i < size; i++) {                             \
+      index[i] = i;                                                            \
+    }                                                                          \
+                                                                               \
   } while (0)
 
 #endif /* X86_COMMON_H */

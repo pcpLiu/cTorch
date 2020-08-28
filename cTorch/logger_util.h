@@ -84,6 +84,17 @@
     }                                                                          \
   } while (0)
 
+/**
+ * @brief Force expression is true.
+ *
+ */
+#define FORCE_TRUE(expression, ...)                                            \
+  do {                                                                         \
+    if (expression) {                                                          \
+      FAIL_EXIT(CTH_LOG_ERR, "FORCE_TRUE failes. Info: %s", __VA_ARGS__);      \
+    }                                                                          \
+  } while (0)
+
 /*******************************************************************************
  *
  * Global config
