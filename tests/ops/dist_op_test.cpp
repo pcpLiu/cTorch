@@ -48,8 +48,8 @@ void test_dist(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
 
   CTHParam *param = (CTHParam *)MALLOC(sizeof(CTHParam));
   float p = _rand_float(1, 10);
-  param->data.p = p;
-  param->type = CTH_PARAM_TYPE_P_FLOAT32;
+  param->data.p = &p;
+  param->type = CTH_PARAM_TYPE_P;
   cth_array_set(CTHParam)(op->params, 0, param);
 
   if (backend == CTH_BACKEND_DEFAULT) {

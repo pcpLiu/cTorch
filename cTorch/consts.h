@@ -91,9 +91,60 @@ typedef enum CTH_QUEUE_STATUS {
 } CTH_QUEUE_STATUS;
 
 /**
+ * @brief Padding modes
+ *
+ */
+typedef enum CTH_PADDING_MODE {
+  CTH_PADDING_MODE_ZEROS,
+  CTH_PADDING_MODE_REFLECT,
+  CTH_PADDING_MODE_REPLICATE,
+  CTH_PADDING_MODE_CIRCULAR,
+} CTH_PADDING_MODE;
+
+/**
  * Type to denote thread num
  */
 typedef uint16_t cth_thread_n_t;
+
+/**
+ * Type to denote tensor dimension & size
+ */
+typedef int64_t cth_tensor_dim_t;
+
+/**
+ * @brief Type to denote channel param. Used in conv, pooling etc.
+ */
+typedef int64_t cth_channel_t;
+
+/**
+ * @brief Type to denote kernel size param. Used in conv, pooling etc.
+ */
+typedef int64_t cth_kernel_t;
+
+/**
+ * @brief Type to denote paddin param. Used in conv, pooling etc.
+ */
+typedef int64_t cth_pad_t;
+
+/**
+ * @brief Type to denote stride param. Used in conv, pooling etc.
+ */
+typedef int64_t cth_stride_t;
+
+/**
+ * @brief Type to denote dilation param. Used in conv, pooling etc.
+ */
+typedef int64_t cth_dilation_t;
+
+/**
+ * @brief Type to denote groups param. Used in conv, pooling etc.
+ */
+typedef int64_t cth_groups_t;
+
+/**
+ * @brief Index type of result tensro in reduce index op
+ */
+#define cth_tensor_reduce_index_t int64_t
 
 /*
   To define operator enums
@@ -109,16 +160,6 @@ typedef uint16_t cth_thread_n_t;
  * Universal struct deep free function name in cToRCH
  */
 #define struct_deep_free(data_type) cth_free_deep_##data_type
-
-/**
- * Type to denote tensor dimension & size
- */
-#define cth_tensor_dim_t int64_t
-
-/**
- * @brief Index type of result tensro in reduce index op
- */
-#define cth_tensor_reduce_index_t int64_t
 
 /**
  * Pi value. 10 digits

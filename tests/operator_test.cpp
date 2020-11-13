@@ -91,8 +91,9 @@ TEST(cTorchOperatorTest, testDeepFreeMEMRECORD) {
 
   // param
   CTHParam *param = (CTHParam *)MALLOC(sizeof(CTHParam));
-  param->type = CTH_PARAM_TYPE_MULTIPLIER_FLOAT32;
-  param->data.multiplier = 0.5;
+  param->type = CTH_PARAM_TYPE_MULTIPLIER;
+  float multiplier = 0.5;
+  param->data.multiplier = &multiplier;
 
   CTHOperator *op = create_dummy_op_with_param(CTH_OP_ID_abs, 1, 1, 1);
   cth_array_set(CTHTensor)(op->in_bound_tensors, 0, input);
@@ -108,18 +109,20 @@ TEST(cTorchOperatorTest, testGetParam) {
   CTHOperator *op = create_dummy_op_with_param(CTH_OP_ID_abs, 1, 1, 2);
 
   CTHParam *param_1 = (CTHParam *)MALLOC(sizeof(CTHParam));
-  param_1->type = CTH_PARAM_TYPE_MULTIPLIER_FLOAT32;
-  param_1->data.multiplier = 1.0;
+  param_1->type = CTH_PARAM_TYPE_MULTIPLIER;
+  float multiplier = 1.0;
+  param_1->data.multiplier = &multiplier;
   cth_array_set(CTHParam)(op->params, 0, param_1);
 
   CTHParam *param_2 = (CTHParam *)MALLOC(sizeof(CTHParam));
-  param_2->type = CTH_PARAM_TYPE_MIN_FLOAT32;
-  param_2->data.multiplier = -1.0;
+  param_2->type = CTH_PARAM_TYPE_MIN;
+  float multiplier_2 = -1.0;
+  param_2->data.multiplier = &multiplier_2;
   cth_array_set(CTHParam)(op->params, 1, param_2);
 
-  CTHParam *param = cth_get_param_by_type(op, CTH_PARAM_TYPE_MIN_FLOAT32, true);
+  CTHParam *param = cth_get_param_by_type(op, CTH_PARAM_TYPE_MIN, true);
   EXPECT_EQ(param, param_2);
 
-  param = cth_get_param_by_type(op, CTH_PARAM_TYPE_MULTIPLIER_FLOAT32, true);
+  param = cth_get_param_by_type(op, CTH_PARAM_TYPE_MULTIPLIER, true);
   EXPECT_EQ(param, param_1);
 }

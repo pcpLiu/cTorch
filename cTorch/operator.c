@@ -165,5 +165,7 @@ CTHParam *cth_get_param_by_type(
 
   if (fail_exit) {
     FAIL_EXIT(CTH_LOG_ERR, "Cannot find param with type %u", type);
+  } else {
+    return NULL;
   }
 }

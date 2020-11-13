@@ -21,14 +21,15 @@ void test_logsumexp(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type,
   cth_array_set(CTHTensor)(op->in_bound_tensors, 0, input);
 
   CTHParam *param = (CTHParam *)MALLOC(sizeof(CTHParam));
-  param->data.dim = _rand_int(0, n_dim - 1);
-  param->type = CTH_PARAM_TYPE_DIM_INT32;
+  int dim = _rand_int(0, n_dim - 1);
+  param->data.dim = &dim;
+  param->type = CTH_PARAM_TYPE_DIM;
   cth_array_set(CTHParam)(op->params, 0, param);
 
   cth_tensor_dim_t n_dim_out = n_dim - 1;
   cth_tensor_dim_t *out_dims =
       (cth_tensor_dim_t *)MALLOC(sizeof(cth_tensor_dim_t) * n_dim_out);
-  _get_reduce_dims(dims, n_dim, param->data.dim, out_dims);
+  _get_reduce_dims(dims, n_dim, *(param->data.dim), out_dims);
   CTHTensor *output =
       create_dummy_tensor(out_dims, n_dim_out, data_type, min, max);
   cth_array_set(CTHTensor)(op->out_bound_tensors, 0, output);

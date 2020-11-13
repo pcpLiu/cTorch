@@ -83,6 +83,7 @@ get_output_by_name(CTHOperator *op, const char *name, bool fail_exit);
 
 /**
  * Get param by type. Always return the first met one.
+ * It returns NULL if fail_exit is set to false.
  */
 CTHParam *cth_get_param_by_type(
     CTHOperator *op, const CTH_PARAM_TYPE type, bool fail_exit);

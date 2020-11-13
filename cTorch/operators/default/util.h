@@ -267,9 +267,8 @@
     input_dtype_enum,                                                          \
     output_dtype_enum)                                                         \
   do {                                                                         \
-    CTHParam *dim_param =                                                      \
-        cth_get_param_by_type(op, CTH_PARAM_TYPE_DIM_INT32, true);             \
-    cth_tensor_dim_t reduce_dim = (cth_tensor_dim_t)dim_param->data.dim;       \
+    CTHParam *dim_param = cth_get_param_by_type(op, CTH_PARAM_TYPE_DIM, true); \
+    cth_tensor_dim_t reduce_dim = (cth_tensor_dim_t) * (dim_param->data.dim);  \
     cth_tensor_dim_t reduce_dim_size;                                          \
     if (reduce_dim == -1) {                                                    \
       reduce_dim_size = in->meta_info->n_elements;                             \

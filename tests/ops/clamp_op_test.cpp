@@ -33,15 +33,15 @@ void test_clamp(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   cth_array_set(CTHTensor)(op->out_bound_tensors, 0, output);
 
   CTHParam *param = (CTHParam *)MALLOC(sizeof(CTHParam));
-  param->type = CTH_PARAM_TYPE_MAX_FLOAT32;
+  param->type = CTH_PARAM_TYPE_MAX;
   max = _rand_float(-10, 10);
-  param->data.max = max;
+  param->data.max = &max;
   cth_array_set(CTHParam)(op->params, 0, param);
 
   CTHParam *param2 = (CTHParam *)MALLOC(sizeof(CTHParam));
-  param2->type = CTH_PARAM_TYPE_MIN_FLOAT32;
+  param2->type = CTH_PARAM_TYPE_MIN;
   min = _rand_float(-10, 10);
-  param2->data.min = min;
+  param2->data.min = &min;
   cth_array_set(CTHParam)(op->params, 1, param2);
 
   op_clamp_cpu(op);

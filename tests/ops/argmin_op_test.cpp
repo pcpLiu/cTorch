@@ -25,11 +25,12 @@ void test_argmin(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   cth_array_set(CTHTensor)(op->in_bound_tensors, 0, input);
 
   CTHParam *param = (CTHParam *)MALLOC(sizeof(CTHParam));
-  param->data.dim = _rand_int(0, n_dim - 1);
+  int dim = _rand_int(0, n_dim - 1);
+  param->data.dim = &dim;
   if (flat) {
-    param->data.dim = -1;
+    *(param->data.dim) = -1;
   }
-  param->type = CTH_PARAM_TYPE_DIM_INT32;
+  param->type = CTH_PARAM_TYPE_DIM;
   cth_array_set(CTHParam)(op->params, 0, param);
 
   cth_tensor_dim_t n_dim_out;
@@ -43,7 +44,7 @@ void test_argmin(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   if (flat) {
     out_dims[0] = 1;
   } else {
-    _get_reduce_dims(dims, n_dim, param->data.dim, out_dims);
+    _get_reduce_dims(dims, n_dim, *(param->data.dim), out_dims);
   }
   CTHTensor *output = create_dummy_tensor(
       out_dims, n_dim_out, CTH_TENSOR_DATA_TYPE_INT_64, min, max);
