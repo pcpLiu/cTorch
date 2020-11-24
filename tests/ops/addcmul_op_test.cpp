@@ -38,8 +38,9 @@ void test_addcmul(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type,
   cth_array_set(CTHTensor)(op->out_bound_tensors, 0, output);
 
   CTHParam *param = (CTHParam *)MALLOC(sizeof(CTHParam));
-  param->type = CTH_PARAM_TYPE_MULTIPLIER_FLOAT32;
-  param->data.multiplier = 0.5;
+  param->type = CTH_PARAM_TYPE_MULTIPLIER;
+  float multiplier = 0.5;
+  param->data.multiplier = &multiplier;
   cth_array_set(CTHParam)(op->params, 0, param);
 
   op_addcmul_cpu(op);

@@ -47,7 +47,7 @@
 void op_argmax_cpu(CTHOperator *op) {
   FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(op, 1, 1);
   FORCE_OP_PARAM_NUM(op, 1);
-  FORCE_OP_PARAM_EXIST(op, CTH_PARAM_TYPE_DIM_INT32);
+  FORCE_OP_PARAM_EXIST(op, CTH_PARAM_TYPE_DIM);
 
   CTH_TENSOR_DATA_TYPE types[1] = {
       CTH_TENSOR_DATA_TYPE_INT_64,
@@ -56,6 +56,7 @@ void op_argmax_cpu(CTHOperator *op) {
   CTH_FORCE_TENSOR_TYPES(out, types, 1);
 
   CTHTensor *in = cth_array_at(CTHTensor)(op->in_bound_tensors, 0);
+
   _cpu_reduce_dim_generic(
       op, in->meta_info->data_type, out->meta_info->data_type, _cth_argmax);
 }

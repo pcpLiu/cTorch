@@ -7,8 +7,8 @@
     CTHTensor *tensor_1 = cth_get_input_by_name(op, "tensor_1", false);        \
     CTHTensor *tensor_2 = cth_get_input_by_name(op, "tensor_2", false);        \
     CTHParam *param =                                                          \
-        cth_get_param_by_type(op, CTH_PARAM_TYPE_MULTIPLIER_FLOAT32, true);    \
-    float multiplier = param->data.multiplier;                                 \
+        cth_get_param_by_type(op, CTH_PARAM_TYPE_MULTIPLIER, true);            \
+    float multiplier = *(param->data.multiplier);                              \
     CTHTensor *output = cth_array_at(CTHTensor)(op->out_bound_tensors, 0);     \
     cth_tensor_dim_t N = tensor_1->meta_info->n_elements;                      \
                                                                                \
@@ -30,7 +30,7 @@
  *        - tensor_1: tensor with name `tensor_1`
  *        - tensor_2: tensor with name `tensor_2`
  *    - # of arguments: 1
- *        - CTH_PARAM_TYPE_MULTIPLIER_FLOAT32
+ *        - CTH_PARAM_TYPE_MULTIPLIER
  *    - # of output tensors: 1
  *        - output:  the input always at index 0
  *
@@ -44,7 +44,7 @@ void op_addcdiv_cpu(CTHOperator *op) {
   CTH_TENSOR_DATA_TYPE data_type = input->meta_info->data_type;
   FORCE_OP_INPUT_EXIST(op, "tensor_1", data_type);
   FORCE_OP_INPUT_EXIST(op, "tensor_2", data_type);
-  FORCE_OP_PARAM_EXIST(op, CTH_PARAM_TYPE_MULTIPLIER_FLOAT32);
+  FORCE_OP_PARAM_EXIST(op, CTH_PARAM_TYPE_MULTIPLIER);
 
   _cpu_generic_compute(op, _cth_addcdiv, data_type);
 }

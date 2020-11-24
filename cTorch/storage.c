@@ -154,7 +154,7 @@ void CTH_FORCE_TENSOR_NUM_ELEMENTS(
   if (target_n != tensor->meta_info->n_elements) {
     FAIL_EXIT(
         CTH_LOG_ERR,
-        "Tensor required %u elements, but it contains %u",
+        "Tensor required %ld elements, but it contains %ld",
         target_n,
         tensor->meta_info->n_elements);
   }

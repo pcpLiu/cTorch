@@ -200,9 +200,11 @@ void _get_reduce_dims(cth_tensor_dim_t *dims, cth_tensor_dim_t n_dim,
     if (i == reduce_dim) {
       continue;
     }
+
     reduce_dims[j] = dims[i];
     j++;
   }
+
 }
 
 void _print_index(cth_tensor_dim_t *dims, cth_tensor_dim_t n_dim) {

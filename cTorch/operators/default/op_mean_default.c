@@ -37,7 +37,7 @@
  * @par Op requirement:
  *    - # of input tensors: 1
  *    - # of arguments: 1
- *        - CTH_PARAM_TYPE_DIM_INT32
+ *        - CTH_PARAM_TYPE_DIM
  *    - # of output tensors: 1
  *        - The output tensor data type should be floating
  *
@@ -46,7 +46,7 @@
 void op_mean_cpu(CTHOperator *op) {
   FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(op, 1, 1);
   FORCE_OP_PARAM_NUM(op, 1);
-  FORCE_OP_PARAM_EXIST(op, CTH_PARAM_TYPE_DIM_INT32);
+  FORCE_OP_PARAM_EXIST(op, CTH_PARAM_TYPE_DIM);
 
   CTHTensor *out = cth_array_at(CTHTensor)(op->out_bound_tensors, 0);
   CTHTensor *in = cth_array_at(CTHTensor)(op->in_bound_tensors, 0);

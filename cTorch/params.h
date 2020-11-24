@@ -8,22 +8,40 @@
  * Enum used to indicate param type
  */
 typedef enum CTH_PARAM_TYPE {
-  CTH_PARAM_TYPE_MULTIPLIER_FLOAT32,
-  CTH_PARAM_TYPE_MIN_FLOAT32,
-  CTH_PARAM_TYPE_MAX_FLOAT32,
-  CTH_PARAM_TYPE_P_FLOAT32,
-  CTH_PARAM_TYPE_DIM_INT32,
+  CTH_PARAM_TYPE_MULTIPLIER,
+  CTH_PARAM_TYPE_MIN,
+  CTH_PARAM_TYPE_MAX,
+  CTH_PARAM_TYPE_P,
+  CTH_PARAM_TYPE_DIM,
+  CTH_PARAM_TYPE_IN_CHANNELS,
+  CTH_PARAM_TYPE_OUT_CHANNELS,
+  CTH_PARAM_TYPE_KERNEL_SIZE,
+  CTH_PARAM_TYPE_KERNEL_SIZE_D2,
+  CTH_PARAM_TYPE_STRIDE_D2,
+  CTH_PARAM_TYPE_PADDING_D2,
+  CTH_PARAM_TYPE_PADDING_MODE,
+  CTH_PARAM_TYPE_DILATION_D2,
+  CTH_PARAM_TYPE_IN_GROUPS,
 } CTH_PARAM_TYPE;
 
 /**
  * Param data union
  */
 typedef union CTHParamData {
-  float multiplier;
-  float min;
-  float max;
-  float p;
-  int32_t dim;
+  float *multiplier;
+  float *min;
+  float *max;
+  float *p;
+  int32_t *dim;
+  cth_channel_t *in_channels;
+  cth_channel_t *out_channels;
+  cth_kernel_t *kernel_size_l1;
+  cth_kernel_t *kernel_size_l2;
+  cth_stride_t *stride_l2;
+  cth_pad_t *padding_l2;
+  CTH_PADDING_MODE *padding_mode;
+  cth_dilation_t *dilation_l2;
+  cth_groups_t *groups;
 } CTHParamData;
 
 typedef struct CTHParam {
@@ -52,12 +70,31 @@ void struct_deep_free(CTHParam)(CTHParam *param);
 void cth_copy_param(CTHParam *from_param, CTHParam *to_param);
 
 /**
- * Extract param value with given types
+ * Extract param value with given types. Will raise error if param not exist.
+ *
+ * @note The param_var should be a pointer.
  */
 #define EXTRACT_PARAM_VALUE(op, param_type, param_data_field, param_var)       \
   do {                                                                         \
     CTHParam *param = cth_get_param_by_type(op, param_type, true);             \
     param_var = param->data.param_data_field;                                  \
+  } while (0)
+
+/**
+ * @brief Extract param value with given types. Assign param as NULL if not
+ * found.
+ *
+ * @note The param_var should be a pointer.
+ */
+#define EXTRACT_PARAM_VALUE_OR_NULL(                                           \
+    op, param_type, param_data_field, param_var_ptr)                           \
+  do {                                                                         \
+    CTHParam *param = cth_get_param_by_type(op, param_type, true);             \
+    if (param != NULL) {                                                       \
+      param_var_ptr = param->data.param_data_field;                            \
+    } else {                                                                   \
+      param_var_ptr = NULL;                                                    \
+    }                                                                          \
   } while (0)
 
 #endif /* PARAMS_H */
