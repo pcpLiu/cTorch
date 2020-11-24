@@ -86,32 +86,32 @@ Include dependency graph for scheduler.c:</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a246659566e09ebb96f90e7f3bccab396"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCTorchScheduler.html">CTorchScheduler</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8c.html#a246659566e09ebb96f90e7f3bccab396">cth_new_scheduler</a> (<a class="el" href="structCTorchConfig.html">CTorchConfig</a> *config, <a class="el" href="structCTorchGraph.html">CTorchGraph</a> *graph)</td></tr>
-<tr class="separator:a246659566e09ebb96f90e7f3bccab396"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78ed43786968c8bb499a6ff92ef3a937"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8c.html#a78ed43786968c8bb499a6ff92ef3a937">cth_search_ready_jobs</a> (<a class="el" href="structCTorchScheduler.html">CTorchScheduler</a> *scheduler, <a class="el" href="list__d_8h.html#a164ccd9e9f0276a8301d761387dbac90">List</a>(<a class="el" href="structCTorchQueueJob.html">CTorchQueueJob</a>) *ready_jobs)</td></tr>
-<tr class="separator:a78ed43786968c8bb499a6ff92ef3a937"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f11776a230172d770f23c9f91d48055"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8c.html#a0f11776a230172d770f23c9f91d48055">cth_start_scheduler_v3</a> (<a class="el" href="structCTorchScheduler.html">CTorchScheduler</a> *scheduler)</td></tr>
-<tr class="separator:a0f11776a230172d770f23c9f91d48055"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3feb3392bd169e26c04d0e07c11a1fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8c.html#ac3feb3392bd169e26c04d0e07c11a1fc">cth_start_scheduler</a> (<a class="el" href="structCTorchScheduler.html">CTorchScheduler</a> *scheduler)</td></tr>
-<tr class="separator:ac3feb3392bd169e26c04d0e07c11a1fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d7f979c0d6609d8c03f65df94c7cf3a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCTHScheduler.html">CTHScheduler</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8c.html#a7d7f979c0d6609d8c03f65df94c7cf3a">cth_new_scheduler</a> (<a class="el" href="structCTHConfig.html">CTHConfig</a> *config, <a class="el" href="structCTHGraph.html">CTHGraph</a> *graph)</td></tr>
+<tr class="separator:a7d7f979c0d6609d8c03f65df94c7cf3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec33480d0a4bec1f25d1978eef7f3c47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8c.html#aec33480d0a4bec1f25d1978eef7f3c47">cth_search_ready_jobs</a> (<a class="el" href="structCTHScheduler.html">CTHScheduler</a> *scheduler, <a class="el" href="list__d_8h.html#aa8ec55b1eb665e3b7e7378dca481845f">CTHList</a>(<a class="el" href="structCTHQueueJob.html">CTHQueueJob</a>) *ready_jobs)</td></tr>
+<tr class="separator:aec33480d0a4bec1f25d1978eef7f3c47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a7cfa753aeaf954eca408a159fb7c0f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8c.html#a6a7cfa753aeaf954eca408a159fb7c0f">cth_start_scheduler_v3</a> (<a class="el" href="structCTHScheduler.html">CTHScheduler</a> *scheduler)</td></tr>
+<tr class="separator:a6a7cfa753aeaf954eca408a159fb7c0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a754e7bf497de79b58bf5addd9676357d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8c.html#a754e7bf497de79b58bf5addd9676357d">cth_start_scheduler</a> (<a class="el" href="structCTHScheduler.html">CTHScheduler</a> *scheduler)</td></tr>
+<tr class="separator:a754e7bf497de79b58bf5addd9676357d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a246659566e09ebb96f90e7f3bccab396"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a246659566e09ebb96f90e7f3bccab396">&#9670;&nbsp;</a></span>cth_new_scheduler()</h2>
+<a id="a7d7f979c0d6609d8c03f65df94c7cf3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d7f979c0d6609d8c03f65df94c7cf3a">&#9670;&nbsp;</a></span>cth_new_scheduler()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structCTorchScheduler.html">CTorchScheduler</a>* cth_new_scheduler </td>
+          <td class="memname"><a class="el" href="structCTHScheduler.html">CTHScheduler</a>* cth_new_scheduler </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structCTorchConfig.html">CTorchConfig</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structCTHConfig.html">CTHConfig</a> *&#160;</td>
           <td class="paramname"><em>config</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structCTorchGraph.html">CTorchGraph</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structCTHGraph.html">CTHGraph</a> *&#160;</td>
           <td class="paramname"><em>graph</em>&#160;</td>
         </tr>
         <tr>
@@ -131,8 +131,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a78ed43786968c8bb499a6ff92ef3a937"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a78ed43786968c8bb499a6ff92ef3a937">&#9670;&nbsp;</a></span>cth_search_ready_jobs()</h2>
+<a id="aec33480d0a4bec1f25d1978eef7f3c47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec33480d0a4bec1f25d1978eef7f3c47">&#9670;&nbsp;</a></span>cth_search_ready_jobs()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -140,13 +140,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void cth_search_ready_jobs </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structCTorchScheduler.html">CTorchScheduler</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structCTHScheduler.html">CTHScheduler</a> *&#160;</td>
           <td class="paramname"><em>scheduler</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="list__d_8h.html#a164ccd9e9f0276a8301d761387dbac90">List</a>(<a class="el" href="structCTorchQueueJob.html">CTorchQueueJob</a>) *&#160;</td>
+          <td class="paramtype"><a class="el" href="list__d_8h.html#aa8ec55b1eb665e3b7e7378dca481845f">CTHList</a>(<a class="el" href="structCTHQueueJob.html">CTHQueueJob</a>) *&#160;</td>
           <td class="paramname"><em>ready_jobs</em>&#160;</td>
         </tr>
         <tr>
@@ -168,8 +168,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ac3feb3392bd169e26c04d0e07c11a1fc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac3feb3392bd169e26c04d0e07c11a1fc">&#9670;&nbsp;</a></span>cth_start_scheduler()</h2>
+<a id="a754e7bf497de79b58bf5addd9676357d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a754e7bf497de79b58bf5addd9676357d">&#9670;&nbsp;</a></span>cth_start_scheduler()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -177,7 +177,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void cth_start_scheduler </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structCTorchScheduler.html">CTorchScheduler</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structCTHScheduler.html">CTHScheduler</a> *&#160;</td>
           <td class="paramname"><em>scheduler</em></td><td>)</td>
           <td></td>
         </tr>
@@ -187,8 +187,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a0f11776a230172d770f23c9f91d48055"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0f11776a230172d770f23c9f91d48055">&#9670;&nbsp;</a></span>cth_start_scheduler_v3()</h2>
+<a id="a6a7cfa753aeaf954eca408a159fb7c0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a7cfa753aeaf954eca408a159fb7c0f">&#9670;&nbsp;</a></span>cth_start_scheduler_v3()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -196,7 +196,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void cth_start_scheduler_v3 </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structCTorchScheduler.html">CTorchScheduler</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structCTHScheduler.html">CTHScheduler</a> *&#160;</td>
           <td class="paramname"><em>scheduler</em></td><td>)</td>
           <td></td>
         </tr>

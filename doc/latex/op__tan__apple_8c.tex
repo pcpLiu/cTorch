@@ -1,0 +1,34 @@
+\hypertarget{op__tan__apple_8c}{}\doxysection{c\+Torch/operators/apple/op\+\_\+tan\+\_\+apple.c File Reference}
+\label{op__tan__apple_8c}\index{cTorch/operators/apple/op\_tan\_apple.c@{cTorch/operators/apple/op\_tan\_apple.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/apple/op\+\_\+list\+\_\+apple.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/apple/util\+\_\+apple.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$Accelerate/\+Accelerate.\+h$>$}\newline
+Include dependency graph for op\+\_\+tan\+\_\+apple.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__tan__apple_8c_a748fdf5728ee227cc5a206acba194921}{op\+\_\+tan\+\_\+apple}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em tan(x) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__tan__apple_8c_a748fdf5728ee227cc5a206acba194921}\label{op__tan__apple_8c_a748fdf5728ee227cc5a206acba194921}} 
+\index{op\_tan\_apple.c@{op\_tan\_apple.c}!op\_tan\_apple@{op\_tan\_apple}}
+\index{op\_tan\_apple@{op\_tan\_apple}!op\_tan\_apple.c@{op\_tan\_apple.c}}
+\doxysubsubsection{\texorpdfstring{op\_tan\_apple()}{op\_tan\_apple()}}
+{\footnotesize\ttfamily void op\+\_\+tan\+\_\+apple (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+tan(x) 
+
+\begin{DoxyNote}{Note}
+Apple backend only support float \& double tensors
+\end{DoxyNote}
+Inputs \& outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 1
+\item \# of output\+: 1
+\item Input and output should be same dimention and type. 
+\end{DoxyItemize}

@@ -1,0 +1,39 @@
+\hypertarget{op__tanh__mkl_8c}{}\doxysection{c\+Torch/operators/mkl/op\+\_\+tanh\+\_\+mkl.c File Reference}
+\label{op__tanh__mkl_8c}\index{cTorch/operators/mkl/op\_tanh\_mkl.c@{cTorch/operators/mkl/op\_tanh\_mkl.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/mkl/op\+\_\+list\+\_\+mkl.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/mkl/util\+\_\+mkl.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$mkl.\+h$>$}\newline
+Include dependency graph for op\+\_\+tanh\+\_\+mkl.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__tanh__mkl_8c_ae293b655b7bcbcaffcfb955ebf61972c}{op\+\_\+tanh\+\_\+mkl}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em Computes the hyperbolic tangent of vector elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__tanh__mkl_8c_ae293b655b7bcbcaffcfb955ebf61972c}\label{op__tanh__mkl_8c_ae293b655b7bcbcaffcfb955ebf61972c}} 
+\index{op\_tanh\_mkl.c@{op\_tanh\_mkl.c}!op\_tanh\_mkl@{op\_tanh\_mkl}}
+\index{op\_tanh\_mkl@{op\_tanh\_mkl}!op\_tanh\_mkl.c@{op\_tanh\_mkl.c}}
+\doxysubsubsection{\texorpdfstring{op\_tanh\_mkl()}{op\_tanh\_mkl()}}
+{\footnotesize\ttfamily void op\+\_\+tanh\+\_\+mkl (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+Computes the hyperbolic tangent of vector elements. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{[}\+C\+T\+H\+Operator\mbox{]}} & op operator\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+M\+KL only support float \& double type
+\end{DoxyNote}
+Inputs \& outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 1
+\item \# of output\+: 1
+\item Assume input \& output have same types 
+\end{DoxyItemize}

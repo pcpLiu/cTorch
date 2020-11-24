@@ -1,0 +1,34 @@
+\hypertarget{op__acos__apple_8c}{}\doxysection{c\+Torch/operators/apple/op\+\_\+acos\+\_\+apple.c File Reference}
+\label{op__acos__apple_8c}\index{cTorch/operators/apple/op\_acos\_apple.c@{cTorch/operators/apple/op\_acos\_apple.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/apple/op\+\_\+list\+\_\+apple.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/apple/util\+\_\+apple.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$Accelerate/\+Accelerate.\+h$>$}\newline
+Include dependency graph for op\+\_\+acos\+\_\+apple.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__acos__apple_8c_a72ca8408700b16db44295f09776a7b19}{op\+\_\+acos\+\_\+apple}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em acos(x) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__acos__apple_8c_a72ca8408700b16db44295f09776a7b19}\label{op__acos__apple_8c_a72ca8408700b16db44295f09776a7b19}} 
+\index{op\_acos\_apple.c@{op\_acos\_apple.c}!op\_acos\_apple@{op\_acos\_apple}}
+\index{op\_acos\_apple@{op\_acos\_apple}!op\_acos\_apple.c@{op\_acos\_apple.c}}
+\doxysubsubsection{\texorpdfstring{op\_acos\_apple()}{op\_acos\_apple()}}
+{\footnotesize\ttfamily void op\+\_\+acos\+\_\+apple (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+acos(x) 
+
+\begin{DoxyNote}{Note}
+Apple backend only support float \& double tensors
+\end{DoxyNote}
+Inputs \& outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 1
+\item \# of output\+: 1
+\item Input and output should be same dimention and type. 
+\end{DoxyItemize}

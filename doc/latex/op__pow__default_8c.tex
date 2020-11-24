@@ -1,0 +1,60 @@
+\hypertarget{op__pow__default_8c}{}\doxysection{c\+Torch/operators/default/op\+\_\+pow\+\_\+default.c File Reference}
+\label{op__pow__default_8c}\index{cTorch/operators/default/op\_pow\_default.c@{cTorch/operators/default/op\_pow\_default.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operator.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/op\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/util.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$tgmath.\+h$>$}\newline
+Include dependency graph for op\+\_\+pow\+\_\+default.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{op__pow__default_8c_a5947ad643bf04e2482c88aca6fdf5673}{\+\_\+cth\+\_\+pow\+\_\+kernel}}(a,  b)~(pow(a, b))
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__pow__default_8c_a9e600bd42dd4eee76ea0e2fb6bedee38}{op\+\_\+pow\+\_\+cpu}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em Takes the power of each element in input with exponent and returns a tensor with the result. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{op__pow__default_8c_a5947ad643bf04e2482c88aca6fdf5673}\label{op__pow__default_8c_a5947ad643bf04e2482c88aca6fdf5673}} 
+\index{op\_pow\_default.c@{op\_pow\_default.c}!\_cth\_pow\_kernel@{\_cth\_pow\_kernel}}
+\index{\_cth\_pow\_kernel@{\_cth\_pow\_kernel}!op\_pow\_default.c@{op\_pow\_default.c}}
+\doxysubsubsection{\texorpdfstring{\_cth\_pow\_kernel}{\_cth\_pow\_kernel}}
+{\footnotesize\ttfamily \#define \+\_\+cth\+\_\+pow\+\_\+kernel(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})~(pow(a, b))}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__pow__default_8c_a9e600bd42dd4eee76ea0e2fb6bedee38}\label{op__pow__default_8c_a9e600bd42dd4eee76ea0e2fb6bedee38}} 
+\index{op\_pow\_default.c@{op\_pow\_default.c}!op\_pow\_cpu@{op\_pow\_cpu}}
+\index{op\_pow\_cpu@{op\_pow\_cpu}!op\_pow\_default.c@{op\_pow\_default.c}}
+\doxysubsubsection{\texorpdfstring{op\_pow\_cpu()}{op\_pow\_cpu()}}
+{\footnotesize\ttfamily void op\+\_\+pow\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+Takes the power of each element in input with exponent and returns a tensor with the result. 
+
+\begin{DoxyParagraph}{In implementation, all input \& output were converted into float doing}
+the pow(). Then converted back.
+\end{DoxyParagraph}
+
+\begin{DoxyParams}{Parameters}
+{\em op} & operator\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Two inputs must have same dimensions.
+\end{DoxyNote}
+Inputs \& outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 2
+\begin{DoxyItemize}
+\item 0\+: base tensor
+\item 1\+: exponent tensor
+\end{DoxyItemize}
+\item \# of outputs\+: 1 
+\end{DoxyItemize}

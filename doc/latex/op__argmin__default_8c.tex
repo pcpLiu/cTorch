@@ -1,0 +1,76 @@
+\hypertarget{op__argmin__default_8c}{}\doxysection{c\+Torch/operators/default/op\+\_\+argmin\+\_\+default.c File Reference}
+\label{op__argmin__default_8c}\index{cTorch/operators/default/op\_argmin\_default.c@{cTorch/operators/default/op\_argmin\_default.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/op\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/util.\+h\char`\"{}}\newline
+Include dependency graph for op\+\_\+argmin\+\_\+default.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{op__argmin__default_8c_a79564ce83cdf87b6b645a36a775476e8}{\+\_\+cth\+\_\+argmin}}( in\+\_\+ptr,  out\+\_\+ptr,  input\+\_\+data\+\_\+type,  output\+\_\+data\+\_\+type,  input\+\_\+dtype\+\_\+enum,  output\+\_\+dtype\+\_\+enum,  start\+\_\+offset,  inner\+\_\+offset,  result\+\_\+offset,  reduce\+\_\+size)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__argmin__default_8c_accfdb42cf403d97147a89d2e9ff9be54}{op\+\_\+argmin\+\_\+cpu}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em Returns the indices of the minimum values of a tensor across a dimension. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{op__argmin__default_8c_a79564ce83cdf87b6b645a36a775476e8}\label{op__argmin__default_8c_a79564ce83cdf87b6b645a36a775476e8}} 
+\index{op\_argmin\_default.c@{op\_argmin\_default.c}!\_cth\_argmin@{\_cth\_argmin}}
+\index{\_cth\_argmin@{\_cth\_argmin}!op\_argmin\_default.c@{op\_argmin\_default.c}}
+\doxysubsubsection{\texorpdfstring{\_cth\_argmin}{\_cth\_argmin}}
+{\footnotesize\ttfamily \#define \+\_\+cth\+\_\+argmin(\begin{DoxyParamCaption}\item[{}]{in\+\_\+ptr,  }\item[{}]{out\+\_\+ptr,  }\item[{}]{input\+\_\+data\+\_\+type,  }\item[{}]{output\+\_\+data\+\_\+type,  }\item[{}]{input\+\_\+dtype\+\_\+enum,  }\item[{}]{output\+\_\+dtype\+\_\+enum,  }\item[{}]{start\+\_\+offset,  }\item[{}]{inner\+\_\+offset,  }\item[{}]{result\+\_\+offset,  }\item[{}]{reduce\+\_\+size }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                                                         \(\backslash\)}
+\DoxyCodeLine{    cth\_tensor\_dim\_t min\_i = 0;                                                \(\backslash\)}
+\DoxyCodeLine{    input\_data\_type min\_val = in\_ptr[start\_offset];                            \(\backslash\)}
+\DoxyCodeLine{    for (\mbox{\hyperlink{consts_8h_acc36bfe0d9496aa5573f4fd4f6cde518}{cth\_tensor\_dim\_t}} i = 0; i < reduce\_size; i++) \{                       \(\backslash\)}
+\DoxyCodeLine{      input\_data\_type val = in\_ptr[start\_offset + i * inner\_offset];           \(\backslash\)}
+\DoxyCodeLine{      if (val <= min\_val) \{                                                    \(\backslash\)}
+\DoxyCodeLine{        min\_val = val;                                                         \(\backslash\)}
+\DoxyCodeLine{        min\_i = i;                                                             \(\backslash\)}
+\DoxyCodeLine{      \}                                                                        \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{    out\_ptr[result\_offset] = min\_i;                                            \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__argmin__default_8c_accfdb42cf403d97147a89d2e9ff9be54}\label{op__argmin__default_8c_accfdb42cf403d97147a89d2e9ff9be54}} 
+\index{op\_argmin\_default.c@{op\_argmin\_default.c}!op\_argmin\_cpu@{op\_argmin\_cpu}}
+\index{op\_argmin\_cpu@{op\_argmin\_cpu}!op\_argmin\_default.c@{op\_argmin\_default.c}}
+\doxysubsubsection{\texorpdfstring{op\_argmin\_cpu()}{op\_argmin\_cpu()}}
+{\footnotesize\ttfamily void op\+\_\+argmin\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+Returns the indices of the minimum values of a tensor across a dimension. 
+
+\begin{DoxyParagraph}{When there\textquotesingle{}s multiple min values in a dim, it returns the last position}
+it meets.
+\end{DoxyParagraph}
+\begin{DoxyNote}{Note}
+In this implementation, keepdim is always false.
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em op} & Inputs \& Outputs \& Params\+:
+\begin{DoxyItemize}
+\item \# of inputs\+: 1
+\item \# of outputs\+: 1
+\begin{DoxyItemize}
+\item Output tensor type should be {\ttfamily C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+T\+Y\+P\+E\+\_\+\+I\+N\+T\+\_\+64}
+\end{DoxyItemize}
+\item Argument\+:
+\begin{DoxyItemize}
+\item dim (int)\+: the dimension to reduce. If {\ttfamily -\/1}, the argmin of the flattened input is returned. 
+\end{DoxyItemize}
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}

@@ -90,15 +90,15 @@ Include dependency graph for op_list.h:</div>
 Macros</h2></td></tr>
 <tr class="memitem:ac660d62afec291cc01d0d0f1b11a4a38"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="openblas_2op__list_8h.html#ac660d62afec291cc01d0d0f1b11a4a38">OPENBLAS_OP_FUNC_NAME</a>(op)&#160;&#160;&#160;op_##op_openblas</td></tr>
 <tr class="separator:ac660d62afec291cc01d0d0f1b11a4a38"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a434bf2252867539b3f12be2687380e34"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="openblas_2op__list_8h.html#a434bf2252867539b3f12be2687380e34">OPENBLAS_OP_FUNC_DECLARE</a>(op)&#160;&#160;&#160;void <a class="el" href="openblas_2op__list_8h.html#ac660d62afec291cc01d0d0f1b11a4a38">OPENBLAS_OP_FUNC_NAME</a>(op)(<a class="el" href="structCTorchOperator.html">CTorchOperator</a> *)</td></tr>
+<tr class="memitem:a434bf2252867539b3f12be2687380e34"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="openblas_2op__list_8h.html#a434bf2252867539b3f12be2687380e34">OPENBLAS_OP_FUNC_DECLARE</a>(op)&#160;&#160;&#160;void <a class="el" href="openblas_2op__list_8h.html#ac660d62afec291cc01d0d0f1b11a4a38">OPENBLAS_OP_FUNC_NAME</a>(op)(<a class="el" href="structCTHOperator.html">CTHOperator</a> *)</td></tr>
 <tr class="separator:a434bf2252867539b3f12be2687380e34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f74861136fafa3c5c9e9cf634059324"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="openblas_2op__list_8h.html#a7f74861136fafa3c5c9e9cf634059324">DECLARE_OPENBLAS_ALL_OP_FUNCS</a>&#160;&#160;&#160;<a class="el" href="consts_8h.html#a33c8ac7e3182f644b7cddd033bafeeb6a4123335913482f4909b9b6d1d8150179">FOREACH_OP_ID</a>(<a class="el" href="openblas_2op__list_8h.html#a434bf2252867539b3f12be2687380e34">OPENBLAS_OP_FUNC_DECLARE</a>, <a class="el" href="ops__enabled_8h.html#a64bdf10bd84ae16f4a859a06b927cc16">SEMI_COL</a>)</td></tr>
+<tr class="memitem:a7f74861136fafa3c5c9e9cf634059324"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="openblas_2op__list_8h.html#a7f74861136fafa3c5c9e9cf634059324">DECLARE_OPENBLAS_ALL_OP_FUNCS</a>&#160;&#160;&#160;<a class="el" href="consts_8h.html#a33c8ac7e3182f644b7cddd033bafeeb6a4123335913482f4909b9b6d1d8150179">FOREACH_OP_ID</a>(<a class="el" href="openblas_2op__list_8h.html#a434bf2252867539b3f12be2687380e34">OPENBLAS_OP_FUNC_DECLARE</a>, SEMI_COL)</td></tr>
 <tr class="separator:a7f74861136fafa3c5c9e9cf634059324"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:adbe1ad7aebf5b1e8011408a7f02b672a"><td class="memItemLeft" align="right" valign="top">static void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="openblas_2op__list_8h.html#adbe1ad7aebf5b1e8011408a7f02b672a">fps_op_openblas</a> [<a class="el" href="ops__enabled_8h.html#a6ef3f4e6edbb5e1f08a77820ba2fd93b">ENABLED_OP_NUM</a>])(<a class="el" href="structCTorchOperator.html">CTorchOperator</a> *)</td></tr>
-<tr class="separator:adbe1ad7aebf5b1e8011408a7f02b672a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b13f472b7692ad752667af5998b41b8"><td class="memItemLeft" align="right" valign="top">static void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="openblas_2op__list_8h.html#a5b13f472b7692ad752667af5998b41b8">fps_op_openblas</a> [<a class="el" href="ops__enabled_8h.html#a6ef3f4e6edbb5e1f08a77820ba2fd93b">ENABLED_OP_NUM</a>])(<a class="el" href="structCTHOperator.html">CTHOperator</a> *)</td></tr>
+<tr class="separator:a5b13f472b7692ad752667af5998b41b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a7f74861136fafa3c5c9e9cf634059324"></a>
@@ -108,7 +108,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define DECLARE_OPENBLAS_ALL_OP_FUNCS&#160;&#160;&#160;<a class="el" href="consts_8h.html#a33c8ac7e3182f644b7cddd033bafeeb6a4123335913482f4909b9b6d1d8150179">FOREACH_OP_ID</a>(<a class="el" href="openblas_2op__list_8h.html#a434bf2252867539b3f12be2687380e34">OPENBLAS_OP_FUNC_DECLARE</a>, <a class="el" href="ops__enabled_8h.html#a64bdf10bd84ae16f4a859a06b927cc16">SEMI_COL</a>)</td>
+          <td class="memname">#define DECLARE_OPENBLAS_ALL_OP_FUNCS&#160;&#160;&#160;<a class="el" href="consts_8h.html#a33c8ac7e3182f644b7cddd033bafeeb6a4123335913482f4909b9b6d1d8150179">FOREACH_OP_ID</a>(<a class="el" href="openblas_2op__list_8h.html#a434bf2252867539b3f12be2687380e34">OPENBLAS_OP_FUNC_DECLARE</a>, SEMI_COL)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -126,7 +126,7 @@ Variables</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">op</td><td>)</td>
-          <td>&#160;&#160;&#160;void <a class="el" href="openblas_2op__list_8h.html#ac660d62afec291cc01d0d0f1b11a4a38">OPENBLAS_OP_FUNC_NAME</a>(op)(<a class="el" href="structCTorchOperator.html">CTorchOperator</a> *)</td>
+          <td>&#160;&#160;&#160;void <a class="el" href="openblas_2op__list_8h.html#ac660d62afec291cc01d0d0f1b11a4a38">OPENBLAS_OP_FUNC_NAME</a>(op)(<a class="el" href="structCTHOperator.html">CTHOperator</a> *)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -152,8 +152,8 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="adbe1ad7aebf5b1e8011408a7f02b672a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adbe1ad7aebf5b1e8011408a7f02b672a">&#9670;&nbsp;</a></span>fps_op_openblas</h2>
+<a id="a5b13f472b7692ad752667af5998b41b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b13f472b7692ad752667af5998b41b8">&#9670;&nbsp;</a></span>fps_op_openblas</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -162,7 +162,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void(* fps_op_openblas[<a class="el" href="ops__enabled_8h.html#a6ef3f4e6edbb5e1f08a77820ba2fd93b">ENABLED_OP_NUM</a>])(<a class="el" href="structCTorchOperator.html">CTorchOperator</a> *)</td>
+          <td class="memname">void(* fps_op_openblas[<a class="el" href="ops__enabled_8h.html#a6ef3f4e6edbb5e1f08a77820ba2fd93b">ENABLED_OP_NUM</a>])(<a class="el" href="structCTHOperator.html">CTHOperator</a> *)</td>
         </tr>
       </table>
   </td>

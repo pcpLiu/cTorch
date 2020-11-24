@@ -112,34 +112,39 @@ typedef uint16_t cth_thread_n_t;
 typedef int64_t cth_tensor_dim_t;
 
 /**
+ * @brief Type to denote generic float parameter of an operator.
+ */
+typedef float cth_float_param_t;
+
+/**
  * @brief Type to denote channel param. Used in conv, pooling etc.
  */
-typedef int64_t cth_channel_t;
+typedef cth_tensor_dim_t cth_channel_t;
 
 /**
  * @brief Type to denote kernel size param. Used in conv, pooling etc.
  */
-typedef int64_t cth_kernel_t;
+typedef cth_tensor_dim_t cth_kernel_t;
 
 /**
  * @brief Type to denote paddin param. Used in conv, pooling etc.
  */
-typedef int64_t cth_pad_t;
+typedef cth_tensor_dim_t cth_pad_t;
 
 /**
  * @brief Type to denote stride param. Used in conv, pooling etc.
  */
-typedef int64_t cth_stride_t;
+typedef cth_tensor_dim_t cth_stride_t;
 
 /**
  * @brief Type to denote dilation param. Used in conv, pooling etc.
  */
-typedef int64_t cth_dilation_t;
+typedef cth_tensor_dim_t cth_dilation_t;
 
 /**
  * @brief Type to denote groups param. Used in conv, pooling etc.
  */
-typedef int64_t cth_groups_t;
+typedef cth_tensor_dim_t cth_groups_t;
 
 /**
  * @brief Index type of result tensro in reduce index op
@@ -165,6 +170,17 @@ typedef int64_t cth_groups_t;
  * Pi value. 10 digits
  */
 #define CTH_PI 3.1415926535
+
+/**
+ * @brief Cast ptr to another type
+ */
+#define CTH_CAST_PTR(ptr, type) ((type *)ptr)
+
+/**
+ * @brief Deference a pointer or a pointer expression
+ *
+ */
+#define PTR_VAL(ptr_expression) (*(ptr_expression))
 
 /*
   String array of operator names.

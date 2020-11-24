@@ -91,64 +91,15 @@ Macros</h2></td></tr>
 <tr class="separator:ac171d239394b32f045037daad0df61e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ae1f00e0f8b1da65de1eea105ddc934"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="op__erfinv__default_8c.html#a5ae1f00e0f8b1da65de1eea105ddc934">ERFINV_CONSTl</a>&#160;&#160;&#160;0.15449436008930206298828125L</td></tr>
 <tr class="separator:a5ae1f00e0f8b1da65de1eea105ddc934"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab73c6bd33c8090b095ac568826435cf9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="op__erfinv__default_8c.html#ab73c6bd33c8090b095ac568826435cf9">_cth_erfinv_kernel</a>(input_ptr,  output_ptr,  N,  data_type)</td></tr>
-<tr class="separator:ab73c6bd33c8090b095ac568826435cf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a3c1213a1ebb4b9caaac2f9d698dd1b2c"><td class="memItemLeft" align="right" valign="top">long double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="op__erfinv__default_8c.html#a3c1213a1ebb4b9caaac2f9d698dd1b2c">_cth_erfinv_impl</a> (long double x)</td></tr>
-<tr class="separator:a3c1213a1ebb4b9caaac2f9d698dd1b2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaafcae58aba3481f9f20e6c92b5b71d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="op__erfinv__default_8c.html#aaafcae58aba3481f9f20e6c92b5b71d8">op_erfinv_cpu</a> (<a class="el" href="structCTorchOperator.html">CTorchOperator</a> *op)</td></tr>
-<tr class="separator:aaafcae58aba3481f9f20e6c92b5b71d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9203da77f536e22dfb60ed710563c508"><td class="memItemLeft" align="right" valign="top">long double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="op__erfinv__default_8c.html#a9203da77f536e22dfb60ed710563c508">_cth_erfinv_kernel</a> (long double x)</td></tr>
+<tr class="separator:a9203da77f536e22dfb60ed710563c508"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add7633218952fd717f353622a4206f45"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="op__erfinv__default_8c.html#add7633218952fd717f353622a4206f45">op_erfinv_cpu</a> (<a class="el" href="structCTHOperator.html">CTHOperator</a> *op)</td></tr>
+<tr class="separator:add7633218952fd717f353622a4206f45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="ab73c6bd33c8090b095ac568826435cf9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab73c6bd33c8090b095ac568826435cf9">&#9670;&nbsp;</a></span>_cth_erfinv_kernel</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define _cth_erfinv_kernel</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">input_ptr, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">output_ptr, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">N, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">data_type&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">do</span> {                                                                         \</div>
-<div class="line">    data_type *input_t = (data_type *)input_ptr;                               \</div>
-<div class="line">    data_type *output_t = (data_type *)output_ptr;                             \</div>
-<div class="line">    for (<span class="keywordtype">int</span> i = 0; i &lt; N; i++) {                                              \</div>
-<div class="line">      output_t[i] = (data_type)<a class="code" href="op__digamma__default_8c.html#a248caef611a435b8a29560229bad212d">digammal</a>(input_t[i]);                           \</div>
-<div class="line">    }                                                                          \</div>
-<div class="line">  } <span class="keywordflow">while</span> (0)</div>
-</div><!-- fragment -->
-</div>
-</div>
 <a id="a5ae1f00e0f8b1da65de1eea105ddc934"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5ae1f00e0f8b1da65de1eea105ddc934">&#9670;&nbsp;</a></span>ERFINV_CONSTl</h2>
 
@@ -180,14 +131,14 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a3c1213a1ebb4b9caaac2f9d698dd1b2c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3c1213a1ebb4b9caaac2f9d698dd1b2c">&#9670;&nbsp;</a></span>_cth_erfinv_impl()</h2>
+<a id="a9203da77f536e22dfb60ed710563c508"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9203da77f536e22dfb60ed710563c508">&#9670;&nbsp;</a></span>_cth_erfinv_kernel()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">long double _cth_erfinv_impl </td>
+          <td class="memname">long double _cth_erfinv_kernel </td>
           <td>(</td>
           <td class="paramtype">long double&#160;</td>
           <td class="paramname"><em>x</em></td><td>)</td>
@@ -199,8 +150,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aaafcae58aba3481f9f20e6c92b5b71d8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaafcae58aba3481f9f20e6c92b5b71d8">&#9670;&nbsp;</a></span>op_erfinv_cpu()</h2>
+<a id="add7633218952fd717f353622a4206f45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add7633218952fd717f353622a4206f45">&#9670;&nbsp;</a></span>op_erfinv_cpu()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -208,7 +159,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void op_erfinv_cpu </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structCTorchOperator.html">CTorchOperator</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structCTHOperator.html">CTHOperator</a> *&#160;</td>
           <td class="paramname"><em>op</em></td><td>)</td>
           <td></td>
         </tr>
@@ -224,7 +175,6 @@ Functions</h2></td></tr>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aop__digamma__default_8c_html_a248caef611a435b8a29560229bad212d"><div class="ttname"><a href="op__digamma__default_8c.html#a248caef611a435b8a29560229bad212d">digammal</a></div><div class="ttdeci">long double digammal(long double x)</div><div class="ttdef"><b>Definition:</b> op_digamma_default.c:27</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

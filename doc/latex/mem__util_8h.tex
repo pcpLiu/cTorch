@@ -8,9 +8,9 @@ This graph shows which files directly or indirectly include this file\+:
 \doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \mbox{\hyperlink{mem__util_8h_a3078f3c259e2a871314e3e0194896357}{M\+A\+L\+L\+OC}}(size)~\mbox{\hyperlink{mem__util_8h_adfcbe83a51779f41f38798ed6893de7f}{cth\+\_\+malloc}}(size, N\+U\+LL)
-\item 
-\#define \mbox{\hyperlink{mem__util_8h_aa904e35cf16a7668360be60edc72c779}{M\+A\+L\+L\+O\+C\+\_\+\+N\+A\+ME}}(size,  name)~\mbox{\hyperlink{mem__util_8h_adfcbe83a51779f41f38798ed6893de7f}{cth\+\_\+malloc}}(size, name)
+\#define \mbox{\hyperlink{mem__util_8h_a3078f3c259e2a871314e3e0194896357}{M\+A\+L\+L\+OC}}(size)~\mbox{\hyperlink{mem__util_8h_ae431869b301455c263f3c94ceb705d37}{cth\+\_\+malloc}}(size, N\+U\+LL, \+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+, \+\_\+\+\_\+func\+\_\+\+\_\+)
+\begin{DoxyCompactList}\small\item\em malloc memory \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{mem__util_8h_aa904e35cf16a7668360be60edc72c779}{M\+A\+L\+L\+O\+C\+\_\+\+N\+A\+ME}}(size,  name)~\mbox{\hyperlink{mem__util_8h_ae431869b301455c263f3c94ceb705d37}{cth\+\_\+malloc}}(size, name, \+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+, \+\_\+\+\_\+func\+\_\+\+\_\+)
 \item 
 \#define \mbox{\hyperlink{mem__util_8h_a105949c59c998e38aad80266afac92bf}{F\+R\+EE}}(ptr)~\mbox{\hyperlink{mem__util_8h_a7c0e802ef38ab7645c6399affb176fb8}{cth\+\_\+free}}(ptr, \+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+, \+\_\+\+\_\+func\+\_\+\+\_\+)
 \item 
@@ -21,8 +21,8 @@ This graph shows which files directly or indirectly include this file\+:
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void $\ast$ \mbox{\hyperlink{mem__util_8h_adfcbe83a51779f41f38798ed6893de7f}{cth\+\_\+malloc}} (size\+\_\+t size, const char $\ast$name)
-\item 
+void $\ast$ \mbox{\hyperlink{mem__util_8h_ae431869b301455c263f3c94ceb705d37}{cth\+\_\+malloc}} (size\+\_\+t size, const char $\ast$record\+\_\+name, const char $\ast$file\+\_\+name, int line\+\_\+num, const char $\ast$func\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Malloc with optional argument to give a descriptive name to this memory. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{mem__util_8h_a7c0e802ef38ab7645c6399affb176fb8}{cth\+\_\+free}} (void $\ast$ptr, const char $\ast$file\+\_\+name, int lineno, const char $\ast$func\+\_\+name)
 \item 
 void \mbox{\hyperlink{mem__util_8h_a174e6be84e883bc9c7d4f63f55c104d5}{cth\+\_\+free\+\_\+soft}} (void $\ast$ptr, const char $\ast$file\+\_\+name, int lineno, const char $\ast$func\+\_\+name)
@@ -48,13 +48,20 @@ int \mbox{\hyperlink{mem__util_8h_a2d2b5e7c9f6b7f5f14200838cce79a31}{cth\+\_\+as
 \index{mem\_util.h@{mem\_util.h}!MALLOC@{MALLOC}}
 \index{MALLOC@{MALLOC}!mem\_util.h@{mem\_util.h}}
 \doxysubsubsection{\texorpdfstring{MALLOC}{MALLOC}}
-{\footnotesize\ttfamily \#define M\+A\+L\+L\+OC(\begin{DoxyParamCaption}\item[{}]{size }\end{DoxyParamCaption})~\mbox{\hyperlink{mem__util_8h_adfcbe83a51779f41f38798ed6893de7f}{cth\+\_\+malloc}}(size, N\+U\+LL)}
+{\footnotesize\ttfamily \#define M\+A\+L\+L\+OC(\begin{DoxyParamCaption}\item[{}]{size }\end{DoxyParamCaption})~\mbox{\hyperlink{mem__util_8h_ae431869b301455c263f3c94ceb705d37}{cth\+\_\+malloc}}(size, N\+U\+LL, \+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+, \+\_\+\+\_\+func\+\_\+\+\_\+)}
 
+
+
+malloc memory 
+
+\begin{DoxyNote}{Note}
+Inside this function, it calls calloc() 
+\end{DoxyNote}
 \mbox{\Hypertarget{mem__util_8h_aa904e35cf16a7668360be60edc72c779}\label{mem__util_8h_aa904e35cf16a7668360be60edc72c779}} 
 \index{mem\_util.h@{mem\_util.h}!MALLOC\_NAME@{MALLOC\_NAME}}
 \index{MALLOC\_NAME@{MALLOC\_NAME}!mem\_util.h@{mem\_util.h}}
 \doxysubsubsection{\texorpdfstring{MALLOC\_NAME}{MALLOC\_NAME}}
-{\footnotesize\ttfamily \#define M\+A\+L\+L\+O\+C\+\_\+\+N\+A\+ME(\begin{DoxyParamCaption}\item[{}]{size,  }\item[{}]{name }\end{DoxyParamCaption})~\mbox{\hyperlink{mem__util_8h_adfcbe83a51779f41f38798ed6893de7f}{cth\+\_\+malloc}}(size, name)}
+{\footnotesize\ttfamily \#define M\+A\+L\+L\+O\+C\+\_\+\+N\+A\+ME(\begin{DoxyParamCaption}\item[{}]{size,  }\item[{}]{name }\end{DoxyParamCaption})~\mbox{\hyperlink{mem__util_8h_ae431869b301455c263f3c94ceb705d37}{cth\+\_\+malloc}}(size, name, \+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+, \+\_\+\+\_\+func\+\_\+\+\_\+)}
 
 \mbox{\Hypertarget{mem__util_8h_afa49f5cbf45954321f45b92170a5fac2}\label{mem__util_8h_afa49f5cbf45954321f45b92170a5fac2}} 
 \index{mem\_util.h@{mem\_util.h}!MEMCPY@{MEMCPY}}
@@ -83,16 +90,29 @@ Free pointer with some location info passed. \mbox{\Hypertarget{mem__util_8h_a17
 \doxysubsubsection{\texorpdfstring{cth\_free\_soft()}{cth\_free\_soft()}}
 {\footnotesize\ttfamily void cth\+\_\+free\+\_\+soft (\begin{DoxyParamCaption}\item[{void $\ast$}]{ptr,  }\item[{const char $\ast$}]{file\+\_\+name,  }\item[{int}]{lineno,  }\item[{const char $\ast$}]{func\+\_\+name }\end{DoxyParamCaption})}
 
-Free if pointer is not N\+U\+LL. If it\textquotesingle{}s N\+U\+LL, do nothing. \mbox{\Hypertarget{mem__util_8h_adfcbe83a51779f41f38798ed6893de7f}\label{mem__util_8h_adfcbe83a51779f41f38798ed6893de7f}} 
+Free if pointer is not N\+U\+LL. If it\textquotesingle{}s N\+U\+LL, do nothing. \mbox{\Hypertarget{mem__util_8h_ae431869b301455c263f3c94ceb705d37}\label{mem__util_8h_ae431869b301455c263f3c94ceb705d37}} 
 \index{mem\_util.h@{mem\_util.h}!cth\_malloc@{cth\_malloc}}
 \index{cth\_malloc@{cth\_malloc}!mem\_util.h@{mem\_util.h}}
 \doxysubsubsection{\texorpdfstring{cth\_malloc()}{cth\_malloc()}}
-{\footnotesize\ttfamily void$\ast$ cth\+\_\+malloc (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void$\ast$ cth\+\_\+malloc (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size,  }\item[{const char $\ast$}]{record\+\_\+name,  }\item[{const char $\ast$}]{file\+\_\+name,  }\item[{int}]{line\+\_\+num,  }\item[{const char $\ast$}]{func\+\_\+name }\end{DoxyParamCaption})}
 
-Malloc with optional argument to give a descriptive name to this memory.
 
-Parameters\+:
-\begin{DoxyItemize}
-\item size\+: memory size
-\item name\+: memory block name. Could be N\+U\+LL 
-\end{DoxyItemize}
+
+Malloc with optional argument to give a descriptive name to this memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & \\
+\hline
+{\em record\+\_\+name} & \\
+\hline
+{\em file\+\_\+name} & \\
+\hline
+{\em line\+\_\+num} & \\
+\hline
+{\em func\+\_\+name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void$\ast$ 
+\end{DoxyReturn}

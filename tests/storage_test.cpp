@@ -169,3 +169,70 @@ TEST(cTorchStorageTest, testReductionIndexGeneration) {
   EXPECT_EQ(1, reduce_index[1]);
   EXPECT_EQ(1, reduce_index[2]);
 }
+
+TEST(cTorchStorageTest, testTensorAfterDimOffset) {
+  cth_tensor_dim_t n_dim = 4;
+  cth_tensor_dim_t *dims =
+      (cth_tensor_dim_t *)MALLOC(n_dim * sizeof(cth_tensor_dim_t));
+  dims[0] = 3;
+  dims[1] = 1;
+  dims[2] = 5;
+  dims[3] = 2;
+  CTHTensor *tensor = create_dummy_tensor(
+      dims, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
+
+  cth_tensor_dim_t offset = 0;
+
+  offset = cth_tensor_after_dim_offset(tensor, 0);
+  EXPECT_EQ(offset, dims[1] * dims[2] * dims[3]);
+
+  offset = cth_tensor_after_dim_offset(tensor, 1);
+  EXPECT_EQ(offset, dims[2] * dims[3]);
+
+  offset = cth_tensor_after_dim_offset(tensor, 2);
+  EXPECT_EQ(offset, dims[3]);
+
+  offset = cth_tensor_after_dim_offset(tensor, 3);
+  EXPECT_EQ(offset, 1);
+}
+
+TEST(cTorchStorageTest, testTensorAt) {
+  cth_tensor_dim_t n_dim = 4;
+  cth_tensor_dim_t *dims =
+      (cth_tensor_dim_t *)MALLOC(n_dim * sizeof(cth_tensor_dim_t));
+  dims[0] = 3;
+  dims[1] = 6;
+  dims[2] = 5;
+  dims[3] = 7;
+  CTHTensor *tensor = create_dummy_tensor(
+      dims, n_dim, CTH_TENSOR_DATA_TYPE_FLOAT_32, 1.0, 10.0);
+
+  float *val = (float *)MALLOC(sizeof(float));
+  *val = 0.0;
+  cth_tensor_dim_t offset = 0;
+
+  cth_tensor_at(tensor, val, 2, 3, 3, 4);
+  offset = 2 * cth_tensor_after_dim_offset(tensor, 0) +
+           3 * cth_tensor_after_dim_offset(tensor, 1) +
+           3 * cth_tensor_after_dim_offset(tensor, 2) +
+           4 * cth_tensor_after_dim_offset(tensor, 3);
+  EXPECT_EQ(((float *)tensor->values)[offset], *val);
+
+  cth_tensor_at(tensor, val, 0, 1, 0, 4);
+  offset = 0 * cth_tensor_after_dim_offset(tensor, 0) +
+           1 * cth_tensor_after_dim_offset(tensor, 1) +
+           0 * cth_tensor_after_dim_offset(tensor, 2) +
+           4 * cth_tensor_after_dim_offset(tensor, 3);
+  EXPECT_EQ(((float *)tensor->values)[offset], *val);
+
+  cth_tensor_at(tensor, val, 0, 0, 0, 0);
+  offset = 0 * cth_tensor_after_dim_offset(tensor, 0) +
+           0 * cth_tensor_after_dim_offset(tensor, 1) +
+           0 * cth_tensor_after_dim_offset(tensor, 2) +
+           0 * cth_tensor_after_dim_offset(tensor, 3);
+  EXPECT_EQ(((float *)tensor->values)[offset], *val);
+
+  // out of boundary
+  EXPECT_EXIT(cth_tensor_at(tensor, val, 1, 2, 1000, 3),
+              ::testing::ExitedWithCode(1), "out of boundary");
+}

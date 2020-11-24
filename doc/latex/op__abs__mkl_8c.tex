@@ -1,0 +1,39 @@
+\hypertarget{op__abs__mkl_8c}{}\doxysection{c\+Torch/operators/mkl/op\+\_\+abs\+\_\+mkl.c File Reference}
+\label{op__abs__mkl_8c}\index{cTorch/operators/mkl/op\_abs\_mkl.c@{cTorch/operators/mkl/op\_abs\_mkl.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/mkl/op\+\_\+list\+\_\+mkl.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/mkl/util\+\_\+mkl.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$mkl.\+h$>$}\newline
+Include dependency graph for op\+\_\+abs\+\_\+mkl.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__abs__mkl_8c_a4e7d1fbaa35a5df59313b2b9de00694d}{op\+\_\+abs\+\_\+mkl}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em Compute the element-\/wise absolute value of the given input tensor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__abs__mkl_8c_a4e7d1fbaa35a5df59313b2b9de00694d}\label{op__abs__mkl_8c_a4e7d1fbaa35a5df59313b2b9de00694d}} 
+\index{op\_abs\_mkl.c@{op\_abs\_mkl.c}!op\_abs\_mkl@{op\_abs\_mkl}}
+\index{op\_abs\_mkl@{op\_abs\_mkl}!op\_abs\_mkl.c@{op\_abs\_mkl.c}}
+\doxysubsubsection{\texorpdfstring{op\_abs\_mkl()}{op\_abs\_mkl()}}
+{\footnotesize\ttfamily void op\+\_\+abs\+\_\+mkl (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+Compute the element-\/wise absolute value of the given input tensor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{[}\+C\+T\+H\+Operator\mbox{]}} & op operator\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+M\+KL onlly support float \& double type
+\end{DoxyNote}
+Inputs \& outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 1
+\item \# of output\+: 1
+\item Assume input \& output have same types 
+\end{DoxyItemize}

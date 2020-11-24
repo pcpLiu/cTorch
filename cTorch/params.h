@@ -16,32 +16,36 @@ typedef enum CTH_PARAM_TYPE {
   CTH_PARAM_TYPE_IN_CHANNELS,
   CTH_PARAM_TYPE_OUT_CHANNELS,
   CTH_PARAM_TYPE_KERNEL_SIZE,
+  CTH_PARAM_TYPE_STRIDE,
+  CTH_PARAM_TYPE_PADDING_D2,
+  CTH_PARAM_TYPE_DILATION,
   CTH_PARAM_TYPE_KERNEL_SIZE_D2,
   CTH_PARAM_TYPE_STRIDE_D2,
-  CTH_PARAM_TYPE_PADDING_D2,
-  CTH_PARAM_TYPE_PADDING_MODE,
   CTH_PARAM_TYPE_DILATION_D2,
-  CTH_PARAM_TYPE_IN_GROUPS,
+  CTH_PARAM_TYPE_PADDING_MODE,
+  CTH_PARAM_TYPE_GROUPS,
 } CTH_PARAM_TYPE;
 
 /**
  * Param data union
  */
 typedef union CTHParamData {
-  float *multiplier;
-  float *min;
-  float *max;
-  float *p;
-  int32_t *dim;
+  cth_float_param_t *multiplier;
+  cth_float_param_t *min;
+  cth_float_param_t *max;
+  cth_float_param_t *p;
+  cth_channel_t *dim;
   cth_channel_t *in_channels;
   cth_channel_t *out_channels;
-  cth_kernel_t *kernel_size_l1;
-  cth_kernel_t *kernel_size_l2;
-  cth_stride_t *stride_l2;
-  cth_pad_t *padding_l2;
-  CTH_PADDING_MODE *padding_mode;
-  cth_dilation_t *dilation_l2;
+  cth_kernel_t *kernel_size;
+  cth_stride_t *stride;
+  cth_dilation_t *dilation;
+  cth_kernel_t *kernel_size_d2;
+  cth_stride_t *stride_d2;
+  cth_pad_t *padding_d2;
+  cth_dilation_t *dilation_d2;
   cth_groups_t *groups;
+  CTH_PADDING_MODE *padding_mode;
 } CTHParamData;
 
 typedef struct CTHParam {

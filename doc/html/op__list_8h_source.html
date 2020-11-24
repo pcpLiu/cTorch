@@ -82,7 +82,7 @@ $(function() {
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#ifdef BACKEND_CPU_ARM</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;cTorch/operators/arm/op_list.h&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;cTorch/operators/arm/op_list_arm.h&quot;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#ifdef BACKEND_OPENBLAS</span></div>
@@ -90,23 +90,23 @@ $(function() {
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#ifdef BACKEND_MKL</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="mkl_2op__list_8h.html">cTorch/operators/mkl/op_list.h</a>&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="op__list__mkl_8h.html">cTorch/operators/mkl/op_list_mkl.h</a>&quot;</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#ifdef BACKEND_CUDA</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="cuda_2op__list_8h.html">cTorch/operators/cuda/op_list.h</a>&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="op__list__cuda_8h.html">cTorch/operators/cuda/op_list_cuda.h</a>&quot;</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#ifdef BACKEND_ACCELERATE</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="accelerate_2op__list_8h.html">cTorch/operators/accelerate/op_list.h</a>&quot;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#ifdef BACKEND_APPLE</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="op__list__apple_8h.html">cTorch/operators/apple/op_list_apple.h</a>&quot;</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* OP_LIST_H */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aopenblas_2op__list_8h_html"><div class="ttname"><a href="openblas_2op__list_8h.html">op_list.h</a></div></div>
-<div class="ttc" id="acuda_2op__list_8h_html"><div class="ttname"><a href="cuda_2op__list_8h.html">op_list.h</a></div></div>
-<div class="ttc" id="amkl_2op__list_8h_html"><div class="ttname"><a href="mkl_2op__list_8h.html">op_list.h</a></div></div>
-<div class="ttc" id="aaccelerate_2op__list_8h_html"><div class="ttname"><a href="accelerate_2op__list_8h.html">op_list.h</a></div></div>
+<div class="ttc" id="aop__list__apple_8h_html"><div class="ttname"><a href="op__list__apple_8h.html">op_list_apple.h</a></div></div>
+<div class="ttc" id="aop__list__cuda_8h_html"><div class="ttname"><a href="op__list__cuda_8h.html">op_list_cuda.h</a></div></div>
+<div class="ttc" id="aop__list__mkl_8h_html"><div class="ttname"><a href="op__list__mkl_8h.html">op_list_mkl.h</a></div></div>
 <div class="ttc" id="adefault_2op__list_8h_html"><div class="ttname"><a href="default_2op__list_8h.html">op_list.h</a></div></div>
 <div class="ttc" id="ax86_2op__list_8h_html"><div class="ttname"><a href="x86_2op__list_8h.html">op_list.h</a></div></div>
 <!-- start footer part -->

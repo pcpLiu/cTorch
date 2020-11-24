@@ -7,7 +7,7 @@ digraph "cTorch/operators" {
   subgraph clusterdir_fe853cb77c2d75d984b93720a04eebde {
     graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_fe853cb77c2d75d984b93720a04eebde.html"];
     dir_fe853cb77c2d75d984b93720a04eebde [shape=plaintext label="operators"];
-    dir_15dbdc33d20e1c03ddd6e1222b754cc3 [shape=box label="accelerate" color="black" fillcolor="white" style="filled" URL="dir_15dbdc33d20e1c03ddd6e1222b754cc3.html"];
+    dir_2d7311cce1f4c7674a1690e5f12e1da2 [shape=box label="apple" color="black" fillcolor="white" style="filled" URL="dir_2d7311cce1f4c7674a1690e5f12e1da2.html"];
     dir_525668a993d8dfe11aa91449dfc3def5 [shape=box label="cuda" color="black" fillcolor="white" style="filled" URL="dir_525668a993d8dfe11aa91449dfc3def5.html"];
     dir_3194c601f52e11277ed1639d7ae5a527 [shape=box label="default" color="black" fillcolor="white" style="filled" URL="dir_3194c601f52e11277ed1639d7ae5a527.html"];
     dir_470abe42dd930a6f004b4d8de7ffeb0c [shape=box label="mkl" color="black" fillcolor="white" style="filled" URL="dir_470abe42dd930a6f004b4d8de7ffeb0c.html"];

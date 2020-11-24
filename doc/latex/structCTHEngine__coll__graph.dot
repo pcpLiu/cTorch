@@ -1,0 +1,15 @@
+digraph "CTHEngine"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="CTHEngine",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" scheduler" ];
+  Node2 [label="CTHScheduler",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structCTHScheduler.html",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" exe_queue\nret_queue" ];
+  Node3 [label="CTHQueue",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structCTHQueue.html",tooltip=" "];
+  Node4 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" ready_status\ndone_status\nqueue_status" ];
+  Node4 [label="cth_bit_array_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structcth__bit__array__t.html",tooltip=" "];
+  Node5 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" pool" ];
+  Node5 [label="CTHWorkerPool",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structCTHWorkerPool.html",tooltip=" "];
+}

@@ -9,6 +9,7 @@
  * Util macros & functions
  */
 
+// TODO: migrate _FAIL_NULL_PTR from a MACRO to a function
 #define _FAIL_NULL_PTR(ptr, file_name, line_num, func_name, extra_msg)         \
   do {                                                                         \
     if (ptr == NULL) {                                                         \

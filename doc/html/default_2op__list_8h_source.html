@@ -79,25 +79,25 @@ $(function() {
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="operator_8h.html">cTorch/operator.h</a>&quot;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="storage_8h.html">cTorch/storage.h</a>&quot;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="default_2op__list_8h.html#a75a377277600f5164060172af9f20815">   17</a></span>&#160;<span class="preprocessor">#define CPU_OP_FUNC_NAME(op) op_##op##_cpu</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="default_2op__list_8h.html#a4f257522853c81cb623d729919f5d962">   18</a></span>&#160;<span class="preprocessor">#define CPU_OP_FUNC_DECLARE(op) void CPU_OP_FUNC_NAME(op)(CTorchOperator *);</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="default_2op__list_8h.html#afe149cce4a4fb02d5858f53a130947e2">   19</a></span>&#160;<span class="preprocessor">#define DECLARE_CPU_ALL_OP_FUNCS FOREACH_OP_ID(CPU_OP_FUNC_DECLARE)</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<a class="code" href="default_2op__list_8h.html#afe149cce4a4fb02d5858f53a130947e2">DECLARE_CPU_ALL_OP_FUNCS</a></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="default_2op__list_8h.html#aea5bcf45383e733871ae356ae31f6fc9">   25</a></span>&#160;<span class="preprocessor">#define CPU_OP_FUNC_BIND(op) CPU_OP_FUNC_NAME(op),</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="default_2op__list_8h.html#a27292a2366fb8bd6f92337ed85f0075d">   26</a></span>&#160;<span class="preprocessor">#define CPU_ALL_OP_FUNCS FOREACH_OP_ID(CPU_OP_FUNC_BIND)</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">extern</span> void (*<a class="code" href="default_2op__list_8h.html#ad8a13cc50e8c2f3e22da1d73ee77cafd">fps_op_default</a>[<a class="code" href="ops__enabled_8h.html#a6ef3f4e6edbb5e1f08a77820ba2fd93b">ENABLED_OP_NUM</a>])(<a class="code" href="structCTorchOperator.html">CTorchOperator</a> *);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* OP_LIST_DEFAULT_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="default_2op__list_8h.html#a75a377277600f5164060172af9f20815">   13</a></span>&#160;<span class="preprocessor">#define CPU_OP_FUNC_NAME(op) op_##op##_cpu</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="default_2op__list_8h.html#a4f257522853c81cb623d729919f5d962">   14</a></span>&#160;<span class="preprocessor">#define CPU_OP_FUNC_DECLARE(op) void CPU_OP_FUNC_NAME(op)(CTHOperator *);</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="default_2op__list_8h.html#afe149cce4a4fb02d5858f53a130947e2">   15</a></span>&#160;<span class="preprocessor">#define DECLARE_CPU_ALL_OP_FUNCS FOREACH_OP_ID(CPU_OP_FUNC_DECLARE)</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<a class="code" href="default_2op__list_8h.html#afe149cce4a4fb02d5858f53a130947e2">DECLARE_CPU_ALL_OP_FUNCS</a></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="default_2op__list_8h.html#aea5bcf45383e733871ae356ae31f6fc9">   21</a></span>&#160;<span class="preprocessor">#define CPU_OP_FUNC_BIND(op) CPU_OP_FUNC_NAME(op),</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="default_2op__list_8h.html#a27292a2366fb8bd6f92337ed85f0075d">   22</a></span>&#160;<span class="preprocessor">#define CPU_ALL_OP_FUNCS FOREACH_OP_ID(CPU_OP_FUNC_BIND)</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">extern</span> void (*<a class="code" href="default_2op__list_8h.html#acb2e266c40111a95d2b4f4778734750a">fps_op_default</a>[<a class="code" href="ops__enabled_8h.html#a6ef3f4e6edbb5e1f08a77820ba2fd93b">ENABLED_OP_NUM</a>])(<a class="code" href="structCTHOperator.html">CTHOperator</a> *);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* OP_LIST_DEFAULT_H */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="adefault_2op__list_8h_html_ad8a13cc50e8c2f3e22da1d73ee77cafd"><div class="ttname"><a href="default_2op__list_8h.html#ad8a13cc50e8c2f3e22da1d73ee77cafd">fps_op_default</a></div><div class="ttdeci">void(* fps_op_default[ENABLED_OP_NUM])(CTorchOperator *)</div><div class="ttdef"><b>Definition:</b> op_list.c:4</div></div>
 <div class="ttc" id="aops__enabled_8h_html_a6ef3f4e6edbb5e1f08a77820ba2fd93b"><div class="ttname"><a href="ops__enabled_8h.html#a6ef3f4e6edbb5e1f08a77820ba2fd93b">ENABLED_OP_NUM</a></div><div class="ttdeci">#define ENABLED_OP_NUM</div><div class="ttdef"><b>Definition:</b> ops_enabled.h:7</div></div>
+<div class="ttc" id="astructCTHOperator_html"><div class="ttname"><a href="structCTHOperator.html">CTHOperator</a></div><div class="ttdef"><b>Definition:</b> operator.h:9</div></div>
 <div class="ttc" id="aoperator_8h_html"><div class="ttname"><a href="operator_8h.html">operator.h</a></div></div>
 <div class="ttc" id="aconsts_8h_html"><div class="ttname"><a href="consts_8h.html">consts.h</a></div></div>
-<div class="ttc" id="astructCTorchOperator_html"><div class="ttname"><a href="structCTorchOperator.html">CTorchOperator</a></div><div class="ttdef"><b>Definition:</b> operator.h:9</div></div>
 <div class="ttc" id="astorage_8h_html"><div class="ttname"><a href="storage_8h.html">storage.h</a></div></div>
-<div class="ttc" id="adefault_2op__list_8h_html_afe149cce4a4fb02d5858f53a130947e2"><div class="ttname"><a href="default_2op__list_8h.html#afe149cce4a4fb02d5858f53a130947e2">DECLARE_CPU_ALL_OP_FUNCS</a></div><div class="ttdeci">#define DECLARE_CPU_ALL_OP_FUNCS</div><div class="ttdef"><b>Definition:</b> op_list.h:19</div></div>
+<div class="ttc" id="adefault_2op__list_8h_html_acb2e266c40111a95d2b4f4778734750a"><div class="ttname"><a href="default_2op__list_8h.html#acb2e266c40111a95d2b4f4778734750a">fps_op_default</a></div><div class="ttdeci">void(* fps_op_default[ENABLED_OP_NUM])(CTHOperator *)</div><div class="ttdef"><b>Definition:</b> op_list.c:4</div></div>
+<div class="ttc" id="adefault_2op__list_8h_html_afe149cce4a4fb02d5858f53a130947e2"><div class="ttname"><a href="default_2op__list_8h.html#afe149cce4a4fb02d5858f53a130947e2">DECLARE_CPU_ALL_OP_FUNCS</a></div><div class="ttdeci">#define DECLARE_CPU_ALL_OP_FUNCS</div><div class="ttdef"><b>Definition:</b> op_list.h:15</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

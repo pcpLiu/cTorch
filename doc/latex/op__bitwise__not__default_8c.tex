@@ -12,7 +12,7 @@ Include dependency graph for op\+\_\+bitwise\+\_\+not\+\_\+default.\+c\+:
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{op__bitwise__not__default_8c_ab503cc57a5e1e068dc37df373f2aa566}{op\+\_\+bitwise\+\_\+not\+\_\+cpu}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op)
+void \mbox{\hyperlink{op__bitwise__not__default_8c_a1d09dc606583642f899152771f21bf7f}{op\+\_\+bitwise\+\_\+not\+\_\+cpu}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
 \end{DoxyCompactItemize}
 
 
@@ -26,13 +26,13 @@ void \mbox{\hyperlink{op__bitwise__not__default_8c_ab503cc57a5e1e068dc37df373f2a
 {\bfseries Value\+:}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                                                         \(\backslash\)}
-\DoxyCodeLine{    CTorchTensor *input = \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\_at}}(\mbox{\hyperlink{structCTorchTensor}{CTorchTensor}})(op-\/>in\_bound\_tensors, 0);     \(\backslash\)}
-\DoxyCodeLine{    CTorchTensor *output = \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\_at}}(\mbox{\hyperlink{structCTorchTensor}{CTorchTensor}})(op-\/>out\_bound\_tensors, 0);   \(\backslash\)}
+\DoxyCodeLine{    CTHTensor *input = \mbox{\hyperlink{generic__array_8h_ac901ab85173b85409fea4299ba0e6111}{cth\_array\_at}}(\mbox{\hyperlink{structCTHTensor}{CTHTensor}})(op-\/>in\_bound\_tensors, 0);       \(\backslash\)}
+\DoxyCodeLine{    CTHTensor *output = \mbox{\hyperlink{generic__array_8h_ac901ab85173b85409fea4299ba0e6111}{cth\_array\_at}}(\mbox{\hyperlink{structCTHTensor}{CTHTensor}})(op-\/>out\_bound\_tensors, 0);     \(\backslash\)}
 \DoxyCodeLine{    data\_type *in\_ptr = (data\_type *)input-\/>values;                            \(\backslash\)}
 \DoxyCodeLine{    data\_type *out\_ptr = (data\_type *)output-\/>values;                          \(\backslash\)}
-\DoxyCodeLine{    tensor\_size\_t N = input-\/>meta\_info-\/>n\_elements;                            \(\backslash\)}
+\DoxyCodeLine{    cth\_tensor\_dim\_t N = input-\/>meta\_info-\/>n\_elements;                         \(\backslash\)}
 \DoxyCodeLine{                                                                               \(\backslash\)}
-\DoxyCodeLine{    for (\mbox{\hyperlink{consts_8h_a836488a94280dd54797615abb7e699ca}{tensor\_size\_t}} i = 0; i < N; i++) \{                                    \(\backslash\)}
+\DoxyCodeLine{    for (\mbox{\hyperlink{consts_8h_acc36bfe0d9496aa5573f4fd4f6cde518}{cth\_tensor\_dim\_t}} i = 0; i < N; i++) \{                                 \(\backslash\)}
 \DoxyCodeLine{      out\_ptr[i] = \string~in\_ptr[i];                                                 \(\backslash\)}
 \DoxyCodeLine{    \}                                                                          \(\backslash\)}
 \DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
@@ -41,11 +41,11 @@ void \mbox{\hyperlink{op__bitwise__not__default_8c_ab503cc57a5e1e068dc37df373f2a
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{op__bitwise__not__default_8c_ab503cc57a5e1e068dc37df373f2aa566}\label{op__bitwise__not__default_8c_ab503cc57a5e1e068dc37df373f2aa566}} 
+\mbox{\Hypertarget{op__bitwise__not__default_8c_a1d09dc606583642f899152771f21bf7f}\label{op__bitwise__not__default_8c_a1d09dc606583642f899152771f21bf7f}} 
 \index{op\_bitwise\_not\_default.c@{op\_bitwise\_not\_default.c}!op\_bitwise\_not\_cpu@{op\_bitwise\_not\_cpu}}
 \index{op\_bitwise\_not\_cpu@{op\_bitwise\_not\_cpu}!op\_bitwise\_not\_default.c@{op\_bitwise\_not\_default.c}}
 \doxysubsubsection{\texorpdfstring{op\_bitwise\_not\_cpu()}{op\_bitwise\_not\_cpu()}}
-{\footnotesize\ttfamily void op\+\_\+bitwise\+\_\+not\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void op\+\_\+bitwise\+\_\+not\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
 
 Computes the bitwise N\+OT of the given input tensor. The input tensor must be of integral or Boolean types. For bool tensors, it computes the logical N\+OT.\hypertarget{op__bitwise__not__default_8c_autotoc_md2}{}\doxysubsection{of input\+: 1}\label{op__bitwise__not__default_8c_autotoc_md2}
 \hypertarget{op__bitwise__not__default_8c_autotoc_md3}{}\doxysubsection{of output\+: 1}\label{op__bitwise__not__default_8c_autotoc_md3}

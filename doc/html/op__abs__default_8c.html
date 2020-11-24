@@ -69,7 +69,6 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">op_abs_default.c File Reference</div>  </div>
@@ -85,47 +84,15 @@ Include dependency graph for op_abs_default.c:</div>
 <!-- MAP 0 -->
 </div>
 </div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a20149496c898815ed22d9d2c7e389a01"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="op__abs__default_8c.html#a20149496c898815ed22d9d2c7e389a01">_cth_abs</a>(x)</td></tr>
-<tr class="separator:a20149496c898815ed22d9d2c7e389a01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ac2bd178a998d8f6348c3f4441c4afc72"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="op__abs__default_8c.html#ac2bd178a998d8f6348c3f4441c4afc72">op_abs_cpu</a> (<a class="el" href="structCTorchOperator.html">CTorchOperator</a> *op)</td></tr>
-<tr class="separator:ac2bd178a998d8f6348c3f4441c4afc72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0227c520fc2f7060e420476be99d458"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="op__abs__default_8c.html#aa0227c520fc2f7060e420476be99d458">op_abs_cpu</a> (<a class="el" href="structCTHOperator.html">CTHOperator</a> *op)</td></tr>
+<tr class="memdesc:aa0227c520fc2f7060e420476be99d458"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the element-wise absolute value of the given input tensor.  <a href="op__abs__default_8c.html#aa0227c520fc2f7060e420476be99d458">More...</a><br /></td></tr>
+<tr class="separator:aa0227c520fc2f7060e420476be99d458"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="a20149496c898815ed22d9d2c7e389a01"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a20149496c898815ed22d9d2c7e389a01">&#9670;&nbsp;</a></span>_cth_abs</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define _cth_abs</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">x</td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">  _Generic((x),                                                                \</div>
-<div class="line">    <span class="keywordtype">float</span>: fabs,                                                               \</div>
-<div class="line">    <span class="keywordtype">double</span>: fabs,                                                              \</div>
-<div class="line">    int16_t: abs,                                                              \</div>
-<div class="line">    int32_t: abs,                                                    \</div>
-<div class="line">    int64_t: abs,                                                    \</div>
-<div class="line">    uint8_t: abs,                                                              \</div>
-<div class="line">    <span class="keywordtype">bool</span>: abs                                                       \</div>
-<div class="line">  )(x)</div>
-</div><!-- fragment -->
-</div>
-</div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ac2bd178a998d8f6348c3f4441c4afc72"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac2bd178a998d8f6348c3f4441c4afc72">&#9670;&nbsp;</a></span>op_abs_cpu()</h2>
+<a id="aa0227c520fc2f7060e420476be99d458"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0227c520fc2f7060e420476be99d458">&#9670;&nbsp;</a></span>op_abs_cpu()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -133,12 +100,25 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void op_abs_cpu </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structCTorchOperator.html">CTorchOperator</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structCTHOperator.html">CTHOperator</a> *&#160;</td>
           <td class="paramname"><em>op</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Compute the element-wise absolute value of the given input tensor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">[CTHOperator]</td><td>op operator</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Do not support boolean operator</dd></dl>
+<p>Inputs &amp; outputs:</p><ul>
+<li># of input: 1</li>
+<li># of output: 1 </li>
+</ul>
 
 </div>
 </div>

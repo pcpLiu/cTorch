@@ -1,0 +1,60 @@
+\hypertarget{op__Conv1d__default_8c}{}\doxysection{c\+Torch/operators/default/op\+\_\+\+Conv1d\+\_\+default.c File Reference}
+\label{op__Conv1d__default_8c}\index{cTorch/operators/default/op\_Conv1d\_default.c@{cTorch/operators/default/op\_Conv1d\_default.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/op\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/util.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/op\+\_\+util.\+h\char`\"{}}\newline
+Include dependency graph for op\+\_\+\+Conv1d\+\_\+default.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{op__Conv1d__default_8c_a4cd6e6a86790df1b988938128b783d7e}{\+\_\+cth\+\_\+conv1d}}(op,  data\+\_\+type)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__Conv1d__default_8c_a8484e5954758e032b82a27167fb8a095}{op\+\_\+\+Conv1d\+\_\+cpu}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em Applies a 1D convolution over an input signal composed of several input planes. A naive implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{op__Conv1d__default_8c_a4cd6e6a86790df1b988938128b783d7e}\label{op__Conv1d__default_8c_a4cd6e6a86790df1b988938128b783d7e}} 
+\index{op\_Conv1d\_default.c@{op\_Conv1d\_default.c}!\_cth\_conv1d@{\_cth\_conv1d}}
+\index{\_cth\_conv1d@{\_cth\_conv1d}!op\_Conv1d\_default.c@{op\_Conv1d\_default.c}}
+\doxysubsubsection{\texorpdfstring{\_cth\_conv1d}{\_cth\_conv1d}}
+{\footnotesize\ttfamily \#define \+\_\+cth\+\_\+conv1d(\begin{DoxyParamCaption}\item[{}]{op,  }\item[{}]{data\+\_\+type }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__Conv1d__default_8c_a8484e5954758e032b82a27167fb8a095}\label{op__Conv1d__default_8c_a8484e5954758e032b82a27167fb8a095}} 
+\index{op\_Conv1d\_default.c@{op\_Conv1d\_default.c}!op\_Conv1d\_cpu@{op\_Conv1d\_cpu}}
+\index{op\_Conv1d\_cpu@{op\_Conv1d\_cpu}!op\_Conv1d\_default.c@{op\_Conv1d\_default.c}}
+\doxysubsubsection{\texorpdfstring{op\_Conv1d\_cpu()}{op\_Conv1d\_cpu()}}
+{\footnotesize\ttfamily void op\+\_\+\+Conv1d\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+Applies a 1D convolution over an input signal composed of several input planes. A naive implementation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{[}\+C\+T\+H\+Operator\mbox{]}} & op operator\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Do not support boolean operator
+\end{DoxyNote}
+Inputs \& outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 3
+\begin{DoxyItemize}
+\item 0\+: input tensor \mbox{[}batch, in\+\_\+channels, in\+\_\+feature\+\_\+dim\mbox{]}
+\item 1\+: weight tensor \mbox{[}out\+\_\+channels, in\+\_\+channels/groups, kernel\+\_\+size\mbox{]}
+\item 2\+: bias tensor \mbox{[}out\+\_\+channels\mbox{]}
+\end{DoxyItemize}
+\item \# of output\+: 1
+\begin{DoxyItemize}
+\item 0\+: output tensor \mbox{[}batch, out\+\_\+channels, out\+\_\+feature\+\_\+dim\mbox{]} 
+\end{DoxyItemize}
+\end{DoxyItemize}

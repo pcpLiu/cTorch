@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['worker_5fkill_807',['worker_kill',['../structCTorchQueueJob.html#ae8e4e2e2aed68096da4251c2950dda5c',1,'CTorchQueueJob']]],
-  ['workers_808',['workers',['../structCTorchWorkerPool.html#ad03872efec4e38bd8ca416474473a243',1,'CTorchWorkerPool']]],
-  ['write_5fmutex_809',['write_mutex',['../structCTorchQueue.html#ad5966e89c56c19f92f0c2c09dfac59fb',1,'CTorchQueue']]]
+  ['value_5fsize_5fof_1300',['value_size_of',['../structCTHTensorMeta.html#a7c77684298550b79495291811bedea02',1,'CTHTensorMeta']]],
+  ['values_1301',['values',['../structCTHTensor.html#ac0961810150afee505ae0ae812bd63df',1,'CTHTensor']]]
 ];

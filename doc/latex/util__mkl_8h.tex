@@ -1,0 +1,61 @@
+\hypertarget{util__mkl_8h}{}\doxysection{c\+Torch/operators/mkl/util\+\_\+mkl.h File Reference}
+\label{util__mkl_8h}\index{cTorch/operators/mkl/util\_mkl.h@{cTorch/operators/mkl/util\_mkl.h}}
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{util__mkl_8h_a435dbe6ceafc50a9a19f1ed393286052}{\+\_\+cth\+\_\+mkl\+\_\+vm\+\_\+function\+\_\+call\+\_\+unary}}( data\+\_\+type,  func\+\_\+name,  in\+\_\+ptr,  out\+\_\+ptr,  N)
+\begin{DoxyCompactList}\small\item\em Call Intel Vector function macro. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{util__mkl_8h_a6e0b2c00ba999519c8f5a41f0591d62b}{\+\_\+cth\+\_\+mkl\+\_\+vm\+\_\+function\+\_\+call\+\_\+binary}}( data\+\_\+type,  func\+\_\+name,  in\+\_\+ptr\+\_\+1,  in\+\_\+ptr\+\_\+2,  out\+\_\+ptr,  N)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{util__mkl_8h_a6e0b2c00ba999519c8f5a41f0591d62b}\label{util__mkl_8h_a6e0b2c00ba999519c8f5a41f0591d62b}} 
+\index{util\_mkl.h@{util\_mkl.h}!\_cth\_mkl\_vm\_function\_call\_binary@{\_cth\_mkl\_vm\_function\_call\_binary}}
+\index{\_cth\_mkl\_vm\_function\_call\_binary@{\_cth\_mkl\_vm\_function\_call\_binary}!util\_mkl.h@{util\_mkl.h}}
+\doxysubsubsection{\texorpdfstring{\_cth\_mkl\_vm\_function\_call\_binary}{\_cth\_mkl\_vm\_function\_call\_binary}}
+{\footnotesize\ttfamily \#define \+\_\+cth\+\_\+mkl\+\_\+vm\+\_\+function\+\_\+call\+\_\+binary(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type,  }\item[{}]{func\+\_\+name,  }\item[{}]{in\+\_\+ptr\+\_\+1,  }\item[{}]{in\+\_\+ptr\+\_\+2,  }\item[{}]{out\+\_\+ptr,  }\item[{}]{N }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                                                         \(\backslash\)}
+\DoxyCodeLine{    if (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a3c2141e561fafc5c113a1e0f74ee8494}{CTH\_TENSOR\_DATA\_TYPE\_FLOAT\_32}}) \{                          \(\backslash\)}
+\DoxyCodeLine{      vs\#\#func\_name(                                                           \(\backslash\)}
+\DoxyCodeLine{          N, (\textcolor{keywordtype}{float} *)in\_ptr\_1, (\textcolor{keywordtype}{float} *)in\_ptr\_2, (\textcolor{keywordtype}{float} *)out\_ptr);          \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a3b3e271ef78a842c489769d06a245984}{CTH\_TENSOR\_DATA\_TYPE\_FLOAT\_64}}) \{                   \(\backslash\)}
+\DoxyCodeLine{      vd\#\#func\_name(                                                           \(\backslash\)}
+\DoxyCodeLine{          N, (\textcolor{keywordtype}{double} *)in\_ptr\_1, (\textcolor{keywordtype}{double} *)in\_ptr\_2, (\textcolor{keywordtype}{double} *)out\_ptr);       \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \{                                                                   \(\backslash\)}
+\DoxyCodeLine{      FAIL\_EXIT(\mbox{\hyperlink{logger__util_8h_ad9ab19b2b3e07e3ac860411d60ae4e52}{CTH\_LOG\_ERR}}, \textcolor{stringliteral}{"Unsupported data type on MKL calling"});          \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{util__mkl_8h_a435dbe6ceafc50a9a19f1ed393286052}\label{util__mkl_8h_a435dbe6ceafc50a9a19f1ed393286052}} 
+\index{util\_mkl.h@{util\_mkl.h}!\_cth\_mkl\_vm\_function\_call\_unary@{\_cth\_mkl\_vm\_function\_call\_unary}}
+\index{\_cth\_mkl\_vm\_function\_call\_unary@{\_cth\_mkl\_vm\_function\_call\_unary}!util\_mkl.h@{util\_mkl.h}}
+\doxysubsubsection{\texorpdfstring{\_cth\_mkl\_vm\_function\_call\_unary}{\_cth\_mkl\_vm\_function\_call\_unary}}
+{\footnotesize\ttfamily \#define \+\_\+cth\+\_\+mkl\+\_\+vm\+\_\+function\+\_\+call\+\_\+unary(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type,  }\item[{}]{func\+\_\+name,  }\item[{}]{in\+\_\+ptr,  }\item[{}]{out\+\_\+ptr,  }\item[{}]{N }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                                                         \(\backslash\)}
+\DoxyCodeLine{    if (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a3c2141e561fafc5c113a1e0f74ee8494}{CTH\_TENSOR\_DATA\_TYPE\_FLOAT\_32}}) \{                          \(\backslash\)}
+\DoxyCodeLine{      vs\#\#func\_name(N, (\textcolor{keywordtype}{float} *)in\_ptr, (\textcolor{keywordtype}{float} *)out\_ptr);                     \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (data\_type == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a3b3e271ef78a842c489769d06a245984}{CTH\_TENSOR\_DATA\_TYPE\_FLOAT\_64}}) \{                   \(\backslash\)}
+\DoxyCodeLine{      vd\#\#func\_name(N, (\textcolor{keywordtype}{double} *)in\_ptr, (\textcolor{keywordtype}{double} *)out\_ptr);                   \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \{                                                                   \(\backslash\)}
+\DoxyCodeLine{      FAIL\_EXIT(\mbox{\hyperlink{logger__util_8h_ad9ab19b2b3e07e3ac860411d60ae4e52}{CTH\_LOG\_ERR}}, \textcolor{stringliteral}{"Unsupported data type on MKL calling"});          \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Call Intel Vector function macro. 
+
+\begin{DoxyParagraph}{Name convention\+:}
+\href{https://software.intel.com/content/www/us/en/develop/documentation/mkl-developer-reference-c/top/vector-mathematical-functions/vm-naming-conventions.html}{\texttt{ https\+://software.\+intel.\+com/content/www/us/en/develop/documentation/mkl-\/developer-\/reference-\/c/top/vector-\/mathematical-\/functions/vm-\/naming-\/conventions.\+html}} 
+\end{DoxyParagraph}

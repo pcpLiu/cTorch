@@ -1,0 +1,37 @@
+\hypertarget{op__remainder__mkl_8c}{}\doxysection{c\+Torch/operators/mkl/op\+\_\+remainder\+\_\+mkl.c File Reference}
+\label{op__remainder__mkl_8c}\index{cTorch/operators/mkl/op\_remainder\_mkl.c@{cTorch/operators/mkl/op\_remainder\_mkl.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/mkl/op\+\_\+list\+\_\+mkl.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/mkl/util\+\_\+mkl.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$mkl.\+h$>$}\newline
+Include dependency graph for op\+\_\+remainder\+\_\+mkl.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__remainder__mkl_8c_a85bd82dba1b668d0e0ffb280377d5d89}{op\+\_\+remainder\+\_\+mkl}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em Computes the element-\/wise remainder of division. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__remainder__mkl_8c_a85bd82dba1b668d0e0ffb280377d5d89}\label{op__remainder__mkl_8c_a85bd82dba1b668d0e0ffb280377d5d89}} 
+\index{op\_remainder\_mkl.c@{op\_remainder\_mkl.c}!op\_remainder\_mkl@{op\_remainder\_mkl}}
+\index{op\_remainder\_mkl@{op\_remainder\_mkl}!op\_remainder\_mkl.c@{op\_remainder\_mkl.c}}
+\doxysubsubsection{\texorpdfstring{op\_remainder\_mkl()}{op\_remainder\_mkl()}}
+{\footnotesize\ttfamily void op\+\_\+remainder\+\_\+mkl (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+Computes the element-\/wise remainder of division. 
+
+\begin{DoxyParagraph}{The divisor and dividend may contain both for integer and floating point}
+numbers. The remainder has the same sign as the divisor.
+\end{DoxyParagraph}
+\begin{DoxyNote}{Note}
+M\+KL only support float \& double type
+\end{DoxyNote}
+Inputs \& outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 2
+\item \# of output\+: 1
+\item Assume input \& output have same types 
+\end{DoxyItemize}

@@ -19,20 +19,18 @@ This graph shows which files directly or indirectly include this file\+:
 \item 
 \#define \mbox{\hyperlink{logger__util_8h_a04423b40053642806d1a16a7a4df44aa}{C\+T\+H\+\_\+\+L\+OG}}(write\+\_\+to, ...)
 \item 
-\#define \mbox{\hyperlink{logger__util_8h_a17efd14ba9be0035f41370223957dbb0}{N\+A\+N\+\_\+\+E\+X\+IT}}(val)
-\item 
 \#define \mbox{\hyperlink{logger__util_8h_a28f2f3a043f3fff7153331dd1d47d858}{F\+O\+R\+C\+E\+\_\+\+EQ}}(a,  b, ...)
 \item 
 \#define \mbox{\hyperlink{logger__util_8h_aa1889d6a66cae2f6d56ef2d52a311891}{F\+O\+R\+C\+E\+\_\+\+N\+O\+T\+\_\+\+EQ}}(a,  b, ...)
 \item 
+\#define \mbox{\hyperlink{logger__util_8h_ae154af1eea5de60475384aea8335978d}{F\+O\+R\+C\+E\+\_\+\+T\+R\+UE}}(expression, ...)
+\begin{DoxyCompactList}\small\item\em Force expression is true. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{logger__util_8h_ad9ab19b2b3e07e3ac860411d60ae4e52}{C\+T\+H\+\_\+\+L\+O\+G\+\_\+\+E\+RR}}~stderr
 \item 
 \#define \mbox{\hyperlink{logger__util_8h_adf1afb548e8e6a3889c916f7d42bfb98}{C\+T\+H\+\_\+\+L\+O\+G\+\_\+\+I\+N\+FO}}~stdout
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
-\item 
-bool \mbox{\hyperlink{logger__util_8h_a91158ab31124bd4b92fa32ad30b65523}{C\+T\+H\+\_\+\+N\+A\+N\+\_\+\+E\+X\+IT}}
 \item 
 bool \mbox{\hyperlink{logger__util_8h_a45dac8ff7a7feac90b542f14758a2489}{C\+T\+H\+\_\+\+L\+O\+G\+\_\+\+E\+N\+A\+B\+LE}}
 \end{DoxyCompactItemize}
@@ -158,21 +156,25 @@ Force a == b. This assumes a, b are primiteve types. \mbox{\Hypertarget{logger__
 \DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
 
 \end{DoxyCode}
-Force a != b. This assumes a, b are primiteve types. \mbox{\Hypertarget{logger__util_8h_a17efd14ba9be0035f41370223957dbb0}\label{logger__util_8h_a17efd14ba9be0035f41370223957dbb0}} 
-\index{logger\_util.h@{logger\_util.h}!NAN\_EXIT@{NAN\_EXIT}}
-\index{NAN\_EXIT@{NAN\_EXIT}!logger\_util.h@{logger\_util.h}}
-\doxysubsubsection{\texorpdfstring{NAN\_EXIT}{NAN\_EXIT}}
-{\footnotesize\ttfamily \#define N\+A\+N\+\_\+\+E\+X\+IT(\begin{DoxyParamCaption}\item[{}]{val }\end{DoxyParamCaption})}
+Force a != b. This assumes a, b are primiteve types. \mbox{\Hypertarget{logger__util_8h_ae154af1eea5de60475384aea8335978d}\label{logger__util_8h_ae154af1eea5de60475384aea8335978d}} 
+\index{logger\_util.h@{logger\_util.h}!FORCE\_TRUE@{FORCE\_TRUE}}
+\index{FORCE\_TRUE@{FORCE\_TRUE}!logger\_util.h@{logger\_util.h}}
+\doxysubsubsection{\texorpdfstring{FORCE\_TRUE}{FORCE\_TRUE}}
+{\footnotesize\ttfamily \#define F\+O\+R\+C\+E\+\_\+\+T\+R\+UE(\begin{DoxyParamCaption}\item[{}]{expression,  }\item[{}]{... }\end{DoxyParamCaption})}
 
 {\bfseries Value\+:}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                                                         \(\backslash\)}
-\DoxyCodeLine{    if (val != val \&\& \mbox{\hyperlink{logger__util_8h_a91158ab31124bd4b92fa32ad30b65523}{CTH\_NAN\_EXIT}} == \textcolor{keyword}{true}) \{                                  \(\backslash\)}
-\DoxyCodeLine{      FAIL\_EXIT(\mbox{\hyperlink{logger__util_8h_ad9ab19b2b3e07e3ac860411d60ae4e52}{CTH\_LOG\_ERR}}, \textcolor{stringliteral}{"Value is NaN"});                                  \(\backslash\)}
+\DoxyCodeLine{    if (expression) \{                                                          \(\backslash\)}
+\DoxyCodeLine{      FAIL\_EXIT(\mbox{\hyperlink{logger__util_8h_ad9ab19b2b3e07e3ac860411d60ae4e52}{CTH\_LOG\_ERR}}, \textcolor{stringliteral}{"FORCE\_TRUE failes. Info: \%s"}, \_\_VA\_ARGS\_\_);      \(\backslash\)}
 \DoxyCodeLine{    \}                                                                          \(\backslash\)}
 \DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
 
 \end{DoxyCode}
+
+
+Force expression is true. 
+
 
 
 \doxysubsection{Variable Documentation}
@@ -181,10 +183,4 @@ Force a != b. This assumes a, b are primiteve types. \mbox{\Hypertarget{logger__
 \index{CTH\_LOG\_ENABLE@{CTH\_LOG\_ENABLE}!logger\_util.h@{logger\_util.h}}
 \doxysubsubsection{\texorpdfstring{CTH\_LOG\_ENABLE}{CTH\_LOG\_ENABLE}}
 {\footnotesize\ttfamily bool C\+T\+H\+\_\+\+L\+O\+G\+\_\+\+E\+N\+A\+B\+LE}
-
-\mbox{\Hypertarget{logger__util_8h_a91158ab31124bd4b92fa32ad30b65523}\label{logger__util_8h_a91158ab31124bd4b92fa32ad30b65523}} 
-\index{logger\_util.h@{logger\_util.h}!CTH\_NAN\_EXIT@{CTH\_NAN\_EXIT}}
-\index{CTH\_NAN\_EXIT@{CTH\_NAN\_EXIT}!logger\_util.h@{logger\_util.h}}
-\doxysubsubsection{\texorpdfstring{CTH\_NAN\_EXIT}{CTH\_NAN\_EXIT}}
-{\footnotesize\ttfamily bool C\+T\+H\+\_\+\+N\+A\+N\+\_\+\+E\+X\+IT}
 

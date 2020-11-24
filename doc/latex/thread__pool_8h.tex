@@ -1,4 +1,59 @@
 \hypertarget{thread__pool_8h}{}\doxysection{c\+Torch/thread\+\_\+pool.h File Reference}
 \label{thread__pool_8h}\index{cTorch/thread\_pool.h@{cTorch/thread\_pool.h}}
-This graph shows which files directly or indirectly include this file\+:
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+Include dependency graph for thread\+\_\+pool.\+h\+:
 % FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structthr__pool}{thr\+\_\+pool}} \mbox{\hyperlink{thread__pool_8h_a20e9093369f7f9ff7511da068aadca83}{thr\+\_\+pool\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{thread__pool_8h_a20e9093369f7f9ff7511da068aadca83}{thr\+\_\+pool\+\_\+t}} $\ast$ \mbox{\hyperlink{thread__pool_8h_a90b52c0d3c2e77ce033e3e41c5b044d9}{thr\+\_\+pool\+\_\+create}} (uint\+\_\+t min\+\_\+threads, uint\+\_\+t max\+\_\+threads, uint\+\_\+t linger, pthread\+\_\+attr\+\_\+t $\ast$attr)
+\item 
+int \mbox{\hyperlink{thread__pool_8h_ac63ab741917e0810c23b968f5d02881c}{thr\+\_\+pool\+\_\+queue}} (\mbox{\hyperlink{thread__pool_8h_a20e9093369f7f9ff7511da068aadca83}{thr\+\_\+pool\+\_\+t}} $\ast$pool, void $\ast$($\ast$func)(void $\ast$), void $\ast$arg)
+\item 
+void \mbox{\hyperlink{thread__pool_8h_aa40e547b0636ba5caf0113a920a459cb}{thr\+\_\+pool\+\_\+wait}} (\mbox{\hyperlink{thread__pool_8h_a20e9093369f7f9ff7511da068aadca83}{thr\+\_\+pool\+\_\+t}} $\ast$pool)
+\item 
+void \mbox{\hyperlink{thread__pool_8h_a5440052bff2d9eb010dfe75f1532d073}{thr\+\_\+pool\+\_\+destroy}} (\mbox{\hyperlink{thread__pool_8h_a20e9093369f7f9ff7511da068aadca83}{thr\+\_\+pool\+\_\+t}} $\ast$pool)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{thread__pool_8h_a20e9093369f7f9ff7511da068aadca83}\label{thread__pool_8h_a20e9093369f7f9ff7511da068aadca83}} 
+\index{thread\_pool.h@{thread\_pool.h}!thr\_pool\_t@{thr\_pool\_t}}
+\index{thr\_pool\_t@{thr\_pool\_t}!thread\_pool.h@{thread\_pool.h}}
+\doxysubsubsection{\texorpdfstring{thr\_pool\_t}{thr\_pool\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structthr__pool}{thr\+\_\+pool}} \mbox{\hyperlink{thread__pool_8h_a20e9093369f7f9ff7511da068aadca83}{thr\+\_\+pool\+\_\+t}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{thread__pool_8h_a90b52c0d3c2e77ce033e3e41c5b044d9}\label{thread__pool_8h_a90b52c0d3c2e77ce033e3e41c5b044d9}} 
+\index{thread\_pool.h@{thread\_pool.h}!thr\_pool\_create@{thr\_pool\_create}}
+\index{thr\_pool\_create@{thr\_pool\_create}!thread\_pool.h@{thread\_pool.h}}
+\doxysubsubsection{\texorpdfstring{thr\_pool\_create()}{thr\_pool\_create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{thread__pool_8h_a20e9093369f7f9ff7511da068aadca83}{thr\+\_\+pool\+\_\+t}}$\ast$ thr\+\_\+pool\+\_\+create (\begin{DoxyParamCaption}\item[{uint\+\_\+t}]{min\+\_\+threads,  }\item[{uint\+\_\+t}]{max\+\_\+threads,  }\item[{uint\+\_\+t}]{linger,  }\item[{pthread\+\_\+attr\+\_\+t $\ast$}]{attr }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{thread__pool_8h_a5440052bff2d9eb010dfe75f1532d073}\label{thread__pool_8h_a5440052bff2d9eb010dfe75f1532d073}} 
+\index{thread\_pool.h@{thread\_pool.h}!thr\_pool\_destroy@{thr\_pool\_destroy}}
+\index{thr\_pool\_destroy@{thr\_pool\_destroy}!thread\_pool.h@{thread\_pool.h}}
+\doxysubsubsection{\texorpdfstring{thr\_pool\_destroy()}{thr\_pool\_destroy()}}
+{\footnotesize\ttfamily void thr\+\_\+pool\+\_\+destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{thread__pool_8h_a20e9093369f7f9ff7511da068aadca83}{thr\+\_\+pool\+\_\+t}} $\ast$}]{pool }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{thread__pool_8h_ac63ab741917e0810c23b968f5d02881c}\label{thread__pool_8h_ac63ab741917e0810c23b968f5d02881c}} 
+\index{thread\_pool.h@{thread\_pool.h}!thr\_pool\_queue@{thr\_pool\_queue}}
+\index{thr\_pool\_queue@{thr\_pool\_queue}!thread\_pool.h@{thread\_pool.h}}
+\doxysubsubsection{\texorpdfstring{thr\_pool\_queue()}{thr\_pool\_queue()}}
+{\footnotesize\ttfamily int thr\+\_\+pool\+\_\+queue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{thread__pool_8h_a20e9093369f7f9ff7511da068aadca83}{thr\+\_\+pool\+\_\+t}} $\ast$}]{pool,  }\item[{void $\ast$($\ast$)(void $\ast$)}]{func,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{thread__pool_8h_aa40e547b0636ba5caf0113a920a459cb}\label{thread__pool_8h_aa40e547b0636ba5caf0113a920a459cb}} 
+\index{thread\_pool.h@{thread\_pool.h}!thr\_pool\_wait@{thr\_pool\_wait}}
+\index{thr\_pool\_wait@{thr\_pool\_wait}!thread\_pool.h@{thread\_pool.h}}
+\doxysubsubsection{\texorpdfstring{thr\_pool\_wait()}{thr\_pool\_wait()}}
+{\footnotesize\ttfamily void thr\+\_\+pool\+\_\+wait (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{thread__pool_8h_a20e9093369f7f9ff7511da068aadca83}{thr\+\_\+pool\+\_\+t}} $\ast$}]{pool }\end{DoxyParamCaption})}
+

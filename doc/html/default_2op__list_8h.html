@@ -84,12 +84,6 @@ Include dependency graph for op_list.h:</div>
 <div class="center"><img src="default_2op__list_8h__incl.png" border="0" usemap="#cTorch_2operators_2default_2op__list_8h" alt=""/></div>
 <!-- MAP 0 -->
 </div>
-</div><div class="textblock"><div class="dynheader">
-This graph shows which files directly or indirectly include this file:</div>
-<div class="dyncontent">
-<div class="center"><img src="default_2op__list_8h__dep__incl.png" border="0" usemap="#cTorch_2operators_2default_2op__list_8hdep" alt=""/></div>
-<!-- MAP 1 -->
-</div>
 </div>
 <p><a href="default_2op__list_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -97,7 +91,7 @@ This graph shows which files directly or indirectly include this file:</div>
 Macros</h2></td></tr>
 <tr class="memitem:a75a377277600f5164060172af9f20815"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="default_2op__list_8h.html#a75a377277600f5164060172af9f20815">CPU_OP_FUNC_NAME</a>(op)&#160;&#160;&#160;op_##op##_cpu</td></tr>
 <tr class="separator:a75a377277600f5164060172af9f20815"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f257522853c81cb623d729919f5d962"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="default_2op__list_8h.html#a4f257522853c81cb623d729919f5d962">CPU_OP_FUNC_DECLARE</a>(op)&#160;&#160;&#160;void <a class="el" href="default_2op__list_8h.html#a75a377277600f5164060172af9f20815">CPU_OP_FUNC_NAME</a>(op)(<a class="el" href="structCTorchOperator.html">CTorchOperator</a> *);</td></tr>
+<tr class="memitem:a4f257522853c81cb623d729919f5d962"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="default_2op__list_8h.html#a4f257522853c81cb623d729919f5d962">CPU_OP_FUNC_DECLARE</a>(op)&#160;&#160;&#160;void <a class="el" href="default_2op__list_8h.html#a75a377277600f5164060172af9f20815">CPU_OP_FUNC_NAME</a>(op)(<a class="el" href="structCTHOperator.html">CTHOperator</a> *);</td></tr>
 <tr class="separator:a4f257522853c81cb623d729919f5d962"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe149cce4a4fb02d5858f53a130947e2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="default_2op__list_8h.html#afe149cce4a4fb02d5858f53a130947e2">DECLARE_CPU_ALL_OP_FUNCS</a>&#160;&#160;&#160;<a class="el" href="consts_8h.html#a33c8ac7e3182f644b7cddd033bafeeb6a4123335913482f4909b9b6d1d8150179">FOREACH_OP_ID</a>(<a class="el" href="default_2op__list_8h.html#a4f257522853c81cb623d729919f5d962">CPU_OP_FUNC_DECLARE</a>)</td></tr>
 <tr class="separator:afe149cce4a4fb02d5858f53a130947e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -108,8 +102,8 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:ad8a13cc50e8c2f3e22da1d73ee77cafd"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="default_2op__list_8h.html#ad8a13cc50e8c2f3e22da1d73ee77cafd">fps_op_default</a> [<a class="el" href="ops__enabled_8h.html#a6ef3f4e6edbb5e1f08a77820ba2fd93b">ENABLED_OP_NUM</a>])(<a class="el" href="structCTorchOperator.html">CTorchOperator</a> *)</td></tr>
-<tr class="separator:ad8a13cc50e8c2f3e22da1d73ee77cafd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb2e266c40111a95d2b4f4778734750a"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="default_2op__list_8h.html#acb2e266c40111a95d2b4f4778734750a">fps_op_default</a> [<a class="el" href="ops__enabled_8h.html#a6ef3f4e6edbb5e1f08a77820ba2fd93b">ENABLED_OP_NUM</a>])(<a class="el" href="structCTHOperator.html">CTHOperator</a> *)</td></tr>
+<tr class="separator:acb2e266c40111a95d2b4f4778734750a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a27292a2366fb8bd6f92337ed85f0075d"></a>
@@ -155,7 +149,7 @@ Variables</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">op</td><td>)</td>
-          <td>&#160;&#160;&#160;void <a class="el" href="default_2op__list_8h.html#a75a377277600f5164060172af9f20815">CPU_OP_FUNC_NAME</a>(op)(<a class="el" href="structCTorchOperator.html">CTorchOperator</a> *);</td>
+          <td>&#160;&#160;&#160;void <a class="el" href="default_2op__list_8h.html#a75a377277600f5164060172af9f20815">CPU_OP_FUNC_NAME</a>(op)(<a class="el" href="structCTHOperator.html">CTHOperator</a> *);</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -177,7 +171,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Declare cpu op functions. These three macros will finally expand to a list of functions like: void op_XXXXXX_cpu(CTorchOperator *); </p>
+<p>Declare cpu op functions. These three macros will finally expand to a list of functions like: void op_XXXXXX_cpu(CTHOperator *); </p>
 
 </div>
 </div>
@@ -196,14 +190,14 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="ad8a13cc50e8c2f3e22da1d73ee77cafd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad8a13cc50e8c2f3e22da1d73ee77cafd">&#9670;&nbsp;</a></span>fps_op_default</h2>
+<a id="acb2e266c40111a95d2b4f4778734750a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb2e266c40111a95d2b4f4778734750a">&#9670;&nbsp;</a></span>fps_op_default</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void(* fps_op_default[<a class="el" href="ops__enabled_8h.html#a6ef3f4e6edbb5e1f08a77820ba2fd93b">ENABLED_OP_NUM</a>])(<a class="el" href="structCTorchOperator.html">CTorchOperator</a> *)</td>
+          <td class="memname">void(* fps_op_default[<a class="el" href="ops__enabled_8h.html#a6ef3f4e6edbb5e1f08a77820ba2fd93b">ENABLED_OP_NUM</a>])(<a class="el" href="structCTHOperator.html">CTHOperator</a> *)</td>
         </tr>
       </table>
 </div><div class="memdoc">

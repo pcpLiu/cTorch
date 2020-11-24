@@ -9,18 +9,18 @@ This graph shows which files directly or indirectly include this file\+:
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{sharder_8h_a0453c0b8c5ae82e2b4290f9a7a3639bd}{cth\+\_\+sharding\+\_\+op\+\_\+elewise}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op, \mbox{\hyperlink{consts_8h_a157c2065f4ca7bee275f51520e56a173}{thread\+\_\+n\+\_\+t}} n\+\_\+shards, \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}}) $\ast$ops)
+void \mbox{\hyperlink{sharder_8h_a1d0409e74665162ea3fb68e026535605}{cth\+\_\+sharding\+\_\+op\+\_\+elewise}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op, \mbox{\hyperlink{consts_8h_aaaedfc356f04494a6b0fab869b439b55}{cth\+\_\+thread\+\_\+n\+\_\+t}} n\+\_\+shards, \mbox{\hyperlink{list__d_8h_aa8ec55b1eb665e3b7e7378dca481845f}{C\+T\+H\+List}}(\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}}) $\ast$ops)
 \item 
-void \mbox{\hyperlink{sharder_8h_abd7e037d08e83352d34ded0de8a89cf6}{cth\+\_\+sharding\+\_\+tensor\+\_\+elewise}} (\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}} $\ast$tensor, \mbox{\hyperlink{consts_8h_a157c2065f4ca7bee275f51520e56a173}{thread\+\_\+n\+\_\+t}} n\+\_\+shards, \mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}}) $\ast$tensors)
+void \mbox{\hyperlink{sharder_8h_adaa515559a83630fc72cd47131352e5a}{cth\+\_\+sharding\+\_\+tensor\+\_\+elewise}} (\mbox{\hyperlink{structCTHTensor}{C\+T\+H\+Tensor}} $\ast$tensor, \mbox{\hyperlink{consts_8h_aaaedfc356f04494a6b0fab869b439b55}{cth\+\_\+thread\+\_\+n\+\_\+t}} n\+\_\+shards, \mbox{\hyperlink{list__d_8h_aa8ec55b1eb665e3b7e7378dca481845f}{C\+T\+H\+List}}(\mbox{\hyperlink{structCTHTensor}{C\+T\+H\+Tensor}}) $\ast$tensors)
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{sharder_8h_a0453c0b8c5ae82e2b4290f9a7a3639bd}\label{sharder_8h_a0453c0b8c5ae82e2b4290f9a7a3639bd}} 
+\mbox{\Hypertarget{sharder_8h_a1d0409e74665162ea3fb68e026535605}\label{sharder_8h_a1d0409e74665162ea3fb68e026535605}} 
 \index{sharder.h@{sharder.h}!cth\_sharding\_op\_elewise@{cth\_sharding\_op\_elewise}}
 \index{cth\_sharding\_op\_elewise@{cth\_sharding\_op\_elewise}!sharder.h@{sharder.h}}
 \doxysubsubsection{\texorpdfstring{cth\_sharding\_op\_elewise()}{cth\_sharding\_op\_elewise()}}
-{\footnotesize\ttfamily void cth\+\_\+sharding\+\_\+op\+\_\+elewise (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op,  }\item[{\mbox{\hyperlink{consts_8h_a157c2065f4ca7bee275f51520e56a173}{thread\+\_\+n\+\_\+t}}}]{n\+\_\+shards,  }\item[{\mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}}) $\ast$}]{ops }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void cth\+\_\+sharding\+\_\+op\+\_\+elewise (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op,  }\item[{\mbox{\hyperlink{consts_8h_aaaedfc356f04494a6b0fab869b439b55}{cth\+\_\+thread\+\_\+n\+\_\+t}}}]{n\+\_\+shards,  }\item[{\mbox{\hyperlink{list__d_8h_aa8ec55b1eb665e3b7e7378dca481845f}{C\+T\+H\+List}}(\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}}) $\ast$}]{ops }\end{DoxyParamCaption})}
 
 Sharding an op\textquotesingle{}s inputs \& outputs for element-\/wise operation
 
@@ -39,13 +39,13 @@ Params\+:
 
 Return\+: List of sharded operator 
 \begin{DoxyEnumerate}
-\item Create sharded ops
+\item Create sharded ops and copy all information from the original op
 \item Prepare inbound \& outbound tensors for each sharded ops 2.\+1. Shard a tensor 2.\+2. Assign each sharded piece to corresponding sharded op
-\end{DoxyEnumerate}\mbox{\Hypertarget{sharder_8h_abd7e037d08e83352d34ded0de8a89cf6}\label{sharder_8h_abd7e037d08e83352d34ded0de8a89cf6}} 
+\end{DoxyEnumerate}\mbox{\Hypertarget{sharder_8h_adaa515559a83630fc72cd47131352e5a}\label{sharder_8h_adaa515559a83630fc72cd47131352e5a}} 
 \index{sharder.h@{sharder.h}!cth\_sharding\_tensor\_elewise@{cth\_sharding\_tensor\_elewise}}
 \index{cth\_sharding\_tensor\_elewise@{cth\_sharding\_tensor\_elewise}!sharder.h@{sharder.h}}
 \doxysubsubsection{\texorpdfstring{cth\_sharding\_tensor\_elewise()}{cth\_sharding\_tensor\_elewise()}}
-{\footnotesize\ttfamily void cth\+\_\+sharding\+\_\+tensor\+\_\+elewise (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}} $\ast$}]{tensor,  }\item[{\mbox{\hyperlink{consts_8h_a157c2065f4ca7bee275f51520e56a173}{thread\+\_\+n\+\_\+t}}}]{n\+\_\+shards,  }\item[{\mbox{\hyperlink{list__d_8h_a164ccd9e9f0276a8301d761387dbac90}{List}}(\mbox{\hyperlink{structCTorchTensor}{C\+Torch\+Tensor}}) $\ast$}]{tensors }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void cth\+\_\+sharding\+\_\+tensor\+\_\+elewise (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHTensor}{C\+T\+H\+Tensor}} $\ast$}]{tensor,  }\item[{\mbox{\hyperlink{consts_8h_aaaedfc356f04494a6b0fab869b439b55}{cth\+\_\+thread\+\_\+n\+\_\+t}}}]{n\+\_\+shards,  }\item[{\mbox{\hyperlink{list__d_8h_aa8ec55b1eb665e3b7e7378dca481845f}{C\+T\+H\+List}}(\mbox{\hyperlink{structCTHTensor}{C\+T\+H\+Tensor}}) $\ast$}]{tensors }\end{DoxyParamCaption})}
 
 Sharding a tensor for element-\/wise operator
 

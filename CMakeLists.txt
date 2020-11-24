@@ -10,16 +10,15 @@ set(CMAKE_C_STANDARD 11)
 #
 
 set(TARGET_CPU_ARCH "x86" CACHE STRING
-    "Target cpu architecture. \
-     Supported architectures: [x86, arm] "
+    "Target cpu architecture. Supported architectures: [x86, arm]. Default x86"
 )
 
 set(BACKEND_OPENBLAS_ENABLE OFF CACHE BOOL
-    "Build with backend openBLAS backend"
+    "Build with backend openBLAS backend. Default off"
 )
 
 set(BACKEND_MKL_ENABLE OFF CACHE BOOL
-    "Build backend with Intel MKL backend"
+    "Build backend with Intel MKL backend. Default off"
 )
 set(BACKEND_MKL_LIB_DIR "/opt/intel/mkl/lib/intel64" CACHE PATH
     "MKL library dir. Default: /opt/intel/lib/intel64"
@@ -29,15 +28,19 @@ set(BACKEND_MKL_INCLUDE_DIR "/opt/intel/mkl/include" CACHE PATH
 )
 
 set(BACKEND_CUDA_ENABLE OFF CACHE BOOL
-    "Build with CUDA backend"
+    "Build with CUDA backend. Default off"
 )
 
 set(BACKEND_APPLE_ENABLE OFF CACHE BOOL
-    "Build with Apple backend"
+    "Build with Apple backend. Default off"
 )
 
 set(DEBUG_TEST OFF CACHE BOOL
-    "Enable debug test options. Default OFF. Option should only be enabled for running tests."
+    "Enable debug test options. Default OFF. Option should only be enabled for running tests. Default off"
+)
+
+set(ENABLE_SHARDING OFF CACHE BOOL
+    "Enable sharding (paralllel) execution of operators. It retuires pthread. Default off"
 )
 
 
@@ -57,26 +60,26 @@ endif()
 # Openblas
 if(${BACKEND_OPENBLAS_ENABLE})
     add_compile_definitions(BACKEND_OPENBLAS)
-    message("[cTorch]: Enable building with OpenBLAS backend")
+    message("[cTorch]: Build option BACKEND_OPENBLAS_ENABLE set to ON")
 endif()
 
 # MKL
 if(${BACKEND_MKL_ENABLE})
     add_compile_definitions(BACKEND_MKL)
-    message("[cTorch]: Enable building with Intel MKL backend")
+    message("[cTorch]: Build option BACKEND_MKL set to ON")
 endif()
 
 # CUDA
 if(${BACKEND_CUDA_ENABLE})
     enable_language(CUDA)
     add_compile_definitions(BACKEND_CUDA)
-    message("[cTorch]: Enable building with CUDA backend")
+    message("[cTorch]: Build option BACKEND_CUDA set to ON")
 endif()
 
 # Apple
 if(${BACKEND_APPLE_ENABLE})
     add_compile_definitions(BACKEND_APPLE)
-    message("[cTorch]: Enable building with Apple backend")
+    message("[cTorch]: Build option BACKEND_APPLE set to ON")
 endif()
 
 # asprintf
@@ -91,8 +94,8 @@ if(${DEBUG_TEST})
     message(
         WARNING
         "[cTorch]: DEBUG_TEST is turned ON. "
-        "This opiton should only be enabled for debugging cTorch. "
-        "Turning it on will lead to performance regression."
+        "This opiton should only be enabled while debugging or developing cTorch. "
+        "Turning it on will lead to potential performance regression."
     )
     # Enable debug code compiling
     add_compile_definitions(CTH_TEST_DEBUG)

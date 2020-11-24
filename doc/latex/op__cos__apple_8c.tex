@@ -1,0 +1,34 @@
+\hypertarget{op__cos__apple_8c}{}\doxysection{c\+Torch/operators/apple/op\+\_\+cos\+\_\+apple.c File Reference}
+\label{op__cos__apple_8c}\index{cTorch/operators/apple/op\_cos\_apple.c@{cTorch/operators/apple/op\_cos\_apple.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/apple/op\+\_\+list\+\_\+apple.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/apple/util\+\_\+apple.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$Accelerate/\+Accelerate.\+h$>$}\newline
+Include dependency graph for op\+\_\+cos\+\_\+apple.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__cos__apple_8c_a522c8fd0e1007cdae5ee7a92e910efff}{op\+\_\+cos\+\_\+apple}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em cos(x) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__cos__apple_8c_a522c8fd0e1007cdae5ee7a92e910efff}\label{op__cos__apple_8c_a522c8fd0e1007cdae5ee7a92e910efff}} 
+\index{op\_cos\_apple.c@{op\_cos\_apple.c}!op\_cos\_apple@{op\_cos\_apple}}
+\index{op\_cos\_apple@{op\_cos\_apple}!op\_cos\_apple.c@{op\_cos\_apple.c}}
+\doxysubsubsection{\texorpdfstring{op\_cos\_apple()}{op\_cos\_apple()}}
+{\footnotesize\ttfamily void op\+\_\+cos\+\_\+apple (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+cos(x) 
+
+\begin{DoxyNote}{Note}
+Apple backend only support float \& double tensors
+\end{DoxyNote}
+Inputs \& outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 1
+\item \# of output\+: 1
+\item Input and output should be same dimention and type. 
+\end{DoxyItemize}

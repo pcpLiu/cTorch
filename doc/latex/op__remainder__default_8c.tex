@@ -1,0 +1,38 @@
+\hypertarget{op__remainder__default_8c}{}\doxysection{c\+Torch/operators/default/op\+\_\+remainder\+\_\+default.c File Reference}
+\label{op__remainder__default_8c}\index{cTorch/operators/default/op\_remainder\_default.c@{cTorch/operators/default/op\_remainder\_default.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operator.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/op\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/util.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$tgmath.\+h$>$}\newline
+Include dependency graph for op\+\_\+remainder\+\_\+default.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__remainder__default_8c_ab6f7222e7353e8f1ae60876169c52c00}{op\+\_\+remainder\+\_\+cpu}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em Computes the element-\/wise remainder of division. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__remainder__default_8c_ab6f7222e7353e8f1ae60876169c52c00}\label{op__remainder__default_8c_ab6f7222e7353e8f1ae60876169c52c00}} 
+\index{op\_remainder\_default.c@{op\_remainder\_default.c}!op\_remainder\_cpu@{op\_remainder\_cpu}}
+\index{op\_remainder\_cpu@{op\_remainder\_cpu}!op\_remainder\_default.c@{op\_remainder\_default.c}}
+\doxysubsubsection{\texorpdfstring{op\_remainder\_cpu()}{op\_remainder\_cpu()}}
+{\footnotesize\ttfamily void op\+\_\+remainder\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+Computes the element-\/wise remainder of division. 
+
+\begin{DoxyParagraph}{The divisor and dividend may contain both for integer and floating point}
+numbers. The remainder has the same sign as the divisor.
+\end{DoxyParagraph}
+Inputs \& outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 2
+\begin{DoxyItemize}
+\item 0\+: dividend tensor
+\item 1\+: the divisor
+\end{DoxyItemize}
+\item \# of output\+: 1 
+\end{DoxyItemize}

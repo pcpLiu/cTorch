@@ -1,0 +1,76 @@
+\hypertarget{op__argmax__default_8c}{}\doxysection{c\+Torch/operators/default/op\+\_\+argmax\+\_\+default.c File Reference}
+\label{op__argmax__default_8c}\index{cTorch/operators/default/op\_argmax\_default.c@{cTorch/operators/default/op\_argmax\_default.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/op\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/util.\+h\char`\"{}}\newline
+Include dependency graph for op\+\_\+argmax\+\_\+default.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{op__argmax__default_8c_a6e1941c6b3d92b58348e952fe3f95023}{\+\_\+cth\+\_\+argmax}}( in\+\_\+ptr,  out\+\_\+ptr,  input\+\_\+data\+\_\+type,  output\+\_\+data\+\_\+type,  input\+\_\+dtype\+\_\+enum,  output\+\_\+dtype\+\_\+enum,  start\+\_\+offset,  inner\+\_\+offset,  result\+\_\+offset,  reduce\+\_\+size)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__argmax__default_8c_a4cf8662fe22b107669ffb583fbd41a64}{op\+\_\+argmax\+\_\+cpu}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em Returns the indices of the maximum values of a tensor across a dimension. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{op__argmax__default_8c_a6e1941c6b3d92b58348e952fe3f95023}\label{op__argmax__default_8c_a6e1941c6b3d92b58348e952fe3f95023}} 
+\index{op\_argmax\_default.c@{op\_argmax\_default.c}!\_cth\_argmax@{\_cth\_argmax}}
+\index{\_cth\_argmax@{\_cth\_argmax}!op\_argmax\_default.c@{op\_argmax\_default.c}}
+\doxysubsubsection{\texorpdfstring{\_cth\_argmax}{\_cth\_argmax}}
+{\footnotesize\ttfamily \#define \+\_\+cth\+\_\+argmax(\begin{DoxyParamCaption}\item[{}]{in\+\_\+ptr,  }\item[{}]{out\+\_\+ptr,  }\item[{}]{input\+\_\+data\+\_\+type,  }\item[{}]{output\+\_\+data\+\_\+type,  }\item[{}]{input\+\_\+dtype\+\_\+enum,  }\item[{}]{output\+\_\+dtype\+\_\+enum,  }\item[{}]{start\+\_\+offset,  }\item[{}]{inner\+\_\+offset,  }\item[{}]{result\+\_\+offset,  }\item[{}]{reduce\+\_\+size }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                                                         \(\backslash\)}
+\DoxyCodeLine{    cth\_tensor\_dim\_t max\_i = 0;                                                \(\backslash\)}
+\DoxyCodeLine{    input\_data\_type max\_val = in\_ptr[start\_offset];                            \(\backslash\)}
+\DoxyCodeLine{    for (\mbox{\hyperlink{consts_8h_acc36bfe0d9496aa5573f4fd4f6cde518}{cth\_tensor\_dim\_t}} i = 0; i < reduce\_size; i++) \{                       \(\backslash\)}
+\DoxyCodeLine{      input\_data\_type val = in\_ptr[start\_offset + i * inner\_offset];           \(\backslash\)}
+\DoxyCodeLine{      if (val >= max\_val) \{                                                    \(\backslash\)}
+\DoxyCodeLine{        max\_val = val;                                                         \(\backslash\)}
+\DoxyCodeLine{        max\_i = i;                                                             \(\backslash\)}
+\DoxyCodeLine{      \}                                                                        \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{    out\_ptr[result\_offset] = max\_i;                                            \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__argmax__default_8c_a4cf8662fe22b107669ffb583fbd41a64}\label{op__argmax__default_8c_a4cf8662fe22b107669ffb583fbd41a64}} 
+\index{op\_argmax\_default.c@{op\_argmax\_default.c}!op\_argmax\_cpu@{op\_argmax\_cpu}}
+\index{op\_argmax\_cpu@{op\_argmax\_cpu}!op\_argmax\_default.c@{op\_argmax\_default.c}}
+\doxysubsubsection{\texorpdfstring{op\_argmax\_cpu()}{op\_argmax\_cpu()}}
+{\footnotesize\ttfamily void op\+\_\+argmax\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+Returns the indices of the maximum values of a tensor across a dimension. 
+
+\begin{DoxyParagraph}{When there\textquotesingle{}s multiple max values in a dim, it returns the last position}
+it meets.
+\end{DoxyParagraph}
+\begin{DoxyNote}{Note}
+In this implementation, keepdim is always false.
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em op} & Inputs \& Outputs \& Params\+:
+\begin{DoxyItemize}
+\item \# of inputs\+: 1
+\item \# of outputs\+: 1
+\begin{DoxyItemize}
+\item Output tensor type should be {\ttfamily C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+T\+Y\+P\+E\+\_\+\+I\+N\+T\+\_\+64}
+\end{DoxyItemize}
+\item Argument\+:
+\begin{DoxyItemize}
+\item dim (int)\+: the dimension to reduce. If {\ttfamily -\/1}, the argmax of the flattened input is returned. 
+\end{DoxyItemize}
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}

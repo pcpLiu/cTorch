@@ -19,7 +19,7 @@ cth_impl_array_at_func(CTHTensor);
 cth_impl_array_set_func(CTHTensor);
 cth_impl_free_array_deep_func(CTHTensor);
 
-size_t cth_tensor_data_size(CTHTensor *tensor) {
+size_t cth_tensor_data_size(const CTHTensor *tensor) {
   size_t ele_size = 0;
   CTH_TENSOR_DATA_TYPE data_type = tensor->meta_info->data_type;
   if (data_type == CTH_TENSOR_DATA_TYPE_BOOL) {
@@ -74,25 +74,26 @@ void CTH_FORCE_TENSOR_DIMENSION(
   }
 }
 
-bool cth_tensor_name_match(CTHTensor *tensor, const char *target_name) {
+bool cth_tensor_name_match(const CTHTensor *tensor, const char *target_name) {
   return strcmp(tensor->meta_info->tensor_name, target_name) == 0;
 }
 
-void CTH_FORCE_TENSOR_NAME(CTHTensor *tensor, const char *target_name) {
+void CTH_FORCE_TENSOR_NAME(const CTHTensor *tensor, const char *target_name) {
   if (!cth_tensor_name_match(tensor, target_name)) {
     // TODO: better logging
     FAIL_EXIT(CTH_LOG_ERR, "CTH_FORCE_TENSOR_NAME fails.");
   }
 }
 
-void cth_tensor_set_name(CTHTensor *tensor, const char *target_name) {
+void cth_tensor_set_name(const CTHTensor *tensor, const char *target_name) {
   char *name = NULL;
   // asprintf(&name, target_name);
   cth_asprintf(&name, target_name);
   tensor->meta_info->tensor_name = name;
 }
 
-void *cth_tensor_ptr_offset(CTHTensor *tensor, cth_tensor_dim_t n_elements) {
+void *
+cth_tensor_ptr_offset(const CTHTensor *tensor, cth_tensor_dim_t n_elements) {
   if (n_elements == 0)
     return tensor->values;
 
@@ -133,7 +134,7 @@ void struct_deep_free(CTHTensorMeta)(CTHTensorMeta *meta) {
   FREE(meta);
 }
 
-void struct_deep_free(CTHTensor)(CTHTensor *tensor) {
+void struct_deep_free(CTHTensor)(const CTHTensor *tensor) {
   FAIL_NULL_PTR(tensor);
 
   if (!tensor->meta_info->is_sharded) {
@@ -148,7 +149,7 @@ void struct_deep_free(CTHTensor)(CTHTensor *tensor) {
 }
 
 void CTH_FORCE_TENSOR_NUM_ELEMENTS(
-    CTHTensor *tensor, const cth_tensor_dim_t target_n) {
+    const CTHTensor *tensor, cth_tensor_dim_t target_n) {
   FAIL_NULL_PTR(tensor);
 
   if (target_n != tensor->meta_info->n_elements) {
@@ -161,7 +162,9 @@ void CTH_FORCE_TENSOR_NUM_ELEMENTS(
 }
 
 void CTH_FORCE_TENSOR_TYPES(
-    CTHTensor *tensor, CTH_TENSOR_DATA_TYPE *types, cth_array_index_t n_types) {
+    const CTHTensor *tensor,
+    const CTH_TENSOR_DATA_TYPE *types,
+    cth_array_index_t n_types) {
   FAIL_NULL_PTR(tensor);
   FAIL_NULL_PTR(types);
 
@@ -183,9 +186,9 @@ void CTH_FORCE_TENSOR_TYPES(
 }
 
 cth_tensor_dim_t cth_tensor_reduce_startoffset(
-    CTHTensor *tensor,
-    cth_tensor_dim_t *index_dims,
-    const cth_tensor_dim_t reduce_dim) {
+    const CTHTensor *tensor,
+    const cth_tensor_dim_t *index_dims,
+    cth_tensor_dim_t reduce_dim) {
   if (reduce_dim == -1) {
     return 0;
   }
@@ -282,5 +285,66 @@ void cth_tensor_get_reduce_index(
       result[reduce_index_i] = group_index / n_eles_after;
       group_index = group_index % n_eles_after;
     }
+  }
+}
+
+cth_tensor_dim_t cth_tensor_after_dim_offset(
+    const CTHTensor *tensor, cth_tensor_dim_t after_dim) {
+  FAIL_NULL_PTR(tensor);
+
+  cth_tensor_dim_t n_dim = tensor->meta_info->n_dim;
+  if (n_dim - 1 == after_dim) {
+    return 1;
+  }
+
+  cth_tensor_dim_t offset = 1;
+  for (cth_tensor_dim_t dim_i = 0; dim_i < n_dim; dim_i++) {
+    if (dim_i <= after_dim) {
+      continue;
+    }
+    offset *= tensor->meta_info->dims[dim_i];
+  }
+  return offset;
+}
+
+void cth_tensor_at(const CTHTensor *tensor, void *val_ptr, ...) {
+  va_list args;
+  va_start(args, tensor->meta_info->n_dim);
+  cth_tensor_dim_t offset = 0;
+  for (int dim_i = 0; dim_i < tensor->meta_info->n_dim; dim_i++) {
+    cth_tensor_dim_t index_i = va_arg(args, cth_tensor_dim_t);
+    if (index_i >= tensor->meta_info->dims[dim_i]) {
+      FAIL_EXIT(
+          CTH_LOG_ERR,
+          "Index value %d at axes %d is out of boundary. The dimension is %d",
+          index_i,
+          dim_i,
+          tensor->meta_info->dims[dim_i]);
+    }
+
+    cth_tensor_dim_t dim_offset = cth_tensor_after_dim_offset(tensor, dim_i);
+    offset += index_i * dim_offset;
+  }
+  va_end(args);
+
+  CTH_TENSOR_DATA_TYPE data_type = tensor->meta_info->data_type;
+  if (data_type == CTH_TENSOR_DATA_TYPE_BOOL) {
+    *(bool *)val_ptr = ((bool *)tensor->values)[offset];
+  } else if (data_type == CTH_TENSOR_DATA_TYPE_UINT_8) {
+    *(uint8_t *)val_ptr = ((uint8_t *)tensor->values)[offset];
+  } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_8) {
+    *(int8_t *)val_ptr = ((int8_t *)tensor->values)[offset];
+  } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_16) {
+    *(int16_t *)val_ptr = ((int16_t *)tensor->values)[offset];
+  } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_32) {
+    *(int32_t *)val_ptr = ((int32_t *)tensor->values)[offset];
+  } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_64) {
+    *(int64_t *)val_ptr = ((int64_t *)tensor->values)[offset];
+  } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16) {
+    *(float *)val_ptr = ((float *)tensor->values)[offset];
+  } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {
+    *(float *)val_ptr = ((float *)tensor->values)[offset];
+  } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_64) {
+    *(double *)val_ptr = ((double *)tensor->values)[offset];
   }
 }

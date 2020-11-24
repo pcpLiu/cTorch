@@ -1,0 +1,51 @@
+\hypertarget{op__reciprocal__default_8c}{}\doxysection{c\+Torch/operators/default/op\+\_\+reciprocal\+\_\+default.c File Reference}
+\label{op__reciprocal__default_8c}\index{cTorch/operators/default/op\_reciprocal\_default.c@{cTorch/operators/default/op\_reciprocal\_default.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/op\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/util.\+h\char`\"{}}\newline
+Include dependency graph for op\+\_\+reciprocal\+\_\+default.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{op__reciprocal__default_8c_ab73f9d246b3827804c38ef9cabd968c9}{\+\_\+cth\+\_\+reciprocal\+\_\+kernel}}(x)~(1 / x)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__reciprocal__default_8c_ae576770af9145c6eac04d2a567814b56}{op\+\_\+reciprocal\+\_\+cpu}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em Returns a new tensor with the reciprocal of the elements of input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{op__reciprocal__default_8c_ab73f9d246b3827804c38ef9cabd968c9}\label{op__reciprocal__default_8c_ab73f9d246b3827804c38ef9cabd968c9}} 
+\index{op\_reciprocal\_default.c@{op\_reciprocal\_default.c}!\_cth\_reciprocal\_kernel@{\_cth\_reciprocal\_kernel}}
+\index{\_cth\_reciprocal\_kernel@{\_cth\_reciprocal\_kernel}!op\_reciprocal\_default.c@{op\_reciprocal\_default.c}}
+\doxysubsubsection{\texorpdfstring{\_cth\_reciprocal\_kernel}{\_cth\_reciprocal\_kernel}}
+{\footnotesize\ttfamily \#define \+\_\+cth\+\_\+reciprocal\+\_\+kernel(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(1 / x)}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__reciprocal__default_8c_ae576770af9145c6eac04d2a567814b56}\label{op__reciprocal__default_8c_ae576770af9145c6eac04d2a567814b56}} 
+\index{op\_reciprocal\_default.c@{op\_reciprocal\_default.c}!op\_reciprocal\_cpu@{op\_reciprocal\_cpu}}
+\index{op\_reciprocal\_cpu@{op\_reciprocal\_cpu}!op\_reciprocal\_default.c@{op\_reciprocal\_default.c}}
+\doxysubsubsection{\texorpdfstring{op\_reciprocal\_cpu()}{op\_reciprocal\_cpu()}}
+{\footnotesize\ttfamily void op\+\_\+reciprocal\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+Returns a new tensor with the reciprocal of the elements of input. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{[}\+C\+T\+H\+Operator\mbox{]}} & op operator\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Do not support boolean operator
+\end{DoxyNote}
+Inputs \& outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 1
+\item \# of output\+: 1 
+\end{DoxyItemize}

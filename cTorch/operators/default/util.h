@@ -466,4 +466,107 @@
                                                                                \
   } while (0)
 
+/**
+ * @brief The real padding logic flow. The flow copy original content to output
+ * tensor and let the `padding_logic` to handle the padding content.
+ *
+ * @param op CTHOperator op
+ * @param data_type C data type
+ * @param padding_logic the macro to implement a specific padding
+ *
+ */
+#define _cth_padding_flow_1d(op, data_type, padding_logic)                     \
+  do {                                                                         \
+    CTHTensor *in_tensor = cth_array_at(CTHTensor)(op->in_bound_tensors, 0);   \
+    CTHTensor *out_tensor = cth_array_at(CTHTensor)(op->out_bound_tensors, 0); \
+    CTHTensorMeta *in_meta = in_tensor->meta_info;                             \
+    CTHTensorMeta *out_meta = out_tensor->meta_info;                           \
+    data_type *in_ptr = (data_type *)in_tensor->values;                        \
+    data_type *out_ptr = (data_type *)out_tensor->values;                      \
+    cth_pad_t *padding_d2;                                                     \
+    EXTRACT_PARAM_VALUE(                                                       \
+        op, CTH_PARAM_TYPE_PADDING_D2, padding_d2, padding_d2);                \
+    cth_tensor_dim_t padding_left = padding_d2[0];                             \
+    cth_tensor_dim_t padding_right = padding_d2[1];                            \
+                                                                               \
+    FORCE_EQ(                                                                  \
+        in_meta->dims[0],                                                      \
+        out_meta->dims[0],                                                     \
+        "_cth_padding_flow_1d dimension check fails: batch size. Input: %d, "  \
+        "output: %d",                                                          \
+        in_meta->dims[0],                                                      \
+        out_meta->dims[0]);                                                    \
+    FORCE_EQ(                                                                  \
+        in_meta->dims[1],                                                      \
+        out_meta->dims[1],                                                     \
+        "_cth_padding_flow_1d dimension check fails: z. Input: %d, output: "   \
+        "%d",                                                                  \
+        in_meta->dims[1],                                                      \
+        out_meta->dims[1]);                                                    \
+    FORCE_EQ(                                                                  \
+        in_meta->dims[2] + padding_left + padding_right,                       \
+        out_meta->dims[2],                                                     \
+        "_cth_padding_flow_1d dimension check fails: x. Input: %d, output: "   \
+        "%d",                                                                  \
+        in_meta->dims[2],                                                      \
+        out_meta->dims[2]);                                                    \
+                                                                               \
+    for (cth_tensor_dim_t batch_i = 0; batch_i < in_meta->dims[0];             \
+         batch_i++) {                                                          \
+      for (cth_tensor_dim_t z_i = 0; z_i < in_meta->dims[1]; z_i++) {          \
+        cth_tensor_dim_t in_offset =                                           \
+            batch_i * in_meta->dims[1] * in_meta->dims[2] +                    \
+            z_i * in_meta->dims[2];                                            \
+        cth_tensor_dim_t out_offset =                                          \
+            batch_i * out_meta->dims[1] * out_meta->dims[2] +                  \
+            z_i * out_meta->dims[2];                                           \
+        memcpy(                                                                \
+            out_ptr + out_offset + padding_left,                               \
+            in_ptr + in_offset,                                                \
+            sizeof(data_type) * in_meta->dims[2]);                             \
+        padding_logic(                                                         \
+            in_ptr,                                                            \
+            in_meta,                                                           \
+            in_offset,                                                         \
+            out_ptr,                                                           \
+            out_meta,                                                          \
+            out_offset,                                                        \
+            padding_left,                                                      \
+            padding_right);                                                    \
+      }                                                                        \
+    }                                                                          \
+  } while (0)
+
+/**
+ * @brief Generic 1D padding logic. It basically just dispatch by data type.
+ *
+ * @param op CTHOperator op
+ * @param padding_logic the macro to implement a specific padding
+ */
+#define _cth_padding_generic_1d(op, padding_logic)                             \
+  do {                                                                         \
+    CTHTensor *in = cth_array_at(CTHTensor)(op->in_bound_tensors, 0);          \
+    CTH_TENSOR_DATA_TYPE data_type = in->meta_info->data_type;                 \
+    if (data_type == CTH_TENSOR_DATA_TYPE_BOOL) {                              \
+      _cth_padding_flow_1d(op, bool, padding_logic);                           \
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_16) {                     \
+      _cth_padding_flow_1d(op, int16_t, padding_logic);                        \
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_32) {                     \
+      _cth_padding_flow_1d(op, int32_t, padding_logic);                        \
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_64) {                     \
+      _cth_padding_flow_1d(op, int64_t, padding_logic);                        \
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_UINT_8) {                     \
+      _cth_padding_flow_1d(op, uint8_t, padding_logic);                        \
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16) {                   \
+      _cth_padding_flow_1d(op, float, padding_logic);                          \
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {                   \
+      _cth_padding_flow_1d(op, float, padding_logic);                          \
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_64) {                   \
+      _cth_padding_flow_1d(op, double, padding_logic);                         \
+    } else {                                                                   \
+      FAIL_EXIT(                                                               \
+          CTH_LOG_ERR, "Unsupported data type in _cth_padding_generic_1d");    \
+    }                                                                          \
+  } while (0)
+
 #endif /* X86_COMMON_H */

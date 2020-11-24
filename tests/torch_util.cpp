@@ -9,7 +9,7 @@
 std::vector<int64_t> *get_dim_from_tensor(CTHTensor *cth_tensor) {
   auto shape = new std::vector<int64_t>();
   for (cth_tensor_dim_t i = 0; i < cth_tensor->meta_info->n_dim; i++) {
-    shape->push_back((int64_t)cth_tensor->meta_info->dims[i]);
+    shape->push_back((cth_tensor_dim_t)cth_tensor->meta_info->dims[i]);
   }
   return shape;
 }

@@ -74,31 +74,50 @@ $(function() {
 <div class="title">util.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><div class="dynheader">
-This graph shows which files directly or indirectly include this file:</div>
-<div class="dyncontent">
-<div class="center"><img src="util_8h__dep__incl.png" border="0" usemap="#cTorch_2operators_2default_2util_8hdep" alt=""/></div>
-<!-- MAP 0 -->
-</div>
-</div>
+
 <p><a href="util_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:aae4b1c48c0f08ab34489bcbec7f6bb59"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#aae4b1c48c0f08ab34489bcbec7f6bb59">_cpu_1d_map_elewise_unary_forloop</a>( input_ptr,  output_ptr,  N,  kernel,  type_t)</td></tr>
+<tr class="memdesc:aae4b1c48c0f08ab34489bcbec7f6bb59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conduct unary operation element wise.  <a href="util_8h.html#aae4b1c48c0f08ab34489bcbec7f6bb59">More...</a><br /></td></tr>
 <tr class="separator:aae4b1c48c0f08ab34489bcbec7f6bb59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3742a52b20264476d0683fe021bd0751"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a3742a52b20264476d0683fe021bd0751">_cpu_1d_map_elewise_binary_forloop</a>( input_ptr_a,  input_ptr_b,  output_ptr,  N,  kernel,  type_t)</td></tr>
+<tr class="memdesc:a3742a52b20264476d0683fe021bd0751"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conduct binary operation element wise.  <a href="util_8h.html#a3742a52b20264476d0683fe021bd0751">More...</a><br /></td></tr>
 <tr class="separator:a3742a52b20264476d0683fe021bd0751"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aebc46d4306fe1848bbedeaab5f446eab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#aebc46d4306fe1848bbedeaab5f446eab">_cpu_1d_map_elewise_unary</a>(input_ptr,  output_ptr,  data_type,  N,  kernel)</td></tr>
+<tr class="memdesc:aebc46d4306fe1848bbedeaab5f446eab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply 1D unary kernel on input and output pointers in element wise way.  <a href="util_8h.html#aebc46d4306fe1848bbedeaab5f446eab">More...</a><br /></td></tr>
 <tr class="separator:aebc46d4306fe1848bbedeaab5f446eab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a101e1b53a2f6e43bf153a5b993aff6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a4a101e1b53a2f6e43bf153a5b993aff6">_cpu_1d_map_elewise_unary_generic</a>( input_ptr,  output_ptr,  data_type,  N,  kernel)</td></tr>
+<tr class="memdesc:a4a101e1b53a2f6e43bf153a5b993aff6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic compute elewise unary.  <a href="util_8h.html#a4a101e1b53a2f6e43bf153a5b993aff6">More...</a><br /></td></tr>
 <tr class="separator:a4a101e1b53a2f6e43bf153a5b993aff6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a022ef19aabf55739b3b1bad6bf494b54"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a022ef19aabf55739b3b1bad6bf494b54">_cpu_1d_map_elewise_binary</a>( input_ptr_a,  input_ptr_b,  output_ptr,  data_type,  N,  kernel)</td></tr>
+<tr class="memdesc:a022ef19aabf55739b3b1bad6bf494b54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply 1d binary kernel on input and output pointers in element wise way.  <a href="util_8h.html#a022ef19aabf55739b3b1bad6bf494b54">More...</a><br /></td></tr>
 <tr class="separator:a022ef19aabf55739b3b1bad6bf494b54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7223a894b8711d50d98b9fac10c3c1f8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a7223a894b8711d50d98b9fac10c3c1f8">_cpu_generic_compute</a>(op,  compute_fn,  data_type)</td></tr>
+<tr class="memdesc:a7223a894b8711d50d98b9fac10c3c1f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expand a computation to a generic type.  <a href="util_8h.html#a7223a894b8711d50d98b9fac10c3c1f8">More...</a><br /></td></tr>
 <tr class="separator:a7223a894b8711d50d98b9fac10c3c1f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af81ce5d348c5864f4e3ee1e0ed10d7df"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#af81ce5d348c5864f4e3ee1e0ed10d7df">_cpu_generic_compute2</a>(op,  compute_fn,  input_type,  output_type)</td></tr>
+<tr class="memdesc:af81ce5d348c5864f4e3ee1e0ed10d7df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expand a computation to a generic type with input, output type.  <a href="util_8h.html#af81ce5d348c5864f4e3ee1e0ed10d7df">More...</a><br /></td></tr>
+<tr class="separator:af81ce5d348c5864f4e3ee1e0ed10d7df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc61ccd93bc1eff816ced98e712f149e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#acc61ccd93bc1eff816ced98e712f149e">_cpu_bit_compute</a>(op,  compute_fn,  data_type)</td></tr>
+<tr class="memdesc:acc61ccd93bc1eff816ced98e712f149e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expand a computation to all bit computation supported types.  <a href="util_8h.html#acc61ccd93bc1eff816ced98e712f149e">More...</a><br /></td></tr>
 <tr class="separator:acc61ccd93bc1eff816ced98e712f149e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a170c704979741a2ff33f8a6137e86a3d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a170c704979741a2ff33f8a6137e86a3d">_cpu_reduce_dim_compute</a>( op,  reduce_action,  input_data_type,  output_data_type,  input_dtype_enum,  output_dtype_enum)</td></tr>
+<tr class="memdesc:a170c704979741a2ff33f8a6137e86a3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">General reduce computation.  <a href="util_8h.html#a170c704979741a2ff33f8a6137e86a3d">More...</a><br /></td></tr>
+<tr class="separator:a170c704979741a2ff33f8a6137e86a3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adeca2dc389f3c5138435a31f997c8efe"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#adeca2dc389f3c5138435a31f997c8efe">_cput_reduce_dim_generic_out_type</a>( op,  reduce_action,  input_t,  output_data_type,  input_data_type)</td></tr>
+<tr class="memdesc:adeca2dc389f3c5138435a31f997c8efe"><td class="mdescLeft">&#160;</td><td class="mdescRight">convert output type  <a href="util_8h.html#adeca2dc389f3c5138435a31f997c8efe">More...</a><br /></td></tr>
+<tr class="separator:adeca2dc389f3c5138435a31f997c8efe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d7fac95c77ed6d4565b53c41424a148"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a1d7fac95c77ed6d4565b53c41424a148">_cpu_reduce_dim_generic</a>( op,  input_data_type,  output_data_type,  reduce_action)</td></tr>
+<tr class="memdesc:a1d7fac95c77ed6d4565b53c41424a148"><td class="mdescLeft">&#160;</td><td class="mdescRight">General logic to do reduce op along a dim.  <a href="util_8h.html#a1d7fac95c77ed6d4565b53c41424a148">More...</a><br /></td></tr>
+<tr class="separator:a1d7fac95c77ed6d4565b53c41424a148"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77248167930a7418ac85834b3579d219"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a77248167930a7418ac85834b3579d219">_cth_sort_array_inplace</a>(array,  data_type,  offset,  size)</td></tr>
+<tr class="memdesc:a77248167930a7418ac85834b3579d219"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sort an array inplace.  <a href="util_8h.html#a77248167930a7418ac85834b3579d219">More...</a><br /></td></tr>
+<tr class="separator:a77248167930a7418ac85834b3579d219"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a4d765500bcc1776b77aa87d7ba1008"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a4a4d765500bcc1776b77aa87d7ba1008">_cth_sort_array_inplace_tracking</a>( array,  index,  data_type,  offset,  size)</td></tr>
+<tr class="memdesc:a4a4d765500bcc1776b77aa87d7ba1008"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sort an array in place with index tracking.  <a href="util_8h.html#a4a4d765500bcc1776b77aa87d7ba1008">More...</a><br /></td></tr>
+<tr class="separator:a4a4d765500bcc1776b77aa87d7ba1008"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a022ef19aabf55739b3b1bad6bf494b54"></a>
@@ -180,7 +199,20 @@ Macros</h2></td></tr>
 <div class="line">          <a class="code" href="logger__util_8h.html#ad9ab19b2b3e07e3ac860411d60ae4e52">CTH_LOG_ERR</a>, <span class="stringliteral">&quot;Unsupported data type in _cpu_1d_map_elewise_binary&quot;</span>); \</div>
 <div class="line">    }                                                                          \</div>
 <div class="line">  }</div>
-</div><!-- fragment --><p>Apply 1d binary kernel on input and output pointers in element wise way </p>
+</div><!-- fragment -->
+<p>Apply 1d binary kernel on input and output pointers in element wise way. </p>
+<dl class="section note"><dt>Note</dt><dd>This one assumes both input have same data types</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input_ptr_a</td><td>C pointer, input a </td></tr>
+    <tr><td class="paramname">input_ptr_b</td><td>C pointer, input b </td></tr>
+    <tr><td class="paramname">output_ptr</td><td>C pointer, output </td></tr>
+    <tr><td class="paramname">data_type</td><td>CTH_TENSOR_DATA_TYPE, input type </td></tr>
+    <tr><td class="paramname">N</td><td>cth_tensor_dim_t, num of elements </td></tr>
+    <tr><td class="paramname">kernel</td><td>compute function </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -238,10 +270,22 @@ Macros</h2></td></tr>
 <div class="line">    type_t *input_b_t = (type_t *)input_ptr_b;                                 \</div>
 <div class="line">    type_t *output_t = (type_t *)output_ptr;                                   \</div>
 <div class="line">    for (<span class="keywordtype">int</span> i = 0; i &lt; N; i++) {                                              \</div>
-<div class="line">      output_t[i] = kernel(input_a_t[i], input_b_t[i]);                        \</div>
+<div class="line">      output_t[i] = (type_t)kernel(input_a_t[i], input_b_t[i]);                \</div>
 <div class="line">    }                                                                          \</div>
 <div class="line">  }</div>
-</div><!-- fragment --><p>Conduct binary operation element wise </p>
+</div><!-- fragment -->
+<p>Conduct binary operation element wise. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input_ptr_a</td><td>C pointer, input a values </td></tr>
+    <tr><td class="paramname">input_ptr_b</td><td>C pointer, input b values </td></tr>
+    <tr><td class="paramname">output_ptr</td><td>C pointer, output values </td></tr>
+    <tr><td class="paramname">N</td><td>cth_tensor_dim_t, num of elements </td></tr>
+    <tr><td class="paramname">kernel</td><td>compute function </td></tr>
+    <tr><td class="paramname">type_t</td><td>C type </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -318,7 +362,18 @@ Macros</h2></td></tr>
 <div class="line">          <a class="code" href="logger__util_8h.html#ad9ab19b2b3e07e3ac860411d60ae4e52">CTH_LOG_ERR</a>, <span class="stringliteral">&quot;Unsupported data type in _cpu_1d_map_elewise_unary&quot;</span>);  \</div>
 <div class="line">    }                                                                          \</div>
 <div class="line">  }</div>
-</div><!-- fragment --><p>Apply 1D unary kernel on input and output pointers in element wise way </p>
+</div><!-- fragment -->
+<p>Apply 1D unary kernel on input and output pointers in element wise way. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input_ptr</td><td>C pointer, input values </td></tr>
+    <tr><td class="paramname">output_ptr</td><td>C pointer, output values </td></tr>
+    <tr><td class="paramname">data_type</td><td>CTH_TENSOR_DATA_TYPE, input type </td></tr>
+    <tr><td class="paramname">N</td><td>cth_tensor_dim_t, num of elements </td></tr>
+    <tr><td class="paramname">kernel</td><td>compute function </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -369,10 +424,21 @@ Macros</h2></td></tr>
 <div class="line">    type_t *input_t = (type_t *)input_ptr;                                     \</div>
 <div class="line">    type_t *output_t = (type_t *)output_ptr;                                   \</div>
 <div class="line">    for (<span class="keywordtype">int</span> i = 0; i &lt; N; i++) {                                              \</div>
-<div class="line">      output_t[i] = kernel(input_t[i]);                                        \</div>
+<div class="line">      output_t[i] = (type_t)kernel(input_t[i]);                                \</div>
 <div class="line">    }                                                                          \</div>
 <div class="line">  }</div>
-</div><!-- fragment --><p>Conduct unary operation element wise </p>
+</div><!-- fragment -->
+<p>Conduct unary operation element wise. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input_ptr</td><td>C pointer, input values </td></tr>
+    <tr><td class="paramname">output_ptr</td><td>C pointer, output values </td></tr>
+    <tr><td class="paramname">N</td><td>cth_tensor_dim_t, num of elements </td></tr>
+    <tr><td class="paramname">kernel</td><td>compute function </td></tr>
+    <tr><td class="paramname">type_t</td><td>C type </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -442,7 +508,18 @@ Macros</h2></td></tr>
 <div class="line">          <span class="stringliteral">&quot;Unsupported data type in _cpu_1d_map_elewise_unary_generic&quot;</span>);       \</div>
 <div class="line">    }                                                                          \</div>
 <div class="line">  }</div>
-</div><!-- fragment --><p>Generic compute elewise unary </p>
+</div><!-- fragment -->
+<p>Generic compute elewise unary. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input_ptr</td><td>C pointer, input values </td></tr>
+    <tr><td class="paramname">output_ptr</td><td>C pointer, output values </td></tr>
+    <tr><td class="paramname">data_type</td><td>CTH_TENSOR_DATA_TYPE, input type </td></tr>
+    <tr><td class="paramname">N</td><td>cth_tensor_dim_t, num of elements </td></tr>
+    <tr><td class="paramname">kernel</td><td>compute function </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -492,7 +569,16 @@ Macros</h2></td></tr>
 <div class="line">      FAIL_EXIT(<a class="code" href="logger__util_8h.html#ad9ab19b2b3e07e3ac860411d60ae4e52">CTH_LOG_ERR</a>, <span class="stringliteral">&quot;Unsupported data type in _cpu_bit_compute&quot;</span>);     \</div>
 <div class="line">    }                                                                          \</div>
 <div class="line">  }</div>
-</div><!-- fragment --><p>Expand a computation to all bit computation supported types </p>
+</div><!-- fragment -->
+<p>Expand a computation to all bit computation supported types. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">op</td><td>operator </td></tr>
+    <tr><td class="paramname">compute_fn</td><td>compute function </td></tr>
+    <tr><td class="paramname">data_type</td><td>CTH_TENSOR_DATA_TYPE, input data type </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -548,13 +634,418 @@ Macros</h2></td></tr>
 <div class="line">      FAIL_EXIT(<a class="code" href="logger__util_8h.html#ad9ab19b2b3e07e3ac860411d60ae4e52">CTH_LOG_ERR</a>, <span class="stringliteral">&quot;Unsupported data type in _cpu_generic_compute&quot;</span>); \</div>
 <div class="line">    }                                                                          \</div>
 <div class="line">  }</div>
-</div><!-- fragment --><p>Expand a computation to a generic type </p>
+</div><!-- fragment -->
+<p>Expand a computation to a generic type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">op</td><td>operator </td></tr>
+    <tr><td class="paramname">compute_fn</td><td>compute function </td></tr>
+    <tr><td class="paramname">data_type</td><td>CTH_TENSOR_DATA_TYPE, inpute type </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af81ce5d348c5864f4e3ee1e0ed10d7df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af81ce5d348c5864f4e3ee1e0ed10d7df">&#9670;&nbsp;</a></span>_cpu_generic_compute2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _cpu_generic_compute2</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">op, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">compute_fn, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">input_type, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">output_type&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">  {                                                                            \</div>
+<div class="line">    if (input_type == <a class="code" href="consts_8h.html#a4b8846c2fb1629129ab48cd874d22355ac119fd4bedb33831236974862b5ff45e">CTH_TENSOR_DATA_TYPE_BOOL</a>) {                             \</div>
+<div class="line">      compute_fn(op, <span class="keywordtype">bool</span>, input_type, output_type);                           \</div>
+<div class="line">    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (input_type == <a class="code" href="consts_8h.html#a4b8846c2fb1629129ab48cd874d22355a7ec2ebe6cf92c44f53ba6d88c3a48816">CTH_TENSOR_DATA_TYPE_INT_16</a>) {                    \</div>
+<div class="line">      compute_fn(op, int16_t, input_type, output_type);                        \</div>
+<div class="line">    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (input_type == <a class="code" href="consts_8h.html#a4b8846c2fb1629129ab48cd874d22355a37f6d1066978b8597ff2f3601f793fb1">CTH_TENSOR_DATA_TYPE_INT_32</a>) {                    \</div>
+<div class="line">      compute_fn(op, int32_t, input_type, output_type);                        \</div>
+<div class="line">    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (input_type == <a class="code" href="consts_8h.html#a4b8846c2fb1629129ab48cd874d22355a81804b46c3a09d0379cafc6ed2797c63">CTH_TENSOR_DATA_TYPE_INT_64</a>) {                    \</div>
+<div class="line">      compute_fn(op, int64_t, input_type, output_type);                        \</div>
+<div class="line">    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (input_type == <a class="code" href="consts_8h.html#a4b8846c2fb1629129ab48cd874d22355a013257b03f9c935a0632870b0a3dc175">CTH_TENSOR_DATA_TYPE_UINT_8</a>) {                    \</div>
+<div class="line">      compute_fn(op, uint8_t, input_type, output_type);                        \</div>
+<div class="line">    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (input_type == <a class="code" href="consts_8h.html#a4b8846c2fb1629129ab48cd874d22355a5304679a46753a9c9a651fc4600e9d2f">CTH_TENSOR_DATA_TYPE_FLOAT_16</a>) {                  \</div>
+<div class="line">      compute_fn(op, <span class="keywordtype">float</span>, input_type, output_type);                          \</div>
+<div class="line">    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (input_type == <a class="code" href="consts_8h.html#a4b8846c2fb1629129ab48cd874d22355a3c2141e561fafc5c113a1e0f74ee8494">CTH_TENSOR_DATA_TYPE_FLOAT_32</a>) {                  \</div>
+<div class="line">      compute_fn(op, <span class="keywordtype">float</span>, input_type, output_type);                          \</div>
+<div class="line">    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (input_type == <a class="code" href="consts_8h.html#a4b8846c2fb1629129ab48cd874d22355a3b3e271ef78a842c489769d06a245984">CTH_TENSOR_DATA_TYPE_FLOAT_64</a>) {                  \</div>
+<div class="line">      compute_fn(op, <span class="keywordtype">double</span>, input_type, output_type);                         \</div>
+<div class="line">    } <span class="keywordflow">else</span> {                                                                   \</div>
+<div class="line">      FAIL_EXIT(<a class="code" href="logger__util_8h.html#ad9ab19b2b3e07e3ac860411d60ae4e52">CTH_LOG_ERR</a>, <span class="stringliteral">&quot;Unsupported data type in _cpu_generic_compute&quot;</span>); \</div>
+<div class="line">    }                                                                          \</div>
+<div class="line">  }</div>
+</div><!-- fragment -->
+<p>Expand a computation to a generic type with input, output type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">op</td><td>operator </td></tr>
+    <tr><td class="paramname">compute_fn</td><td>compute function </td></tr>
+    <tr><td class="paramname">input_type</td><td>CTH_TENSOR_DATA_TYPE, input type </td></tr>
+    <tr><td class="paramname">output_type</td><td>CTH_TENSOR_DATA_TYPE, output type </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a170c704979741a2ff33f8a6137e86a3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a170c704979741a2ff33f8a6137e86a3d">&#9670;&nbsp;</a></span>_cpu_reduce_dim_compute</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _cpu_reduce_dim_compute</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">op, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">reduce_action, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">input_data_type, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">output_data_type, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">input_dtype_enum, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">output_dtype_enum&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>General reduce computation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">op</td><td>operator </td></tr>
+    <tr><td class="paramname">reduce_action</td><td>reduce function </td></tr>
+    <tr><td class="paramname">input_data_type</td><td>input data C type </td></tr>
+    <tr><td class="paramname">output_data_type</td><td>output data C type </td></tr>
+    <tr><td class="paramname">input_dtype_enum</td><td>CTH_TENSOR_DATA_TYPE, input data type </td></tr>
+    <tr><td class="paramname">output_dtype_enum</td><td>CTH_TENSOR_DATA_TYPE, output data type </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1d7fac95c77ed6d4565b53c41424a148"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d7fac95c77ed6d4565b53c41424a148">&#9670;&nbsp;</a></span>_cpu_reduce_dim_generic</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _cpu_reduce_dim_generic</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">op, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">input_data_type, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">output_data_type, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">reduce_action&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">do</span> {                                                                         \</div>
+<div class="line">    if (input_data_type == <a class="code" href="consts_8h.html#a4b8846c2fb1629129ab48cd874d22355ac119fd4bedb33831236974862b5ff45e">CTH_TENSOR_DATA_TYPE_BOOL</a>) {                        \</div>
+<div class="line">      _cput_reduce_dim_generic_out_type(                                       \</div>
+<div class="line">          op, reduce_action, <span class="keywordtype">bool</span>, output_data_type, input_data_type);         \</div>
+<div class="line">    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (input_data_type == <a class="code" href="consts_8h.html#a4b8846c2fb1629129ab48cd874d22355a7ec2ebe6cf92c44f53ba6d88c3a48816">CTH_TENSOR_DATA_TYPE_INT_16</a>) {               \</div>
+<div class="line">      _cput_reduce_dim_generic_out_type(                                       \</div>
+<div class="line">          op, reduce_action, int16_t, output_data_type, input_data_type);      \</div>
+<div class="line">    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (input_data_type == <a class="code" href="consts_8h.html#a4b8846c2fb1629129ab48cd874d22355a37f6d1066978b8597ff2f3601f793fb1">CTH_TENSOR_DATA_TYPE_INT_32</a>) {               \</div>
+<div class="line">      _cput_reduce_dim_generic_out_type(                                       \</div>
+<div class="line">          op, reduce_action, int32_t, output_data_type, input_data_type);      \</div>
+<div class="line">    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (input_data_type == <a class="code" href="consts_8h.html#a4b8846c2fb1629129ab48cd874d22355a81804b46c3a09d0379cafc6ed2797c63">CTH_TENSOR_DATA_TYPE_INT_64</a>) {               \</div>
+<div class="line">      _cput_reduce_dim_generic_out_type(                                       \</div>
+<div class="line">          op, reduce_action, int64_t, output_data_type, input_data_type);      \</div>
+<div class="line">    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (input_data_type == <a class="code" href="consts_8h.html#a4b8846c2fb1629129ab48cd874d22355a013257b03f9c935a0632870b0a3dc175">CTH_TENSOR_DATA_TYPE_UINT_8</a>) {               \</div>
+<div class="line">      _cput_reduce_dim_generic_out_type(                                       \</div>
+<div class="line">          op, reduce_action, uint8_t, output_data_type, input_data_type);      \</div>
+<div class="line">    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (input_data_type == <a class="code" href="consts_8h.html#a4b8846c2fb1629129ab48cd874d22355a5304679a46753a9c9a651fc4600e9d2f">CTH_TENSOR_DATA_TYPE_FLOAT_16</a>) {             \</div>
+<div class="line">      _cput_reduce_dim_generic_out_type(                                       \</div>
+<div class="line">          op, reduce_action, <span class="keywordtype">float</span>, output_data_type, input_data_type);        \</div>
+<div class="line">    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (input_data_type == <a class="code" href="consts_8h.html#a4b8846c2fb1629129ab48cd874d22355a3c2141e561fafc5c113a1e0f74ee8494">CTH_TENSOR_DATA_TYPE_FLOAT_32</a>) {             \</div>
+<div class="line">      _cput_reduce_dim_generic_out_type(                                       \</div>
+<div class="line">          op, reduce_action, <span class="keywordtype">float</span>, output_data_type, input_data_type);        \</div>
+<div class="line">    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (input_data_type == <a class="code" href="consts_8h.html#a4b8846c2fb1629129ab48cd874d22355a3b3e271ef78a842c489769d06a245984">CTH_TENSOR_DATA_TYPE_FLOAT_64</a>) {             \</div>
+<div class="line">      _cput_reduce_dim_generic_out_type(                                       \</div>
+<div class="line">          op, reduce_action, <span class="keywordtype">double</span>, output_data_type, input_data_type);       \</div>
+<div class="line">    } <span class="keywordflow">else</span> {                                                                   \</div>
+<div class="line">      FAIL_EXIT(<a class="code" href="logger__util_8h.html#ad9ab19b2b3e07e3ac860411d60ae4e52">CTH_LOG_ERR</a>, <span class="stringliteral">&quot;Unsupported data type in _cpu_generic_compute&quot;</span>); \</div>
+<div class="line">    }                                                                          \</div>
+<div class="line">  } <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+<p>General logic to do reduce op along a dim. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">op</td><td>operator </td></tr>
+    <tr><td class="paramname">input_data_type</td><td>CTH_TENSOR_DATA_TYPE, input data type </td></tr>
+    <tr><td class="paramname">out_data_type</td><td>CTH_TENSOR_DATA_TYPE, output data type </td></tr>
+    <tr><td class="paramname">reduce_action</td><td>reduce function </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adeca2dc389f3c5138435a31f997c8efe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adeca2dc389f3c5138435a31f997c8efe">&#9670;&nbsp;</a></span>_cput_reduce_dim_generic_out_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _cput_reduce_dim_generic_out_type</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">op, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">reduce_action, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">input_t, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">output_data_type, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">input_data_type&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>convert output type </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">op</td><td>operator </td></tr>
+    <tr><td class="paramname">reduce_action</td><td>reduce function </td></tr>
+    <tr><td class="paramname">input_t</td><td>input data C type </td></tr>
+    <tr><td class="paramname">output_data_type</td><td>CTH_TENSOR_DATA_TYPE, output data type </td></tr>
+    <tr><td class="paramname">input_data_type</td><td>CTH_TENSOR_DATA_TYPE, input data type </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a77248167930a7418ac85834b3579d219"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77248167930a7418ac85834b3579d219">&#9670;&nbsp;</a></span>_cth_sort_array_inplace</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _cth_sort_array_inplace</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">array, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">data_type, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">offset, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">size&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">do</span> {                                                                         \</div>
+<div class="line">                                                                               \</div>
+<div class="line">  } <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+<p>Sort an array inplace. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">array</td><td>array pointer </td></tr>
+    <tr><td class="paramname">data_type</td><td>C type </td></tr>
+    <tr><td class="paramname">offset</td><td>int, offset between each element in array_ptr </td></tr>
+    <tr><td class="paramname">size</td><td>cth_array_index_t, array size </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4a4d765500bcc1776b77aa87d7ba1008"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a4d765500bcc1776b77aa87d7ba1008">&#9670;&nbsp;</a></span>_cth_sort_array_inplace_tracking</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _cth_sort_array_inplace_tracking</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">array, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">index, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">data_type, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">offset, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">size&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">do</span> {                                                                         \</div>
+<div class="line">    _cth_sort_array_inplace(array, data_type, offset, size);                   \</div>
+<div class="line">                                                                               \</div>
+<div class="line">    for (<a class="code" href="generic__array_8h.html#ab65d5f828d04ccd28eef52253e8040d1">cth_array_index_t</a> i = 0; i &lt; size; i++) {                             \</div>
+<div class="line">      index[i] = i;                                                            \</div>
+<div class="line">    }                                                                          \</div>
+<div class="line">                                                                               \</div>
+<div class="line">  } <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+<p>Sort an array in place with index tracking. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">array</td><td>array pointer </td></tr>
+    <tr><td class="paramname">index</td><td>index pointer </td></tr>
+    <tr><td class="paramname">data_type</td><td>C type </td></tr>
+    <tr><td class="paramname">offset</td><td>int, offset between each element in array_ptr </td></tr>
+    <tr><td class="paramname">size</td><td>cth_array_index_t, array_size </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
 </div><!-- contents -->
+<div class="ttc" id="ageneric__array_8h_html_ab65d5f828d04ccd28eef52253e8040d1"><div class="ttname"><a href="generic__array_8h.html#ab65d5f828d04ccd28eef52253e8040d1">cth_array_index_t</a></div><div class="ttdeci">uint32_t cth_array_index_t</div><div class="ttdef"><b>Definition:</b> generic_array.h:16</div></div>
 <div class="ttc" id="aconsts_8h_html_a4b8846c2fb1629129ab48cd874d22355a3c2141e561fafc5c113a1e0f74ee8494"><div class="ttname"><a href="consts_8h.html#a4b8846c2fb1629129ab48cd874d22355a3c2141e561fafc5c113a1e0f74ee8494">CTH_TENSOR_DATA_TYPE_FLOAT_32</a></div><div class="ttdeci">@ CTH_TENSOR_DATA_TYPE_FLOAT_32</div><div class="ttdef"><b>Definition:</b> consts.h:38</div></div>
-<div class="ttc" id="alogger__util_8h_html_ad9ab19b2b3e07e3ac860411d60ae4e52"><div class="ttname"><a href="logger__util_8h.html#ad9ab19b2b3e07e3ac860411d60ae4e52">CTH_LOG_ERR</a></div><div class="ttdeci">#define CTH_LOG_ERR</div><div class="ttdef"><b>Definition:</b> logger_util.h:107</div></div>
+<div class="ttc" id="alogger__util_8h_html_ad9ab19b2b3e07e3ac860411d60ae4e52"><div class="ttname"><a href="logger__util_8h.html#ad9ab19b2b3e07e3ac860411d60ae4e52">CTH_LOG_ERR</a></div><div class="ttdeci">#define CTH_LOG_ERR</div><div class="ttdef"><b>Definition:</b> logger_util.h:106</div></div>
 <div class="ttc" id="aconsts_8h_html_a4b8846c2fb1629129ab48cd874d22355a81804b46c3a09d0379cafc6ed2797c63"><div class="ttname"><a href="consts_8h.html#a4b8846c2fb1629129ab48cd874d22355a81804b46c3a09d0379cafc6ed2797c63">CTH_TENSOR_DATA_TYPE_INT_64</a></div><div class="ttdeci">@ CTH_TENSOR_DATA_TYPE_INT_64</div><div class="ttdef"><b>Definition:</b> consts.h:43</div></div>
 <div class="ttc" id="aconsts_8h_html_a4b8846c2fb1629129ab48cd874d22355a37f6d1066978b8597ff2f3601f793fb1"><div class="ttname"><a href="consts_8h.html#a4b8846c2fb1629129ab48cd874d22355a37f6d1066978b8597ff2f3601f793fb1">CTH_TENSOR_DATA_TYPE_INT_32</a></div><div class="ttdeci">@ CTH_TENSOR_DATA_TYPE_INT_32</div><div class="ttdef"><b>Definition:</b> consts.h:42</div></div>
 <div class="ttc" id="aconsts_8h_html_a4b8846c2fb1629129ab48cd874d22355a5304679a46753a9c9a651fc4600e9d2f"><div class="ttname"><a href="consts_8h.html#a4b8846c2fb1629129ab48cd874d22355a5304679a46753a9c9a651fc4600e9d2f">CTH_TENSOR_DATA_TYPE_FLOAT_16</a></div><div class="ttdeci">@ CTH_TENSOR_DATA_TYPE_FLOAT_16</div><div class="ttdef"><b>Definition:</b> consts.h:37</div></div>

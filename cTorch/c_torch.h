@@ -1,9 +1,9 @@
 #ifndef C_TORCH_LIBRARY_H
 #define C_TORCH_LIBRARY_H
 
-/* Export private symbols in debug mode */
+/* Export internal symbols in debug mode */
 #ifdef CTH_TEST_DEBUG
-#define CTH_EXPORT_PRIVATE
+#define CTH_EXPORT_INTERNAL
 #endif
 
 #ifdef __cplusplus

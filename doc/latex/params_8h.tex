@@ -9,48 +9,67 @@ This graph shows which files directly or indirectly include this file\+:
 \doxysubsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
-union \mbox{\hyperlink{unionCTorchParamData}{C\+Torch\+Param\+Data}}
+union \mbox{\hyperlink{unionCTHParamData}{C\+T\+H\+Param\+Data}}
 \item 
-struct \mbox{\hyperlink{structCTorchParam}{C\+Torch\+Param}}
+struct \mbox{\hyperlink{structCTHParam}{C\+T\+H\+Param}}
 \end{DoxyCompactItemize}
 \doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
 \#define \mbox{\hyperlink{params_8h_ac513cf2f45d51f597ea72592b0f32a78}{E\+X\+T\+R\+A\+C\+T\+\_\+\+P\+A\+R\+A\+M\+\_\+\+V\+A\+L\+UE}}(op,  param\+\_\+type,  param\+\_\+data\+\_\+field,  param\+\_\+var)
-\end{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{params_8h_ae2a7ad07388da7c6d374356cdececc9b}{E\+X\+T\+R\+A\+C\+T\+\_\+\+P\+A\+R\+A\+M\+\_\+\+V\+A\+L\+U\+E\+\_\+\+O\+R\+\_\+\+N\+U\+LL}}( op,  param\+\_\+type,  param\+\_\+data\+\_\+field,  param\+\_\+var\+\_\+ptr)
+\begin{DoxyCompactList}\small\item\em Extract param value with given types. Assign param as N\+U\+LL if not found. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
 typedef enum \mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954e}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{params_8h_ae10c4e0cf1f4e4e44ef0d44c62eea7e0}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+PE}}
 \item 
-typedef union \mbox{\hyperlink{unionCTorchParamData}{C\+Torch\+Param\+Data}} \mbox{\hyperlink{params_8h_ad7e9eb0eee0ca31bfc668b685ae6a692}{C\+Torch\+Param\+Data}}
+typedef union \mbox{\hyperlink{unionCTHParamData}{C\+T\+H\+Param\+Data}} \mbox{\hyperlink{params_8h_a64fcc9876a4b5903b6f829b6fb97e826}{C\+T\+H\+Param\+Data}}
 \item 
-typedef struct \mbox{\hyperlink{structCTorchParam}{C\+Torch\+Param}} \mbox{\hyperlink{params_8h_a3305e44e109bd43164bed8a7774626b9}{C\+Torch\+Param}}
+typedef struct \mbox{\hyperlink{structCTHParam}{C\+T\+H\+Param}} \mbox{\hyperlink{params_8h_a5bcb9c2c54c336d998d75b11f11e6f61}{C\+T\+H\+Param}}
 \end{DoxyCompactItemize}
 \doxysubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-enum \mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954e}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+PE}} \{ \mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea2a46ce3264751a991119f9661d6bd31a}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+M\+U\+L\+T\+I\+P\+L\+I\+E\+R\+\_\+\+F\+L\+O\+A\+T32}}, 
-\mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954ead63c3bfc56de2014cdf608baa80ae6ff}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+M\+I\+N\+\_\+\+F\+L\+O\+A\+T32}}, 
-\mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea12d718a190ee00a1c22857f99573dbc9}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+M\+A\+X\+\_\+\+F\+L\+O\+A\+T32}}
+enum \mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954e}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+PE}} \{ \newline
+\mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea5c503a6b99c9b40310e6f2c9fcca3dd0}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+M\+U\+L\+T\+I\+P\+L\+I\+ER}}, 
+\mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea2f3dc8173603bed4a06be6a72cf7b3ac}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+M\+IN}}, 
+\mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954eab5391dad70795330f50a0defbf82962d}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+M\+AX}}, 
+\mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954eae260401101a268e4831c6d517504ee0e}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+P}}, 
+\newline
+\mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea336b027958cea4d6a6b4f7361f3f4672}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+D\+IM}}, 
+\mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea98593d6b77af6c3c962b9133281ab1a9}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+I\+N\+\_\+\+C\+H\+A\+N\+N\+E\+LS}}, 
+\mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea283f387dc230b5435b9cf32fd1b10ec4}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+O\+U\+T\+\_\+\+C\+H\+A\+N\+N\+E\+LS}}, 
+\mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954eafb71180e51f1398c43b876cce278b8b1}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+K\+E\+R\+N\+E\+L\+\_\+\+S\+I\+ZE}}, 
+\newline
+\mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954eacc3db970a0f415b857459bb5298e48bc}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+T\+R\+I\+DE}}, 
+\mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea8de29fe0ffd857b29be08c17a0c44bfc}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+P\+A\+D\+D\+I\+N\+G\+\_\+\+D2}}, 
+\mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea1093a110d0a709c186fec016df18544c}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+D\+I\+L\+A\+T\+I\+ON}}, 
+\mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea8da3ce99e1cabb0ead9585a97d685855}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+K\+E\+R\+N\+E\+L\+\_\+\+S\+I\+Z\+E\+\_\+\+D2}}, 
+\newline
+\mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954eafa214d6cefaebbf682cdc8fe0f834094}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+T\+R\+I\+D\+E\+\_\+\+D2}}, 
+\mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea04bf570cb318d79030633f9f65340066}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+D\+I\+L\+A\+T\+I\+O\+N\+\_\+\+D2}}, 
+\mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954eafd8c79fcc2e55dcbbde07c81d7e5daf3}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+P\+A\+D\+D\+I\+N\+G\+\_\+\+M\+O\+DE}}, 
+\mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea2830ad3162aa748ee7406295cff321f5}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+G\+R\+O\+U\+PS}}
  \}
 \end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{params_8h_af5d0f46dd5e41bbf2be646cd6b3f84ab}{def\+\_\+array}} (\mbox{\hyperlink{structCTorchParam}{C\+Torch\+Param}})
+\mbox{\hyperlink{params_8h_aed7ac0c268a4a90a5e43615785ecbaa4}{cth\+\_\+def\+\_\+array}} (\mbox{\hyperlink{structCTHParam}{C\+T\+H\+Param}})
 \item 
-\mbox{\hyperlink{params_8h_ac5c2022f29c92dbbd7ab3fa5cacc9cdc}{declare\+\_\+new\+\_\+array\+\_\+func}} (\mbox{\hyperlink{structCTorchParam}{C\+Torch\+Param}})
+\mbox{\hyperlink{params_8h_aaab5f3edf66bd50501d15884e966728a}{cth\+\_\+declare\+\_\+new\+\_\+array\+\_\+func}} (\mbox{\hyperlink{structCTHParam}{C\+T\+H\+Param}})
 \item 
-\mbox{\hyperlink{params_8h_afbc581ad560d895f17d695132a295718}{declare\+\_\+array\+\_\+at\+\_\+func}} (\mbox{\hyperlink{structCTorchParam}{C\+Torch\+Param}})
+\mbox{\hyperlink{params_8h_a1230d61e0a99c05c6ec1478ee155ecba}{cth\+\_\+declare\+\_\+array\+\_\+at\+\_\+func}} (\mbox{\hyperlink{structCTHParam}{C\+T\+H\+Param}})
 \item 
-\mbox{\hyperlink{params_8h_a78690316f51660e252f9960ead1bfda6}{declare\+\_\+array\+\_\+set\+\_\+func}} (\mbox{\hyperlink{structCTorchParam}{C\+Torch\+Param}})
+\mbox{\hyperlink{params_8h_aa4209756f5d00568f72b254248d5b573}{cth\+\_\+declare\+\_\+array\+\_\+set\+\_\+func}} (\mbox{\hyperlink{structCTHParam}{C\+T\+H\+Param}})
 \item 
-\mbox{\hyperlink{params_8h_aeedcf2e02d4992c7ca9ba67be4541cfe}{declare\+\_\+free\+\_\+array\+\_\+deep\+\_\+func}} (\mbox{\hyperlink{structCTorchParam}{C\+Torch\+Param}})
+\mbox{\hyperlink{params_8h_a5ef61448575406b377af10efed1cfff4}{cth\+\_\+declare\+\_\+free\+\_\+array\+\_\+deep\+\_\+func}} (\mbox{\hyperlink{structCTHParam}{C\+T\+H\+Param}})
 \item 
-void \mbox{\hyperlink{consts_8h_ad7d837be8ea11a60ea35da351cb958e7}{struct\+\_\+deep\+\_\+free}}() \mbox{\hyperlink{params_8h_a98f4d1072eeb14f7e5c127421d2124db}{C\+Torch\+Param}} (\mbox{\hyperlink{structCTorchParam}{C\+Torch\+Param}} $\ast$param)
+void \mbox{\hyperlink{consts_8h_ad7d837be8ea11a60ea35da351cb958e7}{struct\+\_\+deep\+\_\+free}}() \mbox{\hyperlink{params_8h_a15ef3c99d80750f02d01437d4fe8396b}{C\+T\+H\+Param}} (\mbox{\hyperlink{structCTHParam}{C\+T\+H\+Param}} $\ast$param)
 \item 
-void \mbox{\hyperlink{params_8h_a9731b9e3278925288239fa54cd0355b2}{cth\+\_\+copy\+\_\+param}} (\mbox{\hyperlink{structCTorchParam}{C\+Torch\+Param}} $\ast$from\+\_\+param, \mbox{\hyperlink{structCTorchParam}{C\+Torch\+Param}} $\ast$to\+\_\+param)
+void \mbox{\hyperlink{params_8h_adbaa32a798a5e16c7bd0b52cf1af85e4}{cth\+\_\+copy\+\_\+param}} (\mbox{\hyperlink{structCTHParam}{C\+T\+H\+Param}} $\ast$from\+\_\+param, \mbox{\hyperlink{structCTHParam}{C\+T\+H\+Param}} $\ast$to\+\_\+param)
 \end{DoxyCompactItemize}
 
 
@@ -64,13 +83,42 @@ void \mbox{\hyperlink{params_8h_a9731b9e3278925288239fa54cd0355b2}{cth\+\_\+copy
 {\bfseries Value\+:}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                                                         \(\backslash\)}
-\DoxyCodeLine{    CTorchParam *param = \mbox{\hyperlink{operator_8c_ac3ae14110b0f050d9418373ce403b893}{cth\_get\_param\_by\_type}}(op, param\_type, \textcolor{keyword}{true});          \(\backslash\)}
-\DoxyCodeLine{    param\_var =                                                                \(\backslash\)}
-\DoxyCodeLine{        cth\_get\_param\_by\_type(op, param\_type, \textcolor{keyword}{true})-\/>data.param\_data\_field;    \(\backslash\)}
+\DoxyCodeLine{    CTHParam *param = \mbox{\hyperlink{operator_8c_aee5fd6dca6bc2874678505704aee73e4}{cth\_get\_param\_by\_type}}(op, param\_type, \textcolor{keyword}{true});             \(\backslash\)}
+\DoxyCodeLine{    param\_var = param-\/>data.param\_data\_field;                                  \(\backslash\)}
 \DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
 
 \end{DoxyCode}
-Extract param value with given types 
+Extract param value with given types. Will raise error if param not exist.
+
+\begin{DoxyNote}{Note}
+The param\+\_\+var should be a pointer. 
+\end{DoxyNote}
+\mbox{\Hypertarget{params_8h_ae2a7ad07388da7c6d374356cdececc9b}\label{params_8h_ae2a7ad07388da7c6d374356cdececc9b}} 
+\index{params.h@{params.h}!EXTRACT\_PARAM\_VALUE\_OR\_NULL@{EXTRACT\_PARAM\_VALUE\_OR\_NULL}}
+\index{EXTRACT\_PARAM\_VALUE\_OR\_NULL@{EXTRACT\_PARAM\_VALUE\_OR\_NULL}!params.h@{params.h}}
+\doxysubsubsection{\texorpdfstring{EXTRACT\_PARAM\_VALUE\_OR\_NULL}{EXTRACT\_PARAM\_VALUE\_OR\_NULL}}
+{\footnotesize\ttfamily \#define E\+X\+T\+R\+A\+C\+T\+\_\+\+P\+A\+R\+A\+M\+\_\+\+V\+A\+L\+U\+E\+\_\+\+O\+R\+\_\+\+N\+U\+LL(\begin{DoxyParamCaption}\item[{}]{op,  }\item[{}]{param\+\_\+type,  }\item[{}]{param\+\_\+data\+\_\+field,  }\item[{}]{param\+\_\+var\+\_\+ptr }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                                                         \(\backslash\)}
+\DoxyCodeLine{    CTHParam *param = \mbox{\hyperlink{operator_8c_aee5fd6dca6bc2874678505704aee73e4}{cth\_get\_param\_by\_type}}(op, param\_type, \textcolor{keyword}{true});             \(\backslash\)}
+\DoxyCodeLine{    if (param != NULL) \{                                                       \(\backslash\)}
+\DoxyCodeLine{      param\_var\_ptr = param-\/>data.param\_data\_field;                            \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \{                                                                   \(\backslash\)}
+\DoxyCodeLine{      param\_var\_ptr = NULL;                                                    \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Extract param value with given types. Assign param as N\+U\+LL if not found. 
+
+\begin{DoxyNote}{Note}
+The param\+\_\+var should be a pointer. 
+\end{DoxyNote}
+
 
 \doxysubsection{Typedef Documentation}
 \mbox{\Hypertarget{params_8h_ae10c4e0cf1f4e4e44ef0d44c62eea7e0}\label{params_8h_ae10c4e0cf1f4e4e44ef0d44c62eea7e0}} 
@@ -79,17 +127,17 @@ Extract param value with given types
 \doxysubsubsection{\texorpdfstring{CTH\_PARAM\_TYPE}{CTH\_PARAM\_TYPE}}
 {\footnotesize\ttfamily typedef enum \mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954e}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954e}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+PE}}}
 
-Enum used to indicate param type \mbox{\Hypertarget{params_8h_a3305e44e109bd43164bed8a7774626b9}\label{params_8h_a3305e44e109bd43164bed8a7774626b9}} 
-\index{params.h@{params.h}!CTorchParam@{CTorchParam}}
-\index{CTorchParam@{CTorchParam}!params.h@{params.h}}
-\doxysubsubsection{\texorpdfstring{CTorchParam}{CTorchParam}}
-{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structCTorchParam}{C\+Torch\+Param}} \mbox{\hyperlink{structCTorchParam}{C\+Torch\+Param}}}
+Enum used to indicate param type \mbox{\Hypertarget{params_8h_a5bcb9c2c54c336d998d75b11f11e6f61}\label{params_8h_a5bcb9c2c54c336d998d75b11f11e6f61}} 
+\index{params.h@{params.h}!CTHParam@{CTHParam}}
+\index{CTHParam@{CTHParam}!params.h@{params.h}}
+\doxysubsubsection{\texorpdfstring{CTHParam}{CTHParam}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structCTHParam}{C\+T\+H\+Param}} \mbox{\hyperlink{structCTHParam}{C\+T\+H\+Param}}}
 
-\mbox{\Hypertarget{params_8h_ad7e9eb0eee0ca31bfc668b685ae6a692}\label{params_8h_ad7e9eb0eee0ca31bfc668b685ae6a692}} 
-\index{params.h@{params.h}!CTorchParamData@{CTorchParamData}}
-\index{CTorchParamData@{CTorchParamData}!params.h@{params.h}}
-\doxysubsubsection{\texorpdfstring{CTorchParamData}{CTorchParamData}}
-{\footnotesize\ttfamily typedef union \mbox{\hyperlink{unionCTorchParamData}{C\+Torch\+Param\+Data}} \mbox{\hyperlink{unionCTorchParamData}{C\+Torch\+Param\+Data}}}
+\mbox{\Hypertarget{params_8h_a64fcc9876a4b5903b6f829b6fb97e826}\label{params_8h_a64fcc9876a4b5903b6f829b6fb97e826}} 
+\index{params.h@{params.h}!CTHParamData@{CTHParamData}}
+\index{CTHParamData@{CTHParamData}!params.h@{params.h}}
+\doxysubsubsection{\texorpdfstring{CTHParamData}{CTHParamData}}
+{\footnotesize\ttfamily typedef union \mbox{\hyperlink{unionCTHParamData}{C\+T\+H\+Param\+Data}} \mbox{\hyperlink{unionCTHParamData}{C\+T\+H\+Param\+Data}}}
 
 Param data union 
 
@@ -101,63 +149,116 @@ Param data union
 {\footnotesize\ttfamily enum \mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954e}{C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+PE}}}
 
 Enum used to indicate param type \begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_PARAM\_TYPE\_MULTIPLIER\_FLOAT32@{CTH\_PARAM\_TYPE\_MULTIPLIER\_FLOAT32}!params.h@{params.h}}\index{params.h@{params.h}!CTH\_PARAM\_TYPE\_MULTIPLIER\_FLOAT32@{CTH\_PARAM\_TYPE\_MULTIPLIER\_FLOAT32}}}\mbox{\Hypertarget{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea2a46ce3264751a991119f9661d6bd31a}\label{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea2a46ce3264751a991119f9661d6bd31a}} 
-C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+M\+U\+L\+T\+I\+P\+L\+I\+E\+R\+\_\+\+F\+L\+O\+A\+T32&\\
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_PARAM\_TYPE\_MULTIPLIER@{CTH\_PARAM\_TYPE\_MULTIPLIER}!params.h@{params.h}}\index{params.h@{params.h}!CTH\_PARAM\_TYPE\_MULTIPLIER@{CTH\_PARAM\_TYPE\_MULTIPLIER}}}\mbox{\Hypertarget{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea5c503a6b99c9b40310e6f2c9fcca3dd0}\label{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea5c503a6b99c9b40310e6f2c9fcca3dd0}} 
+C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+M\+U\+L\+T\+I\+P\+L\+I\+ER&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_PARAM\_TYPE\_MIN\_FLOAT32@{CTH\_PARAM\_TYPE\_MIN\_FLOAT32}!params.h@{params.h}}\index{params.h@{params.h}!CTH\_PARAM\_TYPE\_MIN\_FLOAT32@{CTH\_PARAM\_TYPE\_MIN\_FLOAT32}}}\mbox{\Hypertarget{params_8h_ad3e45c2ce529cdb2b57043951fb0954ead63c3bfc56de2014cdf608baa80ae6ff}\label{params_8h_ad3e45c2ce529cdb2b57043951fb0954ead63c3bfc56de2014cdf608baa80ae6ff}} 
-C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+M\+I\+N\+\_\+\+F\+L\+O\+A\+T32&\\
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_PARAM\_TYPE\_MIN@{CTH\_PARAM\_TYPE\_MIN}!params.h@{params.h}}\index{params.h@{params.h}!CTH\_PARAM\_TYPE\_MIN@{CTH\_PARAM\_TYPE\_MIN}}}\mbox{\Hypertarget{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea2f3dc8173603bed4a06be6a72cf7b3ac}\label{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea2f3dc8173603bed4a06be6a72cf7b3ac}} 
+C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+M\+IN&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_PARAM\_TYPE\_MAX\_FLOAT32@{CTH\_PARAM\_TYPE\_MAX\_FLOAT32}!params.h@{params.h}}\index{params.h@{params.h}!CTH\_PARAM\_TYPE\_MAX\_FLOAT32@{CTH\_PARAM\_TYPE\_MAX\_FLOAT32}}}\mbox{\Hypertarget{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea12d718a190ee00a1c22857f99573dbc9}\label{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea12d718a190ee00a1c22857f99573dbc9}} 
-C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+M\+A\+X\+\_\+\+F\+L\+O\+A\+T32&\\
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_PARAM\_TYPE\_MAX@{CTH\_PARAM\_TYPE\_MAX}!params.h@{params.h}}\index{params.h@{params.h}!CTH\_PARAM\_TYPE\_MAX@{CTH\_PARAM\_TYPE\_MAX}}}\mbox{\Hypertarget{params_8h_ad3e45c2ce529cdb2b57043951fb0954eab5391dad70795330f50a0defbf82962d}\label{params_8h_ad3e45c2ce529cdb2b57043951fb0954eab5391dad70795330f50a0defbf82962d}} 
+C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+M\+AX&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_PARAM\_TYPE\_P@{CTH\_PARAM\_TYPE\_P}!params.h@{params.h}}\index{params.h@{params.h}!CTH\_PARAM\_TYPE\_P@{CTH\_PARAM\_TYPE\_P}}}\mbox{\Hypertarget{params_8h_ad3e45c2ce529cdb2b57043951fb0954eae260401101a268e4831c6d517504ee0e}\label{params_8h_ad3e45c2ce529cdb2b57043951fb0954eae260401101a268e4831c6d517504ee0e}} 
+C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+P&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_PARAM\_TYPE\_DIM@{CTH\_PARAM\_TYPE\_DIM}!params.h@{params.h}}\index{params.h@{params.h}!CTH\_PARAM\_TYPE\_DIM@{CTH\_PARAM\_TYPE\_DIM}}}\mbox{\Hypertarget{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea336b027958cea4d6a6b4f7361f3f4672}\label{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea336b027958cea4d6a6b4f7361f3f4672}} 
+C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+D\+IM&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_PARAM\_TYPE\_IN\_CHANNELS@{CTH\_PARAM\_TYPE\_IN\_CHANNELS}!params.h@{params.h}}\index{params.h@{params.h}!CTH\_PARAM\_TYPE\_IN\_CHANNELS@{CTH\_PARAM\_TYPE\_IN\_CHANNELS}}}\mbox{\Hypertarget{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea98593d6b77af6c3c962b9133281ab1a9}\label{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea98593d6b77af6c3c962b9133281ab1a9}} 
+C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+I\+N\+\_\+\+C\+H\+A\+N\+N\+E\+LS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_PARAM\_TYPE\_OUT\_CHANNELS@{CTH\_PARAM\_TYPE\_OUT\_CHANNELS}!params.h@{params.h}}\index{params.h@{params.h}!CTH\_PARAM\_TYPE\_OUT\_CHANNELS@{CTH\_PARAM\_TYPE\_OUT\_CHANNELS}}}\mbox{\Hypertarget{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea283f387dc230b5435b9cf32fd1b10ec4}\label{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea283f387dc230b5435b9cf32fd1b10ec4}} 
+C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+O\+U\+T\+\_\+\+C\+H\+A\+N\+N\+E\+LS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_PARAM\_TYPE\_KERNEL\_SIZE@{CTH\_PARAM\_TYPE\_KERNEL\_SIZE}!params.h@{params.h}}\index{params.h@{params.h}!CTH\_PARAM\_TYPE\_KERNEL\_SIZE@{CTH\_PARAM\_TYPE\_KERNEL\_SIZE}}}\mbox{\Hypertarget{params_8h_ad3e45c2ce529cdb2b57043951fb0954eafb71180e51f1398c43b876cce278b8b1}\label{params_8h_ad3e45c2ce529cdb2b57043951fb0954eafb71180e51f1398c43b876cce278b8b1}} 
+C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+K\+E\+R\+N\+E\+L\+\_\+\+S\+I\+ZE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_PARAM\_TYPE\_STRIDE@{CTH\_PARAM\_TYPE\_STRIDE}!params.h@{params.h}}\index{params.h@{params.h}!CTH\_PARAM\_TYPE\_STRIDE@{CTH\_PARAM\_TYPE\_STRIDE}}}\mbox{\Hypertarget{params_8h_ad3e45c2ce529cdb2b57043951fb0954eacc3db970a0f415b857459bb5298e48bc}\label{params_8h_ad3e45c2ce529cdb2b57043951fb0954eacc3db970a0f415b857459bb5298e48bc}} 
+C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+T\+R\+I\+DE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_PARAM\_TYPE\_PADDING\_D2@{CTH\_PARAM\_TYPE\_PADDING\_D2}!params.h@{params.h}}\index{params.h@{params.h}!CTH\_PARAM\_TYPE\_PADDING\_D2@{CTH\_PARAM\_TYPE\_PADDING\_D2}}}\mbox{\Hypertarget{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea8de29fe0ffd857b29be08c17a0c44bfc}\label{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea8de29fe0ffd857b29be08c17a0c44bfc}} 
+C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+P\+A\+D\+D\+I\+N\+G\+\_\+\+D2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_PARAM\_TYPE\_DILATION@{CTH\_PARAM\_TYPE\_DILATION}!params.h@{params.h}}\index{params.h@{params.h}!CTH\_PARAM\_TYPE\_DILATION@{CTH\_PARAM\_TYPE\_DILATION}}}\mbox{\Hypertarget{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea1093a110d0a709c186fec016df18544c}\label{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea1093a110d0a709c186fec016df18544c}} 
+C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+D\+I\+L\+A\+T\+I\+ON&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_PARAM\_TYPE\_KERNEL\_SIZE\_D2@{CTH\_PARAM\_TYPE\_KERNEL\_SIZE\_D2}!params.h@{params.h}}\index{params.h@{params.h}!CTH\_PARAM\_TYPE\_KERNEL\_SIZE\_D2@{CTH\_PARAM\_TYPE\_KERNEL\_SIZE\_D2}}}\mbox{\Hypertarget{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea8da3ce99e1cabb0ead9585a97d685855}\label{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea8da3ce99e1cabb0ead9585a97d685855}} 
+C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+K\+E\+R\+N\+E\+L\+\_\+\+S\+I\+Z\+E\+\_\+\+D2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_PARAM\_TYPE\_STRIDE\_D2@{CTH\_PARAM\_TYPE\_STRIDE\_D2}!params.h@{params.h}}\index{params.h@{params.h}!CTH\_PARAM\_TYPE\_STRIDE\_D2@{CTH\_PARAM\_TYPE\_STRIDE\_D2}}}\mbox{\Hypertarget{params_8h_ad3e45c2ce529cdb2b57043951fb0954eafa214d6cefaebbf682cdc8fe0f834094}\label{params_8h_ad3e45c2ce529cdb2b57043951fb0954eafa214d6cefaebbf682cdc8fe0f834094}} 
+C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+T\+R\+I\+D\+E\+\_\+\+D2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_PARAM\_TYPE\_DILATION\_D2@{CTH\_PARAM\_TYPE\_DILATION\_D2}!params.h@{params.h}}\index{params.h@{params.h}!CTH\_PARAM\_TYPE\_DILATION\_D2@{CTH\_PARAM\_TYPE\_DILATION\_D2}}}\mbox{\Hypertarget{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea04bf570cb318d79030633f9f65340066}\label{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea04bf570cb318d79030633f9f65340066}} 
+C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+D\+I\+L\+A\+T\+I\+O\+N\+\_\+\+D2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_PARAM\_TYPE\_PADDING\_MODE@{CTH\_PARAM\_TYPE\_PADDING\_MODE}!params.h@{params.h}}\index{params.h@{params.h}!CTH\_PARAM\_TYPE\_PADDING\_MODE@{CTH\_PARAM\_TYPE\_PADDING\_MODE}}}\mbox{\Hypertarget{params_8h_ad3e45c2ce529cdb2b57043951fb0954eafd8c79fcc2e55dcbbde07c81d7e5daf3}\label{params_8h_ad3e45c2ce529cdb2b57043951fb0954eafd8c79fcc2e55dcbbde07c81d7e5daf3}} 
+C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+P\+A\+D\+D\+I\+N\+G\+\_\+\+M\+O\+DE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_PARAM\_TYPE\_GROUPS@{CTH\_PARAM\_TYPE\_GROUPS}!params.h@{params.h}}\index{params.h@{params.h}!CTH\_PARAM\_TYPE\_GROUPS@{CTH\_PARAM\_TYPE\_GROUPS}}}\mbox{\Hypertarget{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea2830ad3162aa748ee7406295cff321f5}\label{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea2830ad3162aa748ee7406295cff321f5}} 
+C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+G\+R\+O\+U\+PS&\\
 \hline
 
 \end{DoxyEnumFields}
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{params_8h_a9731b9e3278925288239fa54cd0355b2}\label{params_8h_a9731b9e3278925288239fa54cd0355b2}} 
+\mbox{\Hypertarget{params_8h_adbaa32a798a5e16c7bd0b52cf1af85e4}\label{params_8h_adbaa32a798a5e16c7bd0b52cf1af85e4}} 
 \index{params.h@{params.h}!cth\_copy\_param@{cth\_copy\_param}}
 \index{cth\_copy\_param@{cth\_copy\_param}!params.h@{params.h}}
 \doxysubsubsection{\texorpdfstring{cth\_copy\_param()}{cth\_copy\_param()}}
-{\footnotesize\ttfamily void cth\+\_\+copy\+\_\+param (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchParam}{C\+Torch\+Param}} $\ast$}]{from\+\_\+param,  }\item[{\mbox{\hyperlink{structCTorchParam}{C\+Torch\+Param}} $\ast$}]{to\+\_\+param }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void cth\+\_\+copy\+\_\+param (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHParam}{C\+T\+H\+Param}} $\ast$}]{from\+\_\+param,  }\item[{\mbox{\hyperlink{structCTHParam}{C\+T\+H\+Param}} $\ast$}]{to\+\_\+param }\end{DoxyParamCaption})}
 
-Copy fields from {\ttfamily from\+\_\+param} to {\ttfamily to\+\_\+param} \mbox{\Hypertarget{params_8h_a98f4d1072eeb14f7e5c127421d2124db}\label{params_8h_a98f4d1072eeb14f7e5c127421d2124db}} 
-\index{params.h@{params.h}!CTorchParam@{CTorchParam}}
-\index{CTorchParam@{CTorchParam}!params.h@{params.h}}
-\doxysubsubsection{\texorpdfstring{CTorchParam()}{CTorchParam()}}
-{\footnotesize\ttfamily void \mbox{\hyperlink{consts_8h_ad7d837be8ea11a60ea35da351cb958e7}{struct\+\_\+deep\+\_\+free}}() \mbox{\hyperlink{structCTorchParam}{C\+Torch\+Param}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchParam}{C\+Torch\+Param}} $\ast$}]{param }\end{DoxyParamCaption})}
+Copy fields from {\ttfamily from\+\_\+param} to {\ttfamily to\+\_\+param} \mbox{\Hypertarget{params_8h_a1230d61e0a99c05c6ec1478ee155ecba}\label{params_8h_a1230d61e0a99c05c6ec1478ee155ecba}} 
+\index{params.h@{params.h}!cth\_declare\_array\_at\_func@{cth\_declare\_array\_at\_func}}
+\index{cth\_declare\_array\_at\_func@{cth\_declare\_array\_at\_func}!params.h@{params.h}}
+\doxysubsubsection{\texorpdfstring{cth\_declare\_array\_at\_func()}{cth\_declare\_array\_at\_func()}}
+{\footnotesize\ttfamily cth\+\_\+declare\+\_\+array\+\_\+at\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHParam}{C\+T\+H\+Param}}}]{ }\end{DoxyParamCaption})}
 
-Deep free a \mbox{\hyperlink{structCTorchParam}{C\+Torch\+Param}}
+\mbox{\Hypertarget{params_8h_aa4209756f5d00568f72b254248d5b573}\label{params_8h_aa4209756f5d00568f72b254248d5b573}} 
+\index{params.h@{params.h}!cth\_declare\_array\_set\_func@{cth\_declare\_array\_set\_func}}
+\index{cth\_declare\_array\_set\_func@{cth\_declare\_array\_set\_func}!params.h@{params.h}}
+\doxysubsubsection{\texorpdfstring{cth\_declare\_array\_set\_func()}{cth\_declare\_array\_set\_func()}}
+{\footnotesize\ttfamily cth\+\_\+declare\+\_\+array\+\_\+set\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHParam}{C\+T\+H\+Param}}}]{ }\end{DoxyParamCaption})}
 
-Note\+: If pointer is N\+U\+LL, error raised and exit. \mbox{\Hypertarget{params_8h_afbc581ad560d895f17d695132a295718}\label{params_8h_afbc581ad560d895f17d695132a295718}} 
-\index{params.h@{params.h}!declare\_array\_at\_func@{declare\_array\_at\_func}}
-\index{declare\_array\_at\_func@{declare\_array\_at\_func}!params.h@{params.h}}
-\doxysubsubsection{\texorpdfstring{declare\_array\_at\_func()}{declare\_array\_at\_func()}}
-{\footnotesize\ttfamily declare\+\_\+array\+\_\+at\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchParam}{C\+Torch\+Param}}}]{ }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{params_8h_a5ef61448575406b377af10efed1cfff4}\label{params_8h_a5ef61448575406b377af10efed1cfff4}} 
+\index{params.h@{params.h}!cth\_declare\_free\_array\_deep\_func@{cth\_declare\_free\_array\_deep\_func}}
+\index{cth\_declare\_free\_array\_deep\_func@{cth\_declare\_free\_array\_deep\_func}!params.h@{params.h}}
+\doxysubsubsection{\texorpdfstring{cth\_declare\_free\_array\_deep\_func()}{cth\_declare\_free\_array\_deep\_func()}}
+{\footnotesize\ttfamily cth\+\_\+declare\+\_\+free\+\_\+array\+\_\+deep\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHParam}{C\+T\+H\+Param}}}]{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{params_8h_a78690316f51660e252f9960ead1bfda6}\label{params_8h_a78690316f51660e252f9960ead1bfda6}} 
-\index{params.h@{params.h}!declare\_array\_set\_func@{declare\_array\_set\_func}}
-\index{declare\_array\_set\_func@{declare\_array\_set\_func}!params.h@{params.h}}
-\doxysubsubsection{\texorpdfstring{declare\_array\_set\_func()}{declare\_array\_set\_func()}}
-{\footnotesize\ttfamily declare\+\_\+array\+\_\+set\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchParam}{C\+Torch\+Param}}}]{ }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{params_8h_aaab5f3edf66bd50501d15884e966728a}\label{params_8h_aaab5f3edf66bd50501d15884e966728a}} 
+\index{params.h@{params.h}!cth\_declare\_new\_array\_func@{cth\_declare\_new\_array\_func}}
+\index{cth\_declare\_new\_array\_func@{cth\_declare\_new\_array\_func}!params.h@{params.h}}
+\doxysubsubsection{\texorpdfstring{cth\_declare\_new\_array\_func()}{cth\_declare\_new\_array\_func()}}
+{\footnotesize\ttfamily cth\+\_\+declare\+\_\+new\+\_\+array\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHParam}{C\+T\+H\+Param}}}]{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{params_8h_aeedcf2e02d4992c7ca9ba67be4541cfe}\label{params_8h_aeedcf2e02d4992c7ca9ba67be4541cfe}} 
-\index{params.h@{params.h}!declare\_free\_array\_deep\_func@{declare\_free\_array\_deep\_func}}
-\index{declare\_free\_array\_deep\_func@{declare\_free\_array\_deep\_func}!params.h@{params.h}}
-\doxysubsubsection{\texorpdfstring{declare\_free\_array\_deep\_func()}{declare\_free\_array\_deep\_func()}}
-{\footnotesize\ttfamily declare\+\_\+free\+\_\+array\+\_\+deep\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchParam}{C\+Torch\+Param}}}]{ }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{params_8h_aed7ac0c268a4a90a5e43615785ecbaa4}\label{params_8h_aed7ac0c268a4a90a5e43615785ecbaa4}} 
+\index{params.h@{params.h}!cth\_def\_array@{cth\_def\_array}}
+\index{cth\_def\_array@{cth\_def\_array}!params.h@{params.h}}
+\doxysubsubsection{\texorpdfstring{cth\_def\_array()}{cth\_def\_array()}}
+{\footnotesize\ttfamily cth\+\_\+def\+\_\+array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHParam}{C\+T\+H\+Param}}}]{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{params_8h_ac5c2022f29c92dbbd7ab3fa5cacc9cdc}\label{params_8h_ac5c2022f29c92dbbd7ab3fa5cacc9cdc}} 
-\index{params.h@{params.h}!declare\_new\_array\_func@{declare\_new\_array\_func}}
-\index{declare\_new\_array\_func@{declare\_new\_array\_func}!params.h@{params.h}}
-\doxysubsubsection{\texorpdfstring{declare\_new\_array\_func()}{declare\_new\_array\_func()}}
-{\footnotesize\ttfamily declare\+\_\+new\+\_\+array\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchParam}{C\+Torch\+Param}}}]{ }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{params_8h_a15ef3c99d80750f02d01437d4fe8396b}\label{params_8h_a15ef3c99d80750f02d01437d4fe8396b}} 
+\index{params.h@{params.h}!CTHParam@{CTHParam}}
+\index{CTHParam@{CTHParam}!params.h@{params.h}}
+\doxysubsubsection{\texorpdfstring{CTHParam()}{CTHParam()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{consts_8h_ad7d837be8ea11a60ea35da351cb958e7}{struct\+\_\+deep\+\_\+free}}() \mbox{\hyperlink{structCTHParam}{C\+T\+H\+Param}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHParam}{C\+T\+H\+Param}} $\ast$}]{param }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{params_8h_af5d0f46dd5e41bbf2be646cd6b3f84ab}\label{params_8h_af5d0f46dd5e41bbf2be646cd6b3f84ab}} 
-\index{params.h@{params.h}!def\_array@{def\_array}}
-\index{def\_array@{def\_array}!params.h@{params.h}}
-\doxysubsubsection{\texorpdfstring{def\_array()}{def\_array()}}
-{\footnotesize\ttfamily def\+\_\+array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchParam}{C\+Torch\+Param}}}]{ }\end{DoxyParamCaption})}
+Deep free a \mbox{\hyperlink{structCTHParam}{C\+T\+H\+Param}}
 
+Note\+: If pointer is N\+U\+LL, error raised and exit. 

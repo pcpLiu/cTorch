@@ -13,43 +13,43 @@ This graph shows which files directly or indirectly include this file\+:
 \doxysubsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
-struct \mbox{\hyperlink{structCTorchEngine}{C\+Torch\+Engine}}
+struct \mbox{\hyperlink{structCTHEngine}{C\+T\+H\+Engine}}
 \end{DoxyCompactItemize}
 \doxysubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-typedef struct \mbox{\hyperlink{structCTorchEngine}{C\+Torch\+Engine}} \mbox{\hyperlink{engine_8h_a5d7df24c56d7038f74cc18ec932a42a4}{C\+Torch\+Engine}}
+typedef struct \mbox{\hyperlink{structCTHEngine}{C\+T\+H\+Engine}} \mbox{\hyperlink{engine_8h_aefe621d060d7e23c19d8c98e09a612cd}{C\+T\+H\+Engine}}
 \end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{structCTorchEngine}{C\+Torch\+Engine}} $\ast$ \mbox{\hyperlink{engine_8h_addba73950bdd13b4fcaf941311b5f677}{cth\+\_\+new\+\_\+engine}} (\mbox{\hyperlink{structCTorchConfig}{C\+Torch\+Config}} $\ast$config)
+\mbox{\hyperlink{structCTHEngine}{C\+T\+H\+Engine}} $\ast$ \mbox{\hyperlink{engine_8h_a6d4321dbfd9689b44cafb916631202b2}{cth\+\_\+new\+\_\+engine}} (\mbox{\hyperlink{structCTHConfig}{C\+T\+H\+Config}} $\ast$config)
 \item 
-void \mbox{\hyperlink{engine_8h_a66d505af1852629e89291f2079f5e8ba}{cth\+\_\+execute\+\_\+node}} (\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}} $\ast$node, \mbox{\hyperlink{consts_8h_a2b134eeb7503f45168871021ab72fe40}{C\+T\+H\+\_\+\+B\+A\+C\+K\+E\+ND}} backend)
+void \mbox{\hyperlink{engine_8h_abad1245ca151a9804690c6c7c7645e29}{cth\+\_\+execute\+\_\+node}} (\mbox{\hyperlink{structCTHNode}{C\+T\+H\+Node}} $\ast$node, \mbox{\hyperlink{consts_8h_a2b134eeb7503f45168871021ab72fe40}{C\+T\+H\+\_\+\+B\+A\+C\+K\+E\+ND}} backend)
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Typedef Documentation}
-\mbox{\Hypertarget{engine_8h_a5d7df24c56d7038f74cc18ec932a42a4}\label{engine_8h_a5d7df24c56d7038f74cc18ec932a42a4}} 
-\index{engine.h@{engine.h}!CTorchEngine@{CTorchEngine}}
-\index{CTorchEngine@{CTorchEngine}!engine.h@{engine.h}}
-\doxysubsubsection{\texorpdfstring{CTorchEngine}{CTorchEngine}}
-{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structCTorchEngine}{C\+Torch\+Engine}} \mbox{\hyperlink{structCTorchEngine}{C\+Torch\+Engine}}}
+\mbox{\Hypertarget{engine_8h_aefe621d060d7e23c19d8c98e09a612cd}\label{engine_8h_aefe621d060d7e23c19d8c98e09a612cd}} 
+\index{engine.h@{engine.h}!CTHEngine@{CTHEngine}}
+\index{CTHEngine@{CTHEngine}!engine.h@{engine.h}}
+\doxysubsubsection{\texorpdfstring{CTHEngine}{CTHEngine}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structCTHEngine}{C\+T\+H\+Engine}} \mbox{\hyperlink{structCTHEngine}{C\+T\+H\+Engine}}}
 
 Execution engine 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{engine_8h_a66d505af1852629e89291f2079f5e8ba}\label{engine_8h_a66d505af1852629e89291f2079f5e8ba}} 
+\mbox{\Hypertarget{engine_8h_abad1245ca151a9804690c6c7c7645e29}\label{engine_8h_abad1245ca151a9804690c6c7c7645e29}} 
 \index{engine.h@{engine.h}!cth\_execute\_node@{cth\_execute\_node}}
 \index{cth\_execute\_node@{cth\_execute\_node}!engine.h@{engine.h}}
 \doxysubsubsection{\texorpdfstring{cth\_execute\_node()}{cth\_execute\_node()}}
-{\footnotesize\ttfamily void cth\+\_\+execute\+\_\+node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchNode}{C\+Torch\+Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{consts_8h_a2b134eeb7503f45168871021ab72fe40}{C\+T\+H\+\_\+\+B\+A\+C\+K\+E\+ND}}}]{backend }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void cth\+\_\+execute\+\_\+node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHNode}{C\+T\+H\+Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{consts_8h_a2b134eeb7503f45168871021ab72fe40}{C\+T\+H\+\_\+\+B\+A\+C\+K\+E\+ND}}}]{backend }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{engine_8h_addba73950bdd13b4fcaf941311b5f677}\label{engine_8h_addba73950bdd13b4fcaf941311b5f677}} 
+\mbox{\Hypertarget{engine_8h_a6d4321dbfd9689b44cafb916631202b2}\label{engine_8h_a6d4321dbfd9689b44cafb916631202b2}} 
 \index{engine.h@{engine.h}!cth\_new\_engine@{cth\_new\_engine}}
 \index{cth\_new\_engine@{cth\_new\_engine}!engine.h@{engine.h}}
 \doxysubsubsection{\texorpdfstring{cth\_new\_engine()}{cth\_new\_engine()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structCTorchEngine}{C\+Torch\+Engine}}$\ast$ cth\+\_\+new\+\_\+engine (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchConfig}{C\+Torch\+Config}} $\ast$}]{config }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{structCTHEngine}{C\+T\+H\+Engine}}$\ast$ cth\+\_\+new\+\_\+engine (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHConfig}{C\+T\+H\+Config}} $\ast$}]{config }\end{DoxyParamCaption})}
 
 Create an engine to execute graph. In this function, what c\+Torch will do\+:
 \begin{DoxyItemize}

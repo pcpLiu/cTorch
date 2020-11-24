@@ -104,8 +104,10 @@ void FORCE_OP_PARAM_NUM(
 
 void FORCE_OP_PARAM_EXIST(CTHOperator *op, const CTH_PARAM_TYPE type) {
   FAIL_NULL_PTR(op);
+  FAIL_NULL_PTR(op->params);
   for (cth_array_index_t i = 0; i < op->params->size; i++) {
     CTHParam *param = cth_array_at(CTHParam)(op->params, i);
+    FAIL_NULL_PTR(param);
     if (type == param->type) {
       return;
     }
@@ -158,6 +160,7 @@ CTHParam *cth_get_param_by_type(
 
   for (int i = 0; i < op->params->size; i++) {
     CTHParam *param = cth_array_at(CTHParam)(op->params, i);
+    FAIL_NULL_PTR(param);
     if (type == param->type) {
       return param;
     }

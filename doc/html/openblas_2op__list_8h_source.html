@@ -80,22 +80,24 @@ $(function() {
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
 <div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="openblas_2op__list_8h.html#ac660d62afec291cc01d0d0f1b11a4a38">    7</a></span>&#160;<span class="preprocessor">#define OPENBLAS_OP_FUNC_NAME(op) op_##op_openblas</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="openblas_2op__list_8h.html#a434bf2252867539b3f12be2687380e34">    9</a></span>&#160;<span class="preprocessor">#define OPENBLAS_OP_FUNC_DECLARE(op) void OPENBLAS_OP_FUNC_NAME(op)(CTorchOperator *)</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="openblas_2op__list_8h.html#a7f74861136fafa3c5c9e9cf634059324">   11</a></span>&#160;<span class="preprocessor">#define DECLARE_OPENBLAS_ALL_OP_FUNCS FOREACH_OP_ID(OPENBLAS_OP_FUNC_DECLARE, SEMI_COL)</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">  Array of function pointers corresponding to each enabled operator</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="openblas_2op__list_8h.html#adbe1ad7aebf5b1e8011408a7f02b672a">   16</a></span>&#160;<span class="keyword">static</span> void (*<a class="code" href="openblas_2op__list_8h.html#adbe1ad7aebf5b1e8011408a7f02b672a">fps_op_openblas</a>[<a class="code" href="ops__enabled_8h.html#a6ef3f4e6edbb5e1f08a77820ba2fd93b">ENABLED_OP_NUM</a>])(<a class="code" href="structCTorchOperator.html">CTorchOperator</a> *);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* OP_LIST_OPENBLAS_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="openblas_2op__list_8h.html#a434bf2252867539b3f12be2687380e34">    9</a></span>&#160;<span class="preprocessor">#define OPENBLAS_OP_FUNC_DECLARE(op)                                           \</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">  void OPENBLAS_OP_FUNC_NAME(op)(CTHOperator *)</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="openblas_2op__list_8h.html#a7f74861136fafa3c5c9e9cf634059324">   12</a></span>&#160;<span class="preprocessor">#define DECLARE_OPENBLAS_ALL_OP_FUNCS                                          \</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">  FOREACH_OP_ID(OPENBLAS_OP_FUNC_DECLARE, SEMI_COL)</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">  Array of function pointers corresponding to each enabled operator</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="openblas_2op__list_8h.html#a5b13f472b7692ad752667af5998b41b8">   18</a></span>&#160;<span class="keyword">static</span> void (*<a class="code" href="openblas_2op__list_8h.html#a5b13f472b7692ad752667af5998b41b8">fps_op_openblas</a>[<a class="code" href="ops__enabled_8h.html#a6ef3f4e6edbb5e1f08a77820ba2fd93b">ENABLED_OP_NUM</a>])(<a class="code" href="structCTHOperator.html">CTHOperator</a> *);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* OP_LIST_OPENBLAS_H */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aops__enabled_8h_html_a6ef3f4e6edbb5e1f08a77820ba2fd93b"><div class="ttname"><a href="ops__enabled_8h.html#a6ef3f4e6edbb5e1f08a77820ba2fd93b">ENABLED_OP_NUM</a></div><div class="ttdeci">#define ENABLED_OP_NUM</div><div class="ttdef"><b>Definition:</b> ops_enabled.h:7</div></div>
+<div class="ttc" id="astructCTHOperator_html"><div class="ttname"><a href="structCTHOperator.html">CTHOperator</a></div><div class="ttdef"><b>Definition:</b> operator.h:9</div></div>
 <div class="ttc" id="aoperator_8h_html"><div class="ttname"><a href="operator_8h.html">operator.h</a></div></div>
 <div class="ttc" id="aconsts_8h_html"><div class="ttname"><a href="consts_8h.html">consts.h</a></div></div>
-<div class="ttc" id="astructCTorchOperator_html"><div class="ttname"><a href="structCTorchOperator.html">CTorchOperator</a></div><div class="ttdef"><b>Definition:</b> operator.h:9</div></div>
-<div class="ttc" id="aopenblas_2op__list_8h_html_adbe1ad7aebf5b1e8011408a7f02b672a"><div class="ttname"><a href="openblas_2op__list_8h.html#adbe1ad7aebf5b1e8011408a7f02b672a">fps_op_openblas</a></div><div class="ttdeci">static void(* fps_op_openblas[ENABLED_OP_NUM])(CTorchOperator *)</div><div class="ttdef"><b>Definition:</b> op_list.h:16</div></div>
+<div class="ttc" id="aopenblas_2op__list_8h_html_a5b13f472b7692ad752667af5998b41b8"><div class="ttname"><a href="openblas_2op__list_8h.html#a5b13f472b7692ad752667af5998b41b8">fps_op_openblas</a></div><div class="ttdeci">static void(* fps_op_openblas[ENABLED_OP_NUM])(CTHOperator *)</div><div class="ttdef"><b>Definition:</b> op_list.h:18</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

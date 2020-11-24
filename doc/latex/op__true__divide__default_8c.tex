@@ -1,0 +1,69 @@
+\hypertarget{op__true__divide__default_8c}{}\doxysection{c\+Torch/operators/default/op\+\_\+true\+\_\+divide\+\_\+default.c File Reference}
+\label{op__true__divide__default_8c}\index{cTorch/operators/default/op\_true\_divide\_default.c@{cTorch/operators/default/op\_true\_divide\_default.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operator.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/op\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/util.\+h\char`\"{}}\newline
+Include dependency graph for op\+\_\+true\+\_\+divide\+\_\+default.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{op__true__divide__default_8c_a4f21c832a5333a4bd87bbd25a553f117}{\+\_\+cth\+\_\+true\+\_\+divide}}(op,  data\+\_\+type)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__true__divide__default_8c_a3f468da5c1cb7a1f0cc8bb33fb485083}{op\+\_\+true\+\_\+divide\+\_\+cpu}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em Performs “true division” that always computes the division in floating point. Analogous to division in Python 3 and equivalent to torch.\+div() except when both inputs have bool or integer scalar types, in which case they are cast to the default (floating) scalar type before the division. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{op__true__divide__default_8c_a4f21c832a5333a4bd87bbd25a553f117}\label{op__true__divide__default_8c_a4f21c832a5333a4bd87bbd25a553f117}} 
+\index{op\_true\_divide\_default.c@{op\_true\_divide\_default.c}!\_cth\_true\_divide@{\_cth\_true\_divide}}
+\index{\_cth\_true\_divide@{\_cth\_true\_divide}!op\_true\_divide\_default.c@{op\_true\_divide\_default.c}}
+\doxysubsubsection{\texorpdfstring{\_cth\_true\_divide}{\_cth\_true\_divide}}
+{\footnotesize\ttfamily \#define \+\_\+cth\+\_\+true\+\_\+divide(\begin{DoxyParamCaption}\item[{}]{op,  }\item[{}]{data\+\_\+type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                                                         \(\backslash\)}
+\DoxyCodeLine{    CTHTensor *input\_1 = \mbox{\hyperlink{generic__array_8h_ac901ab85173b85409fea4299ba0e6111}{cth\_array\_at}}(\mbox{\hyperlink{structCTHTensor}{CTHTensor}})(op-\/>in\_bound\_tensors, 0);     \(\backslash\)}
+\DoxyCodeLine{    CTHTensor *input\_2 = \mbox{\hyperlink{generic__array_8h_ac901ab85173b85409fea4299ba0e6111}{cth\_array\_at}}(\mbox{\hyperlink{structCTHTensor}{CTHTensor}})(op-\/>in\_bound\_tensors, 1);     \(\backslash\)}
+\DoxyCodeLine{    CTHTensor *output = \mbox{\hyperlink{generic__array_8h_ac901ab85173b85409fea4299ba0e6111}{cth\_array\_at}}(\mbox{\hyperlink{structCTHTensor}{CTHTensor}})(op-\/>out\_bound\_tensors, 0);     \(\backslash\)}
+\DoxyCodeLine{    data\_type *in\_ptr\_1 = (data\_type *)input\_1-\/>values;                        \(\backslash\)}
+\DoxyCodeLine{    data\_type *in\_ptr\_2 = (data\_type *)input\_2-\/>values;                        \(\backslash\)}
+\DoxyCodeLine{    float *out\_ptr = (\textcolor{keywordtype}{float} *)output-\/>values;                                  \(\backslash\)}
+\DoxyCodeLine{    \mbox{\hyperlink{consts_8h_acc36bfe0d9496aa5573f4fd4f6cde518}{cth\_tensor\_dim\_t}} N = input\_1-\/>meta\_info-\/>n\_elements;                       \(\backslash\)}
+\DoxyCodeLine{                                                                               \(\backslash\)}
+\DoxyCodeLine{    uint16\_t x, y;                                                             \(\backslash\)}
+\DoxyCodeLine{    for (\mbox{\hyperlink{consts_8h_acc36bfe0d9496aa5573f4fd4f6cde518}{cth\_tensor\_dim\_t}} i = 0; i < N; i++) \{                                 \(\backslash\)}
+\DoxyCodeLine{      out\_ptr[i] = (float)in\_ptr\_1[i] / (\textcolor{keywordtype}{float})in\_ptr\_2[i];                    \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__true__divide__default_8c_a3f468da5c1cb7a1f0cc8bb33fb485083}\label{op__true__divide__default_8c_a3f468da5c1cb7a1f0cc8bb33fb485083}} 
+\index{op\_true\_divide\_default.c@{op\_true\_divide\_default.c}!op\_true\_divide\_cpu@{op\_true\_divide\_cpu}}
+\index{op\_true\_divide\_cpu@{op\_true\_divide\_cpu}!op\_true\_divide\_default.c@{op\_true\_divide\_default.c}}
+\doxysubsubsection{\texorpdfstring{op\_true\_divide\_cpu()}{op\_true\_divide\_cpu()}}
+{\footnotesize\ttfamily void op\+\_\+true\+\_\+divide\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+Performs “true division” that always computes the division in floating point. Analogous to division in Python 3 and equivalent to torch.\+div() except when both inputs have bool or integer scalar types, in which case they are cast to the default (floating) scalar type before the division. 
+
+\begin{DoxyNote}{Note}
+Output tensor should be C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+T\+Y\+P\+E\+\_\+\+F\+L\+O\+A\+T\+\_\+32
+\end{DoxyNote}
+Inputs and outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 2
+\begin{DoxyItemize}
+\item 0\+: dividend
+\item 1\+: divisor
+\end{DoxyItemize}
+\item \# of output\+: 1 
+\end{DoxyItemize}

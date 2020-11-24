@@ -28,7 +28,7 @@ set(test_util_src
     torch_util.cpp
 )
 
-set(test_target cTorch_test)
+set(test_target ctorch_tests)
 add_executable(${test_target}
     ${test_sources}
     ${test_util_src}
@@ -37,6 +37,6 @@ add_executable(${test_target}
 
 add_test(NAME ${test_target} COMMAND ${test_target})
 target_include_directories(${test_target} PRIVATE ${cTorch_project_SOURCE_DIR})
-target_link_libraries(${test_target} PUBLIC cTorch ${TORCH_LIBRARIES} gtest)
+target_link_libraries(${test_target} PUBLIC ctorch ${TORCH_LIBRARIES} gtest)
 # set_target_properties(${test_target} PROPERTIES CXX_STANDARD 14)
 

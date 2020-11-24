@@ -1,0 +1,51 @@
+\hypertarget{op__neg__default_8c}{}\doxysection{c\+Torch/operators/default/op\+\_\+neg\+\_\+default.c File Reference}
+\label{op__neg__default_8c}\index{cTorch/operators/default/op\_neg\_default.c@{cTorch/operators/default/op\_neg\_default.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/op\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/util.\+h\char`\"{}}\newline
+Include dependency graph for op\+\_\+neg\+\_\+default.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{op__neg__default_8c_adf80bf5496726697a3ed09b1dc9f95bf}{cth\+\_\+neg}}(x)~(-\/x)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__neg__default_8c_ad6c23d04f45d0ab8a5de0bc3e2e9a356}{op\+\_\+neg\+\_\+cpu}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em Compute the negative of the elements of input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{op__neg__default_8c_adf80bf5496726697a3ed09b1dc9f95bf}\label{op__neg__default_8c_adf80bf5496726697a3ed09b1dc9f95bf}} 
+\index{op\_neg\_default.c@{op\_neg\_default.c}!cth\_neg@{cth\_neg}}
+\index{cth\_neg@{cth\_neg}!op\_neg\_default.c@{op\_neg\_default.c}}
+\doxysubsubsection{\texorpdfstring{cth\_neg}{cth\_neg}}
+{\footnotesize\ttfamily \#define cth\+\_\+neg(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(-\/x)}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__neg__default_8c_ad6c23d04f45d0ab8a5de0bc3e2e9a356}\label{op__neg__default_8c_ad6c23d04f45d0ab8a5de0bc3e2e9a356}} 
+\index{op\_neg\_default.c@{op\_neg\_default.c}!op\_neg\_cpu@{op\_neg\_cpu}}
+\index{op\_neg\_cpu@{op\_neg\_cpu}!op\_neg\_default.c@{op\_neg\_default.c}}
+\doxysubsubsection{\texorpdfstring{op\_neg\_cpu()}{op\_neg\_cpu()}}
+{\footnotesize\ttfamily void op\+\_\+neg\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+Compute the negative of the elements of input. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{[}\+C\+T\+H\+Operator\mbox{]}} & op operator\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Do not support boolean operator
+\end{DoxyNote}
+Inputs \& outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 1
+\item \# of output\+: 1 
+\end{DoxyItemize}

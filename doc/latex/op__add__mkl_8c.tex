@@ -1,0 +1,36 @@
+\hypertarget{op__add__mkl_8c}{}\doxysection{c\+Torch/operators/mkl/op\+\_\+add\+\_\+mkl.c File Reference}
+\label{op__add__mkl_8c}\index{cTorch/operators/mkl/op\_add\_mkl.c@{cTorch/operators/mkl/op\_add\_mkl.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/mkl/op\+\_\+list\+\_\+mkl.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/mkl/util\+\_\+mkl.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$mkl.\+h$>$}\newline
+Include dependency graph for op\+\_\+add\+\_\+mkl.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__add__mkl_8c_a3870b105b8314bcd1881849ec638eeb3}{op\+\_\+add\+\_\+mkl}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em Add two input tensors and store result in output tensor. No broadcast support. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__add__mkl_8c_a3870b105b8314bcd1881849ec638eeb3}\label{op__add__mkl_8c_a3870b105b8314bcd1881849ec638eeb3}} 
+\index{op\_add\_mkl.c@{op\_add\_mkl.c}!op\_add\_mkl@{op\_add\_mkl}}
+\index{op\_add\_mkl@{op\_add\_mkl}!op\_add\_mkl.c@{op\_add\_mkl.c}}
+\doxysubsubsection{\texorpdfstring{op\_add\_mkl()}{op\_add\_mkl()}}
+{\footnotesize\ttfamily void op\+\_\+add\+\_\+mkl (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+Add two input tensors and store result in output tensor. No broadcast support. 
+
+\begin{DoxyNote}{Note}
+Assume input and output tensor have same datatypes. If not, this op will fail
+
+M\+KL only support float \& double type
+\end{DoxyNote}
+Inputs \& outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 2
+\item \# of output\+: 1
+\item Assume input \& output have same types 
+\end{DoxyItemize}

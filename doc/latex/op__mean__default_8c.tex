@@ -1,0 +1,75 @@
+\hypertarget{op__mean__default_8c}{}\doxysection{c\+Torch/operators/default/op\+\_\+mean\+\_\+default.c File Reference}
+\label{op__mean__default_8c}\index{cTorch/operators/default/op\_mean\_default.c@{cTorch/operators/default/op\_mean\_default.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/op\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/util.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$tgmath.\+h$>$}\newline
+Include dependency graph for op\+\_\+mean\+\_\+default.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{op__mean__default_8c_aba490897d4088b268f6b78dd2d7fdf2b}{\+\_\+cth\+\_\+mean}}( in\+\_\+ptr,  out\+\_\+ptr,  input\+\_\+data\+\_\+type,  output\+\_\+data\+\_\+type,  input\+\_\+dtype\+\_\+enum,  output\+\_\+dtype\+\_\+enum,  start\+\_\+offset,  inner\+\_\+offset,  result\+\_\+offset,  reduce\+\_\+size)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__mean__default_8c_a43ba58663308824395337cfe0b30d1d8}{op\+\_\+mean\+\_\+cpu}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em Returns the log of summed exponentials of each row of the input tensor in the given dimension dim. The computation is numerically stabilized. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{op__mean__default_8c_aba490897d4088b268f6b78dd2d7fdf2b}\label{op__mean__default_8c_aba490897d4088b268f6b78dd2d7fdf2b}} 
+\index{op\_mean\_default.c@{op\_mean\_default.c}!\_cth\_mean@{\_cth\_mean}}
+\index{\_cth\_mean@{\_cth\_mean}!op\_mean\_default.c@{op\_mean\_default.c}}
+\doxysubsubsection{\texorpdfstring{\_cth\_mean}{\_cth\_mean}}
+{\footnotesize\ttfamily \#define \+\_\+cth\+\_\+mean(\begin{DoxyParamCaption}\item[{}]{in\+\_\+ptr,  }\item[{}]{out\+\_\+ptr,  }\item[{}]{input\+\_\+data\+\_\+type,  }\item[{}]{output\+\_\+data\+\_\+type,  }\item[{}]{input\+\_\+dtype\+\_\+enum,  }\item[{}]{output\+\_\+dtype\+\_\+enum,  }\item[{}]{start\+\_\+offset,  }\item[{}]{inner\+\_\+offset,  }\item[{}]{result\+\_\+offset,  }\item[{}]{reduce\+\_\+size }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                                                         \(\backslash\)}
+\DoxyCodeLine{    double mean = 0;                                                           \(\backslash\)}
+\DoxyCodeLine{    for (\mbox{\hyperlink{consts_8h_acc36bfe0d9496aa5573f4fd4f6cde518}{cth\_tensor\_dim\_t}} i = 0; i < reduce\_size; i++) \{                       \(\backslash\)}
+\DoxyCodeLine{      mean += (double)in\_ptr[start\_offset + i * inner\_offset];                 \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{    mean /= reduce\_size;                                                       \(\backslash\)}
+\DoxyCodeLine{    if (output\_dtype\_enum == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a7ec2ebe6cf92c44f53ba6d88c3a48816}{CTH\_TENSOR\_DATA\_TYPE\_INT\_16}} ||                    \(\backslash\)}
+\DoxyCodeLine{        output\_dtype\_enum == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a37f6d1066978b8597ff2f3601f793fb1}{CTH\_TENSOR\_DATA\_TYPE\_INT\_32}} ||                    \(\backslash\)}
+\DoxyCodeLine{        output\_dtype\_enum == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a81804b46c3a09d0379cafc6ed2797c63}{CTH\_TENSOR\_DATA\_TYPE\_INT\_64}} ||                    \(\backslash\)}
+\DoxyCodeLine{        output\_dtype\_enum == \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355a013257b03f9c935a0632870b0a3dc175}{CTH\_TENSOR\_DATA\_TYPE\_UINT\_8}}) \{                    \(\backslash\)}
+\DoxyCodeLine{      out\_ptr[result\_offset] = round(mean);                                    \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \{                                                                   \(\backslash\)}
+\DoxyCodeLine{      out\_ptr[result\_offset] = mean;                                           \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__mean__default_8c_a43ba58663308824395337cfe0b30d1d8}\label{op__mean__default_8c_a43ba58663308824395337cfe0b30d1d8}} 
+\index{op\_mean\_default.c@{op\_mean\_default.c}!op\_mean\_cpu@{op\_mean\_cpu}}
+\index{op\_mean\_cpu@{op\_mean\_cpu}!op\_mean\_default.c@{op\_mean\_default.c}}
+\doxysubsubsection{\texorpdfstring{op\_mean\_cpu()}{op\_mean\_cpu()}}
+{\footnotesize\ttfamily void op\+\_\+mean\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+Returns the log of summed exponentials of each row of the input tensor in the given dimension dim. The computation is numerically stabilized. 
+
+\begin{DoxyParagraph}{Op requirement\+:}
+
+\begin{DoxyItemize}
+\item \# of input tensors\+: 1
+\item \# of arguments\+: 1
+\begin{DoxyItemize}
+\item C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+D\+IM
+\end{DoxyItemize}
+\item \# of output tensors\+: 1
+\begin{DoxyItemize}
+\item The output tensor data type should be floating
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyNote}{Note}
+keepdim is always false as it setup in Py\+Torch 
+\end{DoxyNote}

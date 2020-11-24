@@ -1,0 +1,52 @@
+\hypertarget{structCTHQueue}{}\doxysection{C\+T\+H\+Queue Struct Reference}
+\label{structCTHQueue}\index{CTHQueue@{CTHQueue}}
+
+
+{\ttfamily \#include $<$queue.\+h$>$}
+
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{structCTHQueue_ad0bc494aeb651f8fa633493c04695faf}{pipe\+\_\+fd}} \mbox{[}2\mbox{]}
+\item 
+pthread\+\_\+mutex\+\_\+t \mbox{\hyperlink{structCTHQueue_a4a97c8d62b961487629c7dd77b56f6b0}{read\+\_\+mutex}}
+\item 
+pthread\+\_\+mutex\+\_\+t \mbox{\hyperlink{structCTHQueue_a5e6cb807dada6f72d732028e63719506}{write\+\_\+mutex}}
+\item 
+\mbox{\hyperlink{consts_8h_a9ec2a39fa6da450cfe3a4f30b1ff5c61}{C\+T\+H\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+S\+T\+A\+T\+US}} \mbox{\hyperlink{structCTHQueue_af3ed934c475d1d7cbd0db960aadf9c5f}{status}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A queue used to communciate between threads. It\textquotesingle{}s a wrap of P\+O\+S\+IX P\+I\+PE. It comes with two mutex to guard write \& read. 
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{structCTHQueue_ad0bc494aeb651f8fa633493c04695faf}\label{structCTHQueue_ad0bc494aeb651f8fa633493c04695faf}} 
+\index{CTHQueue@{CTHQueue}!pipe\_fd@{pipe\_fd}}
+\index{pipe\_fd@{pipe\_fd}!CTHQueue@{CTHQueue}}
+\doxysubsubsection{\texorpdfstring{pipe\_fd}{pipe\_fd}}
+{\footnotesize\ttfamily int C\+T\+H\+Queue\+::pipe\+\_\+fd\mbox{[}2\mbox{]}}
+
+\mbox{\Hypertarget{structCTHQueue_a4a97c8d62b961487629c7dd77b56f6b0}\label{structCTHQueue_a4a97c8d62b961487629c7dd77b56f6b0}} 
+\index{CTHQueue@{CTHQueue}!read\_mutex@{read\_mutex}}
+\index{read\_mutex@{read\_mutex}!CTHQueue@{CTHQueue}}
+\doxysubsubsection{\texorpdfstring{read\_mutex}{read\_mutex}}
+{\footnotesize\ttfamily pthread\+\_\+mutex\+\_\+t C\+T\+H\+Queue\+::read\+\_\+mutex}
+
+\mbox{\Hypertarget{structCTHQueue_af3ed934c475d1d7cbd0db960aadf9c5f}\label{structCTHQueue_af3ed934c475d1d7cbd0db960aadf9c5f}} 
+\index{CTHQueue@{CTHQueue}!status@{status}}
+\index{status@{status}!CTHQueue@{CTHQueue}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily \mbox{\hyperlink{consts_8h_a9ec2a39fa6da450cfe3a4f30b1ff5c61}{C\+T\+H\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+S\+T\+A\+T\+US}} C\+T\+H\+Queue\+::status}
+
+\mbox{\Hypertarget{structCTHQueue_a5e6cb807dada6f72d732028e63719506}\label{structCTHQueue_a5e6cb807dada6f72d732028e63719506}} 
+\index{CTHQueue@{CTHQueue}!write\_mutex@{write\_mutex}}
+\index{write\_mutex@{write\_mutex}!CTHQueue@{CTHQueue}}
+\doxysubsubsection{\texorpdfstring{write\_mutex}{write\_mutex}}
+{\footnotesize\ttfamily pthread\+\_\+mutex\+\_\+t C\+T\+H\+Queue\+::write\+\_\+mutex}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+c\+Torch/\mbox{\hyperlink{queue_8h}{queue.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,39 @@
+\hypertarget{op__log__mkl_8c}{}\doxysection{c\+Torch/operators/mkl/op\+\_\+log\+\_\+mkl.c File Reference}
+\label{op__log__mkl_8c}\index{cTorch/operators/mkl/op\_log\_mkl.c@{cTorch/operators/mkl/op\_log\_mkl.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/mkl/op\+\_\+list\+\_\+mkl.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/mkl/util\+\_\+mkl.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$mkl.\+h$>$}\newline
+Include dependency graph for op\+\_\+log\+\_\+mkl.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__log__mkl_8c_a2858fe028c01d1b1da603743d9a14036}{op\+\_\+log\+\_\+mkl}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em Computes the natural logarithm of vector elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__log__mkl_8c_a2858fe028c01d1b1da603743d9a14036}\label{op__log__mkl_8c_a2858fe028c01d1b1da603743d9a14036}} 
+\index{op\_log\_mkl.c@{op\_log\_mkl.c}!op\_log\_mkl@{op\_log\_mkl}}
+\index{op\_log\_mkl@{op\_log\_mkl}!op\_log\_mkl.c@{op\_log\_mkl.c}}
+\doxysubsubsection{\texorpdfstring{op\_log\_mkl()}{op\_log\_mkl()}}
+{\footnotesize\ttfamily void op\+\_\+log\+\_\+mkl (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+Computes the natural logarithm of vector elements. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{[}\+C\+T\+H\+Operator\mbox{]}} & op operator\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+M\+KL only support float \& double type
+\end{DoxyNote}
+Inputs \& outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 1
+\item \# of output\+: 1
+\item Assume input \& output have same types 
+\end{DoxyItemize}

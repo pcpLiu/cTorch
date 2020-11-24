@@ -75,66 +75,66 @@ $(function() {
 <a href="thread__pool_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef CTH_THREAD_POOL_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define CTH_THREAD_POOL_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#ifdef USE_PTHREAD</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;pthread.h&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;pthread.h&gt;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> * The thr_pool_t type is opaque to the client.</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * It is created by thr_pool_create() and must be passed</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> * unmodified to the remainder of the interfaces.</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structthr__pool.html">thr_pool</a> thr_pool_t;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * Create a thread pool.</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> *  min_threads:    the minimum number of threads kept in the pool,</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> *          always available to perform work requests.</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"> *  max_threads:    the maximum number of threads that can be</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"> *          in the pool, performing work requests.</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment"> *  linger:     the number of seconds excess idle worker threads</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> *          (greater than min_threads) linger before exiting.</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> *  attr:       attributes of all worker threads (can be NULL);</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"> *          can be destroyed after calling thr_pool_create().</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment"> * On error, thr_pool_create() returns NULL with errno set to the error code.</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">extern</span> thr_pool_t *<a class="code" href="thread__pool_8c.html#a90b52c0d3c2e77ce033e3e41c5b044d9">thr_pool_create</a>(uint_t min_threads, uint_t max_threads,</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                                   uint_t linger, pthread_attr_t *attr);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment"> * Enqueue a work request to the thread pool job queue.</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment"> * If there are idle worker threads, awaken one to perform the job.</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment"> * Else if the maximum number of workers has not been reached,</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment"> * create a new worker thread to perform the job.</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment"> * Else just return after adding the job to the queue;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment"> * an existing worker thread will perform the job when</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"> * it finishes the job it is currently performing.</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment"> * The job is performed as if a new detached thread were created for it:</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment"> *  pthread_create(NULL, attr, void *(*func)(void *), void *arg);</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment"> * On error, thr_pool_queue() returns -1 with errno set to the error code.</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="thread__pool_8c.html#ac63ab741917e0810c23b968f5d02881c">thr_pool_queue</a>(thr_pool_t *pool, <span class="keywordtype">void</span> *(*func)(<span class="keywordtype">void</span> *), <span class="keywordtype">void</span> *arg);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment"> * Wait for all queued jobs to complete.</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="thread__pool_8c.html#aa40e547b0636ba5caf0113a920a459cb">thr_pool_wait</a>(thr_pool_t *pool);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment"> * Cancel all queued jobs and destroy the pool.</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="thread__pool_8c.html#a5440052bff2d9eb010dfe75f1532d073">thr_pool_destroy</a>(thr_pool_t *pool);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* USE_PTHREAD */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * The thr_pool_t type is opaque to the client.</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> * It is created by thr_pool_create() and must be passed</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> * unmodified to the remainder of the interfaces.</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="thread__pool_8h.html#a20e9093369f7f9ff7511da068aadca83">   11</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structthr__pool.html">thr_pool</a> <a class="code" href="structthr__pool.html">thr_pool_t</a>;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * Create a thread pool.</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> *  min_threads:    the minimum number of threads kept in the pool,</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> *          always available to perform work requests.</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> *  max_threads:    the maximum number of threads that can be</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> *          in the pool, performing work requests.</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"> *  linger:     the number of seconds excess idle worker threads</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"> *          (greater than min_threads) linger before exiting.</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment"> *  attr:       attributes of all worker threads (can be NULL);</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> *          can be destroyed after calling thr_pool_create().</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> * On error, thr_pool_create() returns NULL with errno set to the error code.</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">extern</span> <a class="code" href="structthr__pool.html">thr_pool_t</a> *<a class="code" href="thread__pool_8h.html#a90b52c0d3c2e77ce033e3e41c5b044d9">thr_pool_create</a>(</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    uint_t min_threads,</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    uint_t max_threads,</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    uint_t linger,</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    pthread_attr_t *attr);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment"> * Enqueue a work request to the thread pool job queue.</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment"> * If there are idle worker threads, awaken one to perform the job.</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment"> * Else if the maximum number of workers has not been reached,</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment"> * create a new worker thread to perform the job.</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment"> * Else just return after adding the job to the queue;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"> * an existing worker thread will perform the job when</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"> * it finishes the job it is currently performing.</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment"> * The job is performed as if a new detached thread were created for it:</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment"> *  pthread_create(NULL, attr, void *(*func)(void *), void *arg);</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment"> * On error, thr_pool_queue() returns -1 with errno set to the error code.</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="thread__pool_8h.html#ac63ab741917e0810c23b968f5d02881c">thr_pool_queue</a>(<a class="code" href="structthr__pool.html">thr_pool_t</a> *pool, <span class="keywordtype">void</span> *(*func)(<span class="keywordtype">void</span> *), <span class="keywordtype">void</span> *arg);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment"> * Wait for all queued jobs to complete.</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="thread__pool_8h.html#aa40e547b0636ba5caf0113a920a459cb">thr_pool_wait</a>(<a class="code" href="structthr__pool.html">thr_pool_t</a> *pool);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment"> * Cancel all queued jobs and destroy the pool.</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="thread__pool_8h.html#a5440052bff2d9eb010dfe75f1532d073">thr_pool_destroy</a>(<a class="code" href="structthr__pool.html">thr_pool_t</a> *pool);</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* THREAD_POOL_H */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="athread__pool_8c_html_ac63ab741917e0810c23b968f5d02881c"><div class="ttname"><a href="thread__pool_8c.html#ac63ab741917e0810c23b968f5d02881c">thr_pool_queue</a></div><div class="ttdeci">int thr_pool_queue(thr_pool_t *pool, void *(*func)(void *), void *arg)</div><div class="ttdef"><b>Definition:</b> thread_pool.c:297</div></div>
-<div class="ttc" id="athread__pool_8c_html_a90b52c0d3c2e77ce033e3e41c5b044d9"><div class="ttname"><a href="thread__pool_8c.html#a90b52c0d3c2e77ce033e3e41c5b044d9">thr_pool_create</a></div><div class="ttdeci">thr_pool_t * thr_pool_create(uint_t min_threads, uint_t max_threads, uint_t linger, pthread_attr_t *attr)</div><div class="ttdef"><b>Definition:</b> thread_pool.c:240</div></div>
+<div class="ttc" id="athread__pool_8h_html_ac63ab741917e0810c23b968f5d02881c"><div class="ttname"><a href="thread__pool_8h.html#ac63ab741917e0810c23b968f5d02881c">thr_pool_queue</a></div><div class="ttdeci">int thr_pool_queue(thr_pool_t *pool, void *(*func)(void *), void *arg)</div><div class="ttdef"><b>Definition:</b> thread_pool.c:297</div></div>
 <div class="ttc" id="astructthr__pool_html"><div class="ttname"><a href="structthr__pool.html">thr_pool</a></div><div class="ttdef"><b>Definition:</b> thread_pool.c:32</div></div>
-<div class="ttc" id="athread__pool_8c_html_a5440052bff2d9eb010dfe75f1532d073"><div class="ttname"><a href="thread__pool_8c.html#a5440052bff2d9eb010dfe75f1532d073">thr_pool_destroy</a></div><div class="ttdeci">void thr_pool_destroy(thr_pool_t *pool)</div><div class="ttdef"><b>Definition:</b> thread_pool.c:335</div></div>
-<div class="ttc" id="athread__pool_8c_html_aa40e547b0636ba5caf0113a920a459cb"><div class="ttname"><a href="thread__pool_8c.html#aa40e547b0636ba5caf0113a920a459cb">thr_pool_wait</a></div><div class="ttdeci">void thr_pool_wait(thr_pool_t *pool)</div><div class="ttdef"><b>Definition:</b> thread_pool.c:325</div></div>
+<div class="ttc" id="athread__pool_8h_html_a90b52c0d3c2e77ce033e3e41c5b044d9"><div class="ttname"><a href="thread__pool_8h.html#a90b52c0d3c2e77ce033e3e41c5b044d9">thr_pool_create</a></div><div class="ttdeci">thr_pool_t * thr_pool_create(uint_t min_threads, uint_t max_threads, uint_t linger, pthread_attr_t *attr)</div><div class="ttdef"><b>Definition:</b> thread_pool.c:240</div></div>
+<div class="ttc" id="athread__pool_8h_html_aa40e547b0636ba5caf0113a920a459cb"><div class="ttname"><a href="thread__pool_8h.html#aa40e547b0636ba5caf0113a920a459cb">thr_pool_wait</a></div><div class="ttdeci">void thr_pool_wait(thr_pool_t *pool)</div><div class="ttdef"><b>Definition:</b> thread_pool.c:325</div></div>
+<div class="ttc" id="athread__pool_8h_html_a5440052bff2d9eb010dfe75f1532d073"><div class="ttname"><a href="thread__pool_8h.html#a5440052bff2d9eb010dfe75f1532d073">thr_pool_destroy</a></div><div class="ttdeci">void thr_pool_destroy(thr_pool_t *pool)</div><div class="ttdef"><b>Definition:</b> thread_pool.c:335</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

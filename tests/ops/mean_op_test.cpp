@@ -25,7 +25,7 @@ void test_mean(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   cth_array_set(CTHTensor)(op->in_bound_tensors, 0, input);
 
   CTHParam *param = (CTHParam *)MALLOC(sizeof(CTHParam));
-  int dim = _rand_int(0, n_dim - 1);
+  cth_tensor_dim_t dim = _rand_int(0, n_dim - 1);
   param->data.dim = &dim;
   if (flat) {
     *(param->data.dim) = -1;

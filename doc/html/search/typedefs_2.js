@@ -1,23 +1,4 @@
 var searchData=
 [
-  ['cth_5fbackend_815',['CTH_BACKEND',['../consts_8h.html#a16b723ebaf0470405b86854fbb70b1f5',1,'consts.h']]],
-  ['cth_5fjob_5fstatus_816',['CTH_JOB_STATUS',['../consts_8h.html#a4e952da4e2dc0c0b2c16f2a51a221826',1,'consts.h']]],
-  ['cth_5fmem_5frecord_5fstatus_817',['CTH_MEM_RECORD_STATUS',['../debug__util_8h.html#a9ecadbf4aeab904ffffe200b5b3e23db',1,'debug_util.h']]],
-  ['cth_5fnode_5ftype_818',['CTH_NODE_TYPE',['../consts_8h.html#a68f6d5bd5e1492d72d6c14a9f2171ce4',1,'consts.h']]],
-  ['cth_5fop_5fid_819',['CTH_OP_ID',['../consts_8h.html#ad5dc443e2c595911cceb7df235fc9160',1,'consts.h']]],
-  ['cth_5fparam_5ftype_820',['CTH_PARAM_TYPE',['../params_8h.html#ae10c4e0cf1f4e4e44ef0d44c62eea7e0',1,'params.h']]],
-  ['cth_5fqueue_5fstatus_821',['CTH_QUEUE_STATUS',['../consts_8h.html#a4358c2d28ad2d216c006301a6fd51eac',1,'consts.h']]],
-  ['cth_5ftensor_5fdata_5ftype_822',['CTH_TENSOR_DATA_TYPE',['../consts_8h.html#ab9929fd5c9d431172780a4a91220bce6',1,'consts.h']]],
-  ['cth_5ftensor_5ftype_823',['CTH_TENSOR_TYPE',['../consts_8h.html#afc231d0bd8c77e8d9bc3c7a91f6770d6',1,'consts.h']]],
-  ['ctorchconfig_824',['CTorchConfig',['../config_8h.html#accfcba431e961701083d35d583593c06',1,'config.h']]],
-  ['ctorchengine_825',['CTorchEngine',['../engine_8h.html#a5d7df24c56d7038f74cc18ec932a42a4',1,'engine.h']]],
-  ['ctorchoperator_826',['CTorchOperator',['../operator_8h.html#aa8d781516dad89cc56c6552365cef482',1,'operator.h']]],
-  ['ctorchparam_827',['CTorchParam',['../params_8h.html#a3305e44e109bd43164bed8a7774626b9',1,'params.h']]],
-  ['ctorchparamdata_828',['CTorchParamData',['../params_8h.html#ad7e9eb0eee0ca31bfc668b685ae6a692',1,'params.h']]],
-  ['ctorchqueue_829',['CTorchQueue',['../queue_8h.html#a5ada2f7e9c75e7941b1dcd1396fd22c1',1,'queue.h']]],
-  ['ctorchqueuejob_830',['CTorchQueueJob',['../queue_8h.html#a3dd100d82ef7003d31361f36015f3d03',1,'queue.h']]],
-  ['ctorchscheduler_831',['CTorchScheduler',['../scheduler_8h.html#aa5a54ffc9eb3b5e261a14f84bb40fcc5',1,'scheduler.h']]],
-  ['ctorchtensor_832',['CTorchTensor',['../storage_8h.html#a564f8bf5ec3c3b4689267fa3532071d4',1,'storage.h']]],
-  ['ctorchtensormeta_833',['CTorchTensorMeta',['../storage_8h.html#a2b5c4f1562d46f832910c7c081ac5a1f',1,'storage.h']]],
-  ['ctorchworkerpool_834',['CTorchWorkerPool',['../pool_8h.html#abe0d4bfdccea30581c476acf7bde539e',1,'pool.h']]]
+  ['job_5ft_1342',['job_t',['../thread__pool_8c.html#ad80922c610b6e71fdc834b6bd2af79f2',1,'thread_pool.c']]]
 ];

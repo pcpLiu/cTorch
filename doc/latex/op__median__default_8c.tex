@@ -1,0 +1,66 @@
+\hypertarget{op__median__default_8c}{}\doxysection{c\+Torch/operators/default/op\+\_\+median\+\_\+default.c File Reference}
+\label{op__median__default_8c}\index{cTorch/operators/default/op\_median\_default.c@{cTorch/operators/default/op\_median\_default.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/op\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/util.\+h\char`\"{}}\newline
+Include dependency graph for op\+\_\+median\+\_\+default.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{op__median__default_8c_af5c633a4e889219531a4a148c110b3a5}{\+\_\+cth\+\_\+median}}( in\+\_\+ptr,  out\+\_\+ptr,  input\+\_\+data\+\_\+type,  output\+\_\+data\+\_\+type,  input\+\_\+dtype\+\_\+enum,  output\+\_\+dtype\+\_\+enum,  start\+\_\+offset,  inner\+\_\+offset,  result\+\_\+offset,  reduce\+\_\+size)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__median__default_8c_a0e3bbff16d1f48a7bf889b6899518b7e}{op\+\_\+median\+\_\+cpu}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em Returns a namedtuple (values, indices) where values is the median value of each row of the input tensor in the given dimension dim. And indices is the index location of each median value found. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{op__median__default_8c_af5c633a4e889219531a4a148c110b3a5}\label{op__median__default_8c_af5c633a4e889219531a4a148c110b3a5}} 
+\index{op\_median\_default.c@{op\_median\_default.c}!\_cth\_median@{\_cth\_median}}
+\index{\_cth\_median@{\_cth\_median}!op\_median\_default.c@{op\_median\_default.c}}
+\doxysubsubsection{\texorpdfstring{\_cth\_median}{\_cth\_median}}
+{\footnotesize\ttfamily \#define \+\_\+cth\+\_\+median(\begin{DoxyParamCaption}\item[{}]{in\+\_\+ptr,  }\item[{}]{out\+\_\+ptr,  }\item[{}]{input\+\_\+data\+\_\+type,  }\item[{}]{output\+\_\+data\+\_\+type,  }\item[{}]{input\+\_\+dtype\+\_\+enum,  }\item[{}]{output\+\_\+dtype\+\_\+enum,  }\item[{}]{start\+\_\+offset,  }\item[{}]{inner\+\_\+offset,  }\item[{}]{result\+\_\+offset,  }\item[{}]{reduce\+\_\+size }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                                                         \(\backslash\)}
+\DoxyCodeLine{                                                                               \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__median__default_8c_a0e3bbff16d1f48a7bf889b6899518b7e}\label{op__median__default_8c_a0e3bbff16d1f48a7bf889b6899518b7e}} 
+\index{op\_median\_default.c@{op\_median\_default.c}!op\_median\_cpu@{op\_median\_cpu}}
+\index{op\_median\_cpu@{op\_median\_cpu}!op\_median\_default.c@{op\_median\_default.c}}
+\doxysubsubsection{\texorpdfstring{op\_median\_cpu()}{op\_median\_cpu()}}
+{\footnotesize\ttfamily void op\+\_\+median\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+Returns a namedtuple (values, indices) where values is the median value of each row of the input tensor in the given dimension dim. And indices is the index location of each median value found. 
+
+\begin{DoxyParagraph}{For dim size N, median index is N // 2 if N \% 2 == 0; median index}
+is
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Op requirement\+:}
+
+\begin{DoxyItemize}
+\item \# of input tensors\+: 1
+\item \# of arguments\+: 1
+\begin{DoxyItemize}
+\item C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+D\+IM
+\end{DoxyItemize}
+\item \# of output tensors\+: 2
+\begin{DoxyItemize}
+\item 0\+: result tensor
+\item 1\+: index tensor
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyNote}{Note}
+keepdim is always false as it setup in Py\+Torch 
+\end{DoxyNote}

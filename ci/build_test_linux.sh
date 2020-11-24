@@ -39,7 +39,7 @@ cmake \
     -DCMAKE_PREFIX_PATH=../third_party/libtorch \
     ..
 
-make cTorch_test
+make ctorch_tests
 
 #############################################################
 #
@@ -53,12 +53,12 @@ cd tests
 EXIT_STATUS=0
 
 # tests can be run in paralllel and no Apple & CUDA backend
-./cTorch_test --gtest_filter="-*MEMRECORD" || EXIT_STATUS=$?
+./ctorch_tests --gtest_filter="-*MEMRECORD" || EXIT_STATUS=$?
 
 # Involve with mem record count, run separatelly avoid of pthread abruption
-./cTorch_test --gtest_filter="cTorchOperatorTest.testDeepFreeMEMRECORD" || EXIT_STATUS=$?
-./cTorch_test --gtest_filter="cTorchSharderTest.testTensorElewiseShardingMEMRECORD" || EXIT_STATUS=$?
-./cTorch_test --gtest_filter="cTorchSharderTest.testOperatorElewiseShardingMEMRECORD" || EXIT_STATUS=$?
-./cTorch_test --gtest_filter="cTorchListTest.testDeleteDataMEMRECORD" || EXIT_STATUS=$?
+./ctorch_tests --gtest_filter="cTorchOperatorTest.testDeepFreeMEMRECORD" || EXIT_STATUS=$?
+./ctorch_tests --gtest_filter="cTorchSharderTest.testTensorElewiseShardingMEMRECORD" || EXIT_STATUS=$?
+./ctorch_tests --gtest_filter="cTorchSharderTest.testOperatorElewiseShardingMEMRECORD" || EXIT_STATUS=$?
+./ctorch_tests --gtest_filter="cTorchListTest.testDeleteDataMEMRECORD" || EXIT_STATUS=$?
 
 exit $EXIT_STATUS

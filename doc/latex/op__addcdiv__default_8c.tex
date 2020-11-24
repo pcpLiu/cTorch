@@ -12,7 +12,7 @@ Include dependency graph for op\+\_\+addcdiv\+\_\+default.\+c\+:
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{op__addcdiv__default_8c_a215abdb6c1dcac634e61b05037e5295a}{op\+\_\+addcdiv\+\_\+cpu}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op)
+void \mbox{\hyperlink{op__addcdiv__default_8c_a99172e1c3528922e208970d8b96e4b9a}{op\+\_\+addcdiv\+\_\+cpu}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
 \end{DoxyCompactItemize}
 
 
@@ -26,16 +26,16 @@ void \mbox{\hyperlink{op__addcdiv__default_8c_a215abdb6c1dcac634e61b05037e5295a}
 {\bfseries Value\+:}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                                                         \(\backslash\)}
-\DoxyCodeLine{    CTorchTensor *input = \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\_at}}(\mbox{\hyperlink{structCTorchTensor}{CTorchTensor}})(op-\/>in\_bound\_tensors, 0);     \(\backslash\)}
-\DoxyCodeLine{    CTorchTensor *tensor\_1 = \mbox{\hyperlink{operator_8c_aa912c0fd2500c4c77d900da1e14cb08b}{cth\_get\_input\_by\_name}}(op, \textcolor{stringliteral}{"tensor\_1"}, \textcolor{keyword}{false});     \(\backslash\)}
-\DoxyCodeLine{    CTorchTensor *tensor\_2 = \mbox{\hyperlink{operator_8c_aa912c0fd2500c4c77d900da1e14cb08b}{cth\_get\_input\_by\_name}}(op, \textcolor{stringliteral}{"tensor\_2"}, \textcolor{keyword}{false});     \(\backslash\)}
-\DoxyCodeLine{    CTorchParam *param =                                                       \(\backslash\)}
-\DoxyCodeLine{        cth\_get\_param\_by\_type(op, \mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea2a46ce3264751a991119f9661d6bd31a}{CTH\_PARAM\_TYPE\_MULTIPLIER\_FLOAT32}}, \textcolor{keyword}{true});    \(\backslash\)}
-\DoxyCodeLine{    float multiplier = param-\/>data.multiplier;                                 \(\backslash\)}
-\DoxyCodeLine{    CTorchTensor *output = \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\_at}}(\mbox{\hyperlink{structCTorchTensor}{CTorchTensor}})(op-\/>out\_bound\_tensors, 0);   \(\backslash\)}
-\DoxyCodeLine{    tensor\_size\_t N = tensor\_1-\/>meta\_info-\/>n\_elements;                         \(\backslash\)}
+\DoxyCodeLine{    CTHTensor *input = \mbox{\hyperlink{generic__array_8h_ac901ab85173b85409fea4299ba0e6111}{cth\_array\_at}}(\mbox{\hyperlink{structCTHTensor}{CTHTensor}})(op-\/>in\_bound\_tensors, 0);       \(\backslash\)}
+\DoxyCodeLine{    CTHTensor *tensor\_1 = \mbox{\hyperlink{operator_8c_a5ca972ea20763a33b69e910aa25184c9}{cth\_get\_input\_by\_name}}(op, \textcolor{stringliteral}{"tensor\_1"}, \textcolor{keyword}{false});        \(\backslash\)}
+\DoxyCodeLine{    CTHTensor *tensor\_2 = \mbox{\hyperlink{operator_8c_a5ca972ea20763a33b69e910aa25184c9}{cth\_get\_input\_by\_name}}(op, \textcolor{stringliteral}{"tensor\_2"}, \textcolor{keyword}{false});        \(\backslash\)}
+\DoxyCodeLine{    CTHParam *param =                                                          \(\backslash\)}
+\DoxyCodeLine{        cth\_get\_param\_by\_type(op, \mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea5c503a6b99c9b40310e6f2c9fcca3dd0}{CTH\_PARAM\_TYPE\_MULTIPLIER}}, \textcolor{keyword}{true});            \(\backslash\)}
+\DoxyCodeLine{    float multiplier = *(param-\/>data.multiplier);                              \(\backslash\)}
+\DoxyCodeLine{    CTHTensor *output = \mbox{\hyperlink{generic__array_8h_ac901ab85173b85409fea4299ba0e6111}{cth\_array\_at}}(\mbox{\hyperlink{structCTHTensor}{CTHTensor}})(op-\/>out\_bound\_tensors, 0);     \(\backslash\)}
+\DoxyCodeLine{    cth\_tensor\_dim\_t N = tensor\_1-\/>meta\_info-\/>n\_elements;                      \(\backslash\)}
 \DoxyCodeLine{                                                                               \(\backslash\)}
-\DoxyCodeLine{    for (\mbox{\hyperlink{consts_8h_a836488a94280dd54797615abb7e699ca}{tensor\_size\_t}} i = 0; i < N; i++) \{                                    \(\backslash\)}
+\DoxyCodeLine{    for (\mbox{\hyperlink{consts_8h_acc36bfe0d9496aa5573f4fd4f6cde518}{cth\_tensor\_dim\_t}} i = 0; i < N; i++) \{                                 \(\backslash\)}
 \DoxyCodeLine{      ((data\_type *)output-\/>values)[i] =                                       \(\backslash\)}
 \DoxyCodeLine{          ((data\_type *)input-\/>values)[i] +                                    \(\backslash\)}
 \DoxyCodeLine{          multiplier * (((data\_type *)tensor\_1-\/>values)[i] /                   \(\backslash\)}
@@ -47,11 +47,11 @@ void \mbox{\hyperlink{op__addcdiv__default_8c_a215abdb6c1dcac634e61b05037e5295a}
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{op__addcdiv__default_8c_a215abdb6c1dcac634e61b05037e5295a}\label{op__addcdiv__default_8c_a215abdb6c1dcac634e61b05037e5295a}} 
+\mbox{\Hypertarget{op__addcdiv__default_8c_a99172e1c3528922e208970d8b96e4b9a}\label{op__addcdiv__default_8c_a99172e1c3528922e208970d8b96e4b9a}} 
 \index{op\_addcdiv\_default.c@{op\_addcdiv\_default.c}!op\_addcdiv\_cpu@{op\_addcdiv\_cpu}}
 \index{op\_addcdiv\_cpu@{op\_addcdiv\_cpu}!op\_addcdiv\_default.c@{op\_addcdiv\_default.c}}
 \doxysubsubsection{\texorpdfstring{op\_addcdiv\_cpu()}{op\_addcdiv\_cpu()}}
-{\footnotesize\ttfamily void op\+\_\+addcdiv\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void op\+\_\+addcdiv\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
 
 out = input + multiplier $\ast$ (tensor\+\_\+1 / tensor\+\_\+2) ref\+: \href{https://pytorch.org/docs/stable/torch.html\#torch.addcdiv}{\texttt{ https\+://pytorch.\+org/docs/stable/torch.\+html\#torch.\+addcdiv}}
 
@@ -65,7 +65,7 @@ Op requirement\+:
 \end{DoxyItemize}
 \item \# of arguments\+: 1
 \begin{DoxyItemize}
-\item C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+M\+U\+L\+T\+I\+P\+L\+I\+E\+R\+\_\+\+F\+L\+O\+A\+T32
+\item C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+M\+U\+L\+T\+I\+P\+L\+I\+ER
 \end{DoxyItemize}
 \item \# of output tensors\+: 1
 \begin{DoxyItemize}

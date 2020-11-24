@@ -1,0 +1,34 @@
+\hypertarget{op__actan2__apple_8c}{}\doxysection{c\+Torch/operators/apple/op\+\_\+actan2\+\_\+apple.c File Reference}
+\label{op__actan2__apple_8c}\index{cTorch/operators/apple/op\_actan2\_apple.c@{cTorch/operators/apple/op\_actan2\_apple.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/apple/op\+\_\+list\+\_\+apple.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/apple/util\+\_\+apple.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$Accelerate/\+Accelerate.\+h$>$}\newline
+Include dependency graph for op\+\_\+actan2\+\_\+apple.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__actan2__apple_8c_ad614d1253a6322ca5ed08773c440a8da}{op\+\_\+atan2\+\_\+apple}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em atan2(x, y) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__actan2__apple_8c_ad614d1253a6322ca5ed08773c440a8da}\label{op__actan2__apple_8c_ad614d1253a6322ca5ed08773c440a8da}} 
+\index{op\_actan2\_apple.c@{op\_actan2\_apple.c}!op\_atan2\_apple@{op\_atan2\_apple}}
+\index{op\_atan2\_apple@{op\_atan2\_apple}!op\_actan2\_apple.c@{op\_actan2\_apple.c}}
+\doxysubsubsection{\texorpdfstring{op\_atan2\_apple()}{op\_atan2\_apple()}}
+{\footnotesize\ttfamily void op\+\_\+atan2\+\_\+apple (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+atan2(x, y) 
+
+\begin{DoxyNote}{Note}
+Apple backend only support float \& double tensors
+\end{DoxyNote}
+Inputs \& outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 2
+\item \# of output\+: 1
+\item Input and output should be same dimention and type. 
+\end{DoxyItemize}

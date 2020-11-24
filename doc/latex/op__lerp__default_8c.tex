@@ -12,7 +12,7 @@ Include dependency graph for op\+\_\+lerp\+\_\+default.\+c\+:
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{op__lerp__default_8c_a280174bc77648a1ed2cc2a675bcc6cc1}{op\+\_\+lerp\+\_\+cpu}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op)
+void \mbox{\hyperlink{op__lerp__default_8c_add1dae70d9b88e0de9fac2baff83e998}{op\+\_\+lerp\+\_\+cpu}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
 \end{DoxyCompactItemize}
 
 
@@ -26,17 +26,17 @@ void \mbox{\hyperlink{op__lerp__default_8c_a280174bc77648a1ed2cc2a675bcc6cc1}{op
 {\bfseries Value\+:}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                                                         \(\backslash\)}
-\DoxyCodeLine{    CTorchTensor *input\_1 = \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\_at}}(\mbox{\hyperlink{structCTorchTensor}{CTorchTensor}})(op-\/>in\_bound\_tensors, 0);   \(\backslash\)}
-\DoxyCodeLine{    CTorchTensor *input\_2 = \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\_at}}(\mbox{\hyperlink{structCTorchTensor}{CTorchTensor}})(op-\/>in\_bound\_tensors, 1);   \(\backslash\)}
-\DoxyCodeLine{    CTorchTensor *input\_3 = \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\_at}}(\mbox{\hyperlink{structCTorchTensor}{CTorchTensor}})(op-\/>in\_bound\_tensors, 2);   \(\backslash\)}
-\DoxyCodeLine{    CTorchTensor *output = \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\_at}}(\mbox{\hyperlink{structCTorchTensor}{CTorchTensor}})(op-\/>out\_bound\_tensors, 0);   \(\backslash\)}
+\DoxyCodeLine{    CTHTensor *input\_1 = \mbox{\hyperlink{generic__array_8h_ac901ab85173b85409fea4299ba0e6111}{cth\_array\_at}}(\mbox{\hyperlink{structCTHTensor}{CTHTensor}})(op-\/>in\_bound\_tensors, 0);     \(\backslash\)}
+\DoxyCodeLine{    CTHTensor *input\_2 = \mbox{\hyperlink{generic__array_8h_ac901ab85173b85409fea4299ba0e6111}{cth\_array\_at}}(\mbox{\hyperlink{structCTHTensor}{CTHTensor}})(op-\/>in\_bound\_tensors, 1);     \(\backslash\)}
+\DoxyCodeLine{    CTHTensor *input\_3 = \mbox{\hyperlink{generic__array_8h_ac901ab85173b85409fea4299ba0e6111}{cth\_array\_at}}(\mbox{\hyperlink{structCTHTensor}{CTHTensor}})(op-\/>in\_bound\_tensors, 2);     \(\backslash\)}
+\DoxyCodeLine{    CTHTensor *output = \mbox{\hyperlink{generic__array_8h_ac901ab85173b85409fea4299ba0e6111}{cth\_array\_at}}(\mbox{\hyperlink{structCTHTensor}{CTHTensor}})(op-\/>out\_bound\_tensors, 0);     \(\backslash\)}
 \DoxyCodeLine{    data\_type *ptr\_1 = (data\_type *)input\_1-\/>values;                           \(\backslash\)}
 \DoxyCodeLine{    data\_type *ptr\_2 = (data\_type *)input\_2-\/>values;                           \(\backslash\)}
 \DoxyCodeLine{    data\_type *ptr\_3 = (data\_type *)input\_3-\/>values;                           \(\backslash\)}
 \DoxyCodeLine{    data\_type *ptr\_output = (data\_type *)output-\/>values;                       \(\backslash\)}
-\DoxyCodeLine{    tensor\_size\_t N = input\_1-\/>meta\_info-\/>n\_elements;                          \(\backslash\)}
+\DoxyCodeLine{    cth\_tensor\_dim\_t N = input\_1-\/>meta\_info-\/>n\_elements;                       \(\backslash\)}
 \DoxyCodeLine{                                                                               \(\backslash\)}
-\DoxyCodeLine{    for (\mbox{\hyperlink{consts_8h_a836488a94280dd54797615abb7e699ca}{tensor\_size\_t}} i = 0; i < N; i++) \{                                    \(\backslash\)}
+\DoxyCodeLine{    for (\mbox{\hyperlink{consts_8h_acc36bfe0d9496aa5573f4fd4f6cde518}{cth\_tensor\_dim\_t}} i = 0; i < N; i++) \{                                 \(\backslash\)}
 \DoxyCodeLine{      ptr\_output[i] = ptr\_1[i] + ptr\_3[i] * (ptr\_2[i] -\/ ptr\_1[i]);             \(\backslash\)}
 \DoxyCodeLine{    \}                                                                          \(\backslash\)}
 \DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
@@ -45,11 +45,11 @@ void \mbox{\hyperlink{op__lerp__default_8c_a280174bc77648a1ed2cc2a675bcc6cc1}{op
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{op__lerp__default_8c_a280174bc77648a1ed2cc2a675bcc6cc1}\label{op__lerp__default_8c_a280174bc77648a1ed2cc2a675bcc6cc1}} 
+\mbox{\Hypertarget{op__lerp__default_8c_add1dae70d9b88e0de9fac2baff83e998}\label{op__lerp__default_8c_add1dae70d9b88e0de9fac2baff83e998}} 
 \index{op\_lerp\_default.c@{op\_lerp\_default.c}!op\_lerp\_cpu@{op\_lerp\_cpu}}
 \index{op\_lerp\_cpu@{op\_lerp\_cpu}!op\_lerp\_default.c@{op\_lerp\_default.c}}
 \doxysubsubsection{\texorpdfstring{op\_lerp\_cpu()}{op\_lerp\_cpu()}}
-{\footnotesize\ttfamily void op\+\_\+lerp\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void op\+\_\+lerp\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
 
 out = input\+\_\+1 + input\+\_\+3 $\ast$ (input\+\_\+2 -\/ input\+\_\+1)
 

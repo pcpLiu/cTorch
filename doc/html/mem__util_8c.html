@@ -87,8 +87,9 @@ Include dependency graph for mem_util.c:</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:adfcbe83a51779f41f38798ed6893de7f"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mem__util_8c.html#adfcbe83a51779f41f38798ed6893de7f">cth_malloc</a> (size_t size, const char *name)</td></tr>
-<tr class="separator:adfcbe83a51779f41f38798ed6893de7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae431869b301455c263f3c94ceb705d37"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mem__util_8c.html#ae431869b301455c263f3c94ceb705d37">cth_malloc</a> (size_t size, const char *record_name, const char *file_name, int line_num, const char *func_name)</td></tr>
+<tr class="memdesc:ae431869b301455c263f3c94ceb705d37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Malloc with optional argument to give a descriptive name to this memory.  <a href="mem__util_8c.html#ae431869b301455c263f3c94ceb705d37">More...</a><br /></td></tr>
+<tr class="separator:ae431869b301455c263f3c94ceb705d37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8fafe435a419aa9b56ab0a87d343118b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mem__util_8c.html#a8fafe435a419aa9b56ab0a87d343118b">cth_free</a> (void *ptr, const char *file_name, int line_num, const char *func_name)</td></tr>
 <tr class="separator:a8fafe435a419aa9b56ab0a87d343118b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a466bd7cc2958d3d1c404048abc5ac397"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mem__util_8c.html#a466bd7cc2958d3d1c404048abc5ac397">cth_free_soft</a> (void *ptr, const char *file_name, int line_num, const char *func_name)</td></tr>
@@ -214,8 +215,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="adfcbe83a51779f41f38798ed6893de7f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adfcbe83a51779f41f38798ed6893de7f">&#9670;&nbsp;</a></span>cth_malloc()</h2>
+<a id="ae431869b301455c263f3c94ceb705d37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae431869b301455c263f3c94ceb705d37">&#9670;&nbsp;</a></span>cth_malloc()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -230,7 +231,25 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>name</em>&#160;</td>
+          <td class="paramname"><em>record_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>file_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>line_num</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>func_name</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -239,11 +258,19 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Malloc with optional argument to give a descriptive name to this memory.</p>
-<p>Parameters:</p><ul>
-<li>size: memory size</li>
-<li>name: memory block name. Could be NULL </li>
-</ul>
+
+<p>Malloc with optional argument to give a descriptive name to this memory. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td></td></tr>
+    <tr><td class="paramname">record_name</td><td></td></tr>
+    <tr><td class="paramname">file_name</td><td></td></tr>
+    <tr><td class="paramname">line_num</td><td></td></tr>
+    <tr><td class="paramname">func_name</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void* </dd></dl>
 
 </div>
 </div>

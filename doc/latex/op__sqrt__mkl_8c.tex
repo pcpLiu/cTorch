@@ -1,0 +1,39 @@
+\hypertarget{op__sqrt__mkl_8c}{}\doxysection{c\+Torch/operators/mkl/op\+\_\+sqrt\+\_\+mkl.c File Reference}
+\label{op__sqrt__mkl_8c}\index{cTorch/operators/mkl/op\_sqrt\_mkl.c@{cTorch/operators/mkl/op\_sqrt\_mkl.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/mkl/op\+\_\+list\+\_\+mkl.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/mkl/util\+\_\+mkl.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$mkl.\+h$>$}\newline
+Include dependency graph for op\+\_\+sqrt\+\_\+mkl.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__sqrt__mkl_8c_a5b30973a17f83c93ab09cf73d8f99357}{op\+\_\+sqrt\+\_\+mkl}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em Returns a new tensor with the square-\/root of the elements of input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__sqrt__mkl_8c_a5b30973a17f83c93ab09cf73d8f99357}\label{op__sqrt__mkl_8c_a5b30973a17f83c93ab09cf73d8f99357}} 
+\index{op\_sqrt\_mkl.c@{op\_sqrt\_mkl.c}!op\_sqrt\_mkl@{op\_sqrt\_mkl}}
+\index{op\_sqrt\_mkl@{op\_sqrt\_mkl}!op\_sqrt\_mkl.c@{op\_sqrt\_mkl.c}}
+\doxysubsubsection{\texorpdfstring{op\_sqrt\_mkl()}{op\_sqrt\_mkl()}}
+{\footnotesize\ttfamily void op\+\_\+sqrt\+\_\+mkl (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+Returns a new tensor with the square-\/root of the elements of input. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{[}\+C\+T\+H\+Operator\mbox{]}} & op operator\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+M\+KL only support float \& double type
+\end{DoxyNote}
+Inputs \& outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 1
+\item \# of output\+: 1
+\item Assume input \& output have same types 
+\end{DoxyItemize}

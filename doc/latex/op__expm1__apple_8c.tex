@@ -1,0 +1,34 @@
+\hypertarget{op__expm1__apple_8c}{}\doxysection{c\+Torch/operators/apple/op\+\_\+expm1\+\_\+apple.c File Reference}
+\label{op__expm1__apple_8c}\index{cTorch/operators/apple/op\_expm1\_apple.c@{cTorch/operators/apple/op\_expm1\_apple.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/apple/op\+\_\+list\+\_\+apple.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/apple/util\+\_\+apple.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$Accelerate/\+Accelerate.\+h$>$}\newline
+Include dependency graph for op\+\_\+expm1\+\_\+apple.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__expm1__apple_8c_a06a7cab90309283b0c9a836a83c85506}{op\+\_\+expm1\+\_\+apple}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em expm1(x) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__expm1__apple_8c_a06a7cab90309283b0c9a836a83c85506}\label{op__expm1__apple_8c_a06a7cab90309283b0c9a836a83c85506}} 
+\index{op\_expm1\_apple.c@{op\_expm1\_apple.c}!op\_expm1\_apple@{op\_expm1\_apple}}
+\index{op\_expm1\_apple@{op\_expm1\_apple}!op\_expm1\_apple.c@{op\_expm1\_apple.c}}
+\doxysubsubsection{\texorpdfstring{op\_expm1\_apple()}{op\_expm1\_apple()}}
+{\footnotesize\ttfamily void op\+\_\+expm1\+\_\+apple (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+expm1(x) 
+
+\begin{DoxyNote}{Note}
+Apple backend only support float \& double tensors
+\end{DoxyNote}
+Inputs \& outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 1
+\item \# of output\+: 1
+\item Input and output should be same dimention and type. 
+\end{DoxyItemize}

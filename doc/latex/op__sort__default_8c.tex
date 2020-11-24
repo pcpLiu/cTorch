@@ -1,0 +1,50 @@
+\hypertarget{op__sort__default_8c}{}\doxysection{c\+Torch/operators/default/op\+\_\+sort\+\_\+default.c File Reference}
+\label{op__sort__default_8c}\index{cTorch/operators/default/op\_sort\_default.c@{cTorch/operators/default/op\_sort\_default.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/op\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/util.\+h\char`\"{}}\newline
+Include dependency graph for op\+\_\+sort\+\_\+default.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__sort__default_8c_a801ee6ba582361999ce1c08f982cec0a}{op\+\_\+sort\+\_\+cpu}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em Sorts the elements of the input tensor along a given dimension in ascending order by value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__sort__default_8c_a801ee6ba582361999ce1c08f982cec0a}\label{op__sort__default_8c_a801ee6ba582361999ce1c08f982cec0a}} 
+\index{op\_sort\_default.c@{op\_sort\_default.c}!op\_sort\_cpu@{op\_sort\_cpu}}
+\index{op\_sort\_cpu@{op\_sort\_cpu}!op\_sort\_default.c@{op\_sort\_default.c}}
+\doxysubsubsection{\texorpdfstring{op\_sort\_cpu()}{op\_sort\_cpu()}}
+{\footnotesize\ttfamily void op\+\_\+sort\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+Sorts the elements of the input tensor along a given dimension in ascending order by value. 
+
+If dim is not given, the last dimension of the input is chosen.
+
+If descending is True then the elements are sorted in descending order by value.
+
+A namedtuple of (values, indices) is returned, where the values are the sorted alues and indices are the indices of the elements in the original input tensor.
+
+\begin{DoxyNote}{Note}
+In this implementation, keepdim is always false.
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em op} & Inputs \& Outputs \& Params\+:
+\begin{DoxyItemize}
+\item \# of inputs\+: 1
+\item \# of outputs\+: 2
+\begin{DoxyItemize}
+\item 0\+: sorted tensor
+\item 1\+: index
+\end{DoxyItemize}
+\item Argument\+:
+\begin{DoxyItemize}
+\item dim (int)\+: the dimension to reduce. Must be $>$= 0 
+\end{DoxyItemize}
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}

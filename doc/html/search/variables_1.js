@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['bits_739',['bits',['../structbit__array__t.html#a788dc237e6ebf740841d79589c6108d6',1,'bit_array_t']]]
+  ['bits_1218',['bits',['../structcth__bit__array__t.html#afde92fce854ba3033693ef1091ad4651',1,'cth_bit_array_t']]]
 ];

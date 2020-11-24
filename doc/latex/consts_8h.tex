@@ -10,18 +10,20 @@ This graph shows which files directly or indirectly include this file\+:
 \doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \mbox{\hyperlink{consts_8h_af607dc603fe6ac789044b5147264ce80}{E\+N\+U\+M\+F\+Y\+\_\+\+OP}}(x)~C\+T\+H\+\_\+\+O\+P\+\_\+\+I\+D\+\_\+\#\#x,
+\#define \mbox{\hyperlink{consts_8h_ae2f0451856bcd927dc7333a00d4b870f}{cth\+\_\+tensor\+\_\+reduce\+\_\+index\+\_\+t}}~int64\+\_\+t
+\begin{DoxyCompactList}\small\item\em Index type of result tensro in reduce index op. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{consts_8h_a84d5722d82122224371394c50e7c9e46}{\+\_\+\+E\+N\+U\+M\+F\+Y\+\_\+\+OP}}(x)~C\+T\+H\+\_\+\+O\+P\+\_\+\+I\+D\+\_\+\#\#x,
 \item 
-\#define \mbox{\hyperlink{consts_8h_a6217a8d289249d5652668ab87793b17e}{S\+T\+R\+I\+N\+G\+T\+I\+F\+Y\+\_\+\+OP}}(x)~\#x,
+\#define \mbox{\hyperlink{consts_8h_a9fd30126bafa7213257bd5b17c8c646c}{\+\_\+\+S\+T\+R\+I\+N\+G\+T\+I\+F\+Y\+\_\+\+OP}}(x)~\#x,
 \item 
-\#define \mbox{\hyperlink{consts_8h_ad7d837be8ea11a60ea35da351cb958e7}{struct\+\_\+deep\+\_\+free}}(data\+\_\+type)~free\+\_\+deep\+\_\+\#\#data\+\_\+type
-\item 
-\#define \mbox{\hyperlink{consts_8h_ac54e145e3f0a5221e8a40556ea246c4a}{tensor\+\_\+dim\+\_\+t}}~uint32\+\_\+t
-\item 
-\#define \mbox{\hyperlink{consts_8h_a836488a94280dd54797615abb7e699ca}{tensor\+\_\+size\+\_\+t}}~uint32\+\_\+t
+\#define \mbox{\hyperlink{consts_8h_ad7d837be8ea11a60ea35da351cb958e7}{struct\+\_\+deep\+\_\+free}}(data\+\_\+type)~cth\+\_\+free\+\_\+deep\+\_\+\#\#data\+\_\+type
 \item 
 \#define \mbox{\hyperlink{consts_8h_a5c8f874ed9ba794cfee41fc451834911}{C\+T\+H\+\_\+\+PI}}~3.\+1415926535
-\end{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{consts_8h_ad41244fce5f1a86636907a6521ecef3f}{C\+T\+H\+\_\+\+C\+A\+S\+T\+\_\+\+P\+TR}}(ptr,  type)~((type $\ast$)ptr)
+\begin{DoxyCompactList}\small\item\em Cast ptr to another type. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{consts_8h_aaad8ba9158f4afd7a683c0503ba28252}{P\+T\+R\+\_\+\+V\+AL}}(ptr\+\_\+expression)~($\ast$(ptr\+\_\+expression))
+\begin{DoxyCompactList}\small\item\em Deference a pointer or a pointer expression. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
@@ -33,14 +35,34 @@ typedef enum \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355}{C\+T\
 \item 
 typedef enum \mbox{\hyperlink{consts_8h_a1583cd727b34ebbc46552a8a02f125b4}{C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{consts_8h_afc231d0bd8c77e8d9bc3c7a91f6770d6}{C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+T\+Y\+PE}}
 \item 
+typedef enum \mbox{\hyperlink{consts_8h_a721b3631937c7eb5ba61846c2f93398e}{C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+E\+V\+I\+CE}} \mbox{\hyperlink{consts_8h_aac46255362c7588a1d3e02e8942bcff6}{C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+E\+V\+I\+CE}}
+\begin{DoxyCompactList}\small\item\em Tensor physical device. \end{DoxyCompactList}\item 
 typedef enum \mbox{\hyperlink{consts_8h_ae7791c09d8f5c389c44dd194a7ab8ab1}{C\+T\+H\+\_\+\+J\+O\+B\+\_\+\+S\+T\+A\+T\+US}} \mbox{\hyperlink{consts_8h_a4e952da4e2dc0c0b2c16f2a51a221826}{C\+T\+H\+\_\+\+J\+O\+B\+\_\+\+S\+T\+A\+T\+US}}
 \item 
 typedef enum \mbox{\hyperlink{consts_8h_a9ec2a39fa6da450cfe3a4f30b1ff5c61}{C\+T\+H\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+S\+T\+A\+T\+US}} \mbox{\hyperlink{consts_8h_a4358c2d28ad2d216c006301a6fd51eac}{C\+T\+H\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+S\+T\+A\+T\+US}}
 \item 
-typedef uint16\+\_\+t \mbox{\hyperlink{consts_8h_a157c2065f4ca7bee275f51520e56a173}{thread\+\_\+n\+\_\+t}}
+typedef enum \mbox{\hyperlink{consts_8h_aadebe8e685042f9cb4b1c08459b74ccc}{C\+T\+H\+\_\+\+P\+A\+D\+D\+I\+N\+G\+\_\+\+M\+O\+DE}} \mbox{\hyperlink{consts_8h_a7136f08ccf74a130e1b59efb12142f6a}{C\+T\+H\+\_\+\+P\+A\+D\+D\+I\+N\+G\+\_\+\+M\+O\+DE}}
+\begin{DoxyCompactList}\small\item\em Padding modes. \end{DoxyCompactList}\item 
+typedef uint16\+\_\+t \mbox{\hyperlink{consts_8h_aaaedfc356f04494a6b0fab869b439b55}{cth\+\_\+thread\+\_\+n\+\_\+t}}
 \item 
+typedef int64\+\_\+t \mbox{\hyperlink{consts_8h_acc36bfe0d9496aa5573f4fd4f6cde518}{cth\+\_\+tensor\+\_\+dim\+\_\+t}}
+\item 
+typedef float \mbox{\hyperlink{consts_8h_a5d981a40f9a6dff6a214e11e37ed1990}{cth\+\_\+float\+\_\+param\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Type to denote generic float parameter of an operator. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{consts_8h_acc36bfe0d9496aa5573f4fd4f6cde518}{cth\+\_\+tensor\+\_\+dim\+\_\+t}} \mbox{\hyperlink{consts_8h_a55270405f0e8e849ac5b8f510cd63325}{cth\+\_\+channel\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Type to denote channel param. Used in conv, pooling etc. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{consts_8h_acc36bfe0d9496aa5573f4fd4f6cde518}{cth\+\_\+tensor\+\_\+dim\+\_\+t}} \mbox{\hyperlink{consts_8h_a9bbbdf2d890eafc3af669af3bb92ab26}{cth\+\_\+kernel\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Type to denote kernel size param. Used in conv, pooling etc. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{consts_8h_acc36bfe0d9496aa5573f4fd4f6cde518}{cth\+\_\+tensor\+\_\+dim\+\_\+t}} \mbox{\hyperlink{consts_8h_a7f8b74bbee095d370f2ce01958478546}{cth\+\_\+pad\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Type to denote paddin param. Used in conv, pooling etc. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{consts_8h_acc36bfe0d9496aa5573f4fd4f6cde518}{cth\+\_\+tensor\+\_\+dim\+\_\+t}} \mbox{\hyperlink{consts_8h_a926df15b0b38e50d7845be0d4cb87bc9}{cth\+\_\+stride\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Type to denote stride param. Used in conv, pooling etc. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{consts_8h_acc36bfe0d9496aa5573f4fd4f6cde518}{cth\+\_\+tensor\+\_\+dim\+\_\+t}} \mbox{\hyperlink{consts_8h_a52cf0ec0cfef624cdb8f4d48d1f4c52b}{cth\+\_\+dilation\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Type to denote dilation param. Used in conv, pooling etc. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{consts_8h_acc36bfe0d9496aa5573f4fd4f6cde518}{cth\+\_\+tensor\+\_\+dim\+\_\+t}} \mbox{\hyperlink{consts_8h_a93a37e7e2d2c1542cc88477feb7298e3}{cth\+\_\+groups\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Type to denote groups param. Used in conv, pooling etc. \end{DoxyCompactList}\item 
 typedef enum \mbox{\hyperlink{consts_8h_a33c8ac7e3182f644b7cddd033bafeeb6}{C\+T\+H\+\_\+\+O\+P\+\_\+\+ID}} \mbox{\hyperlink{consts_8h_ad5dc443e2c595911cceb7df235fc9160}{C\+T\+H\+\_\+\+O\+P\+\_\+\+ID}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Operator ID enum. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
@@ -48,7 +70,7 @@ enum \mbox{\hyperlink{consts_8h_a2b134eeb7503f45168871021ab72fe40}{C\+T\+H\+\_\+
 \mbox{\hyperlink{consts_8h_a2b134eeb7503f45168871021ab72fe40a557742093affb19063c7cabbdb18f70f}{C\+T\+H\+\_\+\+B\+A\+C\+K\+E\+N\+D\+\_\+\+D\+E\+F\+A\+U\+LT}}, 
 \mbox{\hyperlink{consts_8h_a2b134eeb7503f45168871021ab72fe40a726236238adec0bd9232e5e63bbf1d5f}{C\+T\+H\+\_\+\+B\+A\+C\+K\+E\+N\+D\+\_\+\+M\+KL}}, 
 \mbox{\hyperlink{consts_8h_a2b134eeb7503f45168871021ab72fe40a1bd31a71dc72d7c6052e4ee13ad6c948}{C\+T\+H\+\_\+\+B\+A\+C\+K\+E\+N\+D\+\_\+\+O\+P\+E\+N\+B\+L\+AS}}, 
-\mbox{\hyperlink{consts_8h_a2b134eeb7503f45168871021ab72fe40a22a1d47074afb9181bcedda25e6d7e7b}{C\+T\+H\+\_\+\+B\+A\+C\+K\+E\+N\+D\+\_\+\+A\+C\+C\+E\+L\+E\+R\+A\+TE}}, 
+\mbox{\hyperlink{consts_8h_a2b134eeb7503f45168871021ab72fe40a7053ea3d12643a58b60c4188ef38a802}{C\+T\+H\+\_\+\+B\+A\+C\+K\+E\+N\+D\+\_\+\+A\+P\+P\+LE}}, 
 \newline
 \mbox{\hyperlink{consts_8h_a2b134eeb7503f45168871021ab72fe40aee780f046d52c4f849e44fce5255e82d}{C\+T\+H\+\_\+\+B\+A\+C\+K\+E\+N\+D\+\_\+\+C\+P\+U\+\_\+\+X86}}, 
 \mbox{\hyperlink{consts_8h_a2b134eeb7503f45168871021ab72fe40a9d7b6fc1ce8f95618ec906310b5461d2}{C\+T\+H\+\_\+\+B\+A\+C\+K\+E\+N\+D\+\_\+\+C\+P\+U\+\_\+\+A\+RM}}, 
@@ -77,6 +99,10 @@ enum \mbox{\hyperlink{consts_8h_a1583cd727b34ebbc46552a8a02f125b4}{C\+T\+H\+\_\+
 \mbox{\hyperlink{consts_8h_a1583cd727b34ebbc46552a8a02f125b4a0f22f26d4fe2e49811f6bb0c84ba72c5}{C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+P\+A\+R\+AM}}
  \}
 \item 
+enum \mbox{\hyperlink{consts_8h_a721b3631937c7eb5ba61846c2f93398e}{C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+E\+V\+I\+CE}} \{ \mbox{\hyperlink{consts_8h_a721b3631937c7eb5ba61846c2f93398ea57f98806108a788638ff25f7b5a51b2c}{C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+N\+O\+R\+M\+AL}}, 
+\mbox{\hyperlink{consts_8h_a721b3631937c7eb5ba61846c2f93398ea5f60083b8f682e1431ff0d56d269327f}{C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+U\+DA}}
+ \}
+\begin{DoxyCompactList}\small\item\em Tensor physical device. \end{DoxyCompactList}\item 
 enum \mbox{\hyperlink{consts_8h_ae7791c09d8f5c389c44dd194a7ab8ab1}{C\+T\+H\+\_\+\+J\+O\+B\+\_\+\+S\+T\+A\+T\+US}} \{ \mbox{\hyperlink{consts_8h_ae7791c09d8f5c389c44dd194a7ab8ab1a2eee217b68f352945f4217863efb7cb1}{C\+T\+H\+\_\+\+J\+O\+B\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+W\+A\+IT}}, 
 \mbox{\hyperlink{consts_8h_ae7791c09d8f5c389c44dd194a7ab8ab1a361f84a92ff5fd9e646d5b6a8a9485c5}{C\+T\+H\+\_\+\+J\+O\+B\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+R\+E\+A\+DY}}, 
 \mbox{\hyperlink{consts_8h_ae7791c09d8f5c389c44dd194a7ab8ab1a90486bed51de49ca547c9e924e34dc0f}{C\+T\+H\+\_\+\+J\+O\+B\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+D\+O\+NE}}
@@ -86,9 +112,15 @@ enum \mbox{\hyperlink{consts_8h_a9ec2a39fa6da450cfe3a4f30b1ff5c61}{C\+T\+H\+\_\+
 \mbox{\hyperlink{consts_8h_a9ec2a39fa6da450cfe3a4f30b1ff5c61a6b2714c9274deb4b3b617635ed305969}{C\+T\+H\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+I\+N\+A\+C\+T\+I\+VE}}
  \}
 \item 
-enum \mbox{\hyperlink{consts_8h_a33c8ac7e3182f644b7cddd033bafeeb6}{C\+T\+H\+\_\+\+O\+P\+\_\+\+ID}} \{ \mbox{\hyperlink{consts_8h_a33c8ac7e3182f644b7cddd033bafeeb6a4123335913482f4909b9b6d1d8150179}{F\+O\+R\+E\+A\+C\+H\+\_\+\+O\+P\+\_\+\+ID}} =(E\+N\+U\+M\+F\+Y\+\_\+\+OP)
+enum \mbox{\hyperlink{consts_8h_aadebe8e685042f9cb4b1c08459b74ccc}{C\+T\+H\+\_\+\+P\+A\+D\+D\+I\+N\+G\+\_\+\+M\+O\+DE}} \{ \mbox{\hyperlink{consts_8h_aadebe8e685042f9cb4b1c08459b74cccab253c4df3c5001d17e598b20bf1524bd}{C\+T\+H\+\_\+\+P\+A\+D\+D\+I\+N\+G\+\_\+\+M\+O\+D\+E\+\_\+\+Z\+E\+R\+OS}}, 
+\mbox{\hyperlink{consts_8h_aadebe8e685042f9cb4b1c08459b74ccca045b30c071d44c21715e2f6c9efc4f94}{C\+T\+H\+\_\+\+P\+A\+D\+D\+I\+N\+G\+\_\+\+M\+O\+D\+E\+\_\+\+R\+E\+F\+L\+E\+CT}}, 
+\mbox{\hyperlink{consts_8h_aadebe8e685042f9cb4b1c08459b74cccae2bba0025ba9314e64f91e5a3b3ec244}{C\+T\+H\+\_\+\+P\+A\+D\+D\+I\+N\+G\+\_\+\+M\+O\+D\+E\+\_\+\+R\+E\+P\+L\+I\+C\+A\+TE}}, 
+\mbox{\hyperlink{consts_8h_aadebe8e685042f9cb4b1c08459b74ccca8684e97e142389589411d8bf11200235}{C\+T\+H\+\_\+\+P\+A\+D\+D\+I\+N\+G\+\_\+\+M\+O\+D\+E\+\_\+\+C\+I\+R\+C\+U\+L\+AR}}
  \}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Padding modes. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{consts_8h_a33c8ac7e3182f644b7cddd033bafeeb6}{C\+T\+H\+\_\+\+O\+P\+\_\+\+ID}} \{ \mbox{\hyperlink{consts_8h_a33c8ac7e3182f644b7cddd033bafeeb6a4123335913482f4909b9b6d1d8150179}{F\+O\+R\+E\+A\+C\+H\+\_\+\+O\+P\+\_\+\+ID}} =(\+\_\+\+E\+N\+U\+M\+F\+Y\+\_\+\+OP)
+ \}
+\begin{DoxyCompactList}\small\item\em Operator ID enum. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -97,43 +129,61 @@ char $\ast$ \mbox{\hyperlink{consts_8h_aa64e45caefc2e16dfe2aa2d4188d7c17}{C\+T\+
 
 
 \doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{consts_8h_a84d5722d82122224371394c50e7c9e46}\label{consts_8h_a84d5722d82122224371394c50e7c9e46}} 
+\index{consts.h@{consts.h}!\_ENUMFY\_OP@{\_ENUMFY\_OP}}
+\index{\_ENUMFY\_OP@{\_ENUMFY\_OP}!consts.h@{consts.h}}
+\doxysubsubsection{\texorpdfstring{\_ENUMFY\_OP}{\_ENUMFY\_OP}}
+{\footnotesize\ttfamily \#define \+\_\+\+E\+N\+U\+M\+F\+Y\+\_\+\+OP(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~C\+T\+H\+\_\+\+O\+P\+\_\+\+I\+D\+\_\+\#\#x,}
+
+\mbox{\Hypertarget{consts_8h_a9fd30126bafa7213257bd5b17c8c646c}\label{consts_8h_a9fd30126bafa7213257bd5b17c8c646c}} 
+\index{consts.h@{consts.h}!\_STRINGTIFY\_OP@{\_STRINGTIFY\_OP}}
+\index{\_STRINGTIFY\_OP@{\_STRINGTIFY\_OP}!consts.h@{consts.h}}
+\doxysubsubsection{\texorpdfstring{\_STRINGTIFY\_OP}{\_STRINGTIFY\_OP}}
+{\footnotesize\ttfamily \#define \+\_\+\+S\+T\+R\+I\+N\+G\+T\+I\+F\+Y\+\_\+\+OP(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~\#x,}
+
+\mbox{\Hypertarget{consts_8h_ad41244fce5f1a86636907a6521ecef3f}\label{consts_8h_ad41244fce5f1a86636907a6521ecef3f}} 
+\index{consts.h@{consts.h}!CTH\_CAST\_PTR@{CTH\_CAST\_PTR}}
+\index{CTH\_CAST\_PTR@{CTH\_CAST\_PTR}!consts.h@{consts.h}}
+\doxysubsubsection{\texorpdfstring{CTH\_CAST\_PTR}{CTH\_CAST\_PTR}}
+{\footnotesize\ttfamily \#define C\+T\+H\+\_\+\+C\+A\+S\+T\+\_\+\+P\+TR(\begin{DoxyParamCaption}\item[{}]{ptr,  }\item[{}]{type }\end{DoxyParamCaption})~((type $\ast$)ptr)}
+
+
+
+Cast ptr to another type. 
+
 \mbox{\Hypertarget{consts_8h_a5c8f874ed9ba794cfee41fc451834911}\label{consts_8h_a5c8f874ed9ba794cfee41fc451834911}} 
 \index{consts.h@{consts.h}!CTH\_PI@{CTH\_PI}}
 \index{CTH\_PI@{CTH\_PI}!consts.h@{consts.h}}
 \doxysubsubsection{\texorpdfstring{CTH\_PI}{CTH\_PI}}
 {\footnotesize\ttfamily \#define C\+T\+H\+\_\+\+PI~3.\+1415926535}
 
-Pi value. 10 digits \mbox{\Hypertarget{consts_8h_af607dc603fe6ac789044b5147264ce80}\label{consts_8h_af607dc603fe6ac789044b5147264ce80}} 
-\index{consts.h@{consts.h}!ENUMFY\_OP@{ENUMFY\_OP}}
-\index{ENUMFY\_OP@{ENUMFY\_OP}!consts.h@{consts.h}}
-\doxysubsubsection{\texorpdfstring{ENUMFY\_OP}{ENUMFY\_OP}}
-{\footnotesize\ttfamily \#define E\+N\+U\+M\+F\+Y\+\_\+\+OP(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~C\+T\+H\+\_\+\+O\+P\+\_\+\+I\+D\+\_\+\#\#x,}
+Pi value. 10 digits \mbox{\Hypertarget{consts_8h_ae2f0451856bcd927dc7333a00d4b870f}\label{consts_8h_ae2f0451856bcd927dc7333a00d4b870f}} 
+\index{consts.h@{consts.h}!cth\_tensor\_reduce\_index\_t@{cth\_tensor\_reduce\_index\_t}}
+\index{cth\_tensor\_reduce\_index\_t@{cth\_tensor\_reduce\_index\_t}!consts.h@{consts.h}}
+\doxysubsubsection{\texorpdfstring{cth\_tensor\_reduce\_index\_t}{cth\_tensor\_reduce\_index\_t}}
+{\footnotesize\ttfamily \#define cth\+\_\+tensor\+\_\+reduce\+\_\+index\+\_\+t~int64\+\_\+t}
 
-\mbox{\Hypertarget{consts_8h_a6217a8d289249d5652668ab87793b17e}\label{consts_8h_a6217a8d289249d5652668ab87793b17e}} 
-\index{consts.h@{consts.h}!STRINGTIFY\_OP@{STRINGTIFY\_OP}}
-\index{STRINGTIFY\_OP@{STRINGTIFY\_OP}!consts.h@{consts.h}}
-\doxysubsubsection{\texorpdfstring{STRINGTIFY\_OP}{STRINGTIFY\_OP}}
-{\footnotesize\ttfamily \#define S\+T\+R\+I\+N\+G\+T\+I\+F\+Y\+\_\+\+OP(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~\#x,}
+
+
+Index type of result tensro in reduce index op. 
+
+\mbox{\Hypertarget{consts_8h_aaad8ba9158f4afd7a683c0503ba28252}\label{consts_8h_aaad8ba9158f4afd7a683c0503ba28252}} 
+\index{consts.h@{consts.h}!PTR\_VAL@{PTR\_VAL}}
+\index{PTR\_VAL@{PTR\_VAL}!consts.h@{consts.h}}
+\doxysubsubsection{\texorpdfstring{PTR\_VAL}{PTR\_VAL}}
+{\footnotesize\ttfamily \#define P\+T\+R\+\_\+\+V\+AL(\begin{DoxyParamCaption}\item[{}]{ptr\+\_\+expression }\end{DoxyParamCaption})~($\ast$(ptr\+\_\+expression))}
+
+
+
+Deference a pointer or a pointer expression. 
 
 \mbox{\Hypertarget{consts_8h_ad7d837be8ea11a60ea35da351cb958e7}\label{consts_8h_ad7d837be8ea11a60ea35da351cb958e7}} 
 \index{consts.h@{consts.h}!struct\_deep\_free@{struct\_deep\_free}}
 \index{struct\_deep\_free@{struct\_deep\_free}!consts.h@{consts.h}}
 \doxysubsubsection{\texorpdfstring{struct\_deep\_free}{struct\_deep\_free}}
-{\footnotesize\ttfamily \#define struct\+\_\+deep\+\_\+free(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})~free\+\_\+deep\+\_\+\#\#data\+\_\+type}
+{\footnotesize\ttfamily \#define struct\+\_\+deep\+\_\+free(\begin{DoxyParamCaption}\item[{}]{data\+\_\+type }\end{DoxyParamCaption})~cth\+\_\+free\+\_\+deep\+\_\+\#\#data\+\_\+type}
 
-Universal struct deep free function name in c\+To\+R\+CH \mbox{\Hypertarget{consts_8h_ac54e145e3f0a5221e8a40556ea246c4a}\label{consts_8h_ac54e145e3f0a5221e8a40556ea246c4a}} 
-\index{consts.h@{consts.h}!tensor\_dim\_t@{tensor\_dim\_t}}
-\index{tensor\_dim\_t@{tensor\_dim\_t}!consts.h@{consts.h}}
-\doxysubsubsection{\texorpdfstring{tensor\_dim\_t}{tensor\_dim\_t}}
-{\footnotesize\ttfamily \#define tensor\+\_\+dim\+\_\+t~uint32\+\_\+t}
-
-Type to denote tensor dimension \mbox{\Hypertarget{consts_8h_a836488a94280dd54797615abb7e699ca}\label{consts_8h_a836488a94280dd54797615abb7e699ca}} 
-\index{consts.h@{consts.h}!tensor\_size\_t@{tensor\_size\_t}}
-\index{tensor\_size\_t@{tensor\_size\_t}!consts.h@{consts.h}}
-\doxysubsubsection{\texorpdfstring{tensor\_size\_t}{tensor\_size\_t}}
-{\footnotesize\ttfamily \#define tensor\+\_\+size\+\_\+t~uint32\+\_\+t}
-
-Type to denote tensor size 
+Universal struct deep free function name in c\+To\+R\+CH 
 
 \doxysubsection{Typedef Documentation}
 \mbox{\Hypertarget{consts_8h_a16b723ebaf0470405b86854fbb70b1f5}\label{consts_8h_a16b723ebaf0470405b86854fbb70b1f5}} 
@@ -142,11 +192,61 @@ Type to denote tensor size
 \doxysubsubsection{\texorpdfstring{CTH\_BACKEND}{CTH\_BACKEND}}
 {\footnotesize\ttfamily typedef enum \mbox{\hyperlink{consts_8h_a2b134eeb7503f45168871021ab72fe40}{C\+T\+H\+\_\+\+B\+A\+C\+K\+E\+ND}} \mbox{\hyperlink{consts_8h_a2b134eeb7503f45168871021ab72fe40}{C\+T\+H\+\_\+\+B\+A\+C\+K\+E\+ND}}}
 
+\mbox{\Hypertarget{consts_8h_a55270405f0e8e849ac5b8f510cd63325}\label{consts_8h_a55270405f0e8e849ac5b8f510cd63325}} 
+\index{consts.h@{consts.h}!cth\_channel\_t@{cth\_channel\_t}}
+\index{cth\_channel\_t@{cth\_channel\_t}!consts.h@{consts.h}}
+\doxysubsubsection{\texorpdfstring{cth\_channel\_t}{cth\_channel\_t}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{consts_8h_acc36bfe0d9496aa5573f4fd4f6cde518}{cth\+\_\+tensor\+\_\+dim\+\_\+t}} \mbox{\hyperlink{consts_8h_a55270405f0e8e849ac5b8f510cd63325}{cth\+\_\+channel\+\_\+t}}}
+
+
+
+Type to denote channel param. Used in conv, pooling etc. 
+
+\mbox{\Hypertarget{consts_8h_a52cf0ec0cfef624cdb8f4d48d1f4c52b}\label{consts_8h_a52cf0ec0cfef624cdb8f4d48d1f4c52b}} 
+\index{consts.h@{consts.h}!cth\_dilation\_t@{cth\_dilation\_t}}
+\index{cth\_dilation\_t@{cth\_dilation\_t}!consts.h@{consts.h}}
+\doxysubsubsection{\texorpdfstring{cth\_dilation\_t}{cth\_dilation\_t}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{consts_8h_acc36bfe0d9496aa5573f4fd4f6cde518}{cth\+\_\+tensor\+\_\+dim\+\_\+t}} \mbox{\hyperlink{consts_8h_a52cf0ec0cfef624cdb8f4d48d1f4c52b}{cth\+\_\+dilation\+\_\+t}}}
+
+
+
+Type to denote dilation param. Used in conv, pooling etc. 
+
+\mbox{\Hypertarget{consts_8h_a5d981a40f9a6dff6a214e11e37ed1990}\label{consts_8h_a5d981a40f9a6dff6a214e11e37ed1990}} 
+\index{consts.h@{consts.h}!cth\_float\_param\_t@{cth\_float\_param\_t}}
+\index{cth\_float\_param\_t@{cth\_float\_param\_t}!consts.h@{consts.h}}
+\doxysubsubsection{\texorpdfstring{cth\_float\_param\_t}{cth\_float\_param\_t}}
+{\footnotesize\ttfamily typedef float \mbox{\hyperlink{consts_8h_a5d981a40f9a6dff6a214e11e37ed1990}{cth\+\_\+float\+\_\+param\+\_\+t}}}
+
+
+
+Type to denote generic float parameter of an operator. 
+
+\mbox{\Hypertarget{consts_8h_a93a37e7e2d2c1542cc88477feb7298e3}\label{consts_8h_a93a37e7e2d2c1542cc88477feb7298e3}} 
+\index{consts.h@{consts.h}!cth\_groups\_t@{cth\_groups\_t}}
+\index{cth\_groups\_t@{cth\_groups\_t}!consts.h@{consts.h}}
+\doxysubsubsection{\texorpdfstring{cth\_groups\_t}{cth\_groups\_t}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{consts_8h_acc36bfe0d9496aa5573f4fd4f6cde518}{cth\+\_\+tensor\+\_\+dim\+\_\+t}} \mbox{\hyperlink{consts_8h_a93a37e7e2d2c1542cc88477feb7298e3}{cth\+\_\+groups\+\_\+t}}}
+
+
+
+Type to denote groups param. Used in conv, pooling etc. 
+
 \mbox{\Hypertarget{consts_8h_a4e952da4e2dc0c0b2c16f2a51a221826}\label{consts_8h_a4e952da4e2dc0c0b2c16f2a51a221826}} 
 \index{consts.h@{consts.h}!CTH\_JOB\_STATUS@{CTH\_JOB\_STATUS}}
 \index{CTH\_JOB\_STATUS@{CTH\_JOB\_STATUS}!consts.h@{consts.h}}
 \doxysubsubsection{\texorpdfstring{CTH\_JOB\_STATUS}{CTH\_JOB\_STATUS}}
 {\footnotesize\ttfamily typedef enum \mbox{\hyperlink{consts_8h_ae7791c09d8f5c389c44dd194a7ab8ab1}{C\+T\+H\+\_\+\+J\+O\+B\+\_\+\+S\+T\+A\+T\+US}} \mbox{\hyperlink{consts_8h_ae7791c09d8f5c389c44dd194a7ab8ab1}{C\+T\+H\+\_\+\+J\+O\+B\+\_\+\+S\+T\+A\+T\+US}}}
+
+\mbox{\Hypertarget{consts_8h_a9bbbdf2d890eafc3af669af3bb92ab26}\label{consts_8h_a9bbbdf2d890eafc3af669af3bb92ab26}} 
+\index{consts.h@{consts.h}!cth\_kernel\_t@{cth\_kernel\_t}}
+\index{cth\_kernel\_t@{cth\_kernel\_t}!consts.h@{consts.h}}
+\doxysubsubsection{\texorpdfstring{cth\_kernel\_t}{cth\_kernel\_t}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{consts_8h_acc36bfe0d9496aa5573f4fd4f6cde518}{cth\+\_\+tensor\+\_\+dim\+\_\+t}} \mbox{\hyperlink{consts_8h_a9bbbdf2d890eafc3af669af3bb92ab26}{cth\+\_\+kernel\+\_\+t}}}
+
+
+
+Type to denote kernel size param. Used in conv, pooling etc. 
 
 \mbox{\Hypertarget{consts_8h_a68f6d5bd5e1492d72d6c14a9f2171ce4}\label{consts_8h_a68f6d5bd5e1492d72d6c14a9f2171ce4}} 
 \index{consts.h@{consts.h}!CTH\_NODE\_TYPE@{CTH\_NODE\_TYPE}}
@@ -164,6 +264,33 @@ Graph node type\+:
 \doxysubsubsection{\texorpdfstring{CTH\_OP\_ID}{CTH\_OP\_ID}}
 {\footnotesize\ttfamily typedef enum \mbox{\hyperlink{consts_8h_a33c8ac7e3182f644b7cddd033bafeeb6}{C\+T\+H\+\_\+\+O\+P\+\_\+\+ID}} \mbox{\hyperlink{consts_8h_a33c8ac7e3182f644b7cddd033bafeeb6}{C\+T\+H\+\_\+\+O\+P\+\_\+\+ID}}}
 
+
+
+Operator ID enum. 
+
+\begin{DoxyNote}{Note}
+ending \textquotesingle{};\textquotesingle{} is required 
+\end{DoxyNote}
+\mbox{\Hypertarget{consts_8h_a7f8b74bbee095d370f2ce01958478546}\label{consts_8h_a7f8b74bbee095d370f2ce01958478546}} 
+\index{consts.h@{consts.h}!cth\_pad\_t@{cth\_pad\_t}}
+\index{cth\_pad\_t@{cth\_pad\_t}!consts.h@{consts.h}}
+\doxysubsubsection{\texorpdfstring{cth\_pad\_t}{cth\_pad\_t}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{consts_8h_acc36bfe0d9496aa5573f4fd4f6cde518}{cth\+\_\+tensor\+\_\+dim\+\_\+t}} \mbox{\hyperlink{consts_8h_a7f8b74bbee095d370f2ce01958478546}{cth\+\_\+pad\+\_\+t}}}
+
+
+
+Type to denote paddin param. Used in conv, pooling etc. 
+
+\mbox{\Hypertarget{consts_8h_a7136f08ccf74a130e1b59efb12142f6a}\label{consts_8h_a7136f08ccf74a130e1b59efb12142f6a}} 
+\index{consts.h@{consts.h}!CTH\_PADDING\_MODE@{CTH\_PADDING\_MODE}}
+\index{CTH\_PADDING\_MODE@{CTH\_PADDING\_MODE}!consts.h@{consts.h}}
+\doxysubsubsection{\texorpdfstring{CTH\_PADDING\_MODE}{CTH\_PADDING\_MODE}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{consts_8h_aadebe8e685042f9cb4b1c08459b74ccc}{C\+T\+H\+\_\+\+P\+A\+D\+D\+I\+N\+G\+\_\+\+M\+O\+DE}} \mbox{\hyperlink{consts_8h_aadebe8e685042f9cb4b1c08459b74ccc}{C\+T\+H\+\_\+\+P\+A\+D\+D\+I\+N\+G\+\_\+\+M\+O\+DE}}}
+
+
+
+Padding modes. 
+
 \mbox{\Hypertarget{consts_8h_a4358c2d28ad2d216c006301a6fd51eac}\label{consts_8h_a4358c2d28ad2d216c006301a6fd51eac}} 
 \index{consts.h@{consts.h}!CTH\_QUEUE\_STATUS@{CTH\_QUEUE\_STATUS}}
 \index{CTH\_QUEUE\_STATUS@{CTH\_QUEUE\_STATUS}!consts.h@{consts.h}}
@@ -174,23 +301,53 @@ Queue status\+:
 \begin{DoxyItemize}
 \item C\+T\+H\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+A\+L\+I\+VE\+: queue is active
 \item C\+T\+H\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+I\+N\+A\+C\+T\+I\+VE\+: queue is inactive. Should not been used in this status 
-\end{DoxyItemize}\mbox{\Hypertarget{consts_8h_ab9929fd5c9d431172780a4a91220bce6}\label{consts_8h_ab9929fd5c9d431172780a4a91220bce6}} 
+\end{DoxyItemize}\mbox{\Hypertarget{consts_8h_a926df15b0b38e50d7845be0d4cb87bc9}\label{consts_8h_a926df15b0b38e50d7845be0d4cb87bc9}} 
+\index{consts.h@{consts.h}!cth\_stride\_t@{cth\_stride\_t}}
+\index{cth\_stride\_t@{cth\_stride\_t}!consts.h@{consts.h}}
+\doxysubsubsection{\texorpdfstring{cth\_stride\_t}{cth\_stride\_t}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{consts_8h_acc36bfe0d9496aa5573f4fd4f6cde518}{cth\+\_\+tensor\+\_\+dim\+\_\+t}} \mbox{\hyperlink{consts_8h_a926df15b0b38e50d7845be0d4cb87bc9}{cth\+\_\+stride\+\_\+t}}}
+
+
+
+Type to denote stride param. Used in conv, pooling etc. 
+
+\mbox{\Hypertarget{consts_8h_ab9929fd5c9d431172780a4a91220bce6}\label{consts_8h_ab9929fd5c9d431172780a4a91220bce6}} 
 \index{consts.h@{consts.h}!CTH\_TENSOR\_DATA\_TYPE@{CTH\_TENSOR\_DATA\_TYPE}}
 \index{CTH\_TENSOR\_DATA\_TYPE@{CTH\_TENSOR\_DATA\_TYPE}!consts.h@{consts.h}}
 \doxysubsubsection{\texorpdfstring{CTH\_TENSOR\_DATA\_TYPE}{CTH\_TENSOR\_DATA\_TYPE}}
 {\footnotesize\ttfamily typedef enum \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355}{C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{consts_8h_a4b8846c2fb1629129ab48cd874d22355}{C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+T\+Y\+PE}}}
 
-Tensor value types ref\+: \href{https://pytorch.org/docs/stable/tensors.html\#torch-tensor}{\texttt{ https\+://pytorch.\+org/docs/stable/tensors.\+html\#torch-\/tensor}} \mbox{\Hypertarget{consts_8h_afc231d0bd8c77e8d9bc3c7a91f6770d6}\label{consts_8h_afc231d0bd8c77e8d9bc3c7a91f6770d6}} 
+Tensor value types ref\+: \href{https://pytorch.org/docs/stable/tensors.html\#torch-tensor}{\texttt{ https\+://pytorch.\+org/docs/stable/tensors.\+html\#torch-\/tensor}} \mbox{\Hypertarget{consts_8h_aac46255362c7588a1d3e02e8942bcff6}\label{consts_8h_aac46255362c7588a1d3e02e8942bcff6}} 
+\index{consts.h@{consts.h}!CTH\_TENSOR\_DEVICE@{CTH\_TENSOR\_DEVICE}}
+\index{CTH\_TENSOR\_DEVICE@{CTH\_TENSOR\_DEVICE}!consts.h@{consts.h}}
+\doxysubsubsection{\texorpdfstring{CTH\_TENSOR\_DEVICE}{CTH\_TENSOR\_DEVICE}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{consts_8h_a721b3631937c7eb5ba61846c2f93398e}{C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+E\+V\+I\+CE}} \mbox{\hyperlink{consts_8h_a721b3631937c7eb5ba61846c2f93398e}{C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+E\+V\+I\+CE}}}
+
+
+
+Tensor physical device. 
+
+Types\+:
+\begin{DoxyItemize}
+\item C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+N\+O\+R\+M\+AL\+: normal tensor lives in main mem
+\item C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+U\+DA\+: tensor lives in C\+U\+DA mem 
+\end{DoxyItemize}\mbox{\Hypertarget{consts_8h_acc36bfe0d9496aa5573f4fd4f6cde518}\label{consts_8h_acc36bfe0d9496aa5573f4fd4f6cde518}} 
+\index{consts.h@{consts.h}!cth\_tensor\_dim\_t@{cth\_tensor\_dim\_t}}
+\index{cth\_tensor\_dim\_t@{cth\_tensor\_dim\_t}!consts.h@{consts.h}}
+\doxysubsubsection{\texorpdfstring{cth\_tensor\_dim\_t}{cth\_tensor\_dim\_t}}
+{\footnotesize\ttfamily typedef int64\+\_\+t \mbox{\hyperlink{consts_8h_acc36bfe0d9496aa5573f4fd4f6cde518}{cth\+\_\+tensor\+\_\+dim\+\_\+t}}}
+
+Type to denote tensor dimension \& size \mbox{\Hypertarget{consts_8h_afc231d0bd8c77e8d9bc3c7a91f6770d6}\label{consts_8h_afc231d0bd8c77e8d9bc3c7a91f6770d6}} 
 \index{consts.h@{consts.h}!CTH\_TENSOR\_TYPE@{CTH\_TENSOR\_TYPE}}
 \index{CTH\_TENSOR\_TYPE@{CTH\_TENSOR\_TYPE}!consts.h@{consts.h}}
 \doxysubsubsection{\texorpdfstring{CTH\_TENSOR\_TYPE}{CTH\_TENSOR\_TYPE}}
 {\footnotesize\ttfamily typedef enum \mbox{\hyperlink{consts_8h_a1583cd727b34ebbc46552a8a02f125b4}{C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{consts_8h_a1583cd727b34ebbc46552a8a02f125b4}{C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+T\+Y\+PE}}}
 
-\mbox{\Hypertarget{consts_8h_a157c2065f4ca7bee275f51520e56a173}\label{consts_8h_a157c2065f4ca7bee275f51520e56a173}} 
-\index{consts.h@{consts.h}!thread\_n\_t@{thread\_n\_t}}
-\index{thread\_n\_t@{thread\_n\_t}!consts.h@{consts.h}}
-\doxysubsubsection{\texorpdfstring{thread\_n\_t}{thread\_n\_t}}
-{\footnotesize\ttfamily typedef uint16\+\_\+t \mbox{\hyperlink{consts_8h_a157c2065f4ca7bee275f51520e56a173}{thread\+\_\+n\+\_\+t}}}
+\mbox{\Hypertarget{consts_8h_aaaedfc356f04494a6b0fab869b439b55}\label{consts_8h_aaaedfc356f04494a6b0fab869b439b55}} 
+\index{consts.h@{consts.h}!cth\_thread\_n\_t@{cth\_thread\_n\_t}}
+\index{cth\_thread\_n\_t@{cth\_thread\_n\_t}!consts.h@{consts.h}}
+\doxysubsubsection{\texorpdfstring{cth\_thread\_n\_t}{cth\_thread\_n\_t}}
+{\footnotesize\ttfamily typedef uint16\+\_\+t \mbox{\hyperlink{consts_8h_aaaedfc356f04494a6b0fab869b439b55}{cth\+\_\+thread\+\_\+n\+\_\+t}}}
 
 Type to denote thread num 
 
@@ -214,8 +371,8 @@ C\+T\+H\+\_\+\+B\+A\+C\+K\+E\+N\+D\+\_\+\+M\+KL&\\
 C\+T\+H\+\_\+\+B\+A\+C\+K\+E\+N\+D\+\_\+\+O\+P\+E\+N\+B\+L\+AS&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_BACKEND\_ACCELERATE@{CTH\_BACKEND\_ACCELERATE}!consts.h@{consts.h}}\index{consts.h@{consts.h}!CTH\_BACKEND\_ACCELERATE@{CTH\_BACKEND\_ACCELERATE}}}\mbox{\Hypertarget{consts_8h_a2b134eeb7503f45168871021ab72fe40a22a1d47074afb9181bcedda25e6d7e7b}\label{consts_8h_a2b134eeb7503f45168871021ab72fe40a22a1d47074afb9181bcedda25e6d7e7b}} 
-C\+T\+H\+\_\+\+B\+A\+C\+K\+E\+N\+D\+\_\+\+A\+C\+C\+E\+L\+E\+R\+A\+TE&\\
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_BACKEND\_APPLE@{CTH\_BACKEND\_APPLE}!consts.h@{consts.h}}\index{consts.h@{consts.h}!CTH\_BACKEND\_APPLE@{CTH\_BACKEND\_APPLE}}}\mbox{\Hypertarget{consts_8h_a2b134eeb7503f45168871021ab72fe40a7053ea3d12643a58b60c4188ef38a802}\label{consts_8h_a2b134eeb7503f45168871021ab72fe40a7053ea3d12643a58b60c4188ef38a802}} 
+C\+T\+H\+\_\+\+B\+A\+C\+K\+E\+N\+D\+\_\+\+A\+P\+P\+LE&\\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_BACKEND\_CPU\_X86@{CTH\_BACKEND\_CPU\_X86}!consts.h@{consts.h}}\index{consts.h@{consts.h}!CTH\_BACKEND\_CPU\_X86@{CTH\_BACKEND\_CPU\_X86}}}\mbox{\Hypertarget{consts_8h_a2b134eeb7503f45168871021ab72fe40aee780f046d52c4f849e44fce5255e82d}\label{consts_8h_a2b134eeb7503f45168871021ab72fe40aee780f046d52c4f849e44fce5255e82d}} 
@@ -277,9 +434,44 @@ C\+T\+H\+\_\+\+N\+O\+D\+E\+\_\+\+T\+Y\+P\+E\+\_\+\+O\+P\+E\+R\+A\+T\+OR&\\
 \doxysubsubsection{\texorpdfstring{CTH\_OP\_ID}{CTH\_OP\_ID}}
 {\footnotesize\ttfamily enum \mbox{\hyperlink{consts_8h_a33c8ac7e3182f644b7cddd033bafeeb6}{C\+T\+H\+\_\+\+O\+P\+\_\+\+ID}}}
 
+
+
+Operator ID enum. 
+
+\begin{DoxyNote}{Note}
+ending \textquotesingle{};\textquotesingle{} is required 
+\end{DoxyNote}
 \begin{DoxyEnumFields}{Enumerator}
 \raisebox{\heightof{T}}[0pt][0pt]{\index{FOREACH\_OP\_ID@{FOREACH\_OP\_ID}!consts.h@{consts.h}}\index{consts.h@{consts.h}!FOREACH\_OP\_ID@{FOREACH\_OP\_ID}}}\mbox{\Hypertarget{consts_8h_a33c8ac7e3182f644b7cddd033bafeeb6a4123335913482f4909b9b6d1d8150179}\label{consts_8h_a33c8ac7e3182f644b7cddd033bafeeb6a4123335913482f4909b9b6d1d8150179}} 
 F\+O\+R\+E\+A\+C\+H\+\_\+\+O\+P\+\_\+\+ID&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{consts_8h_aadebe8e685042f9cb4b1c08459b74ccc}\label{consts_8h_aadebe8e685042f9cb4b1c08459b74ccc}} 
+\index{consts.h@{consts.h}!CTH\_PADDING\_MODE@{CTH\_PADDING\_MODE}}
+\index{CTH\_PADDING\_MODE@{CTH\_PADDING\_MODE}!consts.h@{consts.h}}
+\doxysubsubsection{\texorpdfstring{CTH\_PADDING\_MODE}{CTH\_PADDING\_MODE}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{consts_8h_aadebe8e685042f9cb4b1c08459b74ccc}{C\+T\+H\+\_\+\+P\+A\+D\+D\+I\+N\+G\+\_\+\+M\+O\+DE}}}
+
+
+
+Padding modes. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_PADDING\_MODE\_ZEROS@{CTH\_PADDING\_MODE\_ZEROS}!consts.h@{consts.h}}\index{consts.h@{consts.h}!CTH\_PADDING\_MODE\_ZEROS@{CTH\_PADDING\_MODE\_ZEROS}}}\mbox{\Hypertarget{consts_8h_aadebe8e685042f9cb4b1c08459b74cccab253c4df3c5001d17e598b20bf1524bd}\label{consts_8h_aadebe8e685042f9cb4b1c08459b74cccab253c4df3c5001d17e598b20bf1524bd}} 
+C\+T\+H\+\_\+\+P\+A\+D\+D\+I\+N\+G\+\_\+\+M\+O\+D\+E\+\_\+\+Z\+E\+R\+OS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_PADDING\_MODE\_REFLECT@{CTH\_PADDING\_MODE\_REFLECT}!consts.h@{consts.h}}\index{consts.h@{consts.h}!CTH\_PADDING\_MODE\_REFLECT@{CTH\_PADDING\_MODE\_REFLECT}}}\mbox{\Hypertarget{consts_8h_aadebe8e685042f9cb4b1c08459b74ccca045b30c071d44c21715e2f6c9efc4f94}\label{consts_8h_aadebe8e685042f9cb4b1c08459b74ccca045b30c071d44c21715e2f6c9efc4f94}} 
+C\+T\+H\+\_\+\+P\+A\+D\+D\+I\+N\+G\+\_\+\+M\+O\+D\+E\+\_\+\+R\+E\+F\+L\+E\+CT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_PADDING\_MODE\_REPLICATE@{CTH\_PADDING\_MODE\_REPLICATE}!consts.h@{consts.h}}\index{consts.h@{consts.h}!CTH\_PADDING\_MODE\_REPLICATE@{CTH\_PADDING\_MODE\_REPLICATE}}}\mbox{\Hypertarget{consts_8h_aadebe8e685042f9cb4b1c08459b74cccae2bba0025ba9314e64f91e5a3b3ec244}\label{consts_8h_aadebe8e685042f9cb4b1c08459b74cccae2bba0025ba9314e64f91e5a3b3ec244}} 
+C\+T\+H\+\_\+\+P\+A\+D\+D\+I\+N\+G\+\_\+\+M\+O\+D\+E\+\_\+\+R\+E\+P\+L\+I\+C\+A\+TE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_PADDING\_MODE\_CIRCULAR@{CTH\_PADDING\_MODE\_CIRCULAR}!consts.h@{consts.h}}\index{consts.h@{consts.h}!CTH\_PADDING\_MODE\_CIRCULAR@{CTH\_PADDING\_MODE\_CIRCULAR}}}\mbox{\Hypertarget{consts_8h_aadebe8e685042f9cb4b1c08459b74ccca8684e97e142389589411d8bf11200235}\label{consts_8h_aadebe8e685042f9cb4b1c08459b74ccca8684e97e142389589411d8bf11200235}} 
+C\+T\+H\+\_\+\+P\+A\+D\+D\+I\+N\+G\+\_\+\+M\+O\+D\+E\+\_\+\+C\+I\+R\+C\+U\+L\+AR&\\
 \hline
 
 \end{DoxyEnumFields}
@@ -344,6 +536,30 @@ C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+T\+Y\+P\+E\+\_\+\+U\+I\
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_TENSOR\_DATA\_TYPE\_BOOL@{CTH\_TENSOR\_DATA\_TYPE\_BOOL}!consts.h@{consts.h}}\index{consts.h@{consts.h}!CTH\_TENSOR\_DATA\_TYPE\_BOOL@{CTH\_TENSOR\_DATA\_TYPE\_BOOL}}}\mbox{\Hypertarget{consts_8h_a4b8846c2fb1629129ab48cd874d22355ac119fd4bedb33831236974862b5ff45e}\label{consts_8h_a4b8846c2fb1629129ab48cd874d22355ac119fd4bedb33831236974862b5ff45e}} 
 C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+T\+Y\+P\+E\+\_\+\+B\+O\+OL&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{consts_8h_a721b3631937c7eb5ba61846c2f93398e}\label{consts_8h_a721b3631937c7eb5ba61846c2f93398e}} 
+\index{consts.h@{consts.h}!CTH\_TENSOR\_DEVICE@{CTH\_TENSOR\_DEVICE}}
+\index{CTH\_TENSOR\_DEVICE@{CTH\_TENSOR\_DEVICE}!consts.h@{consts.h}}
+\doxysubsubsection{\texorpdfstring{CTH\_TENSOR\_DEVICE}{CTH\_TENSOR\_DEVICE}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{consts_8h_a721b3631937c7eb5ba61846c2f93398e}{C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+E\+V\+I\+CE}}}
+
+
+
+Tensor physical device. 
+
+Types\+:
+\begin{DoxyItemize}
+\item C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+N\+O\+R\+M\+AL\+: normal tensor lives in main mem
+\item C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+U\+DA\+: tensor lives in C\+U\+DA mem 
+\end{DoxyItemize}\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_TENSOR\_DEVICE\_NORMAL@{CTH\_TENSOR\_DEVICE\_NORMAL}!consts.h@{consts.h}}\index{consts.h@{consts.h}!CTH\_TENSOR\_DEVICE\_NORMAL@{CTH\_TENSOR\_DEVICE\_NORMAL}}}\mbox{\Hypertarget{consts_8h_a721b3631937c7eb5ba61846c2f93398ea57f98806108a788638ff25f7b5a51b2c}\label{consts_8h_a721b3631937c7eb5ba61846c2f93398ea57f98806108a788638ff25f7b5a51b2c}} 
+C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+N\+O\+R\+M\+AL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CTH\_TENSOR\_DEVICE\_CUDA@{CTH\_TENSOR\_DEVICE\_CUDA}!consts.h@{consts.h}}\index{consts.h@{consts.h}!CTH\_TENSOR\_DEVICE\_CUDA@{CTH\_TENSOR\_DEVICE\_CUDA}}}\mbox{\Hypertarget{consts_8h_a721b3631937c7eb5ba61846c2f93398ea5f60083b8f682e1431ff0d56d269327f}\label{consts_8h_a721b3631937c7eb5ba61846c2f93398ea5f60083b8f682e1431ff0d56d269327f}} 
+C\+T\+H\+\_\+\+T\+E\+N\+S\+O\+R\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+U\+DA&\\
 \hline
 
 \end{DoxyEnumFields}

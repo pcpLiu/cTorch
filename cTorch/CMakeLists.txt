@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 
-project(cTorch_lib DESCRIPTION "cTorch lib" LANGUAGES C)
+project(cTorch_lib DESCRIPTION "libctorch" LANGUAGES C)
 
 set(cTorch_lib_VERSION 0.1.0)
 
@@ -10,15 +10,18 @@ set(CMAKE_C_STANDARD 11)
 #
 # pthread
 #
-
-set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
-find_package(Threads REQUIRED)
+if(
+    ${ENABLE_SHARDING}
+    OR ${DEBUG_TEST}
+)
+    set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
+    find_package(Threads REQUIRED)
+endif()
 
 ################################################################################
 #
-# gprof
+# gprof in debug mode
 #
-
 if(${DEBUG_TEST}
     AND ${CMAKE_SYSTEM_NAME} STREQUAL "Linux"
     AND (
@@ -45,7 +48,6 @@ endif()
 #
 # Source files
 #
-
 set(core_src
     bit_array.c
     config.c
@@ -78,18 +80,21 @@ endif()
 # Setup cTorch target
 #
 
-add_library(cTorch
+add_library(ctorch
     STATIC
     ${core_src}
     ${operator_src}
 )
-target_include_directories(cTorch PUBLIC ${cTorch_project_SOURCE_DIR})
-set_target_properties(cTorch PROPERTIES C_STANDARD 11)
-set_target_properties(cTorch PROPERTIES VERSION ${cTorch_lib_VERSION})
+target_include_directories(ctorch PUBLIC ${cTorch_project_SOURCE_DIR})
+set_target_properties(ctorch PROPERTIES C_STANDARD 11)
+set_target_properties(ctorch PROPERTIES VERSION ${cTorch_lib_VERSION})
 
 # link pthread
-if(PTHREAD_ENABLE)
-    target_link_libraries(cTorch PUBLIC Threads::Threads)
+if(
+    ${ENABLE_SHARDING}
+    OR ${DEBUG_TEST}
+)
+    target_link_libraries(ctorch PUBLIC Threads::Threads)
 endif()
 
 # link gcov for test on linux
@@ -103,7 +108,7 @@ if(
     )
 )
     message("[cTorch]: Will link gcov")
-    target_link_libraries(cTorch PUBLIC gcov)
+    target_link_libraries(ctorch PUBLIC gcov)
 endif()
 
 
@@ -112,6 +117,7 @@ endif()
 # Backends link
 #
 
+# CPU
 if(${TARGET_CPU_ARCH} STREQUAL "x86")
 elseif(${TARGET_CPU_ARCH} STREQUAL "arm")
 else()
@@ -153,23 +159,19 @@ if(${BACKEND_MKL_ENABLE})
     endif()
     find_package(OpenMP REQUIRED)
     set(${CMAKE_C_FLAGS} "${CMAKE_C_FLAGS} -m64")
-    target_include_directories(cTorch PRIVATE ${BACKEND_MKL_INCLUDE_DIR})
+    target_include_directories(ctorch PRIVATE ${BACKEND_MKL_INCLUDE_DIR})
     message(
         "[cTorch]: Append link libraries for MKL backend: "
         "${MKL_INTERFACE_LIB}, ${MKL_CORE_LIB}, ${MKL_THREAD_LIB}, OpenMP::OpenMP_C"
     )
     # !Link order matters!
     target_link_libraries(
-        cTorch PUBLIC
+        ctorch PUBLIC
         ${MKL_INTERFACE_LIB}
         ${MKL_CORE_LIB}
         ${MKL_THREAD_LIB}
         OpenMP::OpenMP_C
     )
-endif()
-
-# CUDA
-if(${BACKEND_CUDA_ENABLE})
 endif()
 
 # Apple
@@ -185,7 +187,7 @@ if(${BACKEND_APPLE_ENABLE})
         "${APPLE_ACCELERATE_FRAMEWORK}"
     )
     target_link_libraries(
-        cTorch PUBLIC
+        ctorch PUBLIC
         ${APPLE_ACCELERATE_FRAMEWORK}
     )
 endif()
@@ -197,10 +199,10 @@ endif()
 #
 
 include(GNUInstallDirs)
-install(TARGETS cTorch
+install(TARGETS ctorch
     EXPORT cTorchTargets
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/cTorch
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/cTorch
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/ctorch
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/ctorch
 )
 install(
     DIRECTORY ${cTorch_lib_SOURCE_DIR}

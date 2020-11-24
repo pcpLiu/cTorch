@@ -1,0 +1,34 @@
+\hypertarget{op__div__apple_8c}{}\doxysection{c\+Torch/operators/apple/op\+\_\+div\+\_\+apple.c File Reference}
+\label{op__div__apple_8c}\index{cTorch/operators/apple/op\_div\_apple.c@{cTorch/operators/apple/op\_div\_apple.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/apple/op\+\_\+list\+\_\+apple.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/apple/util\+\_\+apple.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$Accelerate/\+Accelerate.\+h$>$}\newline
+Include dependency graph for op\+\_\+div\+\_\+apple.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__div__apple_8c_abe41b51ae16319c0b315890a56494b72}{op\+\_\+div\+\_\+apple}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em Add two input tensors and store result in output tensor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__div__apple_8c_abe41b51ae16319c0b315890a56494b72}\label{op__div__apple_8c_abe41b51ae16319c0b315890a56494b72}} 
+\index{op\_div\_apple.c@{op\_div\_apple.c}!op\_div\_apple@{op\_div\_apple}}
+\index{op\_div\_apple@{op\_div\_apple}!op\_div\_apple.c@{op\_div\_apple.c}}
+\doxysubsubsection{\texorpdfstring{op\_div\_apple()}{op\_div\_apple()}}
+{\footnotesize\ttfamily void op\+\_\+div\+\_\+apple (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+Add two input tensors and store result in output tensor. 
+
+\begin{DoxyNote}{Note}
+Apple backend only support float \& double tensors
+\end{DoxyNote}
+Inputs \& outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 2
+\item \# of output\+: 1
+\item Input and output should be same dimention and type. 
+\end{DoxyItemize}

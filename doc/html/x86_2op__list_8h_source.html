@@ -83,7 +83,7 @@ $(function() {
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">  Declare x86 op functions</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">*/</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="x86_2op__list_8h.html#a9a8c0aa646dd268e53437a43938dc991">   11</a></span>&#160;<span class="preprocessor">#define X86_OP_FUNC_NAME(op) op_##op##_x86</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="x86_2op__list_8h.html#af9a44a108ddf33a4b4c528d04db52162">   12</a></span>&#160;<span class="preprocessor">#define X86_OP_FUNC_DECLARE(op) void X86_OP_FUNC_NAME(op)(CTorchOperator *);</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="x86_2op__list_8h.html#af9a44a108ddf33a4b4c528d04db52162">   12</a></span>&#160;<span class="preprocessor">#define X86_OP_FUNC_DECLARE(op) void X86_OP_FUNC_NAME(op)(CTHOperator *);</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="x86_2op__list_8h.html#a09d4b7ea805ec3908ee4aef613677625">   13</a></span>&#160;<span class="preprocessor">#define DECLARE_X86_ALL_OP_FUNCS FOREACH_OP_ID(X86_OP_FUNC_DECLARE)</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<a class="code" href="x86_2op__list_8h.html#a09d4b7ea805ec3908ee4aef613677625">DECLARE_X86_ALL_OP_FUNCS</a></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
@@ -93,16 +93,16 @@ $(function() {
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">/*</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">  Array of function pointers corresponding to each enabled operator</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">extern</span> void (*<a class="code" href="x86_2op__list_8h.html#a4258cb0339ffe09915724b111f042d08">fps_op_x86</a>[<a class="code" href="ops__enabled_8h.html#a6ef3f4e6edbb5e1f08a77820ba2fd93b">ENABLED_OP_NUM</a>])(<a class="code" href="structCTorchOperator.html">CTorchOperator</a> *);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">extern</span> void (*<a class="code" href="x86_2op__list_8h.html#aee533e12528b1b1b27e91d226f35ea0b">fps_op_x86</a>[<a class="code" href="ops__enabled_8h.html#a6ef3f4e6edbb5e1f08a77820ba2fd93b">ENABLED_OP_NUM</a>])(<a class="code" href="structCTHOperator.html">CTHOperator</a> *);</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* OP_LIST_X86_H */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aops__enabled_8h_html_a6ef3f4e6edbb5e1f08a77820ba2fd93b"><div class="ttname"><a href="ops__enabled_8h.html#a6ef3f4e6edbb5e1f08a77820ba2fd93b">ENABLED_OP_NUM</a></div><div class="ttdeci">#define ENABLED_OP_NUM</div><div class="ttdef"><b>Definition:</b> ops_enabled.h:7</div></div>
+<div class="ttc" id="astructCTHOperator_html"><div class="ttname"><a href="structCTHOperator.html">CTHOperator</a></div><div class="ttdef"><b>Definition:</b> operator.h:9</div></div>
 <div class="ttc" id="aoperator_8h_html"><div class="ttname"><a href="operator_8h.html">operator.h</a></div></div>
 <div class="ttc" id="ax86_2op__list_8h_html_a09d4b7ea805ec3908ee4aef613677625"><div class="ttname"><a href="x86_2op__list_8h.html#a09d4b7ea805ec3908ee4aef613677625">DECLARE_X86_ALL_OP_FUNCS</a></div><div class="ttdeci">#define DECLARE_X86_ALL_OP_FUNCS</div><div class="ttdef"><b>Definition:</b> op_list.h:13</div></div>
+<div class="ttc" id="ax86_2op__list_8h_html_aee533e12528b1b1b27e91d226f35ea0b"><div class="ttname"><a href="x86_2op__list_8h.html#aee533e12528b1b1b27e91d226f35ea0b">fps_op_x86</a></div><div class="ttdeci">void(* fps_op_x86[ENABLED_OP_NUM])(CTHOperator *)</div><div class="ttdef"><b>Definition:</b> op_list.c:4</div></div>
 <div class="ttc" id="aconsts_8h_html"><div class="ttname"><a href="consts_8h.html">consts.h</a></div></div>
-<div class="ttc" id="astructCTorchOperator_html"><div class="ttname"><a href="structCTorchOperator.html">CTorchOperator</a></div><div class="ttdef"><b>Definition:</b> operator.h:9</div></div>
-<div class="ttc" id="ax86_2op__list_8h_html_a4258cb0339ffe09915724b111f042d08"><div class="ttname"><a href="x86_2op__list_8h.html#a4258cb0339ffe09915724b111f042d08">fps_op_x86</a></div><div class="ttdeci">void(* fps_op_x86[ENABLED_OP_NUM])(CTorchOperator *)</div><div class="ttdef"><b>Definition:</b> op_list.c:4</div></div>
 <div class="ttc" id="astorage_8h_html"><div class="ttname"><a href="storage_8h.html">storage.h</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

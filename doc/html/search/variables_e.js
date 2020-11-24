@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['read_5fmutex_794',['read_mutex',['../structCTorchQueue.html#a512fbde21c97da378f7a793ac38016df',1,'CTorchQueue']]],
-  ['ready_5fstatus_795',['ready_status',['../structCTorchScheduler.html#a30ce2fd4ce4f94267fc09a9dee24e169',1,'CTorchScheduler']]],
-  ['ret_5fqueue_796',['ret_queue',['../structCTorchScheduler.html#aff6be78d35825c4744de8caa7acf4de6',1,'CTorchScheduler']]]
+  ['queue_5fstatus_1286',['queue_status',['../structCTHScheduler.html#a05954a648b4213e63c196563c5ff5cee',1,'CTHScheduler']]]
 ];

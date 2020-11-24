@@ -104,12 +104,13 @@ Macros</h2></td></tr>
 <tr class="separator:a71f6cbed2a6b2ec7a80242d2607e6571"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04423b40053642806d1a16a7a4df44aa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger__util_8h.html#a04423b40053642806d1a16a7a4df44aa">CTH_LOG</a>(write_to, ...)</td></tr>
 <tr class="separator:a04423b40053642806d1a16a7a4df44aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17efd14ba9be0035f41370223957dbb0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger__util_8h.html#a17efd14ba9be0035f41370223957dbb0">NAN_EXIT</a>(val)</td></tr>
-<tr class="separator:a17efd14ba9be0035f41370223957dbb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28f2f3a043f3fff7153331dd1d47d858"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger__util_8h.html#a28f2f3a043f3fff7153331dd1d47d858">FORCE_EQ</a>(a,  b, ...)</td></tr>
 <tr class="separator:a28f2f3a043f3fff7153331dd1d47d858"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1889d6a66cae2f6d56ef2d52a311891"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger__util_8h.html#aa1889d6a66cae2f6d56ef2d52a311891">FORCE_NOT_EQ</a>(a,  b, ...)</td></tr>
 <tr class="separator:aa1889d6a66cae2f6d56ef2d52a311891"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae154af1eea5de60475384aea8335978d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger__util_8h.html#ae154af1eea5de60475384aea8335978d">FORCE_TRUE</a>(expression, ...)</td></tr>
+<tr class="memdesc:ae154af1eea5de60475384aea8335978d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Force expression is true.  <a href="logger__util_8h.html#ae154af1eea5de60475384aea8335978d">More...</a><br /></td></tr>
+<tr class="separator:ae154af1eea5de60475384aea8335978d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9ab19b2b3e07e3ac860411d60ae4e52"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger__util_8h.html#ad9ab19b2b3e07e3ac860411d60ae4e52">CTH_LOG_ERR</a>&#160;&#160;&#160;stderr</td></tr>
 <tr class="separator:ad9ab19b2b3e07e3ac860411d60ae4e52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf1afb548e8e6a3889c916f7d42bfb98"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger__util_8h.html#adf1afb548e8e6a3889c916f7d42bfb98">CTH_LOG_INFO</a>&#160;&#160;&#160;stdout</td></tr>
@@ -117,8 +118,6 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a91158ab31124bd4b92fa32ad30b65523"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger__util_8h.html#a91158ab31124bd4b92fa32ad30b65523">CTH_NAN_EXIT</a></td></tr>
-<tr class="separator:a91158ab31124bd4b92fa32ad30b65523"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45dac8ff7a7feac90b542f14758a2489"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger__util_8h.html#a45dac8ff7a7feac90b542f14758a2489">CTH_LOG_ENABLE</a></td></tr>
 <tr class="separator:a45dac8ff7a7feac90b542f14758a2489"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -414,27 +413,39 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a17efd14ba9be0035f41370223957dbb0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a17efd14ba9be0035f41370223957dbb0">&#9670;&nbsp;</a></span>NAN_EXIT</h2>
+<a id="ae154af1eea5de60475384aea8335978d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae154af1eea5de60475384aea8335978d">&#9670;&nbsp;</a></span>FORCE_TRUE</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define NAN_EXIT</td>
+          <td class="memname">#define FORCE_TRUE</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">val</td><td>)</td>
+          <td class="paramname">expression, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">do</span> {                                                                         \</div>
-<div class="line">    if (val != val &amp;&amp; <a class="code" href="logger__util_8h.html#a91158ab31124bd4b92fa32ad30b65523">CTH_NAN_EXIT</a> == <span class="keyword">true</span>) {                                  \</div>
-<div class="line">      FAIL_EXIT(<a class="code" href="logger__util_8h.html#ad9ab19b2b3e07e3ac860411d60ae4e52">CTH_LOG_ERR</a>, <span class="stringliteral">&quot;Value is NaN&quot;</span>);                                  \</div>
+<div class="line">    if (expression) {                                                          \</div>
+<div class="line">      FAIL_EXIT(<a class="code" href="logger__util_8h.html#ad9ab19b2b3e07e3ac860411d60ae4e52">CTH_LOG_ERR</a>, <span class="stringliteral">&quot;FORCE_TRUE failes. Info: %s&quot;</span>, __VA_ARGS__);      \</div>
 <div class="line">    }                                                                          \</div>
 <div class="line">  } <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
+<p>Force expression is true. </p>
+
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
@@ -452,24 +463,9 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a91158ab31124bd4b92fa32ad30b65523"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a91158ab31124bd4b92fa32ad30b65523">&#9670;&nbsp;</a></span>CTH_NAN_EXIT</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool CTH_NAN_EXIT</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 </div><!-- contents -->
-<div class="ttc" id="alogger__util_8h_html_a91158ab31124bd4b92fa32ad30b65523"><div class="ttname"><a href="logger__util_8h.html#a91158ab31124bd4b92fa32ad30b65523">CTH_NAN_EXIT</a></div><div class="ttdeci">bool CTH_NAN_EXIT</div><div class="ttdef"><b>Definition:</b> logger_util.c:7</div></div>
-<div class="ttc" id="alogger__util_8h_html_ad9ab19b2b3e07e3ac860411d60ae4e52"><div class="ttname"><a href="logger__util_8h.html#ad9ab19b2b3e07e3ac860411d60ae4e52">CTH_LOG_ERR</a></div><div class="ttdeci">#define CTH_LOG_ERR</div><div class="ttdef"><b>Definition:</b> logger_util.h:107</div></div>
-<div class="ttc" id="alogger__util_8h_html_a45dac8ff7a7feac90b542f14758a2489"><div class="ttname"><a href="logger__util_8h.html#a45dac8ff7a7feac90b542f14758a2489">CTH_LOG_ENABLE</a></div><div class="ttdeci">bool CTH_LOG_ENABLE</div><div class="ttdef"><b>Definition:</b> logger_util.c:8</div></div>
+<div class="ttc" id="alogger__util_8h_html_ad9ab19b2b3e07e3ac860411d60ae4e52"><div class="ttname"><a href="logger__util_8h.html#ad9ab19b2b3e07e3ac860411d60ae4e52">CTH_LOG_ERR</a></div><div class="ttdeci">#define CTH_LOG_ERR</div><div class="ttdef"><b>Definition:</b> logger_util.h:106</div></div>
+<div class="ttc" id="alogger__util_8h_html_a45dac8ff7a7feac90b542f14758a2489"><div class="ttname"><a href="logger__util_8h.html#a45dac8ff7a7feac90b542f14758a2489">CTH_LOG_ENABLE</a></div><div class="ttdeci">bool CTH_LOG_ENABLE</div><div class="ttdef"><b>Definition:</b> logger_util.c:7</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

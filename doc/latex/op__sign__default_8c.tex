@@ -1,0 +1,63 @@
+\hypertarget{op__sign__default_8c}{}\doxysection{c\+Torch/operators/default/op\+\_\+sign\+\_\+default.c File Reference}
+\label{op__sign__default_8c}\index{cTorch/operators/default/op\_sign\_default.c@{cTorch/operators/default/op\_sign\_default.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/op\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/util.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$tgmath.\+h$>$}\newline
+Include dependency graph for op\+\_\+sign\+\_\+default.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{op__sign__default_8c_ac337b04ecf0b511a5e056c350cf89f26}{\+\_\+cth\+\_\+sign\+\_\+kernel}}(input\+\_\+ptr,  output\+\_\+ptr,  N,  data\+\_\+type)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__sign__default_8c_ae3e5e50f00ece8955dc52d438a5e2ca0}{op\+\_\+sign\+\_\+cpu}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em Returns a new tensor with the sigmoid of the elements of input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{op__sign__default_8c_ac337b04ecf0b511a5e056c350cf89f26}\label{op__sign__default_8c_ac337b04ecf0b511a5e056c350cf89f26}} 
+\index{op\_sign\_default.c@{op\_sign\_default.c}!\_cth\_sign\_kernel@{\_cth\_sign\_kernel}}
+\index{\_cth\_sign\_kernel@{\_cth\_sign\_kernel}!op\_sign\_default.c@{op\_sign\_default.c}}
+\doxysubsubsection{\texorpdfstring{\_cth\_sign\_kernel}{\_cth\_sign\_kernel}}
+{\footnotesize\ttfamily \#define \+\_\+cth\+\_\+sign\+\_\+kernel(\begin{DoxyParamCaption}\item[{}]{input\+\_\+ptr,  }\item[{}]{output\+\_\+ptr,  }\item[{}]{N,  }\item[{}]{data\+\_\+type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                                                         \(\backslash\)}
+\DoxyCodeLine{    data\_type *input\_t = (data\_type *)input\_ptr;                               \(\backslash\)}
+\DoxyCodeLine{    data\_type *output\_t = (data\_type *)output\_ptr;                             \(\backslash\)}
+\DoxyCodeLine{    for (\textcolor{keywordtype}{int} i = 0; i < N; i++) \{                                              \(\backslash\)}
+\DoxyCodeLine{      if (0 == input\_t[i]) \{                                                   \(\backslash\)}
+\DoxyCodeLine{        output\_t[i] = 0;                                                       \(\backslash\)}
+\DoxyCodeLine{      \} \textcolor{keywordflow}{else} \{                                                                 \(\backslash\)}
+\DoxyCodeLine{        output\_t[i] = (data\_type)(input\_t[i] > 0 ? 1 : -\/1);                    \(\backslash\)}
+\DoxyCodeLine{      \}                                                                        \(\backslash\)}
+\DoxyCodeLine{    \}                                                                          \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__sign__default_8c_ae3e5e50f00ece8955dc52d438a5e2ca0}\label{op__sign__default_8c_ae3e5e50f00ece8955dc52d438a5e2ca0}} 
+\index{op\_sign\_default.c@{op\_sign\_default.c}!op\_sign\_cpu@{op\_sign\_cpu}}
+\index{op\_sign\_cpu@{op\_sign\_cpu}!op\_sign\_default.c@{op\_sign\_default.c}}
+\doxysubsubsection{\texorpdfstring{op\_sign\_cpu()}{op\_sign\_cpu()}}
+{\footnotesize\ttfamily void op\+\_\+sign\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+Returns a new tensor with the sigmoid of the elements of input. 
+
+\begin{DoxyNote}{Note}
+Possible output values\+: \mbox{[}1, -\/1, 0\mbox{]}
+\end{DoxyNote}
+Inputs \& outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 1
+\item \# of output\+: 1
+\item Input and output should be same dimention and type. 
+\end{DoxyItemize}

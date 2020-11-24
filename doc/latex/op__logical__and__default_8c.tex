@@ -12,7 +12,7 @@ Include dependency graph for op\+\_\+logical\+\_\+and\+\_\+default.\+c\+:
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{op__logical__and__default_8c_a32777b88ee666185ff303ebb15582782}{op\+\_\+logical\+\_\+and\+\_\+cpu}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op)
+void \mbox{\hyperlink{op__logical__and__default_8c_af0a9b07cfeda85ab00e1a5a0cb3dffa0}{op\+\_\+logical\+\_\+and\+\_\+cpu}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
 \end{DoxyCompactItemize}
 
 
@@ -26,15 +26,15 @@ void \mbox{\hyperlink{op__logical__and__default_8c_a32777b88ee666185ff303ebb1558
 {\bfseries Value\+:}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                                                         \(\backslash\)}
-\DoxyCodeLine{    CTorchTensor *input\_1 = \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\_at}}(\mbox{\hyperlink{structCTorchTensor}{CTorchTensor}})(op-\/>in\_bound\_tensors, 0);   \(\backslash\)}
-\DoxyCodeLine{    CTorchTensor *input\_2 = \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\_at}}(\mbox{\hyperlink{structCTorchTensor}{CTorchTensor}})(op-\/>in\_bound\_tensors, 1);   \(\backslash\)}
-\DoxyCodeLine{    CTorchTensor *output = \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\_at}}(\mbox{\hyperlink{structCTorchTensor}{CTorchTensor}})(op-\/>out\_bound\_tensors, 0);   \(\backslash\)}
+\DoxyCodeLine{    CTHTensor *input\_1 = \mbox{\hyperlink{generic__array_8h_ac901ab85173b85409fea4299ba0e6111}{cth\_array\_at}}(\mbox{\hyperlink{structCTHTensor}{CTHTensor}})(op-\/>in\_bound\_tensors, 0);     \(\backslash\)}
+\DoxyCodeLine{    CTHTensor *input\_2 = \mbox{\hyperlink{generic__array_8h_ac901ab85173b85409fea4299ba0e6111}{cth\_array\_at}}(\mbox{\hyperlink{structCTHTensor}{CTHTensor}})(op-\/>in\_bound\_tensors, 1);     \(\backslash\)}
+\DoxyCodeLine{    CTHTensor *output = \mbox{\hyperlink{generic__array_8h_ac901ab85173b85409fea4299ba0e6111}{cth\_array\_at}}(\mbox{\hyperlink{structCTHTensor}{CTHTensor}})(op-\/>out\_bound\_tensors, 0);     \(\backslash\)}
 \DoxyCodeLine{    data\_type *in\_ptr\_1 = (data\_type *)input\_1-\/>values;                        \(\backslash\)}
 \DoxyCodeLine{    data\_type *in\_ptr\_2 = (data\_type *)input\_2-\/>values;                        \(\backslash\)}
 \DoxyCodeLine{    bool *out\_ptr = (\textcolor{keywordtype}{bool} *)output-\/>values;                                    \(\backslash\)}
-\DoxyCodeLine{    \mbox{\hyperlink{consts_8h_a836488a94280dd54797615abb7e699ca}{tensor\_size\_t}} N = input\_1-\/>meta\_info-\/>n\_elements;                          \(\backslash\)}
+\DoxyCodeLine{    \mbox{\hyperlink{consts_8h_acc36bfe0d9496aa5573f4fd4f6cde518}{cth\_tensor\_dim\_t}} N = input\_1-\/>meta\_info-\/>n\_elements;                       \(\backslash\)}
 \DoxyCodeLine{                                                                               \(\backslash\)}
-\DoxyCodeLine{    for (\mbox{\hyperlink{consts_8h_a836488a94280dd54797615abb7e699ca}{tensor\_size\_t}} i = 0; i < N; i++) \{                                    \(\backslash\)}
+\DoxyCodeLine{    for (\mbox{\hyperlink{consts_8h_acc36bfe0d9496aa5573f4fd4f6cde518}{cth\_tensor\_dim\_t}} i = 0; i < N; i++) \{                                 \(\backslash\)}
 \DoxyCodeLine{      out\_ptr[i] = (in\_ptr\_1[i] == 0 ? 0 : 1) == (in\_ptr\_2[i] == 0 ? 0 : 1);   \(\backslash\)}
 \DoxyCodeLine{    \}                                                                          \(\backslash\)}
 \DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
@@ -43,11 +43,11 @@ void \mbox{\hyperlink{op__logical__and__default_8c_a32777b88ee666185ff303ebb1558
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{op__logical__and__default_8c_a32777b88ee666185ff303ebb15582782}\label{op__logical__and__default_8c_a32777b88ee666185ff303ebb15582782}} 
+\mbox{\Hypertarget{op__logical__and__default_8c_af0a9b07cfeda85ab00e1a5a0cb3dffa0}\label{op__logical__and__default_8c_af0a9b07cfeda85ab00e1a5a0cb3dffa0}} 
 \index{op\_logical\_and\_default.c@{op\_logical\_and\_default.c}!op\_logical\_and\_cpu@{op\_logical\_and\_cpu}}
 \index{op\_logical\_and\_cpu@{op\_logical\_and\_cpu}!op\_logical\_and\_default.c@{op\_logical\_and\_default.c}}
 \doxysubsubsection{\texorpdfstring{op\_logical\_and\_cpu()}{op\_logical\_and\_cpu()}}
-{\footnotesize\ttfamily void op\+\_\+logical\+\_\+and\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void op\+\_\+logical\+\_\+and\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
 
 Computes the element-\/wise logical A\+ND of the given input tensors. Zeros are treated as False and nonzeros are treated as True.
 

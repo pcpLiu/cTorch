@@ -1,0 +1,78 @@
+\hypertarget{structCTHScheduler}{}\doxysection{C\+T\+H\+Scheduler Struct Reference}
+\label{structCTHScheduler}\index{CTHScheduler@{CTHScheduler}}
+
+
+{\ttfamily \#include $<$scheduler.\+h$>$}
+
+
+
+Collaboration diagram for C\+T\+H\+Scheduler\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structCTHScheduler_a899cf2148d6edbcaab02461f3da99b6f}{C\+T\+H\+Array}} (\mbox{\hyperlink{structCTHQueueJob}{C\+T\+H\+Queue\+Job}}) $\ast$job\+\_\+list
+\end{DoxyCompactItemize}
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structCTHQueue}{C\+T\+H\+Queue}} $\ast$ \mbox{\hyperlink{structCTHScheduler_aa746de1e5abebcc738157780ea4fd747}{exe\+\_\+queue}}
+\item 
+\mbox{\hyperlink{structCTHQueue}{C\+T\+H\+Queue}} $\ast$ \mbox{\hyperlink{structCTHScheduler_a42ac3e5fbccc975e134e81697e94e70b}{ret\+\_\+queue}}
+\item 
+\mbox{\hyperlink{structcth__bit__array__t}{cth\+\_\+bit\+\_\+array\+\_\+t}} $\ast$ \mbox{\hyperlink{structCTHScheduler_a05954a648b4213e63c196563c5ff5cee}{queue\+\_\+status}}
+\item 
+\mbox{\hyperlink{structcth__bit__array__t}{cth\+\_\+bit\+\_\+array\+\_\+t}} $\ast$ \mbox{\hyperlink{structCTHScheduler_a703893315420f949dcffe1a5c8bce709}{done\+\_\+status}}
+\item 
+\mbox{\hyperlink{structcth__bit__array__t}{cth\+\_\+bit\+\_\+array\+\_\+t}} $\ast$ \mbox{\hyperlink{structCTHScheduler_a6b44e2ecfb87360b09d7c2d2b42ba420}{ready\+\_\+status}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Scheduler is used to arrange a graph\textquotesingle{}s execution order 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structCTHScheduler_a899cf2148d6edbcaab02461f3da99b6f}\label{structCTHScheduler_a899cf2148d6edbcaab02461f3da99b6f}} 
+\index{CTHScheduler@{CTHScheduler}!CTHArray@{CTHArray}}
+\index{CTHArray@{CTHArray}!CTHScheduler@{CTHScheduler}}
+\doxysubsubsection{\texorpdfstring{CTHArray()}{CTHArray()}}
+{\footnotesize\ttfamily C\+T\+H\+Scheduler\+::\+C\+T\+H\+Array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHQueueJob}{C\+T\+H\+Queue\+Job}}}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{structCTHScheduler_a703893315420f949dcffe1a5c8bce709}\label{structCTHScheduler_a703893315420f949dcffe1a5c8bce709}} 
+\index{CTHScheduler@{CTHScheduler}!done\_status@{done\_status}}
+\index{done\_status@{done\_status}!CTHScheduler@{CTHScheduler}}
+\doxysubsubsection{\texorpdfstring{done\_status}{done\_status}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structcth__bit__array__t}{cth\+\_\+bit\+\_\+array\+\_\+t}}$\ast$ C\+T\+H\+Scheduler\+::done\+\_\+status}
+
+\mbox{\Hypertarget{structCTHScheduler_aa746de1e5abebcc738157780ea4fd747}\label{structCTHScheduler_aa746de1e5abebcc738157780ea4fd747}} 
+\index{CTHScheduler@{CTHScheduler}!exe\_queue@{exe\_queue}}
+\index{exe\_queue@{exe\_queue}!CTHScheduler@{CTHScheduler}}
+\doxysubsubsection{\texorpdfstring{exe\_queue}{exe\_queue}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structCTHQueue}{C\+T\+H\+Queue}}$\ast$ C\+T\+H\+Scheduler\+::exe\+\_\+queue}
+
+\mbox{\Hypertarget{structCTHScheduler_a05954a648b4213e63c196563c5ff5cee}\label{structCTHScheduler_a05954a648b4213e63c196563c5ff5cee}} 
+\index{CTHScheduler@{CTHScheduler}!queue\_status@{queue\_status}}
+\index{queue\_status@{queue\_status}!CTHScheduler@{CTHScheduler}}
+\doxysubsubsection{\texorpdfstring{queue\_status}{queue\_status}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structcth__bit__array__t}{cth\+\_\+bit\+\_\+array\+\_\+t}}$\ast$ C\+T\+H\+Scheduler\+::queue\+\_\+status}
+
+\mbox{\Hypertarget{structCTHScheduler_a6b44e2ecfb87360b09d7c2d2b42ba420}\label{structCTHScheduler_a6b44e2ecfb87360b09d7c2d2b42ba420}} 
+\index{CTHScheduler@{CTHScheduler}!ready\_status@{ready\_status}}
+\index{ready\_status@{ready\_status}!CTHScheduler@{CTHScheduler}}
+\doxysubsubsection{\texorpdfstring{ready\_status}{ready\_status}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structcth__bit__array__t}{cth\+\_\+bit\+\_\+array\+\_\+t}}$\ast$ C\+T\+H\+Scheduler\+::ready\+\_\+status}
+
+\mbox{\Hypertarget{structCTHScheduler_a42ac3e5fbccc975e134e81697e94e70b}\label{structCTHScheduler_a42ac3e5fbccc975e134e81697e94e70b}} 
+\index{CTHScheduler@{CTHScheduler}!ret\_queue@{ret\_queue}}
+\index{ret\_queue@{ret\_queue}!CTHScheduler@{CTHScheduler}}
+\doxysubsubsection{\texorpdfstring{ret\_queue}{ret\_queue}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structCTHQueue}{C\+T\+H\+Queue}}$\ast$ C\+T\+H\+Scheduler\+::ret\+\_\+queue}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+c\+Torch/\mbox{\hyperlink{scheduler_8h}{scheduler.\+h}}\end{DoxyCompactItemize}

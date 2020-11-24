@@ -1,0 +1,45 @@
+\hypertarget{op__square__default_8c}{}\doxysection{c\+Torch/operators/default/op\+\_\+square\+\_\+default.c File Reference}
+\label{op__square__default_8c}\index{cTorch/operators/default/op\_square\_default.c@{cTorch/operators/default/op\_square\_default.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/op\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/util.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$tgmath.\+h$>$}\newline
+Include dependency graph for op\+\_\+square\+\_\+default.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{op__square__default_8c_a65b661341cbcc273f9da7c6996c76c4f}{\+\_\+cth\+\_\+squre\+\_\+kernel}}(x)~(x $\ast$ x)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__square__default_8c_af0ff84373f03c2836a1ecf57ab39fe4c}{op\+\_\+square\+\_\+cpu}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em Returns a new tensor with the square of the elements of input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{op__square__default_8c_a65b661341cbcc273f9da7c6996c76c4f}\label{op__square__default_8c_a65b661341cbcc273f9da7c6996c76c4f}} 
+\index{op\_square\_default.c@{op\_square\_default.c}!\_cth\_squre\_kernel@{\_cth\_squre\_kernel}}
+\index{\_cth\_squre\_kernel@{\_cth\_squre\_kernel}!op\_square\_default.c@{op\_square\_default.c}}
+\doxysubsubsection{\texorpdfstring{\_cth\_squre\_kernel}{\_cth\_squre\_kernel}}
+{\footnotesize\ttfamily \#define \+\_\+cth\+\_\+squre\+\_\+kernel(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(x $\ast$ x)}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__square__default_8c_af0ff84373f03c2836a1ecf57ab39fe4c}\label{op__square__default_8c_af0ff84373f03c2836a1ecf57ab39fe4c}} 
+\index{op\_square\_default.c@{op\_square\_default.c}!op\_square\_cpu@{op\_square\_cpu}}
+\index{op\_square\_cpu@{op\_square\_cpu}!op\_square\_default.c@{op\_square\_default.c}}
+\doxysubsubsection{\texorpdfstring{op\_square\_cpu()}{op\_square\_cpu()}}
+{\footnotesize\ttfamily void op\+\_\+square\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+Returns a new tensor with the square of the elements of input. 
+
+Inputs \& outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 1
+\item \# of output\+: 1
+\item Input and output should be same dimention and type. 
+\end{DoxyItemize}

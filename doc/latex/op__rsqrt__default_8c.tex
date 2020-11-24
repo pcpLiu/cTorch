@@ -1,0 +1,45 @@
+\hypertarget{op__rsqrt__default_8c}{}\doxysection{c\+Torch/operators/default/op\+\_\+rsqrt\+\_\+default.c File Reference}
+\label{op__rsqrt__default_8c}\index{cTorch/operators/default/op\_rsqrt\_default.c@{cTorch/operators/default/op\_rsqrt\_default.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/op\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/default/util.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$tgmath.\+h$>$}\newline
+Include dependency graph for op\+\_\+rsqrt\+\_\+default.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{op__rsqrt__default_8c_aa96c91f6892cf94f530108243aba9b29}{\+\_\+cth\+\_\+rsqrt\+\_\+kernel}}(x)~(1 / sqrt(x))
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__rsqrt__default_8c_a86ca5141b3f7efc5ebc6be47c1bbf379}{op\+\_\+rsqrt\+\_\+cpu}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em Returns a new tensor with the reciprocal of the square-\/root of each of the elements of input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{op__rsqrt__default_8c_aa96c91f6892cf94f530108243aba9b29}\label{op__rsqrt__default_8c_aa96c91f6892cf94f530108243aba9b29}} 
+\index{op\_rsqrt\_default.c@{op\_rsqrt\_default.c}!\_cth\_rsqrt\_kernel@{\_cth\_rsqrt\_kernel}}
+\index{\_cth\_rsqrt\_kernel@{\_cth\_rsqrt\_kernel}!op\_rsqrt\_default.c@{op\_rsqrt\_default.c}}
+\doxysubsubsection{\texorpdfstring{\_cth\_rsqrt\_kernel}{\_cth\_rsqrt\_kernel}}
+{\footnotesize\ttfamily \#define \+\_\+cth\+\_\+rsqrt\+\_\+kernel(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(1 / sqrt(x))}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__rsqrt__default_8c_a86ca5141b3f7efc5ebc6be47c1bbf379}\label{op__rsqrt__default_8c_a86ca5141b3f7efc5ebc6be47c1bbf379}} 
+\index{op\_rsqrt\_default.c@{op\_rsqrt\_default.c}!op\_rsqrt\_cpu@{op\_rsqrt\_cpu}}
+\index{op\_rsqrt\_cpu@{op\_rsqrt\_cpu}!op\_rsqrt\_default.c@{op\_rsqrt\_default.c}}
+\doxysubsubsection{\texorpdfstring{op\_rsqrt\_cpu()}{op\_rsqrt\_cpu()}}
+{\footnotesize\ttfamily void op\+\_\+rsqrt\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+Returns a new tensor with the reciprocal of the square-\/root of each of the elements of input. 
+
+Inputs \& outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 1
+\item \# of output\+: 1
+\item Input and output should be same dimention and type. 
+\end{DoxyItemize}

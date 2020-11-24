@@ -97,7 +97,7 @@ This graph shows which files directly or indirectly include this file:</div>
 Macros</h2></td></tr>
 <tr class="memitem:a9a8c0aa646dd268e53437a43938dc991"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="x86_2op__list_8h.html#a9a8c0aa646dd268e53437a43938dc991">X86_OP_FUNC_NAME</a>(op)&#160;&#160;&#160;op_##op##_x86</td></tr>
 <tr class="separator:a9a8c0aa646dd268e53437a43938dc991"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af9a44a108ddf33a4b4c528d04db52162"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="x86_2op__list_8h.html#af9a44a108ddf33a4b4c528d04db52162">X86_OP_FUNC_DECLARE</a>(op)&#160;&#160;&#160;void <a class="el" href="x86_2op__list_8h.html#a9a8c0aa646dd268e53437a43938dc991">X86_OP_FUNC_NAME</a>(op)(<a class="el" href="structCTorchOperator.html">CTorchOperator</a> *);</td></tr>
+<tr class="memitem:af9a44a108ddf33a4b4c528d04db52162"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="x86_2op__list_8h.html#af9a44a108ddf33a4b4c528d04db52162">X86_OP_FUNC_DECLARE</a>(op)&#160;&#160;&#160;void <a class="el" href="x86_2op__list_8h.html#a9a8c0aa646dd268e53437a43938dc991">X86_OP_FUNC_NAME</a>(op)(<a class="el" href="structCTHOperator.html">CTHOperator</a> *);</td></tr>
 <tr class="separator:af9a44a108ddf33a4b4c528d04db52162"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09d4b7ea805ec3908ee4aef613677625"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="x86_2op__list_8h.html#a09d4b7ea805ec3908ee4aef613677625">DECLARE_X86_ALL_OP_FUNCS</a>&#160;&#160;&#160;<a class="el" href="consts_8h.html#a33c8ac7e3182f644b7cddd033bafeeb6a4123335913482f4909b9b6d1d8150179">FOREACH_OP_ID</a>(<a class="el" href="x86_2op__list_8h.html#af9a44a108ddf33a4b4c528d04db52162">X86_OP_FUNC_DECLARE</a>)</td></tr>
 <tr class="separator:a09d4b7ea805ec3908ee4aef613677625"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -108,8 +108,8 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a4258cb0339ffe09915724b111f042d08"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="x86_2op__list_8h.html#a4258cb0339ffe09915724b111f042d08">fps_op_x86</a> [<a class="el" href="ops__enabled_8h.html#a6ef3f4e6edbb5e1f08a77820ba2fd93b">ENABLED_OP_NUM</a>])(<a class="el" href="structCTorchOperator.html">CTorchOperator</a> *)</td></tr>
-<tr class="separator:a4258cb0339ffe09915724b111f042d08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee533e12528b1b1b27e91d226f35ea0b"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="x86_2op__list_8h.html#aee533e12528b1b1b27e91d226f35ea0b">fps_op_x86</a> [<a class="el" href="ops__enabled_8h.html#a6ef3f4e6edbb5e1f08a77820ba2fd93b">ENABLED_OP_NUM</a>])(<a class="el" href="structCTHOperator.html">CTHOperator</a> *)</td></tr>
+<tr class="separator:aee533e12528b1b1b27e91d226f35ea0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a09d4b7ea805ec3908ee4aef613677625"></a>
@@ -169,7 +169,7 @@ Variables</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">op</td><td>)</td>
-          <td>&#160;&#160;&#160;void <a class="el" href="x86_2op__list_8h.html#a9a8c0aa646dd268e53437a43938dc991">X86_OP_FUNC_NAME</a>(op)(<a class="el" href="structCTorchOperator.html">CTorchOperator</a> *);</td>
+          <td>&#160;&#160;&#160;void <a class="el" href="x86_2op__list_8h.html#a9a8c0aa646dd268e53437a43938dc991">X86_OP_FUNC_NAME</a>(op)(<a class="el" href="structCTHOperator.html">CTHOperator</a> *);</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -195,14 +195,14 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="a4258cb0339ffe09915724b111f042d08"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4258cb0339ffe09915724b111f042d08">&#9670;&nbsp;</a></span>fps_op_x86</h2>
+<a id="aee533e12528b1b1b27e91d226f35ea0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee533e12528b1b1b27e91d226f35ea0b">&#9670;&nbsp;</a></span>fps_op_x86</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void(* fps_op_x86[<a class="el" href="ops__enabled_8h.html#a6ef3f4e6edbb5e1f08a77820ba2fd93b">ENABLED_OP_NUM</a>])(<a class="el" href="structCTorchOperator.html">CTorchOperator</a> *)</td>
+          <td class="memname">void(* fps_op_x86[<a class="el" href="ops__enabled_8h.html#a6ef3f4e6edbb5e1f08a77820ba2fd93b">ENABLED_OP_NUM</a>])(<a class="el" href="structCTHOperator.html">CTHOperator</a> *)</td>
         </tr>
       </table>
 </div><div class="memdoc">

@@ -9,8 +9,8 @@ Include dependency graph for mem\+\_\+util.\+c\+:
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void $\ast$ \mbox{\hyperlink{mem__util_8c_adfcbe83a51779f41f38798ed6893de7f}{cth\+\_\+malloc}} (size\+\_\+t size, const char $\ast$name)
-\item 
+void $\ast$ \mbox{\hyperlink{mem__util_8c_ae431869b301455c263f3c94ceb705d37}{cth\+\_\+malloc}} (size\+\_\+t size, const char $\ast$record\+\_\+name, const char $\ast$file\+\_\+name, int line\+\_\+num, const char $\ast$func\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Malloc with optional argument to give a descriptive name to this memory. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{mem__util_8c_a8fafe435a419aa9b56ab0a87d343118b}{cth\+\_\+free}} (void $\ast$ptr, const char $\ast$file\+\_\+name, int line\+\_\+num, const char $\ast$func\+\_\+name)
 \item 
 void \mbox{\hyperlink{mem__util_8c_a466bd7cc2958d3d1c404048abc5ac397}{cth\+\_\+free\+\_\+soft}} (void $\ast$ptr, const char $\ast$file\+\_\+name, int line\+\_\+num, const char $\ast$func\+\_\+name)
@@ -38,16 +38,29 @@ Free pointer with some location info passed. \mbox{\Hypertarget{mem__util_8c_a46
 \doxysubsubsection{\texorpdfstring{cth\_free\_soft()}{cth\_free\_soft()}}
 {\footnotesize\ttfamily void cth\+\_\+free\+\_\+soft (\begin{DoxyParamCaption}\item[{void $\ast$}]{ptr,  }\item[{const char $\ast$}]{file\+\_\+name,  }\item[{int}]{lineno,  }\item[{const char $\ast$}]{func\+\_\+name }\end{DoxyParamCaption})}
 
-Free if pointer is not N\+U\+LL. If it\textquotesingle{}s N\+U\+LL, do nothing. \mbox{\Hypertarget{mem__util_8c_adfcbe83a51779f41f38798ed6893de7f}\label{mem__util_8c_adfcbe83a51779f41f38798ed6893de7f}} 
+Free if pointer is not N\+U\+LL. If it\textquotesingle{}s N\+U\+LL, do nothing. \mbox{\Hypertarget{mem__util_8c_ae431869b301455c263f3c94ceb705d37}\label{mem__util_8c_ae431869b301455c263f3c94ceb705d37}} 
 \index{mem\_util.c@{mem\_util.c}!cth\_malloc@{cth\_malloc}}
 \index{cth\_malloc@{cth\_malloc}!mem\_util.c@{mem\_util.c}}
 \doxysubsubsection{\texorpdfstring{cth\_malloc()}{cth\_malloc()}}
-{\footnotesize\ttfamily void$\ast$ cth\+\_\+malloc (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void$\ast$ cth\+\_\+malloc (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size,  }\item[{const char $\ast$}]{record\+\_\+name,  }\item[{const char $\ast$}]{file\+\_\+name,  }\item[{int}]{line\+\_\+num,  }\item[{const char $\ast$}]{func\+\_\+name }\end{DoxyParamCaption})}
 
-Malloc with optional argument to give a descriptive name to this memory.
 
-Parameters\+:
-\begin{DoxyItemize}
-\item size\+: memory size
-\item name\+: memory block name. Could be N\+U\+LL 
-\end{DoxyItemize}
+
+Malloc with optional argument to give a descriptive name to this memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & \\
+\hline
+{\em record\+\_\+name} & \\
+\hline
+{\em file\+\_\+name} & \\
+\hline
+{\em line\+\_\+num} & \\
+\hline
+{\em func\+\_\+name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void$\ast$ 
+\end{DoxyReturn}

@@ -1,0 +1,34 @@
+\hypertarget{op__sin__apple_8c}{}\doxysection{c\+Torch/operators/apple/op\+\_\+sin\+\_\+apple.c File Reference}
+\label{op__sin__apple_8c}\index{cTorch/operators/apple/op\_sin\_apple.c@{cTorch/operators/apple/op\_sin\_apple.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/apple/op\+\_\+list\+\_\+apple.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/apple/util\+\_\+apple.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$Accelerate/\+Accelerate.\+h$>$}\newline
+Include dependency graph for op\+\_\+sin\+\_\+apple.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__sin__apple_8c_a02ef2d6e45baf76905aabefbe7af2fae}{op\+\_\+sin\+\_\+apple}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em sin(x) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__sin__apple_8c_a02ef2d6e45baf76905aabefbe7af2fae}\label{op__sin__apple_8c_a02ef2d6e45baf76905aabefbe7af2fae}} 
+\index{op\_sin\_apple.c@{op\_sin\_apple.c}!op\_sin\_apple@{op\_sin\_apple}}
+\index{op\_sin\_apple@{op\_sin\_apple}!op\_sin\_apple.c@{op\_sin\_apple.c}}
+\doxysubsubsection{\texorpdfstring{op\_sin\_apple()}{op\_sin\_apple()}}
+{\footnotesize\ttfamily void op\+\_\+sin\+\_\+apple (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+sin(x) 
+
+\begin{DoxyNote}{Note}
+Apple backend only support float \& double tensors
+\end{DoxyNote}
+Inputs \& outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 1
+\item \# of output\+: 1
+\item Input and output should be same dimention and type. 
+\end{DoxyItemize}

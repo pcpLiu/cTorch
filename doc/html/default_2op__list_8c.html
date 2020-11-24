@@ -84,32 +84,32 @@ Include dependency graph for op_list.c:</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:ad8a13cc50e8c2f3e22da1d73ee77cafd"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="default_2op__list_8c.html#ad8a13cc50e8c2f3e22da1d73ee77cafd">fps_op_default</a> [<a class="el" href="ops__enabled_8h.html#a6ef3f4e6edbb5e1f08a77820ba2fd93b">ENABLED_OP_NUM</a>])(<a class="el" href="structCTorchOperator.html">CTorchOperator</a> *)</td></tr>
-<tr class="separator:ad8a13cc50e8c2f3e22da1d73ee77cafd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb2e266c40111a95d2b4f4778734750a"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="default_2op__list_8c.html#acb2e266c40111a95d2b4f4778734750a">fps_op_default</a> [<a class="el" href="ops__enabled_8h.html#a6ef3f4e6edbb5e1f08a77820ba2fd93b">ENABLED_OP_NUM</a>])(<a class="el" href="structCTHOperator.html">CTHOperator</a> *)</td></tr>
+<tr class="separator:acb2e266c40111a95d2b4f4778734750a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="ad8a13cc50e8c2f3e22da1d73ee77cafd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad8a13cc50e8c2f3e22da1d73ee77cafd">&#9670;&nbsp;</a></span>fps_op_default</h2>
+<a id="acb2e266c40111a95d2b4f4778734750a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb2e266c40111a95d2b4f4778734750a">&#9670;&nbsp;</a></span>fps_op_default</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void(* fps_op_default[<a class="el" href="ops__enabled_8h.html#a6ef3f4e6edbb5e1f08a77820ba2fd93b">ENABLED_OP_NUM</a>])(<a class="el" href="structCTorchOperator.html">CTorchOperator</a> *)</td>
+          <td class="memname">void(* fps_op_default[<a class="el" href="ops__enabled_8h.html#a6ef3f4e6edbb5e1f08a77820ba2fd93b">ENABLED_OP_NUM</a>])(<a class="el" href="structCTHOperator.html">CTHOperator</a> *)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">    <a class="code" href="op__abs__default_8c.html#ac2bd178a998d8f6348c3f4441c4afc72">op_abs_cpu</a>, <a class="code" href="op__acos__default_8c.html#a6f5d3e31944400048d26a7f8ad8f1db6">op_acos_cpu</a>, <a class="code" href="op__add__default_8c.html#a85d30a7b52b1fd1e9d7f432059c3581e">op_add_cpu</a>, <a class="code" href="op__addcdiv__default_8c.html#a215abdb6c1dcac634e61b05037e5295a">op_addcdiv_cpu</a>}</div>
+<div class="line">    <a class="code" href="op__abs__default_8c.html#aa0227c520fc2f7060e420476be99d458">op_abs_cpu</a>, <a class="code" href="op__acos__default_8c.html#a2dd44c76f9ad58c71eec91d577a8db1f">op_acos_cpu</a>, <a class="code" href="op__add__default_8c.html#a061f865e646788ba47e718c7b4e7bdac">op_add_cpu</a>, <a class="code" href="op__addcdiv__default_8c.html#a99172e1c3528922e208970d8b96e4b9a">op_addcdiv_cpu</a>}</div>
 </div><!-- fragment --><p>Array of function pointers corresponding to each enabled operator </p>
 
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aop__addcdiv__default_8c_html_a215abdb6c1dcac634e61b05037e5295a"><div class="ttname"><a href="op__addcdiv__default_8c.html#a215abdb6c1dcac634e61b05037e5295a">op_addcdiv_cpu</a></div><div class="ttdeci">void op_addcdiv_cpu(CTorchOperator *op)</div><div class="ttdef"><b>Definition:</b> op_addcdiv_default.c:39</div></div>
-<div class="ttc" id="aop__abs__default_8c_html_ac2bd178a998d8f6348c3f4441c4afc72"><div class="ttname"><a href="op__abs__default_8c.html#ac2bd178a998d8f6348c3f4441c4afc72">op_abs_cpu</a></div><div class="ttdeci">void op_abs_cpu(CTorchOperator *op)</div><div class="ttdef"><b>Definition:</b> op_abs_default.c:28</div></div>
-<div class="ttc" id="aop__acos__default_8c_html_a6f5d3e31944400048d26a7f8ad8f1db6"><div class="ttname"><a href="op__acos__default_8c.html#a6f5d3e31944400048d26a7f8ad8f1db6">op_acos_cpu</a></div><div class="ttdeci">void op_acos_cpu(CTorchOperator *op)</div><div class="ttdef"><b>Definition:</b> op_acos_default.c:10</div></div>
-<div class="ttc" id="aop__add__default_8c_html_a85d30a7b52b1fd1e9d7f432059c3581e"><div class="ttname"><a href="op__add__default_8c.html#a85d30a7b52b1fd1e9d7f432059c3581e">op_add_cpu</a></div><div class="ttdeci">void op_add_cpu(CTorchOperator *op)</div><div class="ttdef"><b>Definition:</b> op_add_default.c:14</div></div>
+<div class="ttc" id="aop__addcdiv__default_8c_html_a99172e1c3528922e208970d8b96e4b9a"><div class="ttname"><a href="op__addcdiv__default_8c.html#a99172e1c3528922e208970d8b96e4b9a">op_addcdiv_cpu</a></div><div class="ttdeci">void op_addcdiv_cpu(CTHOperator *op)</div><div class="ttdef"><b>Definition:</b> op_addcdiv_default.c:39</div></div>
+<div class="ttc" id="aop__abs__default_8c_html_aa0227c520fc2f7060e420476be99d458"><div class="ttname"><a href="op__abs__default_8c.html#aa0227c520fc2f7060e420476be99d458">op_abs_cpu</a></div><div class="ttdeci">void op_abs_cpu(CTHOperator *op)</div><div class="ttdoc">Compute the element-wise absolute value of the given input tensor.</div><div class="ttdef"><b>Definition:</b> op_abs_default.c:17</div></div>
+<div class="ttc" id="aop__acos__default_8c_html_a2dd44c76f9ad58c71eec91d577a8db1f"><div class="ttname"><a href="op__acos__default_8c.html#a2dd44c76f9ad58c71eec91d577a8db1f">op_acos_cpu</a></div><div class="ttdeci">void op_acos_cpu(CTHOperator *op)</div><div class="ttdef"><b>Definition:</b> op_acos_default.c:10</div></div>
+<div class="ttc" id="aop__add__default_8c_html_a061f865e646788ba47e718c7b4e7bdac"><div class="ttname"><a href="op__add__default_8c.html#a061f865e646788ba47e718c7b4e7bdac">op_add_cpu</a></div><div class="ttdeci">void op_add_cpu(CTHOperator *op)</div><div class="ttdef"><b>Definition:</b> op_add_default.c:14</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

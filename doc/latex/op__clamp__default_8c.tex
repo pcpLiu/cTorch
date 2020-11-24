@@ -12,7 +12,7 @@ Include dependency graph for op\+\_\+clamp\+\_\+default.\+c\+:
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{op__clamp__default_8c_a3c40461de59ba68eda85a51f7b061ecc}{op\+\_\+clamp\+\_\+cpu}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op)
+void \mbox{\hyperlink{op__clamp__default_8c_aa1719a0210c7b3e87907b49afbce3b4d}{op\+\_\+clamp\+\_\+cpu}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
 \end{DoxyCompactItemize}
 
 
@@ -26,35 +26,35 @@ void \mbox{\hyperlink{op__clamp__default_8c_a3c40461de59ba68eda85a51f7b061ecc}{o
 {\bfseries Value\+:}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                                                         \(\backslash\)}
-\DoxyCodeLine{    CTorchTensor *input = \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\_at}}(\mbox{\hyperlink{structCTorchTensor}{CTorchTensor}})(op-\/>in\_bound\_tensors, 0);     \(\backslash\)}
+\DoxyCodeLine{    CTHTensor *input = \mbox{\hyperlink{generic__array_8h_ac901ab85173b85409fea4299ba0e6111}{cth\_array\_at}}(\mbox{\hyperlink{structCTHTensor}{CTHTensor}})(op-\/>in\_bound\_tensors, 0);       \(\backslash\)}
 \DoxyCodeLine{    data\_type *input\_ptr = (data\_type *)input-\/>values;                         \(\backslash\)}
-\DoxyCodeLine{    \mbox{\hyperlink{structCTorchTensor}{CTorchTensor}} *output = \mbox{\hyperlink{generic__array_8h_ad4f060e1ca32e302b70eb2485119e1c1}{array\_at}}(\mbox{\hyperlink{structCTorchTensor}{CTorchTensor}})(op-\/>out\_bound\_tensors, 0);   \(\backslash\)}
+\DoxyCodeLine{    \mbox{\hyperlink{structCTHTensor}{CTHTensor}} *output = \mbox{\hyperlink{generic__array_8h_ac901ab85173b85409fea4299ba0e6111}{cth\_array\_at}}(\mbox{\hyperlink{structCTHTensor}{CTHTensor}})(op-\/>out\_bound\_tensors, 0);     \(\backslash\)}
 \DoxyCodeLine{    data\_type *output\_ptr = (data\_type *)output-\/>values;                       \(\backslash\)}
-\DoxyCodeLine{    \textcolor{keywordtype}{float} min, max;                                                            \(\backslash\)}
-\DoxyCodeLine{    \mbox{\hyperlink{params_8h_ac513cf2f45d51f597ea72592b0f32a78}{EXTRACT\_PARAM\_VALUE}}(op, \mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954ead63c3bfc56de2014cdf608baa80ae6ff}{CTH\_PARAM\_TYPE\_MIN\_FLOAT32}}, min, min);             \(\backslash\)}
-\DoxyCodeLine{    EXTRACT\_PARAM\_VALUE(op, \mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea12d718a190ee00a1c22857f99573dbc9}{CTH\_PARAM\_TYPE\_MAX\_FLOAT32}}, max, max);             \(\backslash\)}
-\DoxyCodeLine{    tensor\_size\_t N = input-\/>meta\_info-\/>n\_elements;                            \(\backslash\)}
+\DoxyCodeLine{    \textcolor{keywordtype}{float} *min, *max;                                                          \(\backslash\)}
+\DoxyCodeLine{    \mbox{\hyperlink{params_8h_ac513cf2f45d51f597ea72592b0f32a78}{EXTRACT\_PARAM\_VALUE}}(op, \mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954ea2f3dc8173603bed4a06be6a72cf7b3ac}{CTH\_PARAM\_TYPE\_MIN}}, min, min);                     \(\backslash\)}
+\DoxyCodeLine{    EXTRACT\_PARAM\_VALUE(op, \mbox{\hyperlink{params_8h_ad3e45c2ce529cdb2b57043951fb0954eab5391dad70795330f50a0defbf82962d}{CTH\_PARAM\_TYPE\_MAX}}, max, max);                     \(\backslash\)}
+\DoxyCodeLine{    cth\_tensor\_dim\_t N = input-\/>meta\_info-\/>n\_elements;                         \(\backslash\)}
 \DoxyCodeLine{                                                                               \(\backslash\)}
-\DoxyCodeLine{    for (\mbox{\hyperlink{consts_8h_a836488a94280dd54797615abb7e699ca}{tensor\_size\_t}} i = 0; i < N; i++) \{                                    \(\backslash\)}
-\DoxyCodeLine{      if (input\_ptr[i] < min) \{                                                \(\backslash\)}
-\DoxyCodeLine{        output\_ptr[i] = min;                                                   \(\backslash\)}
-\DoxyCodeLine{      \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (input\_ptr[i] > max) \{                                         \(\backslash\)}
-\DoxyCodeLine{        output\_ptr[i] = max;                                                   \(\backslash\)}
+\DoxyCodeLine{    for (\mbox{\hyperlink{consts_8h_acc36bfe0d9496aa5573f4fd4f6cde518}{cth\_tensor\_dim\_t}} i = 0; i < N; i++) \{                                 \(\backslash\)}
+\DoxyCodeLine{      if (input\_ptr[i] < *min) \{                                               \(\backslash\)}
+\DoxyCodeLine{        output\_ptr[i] = *min;                                                  \(\backslash\)}
+\DoxyCodeLine{      \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (input\_ptr[i] > *max) \{                                        \(\backslash\)}
+\DoxyCodeLine{        output\_ptr[i] = *max;                                                  \(\backslash\)}
 \DoxyCodeLine{      \} \textcolor{keywordflow}{else} \{                                                                 \(\backslash\)}
 \DoxyCodeLine{        output\_ptr[i] = input\_ptr[i];                                          \(\backslash\)}
 \DoxyCodeLine{      \}                                                                        \(\backslash\)}
 \DoxyCodeLine{    \}                                                                          \(\backslash\)}
-\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0);}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
 
 \end{DoxyCode}
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{op__clamp__default_8c_a3c40461de59ba68eda85a51f7b061ecc}\label{op__clamp__default_8c_a3c40461de59ba68eda85a51f7b061ecc}} 
+\mbox{\Hypertarget{op__clamp__default_8c_aa1719a0210c7b3e87907b49afbce3b4d}\label{op__clamp__default_8c_aa1719a0210c7b3e87907b49afbce3b4d}} 
 \index{op\_clamp\_default.c@{op\_clamp\_default.c}!op\_clamp\_cpu@{op\_clamp\_cpu}}
 \index{op\_clamp\_cpu@{op\_clamp\_cpu}!op\_clamp\_default.c@{op\_clamp\_default.c}}
 \doxysubsubsection{\texorpdfstring{op\_clamp\_cpu()}{op\_clamp\_cpu()}}
-{\footnotesize\ttfamily void op\+\_\+clamp\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void op\+\_\+clamp\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
 
 Clamp op\+: \href{https://pytorch.org/docs/stable/torch.html\#torch.clamp}{\texttt{ https\+://pytorch.\+org/docs/stable/torch.\+html\#torch.\+clamp}}
 
@@ -66,8 +66,8 @@ Op requirement\+:
 \end{DoxyItemize}
 \item \# of arguments\+: 2
 \begin{DoxyItemize}
-\item C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+M\+I\+N\+\_\+\+F\+L\+O\+A\+T32
-\item C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+M\+A\+X\+\_\+\+F\+L\+O\+A\+T32
+\item C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+M\+IN
+\item C\+T\+H\+\_\+\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+M\+AX
 \end{DoxyItemize}
 \item \# of output tensors\+: 1
 \begin{DoxyItemize}

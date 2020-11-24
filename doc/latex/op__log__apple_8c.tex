@@ -1,0 +1,34 @@
+\hypertarget{op__log__apple_8c}{}\doxysection{c\+Torch/operators/apple/op\+\_\+log\+\_\+apple.c File Reference}
+\label{op__log__apple_8c}\index{cTorch/operators/apple/op\_log\_apple.c@{cTorch/operators/apple/op\_log\_apple.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/apple/op\+\_\+list\+\_\+apple.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/apple/util\+\_\+apple.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$Accelerate/\+Accelerate.\+h$>$}\newline
+Include dependency graph for op\+\_\+log\+\_\+apple.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__log__apple_8c_a92b08a923dbadbaafe6377f34b392953}{op\+\_\+log\+\_\+apple}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em log\+\_\+e(x) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__log__apple_8c_a92b08a923dbadbaafe6377f34b392953}\label{op__log__apple_8c_a92b08a923dbadbaafe6377f34b392953}} 
+\index{op\_log\_apple.c@{op\_log\_apple.c}!op\_log\_apple@{op\_log\_apple}}
+\index{op\_log\_apple@{op\_log\_apple}!op\_log\_apple.c@{op\_log\_apple.c}}
+\doxysubsubsection{\texorpdfstring{op\_log\_apple()}{op\_log\_apple()}}
+{\footnotesize\ttfamily void op\+\_\+log\+\_\+apple (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+log\+\_\+e(x) 
+
+\begin{DoxyNote}{Note}
+Apple backend only support float \& double tensors
+\end{DoxyNote}
+Inputs \& outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 1
+\item \# of output\+: 1
+\item Input and output should be same dimention and type. 
+\end{DoxyItemize}

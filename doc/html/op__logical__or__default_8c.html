@@ -91,8 +91,8 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aad5cf07faaef60712fe5c976063c14fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="op__logical__or__default_8c.html#aad5cf07faaef60712fe5c976063c14fe">op_logical_or_cpu</a> (<a class="el" href="structCTorchOperator.html">CTorchOperator</a> *op)</td></tr>
-<tr class="separator:aad5cf07faaef60712fe5c976063c14fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24d34fdebd32b2f4cbaed845e7f5fdac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="op__logical__or__default_8c.html#a24d34fdebd32b2f4cbaed845e7f5fdac">op_logical_or_cpu</a> (<a class="el" href="structCTHOperator.html">CTHOperator</a> *op)</td></tr>
+<tr class="separator:a24d34fdebd32b2f4cbaed845e7f5fdac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a659d2b99df548ff1eb9703f16698f1d7"></a>
@@ -121,16 +121,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">do</span> {                                                                         \</div>
-<div class="line">    CTorchTensor *input_1 = <a class="code" href="generic__array_8h.html#ad4f060e1ca32e302b70eb2485119e1c1">array_at</a>(<a class="code" href="structCTorchTensor.html">CTorchTensor</a>)(op-&gt;in_bound_tensors, 0);   \</div>
-<div class="line">    CTorchTensor *input_2 = <a class="code" href="generic__array_8h.html#ad4f060e1ca32e302b70eb2485119e1c1">array_at</a>(<a class="code" href="structCTorchTensor.html">CTorchTensor</a>)(op-&gt;in_bound_tensors, 1);   \</div>
-<div class="line">    CTorchTensor *output = <a class="code" href="generic__array_8h.html#ad4f060e1ca32e302b70eb2485119e1c1">array_at</a>(<a class="code" href="structCTorchTensor.html">CTorchTensor</a>)(op-&gt;out_bound_tensors, 0);   \</div>
+<div class="line">    CTHTensor *input_1 = <a class="code" href="generic__array_8h.html#ac901ab85173b85409fea4299ba0e6111">cth_array_at</a>(<a class="code" href="structCTHTensor.html">CTHTensor</a>)(op-&gt;in_bound_tensors, 0);     \</div>
+<div class="line">    CTHTensor *input_2 = <a class="code" href="generic__array_8h.html#ac901ab85173b85409fea4299ba0e6111">cth_array_at</a>(<a class="code" href="structCTHTensor.html">CTHTensor</a>)(op-&gt;in_bound_tensors, 1);     \</div>
+<div class="line">    CTHTensor *output = <a class="code" href="generic__array_8h.html#ac901ab85173b85409fea4299ba0e6111">cth_array_at</a>(<a class="code" href="structCTHTensor.html">CTHTensor</a>)(op-&gt;out_bound_tensors, 0);     \</div>
 <div class="line">    data_type *in_ptr_1 = (data_type *)input_1-&gt;values;                        \</div>
 <div class="line">    data_type *in_ptr_2 = (data_type *)input_2-&gt;values;                        \</div>
 <div class="line">    bool *out_ptr = (<span class="keywordtype">bool</span> *)output-&gt;values;                                    \</div>
-<div class="line">    <a class="code" href="consts_8h.html#a836488a94280dd54797615abb7e699ca">tensor_size_t</a> N = input_1-&gt;meta_info-&gt;n_elements;                          \</div>
+<div class="line">    <a class="code" href="consts_8h.html#acc36bfe0d9496aa5573f4fd4f6cde518">cth_tensor_dim_t</a> N = input_1-&gt;meta_info-&gt;n_elements;                       \</div>
 <div class="line">                                                                               \</div>
 <div class="line">    uint16_t x, y;                                                             \</div>
-<div class="line">    for (<a class="code" href="consts_8h.html#a836488a94280dd54797615abb7e699ca">tensor_size_t</a> i = 0; i &lt; N; i++) {                                    \</div>
+<div class="line">    for (<a class="code" href="consts_8h.html#acc36bfe0d9496aa5573f4fd4f6cde518">cth_tensor_dim_t</a> i = 0; i &lt; N; i++) {                                 \</div>
 <div class="line">      x = (in_ptr_1[i] == 0 ? 0 : 1);                                          \</div>
 <div class="line">      y = (in_ptr_2[i] == 0 ? 0 : 1);                                          \</div>
 <div class="line">      out_ptr[i] = (x == 1 || y == 1 ? true : <span class="keyword">false</span>);                          \</div>
@@ -140,8 +140,8 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="aad5cf07faaef60712fe5c976063c14fe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aad5cf07faaef60712fe5c976063c14fe">&#9670;&nbsp;</a></span>op_logical_or_cpu()</h2>
+<a id="a24d34fdebd32b2f4cbaed845e7f5fdac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24d34fdebd32b2f4cbaed845e7f5fdac">&#9670;&nbsp;</a></span>op_logical_or_cpu()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -149,7 +149,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void op_logical_or_cpu </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structCTorchOperator.html">CTorchOperator</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structCTHOperator.html">CTHOperator</a> *&#160;</td>
           <td class="paramname"><em>op</em></td><td>)</td>
           <td></td>
         </tr>
@@ -168,9 +168,9 @@ of output: 1</h1>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aconsts_8h_html_a836488a94280dd54797615abb7e699ca"><div class="ttname"><a href="consts_8h.html#a836488a94280dd54797615abb7e699ca">tensor_size_t</a></div><div class="ttdeci">#define tensor_size_t</div><div class="ttdef"><b>Definition:</b> consts.h:109</div></div>
-<div class="ttc" id="astructCTorchTensor_html"><div class="ttname"><a href="structCTorchTensor.html">CTorchTensor</a></div><div class="ttdef"><b>Definition:</b> storage.h:42</div></div>
-<div class="ttc" id="ageneric__array_8h_html_ad4f060e1ca32e302b70eb2485119e1c1"><div class="ttname"><a href="generic__array_8h.html#ad4f060e1ca32e302b70eb2485119e1c1">array_at</a></div><div class="ttdeci">#define array_at(T)</div><div class="ttdef"><b>Definition:</b> generic_array.h:90</div></div>
+<div class="ttc" id="astructCTHTensor_html"><div class="ttname"><a href="structCTHTensor.html">CTHTensor</a></div><div class="ttdef"><b>Definition:</b> storage.h:44</div></div>
+<div class="ttc" id="aconsts_8h_html_acc36bfe0d9496aa5573f4fd4f6cde518"><div class="ttname"><a href="consts_8h.html#acc36bfe0d9496aa5573f4fd4f6cde518">cth_tensor_dim_t</a></div><div class="ttdeci">int64_t cth_tensor_dim_t</div><div class="ttdef"><b>Definition:</b> consts.h:112</div></div>
+<div class="ttc" id="ageneric__array_8h_html_ac901ab85173b85409fea4299ba0e6111"><div class="ttname"><a href="generic__array_8h.html#ac901ab85173b85409fea4299ba0e6111">cth_array_at</a></div><div class="ttdeci">#define cth_array_at(T)</div><div class="ttdef"><b>Definition:</b> generic_array.h:92</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

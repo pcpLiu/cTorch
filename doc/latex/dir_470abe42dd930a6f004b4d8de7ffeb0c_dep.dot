@@ -1,0 +1,9 @@
+digraph "cTorch/operators/mkl" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_fe853cb77c2d75d984b93720a04eebde {
+    graph [ bgcolor="#ddddee", pencolor="black", label="operators" fontname="Helvetica", fontsize="10", URL="dir_fe853cb77c2d75d984b93720a04eebde.html"]
+  dir_470abe42dd930a6f004b4d8de7ffeb0c [shape=box, label="mkl", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_470abe42dd930a6f004b4d8de7ffeb0c.html"];
+  }
+}

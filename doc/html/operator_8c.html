@@ -76,8 +76,8 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="operator_8h_source.html">cTorch/operator.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="consts_8h_source.html">cTorch/consts.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="debug__util_8h_source.html">cTorch/debug_util.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="logger__util_8h_source.html">cTorch/logger_util.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="mem__util_8h_source.html">cTorch/mem_util.h</a>&quot;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for operator.c:</div>
@@ -88,54 +88,54 @@ Include dependency graph for operator.c:</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a77da9d20f0cccc3e57f6a810a58ab965"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#a77da9d20f0cccc3e57f6a810a58ab965">impl_new_list_item_func</a> (<a class="el" href="structCTorchOperator.html">CTorchOperator</a>)</td></tr>
-<tr class="separator:a77da9d20f0cccc3e57f6a810a58ab965"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2f777008f7a7ca3505b52da73c0816f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#af2f777008f7a7ca3505b52da73c0816f">impl_new_list_func</a> (<a class="el" href="structCTorchOperator.html">CTorchOperator</a>)</td></tr>
-<tr class="separator:af2f777008f7a7ca3505b52da73c0816f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeef26a94dc05c26ca8775bb61e91170c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#aeef26a94dc05c26ca8775bb61e91170c">impl_insert_list_func</a> (<a class="el" href="structCTorchOperator.html">CTorchOperator</a>)</td></tr>
-<tr class="separator:aeef26a94dc05c26ca8775bb61e91170c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab23d914242bbb6845947fbd67cb36b30"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#ab23d914242bbb6845947fbd67cb36b30">impl_list_at_func</a> (<a class="el" href="structCTorchOperator.html">CTorchOperator</a>)</td></tr>
-<tr class="separator:ab23d914242bbb6845947fbd67cb36b30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a864ceba4fb5b08f50f94460a520e7f29"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#a864ceba4fb5b08f50f94460a520e7f29">impl_list_pop_func</a> (<a class="el" href="structCTorchOperator.html">CTorchOperator</a>)</td></tr>
-<tr class="separator:a864ceba4fb5b08f50f94460a520e7f29"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54708755e39655e4285736d429668df5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#a54708755e39655e4285736d429668df5">impl_free_list_func</a> (<a class="el" href="structCTorchOperator.html">CTorchOperator</a>)</td></tr>
-<tr class="separator:a54708755e39655e4285736d429668df5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e5c459a7908e6a08ea77ba25c2fecb6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#a6e5c459a7908e6a08ea77ba25c2fecb6">impl_free_list_deep_func</a> (<a class="el" href="structCTorchOperator.html">CTorchOperator</a>)</td></tr>
-<tr class="separator:a6e5c459a7908e6a08ea77ba25c2fecb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7056a14913f74d8438d2a961081bb629"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#a7056a14913f74d8438d2a961081bb629">FORCE_INPUT_OUTPUT_TSR_NUM_EQ</a> (<a class="el" href="structCTorchOperator.html">CTorchOperator</a> *op)</td></tr>
-<tr class="separator:a7056a14913f74d8438d2a961081bb629"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb67cdf1a8a6af21edb83ee865e895a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#abb67cdf1a8a6af21edb83ee865e895a5">OP_FAIL_ON_DTYPE</a> (<a class="el" href="structCTorchOperator.html">CTorchOperator</a> *op, <a class="el" href="consts_8h.html#a4b8846c2fb1629129ab48cd874d22355">CTH_TENSOR_DATA_TYPE</a> data_type)</td></tr>
-<tr class="separator:abb67cdf1a8a6af21edb83ee865e895a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99fc1951e3b659a8410fcad5e2c680e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#a99fc1951e3b659a8410fcad5e2c680e5">FORCE_OP_INPUT_EXIST</a> (<a class="el" href="structCTorchOperator.html">CTorchOperator</a> *op, const char *name, <a class="el" href="consts_8h.html#a4b8846c2fb1629129ab48cd874d22355">CTH_TENSOR_DATA_TYPE</a> data_type)</td></tr>
-<tr class="separator:a99fc1951e3b659a8410fcad5e2c680e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d2cd9a6722b264af95a7af4de8e3b13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#a4d2cd9a6722b264af95a7af4de8e3b13">FORCE_OP_INPUT_OUTPUT_TENSOR_NUM</a> (const <a class="el" href="structCTorchOperator.html">CTorchOperator</a> *op, const <a class="el" href="generic__array_8h.html#a5576d7cabba712c1f5704c9a30f5161e">array_index_t</a> num_input, const <a class="el" href="generic__array_8h.html#a5576d7cabba712c1f5704c9a30f5161e">array_index_t</a> num_output)</td></tr>
-<tr class="separator:a4d2cd9a6722b264af95a7af4de8e3b13"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc9a1868f0ed2f66f3c0863ac011b494"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#acc9a1868f0ed2f66f3c0863ac011b494">FORCE_OP_PARAM_NUM</a> (const <a class="el" href="structCTorchOperator.html">CTorchOperator</a> *op, const <a class="el" href="generic__array_8h.html#a5576d7cabba712c1f5704c9a30f5161e">array_index_t</a> num_param)</td></tr>
-<tr class="separator:acc9a1868f0ed2f66f3c0863ac011b494"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a983d61cac21ced452eeb3cb21bce8636"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#a983d61cac21ced452eeb3cb21bce8636">FORCE_OP_PARAM_EXIST</a> (<a class="el" href="structCTorchOperator.html">CTorchOperator</a> *op, const <a class="el" href="params_8h.html#ad3e45c2ce529cdb2b57043951fb0954e">CTH_PARAM_TYPE</a> type)</td></tr>
-<tr class="separator:a983d61cac21ced452eeb3cb21bce8636"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31addde69cfe4f41c88d1f9a03c82878"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCTorchTensor.html">CTorchTensor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#a31addde69cfe4f41c88d1f9a03c82878">_get_tensor_by_name</a> (<a class="el" href="generic__array_8h.html#a63831a0f4382b42bdc2f6f59babed432">Array</a>(<a class="el" href="structCTorchTensor.html">CTorchTensor</a>) *tensor_array, const char *name, bool fail_exit)</td></tr>
-<tr class="separator:a31addde69cfe4f41c88d1f9a03c82878"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa912c0fd2500c4c77d900da1e14cb08b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCTorchTensor.html">CTorchTensor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#aa912c0fd2500c4c77d900da1e14cb08b">cth_get_input_by_name</a> (<a class="el" href="structCTorchOperator.html">CTorchOperator</a> *op, const char *name, bool fail_exit)</td></tr>
-<tr class="separator:aa912c0fd2500c4c77d900da1e14cb08b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6d57757c60454a463b96fcdae7da46e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCTorchTensor.html">CTorchTensor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#af6d57757c60454a463b96fcdae7da46e">get_output_by_name</a> (<a class="el" href="structCTorchOperator.html">CTorchOperator</a> *op, const char *name, bool fail_exit)</td></tr>
-<tr class="separator:af6d57757c60454a463b96fcdae7da46e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36725058751c6af7eec0a33db4cc831d"><td class="memItemLeft" align="right" valign="top">void <a class="el" href="consts_8h.html#ad7d837be8ea11a60ea35da351cb958e7">struct_deep_free</a>()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#a36725058751c6af7eec0a33db4cc831d">CTorchOperator</a> (<a class="el" href="structCTorchOperator.html">CTorchOperator</a> *op)</td></tr>
-<tr class="separator:a36725058751c6af7eec0a33db4cc831d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3ae14110b0f050d9418373ce403b893"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCTorchParam.html">CTorchParam</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#ac3ae14110b0f050d9418373ce403b893">cth_get_param_by_type</a> (<a class="el" href="structCTorchOperator.html">CTorchOperator</a> *op, const <a class="el" href="params_8h.html#ad3e45c2ce529cdb2b57043951fb0954e">CTH_PARAM_TYPE</a> type, bool fail_exit)</td></tr>
-<tr class="separator:ac3ae14110b0f050d9418373ce403b893"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef96dd94b05f46beb6ea79d326503aad"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#aef96dd94b05f46beb6ea79d326503aad">cth_impl_new_list_item_func</a> (<a class="el" href="structCTHOperator.html">CTHOperator</a>)</td></tr>
+<tr class="separator:aef96dd94b05f46beb6ea79d326503aad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66dbe542fa0d064c3950b6bea8593210"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#a66dbe542fa0d064c3950b6bea8593210">cth_impl_new_list_func</a> (<a class="el" href="structCTHOperator.html">CTHOperator</a>)</td></tr>
+<tr class="separator:a66dbe542fa0d064c3950b6bea8593210"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38c5da50e3c7b7e475a2c27d65b1a4f1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#a38c5da50e3c7b7e475a2c27d65b1a4f1">cth_impl_insert_list_func</a> (<a class="el" href="structCTHOperator.html">CTHOperator</a>)</td></tr>
+<tr class="separator:a38c5da50e3c7b7e475a2c27d65b1a4f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab65dfe5d8ed7e5f7a66562762e20a366"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#ab65dfe5d8ed7e5f7a66562762e20a366">cth_impl_list_at_func</a> (<a class="el" href="structCTHOperator.html">CTHOperator</a>)</td></tr>
+<tr class="separator:ab65dfe5d8ed7e5f7a66562762e20a366"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4e5a4909f26fba38104e23217c5492c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#ad4e5a4909f26fba38104e23217c5492c">cth_impl_list_pop_func</a> (<a class="el" href="structCTHOperator.html">CTHOperator</a>)</td></tr>
+<tr class="separator:ad4e5a4909f26fba38104e23217c5492c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a348f5b51f8b5c532d5f1f9dd4b96b7a1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#a348f5b51f8b5c532d5f1f9dd4b96b7a1">cth_impl_free_list_func</a> (<a class="el" href="structCTHOperator.html">CTHOperator</a>)</td></tr>
+<tr class="separator:a348f5b51f8b5c532d5f1f9dd4b96b7a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a638740a50ba46ef4b4bfe20f771fec83"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#a638740a50ba46ef4b4bfe20f771fec83">cth_impl_free_list_deep_func</a> (<a class="el" href="structCTHOperator.html">CTHOperator</a>)</td></tr>
+<tr class="separator:a638740a50ba46ef4b4bfe20f771fec83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a893771330552c90a808e76b0cb46a582"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#a893771330552c90a808e76b0cb46a582">FORCE_INPUT_OUTPUT_TSR_NUM_EQ</a> (<a class="el" href="structCTHOperator.html">CTHOperator</a> *op)</td></tr>
+<tr class="separator:a893771330552c90a808e76b0cb46a582"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83598b07f7343895e120b274076a6806"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#a83598b07f7343895e120b274076a6806">OP_FAIL_ON_DTYPE</a> (<a class="el" href="structCTHOperator.html">CTHOperator</a> *op, <a class="el" href="consts_8h.html#a4b8846c2fb1629129ab48cd874d22355">CTH_TENSOR_DATA_TYPE</a> data_type)</td></tr>
+<tr class="separator:a83598b07f7343895e120b274076a6806"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a644d59f7f59fa7783069aade2976f679"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#a644d59f7f59fa7783069aade2976f679">FORCE_OP_INPUT_EXIST</a> (<a class="el" href="structCTHOperator.html">CTHOperator</a> *op, const char *name, <a class="el" href="consts_8h.html#a4b8846c2fb1629129ab48cd874d22355">CTH_TENSOR_DATA_TYPE</a> data_type)</td></tr>
+<tr class="separator:a644d59f7f59fa7783069aade2976f679"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74f22850d0cbeede1dca61a9a678ac37"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#a74f22850d0cbeede1dca61a9a678ac37">FORCE_OP_INPUT_OUTPUT_TENSOR_NUM</a> (const <a class="el" href="structCTHOperator.html">CTHOperator</a> *op, const <a class="el" href="generic__array_8h.html#ab65d5f828d04ccd28eef52253e8040d1">cth_array_index_t</a> num_input, const <a class="el" href="generic__array_8h.html#ab65d5f828d04ccd28eef52253e8040d1">cth_array_index_t</a> num_output)</td></tr>
+<tr class="separator:a74f22850d0cbeede1dca61a9a678ac37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dbc78fe9fd9f266a6225796dd1266c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#a9dbc78fe9fd9f266a6225796dd1266c2">FORCE_OP_PARAM_NUM</a> (const <a class="el" href="structCTHOperator.html">CTHOperator</a> *op, const <a class="el" href="generic__array_8h.html#ab65d5f828d04ccd28eef52253e8040d1">cth_array_index_t</a> num_param)</td></tr>
+<tr class="separator:a9dbc78fe9fd9f266a6225796dd1266c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4785289c22e8adc2331c785ccd8d08bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#a4785289c22e8adc2331c785ccd8d08bb">FORCE_OP_PARAM_EXIST</a> (<a class="el" href="structCTHOperator.html">CTHOperator</a> *op, const <a class="el" href="params_8h.html#ad3e45c2ce529cdb2b57043951fb0954e">CTH_PARAM_TYPE</a> type)</td></tr>
+<tr class="separator:a4785289c22e8adc2331c785ccd8d08bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60a55e156291d4335e98f78d6b9d90d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCTHTensor.html">CTHTensor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#a60a55e156291d4335e98f78d6b9d90d2">_get_tensor_by_name</a> (<a class="el" href="generic__array_8h.html#a1d28ac926503e24b2bc6b61192bed39b">CTHArray</a>(<a class="el" href="structCTHTensor.html">CTHTensor</a>) *tensor_array, const char *name, bool fail_exit)</td></tr>
+<tr class="separator:a60a55e156291d4335e98f78d6b9d90d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ca972ea20763a33b69e910aa25184c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCTHTensor.html">CTHTensor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#a5ca972ea20763a33b69e910aa25184c9">cth_get_input_by_name</a> (<a class="el" href="structCTHOperator.html">CTHOperator</a> *op, const char *name, bool fail_exit)</td></tr>
+<tr class="separator:a5ca972ea20763a33b69e910aa25184c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9184e10b766c5c598c66a802e870c61c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCTHTensor.html">CTHTensor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#a9184e10b766c5c598c66a802e870c61c">get_output_by_name</a> (<a class="el" href="structCTHOperator.html">CTHOperator</a> *op, const char *name, bool fail_exit)</td></tr>
+<tr class="separator:a9184e10b766c5c598c66a802e870c61c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12dca65c60c1fed0ceebddfb2111fd30"><td class="memItemLeft" align="right" valign="top">void <a class="el" href="consts_8h.html#ad7d837be8ea11a60ea35da351cb958e7">struct_deep_free</a>()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#a12dca65c60c1fed0ceebddfb2111fd30">CTHOperator</a> (<a class="el" href="structCTHOperator.html">CTHOperator</a> *op)</td></tr>
+<tr class="separator:a12dca65c60c1fed0ceebddfb2111fd30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee5fd6dca6bc2874678505704aee73e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCTHParam.html">CTHParam</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="operator_8c.html#aee5fd6dca6bc2874678505704aee73e4">cth_get_param_by_type</a> (<a class="el" href="structCTHOperator.html">CTHOperator</a> *op, const <a class="el" href="params_8h.html#ad3e45c2ce529cdb2b57043951fb0954e">CTH_PARAM_TYPE</a> type, bool fail_exit)</td></tr>
+<tr class="separator:aee5fd6dca6bc2874678505704aee73e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a31addde69cfe4f41c88d1f9a03c82878"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a31addde69cfe4f41c88d1f9a03c82878">&#9670;&nbsp;</a></span>_get_tensor_by_name()</h2>
+<a id="a60a55e156291d4335e98f78d6b9d90d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60a55e156291d4335e98f78d6b9d90d2">&#9670;&nbsp;</a></span>_get_tensor_by_name()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structCTorchTensor.html">CTorchTensor</a>* _get_tensor_by_name </td>
+          <td class="memname"><a class="el" href="structCTHTensor.html">CTHTensor</a>* _get_tensor_by_name </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="generic__array_8h.html#a63831a0f4382b42bdc2f6f59babed432">Array</a>(<a class="el" href="structCTorchTensor.html">CTorchTensor</a>) *&#160;</td>
+          <td class="paramtype"><a class="el" href="generic__array_8h.html#a1d28ac926503e24b2bc6b61192bed39b">CTHArray</a>(<a class="el" href="structCTHTensor.html">CTHTensor</a>) *&#160;</td>
           <td class="paramname"><em>tensor_array</em>, </td>
         </tr>
         <tr>
@@ -160,16 +160,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aa912c0fd2500c4c77d900da1e14cb08b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa912c0fd2500c4c77d900da1e14cb08b">&#9670;&nbsp;</a></span>cth_get_input_by_name()</h2>
+<a id="a5ca972ea20763a33b69e910aa25184c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ca972ea20763a33b69e910aa25184c9">&#9670;&nbsp;</a></span>cth_get_input_by_name()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structCTorchTensor.html">CTorchTensor</a>* cth_get_input_by_name </td>
+          <td class="memname"><a class="el" href="structCTHTensor.html">CTHTensor</a>* cth_get_input_by_name </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structCTorchOperator.html">CTorchOperator</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structCTHOperator.html">CTHOperator</a> *&#160;</td>
           <td class="paramname"><em>op</em>, </td>
         </tr>
         <tr>
@@ -195,16 +195,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ac3ae14110b0f050d9418373ce403b893"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac3ae14110b0f050d9418373ce403b893">&#9670;&nbsp;</a></span>cth_get_param_by_type()</h2>
+<a id="aee5fd6dca6bc2874678505704aee73e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee5fd6dca6bc2874678505704aee73e4">&#9670;&nbsp;</a></span>cth_get_param_by_type()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structCTorchParam.html">CTorchParam</a>* cth_get_param_by_type </td>
+          <td class="memname"><a class="el" href="structCTHParam.html">CTHParam</a>* cth_get_param_by_type </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structCTorchOperator.html">CTorchOperator</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structCTHOperator.html">CTHOperator</a> *&#160;</td>
           <td class="paramname"><em>op</em>, </td>
         </tr>
         <tr>
@@ -226,31 +226,157 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Get param by type. Always return the first met one. </p>
+<p>Get param by type. Always return the first met one. It returns NULL if fail_exit is set to false. </p>
 
 </div>
 </div>
-<a id="a36725058751c6af7eec0a33db4cc831d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a36725058751c6af7eec0a33db4cc831d">&#9670;&nbsp;</a></span>CTorchOperator()</h2>
+<a id="a638740a50ba46ef4b4bfe20f771fec83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a638740a50ba46ef4b4bfe20f771fec83">&#9670;&nbsp;</a></span>cth_impl_free_list_deep_func()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="consts_8h.html#ad7d837be8ea11a60ea35da351cb958e7">struct_deep_free</a>() <a class="el" href="structCTorchOperator.html">CTorchOperator</a> </td>
+          <td class="memname">cth_impl_free_list_deep_func </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structCTorchOperator.html">CTorchOperator</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structCTHOperator.html">CTHOperator</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a348f5b51f8b5c532d5f1f9dd4b96b7a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a348f5b51f8b5c532d5f1f9dd4b96b7a1">&#9670;&nbsp;</a></span>cth_impl_free_list_func()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cth_impl_free_list_func </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCTHOperator.html">CTHOperator</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a38c5da50e3c7b7e475a2c27d65b1a4f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38c5da50e3c7b7e475a2c27d65b1a4f1">&#9670;&nbsp;</a></span>cth_impl_insert_list_func()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cth_impl_insert_list_func </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCTHOperator.html">CTHOperator</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab65dfe5d8ed7e5f7a66562762e20a366"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab65dfe5d8ed7e5f7a66562762e20a366">&#9670;&nbsp;</a></span>cth_impl_list_at_func()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cth_impl_list_at_func </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCTHOperator.html">CTHOperator</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad4e5a4909f26fba38104e23217c5492c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4e5a4909f26fba38104e23217c5492c">&#9670;&nbsp;</a></span>cth_impl_list_pop_func()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cth_impl_list_pop_func </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCTHOperator.html">CTHOperator</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a66dbe542fa0d064c3950b6bea8593210"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66dbe542fa0d064c3950b6bea8593210">&#9670;&nbsp;</a></span>cth_impl_new_list_func()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cth_impl_new_list_func </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCTHOperator.html">CTHOperator</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aef96dd94b05f46beb6ea79d326503aad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef96dd94b05f46beb6ea79d326503aad">&#9670;&nbsp;</a></span>cth_impl_new_list_item_func()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cth_impl_new_list_item_func </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCTHOperator.html">CTHOperator</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a12dca65c60c1fed0ceebddfb2111fd30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12dca65c60c1fed0ceebddfb2111fd30">&#9670;&nbsp;</a></span>CTHOperator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="consts_8h.html#ad7d837be8ea11a60ea35da351cb958e7">struct_deep_free</a>() <a class="el" href="structCTHOperator.html">CTHOperator</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structCTHOperator.html">CTHOperator</a> *&#160;</td>
           <td class="paramname"><em>op</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Deep free an operator. For inbound and outbound list, it will call <a class="el" href="list__d_8h.html#aedacf80b52ed1dfd5f447d830abf8c03">free_list_deep(T)</a>() </p>
+<p>Deep free an operator. For inbound and outbound list, it will call <a class="el" href="list__d_8h.html#aabffd740d2f741c416eabaa89dbde29f">cth_free_list_deep(T)</a>() </p>
 
 </div>
 </div>
-<a id="a7056a14913f74d8438d2a961081bb629"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7056a14913f74d8438d2a961081bb629">&#9670;&nbsp;</a></span>FORCE_INPUT_OUTPUT_TSR_NUM_EQ()</h2>
+<a id="a893771330552c90a808e76b0cb46a582"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a893771330552c90a808e76b0cb46a582">&#9670;&nbsp;</a></span>FORCE_INPUT_OUTPUT_TSR_NUM_EQ()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -258,7 +384,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void FORCE_INPUT_OUTPUT_TSR_NUM_EQ </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structCTorchOperator.html">CTorchOperator</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structCTHOperator.html">CTHOperator</a> *&#160;</td>
           <td class="paramname"><em>op</em></td><td>)</td>
           <td></td>
         </tr>
@@ -268,8 +394,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a99fc1951e3b659a8410fcad5e2c680e5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a99fc1951e3b659a8410fcad5e2c680e5">&#9670;&nbsp;</a></span>FORCE_OP_INPUT_EXIST()</h2>
+<a id="a644d59f7f59fa7783069aade2976f679"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a644d59f7f59fa7783069aade2976f679">&#9670;&nbsp;</a></span>FORCE_OP_INPUT_EXIST()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -277,7 +403,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void FORCE_OP_INPUT_EXIST </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structCTorchOperator.html">CTorchOperator</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structCTHOperator.html">CTHOperator</a> *&#160;</td>
           <td class="paramname"><em>op</em>, </td>
         </tr>
         <tr>
@@ -303,8 +429,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a4d2cd9a6722b264af95a7af4de8e3b13"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d2cd9a6722b264af95a7af4de8e3b13">&#9670;&nbsp;</a></span>FORCE_OP_INPUT_OUTPUT_TENSOR_NUM()</h2>
+<a id="a74f22850d0cbeede1dca61a9a678ac37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74f22850d0cbeede1dca61a9a678ac37">&#9670;&nbsp;</a></span>FORCE_OP_INPUT_OUTPUT_TENSOR_NUM()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -312,19 +438,19 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void FORCE_OP_INPUT_OUTPUT_TENSOR_NUM </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structCTorchOperator.html">CTorchOperator</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="structCTHOperator.html">CTHOperator</a> *&#160;</td>
           <td class="paramname"><em>op</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="generic__array_8h.html#a5576d7cabba712c1f5704c9a30f5161e">array_index_t</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="generic__array_8h.html#ab65d5f828d04ccd28eef52253e8040d1">cth_array_index_t</a>&#160;</td>
           <td class="paramname"><em>num_input</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="generic__array_8h.html#a5576d7cabba712c1f5704c9a30f5161e">array_index_t</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="generic__array_8h.html#ab65d5f828d04ccd28eef52253e8040d1">cth_array_index_t</a>&#160;</td>
           <td class="paramname"><em>num_output</em>&#160;</td>
         </tr>
         <tr>
@@ -343,8 +469,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a983d61cac21ced452eeb3cb21bce8636"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a983d61cac21ced452eeb3cb21bce8636">&#9670;&nbsp;</a></span>FORCE_OP_PARAM_EXIST()</h2>
+<a id="a4785289c22e8adc2331c785ccd8d08bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4785289c22e8adc2331c785ccd8d08bb">&#9670;&nbsp;</a></span>FORCE_OP_PARAM_EXIST()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -352,7 +478,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void FORCE_OP_PARAM_EXIST </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structCTorchOperator.html">CTorchOperator</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structCTHOperator.html">CTHOperator</a> *&#160;</td>
           <td class="paramname"><em>op</em>, </td>
         </tr>
         <tr>
@@ -372,8 +498,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="acc9a1868f0ed2f66f3c0863ac011b494"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acc9a1868f0ed2f66f3c0863ac011b494">&#9670;&nbsp;</a></span>FORCE_OP_PARAM_NUM()</h2>
+<a id="a9dbc78fe9fd9f266a6225796dd1266c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9dbc78fe9fd9f266a6225796dd1266c2">&#9670;&nbsp;</a></span>FORCE_OP_PARAM_NUM()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -381,13 +507,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void FORCE_OP_PARAM_NUM </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structCTorchOperator.html">CTorchOperator</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="structCTHOperator.html">CTHOperator</a> *&#160;</td>
           <td class="paramname"><em>op</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="generic__array_8h.html#a5576d7cabba712c1f5704c9a30f5161e">array_index_t</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="generic__array_8h.html#ab65d5f828d04ccd28eef52253e8040d1">cth_array_index_t</a>&#160;</td>
           <td class="paramname"><em>num_param</em>&#160;</td>
         </tr>
         <tr>
@@ -401,16 +527,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="af6d57757c60454a463b96fcdae7da46e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af6d57757c60454a463b96fcdae7da46e">&#9670;&nbsp;</a></span>get_output_by_name()</h2>
+<a id="a9184e10b766c5c598c66a802e870c61c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9184e10b766c5c598c66a802e870c61c">&#9670;&nbsp;</a></span>get_output_by_name()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structCTorchTensor.html">CTorchTensor</a>* get_output_by_name </td>
+          <td class="memname"><a class="el" href="structCTHTensor.html">CTHTensor</a>* get_output_by_name </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structCTorchOperator.html">CTorchOperator</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structCTHOperator.html">CTHOperator</a> *&#160;</td>
           <td class="paramname"><em>op</em>, </td>
         </tr>
         <tr>
@@ -436,134 +562,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a6e5c459a7908e6a08ea77ba25c2fecb6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6e5c459a7908e6a08ea77ba25c2fecb6">&#9670;&nbsp;</a></span>impl_free_list_deep_func()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">impl_free_list_deep_func </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structCTorchOperator.html">CTorchOperator</a>&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a54708755e39655e4285736d429668df5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a54708755e39655e4285736d429668df5">&#9670;&nbsp;</a></span>impl_free_list_func()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">impl_free_list_func </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structCTorchOperator.html">CTorchOperator</a>&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aeef26a94dc05c26ca8775bb61e91170c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeef26a94dc05c26ca8775bb61e91170c">&#9670;&nbsp;</a></span>impl_insert_list_func()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">impl_insert_list_func </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structCTorchOperator.html">CTorchOperator</a>&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ab23d914242bbb6845947fbd67cb36b30"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab23d914242bbb6845947fbd67cb36b30">&#9670;&nbsp;</a></span>impl_list_at_func()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">impl_list_at_func </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structCTorchOperator.html">CTorchOperator</a>&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a864ceba4fb5b08f50f94460a520e7f29"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a864ceba4fb5b08f50f94460a520e7f29">&#9670;&nbsp;</a></span>impl_list_pop_func()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">impl_list_pop_func </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structCTorchOperator.html">CTorchOperator</a>&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="af2f777008f7a7ca3505b52da73c0816f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af2f777008f7a7ca3505b52da73c0816f">&#9670;&nbsp;</a></span>impl_new_list_func()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">impl_new_list_func </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structCTorchOperator.html">CTorchOperator</a>&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a77da9d20f0cccc3e57f6a810a58ab965"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a77da9d20f0cccc3e57f6a810a58ab965">&#9670;&nbsp;</a></span>impl_new_list_item_func()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">impl_new_list_item_func </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structCTorchOperator.html">CTorchOperator</a>&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="abb67cdf1a8a6af21edb83ee865e895a5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb67cdf1a8a6af21edb83ee865e895a5">&#9670;&nbsp;</a></span>OP_FAIL_ON_DTYPE()</h2>
+<a id="a83598b07f7343895e120b274076a6806"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83598b07f7343895e120b274076a6806">&#9670;&nbsp;</a></span>OP_FAIL_ON_DTYPE()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -571,7 +571,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void OP_FAIL_ON_DTYPE </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structCTorchOperator.html">CTorchOperator</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="structCTHOperator.html">CTHOperator</a> *&#160;</td>
           <td class="paramname"><em>op</em>, </td>
         </tr>
         <tr>

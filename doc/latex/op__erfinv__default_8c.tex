@@ -11,36 +11,17 @@ Include dependency graph for op\+\_\+erfinv\+\_\+default.\+c\+:
 \#define \mbox{\hyperlink{op__erfinv__default_8c_ac171d239394b32f045037daad0df61e8}{E\+R\+F\+I\+N\+V\+\_\+\+P\+Il}}~3.\+1415926535897932384626433832795029L
 \item 
 \#define \mbox{\hyperlink{op__erfinv__default_8c_a5ae1f00e0f8b1da65de1eea105ddc934}{E\+R\+F\+I\+N\+V\+\_\+\+C\+O\+N\+S\+Tl}}~0.\+15449436008930206298828125L
-\item 
-\#define \mbox{\hyperlink{op__erfinv__default_8c_ab73c6bd33c8090b095ac568826435cf9}{\+\_\+cth\+\_\+erfinv\+\_\+kernel}}(input\+\_\+ptr,  output\+\_\+ptr,  N,  data\+\_\+type)
 \end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-long double \mbox{\hyperlink{op__erfinv__default_8c_a3c1213a1ebb4b9caaac2f9d698dd1b2c}{\+\_\+cth\+\_\+erfinv\+\_\+impl}} (long double x)
+long double \mbox{\hyperlink{op__erfinv__default_8c_a9203da77f536e22dfb60ed710563c508}{\+\_\+cth\+\_\+erfinv\+\_\+kernel}} (long double x)
 \item 
-void \mbox{\hyperlink{op__erfinv__default_8c_aaafcae58aba3481f9f20e6c92b5b71d8}{op\+\_\+erfinv\+\_\+cpu}} (\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$op)
+void \mbox{\hyperlink{op__erfinv__default_8c_add7633218952fd717f353622a4206f45}{op\+\_\+erfinv\+\_\+cpu}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Macro Definition Documentation}
-\mbox{\Hypertarget{op__erfinv__default_8c_ab73c6bd33c8090b095ac568826435cf9}\label{op__erfinv__default_8c_ab73c6bd33c8090b095ac568826435cf9}} 
-\index{op\_erfinv\_default.c@{op\_erfinv\_default.c}!\_cth\_erfinv\_kernel@{\_cth\_erfinv\_kernel}}
-\index{\_cth\_erfinv\_kernel@{\_cth\_erfinv\_kernel}!op\_erfinv\_default.c@{op\_erfinv\_default.c}}
-\doxysubsubsection{\texorpdfstring{\_cth\_erfinv\_kernel}{\_cth\_erfinv\_kernel}}
-{\footnotesize\ttfamily \#define \+\_\+cth\+\_\+erfinv\+\_\+kernel(\begin{DoxyParamCaption}\item[{}]{input\+\_\+ptr,  }\item[{}]{output\+\_\+ptr,  }\item[{}]{N,  }\item[{}]{data\+\_\+type }\end{DoxyParamCaption})}
-
-{\bfseries Value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                                                         \(\backslash\)}
-\DoxyCodeLine{    data\_type *input\_t = (data\_type *)input\_ptr;                               \(\backslash\)}
-\DoxyCodeLine{    data\_type *output\_t = (data\_type *)output\_ptr;                             \(\backslash\)}
-\DoxyCodeLine{    for (\textcolor{keywordtype}{int} i = 0; i < N; i++) \{                                              \(\backslash\)}
-\DoxyCodeLine{      output\_t[i] = (data\_type)\mbox{\hyperlink{op__digamma__default_8c_a248caef611a435b8a29560229bad212d}{digammal}}(input\_t[i]);                           \(\backslash\)}
-\DoxyCodeLine{    \}                                                                          \(\backslash\)}
-\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
-
-\end{DoxyCode}
 \mbox{\Hypertarget{op__erfinv__default_8c_a5ae1f00e0f8b1da65de1eea105ddc934}\label{op__erfinv__default_8c_a5ae1f00e0f8b1da65de1eea105ddc934}} 
 \index{op\_erfinv\_default.c@{op\_erfinv\_default.c}!ERFINV\_CONSTl@{ERFINV\_CONSTl}}
 \index{ERFINV\_CONSTl@{ERFINV\_CONSTl}!op\_erfinv\_default.c@{op\_erfinv\_default.c}}
@@ -56,17 +37,17 @@ The constant used in \+\_\+cth\+\_\+erfinv\+\_\+imp \mbox{\Hypertarget{op__erfin
 The constant Pi in high precision 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{op__erfinv__default_8c_a3c1213a1ebb4b9caaac2f9d698dd1b2c}\label{op__erfinv__default_8c_a3c1213a1ebb4b9caaac2f9d698dd1b2c}} 
-\index{op\_erfinv\_default.c@{op\_erfinv\_default.c}!\_cth\_erfinv\_impl@{\_cth\_erfinv\_impl}}
-\index{\_cth\_erfinv\_impl@{\_cth\_erfinv\_impl}!op\_erfinv\_default.c@{op\_erfinv\_default.c}}
-\doxysubsubsection{\texorpdfstring{\_cth\_erfinv\_impl()}{\_cth\_erfinv\_impl()}}
-{\footnotesize\ttfamily long double \+\_\+cth\+\_\+erfinv\+\_\+impl (\begin{DoxyParamCaption}\item[{long double}]{x }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{op__erfinv__default_8c_a9203da77f536e22dfb60ed710563c508}\label{op__erfinv__default_8c_a9203da77f536e22dfb60ed710563c508}} 
+\index{op\_erfinv\_default.c@{op\_erfinv\_default.c}!\_cth\_erfinv\_kernel@{\_cth\_erfinv\_kernel}}
+\index{\_cth\_erfinv\_kernel@{\_cth\_erfinv\_kernel}!op\_erfinv\_default.c@{op\_erfinv\_default.c}}
+\doxysubsubsection{\texorpdfstring{\_cth\_erfinv\_kernel()}{\_cth\_erfinv\_kernel()}}
+{\footnotesize\ttfamily long double \+\_\+cth\+\_\+erfinv\+\_\+kernel (\begin{DoxyParamCaption}\item[{long double}]{x }\end{DoxyParamCaption})}
 
-Ref\+: \href{https://stackoverflow.com/questions/27229371/inverse-error-function-in-c}{\texttt{ https\+://stackoverflow.\+com/questions/27229371/inverse-\/error-\/function-\/in-\/c}} \mbox{\Hypertarget{op__erfinv__default_8c_aaafcae58aba3481f9f20e6c92b5b71d8}\label{op__erfinv__default_8c_aaafcae58aba3481f9f20e6c92b5b71d8}} 
+Ref\+: \href{https://stackoverflow.com/questions/27229371/inverse-error-function-in-c}{\texttt{ https\+://stackoverflow.\+com/questions/27229371/inverse-\/error-\/function-\/in-\/c}} \mbox{\Hypertarget{op__erfinv__default_8c_add7633218952fd717f353622a4206f45}\label{op__erfinv__default_8c_add7633218952fd717f353622a4206f45}} 
 \index{op\_erfinv\_default.c@{op\_erfinv\_default.c}!op\_erfinv\_cpu@{op\_erfinv\_cpu}}
 \index{op\_erfinv\_cpu@{op\_erfinv\_cpu}!op\_erfinv\_default.c@{op\_erfinv\_default.c}}
 \doxysubsubsection{\texorpdfstring{op\_erfinv\_cpu()}{op\_erfinv\_cpu()}}
-{\footnotesize\ttfamily void op\+\_\+erfinv\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTorchOperator}{C\+Torch\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void op\+\_\+erfinv\+\_\+cpu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
 
 Computation inverse of erf
 

@@ -33,17 +33,19 @@ digraph "cTorch/operators/x86/op_list.h"
   Node12 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
   Node6 -> Node13 [color="midnightblue",fontsize="10",style="solid"];
   Node13 [label="cTorch/storage.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$storage_8h.html",tooltip=" "];
+  Node13 -> Node14 [color="midnightblue",fontsize="10",style="solid"];
+  Node14 [label="stdarg.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
   Node13 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
   Node13 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
   Node13 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
-  Node13 -> Node14 [color="midnightblue",fontsize="10",style="solid"];
-  Node14 [label="cTorch/list_d.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$list__d_8h.html",tooltip=" "];
-  Node14 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
-  Node14 -> Node8 [color="midnightblue",fontsize="10",style="solid"];
-  Node14 -> Node11 [color="midnightblue",fontsize="10",style="solid"];
-  Node14 -> Node9 [color="midnightblue",fontsize="10",style="solid"];
-  Node14 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
-  Node14 -> Node10 [color="midnightblue",fontsize="10",style="solid"];
-  Node14 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node13 -> Node15 [color="midnightblue",fontsize="10",style="solid"];
+  Node15 [label="cTorch/list_d.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$list__d_8h.html",tooltip=" "];
+  Node15 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node15 -> Node8 [color="midnightblue",fontsize="10",style="solid"];
+  Node15 -> Node11 [color="midnightblue",fontsize="10",style="solid"];
+  Node15 -> Node9 [color="midnightblue",fontsize="10",style="solid"];
+  Node15 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node15 -> Node10 [color="midnightblue",fontsize="10",style="solid"];
+  Node15 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
   Node1 -> Node13 [color="midnightblue",fontsize="10",style="solid"];
 }

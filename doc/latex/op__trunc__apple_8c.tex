@@ -1,0 +1,34 @@
+\hypertarget{op__trunc__apple_8c}{}\doxysection{c\+Torch/operators/apple/op\+\_\+trunc\+\_\+apple.c File Reference}
+\label{op__trunc__apple_8c}\index{cTorch/operators/apple/op\_trunc\_apple.c@{cTorch/operators/apple/op\_trunc\_apple.c}}
+{\ttfamily \#include \char`\"{}c\+Torch/operators/apple/op\+\_\+list\+\_\+apple.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}c\+Torch/operators/apple/util\+\_\+apple.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$Accelerate/\+Accelerate.\+h$>$}\newline
+Include dependency graph for op\+\_\+trunc\+\_\+apple.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{op__trunc__apple_8c_a2efd6c15f626123b382d0c36831e9ca4}{op\+\_\+trunc\+\_\+apple}} (\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$op)
+\begin{DoxyCompactList}\small\item\em trunc(x) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{op__trunc__apple_8c_a2efd6c15f626123b382d0c36831e9ca4}\label{op__trunc__apple_8c_a2efd6c15f626123b382d0c36831e9ca4}} 
+\index{op\_trunc\_apple.c@{op\_trunc\_apple.c}!op\_trunc\_apple@{op\_trunc\_apple}}
+\index{op\_trunc\_apple@{op\_trunc\_apple}!op\_trunc\_apple.c@{op\_trunc\_apple.c}}
+\doxysubsubsection{\texorpdfstring{op\_trunc\_apple()}{op\_trunc\_apple()}}
+{\footnotesize\ttfamily void op\+\_\+trunc\+\_\+apple (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCTHOperator}{C\+T\+H\+Operator}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+
+
+trunc(x) 
+
+\begin{DoxyNote}{Note}
+Apple backend only support float \& double tensors
+\end{DoxyNote}
+Inputs \& outputs\+:
+\begin{DoxyItemize}
+\item \# of input\+: 1
+\item \# of output\+: 1
+\item Input and output should be same dimention and type. 
+\end{DoxyItemize}
