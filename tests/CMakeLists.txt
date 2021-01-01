@@ -13,7 +13,7 @@ endif()
 get_filename_component(PARENT_DIR ../ ABSOLUTE)
 find_package(
     Torch REQUIRED
-    # HINTS ${PARENT_DIR}/third_party/libtorch
+    HINTS ${PARENT_DIR}/third_party/libtorch
 )
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}")
 

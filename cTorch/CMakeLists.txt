@@ -33,6 +33,16 @@ endif()
 
 ################################################################################
 #
+# ARM half-precision flags
+# https://gcc.gnu.org/onlinedocs/gcc/Half-Precision.html
+#
+if(${TARGET_CPU_ARCH} STREQUAL "arm")
+    message("[cTorch] Append flag: -mfp16-format=alternative -mfpu=neon-fp16")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mfp16-format=alternative -mfpu=neon-fp16 -mfloat-abi=hard")
+endif()
+
+################################################################################
+#
 # Source files
 #
 

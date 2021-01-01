@@ -16,7 +16,9 @@ void test_square(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   if (backend == CTH_BACKEND_DEFAULT) {
     op_square_cpu(op);
   } else if (backend == CTH_BACKEND_MKL) {
+#ifdef BACKEND_MKL
     op_square_mkl(op);
+#endif
   }
 
   sample_print(data_type,
@@ -48,17 +50,19 @@ TEST(cTorchSquareOpTest, testFloat32Default) {
   test_square(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_32, 0.1, 20.0);
 }
 
-TEST(cTorchSquareOpTest, testFloat32MKL) {
-  test_square(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_32, 0.1, 20.0);
-}
-
 TEST(cTorchSquareOpTest, testFloat64Default) {
   test_square(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, 0.1, 20.0);
+}
+
+#ifdef BACKEND_MKL
+TEST(cTorchSquareOpTest, testFloat32MKL) {
+  test_square(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_32, 0.1, 20.0);
 }
 
 TEST(cTorchSquareOpTest, testFloat64MKL) {
   test_square(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, 0.1, 20.0);
 }
+#endif
 
 TEST(cTorchSquareOpTest, testInt16Default) {
   test_square(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_16, 0.1, 20.0);

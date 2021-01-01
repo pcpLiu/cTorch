@@ -23,7 +23,9 @@ void test_remainder(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type,
   if (backend == CTH_BACKEND_DEFAULT) {
     op_remainder_cpu(op);
   } else if (backend == CTH_BACKEND_MKL) {
+#ifdef BACKEND_MKL
     op_remainder_mkl(op);
+#endif
   } else if (backend == CTH_BACKEND_APPLE) {
 #ifdef BACKEND_APPLE
     op_remainder_apple(op);
@@ -65,18 +67,20 @@ TEST(cTorchRemainderOpTest, testFloat32Default) {
                  100.0);
 }
 
-TEST(cTorchRemainderOpTest, testFloat32MKL) {
-  test_remainder(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_32, -100.0, 100.0);
-}
-
 TEST(cTorchRemainderOpTest, testFloat64Default) {
   test_remainder(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, -100.0,
                  100.0);
 }
 
+#ifdef BACKEND_MKL
+TEST(cTorchRemainderOpTest, testFloat32MKL) {
+  test_remainder(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_32, -100.0, 100.0);
+}
+
 TEST(cTorchRemainderOpTest, testFloat64MKL) {
   test_remainder(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, -100.0, 100.0);
 }
+#endif
 
 #ifdef BACKEND_APPLE
 TEST(cTorchRemainderOpTest, testFloat32Apple) {

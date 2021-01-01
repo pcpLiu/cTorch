@@ -28,7 +28,9 @@ void test_frac(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   if (backend == CTH_BACKEND_DEFAULT) {
     op_frac_cpu(op);
   } else if (backend == CTH_BACKEND_MKL) {
+#ifdef BACKEND_MKL
     op_frac_mkl(op);
+#endif
   }
 
   sample_print(data_type,
@@ -65,6 +67,7 @@ TEST(cTorchFracOpTest, testFloat64Default) {
   test_frac(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, -10.0, 10.0);
 }
 
+#ifdef BACKEND_MKL
 TEST(cTorchFracOpTest, testFloat32MKL) {
   test_frac(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_32, -10.0, 10.0);
 }
@@ -72,6 +75,7 @@ TEST(cTorchFracOpTest, testFloat32MKL) {
 TEST(cTorchFracOpTest, testFloat64MKL) {
   test_frac(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, -10.0, 10.0);
 }
+#endif
 
 TEST(cTorchFracOpTest, testInt16Default) {
   test_frac(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_16, -10.0, 10.0);

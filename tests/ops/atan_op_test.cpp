@@ -15,7 +15,9 @@ void test_atan(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   if (backend == CTH_BACKEND_DEFAULT) {
     op_atan_cpu(op);
   } else if (backend == CTH_BACKEND_MKL) {
+#ifdef BACKEND_MKL
     op_atan_mkl(op);
+#endif
   } else if (backend == CTH_BACKEND_APPLE) {
 #ifdef BACKEND_APPLE
     op_atan_apple(op);
@@ -54,17 +56,19 @@ TEST(cTorchAtanOpTest, testFloat32Default) {
   test_atan(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_32, -1.0, 1.0);
 }
 
-TEST(cTorchAtanOpTest, testFloat32MKL) {
-  test_atan(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_32, -1.0, 1.0);
-}
-
 TEST(cTorchAtanOpTest, testFloat64Default) {
   test_atan(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, -1.0, 1.0);
+}
+
+#ifdef BACKEND_MKL
+TEST(cTorchAtanOpTest, testFloat32MKL) {
+  test_atan(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_32, -1.0, 1.0);
 }
 
 TEST(cTorchAtanOpTest, testFloat64MKL) {
   test_atan(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, -1.0, 1.0);
 }
+#endif
 
 #ifdef BACKEND_APPLE
 TEST(cTorchAtanOpTest, testFloat32Apple) {

@@ -15,7 +15,9 @@ void test_erfc(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   if (backend == CTH_BACKEND_DEFAULT) {
     op_erfc_cpu(op);
   } else if (backend == CTH_BACKEND_MKL) {
+#ifdef BACKEND_MKL
     op_erfc_mkl(op);
+#endif
   } else if (backend == CTH_BACKEND_CUDA) {
 #ifdef BACKEND_CUDA
     op_erfc_cuda(op);
@@ -54,6 +56,7 @@ TEST(cTorchErfcOpTest, testFloat64Default) {
   test_erfc(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, -100.0, -100.0);
 }
 
+#ifdef BACKEND_MKL
 TEST(cTorchErfcOpTest, testFloat32MKL) {
   test_erfc(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_32, -100.0, -100.0);
 }
@@ -61,6 +64,7 @@ TEST(cTorchErfcOpTest, testFloat32MKL) {
 TEST(cTorchErfcOpTest, testFloat64MKL) {
   test_erfc(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, -100.0, -100.0);
 }
+#endif
 
 #ifdef BACKEND_CUDA
 TEST(cTorchErfcOpTest, testFloat32CUDA) {

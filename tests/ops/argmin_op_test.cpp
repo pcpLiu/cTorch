@@ -78,20 +78,21 @@ TEST(cTorchArgminOpTest, testFloat64DefaultFlat) {
 }
 
 TEST(cTorchArgminOpTest, testInt16Default) {
-  test_argmin(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_16, -10.0, 10.0,
+  test_argmin(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_16, -5000.0, 5000.0,
               false);
 }
 
 TEST(cTorchArgminOpTest, testInt32Default) {
-  test_argmin(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_32, -100.0, 100.0,
+  test_argmin(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_32, -5000.0, 5000.0,
               false);
 }
 
 TEST(cTorchArgminOpTest, testInt64Default) {
-  test_argmin(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_64, -100.0, 100.0,
+  test_argmin(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_64, -5000.0, 5000.0,
               false);
 }
 
 TEST(cTorchArgminOpTest, testUInt8Default) {
-  test_argmin(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_UINT_8, 0, 10.0, false);
+  test_argmin(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_UINT_8, 0, 200.0,
+              false);
 }

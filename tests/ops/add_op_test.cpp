@@ -22,7 +22,9 @@ void test_add(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   if (backend == CTH_BACKEND_DEFAULT) {
     op_add_cpu(op);
   } else if (backend == CTH_BACKEND_MKL) {
+#ifdef BACKEND_MKL
     op_add_mkl(op);
+#endif
   } else if (backend == CTH_BACKEND_CUDA) {
 #ifdef BACKEND_CUDA
     op_add_cuda(op);
@@ -58,17 +60,19 @@ TEST(cTorchAddOpTest, testFloat32Default) {
   test_add(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_32, -100.0, 100.0);
 }
 
-TEST(cTorchAddOpTest, testFloat32MKL) {
-  test_add(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_32, -100.0, 100.0);
-}
-
 TEST(cTorchAddOpTest, testFloat64Default) {
   test_add(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, -100.0, 100.0);
+}
+
+#ifdef BACKEND_MKL
+TEST(cTorchAddOpTest, testFloat32MKL) {
+  test_add(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_32, -100.0, 100.0);
 }
 
 TEST(cTorchAddOpTest, testFloat64MKL) {
   test_add(CTH_BACKEND_MKL, CTH_TENSOR_DATA_TYPE_FLOAT_64, -100.0, 100.0);
 }
+#endif
 
 #ifdef BACKEND_CUDA
 TEST(cTorchAddOpTest, testFloat32CUDA) {
