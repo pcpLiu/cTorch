@@ -1,6 +1,8 @@
 #ifndef CTH_DEFAULT_UTIL_H
 #define CTH_DEFAULT_UTIL_H
 
+#include <string.h>
+
 /**
  * @brief Conduct unary operation element wise
  *
