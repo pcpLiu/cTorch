@@ -14,7 +14,7 @@ void *cth_malloc(
     const char *file_name,
     int line_num,
     const char *func_name) {
-  void *mem = calloc(1, size);
+  void *mem = malloc(size);
   FAIL_NULL_PTR(mem);
 
 #ifdef CTH_TEST_DEBUG

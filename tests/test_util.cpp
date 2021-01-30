@@ -152,6 +152,55 @@ CTHNode *create_dummy_op_node_unary_1d_padding(CTH_OP_ID op_id,
   return node;
 }
 
+CTHNode *create_dummy_op_node_unary_2d_padding(CTH_OP_ID op_id,
+                                               CTH_TENSOR_DATA_TYPE data_type,
+                                               float min, float max) {
+  cth_tensor_dim_t input_n_dim = 4, min_dim = 2, max_dim = 40;
+  cth_tensor_dim_t *input_dims =
+      (cth_tensor_dim_t *)MALLOC(sizeof(cth_tensor_dim_t) * input_n_dim);
+  _rand_dims(input_dims, input_n_dim, min_dim, max_dim);
+
+  CTHOperator *op = (CTHOperator *)MALLOC(sizeof(CTHOperator));
+  op->op_id = op_id;
+  op->in_bound_tensors = cth_new_array(CTHTensor)(1);
+  op->out_bound_tensors = cth_new_array(CTHTensor)(1);
+  op->params = cth_new_array(CTHParam)(1);
+  cth_array_set(CTHTensor)(
+      op->in_bound_tensors, 0,
+      create_dummy_tensor(input_dims, input_n_dim, data_type, min, max));
+
+  // random get padding size
+  cth_tensor_dim_t padding_left = _rand_int(0, input_dims[3] - 1);
+  cth_tensor_dim_t padding_right = _rand_int(0, input_dims[3] - 1);
+  cth_tensor_dim_t padding_top = _rand_int(0, input_dims[2] - 1);
+  cth_tensor_dim_t padding_bottom = _rand_int(0, input_dims[2] - 1);
+  cth_tensor_dim_t *output_dims =
+      (cth_tensor_dim_t *)MALLOC(sizeof(cth_tensor_dim_t) * input_n_dim);
+  output_dims[0] = input_dims[0];
+  output_dims[1] = input_dims[1];
+  output_dims[2] = input_dims[2] + padding_top + padding_bottom;
+  output_dims[3] = input_dims[3] + padding_left + padding_right;
+
+  cth_array_set(CTHTensor)(
+      op->out_bound_tensors, 0,
+      create_dummy_tensor(output_dims, input_n_dim, data_type, min, max));
+
+  // padding param
+  CTHParam *param = (CTHParam *)MALLOC(sizeof(CTHParam));
+  param->type = CTH_PARAM_TYPE_PADDING_D4;
+  param->data.padding_d4 = (cth_pad_t *)MALLOC(sizeof(cth_pad_t) * 4);
+  param->data.padding_d4[0] = padding_left;
+  param->data.padding_d4[1] = padding_right;
+  param->data.padding_d4[2] = padding_top;
+  param->data.padding_d4[3] = padding_bottom;
+  cth_array_set(CTHParam)(op->params, 0, param);
+
+  CTHNode *node = (CTHNode *)MALLOC(sizeof(CTHNode));
+  node->conent.op = op;
+  node->node_type = CTH_NODE_TYPE_OPERATOR;
+  return node;
+}
+
 CTHOperator *create_dummy_op(CTH_OP_ID op_id, cth_array_index_t num_inputs,
                              cth_array_index_t num_outputs) {
   CTHOperator *op = (CTHOperator *)MALLOC(sizeof(CTHOperator));
