@@ -3,40 +3,73 @@
 #include "cTorch/operators/default/op_list.h"
 #include "cTorch/operators/default/util.h"
 
-#ifndef ERFINV_PIl
-/** The constant Pi in high precision */
-#define ERFINV_PIl 3.1415926535897932384626433832795029L
-#endif
+#ifndef CTH_ERFINV_CONSTS
+#define erfinv_a3 -0.140543331
+#define erfinv_a2 0.914624893
+#define erfinv_a1 -1.645349621
+#define erfinv_a0 0.886226899
 
-#ifndef ERFINV_CONSTl
-/** The constant used in _cth_erfinv_imp */
-#define ERFINV_CONSTl 0.15449436008930206298828125L
-#endif
+#define erfinv_b4 0.012229801
+#define erfinv_b3 -0.329097515
+#define erfinv_b2 1.442710462
+#define erfinv_b1 -2.118377725
+#define erfinv_b0 1
+
+#define erfinv_c3 1.641345311
+#define erfinv_c2 3.429567803
+#define erfinv_c1 -1.62490649
+#define erfinv_c0 -1.970840454
+
+#define erfinv_d2 1.637067800
+#define erfinv_d1 3.543889200
+#define erfinv_d0 1
+#endif /* CTH_ERFINV_CONSTS */
 
 /**
- * Ref: https://stackoverflow.com/questions/27229371/inverse-error-function-in-c
+ * @brief Implementation was borrowed from libit (http://libit.sourceforge.net/)
+ *
+ * TODO: libit holds a GPL license which is not fully compatible with MIT.
+ * We may need re-implement this by ourselves.
+ *
  */
-long double _cth_erfinv_kernel(long double x) {
-  long double tt1, tt2, lnx, sgn;
-  sgn = (x < 0) ? -1.0f : 1.0f;
+double _cth_erfinv_kernel(double x) {
+  double x2, r, y;
+  int sign_x;
 
-  x = (1 - x) * (1 + x); // x = 1 - x*x;
-  lnx = logf(x);
+  if (x < -1 || x > 1)
+    return NAN;
 
-  tt1 = 2 / (ERFINV_PIl * ERFINV_CONSTl) + 0.5f * lnx;
-  tt2 = 1 / (ERFINV_CONSTl)*lnx;
+  if (x == 0)
+    return 0;
 
-  return (sgn * sqrtf(-tt1 + sqrtf(tt1 * tt1 - tt2)));
+  if (x > 0)
+    sign_x = 1;
+  else {
+    sign_x = -1;
+    x = -x;
+  }
+
+  if (x <= 0.7) {
+
+    x2 = x * x;
+    r = x * (((erfinv_a3 * x2 + erfinv_a2) * x2 + erfinv_a1) * x2 + erfinv_a0);
+    r /= (((erfinv_b4 * x2 + erfinv_b3) * x2 + erfinv_b2) * x2 + erfinv_b1) *
+             x2 +
+         erfinv_b0;
+  } else {
+    y = sqrt(-log((1 - x) / 2));
+    r = (((erfinv_c3 * y + erfinv_c2) * y + erfinv_c1) * y + erfinv_c0);
+    r /= ((erfinv_d2 * y + erfinv_d1) * y + erfinv_d0);
+  }
+
+  r = r * sign_x;
+  x = x * sign_x;
+
+  r -= (erf(r) - x) / (2 / sqrt(M_PI) * exp(-r * r));
+  r -= (erf(r) - x) / (2 / sqrt(M_PI) * exp(-r * r));
+
+  return r;
 }
-
-// #define _cth_erfinv_kernel(input_ptr, output_ptr, N, data_type)                \
-//   do {                                                                         \
-//     data_type *input_t = (data_type *)input_ptr;                               \
-//     data_type *output_t = (data_type *)output_ptr;                             \
-//     for (int i = 0; i < N; i++) {                                              \
-//       output_t[i] = (data_type)digammal(input_t[i]);                           \
-//     }                                                                          \
-//   } while (0)
 
 /**
  * Computation inverse of erf
