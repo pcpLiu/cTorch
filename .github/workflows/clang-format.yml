@@ -1,0 +1,20 @@
+name: lint
+
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - cTorh/**
+
+jobs:
+  lint:
+    name: Formatting check with clang-format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: check FreeMcBoot
+        uses: jidicula/clang-format-action@v3.1.0
+        with:
+          clang-format-version: "11"
+          check-path: "cTorch"

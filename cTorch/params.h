@@ -1,3 +1,17 @@
+// Copyright 2021 Zhonghao Liu
+// 
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+// 
+//     http://www.apache.org/licenses/LICENSE-2.0
+// 
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 #ifndef CTH_PARAMS_H
 #define CTH_PARAMS_H
 
@@ -19,6 +33,7 @@ typedef enum CTH_PARAM_TYPE {
   CTH_PARAM_TYPE_STRIDE,
   CTH_PARAM_TYPE_PADDING_D2,
   CTH_PARAM_TYPE_PADDING_D4,
+  CTH_PARAM_TYPE_PADDING_D6,
   CTH_PARAM_TYPE_DILATION,
   CTH_PARAM_TYPE_KERNEL_SIZE_D2,
   CTH_PARAM_TYPE_STRIDE_D2,
@@ -38,14 +53,10 @@ typedef union CTHParamData {
   cth_channel_t *dim;
   cth_channel_t *in_channels;
   cth_channel_t *out_channels;
-  cth_kernel_t *kernel_size;
   cth_stride_t *stride;
+  cth_kernel_t *kernel_size;
+  cth_pad_t *padding;
   cth_dilation_t *dilation;
-  cth_kernel_t *kernel_size_d2;
-  cth_stride_t *stride_d2;
-  cth_pad_t *padding_d2;
-  cth_pad_t *padding_d4;
-  cth_dilation_t *dilation_d2;
   cth_groups_t *groups;
   CTH_PADDING_MODE *padding_mode;
 } CTHParamData;
@@ -78,7 +89,9 @@ void cth_copy_param(CTHParam *from_param, CTHParam *to_param);
 /**
  * Extract param value with given types. Will raise error if param not exist.
  *
- * @note The param_var should be a pointer.
+ * @note The `param_var` should be a pointer. `param_var` will just be assigned
+ * the meem address of existing parameter variable. It does not copy the value
+ * of parameters.
  */
 #define EXTRACT_PARAM_VALUE(op, param_type, param_data_field, param_var)       \
   do {                                                                         \

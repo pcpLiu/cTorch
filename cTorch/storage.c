@@ -1,3 +1,19 @@
+/**
+ * Copyright 2021 Zhonghao Liu
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 #include "cTorch/storage.h"
 #include "cTorch/logger_util.h"
 #include "cTorch/mem_util.h"
@@ -134,7 +150,7 @@ void struct_deep_free(CTHTensorMeta)(CTHTensorMeta *meta) {
   FREE(meta);
 }
 
-void struct_deep_free(CTHTensor)(const CTHTensor *tensor) {
+void struct_deep_free(CTHTensor)(CTHTensor *tensor) {
   FAIL_NULL_PTR(tensor);
 
   if (!tensor->meta_info->is_sharded) {
@@ -308,15 +324,19 @@ cth_tensor_dim_t cth_tensor_after_dim_offset(
 }
 
 void cth_tensor_at(const CTHTensor *tensor, void *val_ptr, ...) {
+  FAIL_NULL_PTR(tensor);
+  FAIL_NULL_PTR(val_ptr);
+
   va_list args;
-  va_start(args, tensor->meta_info->n_dim);
+  va_start(args, val_ptr);
   cth_tensor_dim_t offset = 0;
-  for (int dim_i = 0; dim_i < tensor->meta_info->n_dim; dim_i++) {
+  for (cth_tensor_dim_t dim_i = 0; dim_i < tensor->meta_info->n_dim; dim_i++) {
     cth_tensor_dim_t index_i = va_arg(args, cth_tensor_dim_t);
     if (index_i >= tensor->meta_info->dims[dim_i]) {
       FAIL_EXIT(
           CTH_LOG_ERR,
-          "Index value %d at axes %d is out of boundary. The dimension is %d",
+          "Index value %ld at axes %ld is out of boundary. The dimension is "
+          "%ld",
           index_i,
           dim_i,
           tensor->meta_info->dims[dim_i]);
