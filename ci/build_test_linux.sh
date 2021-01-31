@@ -46,19 +46,17 @@ make ctorch_tests
 # Test
 #
 
-cd tests
-
 # Any test fails, whole script execution fails.
 # This is used to signal Github Actions
 EXIT_STATUS=0
 
 # tests can be run in paralllel and no Apple & CUDA backend
-./ctorch_tests --gtest_filter="-*MEMRECORD" || EXIT_STATUS=$?
+tests/ctorch_tests --gtest_filter="-*MEMRECORD" || EXIT_STATUS=$?
 
 # Involve with mem record count, run separatelly avoid of pthread abruption
-./ctorch_tests --gtest_filter="cTorchOperatorTest.testDeepFreeMEMRECORD" || EXIT_STATUS=$?
-./ctorch_tests --gtest_filter="cTorchSharderTest.testTensorElewiseShardingMEMRECORD" || EXIT_STATUS=$?
-./ctorch_tests --gtest_filter="cTorchSharderTest.testOperatorElewiseShardingMEMRECORD" || EXIT_STATUS=$?
-./ctorch_tests --gtest_filter="cTorchListTest.testDeleteDataMEMRECORD" || EXIT_STATUS=$?
+tests/ctorch_tests --gtest_filter="cTorchOperatorTest.testDeepFreeMEMRECORD" || EXIT_STATUS=$?
+tests/ctorch_tests --gtest_filter="cTorchSharderTest.testTensorElewiseShardingMEMRECORD" || EXIT_STATUS=$?
+tests/ctorch_tests --gtest_filter="cTorchSharderTest.testOperatorElewiseShardingMEMRECORD" || EXIT_STATUS=$?
+tests/ctorch_tests --gtest_filter="cTorchListTest.testDeleteDataMEMRECORD" || EXIT_STATUS=$?
 
 exit $EXIT_STATUS

@@ -13,53 +13,69 @@
 
 #define CPU_CORES 4
 
-CTHTensor *create_dummy_tensor(cth_tensor_dim_t *dims, cth_tensor_dim_t n_dim,
-                               CTH_TENSOR_DATA_TYPE data_type, float min,
-                               float max);
+CTHTensor *create_dummy_tensor(
+    cth_tensor_dim_t *dims,
+    cth_tensor_dim_t n_dim,
+    CTH_TENSOR_DATA_TYPE data_type,
+    float min,
+    float max);
 
 /**
  * Create a dummy op node with one input and one output.
  * Input & output has same dimensions.
  */
-CTHNode *create_dummy_op_node_unary(CTH_OP_ID op_id, cth_tensor_dim_t *dims,
-                                    cth_tensor_dim_t n_dim,
-                                    CTH_TENSOR_DATA_TYPE data_type, float min,
-                                    float max);
+CTHNode *create_dummy_op_node_unary(
+    CTH_OP_ID op_id,
+    cth_tensor_dim_t *dims,
+    cth_tensor_dim_t n_dim,
+    CTH_TENSOR_DATA_TYPE data_type,
+    float min,
+    float max);
 
 /**
  * Create a dummy op node with one input and one output for 1D padding
  * operators. Input & output has different dimensions.
  */
-CTHNode *create_dummy_op_node_unary_1d_padding(CTH_OP_ID op_id,
-                                               CTH_TENSOR_DATA_TYPE data_type,
-                                               float min, float max);
+CTHNode *create_dummy_op_node_unary_1d_padding(
+    CTH_OP_ID op_id, CTH_TENSOR_DATA_TYPE data_type, float min, float max);
 
 /**
  * Create a dummy op node with one input and one output for 2D padding
  * operators. Input & output has different dimensions.
  */
-CTHNode *create_dummy_op_node_unary_2d_padding(CTH_OP_ID op_id,
-                                               CTH_TENSOR_DATA_TYPE data_type,
-                                               float min, float max);
+CTHNode *create_dummy_op_node_unary_2d_padding(
+    CTH_OP_ID op_id, CTH_TENSOR_DATA_TYPE data_type, float min, float max);
+
+/**
+ * Create a dummy op node with one input and one output for 3D padding
+ * operators. Input & output has different dimensions.
+ */
+CTHNode *create_dummy_op_node_unary_3d_padding(
+    CTH_OP_ID op_id, CTH_TENSOR_DATA_TYPE data_type, float min, float max);
 
 /*
   Create a dummy operator.
 */
-CTHOperator *create_dummy_op(CTH_OP_ID op_id, cth_array_index_t num_inputs,
-                             cth_array_index_t num_outputs);
+CTHOperator *create_dummy_op(
+    CTH_OP_ID op_id,
+    cth_array_index_t num_inputs,
+    cth_array_index_t num_outputs);
 
 /*
   Create a dummy operator.
 */
-CTHOperator *create_dummy_op_with_param(CTH_OP_ID op_id,
-                                        cth_array_index_t num_inputs,
-                                        cth_array_index_t num_outputs,
-                                        cth_array_index_t num_param);
+CTHOperator *create_dummy_op_with_param(
+    CTH_OP_ID op_id,
+    cth_array_index_t num_inputs,
+    cth_array_index_t num_outputs,
+    cth_array_index_t num_param);
 /*
   Create a dummy node without any information.
 */
-CTHNode *create_dummy_node(node_id_t id, cth_array_index_t inbound_size,
-                           cth_array_index_t outbound_size);
+CTHNode *create_dummy_node(
+    node_id_t id,
+    cth_array_index_t inbound_size,
+    cth_array_index_t outbound_size);
 
 /**
  * Create a dummy graph
@@ -116,8 +132,8 @@ float _rand_float(float min, float max);
  * libtorch
  *
  */
-#define _ele_wise_equal_unary_pytorch(op, type, eq_func, eq_precision,         \
-                                      torch_call)                              \
+#define _ele_wise_equal_unary_pytorch(                                         \
+    op, type, eq_func, eq_precision, torch_call)                               \
   {                                                                            \
     CTHTensor *tensor_input =                                                  \
         cth_array_at(CTHTensor)(op->in_bound_tensors, 0);                      \
@@ -130,8 +146,10 @@ float _rand_float(float min, float max);
     auto pytorch_out_tensor = torch_call(pytorch_in_tensor);                   \
     auto pytorch_result_tensor_flat = pytorch_out_tensor.reshape({n_ele});     \
     for (cth_tensor_dim_t i = 0; i < n_ele; i++) {                             \
-      eq_func(pytorch_result_tensor_flat[i].item<type>(), output[i],           \
-              eq_precision);                                                   \
+      eq_func(                                                                 \
+          pytorch_result_tensor_flat[i].item<type>(),                          \
+          output[i],                                                           \
+          eq_precision);                                                       \
     }                                                                          \
   }
 
@@ -140,8 +158,8 @@ float _rand_float(float min, float max);
  * output with libtorch
  *
  */
-#define _ele_wise_equal_nn_op_pytorch(op, type, eq_func, eq_precision,         \
-                                      torch_call)                              \
+#define _ele_wise_equal_nn_op_pytorch(                                         \
+    op, type, eq_func, eq_precision, torch_call)                               \
   {                                                                            \
     CTHTensor *tensor_input =                                                  \
         cth_array_at(CTHTensor)(op->in_bound_tensors, 0);                      \
@@ -154,8 +172,10 @@ float _rand_float(float min, float max);
     auto pytorch_out_tensor = torch_call(pytorch_in_tensor, op);               \
     auto pytorch_result_tensor_flat = pytorch_out_tensor.reshape({n_ele});     \
     for (cth_tensor_dim_t i = 0; i < n_ele; i++) {                             \
-      eq_func(pytorch_result_tensor_flat[i].item<type>(), output[i],           \
-              eq_precision);                                                   \
+      eq_func(                                                                 \
+          pytorch_result_tensor_flat[i].item<type>(),                          \
+          output[i],                                                           \
+          eq_precision);                                                       \
     }                                                                          \
   }
 
@@ -183,8 +203,15 @@ float _rand_float(float min, float max);
 /**
  * @brief Reduce op verify
  */
-#define _reduce_op(op, in_type, out_type, in_type_enum, out_type_enum,         \
-                   py_out_type, pytorch_call, eq_func)                         \
+#define _reduce_op(                                                            \
+    op,                                                                        \
+    in_type,                                                                   \
+    out_type,                                                                  \
+    in_type_enum,                                                              \
+    out_type_enum,                                                             \
+    py_out_type,                                                               \
+    pytorch_call,                                                              \
+    eq_func)                                                                   \
   {                                                                            \
     CTHTensor *tensor_input =                                                  \
         cth_array_at(CTHTensor)(op->in_bound_tensors, 0);                      \
@@ -213,28 +240,76 @@ float _rand_float(float min, float max);
     }                                                                          \
   }
 
-#define _reducetyping_test_flow_2(op, in_type, in_type_enum, out_type_enum,    \
-                                  py_out_type, pytorch_call, eq_func)          \
+#define _reducetyping_test_flow_2(                                             \
+    op,                                                                        \
+    in_type,                                                                   \
+    in_type_enum,                                                              \
+    out_type_enum,                                                             \
+    py_out_type,                                                               \
+    pytorch_call,                                                              \
+    eq_func)                                                                   \
   do {                                                                         \
     if (out_type_enum == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||                      \
         out_type_enum == CTH_TENSOR_DATA_TYPE_FLOAT_32) {                      \
-      _reduce_op(op, in_type, float, in_type_enum, out_type_enum, py_out_type, \
-                 pytorch_call, eq_func);                                       \
+      _reduce_op(                                                              \
+          op,                                                                  \
+          in_type,                                                             \
+          float,                                                               \
+          in_type_enum,                                                        \
+          out_type_enum,                                                       \
+          py_out_type,                                                         \
+          pytorch_call,                                                        \
+          eq_func);                                                            \
     } else if (out_type_enum == CTH_TENSOR_DATA_TYPE_FLOAT_64) {               \
-      _reduce_op(op, in_type, double, in_type_enum, out_type_enum,             \
-                 py_out_type, pytorch_call, eq_func);                          \
+      _reduce_op(                                                              \
+          op,                                                                  \
+          in_type,                                                             \
+          double,                                                              \
+          in_type_enum,                                                        \
+          out_type_enum,                                                       \
+          py_out_type,                                                         \
+          pytorch_call,                                                        \
+          eq_func);                                                            \
     } else if (out_type_enum == CTH_TENSOR_DATA_TYPE_INT_16) {                 \
-      _reduce_op(op, in_type, int16_t, in_type_enum, out_type_enum,            \
-                 py_out_type, pytorch_call, eq_func);                          \
+      _reduce_op(                                                              \
+          op,                                                                  \
+          in_type,                                                             \
+          int16_t,                                                             \
+          in_type_enum,                                                        \
+          out_type_enum,                                                       \
+          py_out_type,                                                         \
+          pytorch_call,                                                        \
+          eq_func);                                                            \
     } else if (out_type_enum == CTH_TENSOR_DATA_TYPE_INT_32) {                 \
-      _reduce_op(op, in_type, int32_t, in_type_enum, out_type_enum,            \
-                 py_out_type, pytorch_call, eq_func);                          \
+      _reduce_op(                                                              \
+          op,                                                                  \
+          in_type,                                                             \
+          int32_t,                                                             \
+          in_type_enum,                                                        \
+          out_type_enum,                                                       \
+          py_out_type,                                                         \
+          pytorch_call,                                                        \
+          eq_func);                                                            \
     } else if (out_type_enum == CTH_TENSOR_DATA_TYPE_INT_64) {                 \
-      _reduce_op(op, in_type, int64_t, in_type_enum, out_type_enum,            \
-                 py_out_type, pytorch_call, eq_func);                          \
+      _reduce_op(                                                              \
+          op,                                                                  \
+          in_type,                                                             \
+          int64_t,                                                             \
+          in_type_enum,                                                        \
+          out_type_enum,                                                       \
+          py_out_type,                                                         \
+          pytorch_call,                                                        \
+          eq_func);                                                            \
     } else if (out_type_enum == CTH_TENSOR_DATA_TYPE_UINT_8) {                 \
-      _reduce_op(op, in_type, u_int8_t, in_type_enum, out_type_enum,           \
-                 py_out_type, pytorch_call, eq_func);                          \
+      _reduce_op(                                                              \
+          op,                                                                  \
+          in_type,                                                             \
+          u_int8_t,                                                            \
+          in_type_enum,                                                        \
+          out_type_enum,                                                       \
+          py_out_type,                                                         \
+          pytorch_call,                                                        \
+          eq_func);                                                            \
     }                                                                          \
   } while (0)
 
@@ -242,28 +317,28 @@ float _rand_float(float min, float max);
  * @brief Reduce op test flow
  *
  */
-#define _reduce_typing_test_flow(op, in_type, out_type, py_out_type,           \
-                                 pytorch_call, eq_func)                        \
+#define _reduce_typing_test_flow(                                              \
+    op, in_type, out_type, py_out_type, pytorch_call, eq_func)                 \
   do {                                                                         \
     if (in_type == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||                            \
         in_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {                            \
-      _reducetyping_test_flow_2(op, float, in_type, out_type, py_out_type,     \
-                                pytorch_call, eq_func);                        \
+      _reducetyping_test_flow_2(                                               \
+          op, float, in_type, out_type, py_out_type, pytorch_call, eq_func);   \
     } else if (in_type == CTH_TENSOR_DATA_TYPE_FLOAT_64) {                     \
-      _reducetyping_test_flow_2(op, double, in_type, out_type, py_out_type,    \
-                                pytorch_call, eq_func);                        \
+      _reducetyping_test_flow_2(                                               \
+          op, double, in_type, out_type, py_out_type, pytorch_call, eq_func);  \
     } else if (in_type == CTH_TENSOR_DATA_TYPE_INT_16) {                       \
-      _reducetyping_test_flow_2(op, int16_t, in_type, out_type, py_out_type,   \
-                                pytorch_call, eq_func);                        \
+      _reducetyping_test_flow_2(                                               \
+          op, int16_t, in_type, out_type, py_out_type, pytorch_call, eq_func); \
     } else if (in_type == CTH_TENSOR_DATA_TYPE_INT_32) {                       \
-      _reducetyping_test_flow_2(op, int32_t, in_type, out_type, py_out_type,   \
-                                pytorch_call, eq_func);                        \
+      _reducetyping_test_flow_2(                                               \
+          op, int32_t, in_type, out_type, py_out_type, pytorch_call, eq_func); \
     } else if (in_type == CTH_TENSOR_DATA_TYPE_INT_64) {                       \
-      _reducetyping_test_flow_2(op, int64_t, in_type, out_type, py_out_type,   \
-                                pytorch_call, eq_func);                        \
+      _reducetyping_test_flow_2(                                               \
+          op, int64_t, in_type, out_type, py_out_type, pytorch_call, eq_func); \
     } else if (in_type == CTH_TENSOR_DATA_TYPE_UINT_8) {                       \
-      _reducetyping_test_flow_2(op, uint8_t, in_type, out_type, py_out_type,   \
-                                pytorch_call, eq_func);                        \
+      _reducetyping_test_flow_2(                                               \
+          op, uint8_t, in_type, out_type, py_out_type, pytorch_call, eq_func); \
     }                                                                          \
   } while (0)
 
@@ -275,11 +350,15 @@ float _rand_float(float min, float max);
  * @param out_ptr
  * @param i
  */
-void sample_print(CTH_TENSOR_DATA_TYPE type, void *in_ptr, void *out_ptr,
-                  cth_tensor_dim_t i);
+void sample_print(
+    CTH_TENSOR_DATA_TYPE type, void *in_ptr, void *out_ptr, cth_tensor_dim_t i);
 
-void sample_print_triple(CTH_TENSOR_DATA_TYPE type, void *in_ptr_1,
-                         void *in_ptr_2, void *out_ptr, cth_tensor_dim_t i);
+void sample_print_triple(
+    CTH_TENSOR_DATA_TYPE type,
+    void *in_ptr_1,
+    void *in_ptr_2,
+    void *out_ptr,
+    cth_tensor_dim_t i);
 
 inline int *heap_int(int x) {
   int *ptr = (int *)MALLOC(sizeof(int));
@@ -296,8 +375,11 @@ inline void cth_free_deep_int(int *x) { FREE(x); }
  * @param dims
  * @param n_dim
  */
-void _rand_dims(cth_tensor_dim_t *dims, cth_tensor_dim_t n_dim,
-                cth_tensor_dim_t min, cth_tensor_dim_t max);
+void _rand_dims(
+    cth_tensor_dim_t *dims,
+    cth_tensor_dim_t n_dim,
+    cth_tensor_dim_t min,
+    cth_tensor_dim_t max);
 
 /**
  * @brief Get reduc dims
@@ -307,9 +389,11 @@ void _rand_dims(cth_tensor_dim_t *dims, cth_tensor_dim_t n_dim,
  * @param reduce_dim
  * @param reduce_dims
  */
-void _get_reduce_dims(cth_tensor_dim_t *dims, cth_tensor_dim_t n_dim,
-                      cth_tensor_dim_t reduce_dim,
-                      cth_tensor_dim_t *reduce_dims);
+void _get_reduce_dims(
+    cth_tensor_dim_t *dims,
+    cth_tensor_dim_t n_dim,
+    cth_tensor_dim_t reduce_dim,
+    cth_tensor_dim_t *reduce_dims);
 
 /**
  * @brief Generate randin int [min, max]

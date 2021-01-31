@@ -1,13 +1,8 @@
 name: build
 
 on:
-  push:
-    branches: [master]
-    paths-ignore:
-      - "**/*.md"
-      - "LICENSE"
-      - "doc/*"
   pull_request:
+  push:
     branches: [master]
     paths-ignore:
       - "**/*.md"
@@ -28,15 +23,15 @@ jobs:
       - name: 1) Pull submodules
         run: git submodule init && git submodule update
 
-      - name: 2) Configure aws
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: AKIATGUE5JHV5TX52MJP
-          aws-secret-access-key: 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
-          aws-region: us-east-2
+      # - name: 2) Configure aws
+      #   uses: aws-actions/configure-aws-credentials@v1
+      #   with:
+      #     aws-access-key-id: AKIATGUE5JHV5TX52MJP
+      #     aws-secret-access-key: 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
+      #     aws-region: us-east-2
 
-      - name: 3) Pull data from S3
-        run: bash ci/aws_s3.sh
+      - name: 2) Install MKL
+        run: bash ci/mkl_install_linux.sh
 
       - name: 4-A) Build & Test on Linux
         if: matrix.os == 'ubuntu-latest'

@@ -1,3 +1,19 @@
+/**
+ * Copyright 2021 Zhonghao Liu
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 // #include "cTorch/operators/default/op_list.h"
 // #include "cTorch/operators/default/util.h"
 // #include "cTorch/operators/op_util.h"
@@ -13,7 +29,7 @@
 //     cth_kernel_t *kernel_size;                                                 \
 //     cth_groups_t *groups;                                                      \
 //     cth_stride_t *stride;                                                      \
-//     cth_pad_t *padding_d2;                                                     \
+//     cth_pad_t *padding;                                                     \
 //     cth_dilation_t *dilation;                                                  \
 //     CTH_PADDING_MODE *padding_mode;                                            \
 //                                                                                \
@@ -26,7 +42,7 @@
 //     EXTRACT_PARAM_VALUE(op, CTH_PARAM_TYPE_GROUPS, groups, groups);            \
 //     EXTRACT_PARAM_VALUE(op, CTH_PARAM_TYPE_STRIDE, stride, stride);            \
 //     EXTRACT_PARAM_VALUE(                                                       \
-//         op, CTH_PARAM_TYPE_PADDING_D2, padding_d2, padding_d2);                \
+//         op, CTH_PARAM_TYPE_PADDING_D2, padding, padding);                \
 //     EXTRACT_PARAM_VALUE(op, CTH_PARAM_TYPE_DILATION, dilation, dilation);      \
 //     EXTRACT_PARAM_VALUE(                                                       \
 //         op, CTH_PARAM_TYPE_PADDING_MODE, padding_mode, padding_mode);          \
@@ -46,8 +62,8 @@
 //     cth_tensor_dim_t kernel_size = weight->meta_info->dims[2];                 \
 //     cth_tensor_dim_t output_feature_dim = output->meta_info->dims[2];          \
 //     cth_tensor_dim_t batches = output->meta_info->dims[0];                     \
-//     cth_tensor_dim_t padding_left = PTR_VAL(padding_d2[0]);                    \
-//     cth_tensor_dim_t padding_right = PTR_VAL(padding_d2[1]);                   \
+//     cth_tensor_dim_t padding_left = PTR_VAL(padding[0]);                    \
+//     cth_tensor_dim_t padding_right = PTR_VAL(padding[1]);                   \
 //     data_type out_val = 0;                                                     \
 //     for (cth_tensor_dim_t bacth_i = 0; batch_i < batches; bacth_i++) {         \
 //       for (cth_groups_t group_i = 0; group_i < PTR_VAL(groups); group_i++) {   \
