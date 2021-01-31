@@ -70,6 +70,7 @@ set(ops_default_all
     operators/default/op_median_default.c
     operators/default/op_Conv1d_default.c
     operators/default/op_ReplicationPad1d_default.c
+    operators/default/op_ReplicationPad2d_default.c
 )
 
 ################################################################################

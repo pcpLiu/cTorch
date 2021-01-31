@@ -3,6 +3,8 @@
 
 #include <stdlib.h>
 
+#define MEMCPY memcpy
+
 /**
  * @brief Malloc with optional argument to give a descriptive name to this
  * memory.
@@ -64,11 +66,5 @@ int cth_asprintf(char **strp, const char *fmt, ...);
  *
  */
 #define FREE_SOFT(ptr) cth_free_soft(ptr, __FILE__, __LINE__, __func__)
-
-/**
- * @brief
- *
- */
-#define MEMCPY memcpy
 
 #endif /* CTH_MEM_UTIL_H */

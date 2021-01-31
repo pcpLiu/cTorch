@@ -18,6 +18,7 @@ typedef enum CTH_PARAM_TYPE {
   CTH_PARAM_TYPE_KERNEL_SIZE,
   CTH_PARAM_TYPE_STRIDE,
   CTH_PARAM_TYPE_PADDING_D2,
+  CTH_PARAM_TYPE_PADDING_D4,
   CTH_PARAM_TYPE_DILATION,
   CTH_PARAM_TYPE_KERNEL_SIZE_D2,
   CTH_PARAM_TYPE_STRIDE_D2,
@@ -43,6 +44,7 @@ typedef union CTHParamData {
   cth_kernel_t *kernel_size_d2;
   cth_stride_t *stride_d2;
   cth_pad_t *padding_d2;
+  cth_pad_t *padding_d4;
   cth_dilation_t *dilation_d2;
   cth_groups_t *groups;
   CTH_PADDING_MODE *padding_mode;

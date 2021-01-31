@@ -49,3 +49,28 @@ TEST(cTorchReplicationPad1dOpTest, testFloat16Default) {
   test_replication_pad_1d(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_16,
                           1.0, 100.0);
 }
+
+TEST(cTorchReplicationPad1dOpTest, testFloat32Default) {
+  test_replication_pad_1d(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_32,
+                          1.0, 100.0);
+}
+
+TEST(cTorchReplicationPad1dOpTest, testFloat64Default) {
+  test_replication_pad_1d(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64,
+                          1.0, 100.0);
+}
+
+TEST(cTorchReplicationPad1dOpTest, testInt16Default) {
+  test_replication_pad_1d(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_16, 1.0,
+                          100.0);
+}
+
+TEST(cTorchReplicationPad1dOpTest, testInt32Default) {
+  test_replication_pad_1d(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_32, 1.0,
+                          100.0);
+}
+
+TEST(cTorchReplicationPad1dOpTest, testInt64Default) {
+  test_replication_pad_1d(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_INT_64, 1.0,
+                          100.0);
+}

@@ -4,7 +4,6 @@
 
 /**
  * @brief 1D replication padding.
- * Replication padding visual: http://bit.ly/2NoEAPo
  *
  * @param in_ptr input tensor value pointer
  * @param in_meta CTHTensorMeta input tensor meta
