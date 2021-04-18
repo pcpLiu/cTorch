@@ -1,3 +1,17 @@
+// Copyright 2021 Zhonghao Liu
+// 
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+// 
+//     http://www.apache.org/licenses/LICENSE-2.0
+// 
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 #ifndef CTH_STORAGE_H
 #define CTH_STORAGE_H
 
@@ -53,7 +67,7 @@ typedef struct CTHTensor {
  * Note:
  *    If pointer is NULL, error raised and exit.
  */
-void struct_deep_free(CTHTensor)(const CTHTensor *tensor);
+void struct_deep_free(CTHTensor)(CTHTensor *tensor);
 
 // List utils for CTHTensor
 cth_def_list_item(CTHTensor);
@@ -160,12 +174,15 @@ void cth_tensor_get_reduce_index(
     cth_tensor_dim_t *result);
 
 /**
- * @brief Accesss element of a tensor based on index list
+ * @brief Accesss element of a tensor based on index list. Check unit test for
+ * usage
  *
- * @warning If index is out of boundary, function will raise error and exit.
+ * @note If index is out of boundary, function will log error and exit.
  *
- * @param tesnor CTHTensor tensor
- * @param val_ptr void* pointer to result variable
+ * @param tesnor CTHTensor tensor. If it is null, function will log error and
+ * exit
+ * @param val_ptr void* pointer to result variable. If it is null, function will
+ * log error and exit
  * @param va_list __VA_ARGS__ index list
  */
 void cth_tensor_at(const CTHTensor *tensor, void *val_ptr, ...);

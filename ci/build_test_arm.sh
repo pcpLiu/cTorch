@@ -7,6 +7,9 @@
 #   - OpenBLAS
 #   - Arm Neon
 #
+# Note: this script needs to be executed on ARM platform.
+# It's NOT a cross-compiling building. We tested this on
+# Raspberry Pi.
 #############################################################
 
 
