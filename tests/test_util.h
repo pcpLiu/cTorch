@@ -39,6 +39,9 @@ CTHNode *create_dummy_op_node_unary(
 CTHNode *create_dummy_op_node_unary_1d_padding(
     CTH_OP_ID op_id, CTH_TENSOR_DATA_TYPE data_type, float min, float max);
 
+CTHNode *create_dummy_op_node_unary_1d_constant_padding(
+    CTH_OP_ID op_id, CTH_TENSOR_DATA_TYPE data_type, float min, float max);
+
 /**
  * Create a dummy op node with one input and one output for 2D padding
  * operators. Input & output has different dimensions.
@@ -46,11 +49,17 @@ CTHNode *create_dummy_op_node_unary_1d_padding(
 CTHNode *create_dummy_op_node_unary_2d_padding(
     CTH_OP_ID op_id, CTH_TENSOR_DATA_TYPE data_type, float min, float max);
 
+CTHNode *create_dummy_op_node_unary_2d_constant_padding(
+    CTH_OP_ID op_id, CTH_TENSOR_DATA_TYPE data_type, float min, float max);
+
 /**
  * Create a dummy op node with one input and one output for 3D padding
  * operators. Input & output has different dimensions.
  */
 CTHNode *create_dummy_op_node_unary_3d_padding(
+    CTH_OP_ID op_id, CTH_TENSOR_DATA_TYPE data_type, float min, float max);
+
+CTHNode *create_dummy_op_node_unary_3d_constant_padding(
     CTH_OP_ID op_id, CTH_TENSOR_DATA_TYPE data_type, float min, float max);
 
 /*

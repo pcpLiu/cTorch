@@ -23,7 +23,7 @@
  *
  * All variables defined `_cth_padding_flow_3d`.
  */
-#define _cth_replicate_pad_3d()                                                \
+#define _cth_replicate_pad_3d(op, data_type)                                   \
   do {                                                                         \
     for (cth_tensor_dim_t i = 0; i < padding_left; i++) {                      \
       out_ptr[out_offset + i] = in_ptr[in_offset];                             \
@@ -47,7 +47,7 @@
  *
  * All variables defined `_cth_padding_flow_3d`.
  */
-#define _cth_replicate_pad_3d_front()                                          \
+#define _cth_replicate_pad_3d_front(op, data_type)                             \
   do {                                                                         \
     cth_tensor_dim_t cp_src_offset =                                           \
         b_i * (out_c_dim * out_z_dim * out_y_dim * out_x_dim) +                \
@@ -72,7 +72,7 @@
  *
  * All variables defined `_cth_padding_flow_3d`.
  */
-#define _cth_replicate_pad_3d_back()                                           \
+#define _cth_replicate_pad_3d_back(op, data_type)                              \
   do {                                                                         \
     cth_tensor_dim_t cp_src_offset =                                           \
         b_i * (out_c_dim * out_z_dim * out_y_dim * out_x_dim) +                \

@@ -1,11 +1,11 @@
 // Copyright 2021 Zhonghao Liu
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //     http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,6 +22,7 @@
  * Enum used to indicate param type
  */
 typedef enum CTH_PARAM_TYPE {
+  /* multiplier */
   CTH_PARAM_TYPE_MULTIPLIER,
   CTH_PARAM_TYPE_MIN,
   CTH_PARAM_TYPE_MAX,
@@ -40,6 +41,8 @@ typedef enum CTH_PARAM_TYPE {
   CTH_PARAM_TYPE_DILATION_D2,
   CTH_PARAM_TYPE_PADDING_MODE,
   CTH_PARAM_TYPE_GROUPS,
+  /* Padding value. Store as float. */
+  CTH_PARAM_TYPE_PADDING_VALUE_FLOAT,
 } CTH_PARAM_TYPE;
 
 /**
@@ -59,6 +62,7 @@ typedef union CTHParamData {
   cth_dilation_t *dilation;
   cth_groups_t *groups;
   CTH_PADDING_MODE *padding_mode;
+  cth_float_param_t *padding_value_float;
 } CTHParamData;
 
 typedef struct CTHParam {
@@ -87,7 +91,8 @@ void struct_deep_free(CTHParam)(CTHParam *param);
 void cth_copy_param(CTHParam *from_param, CTHParam *to_param);
 
 /**
- * Extract param value with given types. Will raise error if param not exist.
+ * @brief Extract param value with given types. Will raise error if param not
+ * exist.
  *
  * @note The `param_var` should be a pointer. `param_var` will just be assigned
  * the meem address of existing parameter variable. It does not copy the value
