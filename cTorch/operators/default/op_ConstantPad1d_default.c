@@ -19,25 +19,37 @@
 #include "cTorch/operators/default/util.h"
 
 /**
- * @brief 1D replication padding.
+ * @brief 1D constant padding.
  * All the variables are defined in `_cth_padding_flow_1d`
+ *
  */
-#define _cth_replicate_pad_1d(op, data_type)                                   \
+#define _cth_constant_pad_1d(op, data_type)                                    \
   do {                                                                         \
+    float *padding_value_float;                                                \
+    EXTRACT_PARAM_VALUE(                                                       \
+        op,                                                                    \
+        CTH_PARAM_TYPE_PADDING_VALUE_FLOAT,                                    \
+        padding_value_float,                                                   \
+        padding_value_float);                                                  \
+    data_type padding_value_typed = (data_type)padding_value_float[0];         \
+                                                                               \
     for (cth_tensor_dim_t i = 0; i < padding_left; i++) {                      \
-      out_ptr[out_offset + i] = in_ptr[in_offset];                             \
+      out_ptr[out_offset + i] = padding_value_typed;                           \
     }                                                                          \
                                                                                \
     for (cth_tensor_dim_t i = 0; i < padding_right; i++) {                     \
       out_ptr[out_offset + padding_left + input_x_dim + i] =                   \
-          in_ptr[in_offset + input_x_dim - 1];                                 \
+          padding_value_typed;                                                 \
     }                                                                          \
   } while (0)
 
 /**
- * @brief Pads the input tensor using replication of the input boundary.
+ * @brief Pads the input tensor boundaries with a constant value.
  *
  * @param op CTHOperator operator
+ *
+ * @note For int-like input tensor, this op will cast
+ * `CTH_PARAM_TYPE_PADDING_VALUE_FLOAT` to corresponding integer type.
  *
  * @par Inputs & outputs:
  *   - # of input: 1
@@ -46,9 +58,11 @@
  *    - 0: output tensor, [batch, channel (z), length (x)]
  *
  * @par Op arguments:
- *    - CTH_PARAM_TYPE_PADDING_D2
+ *    - 0: CTH_PARAM_TYPE_PADDING_D2
+ *    - 1: CTH_PARAM_TYPE_PADDING_VALUE_FLOAT
  */
-void op_ReplicationPad1d_cpu(CTHOperator *op) {
+void op_ConstantPad1d_cpu(CTHOperator *op) {
   FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(op, 1, 1);
-  _cth_padding_generic_1d(op, _cth_replicate_pad_1d);
+  FORCE_OP_PARAM_NUM(op, 2);
+  _cth_padding_generic_1d(op, _cth_constant_pad_1d);
 }

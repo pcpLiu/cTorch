@@ -488,7 +488,6 @@
  *
  * @param op CTHOperator op
  * @param data_type C data type
- * @param padding_logic the macro to implement a specific padding
  *
  */
 #define _cth_padding_flow_1d(op, data_type, padding_logic)                     \
@@ -503,6 +502,7 @@
     EXTRACT_PARAM_VALUE(op, CTH_PARAM_TYPE_PADDING_D2, padding, padding);      \
     cth_tensor_dim_t padding_left = padding[0];                                \
     cth_tensor_dim_t padding_right = padding[1];                               \
+    cth_tensor_dim_t input_x_dim = in_meta->dims[2];                           \
                                                                                \
     FORCE_EQ(                                                                  \
         in_meta->dims[0],                                                      \
@@ -539,15 +539,8 @@
             out_ptr + out_offset + padding_left,                               \
             in_ptr + in_offset,                                                \
             sizeof(data_type) * in_meta->dims[2]);                             \
-        padding_logic(                                                         \
-            in_ptr,                                                            \
-            in_meta,                                                           \
-            in_offset,                                                         \
-            out_ptr,                                                           \
-            out_meta,                                                          \
-            out_offset,                                                        \
-            padding_left,                                                      \
-            padding_right);                                                    \
+                                                                               \
+        padding_logic(op, data_type);                                          \
       }                                                                        \
     }                                                                          \
   } while (0)
@@ -557,26 +550,27 @@
  *
  * @param op CTHOperator op
  * @param padding_logic the macro to implement a specific padding
+ * @param param_extraction_logic macro to implement padding param extraction
  */
 #define _cth_padding_generic_1d(op, padding_logic)                             \
   do {                                                                         \
     CTHTensor *in = cth_array_at(CTHTensor)(op->in_bound_tensors, 0);          \
-    CTH_TENSOR_DATA_TYPE data_type = in->meta_info->data_type;                 \
-    if (data_type == CTH_TENSOR_DATA_TYPE_BOOL) {                              \
+    CTH_TENSOR_DATA_TYPE data_type_enum = in->meta_info->data_type;            \
+    if (data_type_enum == CTH_TENSOR_DATA_TYPE_BOOL) {                         \
       _cth_padding_flow_1d(op, bool, padding_logic);                           \
-    } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_16) {                     \
+    } else if (data_type_enum == CTH_TENSOR_DATA_TYPE_INT_16) {                \
       _cth_padding_flow_1d(op, int16_t, padding_logic);                        \
-    } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_32) {                     \
+    } else if (data_type_enum == CTH_TENSOR_DATA_TYPE_INT_32) {                \
       _cth_padding_flow_1d(op, int32_t, padding_logic);                        \
-    } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_64) {                     \
+    } else if (data_type_enum == CTH_TENSOR_DATA_TYPE_INT_64) {                \
       _cth_padding_flow_1d(op, int64_t, padding_logic);                        \
-    } else if (data_type == CTH_TENSOR_DATA_TYPE_UINT_8) {                     \
+    } else if (data_type_enum == CTH_TENSOR_DATA_TYPE_UINT_8) {                \
       _cth_padding_flow_1d(op, uint8_t, padding_logic);                        \
-    } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16) {                   \
+    } else if (data_type_enum == CTH_TENSOR_DATA_TYPE_FLOAT_16) {              \
       _cth_padding_flow_1d(op, float, padding_logic);                          \
-    } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {                   \
+    } else if (data_type_enum == CTH_TENSOR_DATA_TYPE_FLOAT_32) {              \
       _cth_padding_flow_1d(op, float, padding_logic);                          \
-    } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_64) {                   \
+    } else if (data_type_enum == CTH_TENSOR_DATA_TYPE_FLOAT_64) {              \
       _cth_padding_flow_1d(op, double, padding_logic);                         \
     } else {                                                                   \
       FAIL_EXIT(                                                               \
@@ -675,7 +669,7 @@
                 sizeof(data_type) * in_x_dim);                                 \
           }                                                                    \
                                                                                \
-          padding_logic();                                                     \
+          padding_logic(op, data_type);                                        \
         }                                                                      \
       }                                                                        \
     }                                                                          \
@@ -709,7 +703,7 @@
       _cth_padding_flow_2d(op, double, padding_logic);                         \
     } else {                                                                   \
       FAIL_EXIT(                                                               \
-          CTH_LOG_ERR, "Unsupported data type in _cth_padding_generic_1d");    \
+          CTH_LOG_ERR, "Unsupported data type in _cth_padding_generic_2d");    \
     }                                                                          \
   } while (0)
 
@@ -721,7 +715,7 @@
  * back)
  *
  * @param op CTHOperator op
- * @param data_type_c C data type
+ * @param data_type C data type
  * @param padding_logic the macro to implement a specific padding for regular
  * frame
  * @param padding_logic_front the macro to padding front part
@@ -729,15 +723,15 @@
  *
  */
 #define _cth_padding_flow_3d(                                                  \
-    op, data_type_c, padding_logic, padding_logic_front, padding_logic_back)   \
+    op, data_type, padding_logic, padding_logic_front, padding_logic_back)     \
   do {                                                                         \
     CTHTensor *in_tensor = cth_array_at(CTHTensor)(op->in_bound_tensors, 0);   \
     CTHTensor *out_tensor = cth_array_at(CTHTensor)(op->out_bound_tensors, 0); \
     CTHTensorMeta *in_meta = in_tensor->meta_info;                             \
     CTHTensorMeta *out_meta = out_tensor->meta_info;                           \
-    data_type_c *in_ptr = (data_type_c *)in_tensor->values;                    \
-    data_type_c *out_ptr = (data_type_c *)out_tensor->values;                  \
-    size_t data_size = sizeof(data_type_c);                                    \
+    data_type *in_ptr = (data_type *)in_tensor->values;                        \
+    data_type *out_ptr = (data_type *)out_tensor->values;                      \
+    size_t data_size = sizeof(data_type);                                      \
     cth_pad_t *padding;                                                        \
     EXTRACT_PARAM_VALUE(op, CTH_PARAM_TYPE_PADDING_D6, padding, padding);      \
     cth_tensor_dim_t padding_left = padding[0];                                \
@@ -828,19 +822,19 @@
               memcpy(                                                          \
                   out_ptr + out_offset + padding_left,                         \
                   in_ptr + in_offset,                                          \
-                  sizeof(data_type_c) * in_x_dim);                             \
+                  sizeof(data_type) * in_x_dim);                               \
             }                                                                  \
                                                                                \
-            padding_logic();                                                   \
+            padding_logic(op, data_type);                                      \
           }                                                                    \
         }                                                                      \
                                                                                \
         if (padding_front > 0) {                                               \
-          padding_logic_front();                                               \
+          padding_logic_front(op, data_type);                                  \
         }                                                                      \
                                                                                \
         if (padding_back > 0) {                                                \
-          padding_logic_back();                                                \
+          padding_logic_back(op, data_type);                                   \
         }                                                                      \
       }                                                                        \
     }                                                                          \
@@ -899,7 +893,7 @@
           op, double, padding_logic, padding_logic_front, padding_logic_back); \
     } else {                                                                   \
       FAIL_EXIT(                                                               \
-          CTH_LOG_ERR, "Unsupported data type in _cth_padding_generic_1d");    \
+          CTH_LOG_ERR, "Unsupported data type in _cth_padding_generic_3d");    \
     }                                                                          \
   } while (0)
 

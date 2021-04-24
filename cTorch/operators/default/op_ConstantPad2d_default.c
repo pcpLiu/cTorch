@@ -24,38 +24,50 @@
  * All the variables are defined in `_cth_padding_flow_2d`
  *
  */
-#define _cth_replicate_pad_2d(op, data_type)                                   \
+#define _cth_constant_pad_2d(op, data_type)                                    \
   do {                                                                         \
+    float *padding_value_float;                                                \
+    EXTRACT_PARAM_VALUE(                                                       \
+        op,                                                                    \
+        CTH_PARAM_TYPE_PADDING_VALUE_FLOAT,                                    \
+        padding_value_float,                                                   \
+        padding_value_float);                                                  \
+    data_type padding_value_typed = (data_type)padding_value_float[0];         \
+                                                                               \
     for (cth_tensor_dim_t i = 0; i < padding_left; i++) {                      \
-      out_ptr[out_offset + i] = in_ptr[in_offset];                             \
+      out_ptr[out_offset + i] = padding_value_typed;                           \
     }                                                                          \
     for (cth_tensor_dim_t i = 0; i < padding_right; i++) {                     \
-      out_ptr[out_offset + padding_left + in_x_dim + i] =                      \
-          in_ptr[in_offset + in_x_dim - 1];                                    \
+      out_ptr[out_offset + padding_left + in_x_dim + i] = padding_value_typed; \
     }                                                                          \
                                                                                \
     if (padding_whole_row) {                                                   \
       for (cth_tensor_dim_t i = 0; i < in_x_dim; i++) {                        \
-        out_ptr[out_offset + padding_left + i] = in_ptr[in_offset + i];        \
+        out_ptr[out_offset + padding_left + i] = padding_value_typed;          \
       }                                                                        \
     }                                                                          \
   } while (0)
 
 /**
- * @brief Pads the input tensor using replication of the input boundary.
+ * @brief Pads the input tensor boundaries with a constant value.
  *
  * @param op CTHOperator operator
+ *
+ * @note For int-like input tensor, this op will cast
+ * `CTH_PARAM_TYPE_PADDING_VALUE_FLOAT` to corresponding integer type.
  *
  * @par Inputs & outputs:
  *   - # of input: 1
  *    - 0: input tensor, [batch (b), channel (c), height (y), length (x)]
  *   - # of output: 1
- *    - 0: output tensor, [batch (b), channel (), height (y), length (x)]
+ *    - 0: output tensor, [batch (b), channel (c), height (y), length (x)]
  *
  * @par Op arguments:
- *    - CTH_PARAM_TYPE_PADDING_D4, [left, right, top, bottom]
+ *    - 0: CTH_PARAM_TYPE_PADDING_D4, [left, right, top, bottom]
+ *    - 1: CTH_PARAM_TYPE_PADDING_VALUE_FLOAT
  */
-void op_ReplicationPad2d_cpu(CTHOperator *op) {
+void op_ConstantPad2d_cpu(CTHOperator *op) {
   FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(op, 1, 1);
-  _cth_padding_generic_2d(op, _cth_replicate_pad_2d);
+  FORCE_OP_PARAM_NUM(op, 2);
+  _cth_padding_generic_2d(op, _cth_constant_pad_2d);
 }

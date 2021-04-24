@@ -43,7 +43,6 @@ set(ENABLE_SHARDING OFF CACHE BOOL
     "Enable sharding (paralllel) execution of operators. It retuires pthread. Default off"
 )
 
-
 ################################################################################
 #
 # Backends compiling enable

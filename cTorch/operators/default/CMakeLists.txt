@@ -72,6 +72,9 @@ set(ops_default_all
     operators/default/op_ReplicationPad1d_default.c
     operators/default/op_ReplicationPad2d_default.c
     operators/default/op_ReplicationPad3d_default.c
+    operators/default/op_ConstantPad1d_default.c
+    operators/default/op_ConstantPad2d_default.c
+    operators/default/op_ConstantPad3d_default.c
 )
 
 ################################################################################
