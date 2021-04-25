@@ -1,11 +1,11 @@
 // Copyright 2021 Zhonghao Liu
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //     http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -102,11 +102,19 @@
 /**
  * @brief Force expression is true.
  *
+ * @note We didn't free `tmp`, `tmp2`, `tmp3` cause system already exits.
+ *
  */
 #define FORCE_TRUE(expression, ...)                                            \
   do {                                                                         \
-    if (expression) {                                                          \
-      FAIL_EXIT(CTH_LOG_ERR, "FORCE_TRUE failes. Info: %s", __VA_ARGS__);      \
+    if (!(expression)) {                                                       \
+      char *tmp = NULL;                                                        \
+      char *tmp2 = NULL;                                                       \
+      asprintf(&tmp, "FORCE_TRUE failes: ");                                   \
+      asprintf(&tmp2, __VA_ARGS__);                                            \
+      char *tmp3 = MALLOC(sizeof(char) * (2 + strlen(tmp) + strlen(tmp2)));    \
+      strcpy(tmp3, tmp2);                                                      \
+      FAIL_EXIT(CTH_LOG_ERR, tmp3);                                            \
     }                                                                          \
   } while (0)
 
