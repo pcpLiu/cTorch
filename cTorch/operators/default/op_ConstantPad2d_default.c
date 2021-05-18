@@ -18,6 +18,9 @@
 #include "cTorch/operators/default/op_list.h"
 #include "cTorch/operators/default/util.h"
 
+#define _cth_constant_pad_2d_extra_force()                                     \
+  {}
+
 /**
  * @brief 2D replication padding.
  *
@@ -69,5 +72,6 @@
 void op_ConstantPad2d_cpu(CTHOperator *op) {
   FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(op, 1, 1);
   FORCE_OP_PARAM_NUM(op, 2);
-  _cth_padding_generic_2d(op, _cth_constant_pad_2d);
+  _cth_padding_generic_2d(
+      op, _cth_constant_pad_2d, _cth_constant_pad_2d_extra_force);
 }

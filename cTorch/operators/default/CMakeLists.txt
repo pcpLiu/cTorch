@@ -75,6 +75,8 @@ set(ops_default_all
     operators/default/op_ConstantPad1d_default.c
     operators/default/op_ConstantPad2d_default.c
     operators/default/op_ConstantPad3d_default.c
+    operators/default/op_ReflectionPad1d_default.c
+    operators/default/op_ReflectionPad2d_default.c
 )
 
 ################################################################################

@@ -18,6 +18,9 @@
 #include "cTorch/operators/default/op_list.h"
 #include "cTorch/operators/default/util.h"
 
+#define _cth_replicate_pad_1d_extra_force()                                    \
+  {}
+
 /**
  * @brief 1D replication padding.
  * All the variables are defined in `_cth_padding_flow_1d`
@@ -50,5 +53,6 @@
  */
 void op_ReplicationPad1d_cpu(CTHOperator *op) {
   FORCE_OP_INPUT_OUTPUT_TENSOR_NUM(op, 1, 1);
-  _cth_padding_generic_1d(op, _cth_replicate_pad_1d);
+  _cth_padding_generic_1d(
+      op, _cth_replicate_pad_1d, _cth_replicate_pad_1d_extra_force);
 }
