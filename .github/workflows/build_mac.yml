@@ -1,4 +1,4 @@
-name: build
+name: build_macOS
 
 on:
   pull_request:
@@ -11,11 +11,11 @@ on:
 
 jobs:
   build:
-    name: CI Build & Test
+    name: macOS Build & Test
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [macos-latest]
 
     steps:
       - uses: actions/checkout@v2
@@ -34,14 +34,5 @@ jobs:
         # run: bash ci/mkl_install_linux.sh
         run: echo "Temp disabled"
 
-      - name: 4-A) Build & Test on Linux
-        if: matrix.os == 'ubuntu-latest'
-        run: bash ci/build_test_linux.sh
-
-      - name: 4-B) Build & Test on Mac
-        if: matrix.os == 'macos-latest'
+      - name: 3) Build & Test on Mac
         run: bash ci/build_test_mac.sh
-
-      - name: 5) Upload coverage to Codecov (only on Linux)
-        if: matrix.os == 'ubuntu-latest'
-        run: bash ci/codecov.sh

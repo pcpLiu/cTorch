@@ -1,0 +1,41 @@
+name: build_linux
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+    paths-ignore:
+      - "**/*.md"
+      - "LICENSE"
+      - "doc/*"
+
+jobs:
+  build:
+    name: Linux Build & Test
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: 1) Pull submodules
+        run: git submodule init && git submodule update
+
+      # - name: 2) Configure aws
+      #   uses: aws-actions/configure-aws-credentials@v1
+      #   with:
+      #     aws-access-key-id: AKIATGUE5JHV5TX52MJP
+      #     aws-secret-access-key: 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
+      #     aws-region: us-east-2
+
+      - name: 2) Install MKL
+        # run: bash ci/mkl_install_linux.sh
+        run: echo "Temp disabled"
+
+      - name: 3) Build & Test on Linux
+        run: bash ci/build_test_linux.sh
+
+      - name: 4) Upload coverage to Codecov (only on Linux)
+        run: bash ci/codecov.sh
