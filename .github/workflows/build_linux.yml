@@ -1,4 +1,4 @@
-name: build_linux
+name: linux
 
 on:
   pull_request:
@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    name: Linux Build & Test
+    name: Build & Test
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
