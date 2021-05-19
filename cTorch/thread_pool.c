@@ -1,12 +1,12 @@
 /**
  * Copyright 2021 Zhonghao Liu
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -28,9 +28,9 @@
  */
 typedef struct job job_t;
 struct job {
-  job_t *job_next; /* linked list of jobs */
+  job_t *job_next;           /* linked list of jobs */
   void *(*job_func)(void *); /* function to call */
-  void *job_arg; /* its argument */
+  void *job_arg;             /* its argument */
 };
 
 /*
@@ -39,33 +39,33 @@ struct job {
 typedef struct active active_t;
 struct active {
   active_t *active_next; /* linked list of threads */
-  pthread_t active_tid; /* active thread id */
+  pthread_t active_tid;  /* active thread id */
 };
 
 /*
  * The thread pool, opaque to the clients.
  */
 struct thr_pool {
-  thr_pool_t *pool_forw; /* circular linked list */
-  thr_pool_t *pool_back; /* of all thread pools */
+  thr_pool_t *pool_forw;      /* circular linked list */
+  thr_pool_t *pool_back;      /* of all thread pools */
   pthread_mutex_t pool_mutex; /* protects the pool data */
   pthread_cond_t pool_busycv; /* synchronization in pool_queue */
   pthread_cond_t pool_workcv; /* synchronization with workers */
   pthread_cond_t pool_waitcv; /* synchronization in pool_wait() */
-  active_t *pool_active; /* list of threads performing work */
-  job_t *pool_head; /* head of FIFO job queue */
-  job_t *pool_tail; /* tail of FIFO job queue */
-  pthread_attr_t pool_attr; /* attributes of the workers */
-  int pool_flags; /* see below */
-  uint_t pool_linger; /* seconds before idle workers exit */
-  int pool_minimum; /* minimum number of worker threads */
-  int pool_maximum; /* maximum number of worker threads */
-  int pool_nthreads; /* current number of worker threads */
-  int pool_idle; /* number of idle workers */
+  active_t *pool_active;      /* list of threads performing work */
+  job_t *pool_head;           /* head of FIFO job queue */
+  job_t *pool_tail;           /* tail of FIFO job queue */
+  pthread_attr_t pool_attr;   /* attributes of the workers */
+  int pool_flags;             /* see below */
+  uint_t pool_linger;         /* seconds before idle workers exit */
+  int pool_minimum;           /* minimum number of worker threads */
+  int pool_maximum;           /* maximum number of worker threads */
+  int pool_nthreads;          /* current number of worker threads */
+  int pool_idle;              /* number of idle workers */
 };
 
 /* pool_flags */
-#define POOL_WAIT 0x01 /* waiting in thr_pool_wait() */
+#define POOL_WAIT 0x01    /* waiting in thr_pool_wait() */
 #define POOL_DESTROY 0x02 /* pool is being destroyed */
 
 /* the list of all created and not yet destroyed thread pools */
@@ -102,9 +102,9 @@ static void worker_cleanup(thr_pool_t *pool) {
   if (pool->pool_flags & POOL_DESTROY) {
     if (pool->pool_nthreads == 0)
       (void)pthread_cond_broadcast(&pool->pool_busycv);
-  } else if (pool->pool_head != NULL &&
-             pool->pool_nthreads < pool->pool_maximum &&
-             create_worker(pool) == 0) {
+  } else if (
+      pool->pool_head != NULL && pool->pool_nthreads < pool->pool_maximum &&
+      create_worker(pool) == 0) {
     pool->pool_nthreads++;
   }
   (void)pthread_mutex_unlock(&pool->pool_mutex);
@@ -219,8 +219,8 @@ static void *worker_thread(void *arg) {
   return (NULL);
 }
 
-static void clone_attributes(pthread_attr_t *new_attr,
-                             pthread_attr_t *old_attr) {
+static void
+clone_attributes(pthread_attr_t *new_attr, pthread_attr_t *old_attr) {
   struct sched_param param;
   void *addr;
   size_t size;
@@ -253,10 +253,11 @@ static void clone_attributes(pthread_attr_t *new_attr,
   (void)pthread_attr_setdetachstate(new_attr, PTHREAD_CREATE_DETACHED);
 }
 
-thr_pool_t *thr_pool_create(uint_t min_threads,
-                            uint_t max_threads,
-                            uint_t linger,
-                            pthread_attr_t *attr) {
+thr_pool_t *thr_pool_create(
+    uint_t min_threads,
+    uint_t max_threads,
+    uint_t linger,
+    pthread_attr_t *attr) {
   thr_pool_t *pool;
 
   (void)sigfillset(&fillset);

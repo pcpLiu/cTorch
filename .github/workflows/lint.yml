@@ -19,6 +19,6 @@ jobs:
         with:
           source: "./cTorch"
           extensions: "h,cpp,c"
-          style: ".clang-format"
+          style: file
           clangFormatVersion: 12
           inplace: False
