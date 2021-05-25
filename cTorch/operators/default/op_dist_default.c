@@ -27,7 +27,7 @@
     CTHTensor *output = cth_array_at(CTHTensor)(op->out_bound_tensors, 0);     \
     data_type *output_ptr = (data_type *)output->values;                       \
     float *p;                                                                  \
-    EXTRACT_PARAM_VALUE(op, CTH_PARAM_TYPE_P, p, p);                           \
+    cth_extract_param_value(op, CTH_PARAM_TYPE_P, (void **)&p, true);          \
                                                                                \
     cth_tensor_dim_t N = input->meta_info->n_elements;                         \
     data_type dist = 0;                                                        \

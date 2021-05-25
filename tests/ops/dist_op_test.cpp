@@ -29,8 +29,8 @@
     expect_eq(expect_val, output_t[0], 1e-2);                                  \
   } while (0);
 
-void test_dist(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
-               float max) {
+void test_dist(
+    CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min, float max) {
   cth_tensor_dim_t n_dim = 2;
   cth_tensor_dim_t dims[] = {100, 100};
 
@@ -48,7 +48,7 @@ void test_dist(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
 
   CTHParam *param = (CTHParam *)MALLOC(sizeof(CTHParam));
   float p = _rand_float(1, 10);
-  param->data.p = &p;
+  param->data.float_val = &p;
   param->type = CTH_PARAM_TYPE_P;
   cth_array_set(CTHParam)(op->params, 0, param);
 

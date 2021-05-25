@@ -3,8 +3,8 @@
 #include "tests/torch_util.hpp"
 #include "gtest/gtest.h"
 
-torch::Tensor __mean_pytorch(torch::Tensor &pytorch_in_tensor,
-                             cth_tensor_dim_t reduce_dim) {
+torch::Tensor
+__mean_pytorch(torch::Tensor &pytorch_in_tensor, cth_tensor_dim_t reduce_dim) {
   if (reduce_dim == -1) {
     return pytorch_in_tensor.mean();
   } else {
@@ -12,8 +12,12 @@ torch::Tensor __mean_pytorch(torch::Tensor &pytorch_in_tensor,
   }
 }
 
-void test_mean(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
-               float max, bool flat) {
+void test_mean(
+    CTH_BACKEND backend,
+    CTH_TENSOR_DATA_TYPE data_type,
+    float min,
+    float max,
+    bool flat) {
   cth_tensor_dim_t n_dim = 5, min_dim = 1, max_dim = 10;
   cth_tensor_dim_t *dims =
       (cth_tensor_dim_t *)MALLOC(sizeof(cth_tensor_dim_t) * n_dim);
@@ -26,9 +30,9 @@ void test_mean(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
 
   CTHParam *param = (CTHParam *)MALLOC(sizeof(CTHParam));
   cth_tensor_dim_t dim = _rand_int(0, n_dim - 1);
-  param->data.dim = &dim;
+  param->data.dim_val = &dim;
   if (flat) {
-    *(param->data.dim) = -1;
+    *(param->data.dim_val) = -1;
   }
   param->type = CTH_PARAM_TYPE_DIM;
   cth_array_set(CTHParam)(op->params, 0, param);
@@ -44,7 +48,7 @@ void test_mean(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   if (flat) {
     out_dims[0] = 1;
   } else {
-    _get_reduce_dims(dims, n_dim, *(param->data.dim), out_dims);
+    _get_reduce_dims(dims, n_dim, *(param->data.dim_val), out_dims);
   }
   CTHTensor *output =
       create_dummy_tensor(out_dims, n_dim_out, data_type, min, max);
@@ -54,28 +58,33 @@ void test_mean(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
     op_mean_cpu(op);
   }
 
-  _reduce_typing_test_flow(op, data_type, data_type, float, __mean_pytorch,
-                           EXPECT_EQ_PRECISION_0001);
+  _reduce_typing_test_flow(
+      op,
+      data_type,
+      data_type,
+      float,
+      __mean_pytorch,
+      EXPECT_EQ_PRECISION_0001);
 }
 
 TEST(cTorchMeanOpTest, testFloat16Default) {
-  test_mean(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_16, -10.0, 10.0,
-            false);
+  test_mean(
+      CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_16, -10.0, 10.0, false);
 }
 
 TEST(cTorchMeanOpTest, testFloat32Default) {
-  test_mean(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_32, -10.0, 10.0,
-            false);
+  test_mean(
+      CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_32, -10.0, 10.0, false);
 }
 
 TEST(cTorchMeanOpTest, testFloat64Default) {
-  test_mean(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, -10.0, 10.0,
-            false);
+  test_mean(
+      CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, -10.0, 10.0, false);
 }
 
 TEST(cTorchMeanOpTest, testFloat64DefaultFlat) {
-  test_mean(CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, -10.0, 10.0,
-            true);
+  test_mean(
+      CTH_BACKEND_DEFAULT, CTH_TENSOR_DATA_TYPE_FLOAT_64, -10.0, 10.0, true);
 }
 
 TEST(cTorchMeanOpTest, testInt16Default) {

@@ -20,8 +20,8 @@
     }                                                                          \
   } while (0);
 
-void test_clamp(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
-                float max) {
+void test_clamp(
+    CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min, float max) {
   cth_tensor_dim_t dims[] = {100, 100};
   cth_tensor_dim_t n_dim = 2;
   CTHOperator *op = create_dummy_op_with_param(CTH_OP_ID_add, 1, 1, 2);
@@ -35,30 +35,30 @@ void test_clamp(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
   CTHParam *param = (CTHParam *)MALLOC(sizeof(CTHParam));
   param->type = CTH_PARAM_TYPE_MAX;
   max = _rand_float(-10, 10);
-  param->data.max = &max;
+  param->data.float_val = &max;
   cth_array_set(CTHParam)(op->params, 0, param);
 
   CTHParam *param2 = (CTHParam *)MALLOC(sizeof(CTHParam));
   param2->type = CTH_PARAM_TYPE_MIN;
-  min = _rand_float(-10, 10);
-  param2->data.min = &min;
+  float min_p = _rand_float(-10, 10);
+  param2->data.float_val = &min_p;
   cth_array_set(CTHParam)(op->params, 1, param2);
 
   op_clamp_cpu(op);
 
   if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||
       data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {
-    _verify_clamp(float, input, min, max, output, EXPECT_FLOAT_EQ)
+    _verify_clamp(float, input, min_p, max, output, EXPECT_FLOAT_EQ)
   } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_64) {
-    _verify_clamp(double, input, min, max, output, EXPECT_DOUBLE_EQ)
+    _verify_clamp(double, input, min_p, max, output, EXPECT_DOUBLE_EQ)
   } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_16) {
-    _verify_clamp(int16_t, input, min, max, output, EXPECT_EQ)
+    _verify_clamp(int16_t, input, min_p, max, output, EXPECT_EQ)
   } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_32) {
-    _verify_clamp(int32_t, input, min, max, output, EXPECT_EQ)
+    _verify_clamp(int32_t, input, min_p, max, output, EXPECT_EQ)
   } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_64) {
-    _verify_clamp(int64_t, input, min, max, output, EXPECT_EQ)
+    _verify_clamp(int64_t, input, min_p, max, output, EXPECT_EQ)
   } else if (data_type == CTH_TENSOR_DATA_TYPE_UINT_8) {
-    _verify_clamp(uint8_t, input, min, max, output, EXPECT_EQ)
+    _verify_clamp(uint8_t, input, min_p, max, output, EXPECT_EQ)
   }
 }
 

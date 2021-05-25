@@ -7,8 +7,10 @@ TEST(cTorchOperatorTest, testForceInputOutputTsrNumEQ) {
   EXPECT_NO_FATAL_FAILURE(FORCE_INPUT_OUTPUT_TSR_NUM_EQ(op));
 
   CTHOperator *op_2 = create_dummy_op(CTH_OP_ID_abs, 2, 1);
-  EXPECT_EXIT(FORCE_INPUT_OUTPUT_TSR_NUM_EQ(op_2), ::testing::ExitedWithCode(1),
-              "Operator should have same numbers of input and output tensors.");
+  EXPECT_EXIT(
+      FORCE_INPUT_OUTPUT_TSR_NUM_EQ(op_2),
+      ::testing::ExitedWithCode(1),
+      "Operator should have same numbers of input and output tensors.");
 }
 
 TEST(cTorchOperatorTest, testForceOpParamExist) {
@@ -27,7 +29,8 @@ TEST(cTorchOperatorTest, testForceOpParamExist) {
   const char *target_name_2 = "tensor_name_2";
   EXPECT_EXIT(
       FORCE_OP_INPUT_EXIST(op, target_name_2, CTH_TENSOR_DATA_TYPE_FLOAT_32),
-      ::testing::ExitedWithCode(1), "");
+      ::testing::ExitedWithCode(1),
+      "");
 }
 
 TEST(cTorchOperatorTest, testOpFailOnDtype) {
@@ -40,9 +43,10 @@ TEST(cTorchOperatorTest, testOpFailOnDtype) {
   cth_array_set(CTHTensor)(op->in_bound_tensors, 0, input);
 
   EXPECT_NO_FATAL_FAILURE(OP_FAIL_ON_DTYPE(op, CTH_TENSOR_DATA_TYPE_BOOL));
-  EXPECT_EXIT(OP_FAIL_ON_DTYPE(op, CTH_TENSOR_DATA_TYPE_FLOAT_32),
-              ::testing::ExitedWithCode(1),
-              "Operator does not support data type.");
+  EXPECT_EXIT(
+      OP_FAIL_ON_DTYPE(op, CTH_TENSOR_DATA_TYPE_FLOAT_32),
+      ::testing::ExitedWithCode(1),
+      "Operator does not support data type.");
 }
 
 TEST(cTorchOperatorTest, testGetInputOutputByName) {
@@ -67,8 +71,10 @@ TEST(cTorchOperatorTest, testGetInputOutputByName) {
 
   const char *name_2 = "name_2";
   cth_tensor_set_name(input, name_2);
-  EXPECT_EXIT(cth_get_input_by_name(op, name, true),
-              ::testing::ExitedWithCode(1), "Could not find tensor");
+  EXPECT_EXIT(
+      cth_get_input_by_name(op, name, true),
+      ::testing::ExitedWithCode(1),
+      "Could not find tensor");
 }
 
 TEST(cTorchOperatorTest, testDeepFreeMEMRECORD) {
@@ -93,7 +99,7 @@ TEST(cTorchOperatorTest, testDeepFreeMEMRECORD) {
   CTHParam *param = (CTHParam *)MALLOC(sizeof(CTHParam));
   param->type = CTH_PARAM_TYPE_MULTIPLIER;
   float multiplier = 0.5;
-  param->data.multiplier = &multiplier;
+  param->data.float_val = &multiplier;
 
   CTHOperator *op = create_dummy_op_with_param(CTH_OP_ID_abs, 1, 1, 1);
   cth_array_set(CTHTensor)(op->in_bound_tensors, 0, input);
@@ -111,13 +117,13 @@ TEST(cTorchOperatorTest, testGetParam) {
   CTHParam *param_1 = (CTHParam *)MALLOC(sizeof(CTHParam));
   param_1->type = CTH_PARAM_TYPE_MULTIPLIER;
   float multiplier = 1.0;
-  param_1->data.multiplier = &multiplier;
+  param_1->data.float_val = &multiplier;
   cth_array_set(CTHParam)(op->params, 0, param_1);
 
   CTHParam *param_2 = (CTHParam *)MALLOC(sizeof(CTHParam));
   param_2->type = CTH_PARAM_TYPE_MIN;
   float multiplier_2 = -1.0;
-  param_2->data.multiplier = &multiplier_2;
+  param_2->data.float_val = &multiplier_2;
   cth_array_set(CTHParam)(op->params, 1, param_2);
 
   CTHParam *param = cth_get_param_by_type(op, CTH_PARAM_TYPE_MIN, true);
@@ -125,4 +131,38 @@ TEST(cTorchOperatorTest, testGetParam) {
 
   param = cth_get_param_by_type(op, CTH_PARAM_TYPE_MULTIPLIER, true);
   EXPECT_EQ(param, param_1);
+}
+
+TEST(cTorchOperatorTest, testExtractParamValue) {
+  CTHOperator *op = create_dummy_op_with_param(CTH_OP_ID_abs, 1, 1, 2);
+
+  CTHParam *param_1 = (CTHParam *)MALLOC(sizeof(CTHParam));
+  param_1->type = CTH_PARAM_TYPE_MULTIPLIER;
+  float multiplier = 1.0;
+  param_1->data.float_val = &multiplier;
+  cth_array_set(CTHParam)(op->params, 0, param_1);
+
+  CTHParam *param_2 = (CTHParam *)MALLOC(sizeof(CTHParam));
+  param_2->type = CTH_PARAM_TYPE_STRIDE_D2;
+  CTHDim2 dim2 = {1, 332};
+  param_2->data.dim_2_val = &dim2;
+  cth_array_set(CTHParam)(op->params, 1, param_2);
+
+  float *multiplier_extracted;
+  cth_extract_param_value(
+      op, CTH_PARAM_TYPE_MULTIPLIER, (void **)&multiplier_extracted, false);
+  EXPECT_EQ(&(*multiplier_extracted), &multiplier);
+
+  CTHDim2 *dim2_extracted;
+  cth_extract_param_value(
+      op, CTH_PARAM_TYPE_STRIDE_D2, (void **)&dim2_extracted, false);
+  EXPECT_EQ(&(*dim2_extracted), &dim2);
+
+  // exit
+  CTHDim2 *dim3_extracted;
+  EXPECT_EXIT(
+      cth_extract_param_value(
+          op, CTH_PARAM_TYPE_DILATION, (void **)&dim3_extracted, true),
+      ::testing::ExitedWithCode(1),
+      "");
 }

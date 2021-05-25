@@ -2,8 +2,8 @@
 #include "tests/test_util.h"
 #include "gtest/gtest.h"
 
-#define _verify_addcmul(dtype, input, tensor_1, tensor_2, multiplier, output,  \
-                        expect_eq)                                             \
+#define _verify_addcmul(                                                       \
+    dtype, input, tensor_1, tensor_2, multiplier, output, expect_eq)           \
   do {                                                                         \
     cth_tensor_dim_t N = input->meta_info->n_elements;                         \
     dtype *input_t = (dtype *)input->values;                                   \
@@ -17,8 +17,8 @@
     }                                                                          \
   } while (0);
 
-void test_addcmul(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type,
-                  float min, float max) {
+void test_addcmul(
+    CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min, float max) {
   cth_tensor_dim_t dims[] = {100, 100};
   cth_tensor_dim_t n_dim = 2;
   CTHOperator *op = create_dummy_op_with_param(CTH_OP_ID_add, 3, 1, 1);
@@ -40,18 +40,18 @@ void test_addcmul(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type,
   CTHParam *param = (CTHParam *)MALLOC(sizeof(CTHParam));
   param->type = CTH_PARAM_TYPE_MULTIPLIER;
   float multiplier = 0.5;
-  param->data.multiplier = &multiplier;
+  param->data.float_val = &multiplier;
   cth_array_set(CTHParam)(op->params, 0, param);
 
   op_addcmul_cpu(op);
 
   if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||
       data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {
-    _verify_addcmul(float, input, tensor_1, tensor_2, 0.5, output,
-                    EXPECT_FLOAT_EQ)
+    _verify_addcmul(
+        float, input, tensor_1, tensor_2, 0.5, output, EXPECT_FLOAT_EQ)
   } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_64) {
-    _verify_addcmul(double, input, tensor_1, tensor_2, 0.5, output,
-                    EXPECT_DOUBLE_EQ)
+    _verify_addcmul(
+        double, input, tensor_1, tensor_2, 0.5, output, EXPECT_DOUBLE_EQ)
   } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_16) {
     _verify_addcmul(int16_t, input, tensor_1, tensor_2, 0.5, output, EXPECT_EQ)
   } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_32) {

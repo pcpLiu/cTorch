@@ -284,7 +284,7 @@
     output_dtype_enum)                                                         \
   do {                                                                         \
     CTHParam *dim_param = cth_get_param_by_type(op, CTH_PARAM_TYPE_DIM, true); \
-    cth_tensor_dim_t reduce_dim = (cth_tensor_dim_t) * (dim_param->data.dim);  \
+    cth_tensor_dim_t reduce_dim = *(dim_param->data.dim_val);                  \
     cth_tensor_dim_t reduce_dim_size;                                          \
     if (reduce_dim == -1) {                                                    \
       reduce_dim_size = in->meta_info->n_elements;                             \
@@ -500,10 +500,11 @@
     CTHTensorMeta *out_meta = out_tensor->meta_info;                           \
     data_type *in_ptr = (data_type *)in_tensor->values;                        \
     data_type *out_ptr = (data_type *)out_tensor->values;                      \
-    cth_pad_t *padding;                                                        \
-    EXTRACT_PARAM_VALUE(op, CTH_PARAM_TYPE_PADDING_D2, padding, padding);      \
-    cth_tensor_dim_t padding_left = padding[0];                                \
-    cth_tensor_dim_t padding_right = padding[1];                               \
+    CTHDim2 *padding;                                                          \
+    cth_extract_param_value(                                                   \
+        op, CTH_PARAM_TYPE_PADDING_D2, (void **)&padding, true);               \
+    cth_tensor_dim_t padding_left = padding->d_0;                              \
+    cth_tensor_dim_t padding_right = padding->d_1;                             \
     cth_tensor_dim_t input_b_dim = in_meta->dims[0];                           \
     cth_tensor_dim_t input_z_dim = in_meta->dims[1];                           \
     cth_tensor_dim_t input_x_dim = in_meta->dims[2];                           \
@@ -601,12 +602,13 @@
     CTHTensorMeta *out_meta = out_tensor->meta_info;                           \
     data_type *in_ptr = (data_type *)in_tensor->values;                        \
     data_type *out_ptr = (data_type *)out_tensor->values;                      \
-    cth_pad_t *padding;                                                        \
-    EXTRACT_PARAM_VALUE(op, CTH_PARAM_TYPE_PADDING_D4, padding, padding);      \
-    cth_tensor_dim_t padding_left = padding[0];                                \
-    cth_tensor_dim_t padding_right = padding[1];                               \
-    cth_tensor_dim_t padding_top = padding[2];                                 \
-    cth_tensor_dim_t padding_bottom = padding[3];                              \
+    CTHDim4 *padding;                                                          \
+    cth_extract_param_value(                                                   \
+        op, CTH_PARAM_TYPE_PADDING_D4, (void **)&padding, true);               \
+    cth_tensor_dim_t padding_left = padding->d_0;                              \
+    cth_tensor_dim_t padding_right = padding->d_1;                             \
+    cth_tensor_dim_t padding_top = padding->d_2;                               \
+    cth_tensor_dim_t padding_bottom = padding->d_3;                            \
     cth_tensor_dim_t in_x_dim = in_meta->dims[3];                              \
     cth_tensor_dim_t in_y_dim = in_meta->dims[2];                              \
     cth_tensor_dim_t in_c_dim = in_meta->dims[1];                              \
@@ -740,14 +742,15 @@
     data_type *in_ptr = (data_type *)in_tensor->values;                        \
     data_type *out_ptr = (data_type *)out_tensor->values;                      \
     size_t data_size = sizeof(data_type);                                      \
-    cth_pad_t *padding;                                                        \
-    EXTRACT_PARAM_VALUE(op, CTH_PARAM_TYPE_PADDING_D6, padding, padding);      \
-    cth_tensor_dim_t padding_left = padding[0];                                \
-    cth_tensor_dim_t padding_right = padding[1];                               \
-    cth_tensor_dim_t padding_top = padding[2];                                 \
-    cth_tensor_dim_t padding_bottom = padding[3];                              \
-    cth_tensor_dim_t padding_front = padding[4];                               \
-    cth_tensor_dim_t padding_back = padding[5];                                \
+    CTHDim6 *padding;                                                          \
+    cth_extract_param_value(                                                   \
+        op, CTH_PARAM_TYPE_PADDING_D6, (void **)&padding, true);               \
+    cth_tensor_dim_t padding_left = padding->d_0;                              \
+    cth_tensor_dim_t padding_right = padding->d_1;                             \
+    cth_tensor_dim_t padding_top = padding->d_2;                               \
+    cth_tensor_dim_t padding_bottom = padding->d_3;                            \
+    cth_tensor_dim_t padding_front = padding->d_4;                             \
+    cth_tensor_dim_t padding_back = padding->d_5;                              \
     cth_tensor_dim_t in_x_dim = in_meta->dims[4];                              \
     cth_tensor_dim_t in_y_dim = in_meta->dims[3];                              \
     cth_tensor_dim_t in_z_dim = in_meta->dims[2];                              \

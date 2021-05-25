@@ -22,17 +22,17 @@
     CTHTensor *input = cth_array_at(CTHTensor)(op->in_bound_tensors, 0);       \
     CTHTensor *tensor_1 = cth_get_input_by_name(op, "tensor_1", false);        \
     CTHTensor *tensor_2 = cth_get_input_by_name(op, "tensor_2", false);        \
-    CTHParam *param =                                                          \
-        cth_get_param_by_type(op, CTH_PARAM_TYPE_MULTIPLIER, true);            \
-    float multiplier = *(param->data.multiplier);                              \
+    float *multiplier;                                                         \
+    cth_extract_param_value(                                                   \
+        op, CTH_PARAM_TYPE_MULTIPLIER, (void **)&multiplier, true);            \
     CTHTensor *output = cth_array_at(CTHTensor)(op->out_bound_tensors, 0);     \
     cth_tensor_dim_t N = tensor_1->meta_info->n_elements;                      \
                                                                                \
     for (cth_tensor_dim_t i = 0; i < N; i++) {                                 \
       ((data_type *)output->values)[i] =                                       \
           ((data_type *)input->values)[i] +                                    \
-          multiplier * (((data_type *)tensor_1->values)[i] /                   \
-                        ((data_type *)tensor_2->values)[i]);                   \
+          (*multiplier) * (((data_type *)tensor_1->values)[i] /                \
+                           ((data_type *)tensor_2->values)[i]);                \
     }                                                                          \
   } while (0);
 

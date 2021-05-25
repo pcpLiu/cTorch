@@ -100,12 +100,32 @@ get_output_by_name(CTHOperator *op, const char *name, bool fail_exit);
  * It returns NULL if fail_exit is set to false.
  */
 CTHParam *cth_get_param_by_type(
-    CTHOperator *op, const CTH_PARAM_TYPE type, bool fail_exit);
+    const CTHOperator *op, CTH_PARAM_TYPE type, bool fail_exit);
 
 /**
  * Deep free an operator. For inbound and outbound list, it will call
  * cth_free_list_deep(T)()
  */
 void struct_deep_free(CTHOperator)(CTHOperator *op);
+
+/**
+ * @brief Extract param and store value to param_var
+ *
+ * @note If target param does not exist, it will raise `exit(1)`.
+ *
+ * @param op CTHOperator operator
+ * @param param_type CTH_PARAM_TYPE param type
+ * @param param_var void** the address of destination pointer to store the
+ * value, it will just be assigned to the parameter's data value address
+ * @param fail_on_null bool When failed to find the paramter: If true, raise
+ * `exit(1)`; if false, will set destination pointer to `NULL`
+ *
+ * @return * void
+ */
+void cth_extract_param_value(
+    const CTHOperator *op,
+    CTH_PARAM_TYPE param_type,
+    void **param_var,
+    bool fail_on_null);
 
 #endif /* OPERATOR_H */
