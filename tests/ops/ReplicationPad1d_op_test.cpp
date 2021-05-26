@@ -6,10 +6,11 @@
 torch::Tensor
 _ReplicationPad1d_pytorch(torch::Tensor &pytorch_in_tensor, CTHOperator *op) {
 
-  cth_pad_t *padding;
-  EXTRACT_PARAM_VALUE(op, CTH_PARAM_TYPE_PADDING_D2, padding, padding);
-  cth_tensor_dim_t padding_left = padding[0];
-  cth_tensor_dim_t padding_right = padding[1];
+  CTHDim2 *padding;
+  cth_extract_param_value(
+      op, CTH_PARAM_TYPE_PADDING_D2, (void **)&padding, true);
+  cth_tensor_dim_t padding_left = padding->d_0;
+  cth_tensor_dim_t padding_right = padding->d_1;
   auto m = torch::nn::ReplicationPad1d(
       torch::nn::ReplicationPad1dOptions({padding_left, padding_right}));
   return m(pytorch_in_tensor);

@@ -26,11 +26,11 @@
 #define _cth_constant_pad_3d(op, data_type)                                    \
   do {                                                                         \
     float *padding_value_float;                                                \
-    EXTRACT_PARAM_VALUE(                                                       \
+    cth_extract_param_value(                                                   \
         op,                                                                    \
         CTH_PARAM_TYPE_PADDING_VALUE_FLOAT,                                    \
-        padding_value_float,                                                   \
-        padding_value_float);                                                  \
+        (void **)&padding_value_float,                                         \
+        true);                                                                 \
     data_type padding_value_typed = (data_type)padding_value_float[0];         \
                                                                                \
     for (cth_tensor_dim_t i = 0; i < padding_left; i++) {                      \
@@ -57,11 +57,11 @@
 #define _cth_constant_pad_3d_front(op, data_type)                              \
   do {                                                                         \
     float *padding_value_float;                                                \
-    EXTRACT_PARAM_VALUE(                                                       \
+    cth_extract_param_value(                                                   \
         op,                                                                    \
         CTH_PARAM_TYPE_PADDING_VALUE_FLOAT,                                    \
-        padding_value_float,                                                   \
-        padding_value_float);                                                  \
+        (void **)&padding_value_float,                                         \
+        true);                                                                 \
     data_type padding_value_typed = (data_type)padding_value_float[0];         \
                                                                                \
     cth_tensor_dim_t cp_ele_size = out_y_dim * out_x_dim;                      \
@@ -85,11 +85,11 @@
 #define _cth_constant_pad_3d_back(op, data_type)                               \
   do {                                                                         \
     float *padding_value_float;                                                \
-    EXTRACT_PARAM_VALUE(                                                       \
+    cth_extract_param_value(                                                   \
         op,                                                                    \
         CTH_PARAM_TYPE_PADDING_VALUE_FLOAT,                                    \
-        padding_value_float,                                                   \
-        padding_value_float);                                                  \
+        (void **)&padding_value_float,                                         \
+        true);                                                                 \
     data_type padding_value_typed = (data_type)padding_value_float[0];         \
                                                                                \
     cth_tensor_dim_t cp_ele_size = out_y_dim * out_x_dim;                      \

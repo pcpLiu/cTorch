@@ -6,19 +6,20 @@
 torch::Tensor
 _ConstantPad2d_pytorch(torch::Tensor &pytorch_in_tensor, CTHOperator *op) {
 
-  cth_pad_t *padding;
-  EXTRACT_PARAM_VALUE(op, CTH_PARAM_TYPE_PADDING_D4, padding, padding);
-  cth_tensor_dim_t padding_left = padding[0];
-  cth_tensor_dim_t padding_right = padding[1];
-  cth_tensor_dim_t padding_top = padding[2];
-  cth_tensor_dim_t padding_bottom = padding[3];
+  CTHDim4 *padding;
+  cth_extract_param_value(
+      op, CTH_PARAM_TYPE_PADDING_D4, (void **)&padding, true);
+  cth_tensor_dim_t padding_left = padding->d_0;
+  cth_tensor_dim_t padding_right = padding->d_1;
+  cth_tensor_dim_t padding_top = padding->d_2;
+  cth_tensor_dim_t padding_bottom = padding->d_3;
 
   cth_float_param_t *padding_value_float;
-  EXTRACT_PARAM_VALUE(
+  cth_extract_param_value(
       op,
       CTH_PARAM_TYPE_PADDING_VALUE_FLOAT,
-      padding_value_float,
-      padding_value_float);
+      (void **)&padding_value_float,
+      true);
 
   float padding_fill_val = *padding_value_float;
   CTH_TENSOR_DATA_TYPE data_type =

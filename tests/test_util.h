@@ -228,7 +228,7 @@ float _rand_float(float min, float max);
         cth_array_at(CTHTensor)(op->out_bound_tensors, 0);                     \
     out_type *output = (out_type *)tensor_output->values;                      \
     CTHParam *dim_param = cth_get_param_by_type(op, CTH_PARAM_TYPE_DIM, true); \
-    cth_tensor_dim_t reduce_dim = (cth_tensor_dim_t) * (dim_param->data.dim);  \
+    cth_tensor_dim_t reduce_dim = *(dim_param->data.dim_val);                  \
                                                                                \
     auto pytorch_in_tensor = create_torch_tensor(tensor_input);                \
     auto pytorch_result_tensor = pytorch_call(pytorch_in_tensor, reduce_dim);  \

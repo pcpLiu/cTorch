@@ -24,8 +24,8 @@
     CTHTensor *output = cth_array_at(CTHTensor)(op->out_bound_tensors, 0);     \
     data_type *output_ptr = (data_type *)output->values;                       \
     float *min, *max;                                                          \
-    EXTRACT_PARAM_VALUE(op, CTH_PARAM_TYPE_MIN, min, min);                     \
-    EXTRACT_PARAM_VALUE(op, CTH_PARAM_TYPE_MAX, max, max);                     \
+    cth_extract_param_value(op, CTH_PARAM_TYPE_MIN, (void **)&min, true);      \
+    cth_extract_param_value(op, CTH_PARAM_TYPE_MAX, (void **)&max, true);      \
     cth_tensor_dim_t N = input->meta_info->n_elements;                         \
                                                                                \
     for (cth_tensor_dim_t i = 0; i < N; i++) {                                 \

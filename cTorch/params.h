@@ -22,47 +22,70 @@
  * Enum used to indicate param type
  */
 typedef enum CTH_PARAM_TYPE {
-  /* multiplier */
-  CTH_PARAM_TYPE_MULTIPLIER,
-  CTH_PARAM_TYPE_MIN,
-  CTH_PARAM_TYPE_MAX,
-  CTH_PARAM_TYPE_P,
-  CTH_PARAM_TYPE_DIM,
-  CTH_PARAM_TYPE_IN_CHANNELS,
-  CTH_PARAM_TYPE_OUT_CHANNELS,
-  CTH_PARAM_TYPE_KERNEL_SIZE,
-  CTH_PARAM_TYPE_STRIDE,
-  CTH_PARAM_TYPE_PADDING_D2,
-  CTH_PARAM_TYPE_PADDING_D4,
-  CTH_PARAM_TYPE_PADDING_D6,
-  CTH_PARAM_TYPE_DILATION,
-  CTH_PARAM_TYPE_KERNEL_SIZE_D2,
-  CTH_PARAM_TYPE_STRIDE_D2,
-  CTH_PARAM_TYPE_DILATION_D2,
-  CTH_PARAM_TYPE_PADDING_MODE,
-  CTH_PARAM_TYPE_GROUPS,
-  /* Padding value. Store as float. */
-  CTH_PARAM_TYPE_PADDING_VALUE_FLOAT,
+  CTH_PARAM_TYPE_MULTIPLIER,     /* multiplier, float */
+  CTH_PARAM_TYPE_MIN,            /* min, float */
+  CTH_PARAM_TYPE_MAX,            /* max, float */
+  CTH_PARAM_TYPE_P,              /* p, float */
+  CTH_PARAM_TYPE_DIM,            /* Axes dimension, cth_tensor_dim_t */
+  CTH_PARAM_TYPE_IN_CHANNELS,    /* # of input channels, cth_tensor_dim_t */
+  CTH_PARAM_TYPE_OUT_CHANNELS,   /* # of out channels, cth_tensor_dim_t */
+  CTH_PARAM_TYPE_GROUPS,         /* # of groups, cth_tensor_dim_t */
+  CTH_PARAM_TYPE_KERNEL_SIZE,    /* 1-D kernel size , cth_tensor_dim_t */
+  CTH_PARAM_TYPE_STRIDE,         /* 1-D stride size , cth_tensor_dim_t */
+  CTH_PARAM_TYPE_DILATION,       /* 1-D dilation size , cth_tensor_dim_t */
+  CTH_PARAM_TYPE_KERNEL_SIZE_D2, /* 2-D kernel size , CTHDim2 */
+  CTH_PARAM_TYPE_STRIDE_D2,      /* 2-D stride size , CTHDim2 */
+  CTH_PARAM_TYPE_DILATION_D2,    /* 2-D dilation size , CTHDim2 */
+  CTH_PARAM_TYPE_PADDING_D2,     /* 2-D padding size , CTHDim2 */
+  CTH_PARAM_TYPE_PADDING_D4,     /* 4-D padding size , CTHDim4 */
+  CTH_PARAM_TYPE_PADDING_D6,     /* 6-D padding size , CTHDim6 */
+  CTH_PARAM_TYPE_PADDING_MODE,   /* padding mode, CTH_PADDING_MODE*/
+  CTH_PARAM_TYPE_PADDING_VALUE_FLOAT, /* Padding value. float */
 } CTH_PARAM_TYPE;
+
+/**
+ * @brief 2-D dimentions struct
+ *
+ */
+typedef struct CTHDim2 {
+  cth_tensor_dim_t d_0;
+  cth_tensor_dim_t d_1;
+} CTHDim2;
+
+/**
+ * @brief 4-D dimentions struct
+ *
+ */
+typedef struct CTHDim4 {
+  cth_tensor_dim_t d_0;
+  cth_tensor_dim_t d_1;
+  cth_tensor_dim_t d_2;
+  cth_tensor_dim_t d_3;
+} CTHDim4;
+
+/**
+ * @brief 6-D dimentions struct
+ *
+ */
+typedef struct CTHDim6 {
+  cth_tensor_dim_t d_0;
+  cth_tensor_dim_t d_1;
+  cth_tensor_dim_t d_2;
+  cth_tensor_dim_t d_3;
+  cth_tensor_dim_t d_4;
+  cth_tensor_dim_t d_5;
+} CTHDim6;
 
 /**
  * Param data union
  */
 typedef union CTHParamData {
-  cth_float_param_t *multiplier;
-  cth_float_param_t *min;
-  cth_float_param_t *max;
-  cth_float_param_t *p;
-  cth_channel_t *dim;
-  cth_channel_t *in_channels;
-  cth_channel_t *out_channels;
-  cth_stride_t *stride;
-  cth_kernel_t *kernel_size;
-  cth_pad_t *padding;
-  cth_dilation_t *dilation;
-  cth_groups_t *groups;
-  CTH_PADDING_MODE *padding_mode;
-  cth_float_param_t *padding_value_float;
+  cth_float_param_t *float_val;
+  cth_tensor_dim_t *dim_val;
+  CTHDim2 *dim_2_val;
+  CTHDim4 *dim_4_val;
+  CTHDim6 *dim_6_val;
+  CTH_PADDING_MODE *padding_mode_val;
 } CTHParamData;
 
 typedef struct CTHParam {
@@ -89,36 +112,5 @@ void struct_deep_free(CTHParam)(CTHParam *param);
  * Copy fields from `from_param` to `to_param`
  */
 void cth_copy_param(CTHParam *from_param, CTHParam *to_param);
-
-/**
- * @brief Extract param value with given types. Will raise error if param not
- * exist.
- *
- * @note The `param_var` should be a pointer. `param_var` will just be assigned
- * the meem address of existing parameter variable. It does not copy the value
- * of parameters.
- */
-#define EXTRACT_PARAM_VALUE(op, param_type, param_data_field, param_var)       \
-  do {                                                                         \
-    CTHParam *param = cth_get_param_by_type(op, param_type, true);             \
-    param_var = param->data.param_data_field;                                  \
-  } while (0)
-
-/**
- * @brief Extract param value with given types. Assign param as NULL if not
- * found.
- *
- * @note The param_var should be a pointer.
- */
-#define EXTRACT_PARAM_VALUE_OR_NULL(                                           \
-    op, param_type, param_data_field, param_var_ptr)                           \
-  do {                                                                         \
-    CTHParam *param = cth_get_param_by_type(op, param_type, true);             \
-    if (param != NULL) {                                                       \
-      param_var_ptr = param->data.param_data_field;                            \
-    } else {                                                                   \
-      param_var_ptr = NULL;                                                    \
-    }                                                                          \
-  } while (0)
 
 #endif /* PARAMS_H */
