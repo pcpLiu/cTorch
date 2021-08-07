@@ -17,6 +17,7 @@
 
 #include "cTorch/ops_enabled.h"
 
+#include <stdbool.h>
 #include <stdint.h>
 #include <stdlib.h>
 
@@ -114,6 +115,11 @@ typedef enum CTH_PADDING_MODE {
   CTH_PADDING_MODE_REPLICATE,
   CTH_PADDING_MODE_CIRCULAR,
 } CTH_PADDING_MODE;
+
+/**
+ * @brief Type to denote bool type
+ */
+typedef bool cth_bool_t;
 
 /**
  * Type to denote thread num

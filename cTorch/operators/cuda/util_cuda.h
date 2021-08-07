@@ -147,6 +147,15 @@
     int num_blocks = (N + threads_per_block - 1) / threads_per_block;          \
     kernel<<<num_blocks, threads_per_block>>>(in_ptr_d, out_ptr_d, N);         \
                                                                                \
+    cudaError_t err = cudaGetLastError();                                      \
+    if (err) {                                                                 \
+      FAIL_EXIT(                                                               \
+          CTH_LOG_ERR,                                                         \
+          "_cth_cuda_unary_block CUDA kernel execution error. cudaError_t "    \
+          "Code: %d",                                                          \
+          err);                                                                \
+    }                                                                          \
+                                                                               \
     if (device == CTH_TENSOR_DEVICE_NORMAL) {                                  \
       cudaMemcpy(out_ptr, out_ptr_d, size, cudaMemcpyDeviceToHost);            \
       cudaFree(in_ptr_d);                                                      \
@@ -224,6 +233,15 @@
     int num_blocks = (N + threads_per_block - 1) / threads_per_block;          \
     kernel<<<num_blocks, threads_per_block>>>(                                 \
         in_ptr_1_d, in_ptr_2_d, out_ptr_d, N);                                 \
+                                                                               \
+    cudaError_t err = cudaGetLastError();                                      \
+    if (err) {                                                                 \
+      FAIL_EXIT(                                                               \
+          CTH_LOG_ERR,                                                         \
+          "_cth_cuda_binary_block CUDA kernel execution error. cudaError_t "   \
+          "Code: %d",                                                          \
+          err);                                                                \
+    }                                                                          \
                                                                                \
     if (device == CTH_TENSOR_DEVICE_NORMAL) {                                  \
       cudaMemcpy(out_ptr, out_ptr_d, size, cudaMemcpyDeviceToHost);            \

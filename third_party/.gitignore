@@ -5,4 +5,4 @@ installed/*
 intel_mkl*
 
 # libtorch
-libtorch/
+libtorch

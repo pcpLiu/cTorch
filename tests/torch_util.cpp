@@ -22,7 +22,9 @@ std::vector<int64_t> *get_dim_from_tensor(CTHTensor *cth_tensor) {
  */
 torch::TensorOptions *make_options(CTHTensor *cth_tensor) {
   auto options = new torch::TensorOptions();
-  options->layout(torch::kStrided);
+  options->requires_grad(false);
+
+  // options->layout(torch::kStrided);
   switch (cth_tensor->meta_info->data_type) {
   case CTH_TENSOR_DATA_TYPE_BOOL:
     options->dtype(torch::kBool);
@@ -57,8 +59,8 @@ torch::TensorOptions *make_options(CTHTensor *cth_tensor) {
 
 #define _fill_value(py_tensor, cth_values_ptr, i)                              \
   do {                                                                         \
-    py_tensor.index_put_(at::indexing::TensorIndex{(int64_t)i},                \
-                         cth_values_ptr[i]);                                   \
+    py_tensor.index_put_(                                                      \
+        at::indexing::TensorIndex{(int64_t)i}, cth_values_ptr[i]);             \
   } while (0)
 
 /**
@@ -96,6 +98,39 @@ torch::Tensor create_torch_tensor(CTHTensor *cth_tensor) {
 
   auto shape = get_dim_from_tensor(cth_tensor);
   auto ret_tensor = py_tensor.reshape(*shape);
+  return std::move(ret_tensor);
 
-  return ret_tensor;
+  // auto options = make_options(cth_tensor);
+  // auto shape = get_dim_from_tensor(cth_tensor);
+  // auto tensor = torch::from_blob((float *)cth_tensor->values, *shape);
+  // return std::move(tensor);
+}
+
+void print_pytensor(
+    torch::Tensor &py_tensor,
+    cth_tensor_dim_t n_ele,
+    CTH_TENSOR_DATA_TYPE data_type) {
+  std::cout << "[";
+  auto pytorch_result_tensor_flat = py_tensor.reshape({n_ele});
+  for (cth_tensor_dim_t i = 0; i < n_ele; i++) {
+    if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||
+        data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {
+      std::cout << pytorch_result_tensor_flat[i].item<float>() << ", ";
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_8) {
+      std::cout << pytorch_result_tensor_flat[i].item<int8_t>() << ", ";
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_16) {
+      std::cout << pytorch_result_tensor_flat[i].item<int16_t>() << ", ";
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_32) {
+      std::cout << pytorch_result_tensor_flat[i].item<int32_t>() << ", ";
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_INT_64) {
+      std::cout << pytorch_result_tensor_flat[i].item<int64_t>() << ", ";
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_UINT_8) {
+      std::cout << pytorch_result_tensor_flat[i].item<uint8_t>() << ", ";
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_BOOL) {
+      std::cout << pytorch_result_tensor_flat[i].item<bool>() << ", ";
+    } else if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_64) {
+      std::cout << pytorch_result_tensor_flat[i].item<double>() << ", ";
+    }
+  }
+  std::cout << "]" << std::endl;
 }

@@ -4,12 +4,12 @@
 #include "tests/test_util.h"
 #include "gtest/gtest.h"
 
-void test_abs(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
-              float max) {
-  cth_tensor_dim_t dims[] = {100, 100};
+void test_abs(
+    CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min, float max) {
+  cth_tensor_dim_t dims[] = {1, 2};
   cth_tensor_dim_t n_dim = sizeof(dims) / sizeof(dims[0]);
-  CTHNode *op_node = create_dummy_op_node_unary(CTH_OP_ID_abs, dims, n_dim,
-                                                data_type, min, max);
+  CTHNode *op_node = create_dummy_op_node_unary(
+      CTH_OP_ID_abs, dims, n_dim, data_type, min, max);
   CTHOperator *op = op_node->conent.op;
 
   if (backend == CTH_BACKEND_DEFAULT) {
@@ -28,9 +28,11 @@ void test_abs(CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min,
 #endif
   }
 
-  sample_print(data_type,
-               cth_array_at(CTHTensor)(op->in_bound_tensors, 0)->values,
-               cth_array_at(CTHTensor)(op->out_bound_tensors, 0)->values, 2);
+  sample_print(
+      data_type,
+      cth_array_at(CTHTensor)(op->in_bound_tensors, 0)->values,
+      cth_array_at(CTHTensor)(op->out_bound_tensors, 0)->values,
+      2);
 
   if (data_type == CTH_TENSOR_DATA_TYPE_FLOAT_16 ||
       data_type == CTH_TENSOR_DATA_TYPE_FLOAT_32) {
