@@ -33,6 +33,17 @@ CTHNode *create_dummy_op_node_unary(
     float max);
 
 /**
+ * Create a dummy op node with one input and one output.
+ * For linearn operator.
+ */
+CTHNode *create_dummy_op_node_linear(
+    CTH_OP_ID op_id,
+    cth_tensor_dim_t n_dim,
+    CTH_TENSOR_DATA_TYPE data_type,
+    float min,
+    float max);
+
+/**
  * Create a dummy op node with one input and one output for 1D padding
  * operators. Input & output has different dimensions.
  */
@@ -418,5 +429,9 @@ void _print_index(cth_tensor_dim_t *dims, cth_tensor_dim_t n_dim);
 // #ifdef __cplusplus
 // }
 // #endif
+
+void print_tensor_dims(CTHTensor *tensor);
+
+void print_tensor_eles(CTHTensor *tensor);
 
 #endif /* TEST_UTL_H */

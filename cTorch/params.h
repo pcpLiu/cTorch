@@ -82,6 +82,7 @@ typedef struct CTHDim6 {
 typedef union CTHParamData {
   cth_float_param_t *float_val;
   cth_tensor_dim_t *dim_val;
+  cth_bool_t *bool_val;
   CTHDim2 *dim_2_val;
   CTHDim4 *dim_4_val;
   CTHDim6 *dim_6_val;
