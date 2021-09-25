@@ -130,48 +130,54 @@ endif()
 
 # MKL
 if(${BACKEND_MKL_ENABLE})
-    find_library(
-        MKL_CORE_LIB
-        NAMES mkl_core
-        PATHS ${BACKEND_MKL_LIB_DIR}
-        REQUIRED
-    )
-    find_library(
-        MKL_INTERFACE_LIB
-        NAMES mkl_intel_ilp64
-        PATHS ${BACKEND_MKL_LIB_DIR}
-        REQUIRED
-    )
-    if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-        find_library(
-            MKL_THREAD_LIB
-            NAMES mkl_gnu_thread
-            PATHS ${BACKEND_MKL_LIB_DIR}
-            REQUIRED
-        )
+
+    # This part is highly customizable. Here we config for few common situations.
+    # Check Inte's Link advisor for your hardware environment.
+
+    if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+        set(MKL_ARCH "intel64")
+        set(${CMAKE_C_FLAGS} "${CMAKE_C_FLAGS} -m64")
+        set(MKL_LIB_DIR "${BACKEND_MKL_ROOT_DIR}/lib/intel64")
     else()
-        find_library(
-            MKL_THREAD_LIB
-            NAMES mkl_tbb_thread
-            PATHS ${BACKEND_MKL_LIB_DIR}
-            REQUIRED
-        )
+        set(MKL_ARCH "ia32")
+        set(${CMAKE_C_FLAGS} "${CMAKE_C_FLAGS} -m32")
+        set(MKL_LIB_DIR "${BACKEND_MKL_ROOT_DIR}/lib/ia32")
     endif()
-    find_package(OpenMP REQUIRED)
-    set(${CMAKE_C_FLAGS} "${CMAKE_C_FLAGS} -m64")
-    target_include_directories(ctorch PRIVATE ${BACKEND_MKL_INCLUDE_DIR})
-    message(
-        "[cTorch]: Append link libraries for MKL backend: "
-        "${MKL_INTERFACE_LIB}, ${MKL_CORE_LIB}, ${MKL_THREAD_LIB}, OpenMP::OpenMP_C"
+
+    if(CMAKE_C_COMPILER_ID MATCHES "Clang" OR CMAKE_C_COMPILER_ID MATCHES "GNU")
+        set(MKL_THREADING "gnu_thread")
+        set(MKL_INTERFACE "lp64")
+    else(CMAKE_C_COMPILER_ID MATCHES "Intel" OR CMAKE_C_COMPILER_ID MATCHES "MSVC")
+        set(MKL_THREADING "intel_thread")
+        set(MKL_INTERFACE "ilp64")
+    endif()
+
+    set(MKL_LINK "dynamic")
+
+    find_package(
+        MKL
+        PATHS "${BACKEND_MKL_ROOT_DIR}/lib"
+        REQUIRED
     )
-    # !Link order matters!
+
+    # Both ctorch & libtorch (used in tests) will find MKL pakcage.
+    # Use this variable to avoid double configing
+    if(${DEBUG_TEST})
+        set(MKL_FOUND PARENT_SCOPE)
+    endif()
+
+    target_include_directories(
+        ctorch PUBLIC
+        ${MKL_INCLUDE}
+    )
+
     target_link_libraries(
         ctorch PUBLIC
-        ${MKL_INTERFACE_LIB}
-        ${MKL_CORE_LIB}
-        ${MKL_THREAD_LIB}
-        OpenMP::OpenMP_C
+       $<LINK_ONLY:MKL::MKL>
     )
+
+    set_target_properties(ctorch PROPERTIES ENVIRONMENT "${MKL_ENV}")
+
 endif()
 
 # Apple

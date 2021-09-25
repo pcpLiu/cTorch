@@ -20,11 +20,14 @@ set(BACKEND_OPENBLAS_ENABLE OFF CACHE BOOL
 set(BACKEND_MKL_ENABLE OFF CACHE BOOL
     "Build backend with Intel MKL backend. Default off"
 )
-set(BACKEND_MKL_LIB_DIR "/opt/intel/mkl/lib/intel64" CACHE PATH
-    "MKL library dir. Default: /opt/intel/lib/intel64"
+set(BACKEND_MKL_ROOT_DIR "/opt/intel/oneapi/mkl/latest" CACHE PATH
+    "MKL root dir. Default: /opt/intel/oneapi/mkl/latest"
 )
-set(BACKEND_MKL_INCLUDE_DIR "/opt/intel/mkl/include" CACHE PATH
-    "MKL include dir. Default: /opt/intel/include"
+set(BACKEND_MKL_LIB_DIR "/opt/intel/oneapi/mkl/latest/lib" CACHE PATH
+    "MKL library dir. Default: /opt/intel/oneapi/mkl/latest/lib"
+)
+set(BACKEND_MKL_INCLUDE_DIR "/opt/intel/oneapi/mkl/latest/include" CACHE PATH
+    "MKL include dir. Default: /opt/intel/oneapi/mkl/latest/include"
 )
 
 set(BACKEND_CUDA_ENABLE OFF CACHE BOOL
@@ -99,7 +102,6 @@ if(${DEBUG_TEST})
     # Enable debug code compiling
     add_compile_definitions(CTH_TEST_DEBUG)
 endif()
-
 
 ################################################################################
 #
