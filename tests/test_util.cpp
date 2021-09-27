@@ -610,6 +610,84 @@ void _print_index(cth_tensor_dim_t *dims, cth_tensor_dim_t n_dim) {
   printf("]\n");
 }
 
+CTHNode *create_dummy_op_node_bilinear(
+    CTH_OP_ID op_id,
+    cth_tensor_dim_t n_dim,
+    CTH_TENSOR_DATA_TYPE data_type,
+    float min,
+    float max) {
+  CTHOperator *op = (CTHOperator *)MALLOC(sizeof(CTHOperator));
+  op->op_id = op_id;
+  op->in_bound_tensors = cth_new_array(CTHTensor)(4);
+  op->out_bound_tensors = cth_new_array(CTHTensor)(1);
+
+  cth_tensor_dim_t min_dim = 1, max_dim = 4;
+  cth_tensor_dim_t in_feature_dim_1 = _rand_int(1, 5);
+  cth_tensor_dim_t in_feature_dim_2 = _rand_int(1, 5);
+  cth_tensor_dim_t out_feature_dim = _rand_int(1, 5);
+
+  cth_tensor_dim_t *input_dims_1 =
+      (cth_tensor_dim_t *)MALLOC(sizeof(cth_tensor_dim_t) * n_dim);
+  _rand_dims(input_dims_1, n_dim, min_dim, max_dim);
+  input_dims_1[n_dim - 1] = in_feature_dim_1;
+
+  cth_tensor_dim_t *input_dims_2 =
+      (cth_tensor_dim_t *)MALLOC(sizeof(cth_tensor_dim_t) * n_dim);
+  // same dimension for inputs except last dim.
+  for (cth_tensor_dim_t i = 0; i < n_dim - 1; i++) {
+    input_dims_2[i] = input_dims_1[i];
+  };
+  input_dims_2[n_dim - 1] = in_feature_dim_2;
+
+  cth_tensor_dim_t *output_dims =
+      (cth_tensor_dim_t *)MALLOC(sizeof(cth_tensor_dim_t) * n_dim);
+  // same dimension for input output except last dim.
+  for (cth_tensor_dim_t i = 0; i < n_dim - 1; i++) {
+    output_dims[i] = input_dims_1[i];
+  };
+  output_dims[n_dim - 1] = out_feature_dim;
+
+  cth_tensor_dim_t *weights_dims =
+      (cth_tensor_dim_t *)MALLOC(sizeof(cth_tensor_dim_t) * 3);
+  weights_dims[0] = out_feature_dim;
+  weights_dims[1] = in_feature_dim_1;
+  weights_dims[2] = in_feature_dim_2;
+
+  cth_tensor_dim_t *bias_dims =
+      (cth_tensor_dim_t *)MALLOC(sizeof(cth_tensor_dim_t) * 1);
+  bias_dims[0] = out_feature_dim;
+
+  cth_array_set(CTHTensor)(
+      op->in_bound_tensors,
+      0,
+      create_dummy_tensor(input_dims_1, n_dim, data_type, min, max));
+
+  cth_array_set(CTHTensor)(
+      op->in_bound_tensors,
+      1,
+      create_dummy_tensor(input_dims_2, n_dim, data_type, min, max));
+
+  cth_array_set(CTHTensor)(
+      op->in_bound_tensors,
+      2,
+      create_dummy_tensor(weights_dims, 3, data_type, min, max));
+
+  cth_array_set(CTHTensor)(
+      op->in_bound_tensors,
+      3,
+      create_dummy_tensor(bias_dims, 1, data_type, min, max));
+
+  cth_array_set(CTHTensor)(
+      op->out_bound_tensors,
+      0,
+      create_dummy_tensor(output_dims, n_dim, data_type, min, max));
+
+  CTHNode *node = (CTHNode *)MALLOC(sizeof(CTHNode));
+  node->conent.op = op;
+  node->node_type = CTH_NODE_TYPE_OPERATOR;
+  return node;
+}
+
 CTHNode *create_dummy_op_node_linear(
     CTH_OP_ID op_id,
     cth_tensor_dim_t n_dim,
@@ -683,7 +761,7 @@ void print_tensor_dims(CTHTensor *tensor) {
       std::cout << ", " << tensor->meta_info->dims[i];
     }
   }
-  std::cout << "]";
+  std::cout << "]" << std::endl;
 }
 
 void print_tensor_eles(CTHTensor *tensor) {

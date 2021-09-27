@@ -44,6 +44,17 @@ CTHNode *create_dummy_op_node_linear(
     float max);
 
 /**
+ * Create a dummy op node with one input and one output.
+ * For bilinearn operator.
+ */
+CTHNode *create_dummy_op_node_bilinear(
+    CTH_OP_ID op_id,
+    cth_tensor_dim_t n_dim,
+    CTH_TENSOR_DATA_TYPE data_type,
+    float min,
+    float max);
+
+/**
  * Create a dummy op node with one input and one output for 1D padding
  * operators. Input & output has different dimensions.
  */
@@ -190,6 +201,36 @@ float _rand_float(float min, float max);
                                                                                \
     auto pytorch_in_tensor = create_torch_tensor(tensor_input);                \
     auto pytorch_out_tensor = torch_call(pytorch_in_tensor, op);               \
+    auto pytorch_result_tensor_flat = pytorch_out_tensor.reshape({n_ele});     \
+    for (cth_tensor_dim_t i = 0; i < n_ele; i++) {                             \
+      eq_func(                                                                 \
+          pytorch_result_tensor_flat[i].item<type>(),                          \
+          output[i],                                                           \
+          eq_precision);                                                       \
+    }                                                                          \
+  }
+
+/**
+ * @brief Check element-wise equal between torch_call(input_1, input_2,
+ * operator) and output with libtorch
+ *
+ */
+#define _ele_wise_equal_nn_op_pytorch_two_inputs(                              \
+    op, type, eq_func, eq_precision, torch_call)                               \
+  {                                                                            \
+    CTHTensor *tensor_input_1 =                                                \
+        cth_array_at(CTHTensor)(op->in_bound_tensors, 0);                      \
+    CTHTensor *tensor_input_2 =                                                \
+        cth_array_at(CTHTensor)(op->in_bound_tensors, 1);                      \
+    CTHTensor *tensor_output =                                                 \
+        cth_array_at(CTHTensor)(op->out_bound_tensors, 0);                     \
+    type *output = (type *)tensor_output->values;                              \
+    cth_tensor_dim_t n_ele = tensor_output->meta_info->n_elements;             \
+                                                                               \
+    auto pytorch_in_tensor_1 = create_torch_tensor(tensor_input_1);            \
+    auto pytorch_in_tensor_2 = create_torch_tensor(tensor_input_2);            \
+    auto pytorch_out_tensor =                                                  \
+        torch_call(pytorch_in_tensor_1, pytorch_in_tensor_2, op);              \
     auto pytorch_result_tensor_flat = pytorch_out_tensor.reshape({n_ele});     \
     for (cth_tensor_dim_t i = 0; i < n_ele; i++) {                             \
       eq_func(                                                                 \
