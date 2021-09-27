@@ -32,7 +32,7 @@ _Linear_pytorch(torch::Tensor &pytorch_in_tensor, CTHOperator *op) {
 void test_linear_1d(
     CTH_BACKEND backend, CTH_TENSOR_DATA_TYPE data_type, float min, float max) {
   CTHNode *op_node =
-      create_dummy_op_node_linear(CTH_OP_ID_Linear, 2, data_type, min, max);
+      create_dummy_op_node_linear(CTH_OP_ID_Linear, 4, data_type, min, max);
   CTHOperator *op = op_node->conent.op;
 
   if (backend == CTH_BACKEND_DEFAULT) {

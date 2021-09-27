@@ -79,6 +79,7 @@ set(ops_default_all
     operators/default/op_ReflectionPad2d_default.c
     operators/default/op_ZeroPad2d_default.c
     operators/default/op_Linear_default.c
+    operators/default/op_Bilinear_default.c
 )
 
 ################################################################################
