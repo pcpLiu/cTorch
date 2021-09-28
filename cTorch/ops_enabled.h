@@ -18,7 +18,7 @@
 /*
   Number of enabled operators
 */
-#define ENABLED_OP_NUM 302
+#define ENABLED_OP_NUM 304
 
 // clang-format off
 
@@ -143,6 +143,8 @@
   wrap(hamming_window) \
   wrap(hann_window) \
   wrap(Hardshrink) \
+  wrap(Hardsigmoid) \
+  wrap(Hardswish) \
   wrap(Hardtanh) \
   wrap(HingeEmbeddingLoss) \
   wrap(histc) \
