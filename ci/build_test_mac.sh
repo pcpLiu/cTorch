@@ -14,8 +14,8 @@
 #
 # Download libtorch
 #
-wget https://download.pytorch.org/libtorch/cpu/libtorch-macos-1.5.1.zip
-unzip libtorch-macos-1.5.1.zip
+wget https://download.pytorch.org/libtorch/cpu/libtorch-macos-1.9.1.zip
+unzip libtorch-macos-1.9.1.zip
 mv libtorch third_party/
 
 #############################################################
