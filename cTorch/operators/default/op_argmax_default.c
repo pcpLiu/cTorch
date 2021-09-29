@@ -33,7 +33,7 @@
     input_data_type max_val = in_ptr[start_offset];                            \
     for (cth_tensor_dim_t i = 0; i < reduce_size; i++) {                       \
       input_data_type val = in_ptr[start_offset + i * inner_offset];           \
-      if (val >= max_val) {                                                    \
+      if (val > max_val) {                                                     \
         max_val = val;                                                         \
         max_i = i;                                                             \
       }                                                                        \
