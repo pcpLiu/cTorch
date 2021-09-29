@@ -13,7 +13,7 @@
     <img src="https://codecov.io/gh/pcpLiu/cTorch/branch/master/graph/badge.svg?token=G7rBTxAEAe" />
   </a>
   <a href="https://github.com/pcpLiu/cTorch/blob/master/LICENSE">
-    <img src="https://img.shields.io/badge/license-MIT-lightgrey">
+    <img src="https://img.shields.io/badge/license-Apache%202.0-blue">
   </a>
 </p>
 
