@@ -40,8 +40,10 @@ typedef enum CTH_PARAM_TYPE {
   CTH_PARAM_TYPE_PADDING_D4,     /* 4-D padding size , CTHDim4 */
   CTH_PARAM_TYPE_PADDING_D6,     /* 6-D padding size , CTHDim6 */
   CTH_PARAM_TYPE_PADDING_MODE,   /* padding mode, CTH_PADDING_MODE*/
-  CTH_PARAM_TYPE_PADDING_VALUE_FLOAT, /* Padding value. float */
-  CTH_PARAM_TYPE_ALPHA_FLOAT,         /* alpha, float */
+  CTH_PARAM_TYPE_PADDING_VALUE_FLOAT,  /* Padding value. float */
+  CTH_PARAM_TYPE_ALPHA_FLOAT,          /* alpha, float */
+  CTH_PARAM_TYPE_LAMBD_FLOAT,          /* lambda, float */
+  CTH_PARAM_TYPE_NEGATIVE_SLOPE_FLOAT, /* negative slope, float */
 } CTH_PARAM_TYPE;
 
 /**

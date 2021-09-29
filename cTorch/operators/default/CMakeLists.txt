@@ -81,6 +81,14 @@ set(ops_default_all
     operators/default/op_Linear_default.c
     operators/default/op_Bilinear_default.c
     operators/default/op_ELU_default.c
+    operators/default/op_Hardshrink_default.c
+    operators/default/op_Hardsigmoid_default.c
+    operators/default/op_Hardtanh_default.c
+    operators/default/op_Hardswish_default.c
+    operators/default/op_LeakyReLU_default.c
+    operators/default/op_LogSigmoid_default.c
+    operators/default/op_ReLU_default.c
+    operators/default/op_ReLU6_default.c
 )
 
 ################################################################################
