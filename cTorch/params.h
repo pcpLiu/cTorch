@@ -44,6 +44,7 @@ typedef enum CTH_PARAM_TYPE {
   CTH_PARAM_TYPE_ALPHA_FLOAT,          /* alpha, float */
   CTH_PARAM_TYPE_LAMBD_FLOAT,          /* lambda, float */
   CTH_PARAM_TYPE_NEGATIVE_SLOPE_FLOAT, /* negative slope, float */
+  CTH_PARAM_TYPE_NUM_PARAMETERS,       /* num parameters, cth_tensor_dim_t */
 } CTH_PARAM_TYPE;
 
 /**
