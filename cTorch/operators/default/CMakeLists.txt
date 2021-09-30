@@ -89,6 +89,7 @@ set(ops_default_all
     operators/default/op_LogSigmoid_default.c
     operators/default/op_ReLU_default.c
     operators/default/op_ReLU6_default.c
+    operators/default/op_PReLU_default.c
 )
 
 ################################################################################

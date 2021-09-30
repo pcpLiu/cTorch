@@ -245,6 +245,8 @@ void cth_extract_param_value(
     *param_var = param->data.float_val;
   } else if (param_type == CTH_PARAM_TYPE_NEGATIVE_SLOPE_FLOAT) {
     *param_var = param->data.float_val;
+  } else if (param_type == CTH_PARAM_TYPE_NUM_PARAMETERS) {
+    *param_var = param->data.dim_val;
   } else {
     FAIL_EXIT(CTH_LOG_ERR, "Uknown parameter type: %d", param_type);
   }
