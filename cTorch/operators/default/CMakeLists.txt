@@ -90,6 +90,8 @@ set(ops_default_all
     operators/default/op_ReLU_default.c
     operators/default/op_ReLU6_default.c
     operators/default/op_PReLU_default.c
+    operators/default/op_matmul_default.c
+    # operators/default/op_MultiheadAttention_default.c
 )
 
 ################################################################################
