@@ -47,7 +47,7 @@ $ cmake .. && make cTorch
 $ sudo make install
 ```
 
-### Backends
+### Backend
 
 All operators in cTorch have a default implementation with standard C without dependency of any external lib.
 cTorch also supports several high-performance backends: [OpenBLAS](), [Intel MKL](), [Apple]() and [CUDA]().
@@ -55,3 +55,7 @@ cTorch also supports several high-performance backends: [OpenBLAS](), [Intel MKL
 # License
 
 Apache 2.0
+
+# Contribution
+
+PRs are welcomed. Please feel free to open one.
