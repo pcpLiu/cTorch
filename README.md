@@ -56,4 +56,4 @@ cTorch also supports several high-performance backends: [OpenBLAS](), [Intel MKL
 
 # License
 
-cTorch is [MIT](https://github.com/pcpLiu/cTorch/blob/master/LICENSE) licensed.
+Apache 2.0
