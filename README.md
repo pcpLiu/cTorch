@@ -29,8 +29,6 @@ It is written in pure C11 and compatible with all operators of PyTorch.
 
 - **Prunable.** You can build cTorch with selective operators and backends
 - **High-performance backends support.** cTorch supports several high performance backends: Intel MKL, CUDA etc
-- **One click convert.** We offer a python tool [Cerberus
-  ](https://github.com/pcpLiu/Cerberus) converting the existing PyTorch model to the format that can be exuecuted by cTorch
 
 # Building & Installation
 
