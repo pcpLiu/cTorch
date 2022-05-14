@@ -23,7 +23,7 @@
 # Introduction
 
 cTorch is a light weight and flexible neural network inference library.
-It is written in pure C11 and compatible with all operators of PyTorch.
+It is written in STD C11.
 
 ### Features
 
