@@ -1,4 +1,4 @@
-(This is a personal experimental project under development, not ready for prod.)
+(This is a personal experimental project, not ready for prod.)
 
 ---
 <p align="center">
